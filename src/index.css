@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-body selection:bg-primary-container selection:text-white;
+  }
+}
+
+@layer utilities {
+  .hero-glow {
+    background: radial-gradient(circle at 50% 50%, rgba(0, 112, 240, 0.15) 0%, rgba(13, 20, 30, 0) 70%);
+  }
+  .glass-panel {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}

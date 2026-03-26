@@ -17,3 +17,33 @@
     -webkit-backdrop-filter: blur(12px);
   }
 }
+
+@keyframes aurora-drift {
+  0%, 100% { transform: rotate(-20deg) translateX(0px) translateY(0px); opacity: 0.55; }
+  33%       { transform: rotate(-16deg) translateX(60px) translateY(-30px); opacity: 0.85; }
+  66%       { transform: rotate(-23deg) translateX(-30px) translateY(20px); opacity: 0.45; }
+}
+
+@keyframes aurora-slow {
+  0%, 100% { transform: rotate(-10deg) translateX(0px); opacity: 0.35; }
+  50%       { transform: rotate(-6deg) translateX(80px); opacity: 0.6; }
+}
+
+@keyframes aurora-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1) translateY(0); }
+  50%       { opacity: 0.65; transform: scale(1.1) translateY(-15px); }
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.2; }
+  50%       { opacity: 0.9; }
+}
+
+.animate-aurora       { animation: aurora-drift  10s ease-in-out infinite; }
+.animate-aurora-slow  { animation: aurora-slow   16s ease-in-out infinite reverse; }
+.animate-aurora-pulse { animation: aurora-pulse   7s ease-in-out infinite; }
+.animate-twinkle-1    { animation: star-twinkle   3s ease-in-out infinite; }
+.animate-twinkle-2    { animation: star-twinkle   5s ease-in-out infinite 1s; }
+.animate-twinkle-3    { animation: star-twinkle   4s ease-in-out infinite 2s; }
+.animate-twinkle-4    { animation: star-twinkle   6s ease-in-out infinite 0.5s; }
+.animate-twinkle-5    { animation: star-twinkle   3.5s ease-in-out infinite 1.5s; }

@@ -15,9 +15,26 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-hidden border-b border-[#1e2d4a]">
-        {/* Crisp Grid Background exactly like Pursuit page */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#00c3ff]/10 via-transparent to-transparent z-0 blur-[100px] pointer-events-none w-full h-1/2 top-0"></div>
+        {/* Soft dot grid */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,195,255,0.12)_1px,transparent_1px)] bg-[size:40px_40px] z-0"></div>
+
+        {/* Animated aurora / cosmos */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          {/* Primary sweep beam */}
+          <div className="animate-aurora absolute w-[180%] h-[280px] bg-gradient-to-r from-transparent via-[#00c3ff]/18 to-transparent blur-[70px] top-[15%] -right-[40%]"></div>
+          {/* Secondary sweep */}
+          <div className="animate-aurora-slow absolute w-[160%] h-[180px] bg-gradient-to-r from-transparent via-[#5b8cff]/14 to-transparent blur-[80px] top-[40%] -right-[20%]"></div>
+          {/* Ambient glow orb */}
+          <div className="animate-aurora-pulse absolute w-[500px] h-[500px] rounded-full bg-[#00c3ff]/8 blur-[120px] -top-16 right-0"></div>
+          {/* Star particles */}
+          <div className="animate-twinkle-1 absolute w-1 h-1 rounded-full bg-white top-[12%] left-[20%]"></div>
+          <div className="animate-twinkle-2 absolute w-1 h-1 rounded-full bg-[#00c3ff] top-[28%] left-[72%]"></div>
+          <div className="animate-twinkle-3 absolute w-[3px] h-[3px] rounded-full bg-white top-[55%] left-[85%]"></div>
+          <div className="animate-twinkle-4 absolute w-1 h-1 rounded-full bg-white top-[70%] left-[35%]"></div>
+          <div className="animate-twinkle-5 absolute w-[3px] h-[3px] rounded-full bg-[#5b8cff] top-[18%] left-[55%]"></div>
+          <div className="animate-twinkle-1 absolute w-1 h-1 rounded-full bg-white top-[45%] left-[10%]"></div>
+          <div className="animate-twinkle-3 absolute w-1 h-1 rounded-full bg-[#00c3ff] top-[8%] left-[88%]"></div>
+        </div>
 
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Left Column: Copy */}

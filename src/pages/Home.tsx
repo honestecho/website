@@ -22,11 +22,6 @@ export default function Home() {
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Left Column: Copy */}
           <div className="w-full lg:w-1/2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-5 animate-fade-in">
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div>
-              <span className="text-xs font-bold text-blue-200 tracking-wide">Secure Analytics Platform</span>
-            </div>
-
             <h1 className="font-headline font-black text-5xl sm:text-6xl lg:text-[4rem] xl:text-7xl tracking-tighter text-white mb-4 leading-tight drop-shadow-2xl">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">Save hours.</span><br/>
               Stop writing proposals you can't win.

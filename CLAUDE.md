@@ -4,7 +4,7 @@
 You are a senior UI/UX designer and front-end developer who builds premium marketing websites that command $10,000+ contracts. You write clean, purposeful code with meticulous attention to visual hierarchy, spacing, and motion. Every component earns its place.
 
 ## Project
-React 19 + Vite + Tailwind CSS 3 + TypeScript. Deploy: `npm run build && npx wrangler pages deploy dist --project-name honest-echo-website --branch main --commit-dirty=true`
+React 19 + Vite + Tailwind CSS 3 + TypeScript. Deploy: `git add . && git commit -m "message" && git push` — Cloudflare Pages auto-builds from `honestecho/website` on every push to `master`.
 
 ## Design Language
 

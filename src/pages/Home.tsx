@@ -20,20 +20,12 @@ export default function Home() {
 
         {/* Animated aurora / cosmos */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          {/* Ambient glow orb — top right */}
+          <div className="animate-aurora-pulse absolute w-[700px] h-[700px] rounded-full blur-[140px] -top-32 -right-32" style={{background: 'radial-gradient(circle, rgba(0,195,255,0.25) 0%, rgba(0,195,255,0.08) 50%, transparent 70%)'}}></div>
           {/* Primary sweep beam */}
-          <div className="animate-aurora absolute w-[180%] h-[280px] bg-gradient-to-r from-transparent via-[#00c3ff]/18 to-transparent blur-[70px] top-[15%] -right-[40%]"></div>
+          <div className="animate-aurora absolute w-[180%] h-[320px] blur-[60px] top-[10%] -right-[30%]" style={{background: 'linear-gradient(to right, transparent, rgba(0,195,255,0.22), transparent)'}}></div>
           {/* Secondary sweep */}
-          <div className="animate-aurora-slow absolute w-[160%] h-[180px] bg-gradient-to-r from-transparent via-[#5b8cff]/14 to-transparent blur-[80px] top-[40%] -right-[20%]"></div>
-          {/* Ambient glow orb */}
-          <div className="animate-aurora-pulse absolute w-[500px] h-[500px] rounded-full bg-[#00c3ff]/8 blur-[120px] -top-16 right-0"></div>
-          {/* Star particles */}
-          <div className="animate-twinkle-1 absolute w-1 h-1 rounded-full bg-white top-[12%] left-[20%]"></div>
-          <div className="animate-twinkle-2 absolute w-1 h-1 rounded-full bg-[#00c3ff] top-[28%] left-[72%]"></div>
-          <div className="animate-twinkle-3 absolute w-[3px] h-[3px] rounded-full bg-white top-[55%] left-[85%]"></div>
-          <div className="animate-twinkle-4 absolute w-1 h-1 rounded-full bg-white top-[70%] left-[35%]"></div>
-          <div className="animate-twinkle-5 absolute w-[3px] h-[3px] rounded-full bg-[#5b8cff] top-[18%] left-[55%]"></div>
-          <div className="animate-twinkle-1 absolute w-1 h-1 rounded-full bg-white top-[45%] left-[10%]"></div>
-          <div className="animate-twinkle-3 absolute w-1 h-1 rounded-full bg-[#00c3ff] top-[8%] left-[88%]"></div>
+          <div className="animate-aurora-slow absolute w-[160%] h-[220px] blur-[80px] top-[45%] -right-[10%]" style={{background: 'linear-gradient(to right, transparent, rgba(91,140,255,0.18), transparent)'}}></div>
         </div>
 
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
@@ -305,7 +297,7 @@ export default function Home() {
           onClick={() => setIsFullscreen(false)}
         >
           <div
-            className="w-full max-w-xl rounded-xl p-2 bg-[#0b1120] border border-[#00c3ff]/50 shadow-[0_0_60px_rgba(0,195,255,0.3)] relative"
+            className="w-full max-w-3xl rounded-xl p-2 bg-[#0b1120] border border-[#00c3ff]/50 shadow-[0_0_60px_rgba(0,195,255,0.3)] relative"
             onClick={(e) => e.stopPropagation()}
           >
             <img src="/opportunitycard.jpg" alt="Opportunity Snapshot and Fit Analysis" className="w-full h-auto rounded-lg" />

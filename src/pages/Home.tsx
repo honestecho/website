@@ -13,20 +13,25 @@ export default function Home() {
         <meta name="description" content="AI-powered bid/no-bid decision engine and high-end B2B consulting for the GovCon arena." />
       </Helmet>
 
-      {/* Hero Section */}
-      <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-hidden border-b border-[#1e2d4a]">
-        {/* Soft dot grid */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,195,255,0.12)_1px,transparent_1px)] bg-[size:40px_40px] z-0"></div>
+      {/* Full-page wrapper — global aurora drifts across all sections */}
+      <div className="relative overflow-x-hidden">
 
-        {/* Animated aurora / cosmos */}
+        {/* Global aurora layer */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          {/* Ambient glow orb — top right */}
-          <div className="animate-aurora-pulse absolute w-[700px] h-[700px] rounded-full blur-[140px] -top-32 -right-32" style={{background: 'radial-gradient(circle, rgba(0,195,255,0.25) 0%, rgba(0,195,255,0.08) 50%, transparent 70%)'}}></div>
-          {/* Primary sweep beam */}
-          <div className="animate-aurora absolute w-[180%] h-[320px] blur-[60px] top-[10%] -right-[30%]" style={{background: 'linear-gradient(to right, transparent, rgba(0,195,255,0.22), transparent)'}}></div>
-          {/* Secondary sweep */}
-          <div className="animate-aurora-slow absolute w-[160%] h-[220px] blur-[80px] top-[45%] -right-[10%]" style={{background: 'linear-gradient(to right, transparent, rgba(91,140,255,0.18), transparent)'}}></div>
+          {/* Orb — top right */}
+          <div className="animate-aurora-pulse absolute w-[900px] h-[900px] rounded-full blur-[160px] -top-48 -right-48" style={{background: 'radial-gradient(circle, rgba(0,195,255,0.22) 0%, rgba(0,195,255,0.06) 50%, transparent 70%)'}}></div>
+          {/* Primary sweep beam — upper third */}
+          <div className="animate-aurora absolute w-[200%] h-[380px] blur-[80px] top-[6%] -right-[40%]" style={{background: 'linear-gradient(to right, transparent, rgba(0,195,255,0.2), transparent)'}}></div>
+          {/* Secondary sweep — mid page */}
+          <div className="animate-aurora-slow absolute w-[180%] h-[320px] blur-[100px] top-[38%] -left-[20%]" style={{background: 'linear-gradient(to right, transparent, rgba(91,140,255,0.16), transparent)'}}></div>
+          {/* Lower orb — pricing section */}
+          <div className="animate-aurora-pulse absolute w-[700px] h-[700px] rounded-full blur-[140px] bottom-[5%] left-[5%]" style={{background: 'radial-gradient(circle, rgba(91,140,255,0.18) 0%, transparent 70%)', animationDelay: '3.5s'}}></div>
         </div>
+
+        {/* Hero Section */}
+        <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-hidden border-b border-[#1e2d4a]">
+          {/* Soft dot grid */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,195,255,0.12)_1px,transparent_1px)] bg-[size:40px_40px] z-0"></div>
 
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Left Column: Copy */}
@@ -289,6 +294,8 @@ export default function Home() {
         </div>
       </section>
 
+
+      </div>{/* end full-page aurora wrapper */}
 
       {/* Lightbox Modal */}
       {isFullscreen && (

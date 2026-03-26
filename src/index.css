@@ -19,19 +19,18 @@
 }
 
 @keyframes aurora-drift {
-  0%, 100% { transform: rotate(-20deg) translateX(0px) translateY(0px); opacity: 0.55; }
-  33%       { transform: rotate(-16deg) translateX(60px) translateY(-30px); opacity: 0.85; }
-  66%       { transform: rotate(-23deg) translateX(-30px) translateY(20px); opacity: 0.45; }
+  0%, 100% { opacity: 0.45; transform: translateY(0px)   rotate(-18deg); }
+  50%       { opacity: 0.85; transform: translateY(-70px) rotate(-18deg); }
 }
 
 @keyframes aurora-slow {
-  0%, 100% { transform: rotate(-10deg) translateX(0px); opacity: 0.35; }
-  50%       { transform: rotate(-6deg) translateX(80px); opacity: 0.6; }
+  0%, 100% { opacity: 0.3;  transform: translateY(0px)  rotate(-10deg); }
+  50%       { opacity: 0.65; transform: translateY(80px) rotate(-10deg); }
 }
 
 @keyframes aurora-pulse {
-  0%, 100% { opacity: 0.3; transform: scale(1) translateY(0); }
-  50%       { opacity: 0.65; transform: scale(1.1) translateY(-15px); }
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50%       { opacity: 0.75; transform: scale(1.15); }
 }
 
 @keyframes star-twinkle {

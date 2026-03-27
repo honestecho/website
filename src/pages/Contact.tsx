@@ -19,7 +19,7 @@ export default function Contact() {
 
           <h1 className="font-headline font-black text-5xl text-white mb-6 tracking-tight">Let's talk <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-purple-400">GovCon.</span></h1>
           <p className="text-lg text-[#a0b2c8] mb-12 font-body leading-relaxed">
-            Reach out for consulting inquiries, enterprise platform access, or general questions about Honest Echo's pursuit engine.
+            Reach out for consulting inquiries, enterprise tool access, or general questions about Honest Echo's pursuit engine.
           </p>
           
           <div className="space-y-8">

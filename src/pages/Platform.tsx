@@ -6,7 +6,7 @@ export default function Platform() {
   return (
     <>
       <Helmet>
-        <title>Platform | Honest Echo</title>
+        <title>Tool | Honest Echo</title>
         <meta name="description" content="Know if you should bid before you waste time. An intelligent engine that powers your BD workflow from identification to submitted proposal." />
       </Helmet>
       
@@ -15,10 +15,10 @@ export default function Platform() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,112,240,0.1)_0%,rgba(13,20,30,0)_60%)] -z-10"></div>
         <div className="inline-flex px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/20 mb-8 items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-          <span className="text-[0.6875rem] font-label uppercase tracking-[0.05rem] text-secondary">Flagship Platform</span>
+          <span className="text-[0.6875rem] font-label uppercase tracking-[0.05rem] text-secondary">Flagship Tool</span>
         </div>
         <h1 className="font-headline font-black text-5xl md:text-7xl lg:text-8xl tracking-tighter max-w-5xl text-white mb-6">
-          The Platform
+          The Tool
         </h1>
         <p className="text-xl md:text-2xl text-on-surface-variant max-w-3xl mb-10 leading-relaxed font-body">
           Know if you should bid before you waste time.
@@ -39,7 +39,7 @@ export default function Platform() {
         <div className="bg-surface-container-low border border-outline-variant/10 rounded-2xl p-8 md:p-12 mb-24">
           <h2 className="font-headline font-bold text-3xl text-white mb-6">What it does</h2>
           <p className="text-xl text-on-surface-variant leading-relaxed max-w-4xl">
-            The Honest Echo platform replaces gut-feelings with systemic intelligence. 
+            The Honest Echo tool replaces gut-feelings with systemic intelligence. 
             It ingests opportunity data, analyzes your historical alignment, evaluates required effort 
             against potential reward, and forces a disciplined Bid / No-Bid decision matrix.
           </p>
@@ -83,7 +83,7 @@ export default function Platform() {
               
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-900/20 border border-blue-700/30 mb-8">
                  <div className="w-1.5 h-1.5 rounded-full bg-blue-400"></div>
-                 <span className="text-sm font-bold text-blue-200 tracking-wide">GovCon Intelligence Platform</span>
+                 <span className="text-sm font-bold text-blue-200 tracking-wide">GovCon Intelligence Tool</span>
               </div>
 
               <p className="text-xl text-[#a0b2c8] mb-12 leading-relaxed max-w-lg font-body">

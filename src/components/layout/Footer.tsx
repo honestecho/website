@@ -22,7 +22,7 @@ export default function Footer() {
         </div>
         <div className="flex flex-wrap justify-center gap-8">
           <Link to="/platform" className="font-body text-sm tracking-wide text-on-surface-variant hover:text-white transition-colors">
-            Platform
+            Tool
           </Link>
           <Link to="/consulting" className="font-body text-sm tracking-wide text-on-surface-variant hover:text-white transition-colors">
             Consulting

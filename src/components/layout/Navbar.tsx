@@ -19,7 +19,7 @@ export default function Navbar() {
         </Link>
         <div className="hidden md:flex items-center gap-8">
           <Link to="/platform" className="font-headline font-bold tracking-tight text-white/80 hover:text-white transition-colors">
-            Platform
+            Tool
           </Link>
           <Link to="/consulting" className="font-headline font-bold tracking-tight text-white/80 hover:text-white transition-colors">
             Consulting

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, ShieldCheck, Sparkles, Zap, Target, Scale } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Spline from '@splinetool/react-spline';
 
 export default function Home() {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -30,8 +31,13 @@ export default function Home() {
 
         {/* Hero Section */}
         <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-hidden border-b border-[#1e2d4a]">
-          {/* Soft dot grid */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,195,255,0.12)_1px,transparent_1px)] bg-[size:40px_40px] z-0"></div>
+          {/* Spline 3D background */}
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <Spline
+              scene="https://prod.spline.design/soundwave-aopoYPXyujV4kveQ0nHf1eJC/scene.splinecode"
+              style={{ width: '100%', height: '100%' }}
+            />
+          </div>
 
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Left Column: Copy */}

@@ -14,13 +14,15 @@ export default function Home() {
       </Helmet>
 
         {/* Hero Section */}
-        <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-hidden border-b border-[#1e2d4a]">
+        <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-hidden">
           {/* Galaxy blobs — children of section, render above section bg */}
           <div className="animate-aurora absolute w-[900px] h-[700px] rounded-full blur-[120px] -top-40 right-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.35)_0%,rgba(0,195,255,0.10)_55%,transparent_75%)]"></div>
           <div className="animate-aurora-slow absolute w-[800px] h-[700px] rounded-full blur-[130px] -top-20 left-[-15%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.30)_0%,rgba(91,140,255,0.08)_55%,transparent_75%)]"></div>
           <div className="animate-aurora-pulse absolute w-[700px] h-[600px] rounded-full blur-[110px] top-[50px] left-[25%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.22)_0%,rgba(80,160,255,0.10)_55%,transparent_75%)]"></div>
           {/* Soft dot grid */}
           <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,195,255,0.12)_1px,transparent_1px)] bg-[size:40px_40px] z-0 pointer-events-none"></div>
+          {/* Gradient bridge → Consulting */}
+          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#030B17] pointer-events-none z-10"></div>
 
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Left Column: Copy */}
@@ -99,8 +101,10 @@ export default function Home() {
 
 
       {/* SECTION — Consulting */}
-      <section className="py-24 px-6 bg-[#01060e] overflow-hidden relative">
+      <section className="py-24 px-6 bg-[#030B17] overflow-hidden relative">
         <div className="animate-aurora-slow absolute w-[900px] h-[700px] rounded-full blur-[140px] -top-40 right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(100,80,255,0.28)_0%,rgba(91,140,255,0.08)_55%,transparent_75%)]"></div>
+        {/* Gradient bridge → Social Proof */}
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#050d1a] pointer-events-none z-10"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row gap-16 items-center">
             <div className="w-full md:w-1/2">
@@ -135,9 +139,11 @@ export default function Home() {
       </section>
 
       {/* SECTION — Social Proof */}
-      <section className="px-6 py-32 bg-[#050d1a] border-t border-b border-[#1e2d4a] relative overflow-hidden">
+      <section className="px-6 py-32 bg-[#050d1a] relative overflow-hidden">
         <div className="animate-aurora absolute w-[800px] h-[600px] rounded-full blur-[130px] -top-20 left-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.28)_0%,rgba(0,195,255,0.08)_55%,transparent_75%)]"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#00c3ff]/5 via-transparent to-[#00c3ff]/5 pointer-events-none"></div>
+        {/* Gradient bridge → Pricing */}
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#01060e] pointer-events-none z-10"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="font-headline font-black text-4xl md:text-5xl text-white mb-6 tracking-tight">

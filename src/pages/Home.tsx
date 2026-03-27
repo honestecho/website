@@ -30,16 +30,8 @@ export default function Home() {
 
         {/* Hero Section */}
         <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-hidden border-b border-[#1e2d4a]">
-          {/* Spline 3D background */}
-          <div className="absolute inset-0 z-0 pointer-events-none">
-            <iframe
-              src="https://my.spline.design/soundwave-aopoYPXyujV4kveQ0nHf1eJC/"
-              title="Background animation"
-              frameBorder="0"
-              className="w-full h-full"
-              style={{ border: 'none' }}
-            />
-          </div>
+          {/* Soft dot grid */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,195,255,0.12)_1px,transparent_1px)] bg-[size:40px_40px] z-0 pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Left Column: Copy */}

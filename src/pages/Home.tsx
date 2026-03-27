@@ -20,12 +20,12 @@ export default function Home() {
         <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
           {/* Ambient orb — top right */}
           <div className="animate-aurora-pulse absolute w-[600px] h-[600px] rounded-full blur-[120px] -top-40 -right-20" style={{background: 'radial-gradient(circle, rgba(0,195,255,0.22) 0%, transparent 70%)'}}></div>
-          {/* Primary beam — in hero, narrow diagonal */}
-          <div className="animate-aurora absolute w-[280%] h-[70px] blur-[22px] top-[180px] -left-[40%]" style={{background: 'linear-gradient(to right, transparent 5%, rgba(0,195,255,0.55) 50%, transparent 95%)'}}></div>
-          {/* Secondary beam — just below, offset */}
-          <div className="animate-aurora-slow absolute w-[260%] h-[45px] blur-[16px] top-[320px] -left-[30%]" style={{background: 'linear-gradient(to right, transparent 5%, rgba(91,140,255,0.4) 50%, transparent 95%)'}}></div>
+          {/* Primary beam — centered diagonal */}
+          <div className="animate-aurora absolute w-[280%] h-[70px] blur-[22px] top-[180px] -left-[90%]" style={{background: 'linear-gradient(to right, transparent 5%, rgba(0,195,255,0.55) 50%, transparent 95%)'}}></div>
+          {/* Secondary beam — centered, offset below */}
+          <div className="animate-aurora-slow absolute w-[260%] h-[45px] blur-[16px] top-[320px] -left-[80%]" style={{background: 'linear-gradient(to right, transparent 5%, rgba(91,140,255,0.4) 50%, transparent 95%)'}}></div>
           {/* Mid-page beam — consulting/social proof sections */}
-          <div className="animate-aurora absolute w-[240%] h-[50px] blur-[20px] top-[1400px] -left-[20%]" style={{background: 'linear-gradient(to right, transparent 5%, rgba(0,195,255,0.3) 50%, transparent 95%)', animationDelay: '2.5s'}}></div>
+          <div className="animate-aurora absolute w-[240%] h-[50px] blur-[20px] top-[1400px] -left-[70%]" style={{background: 'linear-gradient(to right, transparent 5%, rgba(0,195,255,0.3) 50%, transparent 95%)', animationDelay: '2.5s'}}></div>
         </div>
 
         {/* Hero Section */}

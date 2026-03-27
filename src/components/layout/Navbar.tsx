@@ -18,7 +18,7 @@ export default function Navbar() {
           <span className="hidden sm:block group-hover:text-white transition-colors">Honest Echo</span>
         </Link>
         <div className="hidden md:flex items-center gap-8">
-          <Link to="/platform" className="font-headline font-bold tracking-tight text-white/80 hover:text-white transition-colors">
+          <Link to="/product" className="font-headline font-bold tracking-tight text-white/80 hover:text-white transition-colors">
             Product
           </Link>
           <Link to="/consulting" className="font-headline font-bold tracking-tight text-white/80 hover:text-white transition-colors">

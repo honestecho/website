@@ -72,11 +72,11 @@ export default function Home() {
             </ul>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/app" className="px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+              <Link to="/signup" className="px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
                 Start Free Trial
                 <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link to="/platform" className="px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] transition-all flex items-center justify-center">
+              <Link to="/product" className="px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] transition-all flex items-center justify-center">
                 Learn More
               </Link>
             </div>
@@ -245,7 +245,7 @@ export default function Home() {
                 <li className="flex gap-3 items-start text-slate-500"><ShieldCheck className="w-4 h-4 text-slate-600 shrink-0 mt-0.5"/> Limited eligibility check</li>
                 <li className="flex gap-3 items-start text-slate-500"><ShieldCheck className="w-4 h-4 text-slate-600 shrink-0 mt-0.5"/> Limited document parsing</li>
               </ul>
-              <Link to="/app" className="block text-center w-full py-4 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#1a2538] transition-all">Get Started</Link>
+              <Link to="/signup" className="block text-center w-full py-4 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#1a2538] transition-all">Get Started</Link>
             </div>
 
             {/* Pro Tier (Highlighted) */}
@@ -267,7 +267,7 @@ export default function Home() {
                 <li className="flex gap-3 items-start"><Sparkles className="w-4 h-4 text-[#00c3ff] shrink-0 mt-0.5"/> Strategic & Effort scoring</li>
                 <li className="flex gap-3 items-start"><Sparkles className="w-4 h-4 text-[#00c3ff] shrink-0 mt-0.5"/> Decision tracking & History</li>
               </ul>
-              <Link to="/app" className="block text-center relative w-full py-4 rounded-lg bg-[#00c3ff] text-[#030B17] font-bold hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-[#00c3ff]/20">Start Free Trial</Link>
+              <Link to="/signup" className="block text-center relative w-full py-4 rounded-lg bg-[#00c3ff] text-[#030B17] font-bold hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-[#00c3ff]/20">Start Free Trial</Link>
             </div>
 
             {/* Team Tier */}

@@ -6,7 +6,7 @@ export default function Platform() {
   return (
     <>
       <Helmet>
-        <title>Tool | Honest Echo</title>
+        <title>Product | Honest Echo</title>
         <meta name="description" content="Know if you should bid before you waste time. An intelligent engine that powers your BD workflow from identification to submitted proposal." />
       </Helmet>
       

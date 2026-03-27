@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import Consulting from './pages/Consulting';
 import Platform from './pages/Platform';
@@ -23,7 +22,6 @@ function App() {
           <Route path="/pursuit" element={<AppRedirect />} />
         </Routes>
       </main>
-      <Footer />
     </div>
   );
 }

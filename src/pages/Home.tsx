@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, ShieldCheck, Sparkles, Zap, Target, Scale } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Spline from '@splinetool/react-spline';
 
 export default function Home() {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -33,9 +32,12 @@ export default function Home() {
         <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-hidden border-b border-[#1e2d4a]">
           {/* Spline 3D background */}
           <div className="absolute inset-0 z-0 pointer-events-none">
-            <Spline
-              scene="https://prod.spline.design/soundwave-aopoYPXyujV4kveQ0nHf1eJC/scene.splinecode"
-              style={{ width: '100%', height: '100%' }}
+            <iframe
+              src="https://my.spline.design/soundwave-aopoYPXyujV4kveQ0nHf1eJC/"
+              title="Background animation"
+              frameBorder="0"
+              className="w-full h-full"
+              style={{ border: 'none' }}
             />
           </div>
 

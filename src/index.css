@@ -46,9 +46,9 @@
   50%       { opacity: 0.9; }
 }
 
-.animate-aurora       { animation: galaxy-float-a  28s ease-in-out infinite; }
-.animate-aurora-slow  { animation: galaxy-float-b  35s ease-in-out infinite; }
-.animate-aurora-pulse { animation: galaxy-float-c  22s ease-in-out infinite; }
+.animate-aurora       { animation: galaxy-float-a  15s ease-in-out infinite; }
+.animate-aurora-slow  { animation: galaxy-float-b  20s ease-in-out infinite; }
+.animate-aurora-pulse { animation: galaxy-float-c  15s ease-in-out infinite; }
 .animate-twinkle-1    { animation: star-twinkle   3s ease-in-out infinite; }
 .animate-twinkle-2    { animation: star-twinkle   5s ease-in-out infinite 1s; }
 .animate-twinkle-3    { animation: star-twinkle   4s ease-in-out infinite 2s; }

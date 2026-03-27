@@ -13,23 +13,12 @@ export default function Home() {
         <meta name="description" content="AI-powered bid/no-bid decision engine and high-end B2B consulting for the GovCon arena." />
       </Helmet>
 
-      {/* Full-page wrapper — global aurora drifts across all sections */}
-      <div className="relative overflow-x-hidden">
-
-        {/* Global galaxy layer */}
-        <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
-          {/* Blob A — large cyan, top right */}
-          <div className="animate-aurora absolute w-[900px] h-[700px] rounded-full blur-[130px] -top-40 right-[-10%]" style={{background: 'radial-gradient(ellipse, rgba(0,195,255,0.28) 0%, rgba(0,195,255,0.08) 55%, transparent 75%)'}}></div>
-          {/* Blob B — indigo, center left */}
-          <div className="animate-aurora-slow absolute w-[800px] h-[700px] rounded-full blur-[140px] top-[200px] left-[-15%]" style={{background: 'radial-gradient(ellipse, rgba(91,140,255,0.25) 0%, rgba(91,140,255,0.07) 55%, transparent 75%)'}}></div>
-          {/* Blob C — cyan teal, lower center */}
-          <div className="animate-aurora-pulse absolute w-[700px] h-[600px] rounded-full blur-[120px] top-[500px] left-[25%]" style={{background: 'radial-gradient(ellipse, rgba(0,195,255,0.18) 0%, rgba(80,160,255,0.08) 55%, transparent 75%)'}}></div>
-          {/* Blob D — deep indigo, bottom */}
-          <div className="animate-aurora-slow absolute w-[900px] h-[600px] rounded-full blur-[150px] top-[1200px] right-[-5%]" style={{background: 'radial-gradient(ellipse, rgba(100,80,255,0.2) 0%, rgba(91,140,255,0.06) 55%, transparent 75%)', animationDelay: '8s'}}></div>
-        </div>
-
         {/* Hero Section */}
         <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-hidden border-b border-[#1e2d4a]">
+          {/* Galaxy blobs — children of section, render above section bg */}
+          <div className="animate-aurora absolute w-[900px] h-[700px] rounded-full blur-[120px] -top-40 right-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.35)_0%,rgba(0,195,255,0.10)_55%,transparent_75%)]"></div>
+          <div className="animate-aurora-slow absolute w-[800px] h-[700px] rounded-full blur-[130px] -top-20 left-[-15%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.30)_0%,rgba(91,140,255,0.08)_55%,transparent_75%)]"></div>
+          <div className="animate-aurora-pulse absolute w-[700px] h-[600px] rounded-full blur-[110px] top-[50px] left-[25%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.22)_0%,rgba(80,160,255,0.10)_55%,transparent_75%)]"></div>
           {/* Soft dot grid */}
           <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,195,255,0.12)_1px,transparent_1px)] bg-[size:40px_40px] z-0 pointer-events-none"></div>
 
@@ -110,7 +99,8 @@ export default function Home() {
 
 
       {/* SECTION — Consulting */}
-      <section className="py-24 px-6 bg-[#01060e] overflow-hidden">
+      <section className="py-24 px-6 bg-[#01060e] overflow-hidden relative">
+        <div className="animate-aurora-slow absolute w-[900px] h-[700px] rounded-full blur-[140px] -top-40 right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(100,80,255,0.28)_0%,rgba(91,140,255,0.08)_55%,transparent_75%)]"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row gap-16 items-center">
             <div className="w-full md:w-1/2">
@@ -146,6 +136,7 @@ export default function Home() {
 
       {/* SECTION — Social Proof */}
       <section className="px-6 py-32 bg-[#050d1a] border-t border-b border-[#1e2d4a] relative overflow-hidden">
+        <div className="animate-aurora absolute w-[800px] h-[600px] rounded-full blur-[130px] -top-20 left-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.28)_0%,rgba(0,195,255,0.08)_55%,transparent_75%)]"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-[#00c3ff]/5 via-transparent to-[#00c3ff]/5 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
@@ -294,8 +285,6 @@ export default function Home() {
         </div>
       </section>
 
-
-      </div>{/* end full-page aurora wrapper */}
 
       {/* Lightbox Modal */}
       {isFullscreen && (

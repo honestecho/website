@@ -16,16 +16,16 @@ export default function Home() {
       {/* Full-page wrapper — global aurora drifts across all sections */}
       <div className="relative overflow-x-hidden">
 
-        {/* Global aurora layer */}
+        {/* Global galaxy layer */}
         <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
-          {/* Ambient orb — top right */}
-          <div className="animate-aurora-pulse absolute w-[600px] h-[600px] rounded-full blur-[120px] -top-40 -right-20" style={{background: 'radial-gradient(circle, rgba(0,195,255,0.22) 0%, transparent 70%)'}}></div>
-          {/* Primary beam — centered diagonal */}
-          <div className="animate-aurora absolute w-[280%] h-[100px] blur-[18px] top-[250px] -left-[90%]" style={{background: 'linear-gradient(to right, transparent 5%, rgba(0,195,255,0.75) 50%, transparent 95%)'}}></div>
-          {/* Secondary beam — centered, offset */}
-          <div className="animate-aurora-slow absolute w-[260%] h-[60px] blur-[14px] top-[380px] -left-[80%]" style={{background: 'linear-gradient(to right, transparent 5%, rgba(91,140,255,0.55) 50%, transparent 95%)'}}></div>
-          {/* Mid-page beam — consulting/social proof sections */}
-          <div className="animate-aurora absolute w-[240%] h-[50px] blur-[20px] top-[1400px] -left-[70%]" style={{background: 'linear-gradient(to right, transparent 5%, rgba(0,195,255,0.3) 50%, transparent 95%)', animationDelay: '2.5s'}}></div>
+          {/* Blob A — large cyan, top right */}
+          <div className="animate-aurora absolute w-[900px] h-[700px] rounded-full blur-[130px] -top-40 right-[-10%]" style={{background: 'radial-gradient(ellipse, rgba(0,195,255,0.28) 0%, rgba(0,195,255,0.08) 55%, transparent 75%)'}}></div>
+          {/* Blob B — indigo, center left */}
+          <div className="animate-aurora-slow absolute w-[800px] h-[700px] rounded-full blur-[140px] top-[200px] left-[-15%]" style={{background: 'radial-gradient(ellipse, rgba(91,140,255,0.25) 0%, rgba(91,140,255,0.07) 55%, transparent 75%)'}}></div>
+          {/* Blob C — cyan teal, lower center */}
+          <div className="animate-aurora-pulse absolute w-[700px] h-[600px] rounded-full blur-[120px] top-[500px] left-[25%]" style={{background: 'radial-gradient(ellipse, rgba(0,195,255,0.18) 0%, rgba(80,160,255,0.08) 55%, transparent 75%)'}}></div>
+          {/* Blob D — deep indigo, bottom */}
+          <div className="animate-aurora-slow absolute w-[900px] h-[600px] rounded-full blur-[150px] top-[1200px] right-[-5%]" style={{background: 'radial-gradient(ellipse, rgba(100,80,255,0.2) 0%, rgba(91,140,255,0.06) 55%, transparent 75%)', animationDelay: '8s'}}></div>
         </div>
 
         {/* Hero Section */}

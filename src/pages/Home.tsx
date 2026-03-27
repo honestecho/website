@@ -18,14 +18,12 @@ export default function Home() {
 
         {/* Global aurora layer */}
         <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
-          {/* Orb — top right */}
-          <div className="animate-aurora-pulse absolute w-[900px] h-[900px] rounded-full blur-[140px] -top-48 -right-48" style={{background: 'radial-gradient(circle, rgba(0,195,255,0.38) 0%, rgba(0,195,255,0.12) 45%, transparent 70%)'}}></div>
-          {/* Primary sweep beam — upper third */}
-          <div className="animate-aurora absolute w-[200%] h-[380px] blur-[70px] top-[6%] -right-[40%]" style={{background: 'linear-gradient(to right, transparent, rgba(0,195,255,0.32), transparent)'}}></div>
-          {/* Secondary sweep — mid page */}
-          <div className="animate-aurora-slow absolute w-[180%] h-[320px] blur-[90px] top-[38%] -left-[20%]" style={{background: 'linear-gradient(to right, transparent, rgba(91,140,255,0.26), transparent)'}}></div>
-          {/* Lower orb — pricing section */}
-          <div className="animate-aurora-pulse absolute w-[700px] h-[700px] rounded-full blur-[130px] bottom-[5%] left-[5%]" style={{background: 'radial-gradient(circle, rgba(91,140,255,0.28) 0%, transparent 70%)', animationDelay: '3.5s'}}></div>
+          {/* Primary beam — narrow diagonal */}
+          <div className="animate-aurora absolute w-[280%] h-[70px] blur-[22px] top-[30%] -left-[40%]" style={{background: 'linear-gradient(to right, transparent 5%, rgba(0,195,255,0.5) 50%, transparent 95%)'}}></div>
+          {/* Secondary beam — offset, slightly wider */}
+          <div className="animate-aurora-slow absolute w-[260%] h-[45px] blur-[16px] top-[42%] -left-[30%]" style={{background: 'linear-gradient(to right, transparent 5%, rgba(91,140,255,0.35) 50%, transparent 95%)'}}></div>
+          {/* Ambient orb — top right, very subtle */}
+          <div className="animate-aurora-pulse absolute w-[500px] h-[500px] rounded-full blur-[120px] -top-32 right-0" style={{background: 'radial-gradient(circle, rgba(0,195,255,0.18) 0%, transparent 70%)'}}></div>
         </div>
 
         {/* Hero Section */}

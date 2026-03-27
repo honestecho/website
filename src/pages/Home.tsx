@@ -120,27 +120,12 @@ export default function Home() {
                 Built by people who understand how contracts are actually evaluated.
               </h2>
 
-              <p className="text-[#a0b2c8] text-lg mb-4 leading-relaxed max-w-[520px]">
+              <p className="text-[#a0b2c8] text-lg mb-4 leading-relaxed">
                 Most tools are built by software companies. This one is built from real experience supporting government procurement and acquisition environments.
               </p>
-              <p className="text-[#a0b2c8] text-lg mb-8 leading-relaxed max-w-[520px]">
+              <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed">
                 We understand how requirements are structured, how evaluations happen, and where companies waste time pursuing the wrong opportunities.
               </p>
-
-              <p className="text-xs font-bold text-[#8b9bb4] uppercase tracking-widest mb-4">What that means for you</p>
-              <ul className="space-y-3 mb-10">
-                {[
-                  'Clear understanding of how requirements are written',
-                  'Insight into evaluation structure and expectations',
-                  'Focus on real disqualifiers, not noise',
-                  'Practical decision frameworks used in real programs',
-                ].map(item => (
-                  <li key={item} className="flex items-center gap-3 text-[#a0b2c8] text-sm font-body">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff] shrink-0"></div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
 
               <Link to="/consulting" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all">
                 Work With Us
@@ -148,23 +133,36 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Right: Image — dark, atmospheric, cert overlay */}
-            <div className="w-full md:w-1/2 rounded-xl overflow-hidden relative border border-[#1e2d4a] shadow-2xl group">
-              <div className="aspect-video relative overflow-hidden">
-                <img
-                  src="/consulting_collaboration.png"
-                  alt="Government contracting strategy"
-                  className="w-full h-full object-cover opacity-40 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#030B17] via-[#030B17]/60 to-transparent"></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030B17]/80 via-transparent to-transparent"></div>
-                {/* Credibility overlay */}
-                <div className="absolute bottom-0 left-0 p-6 flex items-end gap-6">
+            {/* Right: "What that means for you" card */}
+            <div className="w-full md:w-1/2">
+              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent"></div>
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
+
+                <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-6">What that means for you</p>
+
+                <ul className="space-y-0 relative z-10">
+                  {[
+                    'Clear understanding of how requirements are written',
+                    'Insight into evaluation structure and expectations',
+                    'Focus on real disqualifiers, not noise',
+                    'Practical decision frameworks used in real programs',
+                  ].map((item, i, arr) => (
+                    <li key={item} className={`flex items-start gap-4 py-5 ${i < arr.length - 1 ? 'border-b border-[#1e2d4a]' : ''}`}>
+                      <div className="w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff] shadow-[0_0_6px_rgba(0,195,255,0.8)]"></div>
+                      </div>
+                      <span className="text-white text-sm font-body leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-6 pt-6 border-t border-[#1e2d4a] flex gap-6">
                   {['WOSB', 'SDVOSB', 'VOSB'].map((cert, i) => (
                     <div key={cert} className="flex items-center gap-6">
-                      {i > 0 && <div className="w-px h-8 bg-[#1e2d4a]"></div>}
+                      {i > 0 && <div className="w-px h-7 bg-[#1e2d4a]"></div>}
                       <div>
-                        <p className="text-white font-black text-lg font-headline leading-none">{cert}</p>
+                        <p className="text-white font-black text-sm font-headline leading-none">{cert}</p>
                         <p className="text-[#8b9bb4] text-[10px] uppercase tracking-widest mt-0.5">Certified</p>
                       </div>
                     </div>

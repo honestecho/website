@@ -117,19 +117,23 @@ export default function Home() {
               </div>
 
               <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-5 leading-tight tracking-tight">
-                Built from real<br />capture work.
+                Built by people who understand how contracts are actually evaluated.
               </h2>
 
+              <p className="text-[#a0b2c8] text-lg mb-4 leading-relaxed max-w-[520px]">
+                Most tools are built by software companies. This one is built from real experience supporting government procurement and acquisition environments.
+              </p>
               <p className="text-[#a0b2c8] text-lg mb-8 leading-relaxed max-w-[520px]">
-                Honest Echo is run by a government contractor — not a software company. We've led capture efforts, written proposals, and supported acquisition teams. The pursuit tool is built from the same process we use in real work.
+                We understand how requirements are structured, how evaluations happen, and where companies waste time pursuing the wrong opportunities.
               </p>
 
+              <p className="text-xs font-bold text-[#8b9bb4] uppercase tracking-widest mb-4">What that means for you</p>
               <ul className="space-y-3 mb-10">
                 {[
-                  'Capture strategy and bid/no-bid decisions',
-                  'Proposal development and review',
-                  'Acquisition and program support',
-                  'Process and system modernization',
+                  'Clear understanding of how requirements are written',
+                  'Insight into evaluation structure and expectations',
+                  'Focus on real disqualifiers, not noise',
+                  'Practical decision frameworks used in real programs',
                 ].map(item => (
                   <li key={item} className="flex items-center gap-3 text-[#a0b2c8] text-sm font-body">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff] shrink-0"></div>

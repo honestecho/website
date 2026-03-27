@@ -109,31 +109,63 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#050d1a] pointer-events-none z-10"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row gap-16 items-center">
+            {/* Left: Copy */}
             <div className="w-full md:w-1/2">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
-                 <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-                 <span className="text-sm font-bold text-blue-200 tracking-wide">B2B GovCon Consulting</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+                <span className="text-xs font-bold text-blue-200 tracking-wide uppercase">B2B GovCon Consulting</span>
               </div>
-              
-              <h2 className="font-headline font-black text-4xl text-white mb-6 leading-tight">
-                Winning contracts takes more than software.
+
+              <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-5 leading-tight tracking-tight">
+                Built from real<br />capture work.
               </h2>
-              <p className="text-xl text-[#a0b2c8] mb-8 leading-relaxed">
-                Honest Echo isn't just an AI company. As an established government contractor, we provide high-end BD consulting, capture strategy, and proposal support to secure real wins across complex federal agencies.
+
+              <p className="text-[#a0b2c8] text-lg mb-8 leading-relaxed max-w-[520px]">
+                Honest Echo is run by a government contractor — not a software company. We've led capture efforts, written proposals, and supported acquisition teams. The pursuit tool is built from the same process we use in real work.
               </p>
-              <Link to="/consulting" className="inline-flex items-center gap-2 px-8 py-3 bg-white text-[#030B17] font-bold rounded-lg hover:bg-slate-200 transition-colors">
-                Learn About Our Services
+
+              <ul className="space-y-3 mb-10">
+                {[
+                  'Capture strategy and bid/no-bid decisions',
+                  'Proposal development and review',
+                  'Acquisition and program support',
+                  'Process and system modernization',
+                ].map(item => (
+                  <li key={item} className="flex items-center gap-3 text-[#a0b2c8] text-sm font-body">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff] shrink-0"></div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <Link to="/consulting" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all">
+                Work With Us
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-            <div className="w-full md:w-1/2 bg-[#0b1120] p-2 rounded-xl border border-[#1e2d4a] shadow-2xl relative overflow-hidden group">
-              <div className="bg-[#030B17] rounded-lg overflow-hidden aspect-video relative border border-[#1e2d4a]">
-                 <img 
-                  src="/consulting_collaboration.png" 
-                  alt="High-end strategic corporate war room"
-                  className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
-                 />
-                 <div className="absolute inset-0 bg-gradient-to-r from-[#030B17]/90 via-transparent to-transparent"></div>
+
+            {/* Right: Image — dark, atmospheric, cert overlay */}
+            <div className="w-full md:w-1/2 rounded-xl overflow-hidden relative border border-[#1e2d4a] shadow-2xl group">
+              <div className="aspect-video relative overflow-hidden">
+                <img
+                  src="/consulting_collaboration.png"
+                  alt="Government contracting strategy"
+                  className="w-full h-full object-cover opacity-40 group-hover:opacity-50 group-hover:scale-105 transition-all duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#030B17] via-[#030B17]/60 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#030B17]/80 via-transparent to-transparent"></div>
+                {/* Credibility overlay */}
+                <div className="absolute bottom-0 left-0 p-6 flex items-end gap-6">
+                  {['WOSB', 'SDVOSB', 'VOSB'].map((cert, i) => (
+                    <div key={cert} className="flex items-center gap-6">
+                      {i > 0 && <div className="w-px h-8 bg-[#1e2d4a]"></div>}
+                      <div>
+                        <p className="text-white font-black text-lg font-headline leading-none">{cert}</p>
+                        <p className="text-[#8b9bb4] text-[10px] uppercase tracking-widest mt-0.5">Certified</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

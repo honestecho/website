@@ -15,10 +15,12 @@ export default function Home() {
 
         {/* Hero Section */}
         <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-hidden">
-          {/* Galaxy blobs — children of section, render above section bg */}
-          <div className="animate-aurora absolute w-[900px] h-[700px] rounded-full blur-[120px] -top-40 right-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.35)_0%,rgba(0,195,255,0.10)_55%,transparent_75%)]"></div>
-          <div className="animate-aurora-slow absolute w-[800px] h-[700px] rounded-full blur-[130px] -top-20 left-[-15%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.30)_0%,rgba(91,140,255,0.08)_55%,transparent_75%)]"></div>
-          <div className="animate-aurora-pulse absolute w-[700px] h-[600px] rounded-full blur-[110px] top-[50px] left-[25%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.22)_0%,rgba(80,160,255,0.10)_55%,transparent_75%)]"></div>
+          {/* Galaxy wave — full-width horizontal aurora band */}
+          <div className="animate-aurora absolute w-[160%] h-[500px] rounded-full blur-[100px] -left-[30%] top-[5%] z-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,195,255,0.22)_0%,rgba(91,140,255,0.14)_45%,transparent_70%)]"></div>
+          {/* Left edge accent */}
+          <div className="animate-aurora-slow absolute w-[700px] h-[600px] rounded-full blur-[130px] -top-10 left-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.22)_0%,transparent_65%)]"></div>
+          {/* Right edge accent */}
+          <div className="animate-aurora-pulse absolute w-[700px] h-[600px] rounded-full blur-[110px] -top-10 right-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.20)_0%,transparent_65%)]"></div>
           {/* Soft dot grid */}
           <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,195,255,0.12)_1px,transparent_1px)] bg-[size:40px_40px] z-0 pointer-events-none"></div>
           {/* Gradient bridge → Consulting */}

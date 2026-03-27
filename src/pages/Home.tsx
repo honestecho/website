@@ -139,32 +139,18 @@ export default function Home() {
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent"></div>
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
 
-                <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-6">What that means for you</p>
+                <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-5">What that means for you</p>
 
-                <ul className="space-y-0 relative z-10">
+                <div className="grid grid-cols-2 gap-3 relative z-10">
                   {[
                     'Clear understanding of how requirements are written',
                     'Insight into evaluation structure and expectations',
                     'Focus on real disqualifiers, not noise',
                     'Practical decision frameworks used in real programs',
-                  ].map((item, i, arr) => (
-                    <li key={item} className={`flex items-start gap-4 py-5 ${i < arr.length - 1 ? 'border-b border-[#1e2d4a]' : ''}`}>
-                      <div className="w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff] shadow-[0_0_6px_rgba(0,195,255,0.8)]"></div>
-                      </div>
-                      <span className="text-white text-sm font-body leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-6 pt-6 border-t border-[#1e2d4a] flex gap-6">
-                  {['WOSB', 'SDVOSB', 'VOSB'].map((cert, i) => (
-                    <div key={cert} className="flex items-center gap-6">
-                      {i > 0 && <div className="w-px h-7 bg-[#1e2d4a]"></div>}
-                      <div>
-                        <p className="text-white font-black text-sm font-headline leading-none">{cert}</p>
-                        <p className="text-[#8b9bb4] text-[10px] uppercase tracking-widest mt-0.5">Certified</p>
-                      </div>
+                  ].map(item => (
+                    <div key={item} className="bg-[#060e1c] border border-[#1e2d4a] rounded-xl p-4 hover:border-[#00c3ff]/30 hover:bg-[#091528] transition-all duration-300 group/item">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff] shadow-[0_0_6px_rgba(0,195,255,0.8)] mb-3 group-hover/item:shadow-[0_0_10px_rgba(0,195,255,1)] transition-all duration-300"></div>
+                      <p className="text-white text-xs font-body leading-relaxed">{item}</p>
                     </div>
                   ))}
                 </div>

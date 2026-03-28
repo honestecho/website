@@ -107,9 +107,14 @@ export default function Signup() {
       </Helmet>
 
       <div className="min-h-[calc(100vh-72px)] bg-[#030B17] relative overflow-hidden flex items-center justify-center py-12">
-        {/* Aurora background */}
-        <div className="animate-aurora absolute w-[160%] h-[500px] rounded-full blur-[120px] -left-[30%] top-[5%] z-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,195,255,0.10)_0%,rgba(91,140,255,0.07)_45%,transparent_70%)]"></div>
-        <div className="animate-aurora-slow absolute w-[600px] h-[600px] rounded-full blur-[140px] bottom-[-10%] right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.12)_0%,transparent_65%)]"></div>
+        {/* Line grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
+        {/* Primary light source — indigo, top-left */}
+        <div className="animate-aurora absolute w-[700px] h-[600px] rounded-full blur-[110px] top-[-10%] left-[-8%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(29,78,216,0.28)_0%,rgba(0,195,255,0.10)_55%,transparent_75%)]"></div>
+        {/* Secondary — cyan, bottom-right */}
+        <div className="animate-aurora-slow absolute w-[500px] h-[500px] rounded-full blur-[120px] bottom-[-10%] right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.16)_0%,rgba(91,140,255,0.08)_55%,transparent_75%)]"></div>
+        {/* Vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_50%_50%,transparent_0%,rgba(3,11,23,0.50)_100%)] z-0 pointer-events-none"></div>
 
         <div className="w-full max-w-5xl mx-auto px-6 flex flex-col lg:flex-row items-center lg:items-stretch gap-0 relative z-10">
 

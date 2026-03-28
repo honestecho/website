@@ -28,14 +28,14 @@ export default function Home() {
 
         {/* Hero Section */}
         <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-hidden">
-          {/* Galaxy wave — full-width horizontal aurora band */}
-          <div className="animate-aurora absolute w-[160%] h-[500px] rounded-full blur-[100px] -left-[30%] top-[5%] z-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,195,255,0.20)_0%,rgba(91,140,255,0.13)_45%,transparent_70%)]"></div>
-          {/* Left edge accent */}
-          <div className="animate-aurora-slow absolute w-[700px] h-[600px] rounded-full blur-[130px] -top-10 left-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.20)_0%,transparent_65%)]"></div>
-          {/* Right edge accent */}
-          <div className="animate-aurora-pulse absolute w-[700px] h-[600px] rounded-full blur-[110px] -top-10 right-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.18)_0%,transparent_65%)]"></div>
-          {/* Soft dot grid */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,195,255,0.10)_1px,transparent_1px)] bg-[size:40px_40px] z-0 pointer-events-none"></div>
+          {/* Line grid — mesh backdrop */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
+          {/* Primary light source — rich indigo/blue, top-left */}
+          <div className="animate-aurora absolute w-[800px] h-[700px] rounded-full blur-[110px] top-[-15%] left-[-8%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(29,78,216,0.35)_0%,rgba(0,195,255,0.12)_50%,transparent_70%)]"></div>
+          {/* Secondary accent — cyan, top-right */}
+          <div className="animate-aurora-pulse absolute w-[550px] h-[450px] rounded-full blur-[90px] top-[-5%] right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.20)_0%,rgba(91,140,255,0.08)_55%,transparent_75%)]"></div>
+          {/* Corner vignette — depth */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_40%_50%,transparent_0%,rgba(3,11,23,0.55)_100%)] z-0 pointer-events-none"></div>
           {/* Gradient bridge → Consulting */}
           <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#030B17] pointer-events-none z-10"></div>
 
@@ -117,7 +117,10 @@ export default function Home() {
 
       {/* SECTION — Consulting */}
       <section className="py-24 px-6 bg-[#030B17] overflow-hidden relative">
-        <div className="animate-aurora-slow absolute w-[900px] h-[700px] rounded-full blur-[120px] -top-40 right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.30)_0%,rgba(91,140,255,0.10)_55%,transparent_75%)]"></div>
+        {/* Line grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
+        {/* Light source — indigo, top-right */}
+        <div className="animate-aurora-slow absolute w-[900px] h-[700px] rounded-full blur-[120px] -top-40 right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(79,70,229,0.28)_0%,rgba(91,140,255,0.10)_55%,transparent_75%)]"></div>
         {/* Gradient bridge → Social Proof */}
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#050d1a] pointer-events-none z-10"></div>
         <div className="max-w-7xl mx-auto relative z-10">
@@ -185,8 +188,10 @@ export default function Home() {
 
       {/* SECTION — Social Proof */}
       <section className="px-6 py-32 bg-[#050d1a] relative overflow-hidden">
-        <div className="animate-aurora absolute w-[800px] h-[600px] rounded-full blur-[130px] -top-20 left-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.28)_0%,rgba(0,195,255,0.08)_55%,transparent_75%)]"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#00c3ff]/5 via-transparent to-[#00c3ff]/5 pointer-events-none"></div>
+        {/* Line grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
+        {/* Light source — cyan, bottom-left */}
+        <div className="animate-aurora absolute w-[700px] h-[600px] rounded-full blur-[120px] -bottom-20 left-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.18)_0%,rgba(29,78,216,0.08)_55%,transparent_75%)]"></div>
         {/* Gradient bridge → Pricing */}
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#01060e] pointer-events-none z-10"></div>
         <div className="max-w-7xl mx-auto relative z-10">

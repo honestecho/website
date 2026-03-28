@@ -29,13 +29,13 @@ export default function Home() {
         {/* Hero Section */}
         <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-hidden">
           {/* Galaxy wave — full-width horizontal aurora band */}
-          <div className="animate-aurora absolute w-[160%] h-[500px] rounded-full blur-[120px] -left-[30%] top-[5%] z-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,195,255,0.10)_0%,rgba(91,140,255,0.08)_45%,transparent_70%)]"></div>
+          <div className="animate-aurora absolute w-[160%] h-[500px] rounded-full blur-[100px] -left-[30%] top-[5%] z-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,195,255,0.20)_0%,rgba(91,140,255,0.13)_45%,transparent_70%)]"></div>
           {/* Left edge accent */}
-          <div className="animate-aurora-slow absolute w-[700px] h-[600px] rounded-full blur-[140px] -top-10 left-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.14)_0%,transparent_65%)]"></div>
+          <div className="animate-aurora-slow absolute w-[700px] h-[600px] rounded-full blur-[130px] -top-10 left-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.20)_0%,transparent_65%)]"></div>
           {/* Right edge accent */}
-          <div className="animate-aurora-pulse absolute w-[700px] h-[600px] rounded-full blur-[120px] -top-10 right-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.12)_0%,transparent_65%)]"></div>
+          <div className="animate-aurora-pulse absolute w-[700px] h-[600px] rounded-full blur-[110px] -top-10 right-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.18)_0%,transparent_65%)]"></div>
           {/* Soft dot grid */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,195,255,0.07)_1px,transparent_1px)] bg-[size:40px_40px] z-0 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,195,255,0.10)_1px,transparent_1px)] bg-[size:40px_40px] z-0 pointer-events-none"></div>
           {/* Gradient bridge → Consulting */}
           <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#030B17] pointer-events-none z-10"></div>
 
@@ -117,7 +117,7 @@ export default function Home() {
 
       {/* SECTION — Consulting */}
       <section className="py-24 px-6 bg-[#030B17] overflow-hidden relative">
-        <div className="animate-aurora-slow absolute w-[900px] h-[700px] rounded-full blur-[140px] -top-40 right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(100,80,255,0.28)_0%,rgba(91,140,255,0.08)_55%,transparent_75%)]"></div>
+        <div className="animate-aurora-slow absolute w-[900px] h-[700px] rounded-full blur-[120px] -top-40 right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.30)_0%,rgba(91,140,255,0.10)_55%,transparent_75%)]"></div>
         {/* Gradient bridge → Social Proof */}
         <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#050d1a] pointer-events-none z-10"></div>
         <div className="max-w-7xl mx-auto relative z-10">
@@ -152,7 +152,7 @@ export default function Home() {
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent"></div>
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
 
-                <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-5 relative z-10">What that means for you</p>
+                <p className="text-sm font-bold text-[#00c3ff] uppercase tracking-widest mb-6 relative z-10">What that means for you</p>
 
                 <div className="relative z-10">
                   {([
@@ -163,16 +163,16 @@ export default function Home() {
                   ] as { icon: React.ElementType; label: string; body: string }[]).map((item, i) => (
                     <div
                       key={item.label}
-                      className={`flex gap-4 items-start py-4 border-b border-[#1e2d4a] last:border-0 group/item ${cardInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+                      className={`flex gap-5 items-start py-5 border-b border-[#1e2d4a] last:border-0 group/item ${cardInView ? 'animate-fade-in-up' : 'opacity-0'}`}
                       style={{ animationDelay: `${i * 110}ms` }}
                     >
-                      <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 relative overflow-visible">
+                      <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 relative overflow-visible">
                         <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover/item:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                        <item.icon className="w-5 h-5 text-[#00c3ff] group-hover/item:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover/item:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                        <item.icon className="w-6 h-6 text-[#00c3ff] group-hover/item:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover/item:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                       </div>
                       <div>
-                        <p className="text-white font-bold text-sm font-headline mb-0.5">{item.label}</p>
-                        <p className="text-[#a0b2c8] text-xs font-body leading-relaxed">{item.body}</p>
+                        <p className="text-white font-bold text-base font-headline mb-1">{item.label}</p>
+                        <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{item.body}</p>
                       </div>
                     </div>
                   ))}
@@ -348,15 +348,10 @@ export default function Home() {
           <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body max-w-xl mx-auto">
             We built this from real capture experience — not a startup pivot. If you have questions, we'll give you a straight answer.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:border-[#00c3ff]/40 hover:bg-[#152033] transition-all duration-300 flex items-center justify-center gap-2">
-              Talk to the Team
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link to="/consulting" className="px-8 py-4 text-[#a0b2c8] font-body text-sm flex items-center justify-center gap-1 hover:text-white transition-colors">
-              Learn about our consulting <ArrowRight className="w-3 h-3" />
-            </Link>
-          </div>
+          <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:border-[#00c3ff]/40 hover:bg-[#152033] transition-all duration-300">
+            Talk to the Team
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
 

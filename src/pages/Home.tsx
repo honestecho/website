@@ -152,7 +152,7 @@ export default function Home() {
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent"></div>
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
 
-                <p className="text-sm font-bold text-[#00c3ff] uppercase tracking-widest mb-6 relative z-10">What that means for you</p>
+                <h3 className="font-headline font-black text-2xl tracking-tighter text-white mb-6 relative z-10">What that means for you</h3>
 
                 <div className="relative z-10">
                   {([

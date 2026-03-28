@@ -1,28 +1,41 @@
-import { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, ShieldCheck, Sparkles, Zap, Target, Scale } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Sparkles, Zap, Target, Scale, FileText, BarChart2, AlertTriangle, Compass } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  // IntersectionObserver for consulting card stagger animation
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [cardInView, setCardInView] = useState(false);
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setCardInView(true); obs.disconnect(); }
+    }, { threshold: 0.15 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <>
       <Helmet>
         <title>Honest Echo | GovCon Intelligence</title>
-        <meta name="description" content="AI-powered bid/no-bid decision engine and high-end B2B consulting for the GovCon arena." />
+        <meta name="description" content="Bid/no-bid decision engine and B2B consulting for government contractors. Built from real capture experience." />
       </Helmet>
 
         {/* Hero Section */}
         <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-hidden">
           {/* Galaxy wave — full-width horizontal aurora band */}
-          <div className="animate-aurora absolute w-[160%] h-[500px] rounded-full blur-[100px] -left-[30%] top-[5%] z-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,195,255,0.22)_0%,rgba(91,140,255,0.14)_45%,transparent_70%)]"></div>
+          <div className="animate-aurora absolute w-[160%] h-[500px] rounded-full blur-[120px] -left-[30%] top-[5%] z-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,195,255,0.10)_0%,rgba(91,140,255,0.08)_45%,transparent_70%)]"></div>
           {/* Left edge accent */}
-          <div className="animate-aurora-slow absolute w-[700px] h-[600px] rounded-full blur-[130px] -top-10 left-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.22)_0%,transparent_65%)]"></div>
+          <div className="animate-aurora-slow absolute w-[700px] h-[600px] rounded-full blur-[140px] -top-10 left-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.14)_0%,transparent_65%)]"></div>
           {/* Right edge accent */}
-          <div className="animate-aurora-pulse absolute w-[700px] h-[600px] rounded-full blur-[110px] -top-10 right-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.20)_0%,transparent_65%)]"></div>
+          <div className="animate-aurora-pulse absolute w-[700px] h-[600px] rounded-full blur-[120px] -top-10 right-[-10%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.12)_0%,transparent_65%)]"></div>
           {/* Soft dot grid */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,195,255,0.12)_1px,transparent_1px)] bg-[size:40px_40px] z-0 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,195,255,0.07)_1px,transparent_1px)] bg-[size:40px_40px] z-0 pointer-events-none"></div>
           {/* Gradient bridge → Consulting */}
           <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#030B17] pointer-events-none z-10"></div>
 
@@ -45,8 +58,8 @@ export default function Home() {
                   <Zap className="w-6 h-6 text-[#00c3ff] group-hover/item:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover/item:scale-110 group-hover/item:-rotate-12 group-hover/item:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.2} strokeWidth={2} />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold mb-0.5 font-headline text-base">AI-Powered Scoring</h3>
-                  <p className="text-sm text-[#a0b2c8] leading-relaxed">Every SAM.gov opportunity scored against your NAICS, certs, and strategic fit — automatically.</p>
+                  <h3 className="text-white font-bold mb-0.5 font-headline text-base">Scoring Built Around Your Business</h3>
+                  <p className="text-sm text-[#a0b2c8] leading-relaxed">Every opportunity evaluated against your NAICS codes, certifications, and pursuit history — not generic benchmarks.</p>
                 </div>
               </li>
               <li className="flex gap-4 items-start group/item">
@@ -66,7 +79,7 @@ export default function Home() {
                 </div>
                 <div>
                   <h3 className="text-white font-bold mb-0.5 font-headline text-base">Clear Bid/No-Bid Decisions</h3>
-                  <p className="text-sm text-[#a0b2c8] leading-relaxed">Go, Conditional Go, or No-Bid — every recommendation is backed by AI analysis and a structured evidence trail.</p>
+                  <p className="text-sm text-[#a0b2c8] leading-relaxed">Go, Conditional Go, or No-Bid — every recommendation is backed by structured analysis and a clear evidence trail.</p>
                 </div>
               </li>
             </ul>
@@ -84,7 +97,7 @@ export default function Home() {
 
           {/* Right Column: Opportunity Card */}
           <div className="w-full lg:w-1/2 relative group hidden md:block transition-transform duration-700 hover:-translate-y-2">
-            <div className={`absolute inset-0 bg-[#00c3ff]/20 blur-3xl -z-10 rounded-[3rem] transition-colors duration-700 ${isFullscreen ? 'opacity-0' : 'group-hover:bg-[#00c3ff]/30 animate-pulse'}`}></div>
+            <div className={`absolute inset-0 bg-[#00c3ff]/8 blur-2xl -z-10 rounded-[3rem] transition-colors duration-700 ${isFullscreen ? 'opacity-0' : 'group-hover:bg-[#00c3ff]/15'}`}></div>
             <div 
               onClick={() => setIsFullscreen(true)}
               className="bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/50 rounded-xl p-2 shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.2)] font-body relative overflow-hidden transition-all duration-700 mx-auto max-w-xl cursor-pointer hover:scale-[1.02]"
@@ -135,22 +148,32 @@ export default function Home() {
 
             {/* Right: "What that means for you" card */}
             <div className="w-full md:w-1/2">
-              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+              <div ref={cardRef} className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent"></div>
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
 
-                <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-5">What that means for you</p>
+                <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-5 relative z-10">What that means for you</p>
 
-                <div className="grid grid-cols-2 gap-3 relative z-10">
-                  {[
-                    'Clear understanding of how requirements are written',
-                    'Insight into evaluation structure and expectations',
-                    'Focus on real disqualifiers, not noise',
-                    'Practical decision frameworks used in real programs',
-                  ].map(item => (
-                    <div key={item} className="bg-[#060e1c] border border-[#1e2d4a] rounded-xl p-4 hover:border-[#00c3ff]/30 hover:bg-[#091528] transition-all duration-300 group/item">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff] shadow-[0_0_6px_rgba(0,195,255,0.8)] mb-3 group-hover/item:shadow-[0_0_10px_rgba(0,195,255,1)] transition-all duration-300"></div>
-                      <p className="text-white text-xs font-body leading-relaxed">{item}</p>
+                <div className="relative z-10">
+                  {([
+                    { icon: FileText,      label: 'Requirements written to be won',       body: 'We clarify what evaluators actually reward so your team writes to the score — not just the scope.' },
+                    { icon: BarChart2,     label: 'Evaluation criteria decoded',           body: 'Understand how proposals get scored and where points are lost before a word is written.' },
+                    { icon: AlertTriangle, label: 'Real disqualifiers, surfaced early',    body: 'The factors that knock teams out of contention — identified before you waste effort chasing them.' },
+                    { icon: Compass,       label: 'Frameworks from real programs',         body: 'Practical capture tools built from government procurement experience, not theory.' },
+                  ] as { icon: React.ElementType; label: string; body: string }[]).map((item, i) => (
+                    <div
+                      key={item.label}
+                      className={`flex gap-4 items-start py-4 border-b border-[#1e2d4a] last:border-0 group/item ${cardInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+                      style={{ animationDelay: `${i * 110}ms` }}
+                    >
+                      <div className="w-10 h-10 flex items-center justify-center flex-shrink-0 relative overflow-visible">
+                        <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover/item:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                        <item.icon className="w-5 h-5 text-[#00c3ff] group-hover/item:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover/item:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                      </div>
+                      <div>
+                        <p className="text-white font-bold text-sm font-headline mb-0.5">{item.label}</p>
+                        <p className="text-[#a0b2c8] text-xs font-body leading-relaxed">{item.body}</p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -313,6 +336,29 @@ export default function Home() {
         </div>
       </section>
 
+
+      {/* SECTION — Not convinced? Contact */}
+      <section className="py-20 px-6 bg-[#01060e] border-t border-[#1e2d4a]/40 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(91,140,255,0.06)_0%,transparent_65%)] pointer-events-none"></div>
+        <div className="max-w-3xl mx-auto text-center relative z-10">
+          <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-4">Before You Go</p>
+          <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-4 tracking-tight">
+            Still not convinced?
+          </h2>
+          <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body max-w-xl mx-auto">
+            We built this from real capture experience — not a startup pivot. If you have questions, we'll give you a straight answer.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/contact" className="px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:border-[#00c3ff]/40 hover:bg-[#152033] transition-all duration-300 flex items-center justify-center gap-2">
+              Talk to the Team
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link to="/consulting" className="px-8 py-4 text-[#a0b2c8] font-body text-sm flex items-center justify-center gap-1 hover:text-white transition-colors">
+              Learn about our consulting <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* Lightbox Modal */}
       {isFullscreen && (

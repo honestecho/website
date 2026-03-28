@@ -106,13 +106,15 @@ export default function Signup() {
         <meta name="description" content="Create your free Honest Echo account and start making smarter bid/no-bid decisions." />
       </Helmet>
 
-      <div className="min-h-[calc(100vh-72px)] bg-[#030B17] relative overflow-hidden flex items-stretch">
+      <div className="min-h-[calc(100vh-72px)] bg-[#030B17] relative overflow-hidden flex items-center justify-center py-12">
         {/* Aurora background */}
-        <div className="animate-aurora absolute w-[160%] h-[500px] rounded-full blur-[100px] -left-[30%] top-[5%] z-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,195,255,0.18)_0%,rgba(91,140,255,0.10)_45%,transparent_70%)]"></div>
-        <div className="animate-aurora-slow absolute w-[600px] h-[600px] rounded-full blur-[130px] bottom-[-10%] right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.18)_0%,transparent_65%)]"></div>
+        <div className="animate-aurora absolute w-[160%] h-[500px] rounded-full blur-[120px] -left-[30%] top-[5%] z-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,195,255,0.10)_0%,rgba(91,140,255,0.07)_45%,transparent_70%)]"></div>
+        <div className="animate-aurora-slow absolute w-[600px] h-[600px] rounded-full blur-[140px] bottom-[-10%] right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.12)_0%,transparent_65%)]"></div>
+
+        <div className="w-full max-w-5xl mx-auto px-6 flex flex-col lg:flex-row items-center lg:items-stretch gap-0 relative z-10">
 
         {/* Left column — branding / value props (hidden on mobile) */}
-        <div className="hidden lg:flex flex-col justify-center w-1/2 px-16 xl:px-24 relative z-10">
+        <div className="hidden lg:flex flex-col justify-center w-[400px] shrink-0 pr-16">
           <Link to="/" className="flex items-center gap-3 mb-16 group w-fit">
             <div className="relative flex items-center justify-center">
               <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
@@ -131,9 +133,9 @@ export default function Signup() {
 
           <ul className="space-y-6">
             {[
-              { icon: Zap, label: 'AI-Powered Scoring', body: 'Every SAM.gov opportunity scored against your NAICS, certs, and fit — automatically.' },
+              { icon: Zap, label: 'Scoring Built Around Your Business', body: 'Every opportunity evaluated against your NAICS codes, certifications, and pursuit history.' },
               { icon: Target, label: '5-Phase Pursuit Workflow', body: 'Structured analysis from first look to final Go/No-Go decision.' },
-              { icon: Scale, label: 'Clear Bid/No-Bid Decisions', body: 'Every recommendation backed by AI analysis and a structured evidence trail.' },
+              { icon: Scale, label: 'Clear Bid/No-Bid Decisions', body: 'Every recommendation backed by structured analysis and a clear evidence trail.' },
             ].map(({ icon: Icon, label, body }) => (
               <li key={label} className="flex gap-4 items-start group/item">
                 <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 relative overflow-visible mt-0.5">
@@ -157,7 +159,7 @@ export default function Signup() {
         </div>
 
         {/* Right column — form card */}
-        <div className="flex-1 flex items-center justify-center px-6 py-16 relative z-10">
+        <div className="flex-1 flex items-center justify-center lg:pl-16 py-8 lg:py-0">
           <div className="w-full max-w-md">
 
             {/* Mobile logo */}
@@ -328,6 +330,7 @@ export default function Signup() {
             )}
           </div>
         </div>
+        </div>{/* end max-w-5xl wrapper */}
       </div>
     </>
   );

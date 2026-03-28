@@ -28,16 +28,16 @@ export default function Home() {
 
         {/* Hero Section */}
         <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-hidden">
-          {/* Line grid — mesh backdrop */}
+          {/* Line grid */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
-          {/* Primary light source — rich indigo/blue, top-left */}
-          <div className="animate-aurora absolute w-[800px] h-[700px] rounded-full blur-[110px] top-[-15%] left-[-8%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(29,78,216,0.35)_0%,rgba(0,195,255,0.12)_50%,transparent_70%)]"></div>
-          {/* Secondary accent — cyan, top-right */}
-          <div className="animate-aurora-pulse absolute w-[550px] h-[450px] rounded-full blur-[90px] top-[-5%] right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.20)_0%,rgba(91,140,255,0.08)_55%,transparent_75%)]"></div>
-          {/* Corner vignette — depth */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_70%_at_40%_50%,transparent_0%,rgba(3,11,23,0.55)_100%)] z-0 pointer-events-none"></div>
-          {/* Gradient bridge → Consulting */}
-          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#030B17] pointer-events-none z-10"></div>
+          {/* Primary glow — bright cyan, top-left */}
+          <div className="animate-aurora absolute w-[700px] h-[600px] rounded-full blur-[80px] top-[-10%] left-[-8%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.28)_0%,rgba(56,189,248,0.12)_50%,transparent_70%)]"></div>
+          {/* Secondary glow — blue-violet, top-right */}
+          <div className="animate-aurora-pulse absolute w-[550px] h-[450px] rounded-full blur-[80px] top-[-5%] right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.22)_0%,rgba(0,195,255,0.08)_55%,transparent_75%)]"></div>
+          {/* Glowing section separator */}
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent z-20 pointer-events-none"></div>
+          {/* Gradient fade → Consulting */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#030B17] pointer-events-none z-10"></div>
 
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Left Column: Copy */}
@@ -119,10 +119,12 @@ export default function Home() {
       <section className="py-24 px-6 bg-[#030B17] overflow-hidden relative">
         {/* Line grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
-        {/* Light source — indigo, top-right */}
-        <div className="animate-aurora-slow absolute w-[900px] h-[700px] rounded-full blur-[120px] -top-40 right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(79,70,229,0.28)_0%,rgba(91,140,255,0.10)_55%,transparent_75%)]"></div>
-        {/* Gradient bridge → Social Proof */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#050d1a] pointer-events-none z-10"></div>
+        {/* Primary glow — blue-violet, top-right */}
+        <div className="animate-aurora-slow absolute w-[700px] h-[600px] rounded-full blur-[80px] -top-20 right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.30)_0%,rgba(0,195,255,0.10)_55%,transparent_75%)]"></div>
+        {/* Glowing section separator */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#5b8cff]/30 to-transparent z-20 pointer-events-none"></div>
+        {/* Gradient fade → Social Proof */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#050d1a] pointer-events-none z-10"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row gap-16 items-center">
             {/* Left: Copy */}
@@ -190,10 +192,12 @@ export default function Home() {
       <section className="px-6 py-32 bg-[#050d1a] relative overflow-hidden">
         {/* Line grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
-        {/* Light source — cyan, bottom-left */}
-        <div className="animate-aurora absolute w-[700px] h-[600px] rounded-full blur-[120px] -bottom-20 left-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.18)_0%,rgba(29,78,216,0.08)_55%,transparent_75%)]"></div>
-        {/* Gradient bridge → Pricing */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent to-[#01060e] pointer-events-none z-10"></div>
+        {/* Primary glow — cyan, center-left */}
+        <div className="animate-aurora absolute w-[600px] h-[500px] rounded-full blur-[80px] top-[10%] left-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.22)_0%,rgba(56,189,248,0.08)_55%,transparent_75%)]"></div>
+        {/* Glowing section separator */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00c3ff]/25 to-transparent z-20 pointer-events-none"></div>
+        {/* Gradient fade → Pricing */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#01060e] pointer-events-none z-10"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="font-headline font-black text-4xl md:text-5xl text-white mb-6 tracking-tight">

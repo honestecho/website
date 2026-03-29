@@ -30,14 +30,10 @@ export default function Home() {
         <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-hidden">
           {/* Line grid */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
-          {/* Primary glow — bright cyan, top-left */}
-          <div className="animate-aurora absolute w-[700px] h-[600px] rounded-full blur-[80px] top-[-10%] left-[-8%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.28)_0%,rgba(56,189,248,0.12)_50%,transparent_70%)]"></div>
-          {/* Secondary glow — blue-violet, top-right */}
-          <div className="animate-aurora-pulse absolute w-[550px] h-[450px] rounded-full blur-[80px] top-[-5%] right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.22)_0%,rgba(0,195,255,0.08)_55%,transparent_75%)]"></div>
-          {/* Glowing section separator */}
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent z-20 pointer-events-none"></div>
-          {/* Gradient fade → Consulting */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#030B17] pointer-events-none z-10"></div>
+          {/* Centered breathing glow — cyan */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+            <div className="animate-breathe w-[1400px] h-[900px] rounded-full blur-[130px] bg-[radial-gradient(ellipse,rgba(0,195,255,0.32)_0%,rgba(91,140,255,0.14)_45%,transparent_70%)]"></div>
+          </div>
 
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Left Column: Copy */}
@@ -119,12 +115,10 @@ export default function Home() {
       <section className="py-24 px-6 bg-[#030B17] overflow-hidden relative">
         {/* Line grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
-        {/* Primary glow — blue-violet, top-right */}
-        <div className="animate-aurora-slow absolute w-[700px] h-[600px] rounded-full blur-[80px] -top-20 right-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(91,140,255,0.30)_0%,rgba(0,195,255,0.10)_55%,transparent_75%)]"></div>
-        {/* Glowing section separator */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#5b8cff]/30 to-transparent z-20 pointer-events-none"></div>
-        {/* Gradient fade → Social Proof */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#050d1a] pointer-events-none z-10"></div>
+        {/* Centered breathing glow — violet */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+          <div className="animate-breathe-slow w-[1400px] h-[900px] rounded-full blur-[130px] bg-[radial-gradient(ellipse,rgba(91,140,255,0.32)_0%,rgba(0,195,255,0.12)_45%,transparent_70%)]"></div>
+        </div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row gap-16 items-center">
             {/* Left: Copy */}
@@ -189,15 +183,13 @@ export default function Home() {
       </section>
 
       {/* SECTION — Social Proof */}
-      <section className="px-6 py-32 bg-[#050d1a] relative overflow-hidden">
+      <section className="px-6 py-32 bg-[#030B17] relative overflow-hidden">
         {/* Line grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
-        {/* Primary glow — cyan, center-left */}
-        <div className="animate-aurora absolute w-[600px] h-[500px] rounded-full blur-[80px] top-[10%] left-[-5%] z-0 pointer-events-none bg-[radial-gradient(ellipse,rgba(0,195,255,0.22)_0%,rgba(56,189,248,0.08)_55%,transparent_75%)]"></div>
-        {/* Glowing section separator */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00c3ff]/25 to-transparent z-20 pointer-events-none"></div>
-        {/* Gradient fade → Pricing */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-[#01060e] pointer-events-none z-10"></div>
+        {/* Centered breathing glow — cyan */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+          <div className="animate-breathe w-[1400px] h-[900px] rounded-full blur-[130px] bg-[radial-gradient(ellipse,rgba(0,195,255,0.28)_0%,rgba(91,140,255,0.10)_45%,transparent_70%)]"></div>
+        </div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="font-headline font-black text-4xl md:text-5xl text-white mb-6 tracking-tight">
@@ -268,9 +260,13 @@ export default function Home() {
       </section>
 
       {/* SECTION — Pricing */}
-      <section className="py-32 px-6 bg-[#01060e] relative">
-        {/* Subtle glow behind pricing */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,195,255,0.05)_0%,transparent_70%)] pointer-events-none"></div>
+      <section className="py-32 px-6 bg-[#030B17] relative overflow-hidden">
+        {/* Line grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
+        {/* Centered breathing glow — violet */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+          <div className="animate-breathe-slow w-[1200px] h-[800px] rounded-full blur-[130px] bg-[radial-gradient(ellipse,rgba(91,140,255,0.28)_0%,rgba(0,195,255,0.10)_45%,transparent_70%)]"></div>
+        </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20 max-w-3xl mx-auto">
@@ -347,8 +343,11 @@ export default function Home() {
 
 
       {/* SECTION — Not convinced? Contact */}
-      <section className="py-20 px-6 bg-[#01060e] border-t border-[#1e2d4a]/40 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_100%,rgba(91,140,255,0.06)_0%,transparent_65%)] pointer-events-none"></div>
+      <section className="py-20 px-6 bg-[#030B17] relative overflow-hidden">
+        {/* Centered breathing glow — cyan */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+          <div className="animate-breathe w-[900px] h-[600px] rounded-full blur-[120px] bg-[radial-gradient(ellipse,rgba(0,195,255,0.22)_0%,rgba(91,140,255,0.08)_50%,transparent_70%)]"></div>
+        </div>
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-4">Before You Go</p>
           <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-4 tracking-tight">

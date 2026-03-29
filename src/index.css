@@ -60,3 +60,10 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 .animate-fade-in-up { animation: fade-in-up 0.45s ease-out both; }
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1);    opacity: 0.4; }
+  50%       { transform: scale(1.25); opacity: 0.65; }
+}
+.animate-breathe      { animation: breathe  9s ease-in-out infinite; }
+.animate-breathe-slow { animation: breathe 13s ease-in-out infinite 2s; }

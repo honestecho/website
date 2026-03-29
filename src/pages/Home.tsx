@@ -248,9 +248,9 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20 max-w-3xl mx-auto">
-            <h2 className="font-headline font-black text-5xl text-white mb-6">Transparent Scale</h2>
+            <h2 className="font-headline font-black text-5xl text-white mb-6">Start free. Scale when you're ready.</h2>
             <p className="text-xl text-[#a0b2c8] leading-relaxed">
-              We know small proposal teams run lean. Start for free, test the engine, and scale as your pipeline grows.
+              Start free, test HE Pursuit on real opportunities, and scale as your pipeline grows.
             </p>
           </div>
 

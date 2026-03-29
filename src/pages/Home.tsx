@@ -206,7 +206,7 @@ export default function Home() {
                 <span className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest">Step 01</span>
               </div>
               <h3 className="font-headline font-black text-xl text-white mb-3 tracking-tight">Import the opportunity</h3>
-              <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">Upload the solicitation, paste the notice, or pull in SAM.gov content to start the review.</p>
+              <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">Upload the solicitation, paste the notice, or pull in SAM.gov content to begin the review.</p>
             </div>
 
             {/* Step 2 */}
@@ -234,7 +234,7 @@ export default function Home() {
                 <span className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest">Step 03</span>
               </div>
               <h3 className="font-headline font-black text-xl text-white mb-3 tracking-tight">Make the call</h3>
-              <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">Get a Go, Conditional Go, or No-Bid recommendation backed by evidence and a repeatable workflow.</p>
+              <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">Get a Go, Conditional Go, or No-Bid recommendation backed by evidence and a repeatable decision workflow.</p>
             </div>
 
           </div>

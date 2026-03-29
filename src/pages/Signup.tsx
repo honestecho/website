@@ -109,9 +109,13 @@ export default function Signup() {
       <div className="min-h-[calc(100vh-72px)] bg-[#030B17] relative overflow-hidden flex items-center justify-center py-12">
         {/* Line grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
-        {/* Centered breathing glow */}
+        {/* Glow A — cyan primary */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-          <div className="animate-breathe w-[1200px] h-[900px] rounded-full blur-[130px] bg-[radial-gradient(ellipse,rgba(0,195,255,0.30)_0%,rgba(91,140,255,0.14)_45%,transparent_70%)]"></div>
+          <div className="animate-glow-a w-[150vw] h-[150vh] rounded-full blur-[160px] bg-[radial-gradient(ellipse,rgba(0,195,255,0.38)_0%,rgba(91,140,255,0.16)_45%,transparent_72%)]"></div>
+        </div>
+        {/* Glow B — violet secondary */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+          <div className="animate-glow-b w-[120vw] h-[120vh] rounded-full blur-[140px] bg-[radial-gradient(ellipse,rgba(91,140,255,0.28)_0%,rgba(0,195,255,0.10)_52%,transparent_75%)]"></div>
         </div>
 
         <div className="w-full max-w-5xl mx-auto px-6 flex flex-col lg:flex-row items-center lg:items-stretch gap-0 relative z-10">

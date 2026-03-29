@@ -126,7 +126,7 @@ export default function Home() {
               </h2>
 
               <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed">
-                Most bid tools rely on generic signals. Honest Echo reflects how requirements are structured, how evaluators score responses, and where teams get disqualified before proposal work begins.
+                Most bid tools rely on generic signals. HE Pursuit reflects how requirements are structured, how proposals are scored, and where teams lose before proposal work begins.
               </p>
 
               <Link to="/product" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all">

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, ShieldCheck, Sparkles, Zap, Target, Scale, FileText, BarChart2, AlertTriangle, Compass } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Sparkles, Zap, Target, Scale, FileText, BarChart2, AlertTriangle, Compass, Upload, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -172,73 +172,69 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION — Social Proof */}
+      {/* SECTION — How It Works */}
       <section className="px-6 py-32 relative overflow-hidden">
         {/* Line grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
+
+          {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="font-headline font-black text-4xl md:text-5xl text-white mb-6 tracking-tight">
-              Trusted by leading <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">GovCon innovators</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+              <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">How HE Pursuit Works</span>
+            </div>
+            <h2 className="font-headline font-black text-4xl md:text-5xl text-white mb-5 tracking-tight">
+              From opportunity review to bid/no-bid in minutes.
             </h2>
-            <p className="text-[#a0b2c8] text-lg max-w-2xl mx-auto font-body">
-              Here is what early adopters and high-growth contractors are saying about the Honest Echo pursuit engine.
+            <p className="text-[#a0b2c8] text-lg max-w-2xl mx-auto font-body leading-relaxed">
+              HE Pursuit helps small government contractors qualify opportunities faster, surface risks earlier, and make clearer pursuit decisions before proposal work begins.
             </p>
           </div>
+
+          {/* Step cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-            {/* Card 1 */}
-            <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 flex flex-col">
+            {/* Step 1 */}
+            <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-              <div className="text-[#00c3ff]/20 font-serif text-8xl leading-none mb-2 select-none">"</div>
-              <p className="text-white font-body text-[15px] leading-relaxed mb-8 flex-grow -mt-4">
-                We used to spend hours manually parsing SAM.gov attachments looking for hidden disqualifiers. Honest Echo flags them in seconds. The Phase 2 effort scoring alone has saved our team weeks of wasted proposal writing.
-              </p>
-              <div className="flex items-center gap-4 border-t border-[#1e2d4a] pt-6">
-                <div className="w-10 h-10 rounded-full bg-[#00c3ff]/10 flex items-center justify-center border border-[#00c3ff]/30 shrink-0">
-                  <span className="text-[#00c3ff] font-bold text-xs uppercase">VP</span>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 flex items-center justify-center relative overflow-visible flex-shrink-0">
+                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                  <Upload className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                 </div>
-                <div>
-                  <h4 className="text-white font-bold text-sm">VP of Capture</h4>
-                  <p className="text-[#a0b2c8] text-xs">Mid-Tier Defense IT Firm</p>
-                </div>
+                <span className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest">Step 01</span>
               </div>
+              <h3 className="font-headline font-black text-xl text-white mb-3 tracking-tight">Import the opportunity</h3>
+              <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">Upload the solicitation, paste the notice, or pull in SAM.gov content to start the review.</p>
             </div>
 
-            {/* Card 2 */}
-            <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 flex flex-col">
+            {/* Step 2 */}
+            <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-              <div className="text-[#00c3ff]/20 font-serif text-8xl leading-none mb-2 select-none">"</div>
-              <p className="text-white font-body text-[15px] leading-relaxed mb-8 flex-grow -mt-4">
-                The shift from tracking opportunities heavily to actually deciding what to win is profound. The UI is beautiful, fast, and the workflow instantly aligns our leadership on bid/no-bid calls without the endless meetings.
-              </p>
-              <div className="flex items-center gap-4 border-t border-[#1e2d4a] pt-6">
-                <div className="w-10 h-10 rounded-full bg-[#00c3ff]/10 flex items-center justify-center border border-[#00c3ff]/30 shrink-0">
-                  <span className="text-[#00c3ff] font-bold text-xs uppercase">CEO</span>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 flex items-center justify-center relative overflow-visible flex-shrink-0">
+                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                  <Target className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                 </div>
-                <div>
-                  <h4 className="text-white font-bold text-sm">Chief Executive Officer</h4>
-                  <p className="text-[#a0b2c8] text-xs">Small Business Federal Consulting</p>
-                </div>
+                <span className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest">Step 02</span>
               </div>
+              <h3 className="font-headline font-black text-xl text-white mb-3 tracking-tight">Analyze fit and eligibility</h3>
+              <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">Evaluate set-asides, NAICS alignment, certifications, capability fit, geography, and disqualifiers.</p>
             </div>
 
-            {/* Card 3 */}
-            <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 flex flex-col">
+            {/* Step 3 */}
+            <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-              <div className="text-[#00c3ff]/20 font-serif text-8xl leading-none mb-2 select-none">"</div>
-              <p className="text-white font-body text-[15px] leading-relaxed mb-8 flex-grow -mt-4">
-                It feels like we finally have a brilliant data scientist working directly for our proposal team. The exact breakdown of capability fit versus agency fit lets us see exactly why a seemingly 'perfect' RFP is actually a dangerous trap.
-              </p>
-              <div className="flex items-center gap-4 border-t border-[#1e2d4a] pt-6">
-                <div className="w-10 h-10 rounded-full bg-[#00c3ff]/10 flex items-center justify-center border border-[#00c3ff]/30 shrink-0">
-                  <span className="text-[#00c3ff] font-bold text-xs uppercase">Dir</span>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 flex items-center justify-center relative overflow-visible flex-shrink-0">
+                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                  <CheckCircle className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                 </div>
-                <div>
-                  <h4 className="text-white font-bold text-sm">Director of Proposals</h4>
-                  <p className="text-[#a0b2c8] text-xs">Logistics & Supply Chain LLC</p>
-                </div>
+                <span className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest">Step 03</span>
               </div>
+              <h3 className="font-headline font-black text-xl text-white mb-3 tracking-tight">Make the call</h3>
+              <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">Get a Go, Conditional Go, or No-Bid recommendation backed by evidence and a repeatable workflow.</p>
             </div>
 
           </div>

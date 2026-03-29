@@ -40,7 +40,7 @@ export default function Home() {
             </h1>
             
             <p className="text-[#a0b2c8] text-lg lg:text-xl mb-8 leading-relaxed font-body">
-              The bid/no-bid decision engine built for small government contractors. Know your eligibility fast and get capture clarity in minutes.
+              The bid/no-bid decision engine for small government contractors. Instantly assess eligibility, fit, and pursuit value before you commit proposal time.
             </p>
             
             <ul className="space-y-4 mb-8">
@@ -50,8 +50,8 @@ export default function Home() {
                   <Zap className="w-6 h-6 text-[#00c3ff] group-hover/item:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover/item:scale-110 group-hover/item:-rotate-12 group-hover/item:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.2} strokeWidth={2} />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold mb-0.5 font-headline text-base">Scoring Built Around Your Business</h3>
-                  <p className="text-sm text-[#a0b2c8] leading-relaxed">Every opportunity evaluated against your NAICS codes, certifications, and pursuit history — not generic benchmarks.</p>
+                  <h3 className="text-white font-bold mb-0.5 font-headline text-base">Fit Scoring Built on Your Actual Business</h3>
+                  <p className="text-sm text-[#a0b2c8] leading-relaxed">Evaluates each opportunity against your NAICS, set-asides, certifications, location, and pursuit profile.</p>
                 </div>
               </li>
               <li className="flex gap-4 items-start group/item">
@@ -60,8 +60,8 @@ export default function Home() {
                   <Target className="w-6 h-6 text-[#00c3ff] group-hover/item:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover/item:scale-110 group-hover/item:-rotate-12 group-hover/item:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.2} strokeWidth={2} />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold mb-0.5 font-headline text-base">5-Phase Pursuit Workflow</h3>
-                  <p className="text-sm text-[#a0b2c8] leading-relaxed">Triage • Eligibility • Strategic Value • Effort & Win Probability • Go/No-Go Decision — structured analysis at every gate.</p>
+                  <h3 className="text-white font-bold mb-0.5 font-headline text-base">Structured 5-Phase Pursuit Workflow</h3>
+                  <p className="text-sm text-[#a0b2c8] leading-relaxed">Move from triage to eligibility, strategic value, effort, and go/no-go with a repeatable process built for capture teams.</p>
                 </div>
               </li>
               <li className="flex gap-4 items-start group/item">
@@ -70,12 +70,13 @@ export default function Home() {
                   <Scale className="w-6 h-6 text-[#00c3ff] group-hover/item:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover/item:scale-110 group-hover/item:-rotate-12 group-hover/item:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.2} strokeWidth={2} />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold mb-0.5 font-headline text-base">Clear Bid/No-Bid Decisions</h3>
-                  <p className="text-sm text-[#a0b2c8] leading-relaxed">Go, Conditional Go, or No-Bid — every recommendation is backed by structured analysis and a clear evidence trail.</p>
+                  <h3 className="text-white font-bold mb-0.5 font-headline text-base">Decision-Ready Recommendations</h3>
+                  <p className="text-sm text-[#a0b2c8] leading-relaxed">Get a Go, Conditional Go, or No-Bid recommendation backed by evidence, not guesswork.</p>
                 </div>
               </li>
             </ul>
 
+            <p className="text-xs text-[#8b9bb4] mb-5 font-body">Analyze opportunities in minutes, not hours.</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/signup" className="px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
                 Start Free Trial

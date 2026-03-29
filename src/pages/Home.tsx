@@ -118,22 +118,19 @@ export default function Home() {
             <div className="w-full md:w-1/2">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-                <span className="text-xs font-bold text-blue-200 tracking-wide uppercase">B2B GovCon Consulting</span>
+                <span className="text-xs font-bold text-blue-200 tracking-wide uppercase">Why This Engine Is Different</span>
               </div>
 
               <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-5 leading-tight tracking-tight">
-                Built by people who understand how contracts are actually evaluated.
+                Built for how government opportunities are actually evaluated.
               </h2>
 
-              <p className="text-[#a0b2c8] text-lg mb-4 leading-relaxed">
-                Most tools are built by software companies. This one is built from real experience supporting government procurement and acquisition environments.
-              </p>
               <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed">
-                We understand how requirements are structured, how evaluations happen, and where companies waste time pursuing the wrong opportunities.
+                Most bid tools rely on generic signals. Honest Echo reflects how requirements are structured, how evaluators score responses, and where teams get disqualified before proposal work begins.
               </p>
 
-              <Link to="/consulting" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all">
-                Work With Us
+              <Link to="/product" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all">
+                See How It Works
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -151,7 +148,7 @@ export default function Home() {
                     { icon: FileText,      label: 'Requirements written to be won',       body: 'We clarify what evaluators actually reward so your team writes to the score — not just the scope.' },
                     { icon: BarChart2,     label: 'Evaluation criteria decoded',           body: 'Understand how proposals get scored and where points are lost before a word is written.' },
                     { icon: AlertTriangle, label: 'Real disqualifiers, surfaced early',    body: 'The factors that knock teams out of contention — identified before you waste effort chasing them.' },
-                    { icon: Compass,       label: 'Frameworks from real programs',         body: 'Practical capture tools built from government procurement experience, not theory.' },
+                    { icon: Compass,       label: 'Real-world pursuit frameworks',          body: 'Capture frameworks grounded in real programs, not generic methodology.' },
                   ] as { icon: React.ElementType; label: string; body: string }[]).map((item, i) => (
                     <div
                       key={item.label}

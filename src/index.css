@@ -76,4 +76,4 @@
   100% { transform: translate( 10%, -3%)  scale(0.95); opacity: 0.25; }
 }
 .animate-glow-a { animation: glow-drift-a 18s ease-in-out infinite; }
-.animate-glow-b { animation: glow-drift-b 24s ease-in-out infinite 5s; }
+.animate-glow-b { animation: glow-drift-b 24s ease-in-out infinite 5s backwards; }

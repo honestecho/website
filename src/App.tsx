@@ -11,9 +11,18 @@ import Welcome from './pages/Welcome';
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-[#030B17] relative">
+      {/* Single page-wide fixed glow — two drifting blobs */}
+      <div className="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="animate-glow-a w-[150vw] h-[150vh] rounded-full blur-[160px] bg-[radial-gradient(ellipse,rgba(0,195,255,0.40)_0%,rgba(91,140,255,0.16)_45%,transparent_72%)]"></div>
+        </div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="animate-glow-b w-[120vw] h-[120vh] rounded-full blur-[140px] bg-[radial-gradient(ellipse,rgba(91,140,255,0.28)_0%,rgba(0,195,255,0.10)_52%,transparent_75%)]"></div>
+        </div>
+      </div>
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow relative z-10">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product" element={<Platform />} />

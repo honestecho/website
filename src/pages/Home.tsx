@@ -320,17 +320,20 @@ export default function Home() {
       </section>
 
 
-      {/* SECTION — Not convinced? Contact */}
+      {/* SECTION — Final CTA */}
       <section className="py-20 px-6 relative overflow-hidden">
         <div className="max-w-3xl mx-auto text-center relative z-10">
-          <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-4">Before You Go</p>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Questions</span>
+          </div>
           <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-4 tracking-tight">
-            Still not convinced?
+            Want to see if HE Pursuit fits your team?
           </h2>
           <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body max-w-xl mx-auto">
-            We built this from real capture experience — not a startup pivot. If you have questions, we'll give you a straight answer.
+            HE Pursuit was built from real capture experience and real procurement workflows. If you have questions, we'll give you a straight answer.
           </p>
-          <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:border-[#00c3ff]/40 hover:bg-[#152033] transition-all duration-300">
+          <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all">
             Talk to the Team
             <ArrowRight className="w-4 h-4" />
           </Link>

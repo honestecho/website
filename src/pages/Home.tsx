@@ -145,10 +145,10 @@ export default function Home() {
 
                 <div className="relative z-10">
                   {([
-                    { icon: FileText,      label: 'Requirements written to be won',       body: 'We clarify what evaluators actually reward so your team writes to the score — not just the scope.' },
-                    { icon: BarChart2,     label: 'Evaluation criteria decoded',           body: 'Understand how proposals get scored and where points are lost before a word is written.' },
-                    { icon: AlertTriangle, label: 'Real disqualifiers, surfaced early',    body: 'The factors that knock teams out of contention — identified before you waste effort chasing them.' },
-                    { icon: Compass,       label: 'Real-world pursuit frameworks',          body: 'Capture frameworks grounded in real programs, not generic methodology.' },
+                    { icon: FileText,      label: 'Requirements written to be won',       body: 'Know what evaluators reward before your team writes a word.' },
+                    { icon: BarChart2,     label: 'Evaluation criteria decoded',           body: 'See how proposals get scored and where points are lost before writing starts.' },
+                    { icon: AlertTriangle, label: 'Real disqualifiers, surfaced early',    body: 'Surface what knocks teams out of contention before you commit pursuit time.' },
+                    { icon: Compass,       label: 'Real-world pursuit frameworks',          body: 'Pursuit tools built from real program experience, not generic templates.' },
                   ] as { icon: React.ElementType; label: string; body: string }[]).map((item, i) => (
                     <div
                       key={item.label}

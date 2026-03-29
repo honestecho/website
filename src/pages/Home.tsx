@@ -27,7 +27,7 @@ export default function Home() {
       </Helmet>
 
         {/* Hero Section */}
-        <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-hidden">
+        <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 bg-[#030B17] overflow-x-hidden">
           {/* Line grid */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
           {/* Glow A — cyan primary, drifts right */}
@@ -116,7 +116,7 @@ export default function Home() {
 
 
       {/* SECTION — Consulting */}
-      <section className="py-24 px-6 bg-[#030B17] overflow-hidden relative">
+      <section className="py-24 px-6 bg-[#030B17] overflow-x-hidden relative">
         {/* Line grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
         {/* Glow A — violet primary */}
@@ -191,7 +191,7 @@ export default function Home() {
       </section>
 
       {/* SECTION — Social Proof */}
-      <section className="px-6 py-32 bg-[#030B17] relative overflow-hidden">
+      <section className="px-6 py-32 bg-[#030B17] relative overflow-x-hidden">
         {/* Line grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
         {/* Glow A — cyan primary */}
@@ -272,7 +272,7 @@ export default function Home() {
       </section>
 
       {/* SECTION — Pricing */}
-      <section className="py-32 px-6 bg-[#030B17] relative overflow-hidden">
+      <section className="py-32 px-6 bg-[#030B17] relative overflow-x-hidden">
         {/* Line grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
         {/* Glow A — violet primary */}
@@ -359,7 +359,7 @@ export default function Home() {
 
 
       {/* SECTION — Not convinced? Contact */}
-      <section className="py-20 px-6 bg-[#030B17] relative overflow-hidden">
+      <section className="py-20 px-6 bg-[#030B17] relative overflow-x-hidden">
         {/* Glow — cyan */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
           <div className="animate-glow-a w-[130vw] h-[130vh] rounded-full blur-[150px] bg-[radial-gradient(ellipse,rgba(0,195,255,0.34)_0%,rgba(91,140,255,0.12)_48%,transparent_72%)]"></div>

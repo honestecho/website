@@ -27,7 +27,7 @@ export default function Home() {
       </Helmet>
 
         {/* Hero Section */}
-        <section className="relative px-6 pt-6 pb-20 lg:pt-10 lg:pb-24 overflow-hidden">
+        <section className="relative px-6 pt-2 pb-20 lg:pt-4 lg:pb-24 overflow-hidden">
           {/* Line grid */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
 
@@ -76,7 +76,7 @@ export default function Home() {
               </li>
             </ul>
 
-            <p className="text-xs text-[#8b9bb4] mb-5 font-body">Analyze opportunities in minutes, not hours.</p>
+            <p className="text-lg lg:text-xl text-[#a0b2c8] mb-5 font-body leading-relaxed">Analyze opportunities in minutes, not hours.</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/signup" className="px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
                 Start Free Trial

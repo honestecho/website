@@ -29,7 +29,7 @@ export default function Home() {
         {/* Hero Section */}
         <section className="relative px-6 pt-2 pb-20 lg:pt-4 lg:pb-24 overflow-hidden">
           {/* Line grid */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Left Column: Copy */}
@@ -111,7 +111,7 @@ export default function Home() {
       {/* SECTION — Consulting */}
       <section className="py-24 px-6 overflow-hidden relative">
         {/* Line grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row gap-16 items-center">
             {/* Left: Copy */}
@@ -175,7 +175,7 @@ export default function Home() {
       {/* SECTION — How It Works */}
       <section className="px-6 py-32 relative overflow-hidden">
         {/* Line grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
 
           {/* Header */}
@@ -244,7 +244,7 @@ export default function Home() {
       {/* SECTION — Pricing */}
       <section className="py-32 px-6 relative overflow-hidden">
         {/* Line grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20 max-w-3xl mx-auto">

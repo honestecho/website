@@ -157,7 +157,7 @@ export default function Home() {
                     >
                       <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 relative overflow-visible">
                         <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover/item:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                        <item.icon className="w-6 h-6 text-[#00c3ff] group-hover/item:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover/item:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                        <item.icon className="w-6 h-6 text-[#00c3ff] group-hover/item:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover/item:scale-110 group-hover/item:-rotate-12 group-hover/item:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                       </div>
                       <div>
                         <p className="text-white font-bold text-base font-headline mb-1">{item.label}</p>
@@ -201,7 +201,7 @@ export default function Home() {
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-10 h-10 flex items-center justify-center relative overflow-visible flex-shrink-0">
                   <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                  <Upload className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                  <Upload className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                 </div>
                 <span className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest">Step 01</span>
               </div>
@@ -215,7 +215,7 @@ export default function Home() {
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-10 h-10 flex items-center justify-center relative overflow-visible flex-shrink-0">
                   <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                  <Target className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                  <Target className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                 </div>
                 <span className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest">Step 02</span>
               </div>
@@ -229,7 +229,7 @@ export default function Home() {
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-10 h-10 flex items-center justify-center relative overflow-visible flex-shrink-0">
                   <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                  <CheckCircle className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                  <CheckCircle className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                 </div>
                 <span className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest">Step 03</span>
               </div>

@@ -100,10 +100,7 @@ export default function Consulting() {
                 Honest Echo is built around a simple idea: better pursuit decisions come from clearer structure, earlier risk visibility, and a real understanding of how government opportunities are evaluated.
               </p>
               <p>
-                That perspective shapes both the product and the consulting work. We help teams think through requirements, likely evaluation logic, qualification risks, and decision quality before proposal effort gets too deep. The goal is practical clarity — not generic advice, and not services detached from the real work of deciding whether to bid.
-              </p>
-              <p className="text-[#8b9bb4] text-sm border-l-2 border-[#00c3ff]/20 pl-4">
-                This is focused support for qualification, evaluation understanding, and pursuit decision-making — not broad procurement advisory.
+                That perspective shapes both the product and the consulting work. We help teams think through requirements, likely evaluation logic, qualification risks, and decision quality before proposal effort gets too deep. The focus is qualification, evaluation understanding, and pursuit decision-making — not broad procurement advisory, not generic advice, and not services detached from the real work of deciding whether to bid.
               </p>
             </div>
           </div>

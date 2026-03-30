@@ -347,10 +347,10 @@ export default function Home() {
           onClick={() => setIsFullscreen(false)}
         >
           <div
-            className="rounded-xl p-2 bg-[#0b1120] border border-[#00c3ff]/50 shadow-[0_0_60px_rgba(0,195,255,0.3)] relative max-h-[90vh] flex flex-col"
+            className="rounded-xl p-2 bg-[#0b1120] border border-[#00c3ff]/50 shadow-[0_0_60px_rgba(0,195,255,0.3)] relative max-h-[90vh] w-[90vw] max-w-5xl flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            <img src="/opportunitycard.jpg" alt="Opportunity Snapshot and Fit Analysis" className="w-auto max-w-full max-h-[calc(90vh-1rem)] object-contain rounded-lg" />
+            <img src="/opportunitycard.jpg" alt="Opportunity Snapshot and Fit Analysis" className="w-full max-h-[calc(90vh-1rem)] object-contain rounded-lg" />
             <button 
               className="absolute -top-4 -right-4 w-10 h-10 bg-[#00c3ff] hover:bg-white text-[#030B17] font-black rounded-full flex items-center justify-center transition-colors shadow-lg"
               onClick={() => setIsFullscreen(false)}

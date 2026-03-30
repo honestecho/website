@@ -154,35 +154,39 @@ export default function Consulting() {
       </section>
 
       {/* ── SECTION 4 — When to Reach Out ───────────────────────────────── */}
-      <section className="pb-8 px-6 relative overflow-hidden">
+      <section className="py-16 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-10 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent rounded-t-2xl"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.03)_0%,transparent_60%)] pointer-events-none"></div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center relative z-10">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-4">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-                  <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">When to Reach Out</span>
-                </div>
-                <h3 className="font-headline font-black text-2xl text-white tracking-tight leading-tight">
-                  This work fits best when the stakes are real.
-                </h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            {/* Left — heading */}
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+                <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">When to Reach Out</span>
               </div>
-              <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  'Reviewing a high-stakes opportunity',
-                  'Pressure-testing a weak-fit pursuit',
-                  'Improving your internal bid/no-bid workflow',
-                  'Aligning HE Pursuit to your team process',
-                ].map((item) => (
-                  <div key={item} className="flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff] mt-2 shrink-0"></div>
-                    <span className="text-[#a0b2c8] text-sm font-body leading-snug">{item}</span>
-                  </div>
-                ))}
-              </div>
+              <h3 className="font-headline font-black text-2xl md:text-3xl text-white tracking-tight leading-tight">
+                This work fits best when the stakes are real.
+              </h3>
             </div>
+
+            {/* Right — 2×2 mini-cards */}
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { Icon: Target,     label: 'Reviewing a high-stakes opportunity' },
+                { Icon: ShieldCheck, label: 'Pressure-testing a weak-fit pursuit' },
+                { Icon: BarChart2,  label: 'Improving your internal bid/no-bid workflow' },
+                { Icon: Zap,        label: 'Aligning HE Pursuit to your team process' },
+              ].map(({ Icon, label }) => (
+                <div key={label} className="flex items-start gap-3 bg-[#0b1120] border border-[#1e2d4a] rounded-xl p-4 group/item hover:border-[#00c3ff]/30 transition-all duration-300">
+                  <div className="w-8 h-8 flex items-center justify-center relative overflow-visible shrink-0 mt-0.5">
+                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-0 group-hover/item:opacity-50 transition-opacity duration-500 rounded-full scale-150"></div>
+                    <Icon className="w-4 h-4 text-[#00c3ff] group-hover/item:text-white group-hover/item:-rotate-12 group-hover/item:scale-110 transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                  </div>
+                  <span className="text-[#a0b2c8] text-sm font-body leading-snug pt-1 group-hover/item:text-white transition-colors duration-300">{label}</span>
+                </div>
+              ))}
+            </div>
+
           </div>
         </div>
       </section>

@@ -8,6 +8,7 @@ import Contact from './pages/Contact';
 import AppRedirect from './pages/AppRedirect';
 import Signup from './pages/Signup';
 import Welcome from './pages/Welcome';
+import Pricing from './pages/Pricing';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/consulting" element={<Consulting />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/pricing" element={<Pricing />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/app" element={<AppRedirect />} />

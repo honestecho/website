@@ -21,7 +21,7 @@ export default function Navbar() {
           <Link to="/product" className="font-headline font-bold tracking-tight text-white/80 hover:text-white transition-colors">
             Product
           </Link>
-          <Link to="/#pricing" className="font-headline font-bold tracking-tight text-white/80 hover:text-white transition-colors">
+          <Link to="/pricing" className="font-headline font-bold tracking-tight text-white/80 hover:text-white transition-colors">
             Pricing
           </Link>
           <Link to="/consulting" className="font-headline font-bold tracking-tight text-white/80 hover:text-white transition-colors">

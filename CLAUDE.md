@@ -52,13 +52,13 @@ Icons always use the glowing halo treatment:
 ```
 <div className="w-10 h-10 flex items-center justify-center relative overflow-visible">
   <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-  <Icon className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+  <Icon className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
 </div>
 ```
 All icons: `#00c3ff`. No mixed icon colors across a section.
 
 ### Background Patterns
-- Grid: `bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px]`
+- Grid: lives in `App.tsx` as a global `fixed inset-0` layer — do NOT add per-section grid divs to pages. Use `#80808018` opacity value: `bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:48px_48px]`
 - Top glow: `bg-gradient-to-b from-[#00c3ff]/10 via-transparent to-transparent blur-[100px]`
 - Radial glow: `bg-[radial-gradient(circle_at_50%_0%,rgba(0,195,255,0.05)_0%,transparent_70%)]`
 

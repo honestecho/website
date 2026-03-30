@@ -119,7 +119,7 @@ export default function Pricing() {
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
             <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Pricing</span>
           </div>
-          <h1 className="font-headline font-black text-5xl md:text-6xl text-white mb-6 tracking-tight leading-tight">
+          <h1 className="font-headline font-black text-4xl md:text-5xl text-white mb-6 tracking-tight leading-tight">
             Start free.<br />Scale when you're ready.
           </h1>
           <p className="text-[#a0b2c8] text-lg md:text-xl leading-relaxed font-body">
@@ -215,7 +215,7 @@ export default function Pricing() {
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
               <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Plan Fit</span>
             </div>
-            <h2 className="font-headline font-black text-4xl md:text-5xl text-white tracking-tight">
+            <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight mb-4 max-w-2xl mx-auto">
               Choose the plan that matches how your team pursues work.
             </h2>
           </div>
@@ -251,7 +251,7 @@ export default function Pricing() {
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
               <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Compare Plans</span>
             </div>
-            <h2 className="font-headline font-black text-4xl md:text-5xl text-white tracking-tight">
+            <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight mb-4">
               See exactly what changes at each tier.
             </h2>
           </div>
@@ -315,7 +315,7 @@ export default function Pricing() {
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
               <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">FAQ</span>
             </div>
-            <h2 className="font-headline font-black text-4xl md:text-5xl text-white tracking-tight">
+            <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight mb-4">
               Questions before you choose a plan?
             </h2>
           </div>
@@ -351,7 +351,7 @@ export default function Pricing() {
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
             <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Ready to Start</span>
           </div>
-          <h2 className="font-headline font-black text-4xl md:text-5xl text-white mb-5 tracking-tight">
+          <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-5 tracking-tight">
             Choose your plan and start evaluating opportunities faster.
           </h2>
           <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body max-w-xl mx-auto">

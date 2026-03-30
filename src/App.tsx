@@ -13,8 +13,9 @@ import Pricing from './pages/Pricing';
 function App() {
   return (
     <div className="min-h-screen flex flex-col bg-[#030B17] relative">
-      {/* Single page-wide fixed glow — two drifting blobs */}
+      {/* Global background — grid + two drifting glow blobs */}
       <div className="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:48px_48px]"></div>
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="animate-glow-a w-[150vw] h-[150vh] rounded-full blur-[160px] bg-[radial-gradient(ellipse,rgba(0,195,255,0.40)_0%,rgba(91,140,255,0.16)_45%,transparent_72%)]"></div>
         </div>

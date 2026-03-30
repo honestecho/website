@@ -12,7 +12,6 @@ export default function About() {
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,195,255,0.06)_0%,transparent_65%)] pointer-events-none"></div>
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
@@ -80,7 +79,6 @@ export default function About() {
 
       {/* ── SECTION 3 — Why HE Pursuit Exists ───────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl lg:order-2">
@@ -175,7 +173,6 @@ export default function About() {
 
       {/* ── SECTION 5 — How We Work ──────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
@@ -264,7 +261,6 @@ export default function About() {
 
       {/* ── SECTION 7 — Final CTA ────────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:48px_48px] pointer-events-none"></div>
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>

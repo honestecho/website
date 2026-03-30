@@ -113,7 +113,6 @@ export default function Pricing() {
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
       <section className="pt-5 pb-4 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-3">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
@@ -233,7 +232,6 @@ export default function Pricing() {
 
       {/* ── SECTION 3 — Plan Fit ─────────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
@@ -333,7 +331,6 @@ export default function Pricing() {
 
       {/* ── SECTION 5 — FAQ ──────────────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
         <div className="max-w-3xl mx-auto relative z-10">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">

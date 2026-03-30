@@ -85,12 +85,14 @@ export default function Consulting() {
         <div className="max-w-7xl mx-auto relative z-10">
 
           {/* Why Honest Echo — 2-col copy */}
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+              <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Why Honest Echo</span>
+            </div>
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-20">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-                <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Why Honest Echo</span>
-              </div>
               <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight leading-tight">
                 Built around practical GovCon judgment, not generic consulting language.
               </h2>
@@ -156,14 +158,16 @@ export default function Consulting() {
       {/* ── SECTION 4 — When to Reach Out ───────────────────────────────── */}
       <section className="py-16 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+              <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">When to Reach Out</span>
+            </div>
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
             {/* Left — heading */}
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-                <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">When to Reach Out</span>
-              </div>
               <h3 className="font-headline font-black text-2xl md:text-3xl text-white tracking-tight leading-tight">
                 This work fits best when the stakes are real.
               </h3>

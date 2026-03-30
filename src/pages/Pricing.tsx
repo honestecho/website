@@ -198,7 +198,7 @@ export default function Pricing() {
                 ))}
               </ul>
               <Link to="/contact" className="block w-full py-3 text-center border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline">
-                Talk to Sales
+                Talk to the Team
               </Link>
             </div>
 
@@ -363,7 +363,7 @@ export default function Pricing() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline">
-              Talk to Sales
+              Talk to the Team
             </Link>
           </div>
         </div>

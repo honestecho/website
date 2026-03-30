@@ -39,7 +39,7 @@ export default function About() {
       {/* ── SECTION 2 — Who We Are ───────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
@@ -57,22 +57,23 @@ export default function About() {
                 </p>
               </div>
             </div>
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-              <h3 className="font-headline font-black text-lg text-white mb-6 tracking-tight">What we build for</h3>
-              <div className="grid grid-cols-2 gap-4">
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden group/card hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_60%)] pointer-events-none"></div>
+              <h3 className="font-headline font-black text-lg text-[#00c3ff] mb-6 tracking-tight relative z-10">What we build for</h3>
+              <div className="grid grid-cols-2 gap-5 relative z-10">
                 {[
                   { Icon: Filter,     label: 'Bid / no-bid clarity' },
                   { Icon: Eye,        label: 'Early risk visibility' },
                   { Icon: GitBranch,  label: 'Repeatable pursuit workflows' },
                   { Icon: Users,      label: 'Small-team decision support' },
                 ].map(({ Icon, label }) => (
-                  <div key={label} className="flex items-start gap-3">
+                  <div key={label} className="flex items-start gap-3 group/item cursor-default">
                     <div className="w-8 h-8 flex items-center justify-center relative overflow-visible shrink-0 mt-0.5">
-                      <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-full scale-150"></div>
-                      <Icon className="w-4 h-4 text-[#00c3ff] group-hover:text-white group-hover:-rotate-12 group-hover:scale-110 transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                      <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-0 group-hover/item:opacity-50 transition-opacity duration-500 rounded-full scale-150"></div>
+                      <Icon className="w-4 h-4 text-[#00c3ff] group-hover/item:text-white group-hover/item:-rotate-12 group-hover/item:scale-110 transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                     </div>
-                    <span className="text-[#a0b2c8] text-sm font-body leading-snug pt-1">{label}</span>
+                    <span className="text-[#a0b2c8] text-sm font-body leading-snug pt-1 group-hover/item:text-white transition-colors duration-300">{label}</span>
                   </div>
                 ))}
               </div>
@@ -84,11 +85,12 @@ export default function About() {
       {/* ── SECTION 3 — Why HE Pursuit Exists ───────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 lg:order-2">
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-              <h3 className="font-headline font-black text-lg text-white mb-6 tracking-tight">What HE Pursuit is designed to help answer</h3>
-              <ul className="space-y-4 font-body text-[#a0b2c8] text-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden group/card hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 lg:order-2">
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_60%)] pointer-events-none"></div>
+              <h3 className="font-headline font-black text-lg text-[#00c3ff] mb-6 tracking-tight relative z-10">What HE Pursuit is designed to help answer</h3>
+              <ul className="space-y-4 font-body text-[#a0b2c8] text-sm relative z-10">
                 {[
                   { Icon: ShieldCheck,  label: 'Are we actually eligible?' },
                   { Icon: Target,       label: 'Is this a real fit for our business?' },
@@ -96,12 +98,12 @@ export default function About() {
                   { Icon: BarChart2,    label: 'Is the effort justified?' },
                   { Icon: ArrowRight,   label: 'Should we pursue, watch, or walk away?' },
                 ].map(({ Icon, label }) => (
-                  <li key={label} className="flex items-center gap-3">
+                  <li key={label} className="flex items-center gap-3 group/item cursor-default">
                     <div className="w-7 h-7 flex items-center justify-center relative overflow-visible shrink-0">
-                      <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-full scale-150"></div>
-                      <Icon className="w-4 h-4 text-[#00c3ff] group-hover:text-white group-hover:-rotate-12 group-hover:scale-110 transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.1} strokeWidth={2} />
+                      <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-0 group-hover/item:opacity-50 transition-opacity duration-500 rounded-full scale-150"></div>
+                      <Icon className="w-4 h-4 text-[#00c3ff] group-hover/item:text-white group-hover/item:-rotate-12 group-hover/item:scale-110 transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.1} strokeWidth={2} />
                     </div>
-                    <span>{label}</span>
+                    <span className="group-hover/item:text-white transition-colors duration-300">{label}</span>
                   </li>
                 ))}
               </ul>
@@ -182,7 +184,7 @@ export default function About() {
       {/* ── SECTION 5 — How We Work ──────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
@@ -200,22 +202,23 @@ export default function About() {
                 </p>
               </div>
             </div>
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-              <h3 className="font-headline font-black text-lg text-white mb-6 tracking-tight">What that means in practice</h3>
-              <ul className="space-y-4 font-body text-[#a0b2c8] text-sm">
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden group/card hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_60%)] pointer-events-none"></div>
+              <h3 className="font-headline font-black text-lg text-[#00c3ff] mb-6 tracking-tight relative z-10">What that means in practice</h3>
+              <ul className="space-y-4 font-body text-[#a0b2c8] text-sm relative z-10">
                 {[
                   { Icon: Zap,         label: 'HE Pursuit is built for self-serve use' },
                   { Icon: BarChart2,   label: 'Pricing and workflows are product-led' },
                   { Icon: Users,       label: 'Team buyers can request guidance when needed' },
                   { Icon: ShieldCheck, label: 'Support exists to strengthen adoption, not replace the product' },
                 ].map(({ Icon, label }) => (
-                  <li key={label} className="flex items-center gap-3">
+                  <li key={label} className="flex items-center gap-3 group/item cursor-default">
                     <div className="w-7 h-7 flex items-center justify-center relative overflow-visible shrink-0">
-                      <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-full scale-150"></div>
-                      <Icon className="w-4 h-4 text-[#00c3ff] group-hover:text-white group-hover:-rotate-12 group-hover:scale-110 transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.1} strokeWidth={2} />
+                      <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-0 group-hover/item:opacity-50 transition-opacity duration-500 rounded-full scale-150"></div>
+                      <Icon className="w-4 h-4 text-[#00c3ff] group-hover/item:text-white group-hover/item:-rotate-12 group-hover/item:scale-110 transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.1} strokeWidth={2} />
                     </div>
-                    <span>{label}</span>
+                    <span className="group-hover/item:text-white transition-colors duration-300">{label}</span>
                   </li>
                 ))}
               </ul>

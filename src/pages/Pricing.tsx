@@ -112,7 +112,7 @@ export default function Pricing() {
       </Helmet>
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
-      <section className="pt-5 pb-4 px-6 relative overflow-hidden">
+      <section className="pt-24 pb-4 px-6 relative overflow-hidden">
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-3">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>

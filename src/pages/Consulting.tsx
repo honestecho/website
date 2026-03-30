@@ -1,60 +1,195 @@
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Target, Eye, FileText, ShieldCheck, Filter, BarChart2, Zap } from 'lucide-react';
 
 export default function Consulting() {
   return (
     <>
       <Helmet>
         <title>Consulting | Honest Echo</title>
-        <meta name="description" content="GovCon Consulting: Capture strategy, acquisition support, and proposal guidance." />
+        <meta name="description" content="GovCon consulting built around practical pursuit judgment — qualification, evaluation readiness, and bid/no-bid decision support for small government contractors." />
       </Helmet>
-      <div className="relative max-w-7xl mx-auto px-6 py-24 min-h-[70vh] overflow-hidden">
-        {/* Crisp grid background */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:48px_48px] z-0"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#00c3ff]/10 via-transparent to-transparent z-0 pointer-events-none blur-3xl w-full h-1/2"></div>
-        
-        <div className="relative z-10 w-full">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-900/20 border border-blue-700/30 mb-8 animate-fade-in">
-             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-             <span className="text-sm font-bold text-blue-200 tracking-wide">B2B GovCon Consulting</span>
+
+      {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
+      <section className="py-24 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,195,255,0.06)_0%,transparent_65%)] pointer-events-none"></div>
+        <div className="max-w-3xl mx-auto text-center relative z-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">B2B GovCon Consulting</span>
           </div>
-          <h1 className="font-headline font-black text-5xl md:text-7xl text-white mb-16 tracking-tighter">Consulting</h1>
+          <h1 className="font-headline font-black text-4xl md:text-6xl text-white mb-6 tracking-tight leading-tight drop-shadow-2xl">
+            Procurement judgment that helps teams qualify smarter.
+          </h1>
+          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body mb-10 max-w-2xl mx-auto">
+            We combine practical GovCon procurement judgment with structured pursuit workflows to help teams make better bid/no-bid decisions.
+          </p>
+          <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline">
+            Talk to the Team
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 relative z-10">
-          <div className="space-y-16">
-            <section className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-xl">
-              <h2 className="text-3xl font-headline font-bold text-white mb-6">What we do</h2>
-              <p className="text-[#a0b2c8] text-lg leading-relaxed">
-                We provide targeted capture strategy, acquisition support, and proposal guidance. 
-                Our approach is deeply rooted in practical experience and proven GovCon workflows.
-              </p>
-            </section>
-            <section className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-xl">
-              <h2 className="text-3xl font-headline font-bold text-white mb-6">Who we help</h2>
-              <p className="text-[#a0b2c8] text-lg leading-relaxed">
-                Small to mid-sized businesses looking to mature their BD processes, win complex prime contracts, and stop wasting resources on bad bids.
-              </p>
-            </section>
+      </section>
+
+      {/* ── SECTION 2 — What We Help With ────────────────────────────────── */}
+      <section className="py-24 px-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+              <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">What We Help With</span>
+            </div>
+            <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight leading-tight">
+              Targeted support for the decisions that matter most.
+            </h2>
           </div>
-          <div className="space-y-16">
-            <section className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-xl">
-              <h2 className="text-3xl font-headline font-bold text-white mb-6">Experience</h2>
-              <p className="text-[#a0b2c8] text-lg leading-relaxed">
-                Decades of verifiable, on-the-ground experience submitting and winning RFPs, managing pipelines, and orchestrating proposal teams. We are government contractors primarily, not just a software company.
-              </p>
-            </section>
-            <section className="bg-[#00c3ff]/10 border border-[#00c3ff]/30 rounded-2xl p-8 shadow-[0_0_30px_rgba(0,195,255,0.1)]">
-              <h2 className="text-3xl font-headline font-bold text-white mb-6">Contact</h2>
-              <p className="text-[#a0b2c8] text-lg leading-relaxed mb-8">
-                Ready to elevate your strategy? Reach out to start a conversation.
-              </p>
-              <button className="px-8 py-3 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg hover:bg-white hover:scale-105 active:scale-95 transition-all shadow-xl shadow-[#00c3ff]/20">
-                Contact Us
-              </button>
-            </section>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[
+              {
+                Icon: Target,
+                heading: 'Opportunity qualification and evaluation readiness',
+                copy: 'Help teams assess fit, eligibility, evaluation logic, and pursuit risk before proposal work begins.',
+              },
+              {
+                Icon: BarChart2,
+                heading: 'Evaluation-focused decision support',
+                copy: 'Help teams pressure-test real opportunities by looking at requirements, likely evaluation factors, and early risk signals.',
+              },
+              {
+                Icon: FileText,
+                heading: 'Requirement interpretation and fit assessment',
+                copy: 'Understand how requirements are likely to be interpreted and where gaps in eligibility or positioning may create structural risk.',
+              },
+              {
+                Icon: ShieldCheck,
+                heading: 'Pursuit alignment with procurement logic',
+                copy: 'Align qualification decisions with real procurement logic — not just a checklist, but an honest view of how evaluators may weigh responses.',
+              },
+            ].map(({ Icon, heading, copy }) => (
+              <div key={heading} className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+                <div className="w-10 h-10 flex items-center justify-center relative overflow-visible mb-6">
+                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                  <Icon className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                </div>
+                <h3 className="font-headline font-black text-xl text-white mb-3 tracking-tight">{heading}</h3>
+                <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{copy}</p>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* ── SECTION 3 — Why Honest Echo + What We Bring ──────────────────── */}
+      <section className="py-24 px-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+
+          {/* Why Honest Echo — 2-col copy */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-20">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+                <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Why Honest Echo</span>
+              </div>
+              <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight leading-tight">
+                Built around practical GovCon judgment, not generic consulting language.
+              </h2>
+            </div>
+            <div className="space-y-5 font-body text-[#a0b2c8] text-base leading-relaxed lg:pt-16">
+              <p>
+                Honest Echo is built around a simple idea: better pursuit decisions come from clearer structure, earlier risk visibility, and a real understanding of how government opportunities are evaluated.
+              </p>
+              <p>
+                That perspective shapes both the product and the consulting work. We help teams think through requirements, likely evaluation logic, qualification risks, and decision quality before proposal effort gets too deep. The goal is practical clarity — not generic advice, and not services detached from the real work of deciding whether to bid.
+              </p>
+            </div>
+          </div>
+
+          {/* What We Bring — 3 cards */}
+          <div>
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-4">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+                <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">What We Bring</span>
+              </div>
+              <h3 className="font-headline font-black text-2xl md:text-3xl text-white tracking-tight">
+                Procurement judgment that helps teams qualify smarter.
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  Icon: Eye,
+                  heading: 'Evaluation process awareness',
+                  copy: 'Understand how opportunities may actually be assessed, not just how they are described.',
+                },
+                {
+                  Icon: Filter,
+                  heading: 'Requirement interpretation',
+                  copy: 'Get help reading between the lines of fit, eligibility, and risk before proposal work expands.',
+                },
+                {
+                  Icon: Zap,
+                  heading: 'Practical bid judgment',
+                  copy: 'Pressure-test real opportunities with a more structured view of effort, risk, and likely return.',
+                },
+              ].map(({ Icon, heading, copy }) => (
+                <div key={heading} className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+                  <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.03)_0%,transparent_60%)] pointer-events-none"></div>
+                  <div className="w-10 h-10 flex items-center justify-center relative overflow-visible mb-6">
+                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                    <Icon className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                  </div>
+                  <h3 className="font-headline font-black text-xl text-white mb-3 tracking-tight">{heading}</h3>
+                  <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{copy}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── SECTION 4 — Final CTA ─────────────────────────────────────────── */}
+      <section className="py-24 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(0,195,255,0.04)_0%,transparent_65%)] pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            {/* Left — heading + copy */}
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+                <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Work With Us</span>
+              </div>
+              <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-5 tracking-tight leading-tight">
+                Ready to bring more structure to your pursuit decisions?
+              </h2>
+              <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-lg">
+                Talk to the team about your pipeline, or explore HE Pursuit to see how the product supports the same decision framework.
+              </p>
+            </div>
+
+            {/* Right — 3 stacked buttons */}
+            <div className="flex flex-col gap-4 lg:pl-12">
+              <Link to="/contact" className="inline-flex items-center justify-between gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline group/btn">
+                <span>Talk to the Team</span>
+                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+              </Link>
+              <Link to="/product" className="inline-flex items-center justify-between gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline group/btn">
+                <span>Explore HE Pursuit</span>
+                <ArrowRight className="w-4 h-4 text-[#8b9bb4] group-hover/btn:text-[#00c3ff] group-hover/btn:translate-x-1 transition-all duration-300" />
+              </Link>
+              <Link to="/pricing" className="inline-flex items-center justify-between gap-2 px-8 py-4 bg-transparent border border-[#1e2d4a] text-[#8b9bb4] font-bold rounded-lg hover:bg-[#0b1120] hover:border-[#00c3ff]/30 hover:text-white transition-all duration-300 font-headline group/btn">
+                <span>View Pricing</span>
+                <ArrowRight className="w-4 h-4 opacity-0 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all duration-300" />
+              </Link>
+            </div>
+
+          </div>
+        </div>
+      </section>
     </>
   );
 }

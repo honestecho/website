@@ -276,30 +276,40 @@ export default function About() {
 
       {/* ── SECTION 7 — Final CTA ────────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
-        <div className="max-w-3xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Ready to See It in Action?</span>
-          </div>
-          <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-5 tracking-tight leading-tight">
-            Explore HE Pursuit and see how your team can make faster, clearer bid decisions.
-          </h2>
-          <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body max-w-xl mx-auto">
-            Start with the product, review the pricing, or reach out if your team needs a closer look.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline">
-              Explore HE Pursuit
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link to="/pricing" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline">
-              View Pricing
-            </Link>
-          </div>
-          <div className="mt-6">
-            <Link to="/contact" className="text-[#8b9bb4] text-sm font-body hover:text-[#00c3ff] transition-colors duration-300">
-              Talk to the Team
-            </Link>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(0,195,255,0.04)_0%,transparent_65%)] pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            {/* Left — heading + copy */}
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+                <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Ready to See It in Action?</span>
+              </div>
+              <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-5 tracking-tight leading-tight">
+                See how your team can make faster, clearer bid decisions.
+              </h2>
+              <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-lg">
+                Start with the product, review the pricing, or reach out if your team needs a closer look.
+              </p>
+            </div>
+
+            {/* Right — 3 stacked buttons */}
+            <div className="flex flex-col gap-4 lg:pl-12">
+              <Link to="/product" className="inline-flex items-center justify-between gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline group/btn">
+                <span>Explore HE Pursuit</span>
+                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+              </Link>
+              <Link to="/pricing" className="inline-flex items-center justify-between gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline group/btn">
+                <span>View Pricing</span>
+                <ArrowRight className="w-4 h-4 text-[#8b9bb4] group-hover/btn:text-[#00c3ff] group-hover/btn:translate-x-1 transition-all duration-300" />
+              </Link>
+              <Link to="/contact" className="inline-flex items-center justify-between gap-2 px-8 py-4 bg-transparent border border-[#1e2d4a] text-[#8b9bb4] font-bold rounded-lg hover:bg-[#0b1120] hover:border-[#00c3ff]/30 hover:text-white transition-all duration-300 font-headline group/btn">
+                <span>Talk to the Team</span>
+                <ArrowRight className="w-4 h-4 opacity-0 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all duration-300" />
+              </Link>
+            </div>
+
           </div>
         </div>
       </section>

@@ -112,36 +112,36 @@ export default function Pricing() {
       </Helmet>
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
-      <section className="pt-10 pb-8 px-6 relative overflow-hidden">
+      <section className="pt-5 pb-4 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
         <div className="max-w-3xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-3">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
             <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Pricing</span>
           </div>
-          <h1 className="font-headline font-black text-3xl md:text-4xl text-white mb-4 tracking-tight leading-tight">
+          <h1 className="font-headline font-black text-2xl md:text-3xl text-white mb-2 tracking-tight leading-tight">
             Start free. Scale when you're ready.
           </h1>
-          <p className="text-[#a0b2c8] text-base leading-relaxed font-body">
-            Start free, test HE Pursuit on real opportunities, and upgrade when you need deeper analysis, decision support, and team workflows.
+          <p className="text-[#a0b2c8] text-sm leading-relaxed font-body">
+            Test HE Pursuit free. Upgrade for deeper analysis, decision support, and team workflows.
           </p>
         </div>
       </section>
 
       {/* ── SECTION 2 — Pricing Cards ────────────────────────────────────── */}
-      <section className="pb-16 px-6 relative overflow-hidden">
+      <section className="pb-8 px-6 relative overflow-hidden">
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
 
             {/* Free */}
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-              <h3 className="font-headline text-2xl font-bold text-white mb-1">Free</h3>
-              <p className="text-sm text-[#8b9bb4] mb-6 font-body">For testing the workflow</p>
-              <div className="flex items-baseline gap-1 mb-8">
-                <span className="text-5xl font-black text-white font-headline">$0</span>
+              <h3 className="font-headline text-xl font-bold text-white mb-1">Free</h3>
+              <p className="text-xs text-[#8b9bb4] mb-4 font-body">For testing the workflow</p>
+              <div className="flex items-baseline gap-1 mb-4">
+                <span className="text-4xl font-black text-white font-headline">$0</span>
               </div>
-              <ul className="space-y-3 text-sm text-[#a0b2c8] mb-4 flex-grow font-body">
+              <ul className="space-y-2 text-sm text-[#a0b2c8] mb-3 flex-grow font-body">
                 {['Search SAM.gov opportunities', 'Browse and filter listings', 'View opportunity details'].map(f => (
                   <li key={f} className="flex gap-3 items-start">
                     <Check className="w-4 h-4 text-[#00c3ff] shrink-0 mt-0.5" strokeWidth={2.5} />
@@ -149,26 +149,26 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-              <p className="text-xs text-[#8b9bb4] font-body mb-8">No credit card required. Saving pursuits and analysis requires Pro.</p>
+              <p className="text-xs text-[#8b9bb4] font-body mb-5">No credit card required.</p>
               <Link to="/signup" className="block w-full py-3 text-center border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline">
                 Get Started
               </Link>
             </div>
 
             {/* Pro — highlighted */}
-            <div className="bg-[#0b1120] border border-[#00c3ff]/50 rounded-2xl p-8 flex flex-col shadow-[0_0_60px_rgba(0,195,255,0.12)] relative overflow-hidden scale-[1.02]">
+            <div className="bg-[#0b1120] border border-[#00c3ff]/50 rounded-2xl p-6 flex flex-col shadow-[0_0_60px_rgba(0,195,255,0.12)] relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/60 to-transparent rounded-t-2xl"></div>
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.06)_0%,transparent_65%)] pointer-events-none"></div>
               <div className="flex items-center justify-between mb-1">
-                <h3 className="font-headline text-2xl font-bold text-white">Pro</h3>
+                <h3 className="font-headline text-xl font-bold text-white">Pro</h3>
                 <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest font-label">Most Popular</span>
               </div>
-              <p className="text-sm text-[#8b9bb4] mb-6 font-body">For small contractors and proposal teams</p>
-              <div className="flex items-baseline gap-1 mb-8">
-                <span className="text-5xl font-black text-white font-headline">$39</span>
+              <p className="text-xs text-[#8b9bb4] mb-4 font-body">For small contractors and proposal teams</p>
+              <div className="flex items-baseline gap-1 mb-4">
+                <span className="text-4xl font-black text-white font-headline">$39</span>
                 <span className="text-[#8b9bb4] text-sm font-body">/mo</span>
               </div>
-              <ul className="space-y-3 text-sm text-[#a0b2c8] mb-10 flex-grow font-body relative z-10">
+              <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow font-body relative z-10">
                 {['Unlimited pursuits and Phase 1', 'Full Phase 2 eligibility and docs', 'Disqualifier detection', 'Strategic and effort scoring', 'Decision tracking and history'].map(f => (
                   <li key={f} className="flex gap-3 items-start">
                     <Check className="w-4 h-4 text-[#00c3ff] shrink-0 mt-0.5" strokeWidth={2.5} />
@@ -182,16 +182,16 @@ export default function Pricing() {
             </div>
 
             {/* Team */}
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-              <h3 className="font-headline text-2xl font-bold text-white mb-1">Team</h3>
-              <p className="text-sm text-[#8b9bb4] mb-6 font-body">For multi-user capture teams</p>
-              <div className="flex items-baseline gap-1 mb-2">
-                <span className="text-5xl font-black text-white font-headline">$99</span>
+              <h3 className="font-headline text-xl font-bold text-white mb-1">Team</h3>
+              <p className="text-xs text-[#8b9bb4] mb-4 font-body">For multi-user capture teams</p>
+              <div className="flex items-baseline gap-1 mb-1">
+                <span className="text-4xl font-black text-white font-headline">$99</span>
                 <span className="text-[#8b9bb4] text-sm font-body">/mo</span>
               </div>
-              <p className="text-xs text-[#8b9bb4] font-body mb-8">Per workspace · Up to 5 users · Contact us for larger teams</p>
-              <ul className="space-y-3 text-sm text-[#a0b2c8] mb-10 flex-grow font-body">
+              <p className="text-xs text-[#8b9bb4] font-body mb-4">Per workspace · Up to 5 users</p>
+              <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow font-body">
                 {['Everything in Pro', 'Multiple users', 'Shared pursuits', 'Priority parsing and larger limits', 'Export capabilities'].map(f => (
                   <li key={f} className="flex gap-3 items-start">
                     <Check className="w-4 h-4 text-[#00c3ff] shrink-0 mt-0.5" strokeWidth={2.5} />

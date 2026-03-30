@@ -287,7 +287,7 @@ export default function About() {
                 <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Ready to See It in Action?</span>
               </div>
               <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-5 tracking-tight leading-tight">
-                See how your team can make faster, clearer bid decisions.
+                Explore HE Pursuit and see how your team can qualify faster and bid smarter.
               </h2>
               <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-lg">
                 Start with the product, review the pricing, or reach out if your team needs a closer look.

@@ -16,7 +16,7 @@ export default function Consulting() {
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">B2B GovCon Consulting</span>
+            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">GovCon Decision Support</span>
           </div>
           <h1 className="font-headline font-black text-4xl md:text-6xl text-white mb-6 tracking-tight leading-tight drop-shadow-2xl">
             Procurement judgment that helps teams qualify smarter.
@@ -102,6 +102,9 @@ export default function Consulting() {
               <p>
                 That perspective shapes both the product and the consulting work. We help teams think through requirements, likely evaluation logic, qualification risks, and decision quality before proposal effort gets too deep. The goal is practical clarity — not generic advice, and not services detached from the real work of deciding whether to bid.
               </p>
+              <p className="text-[#8b9bb4] text-sm border-l-2 border-[#00c3ff]/20 pl-4">
+                This is focused support for qualification, evaluation understanding, and pursuit decision-making — not broad procurement advisory.
+              </p>
             </div>
           </div>
 
@@ -151,7 +154,41 @@ export default function Consulting() {
         </div>
       </section>
 
-      {/* ── SECTION 4 — Final CTA ─────────────────────────────────────────── */}
+      {/* ── SECTION 4 — When to Reach Out ───────────────────────────────── */}
+      <section className="pb-8 px-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-10 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent rounded-t-2xl"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.03)_0%,transparent_60%)] pointer-events-none"></div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center relative z-10">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-4">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+                  <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">When to Reach Out</span>
+                </div>
+                <h3 className="font-headline font-black text-2xl text-white tracking-tight leading-tight">
+                  This work fits best when the stakes are real.
+                </h3>
+              </div>
+              <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  'Reviewing a high-stakes opportunity',
+                  'Pressure-testing a weak-fit pursuit',
+                  'Improving your internal bid/no-bid workflow',
+                  'Aligning HE Pursuit to your team process',
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-3">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff] mt-2 shrink-0"></div>
+                    <span className="text-[#a0b2c8] text-sm font-body leading-snug">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 5 — Final CTA ─────────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(0,195,255,0.04)_0%,transparent_65%)] pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">

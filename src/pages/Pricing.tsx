@@ -112,24 +112,24 @@ export default function Pricing() {
       </Helmet>
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
-      <section className="py-24 px-6 relative overflow-hidden">
+      <section className="pt-10 pb-8 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:48px_48px] z-0 pointer-events-none"></div>
         <div className="max-w-3xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-4">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
             <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Pricing</span>
           </div>
-          <h1 className="font-headline font-black text-4xl md:text-5xl text-white mb-6 tracking-tight leading-tight">
-            Start free.<br />Scale when you're ready.
+          <h1 className="font-headline font-black text-3xl md:text-4xl text-white mb-4 tracking-tight leading-tight">
+            Start free. Scale when you're ready.
           </h1>
-          <p className="text-[#a0b2c8] text-lg md:text-xl leading-relaxed font-body">
+          <p className="text-[#a0b2c8] text-base leading-relaxed font-body">
             Start free, test HE Pursuit on real opportunities, and upgrade when you need deeper analysis, decision support, and team workflows.
           </p>
         </div>
       </section>
 
       {/* ── SECTION 2 — Pricing Cards ────────────────────────────────────── */}
-      <section className="pb-24 px-6 relative overflow-hidden">
+      <section className="pb-16 px-6 relative overflow-hidden">
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
 

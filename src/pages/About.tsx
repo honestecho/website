@@ -304,9 +304,9 @@ export default function About() {
                 <span>View Pricing</span>
                 <ArrowRight className="w-4 h-4 text-[#8b9bb4] group-hover/btn:text-[#00c3ff] group-hover/btn:translate-x-1 transition-all duration-300" />
               </Link>
-              <Link to="/contact" className="inline-flex items-center justify-between gap-2 px-8 py-4 bg-transparent border border-[#1e2d4a] text-[#8b9bb4] font-bold rounded-lg hover:bg-[#0b1120] hover:border-[#00c3ff]/30 hover:text-white transition-all duration-300 font-headline group/btn">
+              <Link to="/contact" className="inline-flex items-center justify-between gap-2 px-8 py-4 bg-transparent border border-[#00c3ff]/30 text-[#00c3ff] font-bold rounded-lg hover:bg-[#0b1120] hover:border-[#00c3ff]/60 hover:text-white transition-all duration-300 font-headline group/btn">
                 <span>Talk to the Team</span>
-                <ArrowRight className="w-4 h-4 opacity-0 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all duration-300" />
+                <ArrowRight className="w-4 h-4 opacity-60 group-hover/btn:opacity-100 group-hover/btn:translate-x-1 transition-all duration-300" />
               </Link>
             </div>
 

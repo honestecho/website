@@ -18,15 +18,15 @@ interface Feature {
 const features: Feature[] = [
   // Core Access
   { category: 'Core Access',           name: 'Search opportunities',            free: 'included',  pro: 'included',   team: 'included'  },
-  { category: 'Core Access',           name: 'Save pursuits',                   free: 'included',  pro: 'included',   team: 'included'  },
-  { category: 'Core Access',           name: 'Opportunity summaries',           free: 'included',  pro: 'included',   team: 'included'  },
-  { category: 'Core Access',           name: 'Number of pursuits',              free: 'limited',   pro: 'unlimited',  team: 'unlimited' },
-  { category: 'Core Access',           name: 'Phase 1 access',                  free: 'included',  pro: 'included',   team: 'included'  },
+  { category: 'Core Access',           name: 'Save pursuits',                   free: 'none',      pro: 'included',   team: 'included'  },
+  { category: 'Core Access',           name: 'Opportunity summaries',           free: 'none',      pro: 'included',   team: 'included'  },
+  { category: 'Core Access',           name: 'Number of pursuits',              free: 'none',      pro: 'unlimited',  team: 'unlimited' },
+  { category: 'Core Access',           name: 'Phase 1 access',                  free: 'none',      pro: 'included',   team: 'included'  },
   // Eligibility & Analysis
-  { category: 'Eligibility & Analysis', name: 'Eligibility review',             free: 'limited',   pro: 'included',   team: 'included'  },
-  { category: 'Eligibility & Analysis', name: 'Document parsing',               free: 'limited',   pro: 'included',   team: 'included'  },
+  { category: 'Eligibility & Analysis', name: 'Eligibility review',             free: 'none',      pro: 'included',   team: 'included'  },
+  { category: 'Eligibility & Analysis', name: 'Document parsing',               free: 'none',      pro: 'included',   team: 'included'  },
   { category: 'Eligibility & Analysis', name: 'Disqualifier detection',         free: 'none',      pro: 'included',   team: 'included'  },
-  { category: 'Eligibility & Analysis', name: 'Capability / fit analysis',      free: 'limited',   pro: 'included',   team: 'included'  },
+  { category: 'Eligibility & Analysis', name: 'Capability / fit analysis',      free: 'none',      pro: 'included',   team: 'included'  },
   { category: 'Eligibility & Analysis', name: 'Strategic scoring',              free: 'none',      pro: 'included',   team: 'included'  },
   { category: 'Eligibility & Analysis', name: 'Effort / win scoring',           free: 'none',      pro: 'included',   team: 'included'  },
   // Decisions & Tracking
@@ -59,7 +59,7 @@ function Cell({ value }: { value: CellValue }) {
 const faqs = [
   {
     q: 'What does the Free plan include?',
-    a: 'The Free plan gives you access to opportunity search, saved pursuits, and Phase 1 summaries so you can test the workflow before upgrading.',
+    a: 'The Free plan gives you access to search and browse SAM.gov opportunities. It\'s designed to let you explore the platform before committing. Saving pursuits and running analysis requires a paid plan.',
   },
   {
     q: 'What unlocks in Pro?',
@@ -75,15 +75,15 @@ const faqs = [
   },
   {
     q: 'Do I need a credit card to get started?',
-    a: '[Placeholder — connect to actual billing policy.]',
+    a: 'No. You can sign up and use the Free plan with just your email address. No credit card required.',
   },
   {
     q: 'Can I cancel anytime?',
-    a: '[Placeholder — connect to actual billing policy.]',
+    a: 'Yes. You can cancel your subscription at any time from your account settings. No notice period or lock-in required.',
   },
   {
     q: 'What counts as a pursuit?',
-    a: 'A pursuit is an opportunity saved and worked through inside HE Pursuit. [Adjust if your internal definition is more specific.]',
+    a: 'A pursuit is a government contract opportunity you save and work through inside HE Pursuit — from initial triage through eligibility, scoring, and the final bid/no-bid decision. The Free plan gives you search and discovery. Pro and Team unlock the full pursuit workflow.',
   },
   {
     q: 'Can I upload solicitation documents?',
@@ -141,14 +141,15 @@ export default function Pricing() {
               <div className="flex items-baseline gap-1 mb-8">
                 <span className="text-5xl font-black text-white font-headline">$0</span>
               </div>
-              <ul className="space-y-3 text-sm text-[#a0b2c8] mb-10 flex-grow font-body">
-                {['Search opportunities', 'Save pursuits', 'Phase 1 summary', 'Limited eligibility review', 'Limited document parsing'].map(f => (
+              <ul className="space-y-3 text-sm text-[#a0b2c8] mb-4 flex-grow font-body">
+                {['Search SAM.gov opportunities', 'Browse and filter listings', 'View opportunity details'].map(f => (
                   <li key={f} className="flex gap-3 items-start">
                     <Check className="w-4 h-4 text-[#00c3ff] shrink-0 mt-0.5" strokeWidth={2.5} />
                     {f}
                   </li>
                 ))}
               </ul>
+              <p className="text-xs text-[#8b9bb4] font-body mb-8">No credit card required. Saving pursuits and analysis requires Pro.</p>
               <Link to="/signup" className="block w-full py-3 text-center border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline">
                 Get Started
               </Link>
@@ -185,10 +186,11 @@ export default function Pricing() {
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
               <h3 className="font-headline text-2xl font-bold text-white mb-1">Team</h3>
               <p className="text-sm text-[#8b9bb4] mb-6 font-body">For multi-user capture teams</p>
-              <div className="flex items-baseline gap-1 mb-8">
+              <div className="flex items-baseline gap-1 mb-2">
                 <span className="text-5xl font-black text-white font-headline">$99</span>
                 <span className="text-[#8b9bb4] text-sm font-body">/mo</span>
               </div>
+              <p className="text-xs text-[#8b9bb4] font-body mb-8">Per workspace · Up to 5 users · Contact us for larger teams</p>
               <ul className="space-y-3 text-sm text-[#a0b2c8] mb-10 flex-grow font-body">
                 {['Everything in Pro', 'Multiple users', 'Shared pursuits', 'Priority parsing and larger limits', 'Export capabilities'].map(f => (
                   <li key={f} className="flex gap-3 items-start">
@@ -202,6 +204,29 @@ export default function Pricing() {
               </Link>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* ── FRAMING STRIP — Most teams start here ───────────────────────── */}
+      <section className="pb-12 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-[#0b1120]/60 border border-[#1e2d4a] rounded-2xl px-8 py-6 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#1e2d4a]">
+            <div className="py-4 md:py-0 md:px-6 first:pt-0 last:pb-0 md:first:pl-0 md:last:pr-0">
+              <p className="text-xs font-label uppercase tracking-widest text-[#00c3ff] mb-1">Free</p>
+              <p className="text-white font-headline font-bold text-sm">Test the workflow</p>
+              <p className="text-[#8b9bb4] text-xs font-body mt-1">Search and explore opportunities before committing.</p>
+            </div>
+            <div className="py-4 md:py-0 md:px-6">
+              <p className="text-xs font-label uppercase tracking-widest text-[#00c3ff] mb-1">Pro — most popular</p>
+              <p className="text-white font-headline font-bold text-sm">Run the full decision workflow</p>
+              <p className="text-[#8b9bb4] text-xs font-body mt-1">Eligibility, scoring, disqualifiers, and bid/no-bid decisions.</p>
+            </div>
+            <div className="py-4 md:py-0 md:px-6">
+              <p className="text-xs font-label uppercase tracking-widest text-[#00c3ff] mb-1">Team</p>
+              <p className="text-white font-headline font-bold text-sm">Share across your capture team</p>
+              <p className="text-[#8b9bb4] text-xs font-body mt-1">Multi-user workflows, shared pursuits, and export.</p>
+            </div>
           </div>
         </div>
       </section>

@@ -94,7 +94,7 @@ export default function Home() {
               onClick={() => setIsFullscreen(true)}
               className="bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/50 rounded-xl p-2 shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.2)] font-body relative overflow-hidden transition-all duration-700 mx-auto max-w-xl cursor-pointer hover:scale-[1.02]"
             >
-              <img src="/opportunitycard.jpg" alt="Opportunity Snapshot and Fit Analysis" className="w-full h-auto rounded-lg" />
+              <img src="/opportunity_card_v1.png" alt="Opportunity Snapshot and Fit Analysis" className="w-full h-auto rounded-lg" />
               <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors flex items-center justify-center">
                 <span className="opacity-0 group-hover:opacity-100 bg-[#00c3ff] text-[#030B17] font-bold px-4 py-2 rounded shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
                   Click to Expand
@@ -346,7 +346,7 @@ export default function Home() {
             className="rounded-xl p-2 bg-[#0b1120] border border-[#00c3ff]/50 shadow-[0_0_60px_rgba(0,195,255,0.3)] relative"
             onClick={(e) => e.stopPropagation()}
           >
-            <img src="/opportunitycard.jpg" alt="Opportunity Snapshot and Fit Analysis" className="block max-h-[95vh] max-w-[85vw] w-auto rounded-lg" />
+            <img src="/opportunity_card_v1.png" alt="Opportunity Snapshot and Fit Analysis" className="block max-h-[95vh] max-w-[85vw] w-auto rounded-lg" />
             <button 
               className="absolute -top-4 -right-4 w-10 h-10 bg-[#00c3ff] hover:bg-white text-[#030B17] font-black rounded-full flex items-center justify-center transition-colors shadow-lg"
               onClick={() => setIsFullscreen(false)}

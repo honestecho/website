@@ -278,7 +278,7 @@ export default function Home() {
               <h3 className="font-headline text-2xl font-bold text-white mb-2 relative">Pro</h3>
               <p className="text-sm text-[#a0b2c8] mb-6 relative">For small contractors & proposal shops.</p>
               <div className="flex items-baseline gap-1 mb-8 relative">
-                <span className="text-5xl font-black text-white">$39</span>
+                <span className="text-5xl font-black text-white">$99</span>
                 <span className="text-[#a0b2c8] font-medium">/mo</span>
               </div>
               
@@ -297,10 +297,10 @@ export default function Home() {
               <h3 className="font-headline text-2xl font-bold text-white mb-2">Team</h3>
               <p className="text-sm text-[#a0b2c8] mb-6">For teams & capture consultants.</p>
               <div className="flex items-baseline gap-1 mb-8">
-                <span className="text-5xl font-black text-white">$99</span>
+                <span className="text-5xl font-black text-white">$199</span>
                 <span className="text-[#a0b2c8] font-medium">/mo</span>
               </div>
-              
+
               <ul className="space-y-4 text-sm text-[#a0b2c8] mb-10 flex-grow">
                 <li className="flex gap-3 items-start"><Sparkles className="w-4 h-4 text-[#00c3ff] shrink-0 mt-0.5"/> Everything in Pro</li>
                 <li className="flex gap-3 items-start"><Sparkles className="w-4 h-4 text-[#00c3ff] shrink-0 mt-0.5"/> Multiple users</li>

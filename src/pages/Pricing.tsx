@@ -164,7 +164,7 @@ export default function Pricing() {
               </div>
               <p className="text-xs text-[#8b9bb4] mb-4 font-body">For small contractors and proposal teams</p>
               <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-black text-white font-headline">$39</span>
+                <span className="text-4xl font-black text-white font-headline">$99</span>
                 <span className="text-[#8b9bb4] text-sm font-body">/mo</span>
               </div>
               <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow font-body relative z-10">
@@ -186,7 +186,7 @@ export default function Pricing() {
               <h3 className="font-headline text-xl font-bold text-white mb-1">Team</h3>
               <p className="text-xs text-[#8b9bb4] mb-4 font-body">For multi-user capture teams</p>
               <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-4xl font-black text-white font-headline">$99</span>
+                <span className="text-4xl font-black text-white font-headline">$199</span>
                 <span className="text-[#8b9bb4] text-sm font-body">/mo</span>
               </div>
               <p className="text-xs text-[#8b9bb4] font-body mb-4">Per workspace · Up to 5 users</p>

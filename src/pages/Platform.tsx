@@ -8,6 +8,15 @@ export default function Platform() {
       <Helmet>
         <title>Product | Honest Echo</title>
         <meta name="description" content="HE Pursuit platform overview — 5-phase AI workflow for small GovCon teams: SAM.gov search, eligibility analysis, strategic scoring, and structured bid/no-bid decisions." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://honestecho.com/product" />
+        <meta property="og:title" content="HE Pursuit — AI-Powered Bid/No-Bid Platform for GovCon" />
+        <meta property="og:description" content="5-phase pursuit workflow for small government contractors. SAM.gov search, AI eligibility analysis, strategic scoring, and structured Go/No-Go decisions." />
+        <meta property="og:image" content="https://honestecho.com/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="HE Pursuit — AI-Powered Bid/No-Bid Platform for GovCon" />
+        <meta name="twitter:description" content="5-phase pursuit workflow for small government contractors. SAM.gov search, AI eligibility analysis, strategic scoring, and structured Go/No-Go decisions." />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.png" />
       </Helmet>
       
       {/* Hero */}
@@ -125,10 +134,10 @@ export default function Platform() {
             </div>
 
             {/* Right Column: Opportunity Card UI Recreation */}
-            <div className="w-full relative group mt-8 lg:mt-0 lg:ml-8 transition-transform duration-700 hover:-translate-y-2">
+            <div className="w-full max-w-lg mx-auto lg:mx-0 relative group mt-8 lg:mt-0 lg:ml-8 transition-transform duration-700 hover:-translate-y-2">
               <div className="absolute inset-0 bg-[#00c3ff]/20 blur-3xl -z-10 rounded-[3rem] group-hover:bg-[#00c3ff]/30 transition-colors duration-700 animate-pulse"></div>
               {/* Perfectly rendering the Card design exactly as provided in the screenshot */}
-              <div className="bg-[#0b1120] border border-[#1e2d4a] group-hover:border-[#00c3ff]/50 rounded-2xl p-6 shadow-2xl group-hover:shadow-[0_0_40px_rgba(0,195,255,0.2)] font-body relative overflow-hidden transition-all duration-700">
+              <div className="bg-[#0b1120] border border-[#1e2d4a] group-hover:border-[#00c3ff]/50 rounded-2xl p-5 shadow-2xl group-hover:shadow-[0_0_40px_rgba(0,195,255,0.2)] font-body relative overflow-hidden transition-all duration-700 text-[0.9em]">
                 
                 {/* Simulated Glass Shine overlay */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite]"></div>
@@ -151,7 +160,7 @@ export default function Platform() {
                     </div>
                   </div>
                   <div className="text-right pl-4">
-                    <div className="text-[2.75rem] font-black text-white italic tracking-tighter leading-none mb-1">77<span className="text-2xl ml-0.5">%</span></div>
+                    <div className="text-[2rem] font-black text-white italic tracking-tighter leading-none mb-1">77<span className="text-xl ml-0.5">%</span></div>
                     <div className="text-[9px] font-black uppercase text-white tracking-[0.1em] mb-2">Match Score</div>
                     <div className="flex items-center justify-end text-[#53d2aa] text-[11px] font-bold gap-1 whitespace-nowrap">
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
@@ -275,39 +284,51 @@ export default function Platform() {
             <h2 className="font-headline font-bold text-4xl text-white mb-4">Simple, Transparent Pricing</h2>
             <p className="text-on-surface-variant text-lg">Start free. Upgrade when you're ready to pursue.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Free */}
-            <div className="bg-surface-container rounded-xl p-8 border border-outline-variant/10 flex flex-col">
+            <div className="bg-surface-container rounded-xl p-7 border border-outline-variant/10 flex flex-col">
               <h3 className="font-headline text-lg font-bold text-white mb-2">Free</h3>
-              <div className="flex items-baseline gap-1 mb-6">
+              <div className="flex items-baseline gap-1 mb-4">
                 <span className="text-4xl font-bold text-white">$0</span>
-                <span className="text-on-surface-variant text-sm">/mo</span>
               </div>
-              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Search, score, and save opportunities. Start your first pursuit through Phase 1 RFI review.</p>
-              <Link to="/signup" className="block text-center w-full py-3 rounded border border-outline-variant text-white font-bold hover:bg-surface-container-high transition-all">Get Started Free</Link>
+              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Search and browse SAM.gov opportunities. Run Phase 1 RFI triage on up to 10 pursuits.</p>
+              <Link to="/signup" className="block text-center w-full py-3 rounded border border-outline-variant text-white font-bold hover:bg-surface-container-high transition-all text-sm">Get Started Free</Link>
             </div>
-            {/* Pro */}
-            <div className="bg-surface-container-high rounded-xl p-8 border-2 border-primary-container shadow-2xl flex flex-col relative md:scale-105 z-10">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary-container text-white px-4 py-1 rounded-full text-[0.6875rem] font-bold uppercase tracking-wider">Most Popular</div>
-              <h3 className="font-headline text-lg font-bold text-white mb-2">Pro</h3>
-              <div className="flex items-baseline gap-1 mb-6">
+            {/* Starter */}
+            <div className="bg-surface-container rounded-xl p-7 border border-outline-variant/10 flex flex-col">
+              <h3 className="font-headline text-lg font-bold text-white mb-2">Starter</h3>
+              <div className="flex items-baseline gap-1 mb-4">
                 <span className="text-4xl font-bold text-white">$99</span>
                 <span className="text-on-surface-variant text-sm">/mo</span>
               </div>
-              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Full 5-phase workflow — AI eligibility, requirements extraction, strategic scoring, and Go/No-Go decisions.</p>
-              <Link to="/pricing" className="block text-center w-full py-3 rounded bg-primary-container text-white font-bold hover:brightness-110 transition-all">Start Pro</Link>
+              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Full 5-phase workflow for up to 25 pursuits. AI eligibility, scoring, and Go/No-Go decisions.</p>
+              <Link to="/pricing" className="block text-center w-full py-3 rounded border border-outline-variant text-white font-bold hover:bg-surface-container-high transition-all text-sm">Start Starter</Link>
             </div>
-            {/* Team */}
-            <div className="bg-surface-container rounded-xl p-8 border border-outline-variant/10 flex flex-col">
-              <h3 className="font-headline text-lg font-bold text-white mb-2">Team</h3>
-              <div className="flex items-baseline gap-1 mb-6">
+            {/* Pro */}
+            <div className="bg-surface-container-high rounded-xl p-7 border-2 border-primary-container shadow-2xl flex flex-col relative z-10">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary-container text-white px-4 py-1 rounded-full text-[0.6875rem] font-bold uppercase tracking-wider whitespace-nowrap">Most Popular</div>
+              <h3 className="font-headline text-lg font-bold text-white mb-2">Pro</h3>
+              <div className="flex items-baseline gap-1 mb-4">
                 <span className="text-4xl font-bold text-white">$199</span>
                 <span className="text-on-surface-variant text-sm">/mo</span>
               </div>
-              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Everything in Pro plus multi-seat access for your capture team and BD leads.</p>
-              <Link to="/pricing" className="block text-center w-full py-3 rounded border border-outline-variant text-white font-bold hover:bg-surface-container-high transition-all">Start Team</Link>
+              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Unlimited pursuits, full AI pipeline, PDF Decision Package export — everything you need to win.</p>
+              <Link to="/pricing" className="block text-center w-full py-3 rounded bg-primary-container text-white font-bold hover:brightness-110 transition-all text-sm">Start Pro</Link>
+            </div>
+            {/* Team */}
+            <div className="bg-surface-container rounded-xl p-7 border border-outline-variant/10 flex flex-col">
+              <h3 className="font-headline text-lg font-bold text-white mb-2">Team</h3>
+              <div className="flex items-baseline gap-1 mb-4">
+                <span className="text-4xl font-bold text-white">$299</span>
+                <span className="text-on-surface-variant text-sm">/mo</span>
+              </div>
+              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Everything in Pro plus multi-seat access, shared pipeline, and priority parsing for up to 5 users.</p>
+              <Link to="/pricing" className="block text-center w-full py-3 rounded border border-outline-variant text-white font-bold hover:bg-surface-container-high transition-all text-sm">Start Team</Link>
             </div>
           </div>
+          <p className="text-center text-sm text-on-surface-variant/60 mt-8">
+            <Link to="/pricing" className="text-[#00c3ff] hover:underline">See full feature comparison →</Link>
+          </p>
         </div>
       </section>
     </>

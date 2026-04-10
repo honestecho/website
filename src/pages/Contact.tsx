@@ -7,6 +7,15 @@ export default function Contact() {
       <Helmet>
         <title>Contact Us | Honest Echo</title>
         <meta name="description" content="Get in touch with Honest Echo for GovCon consulting or software tool inquiries." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://honestecho.com/contact" />
+        <meta property="og:title" content="Contact Honest Echo — GovCon Intelligence" />
+        <meta property="og:description" content="Reach out for consulting inquiries, enterprise tool access, or general questions about HE Pursuit." />
+        <meta property="og:image" content="https://honestecho.com/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Honest Echo — GovCon Intelligence" />
+        <meta name="twitter:description" content="Reach out for consulting inquiries, enterprise tool access, or general questions about HE Pursuit." />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.png" />
       </Helmet>
       
       <div className="max-w-7xl mx-auto px-6 py-24 min-h-[80vh] flex flex-col md:flex-row gap-16">
@@ -29,7 +38,12 @@ export default function Contact() {
               </div>
               <div>
                 <h4 className="text-white font-bold text-sm mb-1">Email Us</h4>
-                <p className="text-[#a0b2c8] font-body text-sm">hello@honestecho.com</p>
+                <p className="text-[#a0b2c8] font-body text-sm">
+                  <a href="mailto:info@honestecho.com" className="hover:text-[#00c3ff] transition-colors">info@honestecho.com</a>
+                </p>
+                <p className="text-[#a0b2c8] font-body text-sm mt-1">
+                  Support: <a href="mailto:support@honestecho.com" className="hover:text-[#00c3ff] transition-colors">support@honestecho.com</a>
+                </p>
               </div>
             </div>
             <div className="flex gap-4 items-start">
@@ -38,7 +52,7 @@ export default function Contact() {
               </div>
               <div>
                 <h4 className="text-white font-bold text-sm mb-1">Location</h4>
-                <p className="text-[#a0b2c8] font-body text-sm leading-relaxed">Remote · Arlington, VA</p>
+                <p className="text-[#a0b2c8] font-body text-sm leading-relaxed">Honest Echo LLC<br />4114 Legato Road, Fairfax, VA</p>
               </div>
             </div>
           </div>

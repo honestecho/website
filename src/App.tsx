@@ -10,6 +10,9 @@ import Signup from './pages/Signup';
 import Welcome from './pages/Welcome';
 import Pricing from './pages/Pricing';
 import Security from './pages/Security';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
+import FAQ from './pages/FAQ';
 
 function App() {
   return (
@@ -39,6 +42,9 @@ function App() {
           <Route path="/app" element={<AppRedirect />} />
           <Route path="/pursuit" element={<AppRedirect />} />
           <Route path="/security" element={<Security />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/faq" element={<FAQ />} />
         </Routes>
       </main>
     </div>

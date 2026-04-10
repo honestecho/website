@@ -268,6 +268,13 @@ export default function Signup() {
                     <p className="text-red-400 text-sm bg-red-900/20 border border-red-700/30 rounded-lg px-4 py-3">{error}</p>
                   )}
 
+                  <p className="text-xs text-[#64748b] text-center leading-relaxed">
+                    By creating an account, you agree to our{' '}
+                    <Link to="/terms" className="text-[#00c3ff] hover:underline">Terms of Service</Link>
+                    {' '}and{' '}
+                    <Link to="/privacy" className="text-[#00c3ff] hover:underline">Privacy Policy</Link>.
+                  </p>
+
                   <button
                     type="submit"
                     disabled={loading}

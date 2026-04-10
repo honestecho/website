@@ -24,17 +24,34 @@ export default function Footer() {
           <Link to="/platform" className="font-body text-sm tracking-wide text-on-surface-variant hover:text-white transition-colors">
             Product
           </Link>
+          <Link to="/pricing" className="font-body text-sm tracking-wide text-on-surface-variant hover:text-white transition-colors">
+            Pricing
+          </Link>
           <Link to="/consulting" className="font-body text-sm tracking-wide text-on-surface-variant hover:text-white transition-colors">
             Consulting
           </Link>
           <Link to="/about" className="font-body text-sm tracking-wide text-on-surface-variant hover:text-white transition-colors">
             About
           </Link>
+          <Link to="/faq" className="font-body text-sm tracking-wide text-on-surface-variant hover:text-white transition-colors">
+            FAQ
+          </Link>
           <a href="https://pursuit.honestecho.com" target="_blank" rel="noopener noreferrer" className="font-body text-sm tracking-wide text-on-surface-variant hover:text-white transition-colors">
             Login
           </a>
           <Link to="/contact" className="font-body text-sm tracking-wide text-on-surface-variant hover:text-white transition-colors">
             Contact
+          </Link>
+        </div>
+        <div className="flex flex-wrap justify-center gap-6 mt-2">
+          <Link to="/terms" className="font-body text-xs tracking-wide text-on-surface-variant/60 hover:text-white transition-colors">
+            Terms
+          </Link>
+          <Link to="/privacy" className="font-body text-xs tracking-wide text-on-surface-variant/60 hover:text-white transition-colors">
+            Privacy
+          </Link>
+          <Link to="/security" className="font-body text-xs tracking-wide text-on-surface-variant/60 hover:text-white transition-colors">
+            Security
           </Link>
         </div>
         <div className="flex gap-4">

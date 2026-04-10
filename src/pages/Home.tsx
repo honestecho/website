@@ -23,7 +23,7 @@ export default function Home() {
     <>
       <Helmet>
         <title>Honest Echo | GovCon Intelligence</title>
-        <meta name="description" content="Bid/no-bid decision engine and B2B consulting for government contractors. Built from real capture experience." />
+        <meta name="description" content="Bid/no-bid decision software for small government contractors. AI-powered pursuit workflow — search SAM.gov, score opportunities, and make structured Go/No-Go decisions." />
       </Helmet>
 
         {/* Hero Section */}

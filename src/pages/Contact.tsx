@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, MapPin, Send } from 'lucide-react';
 
 export default function Contact() {
   return (
@@ -34,20 +34,11 @@ export default function Contact() {
             </div>
             <div className="flex gap-4 items-start">
               <div className="w-10 h-10 rounded-full bg-[#0b1120] border border-[#1e2d4a] flex items-center justify-center shrink-0">
-                <Phone className="w-4 h-4 text-[#00c3ff]" />
-              </div>
-              <div>
-                <h4 className="text-white font-bold text-sm mb-1">Call Us</h4>
-                <p className="text-[#a0b2c8] font-body text-sm">+1 (555) 123-4567</p>
-              </div>
-            </div>
-            <div className="flex gap-4 items-start">
-              <div className="w-10 h-10 rounded-full bg-[#0b1120] border border-[#1e2d4a] flex items-center justify-center shrink-0">
                 <MapPin className="w-4 h-4 text-[#00c3ff]" />
               </div>
               <div>
-                <h4 className="text-white font-bold text-sm mb-1">Headquarters</h4>
-                <p className="text-[#a0b2c8] font-body text-sm leading-relaxed">100 Innovation Drive<br/>Suite 300<br/>Arlington, VA 22203</p>
+                <h4 className="text-white font-bold text-sm mb-1">Location</h4>
+                <p className="text-[#a0b2c8] font-body text-sm leading-relaxed">Remote · Arlington, VA</p>
               </div>
             </div>
           </div>

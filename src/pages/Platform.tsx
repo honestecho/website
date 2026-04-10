@@ -7,7 +7,7 @@ export default function Platform() {
     <>
       <Helmet>
         <title>Product | Honest Echo</title>
-        <meta name="description" content="Know if you should bid before you waste time. An intelligent engine that powers your BD workflow from identification to submitted proposal." />
+        <meta name="description" content="HE Pursuit platform overview — 5-phase AI workflow for small GovCon teams: SAM.gov search, eligibility analysis, strategic scoring, and structured bid/no-bid decisions." />
       </Helmet>
       
       {/* Hero */}
@@ -268,43 +268,44 @@ export default function Platform() {
         `}} />
       </section>
 
-      {/* Pricing Reference (from code.html) */}
+      {/* Pricing */}
       <section className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="font-headline font-bold text-4xl text-white mb-4">Transparent Scale</h2>
-            <p className="text-on-surface-variant text-lg">AI-powered intelligence at every stage of your GovCon journey.</p>
+            <h2 className="font-headline font-bold text-4xl text-white mb-4">Simple, Transparent Pricing</h2>
+            <p className="text-on-surface-variant text-lg">Start free. Upgrade when you're ready to pursue.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Freelancer */}
+            {/* Free */}
             <div className="bg-surface-container rounded-xl p-8 border border-outline-variant/10 flex flex-col">
-              <h3 className="font-headline text-lg font-bold text-white mb-2">Freelancer</h3>
+              <h3 className="font-headline text-lg font-bold text-white mb-2">Free</h3>
               <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-4xl font-bold text-white">$249</span>
+                <span className="text-4xl font-bold text-white">$0</span>
                 <span className="text-on-surface-variant text-sm">/mo</span>
               </div>
-              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Perfect for solo consultants and early-stage small businesses entering the market.</p>
-              <button className="w-full py-3 rounded border border-outline-variant text-white font-bold hover:bg-surface-container-high transition-all">Get Started</button>
+              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Search, score, and save opportunities. Start your first pursuit through Phase 1 RFI review.</p>
+              <Link to="/signup" className="block text-center w-full py-3 rounded border border-outline-variant text-white font-bold hover:bg-surface-container-high transition-all">Get Started Free</Link>
             </div>
-            {/* Growth */}
+            {/* Pro */}
             <div className="bg-surface-container-high rounded-xl p-8 border-2 border-primary-container shadow-2xl flex flex-col relative md:scale-105 z-10">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary-container text-white px-4 py-1 rounded-full text-[0.6875rem] font-bold uppercase tracking-wider">Most Popular</div>
-              <h3 className="font-headline text-lg font-bold text-white mb-2">Growth</h3>
+              <h3 className="font-headline text-lg font-bold text-white mb-2">Pro</h3>
               <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-4xl font-bold text-white">$899</span>
+                <span className="text-4xl font-bold text-white">$99</span>
                 <span className="text-on-surface-variant text-sm">/mo</span>
               </div>
-              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Scale your capture team with advanced analytics and collaboration tools.</p>
-              <Link to="/app" className="block text-center w-full py-3 rounded bg-primary-container text-white font-bold hover:brightness-110 transition-all">Start Free Trial</Link>
+              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Full 5-phase workflow — AI eligibility, requirements extraction, strategic scoring, and Go/No-Go decisions.</p>
+              <Link to="/pricing" className="block text-center w-full py-3 rounded bg-primary-container text-white font-bold hover:brightness-110 transition-all">Start Pro</Link>
             </div>
-            {/* Enterprise */}
+            {/* Team */}
             <div className="bg-surface-container rounded-xl p-8 border border-outline-variant/10 flex flex-col">
-              <h3 className="font-headline text-lg font-bold text-white mb-2">Enterprise</h3>
+              <h3 className="font-headline text-lg font-bold text-white mb-2">Team</h3>
               <div className="flex items-baseline gap-1 mb-6">
-                <span className="text-4xl font-bold text-white">Custom</span>
+                <span className="text-4xl font-bold text-white">$199</span>
+                <span className="text-on-surface-variant text-sm">/mo</span>
               </div>
-              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Bespoke solutions for mid-tier contractors managing complex prime/sub portfolios.</p>
-              <button className="w-full py-3 rounded border border-outline-variant text-white font-bold hover:bg-surface-container-high transition-all">Contact Sales</button>
+              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Everything in Pro plus multi-seat access for your capture team and BD leads.</p>
+              <Link to="/pricing" className="block text-center w-full py-3 rounded border border-outline-variant text-white font-bold hover:bg-surface-container-high transition-all">Start Team</Link>
             </div>
           </div>
         </div>

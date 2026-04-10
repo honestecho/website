@@ -9,6 +9,7 @@ import AppRedirect from './pages/AppRedirect';
 import Signup from './pages/Signup';
 import Welcome from './pages/Welcome';
 import Pricing from './pages/Pricing';
+import Security from './pages/Security';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/app" element={<AppRedirect />} />
           <Route path="/pursuit" element={<AppRedirect />} />
+          <Route path="/security" element={<Security />} />
         </Routes>
       </main>
     </div>

@@ -22,24 +22,24 @@ export default function Platform() {
       {/* Hero */}
       <section className="relative min-h-[60vh] flex flex-col items-center justify-center text-center px-6 pt-24 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(0,112,240,0.1)_0%,rgba(13,20,30,0)_60%)] -z-10"></div>
-        <div className="inline-flex px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/20 mb-8 items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-          <span className="text-[0.6875rem] font-label uppercase tracking-[0.05rem] text-secondary">Flagship Tool</span>
+        <div className="inline-flex px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-8 items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-[#00c3ff] animate-pulse"></span>
+          <span className="text-[0.6875rem] font-label uppercase tracking-widest text-blue-200">HE Pursuit</span>
         </div>
         <h1 className="font-headline font-black text-5xl md:text-7xl lg:text-8xl tracking-tighter max-w-5xl text-white mb-6">
-          The Tool
+          Pursuit
         </h1>
         <p className="text-xl md:text-2xl text-on-surface-variant max-w-3xl mb-10 leading-relaxed font-body">
-          Know if you should bid before you waste time.
+          The bid/no-bid decision engine for small government contractors.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
-          <a href="https://pursuit.honestecho.com" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-primary-container text-white font-bold rounded-lg shadow-[0_0_40px_rgba(0,112,240,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
-            Open Tool
+          <Link to="/signup" className="px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 font-headline">
+            Start Free
             <ArrowRight className="w-5 h-5" />
-          </a>
-          <a href="https://pursuit.honestecho.com" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-surface-container-highest border border-outline-variant/30 text-white font-bold rounded-lg hover:bg-surface-container-high transition-all">
-            Login
-          </a>
+          </Link>
+          <Link to="/pricing" className="px-8 py-4 bg-surface-container-highest border border-outline-variant/30 text-white font-bold rounded-lg hover:bg-surface-container-high transition-all font-headline flex items-center justify-center">
+            See Pricing
+          </Link>
         </div>
       </section>
 

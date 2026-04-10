@@ -1,63 +1,103 @@
 import { Link } from 'react-router-dom';
 import { Zap } from 'lucide-react';
-import { Share2, Globe } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-surface-container-lowest w-full mt-auto border-t border-outline-variant/10">
-      <div className="flex flex-col md:flex-row justify-between items-center w-full px-12 py-10 gap-6 max-w-7xl mx-auto">
-        <div className="flex flex-col items-center md:items-start gap-2">
-          <Link to="/" className="flex items-center gap-3 group">
-            <Zap 
-              className="w-8 h-8 text-[#00c3ff] opacity-80 group-hover:opacity-100 group-hover:text-white group-hover:drop-shadow-[0_0_10px_rgba(0,195,255,0.8)] transition-all duration-500 ease-out group-hover:scale-110 group-hover:-rotate-12" 
-              fill="currentColor" 
-              fillOpacity={0.2} 
-              strokeWidth={2} 
-            />
-            <span className="text-lg font-bold text-white font-headline group-hover:opacity-80 transition-opacity">Honest Echo</span>
-          </Link>
-          <span className="font-body text-sm tracking-wide text-on-surface-variant">
-            Honest Echo — tools for real government contractors.
-          </span>
+    <footer className="relative z-10 border-t border-[#1e2d4a] bg-[#030B17] mt-auto">
+      <div className="max-w-7xl mx-auto px-8 py-16">
+
+        {/* Top: logo + columns */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+
+          {/* Brand */}
+          <div className="md:col-span-1">
+            <Link to="/" className="flex items-center gap-3 group mb-4">
+              <Zap
+                className="w-8 h-8 text-[#00c3ff] opacity-80 group-hover:opacity-100 transition-all duration-300"
+                fill="currentColor"
+                fillOpacity={0.15}
+                strokeWidth={2}
+              />
+              <span className="text-lg font-bold text-white font-headline">Honest Echo</span>
+            </Link>
+            <p className="text-sm text-[#8b9bb4] leading-relaxed mb-4">
+              The bid/no-bid decision engine for small government contractors.
+            </p>
+            <p className="text-xs text-[#8b9bb4]">4114 Legato Road, Fairfax, VA</p>
+            <a href="mailto:info@honestecho.com" className="text-xs text-[#8b9bb4] hover:text-[#00c3ff] transition-colors">
+              info@honestecho.com
+            </a>
+          </div>
+
+          {/* Product column */}
+          <div>
+            <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-4">Product</p>
+            <ul className="space-y-3">
+              {[
+                { label: 'Product', to: '/product' },
+                { label: 'Pricing', to: '/pricing' },
+                { label: 'Security', to: '/security' },
+                { label: 'FAQ', to: '/faq' },
+              ].map(({ label, to }) => (
+                <li key={to}>
+                  <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company column */}
+          <div>
+            <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-4">Company</p>
+            <ul className="space-y-3">
+              {[
+                { label: 'About', to: '/about' },
+                { label: 'Contact', to: '/contact' },
+                { label: 'Consulting', to: '/consulting' },
+              ].map(({ label, to }) => (
+                <li key={to}>
+                  <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal column */}
+          <div>
+            <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-4">Legal</p>
+            <ul className="space-y-3">
+              {[
+                { label: 'Terms of Service', to: '/terms' },
+                { label: 'Privacy Policy', to: '/privacy' },
+              ].map(({ label, to }) => (
+                <li key={to}>
+                  <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
         </div>
-        <div className="flex flex-wrap justify-center gap-8">
-          <Link to="/platform" className="font-body text-sm tracking-wide text-on-surface-variant hover:text-white transition-colors">
-            Product
-          </Link>
-          <Link to="/pricing" className="font-body text-sm tracking-wide text-on-surface-variant hover:text-white transition-colors">
-            Pricing
-          </Link>
-          <Link to="/consulting" className="font-body text-sm tracking-wide text-on-surface-variant hover:text-white transition-colors">
-            Consulting
-          </Link>
-          <Link to="/about" className="font-body text-sm tracking-wide text-on-surface-variant hover:text-white transition-colors">
-            About
-          </Link>
-          <Link to="/faq" className="font-body text-sm tracking-wide text-on-surface-variant hover:text-white transition-colors">
-            FAQ
-          </Link>
-          <a href="https://pursuit.honestecho.com" target="_blank" rel="noopener noreferrer" className="font-body text-sm tracking-wide text-on-surface-variant hover:text-white transition-colors">
-            Login
+
+        {/* Bottom bar */}
+        <div className="border-t border-[#1e2d4a] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-[#8b9bb4]">© 2026 Honest Echo LLC. All rights reserved.</p>
+          <a
+            href="https://pursuit.honestecho.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-bold text-[#00c3ff] hover:text-white transition-colors"
+          >
+            Launch App →
           </a>
-          <Link to="/contact" className="font-body text-sm tracking-wide text-on-surface-variant hover:text-white transition-colors">
-            Contact
-          </Link>
         </div>
-        <div className="flex flex-wrap justify-center gap-6 mt-2">
-          <Link to="/terms" className="font-body text-xs tracking-wide text-on-surface-variant/60 hover:text-white transition-colors">
-            Terms
-          </Link>
-          <Link to="/privacy" className="font-body text-xs tracking-wide text-on-surface-variant/60 hover:text-white transition-colors">
-            Privacy
-          </Link>
-          <Link to="/security" className="font-body text-xs tracking-wide text-on-surface-variant/60 hover:text-white transition-colors">
-            Security
-          </Link>
-        </div>
-        <div className="flex gap-4">
-          <Share2 className="w-5 h-5 text-on-surface-variant hover:text-primary-container cursor-pointer transition-colors" />
-          <Globe className="w-5 h-5 text-on-surface-variant hover:text-primary-container cursor-pointer transition-colors" />
-        </div>
+
       </div>
     </footer>
   );

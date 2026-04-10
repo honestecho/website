@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import Consulting from './pages/Consulting';
 import Platform from './pages/Platform';
@@ -47,6 +48,7 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
         </Routes>
       </main>
+      <Footer />
     </div>
   );
 }

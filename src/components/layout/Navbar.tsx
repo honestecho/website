@@ -24,8 +24,11 @@ export default function Navbar() {
           <Link to="/pricing" className="font-headline font-bold tracking-tight text-white/80 hover:text-white transition-colors">
             Pricing
           </Link>
-          <Link to="/consulting" className="font-headline font-bold tracking-tight text-white/80 hover:text-white transition-colors">
-            Consulting
+          <Link to="/faq" className="font-headline font-bold tracking-tight text-white/80 hover:text-white transition-colors">
+            FAQ
+          </Link>
+          <Link to="/security" className="font-headline font-bold tracking-tight text-white/80 hover:text-white transition-colors">
+            Security
           </Link>
           <Link to="/about" className="font-headline font-bold tracking-tight text-white/80 hover:text-white transition-colors">
             About

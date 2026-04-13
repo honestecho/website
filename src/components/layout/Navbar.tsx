@@ -10,7 +10,10 @@ export default function Navbar() {
             alt="Honest Echo"
             className="h-8 w-auto group-hover:drop-shadow-[0_0_10px_rgba(0,195,255,0.6)] transition-all duration-500"
           />
-          <span className="hidden sm:block group-hover:text-white transition-colors">Honest Echo</span>
+          <div className="hidden sm:flex flex-col leading-none gap-0.5">
+            <span className="font-headline font-black text-xl tracking-tighter text-white group-hover:text-white transition-colors">Honest Echo</span>
+            <span className="font-body text-[11px] text-[#8b9bb4] tracking-wide">Bid Intelligence</span>
+          </div>
         </Link>
         <div className="hidden md:flex items-center gap-8">
           <Link to="/product" className="font-headline font-bold tracking-tight text-white/80 hover:text-white transition-colors">

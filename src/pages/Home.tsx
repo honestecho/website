@@ -1,20 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, Sparkles, Zap, Target, Scale, FileText, BarChart2, AlertTriangle, Compass, Upload, CheckCircle } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, Target, Scale, FileText, CheckCircle, Upload, Compass } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  // IntersectionObserver for consulting card stagger animation
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [cardInView, setCardInView] = useState(false);
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const [cardsInView, setCardsInView] = useState(false);
   useEffect(() => {
-    const el = cardRef.current;
+    const el = cardsRef.current;
     if (!el) return;
     const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) { setCardInView(true); obs.disconnect(); }
-    }, { threshold: 0.15 });
+      if (entry.isIntersecting) { setCardsInView(true); obs.disconnect(); }
+    }, { threshold: 0.1 });
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
@@ -23,69 +22,34 @@ export default function Home() {
     <>
       <Helmet>
         <title>HE Pursuit | Bid/No-Bid Software for Small Government Contractors</title>
-        <meta name="description" content="Bid/no-bid decision software for small government contractors. AI-powered pursuit workflow — search SAM.gov, score opportunities, and make structured Go/No-Go decisions." />
+        <meta name="description" content="HE Pursuit helps small government contractors assess fit, eligibility, and pursuit value in minutes. Make faster, more defensible bid/no-bid decisions before committing proposal resources." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/" />
-        <meta property="og:title" content="HE Pursuit — The Bid/No-Bid Decision Layer for GovCon" />
-        <meta property="og:description" content="Stop writing proposals you can't win. AI-powered eligibility, fit, and risk analysis for small government contractors." />
+        <meta property="og:title" content="HE Pursuit — Bid/No-Bid Decisions for Small Government Contractors" />
+        <meta property="og:description" content="Stop wasting proposal hours on bids you shouldn't chase. Fit, eligibility, and pursuit value analysis for lean GovCon teams." />
         <meta property="og:image" content="https://honestecho.com/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="HE Pursuit — The Bid/No-Bid Decision Layer for GovCon" />
-        <meta name="twitter:description" content="Stop writing proposals you can't win. AI-powered eligibility, fit, and risk analysis for small government contractors." />
+        <meta name="twitter:title" content="HE Pursuit — Bid/No-Bid Decisions for Small Government Contractors" />
+        <meta name="twitter:description" content="Stop wasting proposal hours on bids you shouldn't chase. Fit, eligibility, and pursuit value analysis for lean GovCon teams." />
         <meta name="twitter:image" content="https://honestecho.com/og-image.png" />
       </Helmet>
 
-        {/* Hero Section */}
-        <section className="relative px-6 pt-2 pb-20 lg:pt-4 lg:pb-24">
-          {/* Line grid */}
-  
+      {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
+      <section className="relative px-6 pt-2 pb-16 lg:pt-4 lg:pb-20">
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+
           {/* Left Column: Copy */}
           <div className="w-full lg:w-1/2">
-            <h1 className="font-headline font-black text-5xl sm:text-6xl lg:text-[4rem] xl:text-7xl tracking-tighter text-white mb-4 leading-tight drop-shadow-2xl">
-              The Bid/No-Bid<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">Decision Layer</span><br/>
-              for GovCon.
+            <h1 className="font-headline font-black text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem] tracking-tighter text-white mb-5 leading-tight drop-shadow-2xl">
+              Stop wasting proposal hours on bids you{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">shouldn't chase.</span>
             </h1>
 
             <p className="text-[#a0b2c8] text-lg lg:text-xl mb-8 leading-relaxed font-body">
-              Stop writing proposals you can't win. HE Pursuit runs a structured AI analysis — eligibility, fit, and risk — so your team bids on what it can actually win.
+              HE Pursuit helps small government contractors assess fit, eligibility, and pursuit value in minutes—so your team can make faster, more defensible bid/no-bid decisions before committing time, money, and proposal capacity.
             </p>
-            
-            <ul className="space-y-4 mb-8">
-              <li className="flex gap-4 items-start group/item">
-                <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 relative overflow-visible mt-0.5">
-                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover/item:opacity-60 transition-opacity duration-500 rounded-full scale-110"></div>
-                  <Zap className="w-6 h-6 text-[#00c3ff] group-hover/item:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover/item:scale-110 group-hover/item:-rotate-12 group-hover/item:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.2} strokeWidth={2} />
-                </div>
-                <div>
-                  <h3 className="text-white font-bold mb-0.5 font-headline text-base">Fit Scoring Built on Your Actual Business</h3>
-                  <p className="text-sm text-[#a0b2c8] leading-relaxed">Evaluates each opportunity against your NAICS, set-asides, certifications, location, and pursuit profile.</p>
-                </div>
-              </li>
-              <li className="flex gap-4 items-start group/item">
-                <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 relative overflow-visible mt-0.5">
-                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover/item:opacity-60 transition-opacity duration-500 rounded-full scale-110"></div>
-                  <Target className="w-6 h-6 text-[#00c3ff] group-hover/item:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover/item:scale-110 group-hover/item:-rotate-12 group-hover/item:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.2} strokeWidth={2} />
-                </div>
-                <div>
-                  <h3 className="text-white font-bold mb-0.5 font-headline text-base">Structured 5-Phase Pursuit Workflow</h3>
-                  <p className="text-sm text-[#a0b2c8] leading-relaxed">Move from triage to eligibility, strategic value, effort, and go/no-go with a repeatable process built for capture teams.</p>
-                </div>
-              </li>
-              <li className="flex gap-4 items-start group/item">
-                <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 relative overflow-visible mt-0.5">
-                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover/item:opacity-60 transition-opacity duration-500 rounded-full scale-110"></div>
-                  <Scale className="w-6 h-6 text-[#00c3ff] group-hover/item:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover/item:scale-110 group-hover/item:-rotate-12 group-hover/item:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.2} strokeWidth={2} />
-                </div>
-                <div>
-                  <h3 className="text-white font-bold mb-0.5 font-headline text-base">Decision-Ready Recommendations</h3>
-                  <p className="text-sm text-[#a0b2c8] leading-relaxed">Get a Go, Conditional Go, or No-Bid recommendation backed by evidence, not guesswork.</p>
-                </div>
-              </li>
-            </ul>
 
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 mb-5">
               <Link to="/signup" className="px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
                 Start Free
                 <ArrowRight className="w-5 h-5" />
@@ -94,12 +58,16 @@ export default function Home() {
                 See How It Works
               </Link>
             </div>
+
+            <p className="text-sm text-[#8b9bb4] font-body">
+              No credit card. Start with live opportunities and qualify smarter from day one.
+            </p>
           </div>
 
           {/* Right Column: Opportunity Card */}
           <div className="w-full lg:w-1/2 relative group hidden md:block transition-transform duration-700 hover:-translate-y-2">
-            <div className={`absolute inset-0 bg-[#00c3ff]/8 blur-2xl -z-10 rounded-[3rem] transition-colors duration-700 ${isFullscreen ? 'opacity-0' : 'group-hover:bg-[#00c3ff]/15'}`}></div>
-            <div 
+            <div className="absolute inset-0 bg-[#00c3ff]/8 blur-2xl -z-10 rounded-[3rem] group-hover:bg-[#00c3ff]/15 transition-colors duration-700"></div>
+            <div
               onClick={() => setIsFullscreen(true)}
               className="bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/50 rounded-xl p-2 shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.2)] font-body relative overflow-hidden transition-all duration-700 mx-auto max-w-xl cursor-pointer hover:scale-[1.02]"
             >
@@ -112,28 +80,102 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Trust / Value Strip */}
+        <div className="max-w-7xl mx-auto mt-16 relative z-10">
+          <div className="border-t border-[#1e2d4a] pt-10">
+            <p className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest mb-6">
+              Built for small GovCon teams that cannot afford bad pursuit decisions
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
+              {([
+                { icon: CheckCircle, text: 'Qualify opportunities faster' },
+                { icon: Zap,         text: 'Protect limited proposal capacity' },
+                { icon: Target,      text: 'Replace gut feel with a repeatable process' },
+              ] as { icon: React.ElementType; text: string }[]).map(({ icon: Icon, text }) => (
+                <div key={text} className="flex items-center gap-3 group/item">
+                  <div className="w-7 h-7 flex items-center justify-center flex-shrink-0 relative overflow-visible">
+                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-10 group-hover/item:opacity-40 transition-opacity duration-500 rounded-full scale-110"></div>
+                    <Icon className="w-4 h-4 text-[#00c3ff] relative z-10" fill="currentColor" fillOpacity={0.2} strokeWidth={2} />
+                  </div>
+                  <span className="text-[#a0b2c8] font-body text-sm">{text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </section>
 
-
-
-      {/* SECTION — Consulting */}
+      {/* ── SECTION 2 — Why Buyers Need This ────────────────────────────── */}
       <section className="py-24 px-6 relative">
-        {/* Line grid */}
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Why This Matters</span>
+          </div>
+
+          <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-6 leading-tight tracking-tight max-w-4xl">
+            Most small contractors do not lose because they bid too little. They lose because they chase too much.
+          </h2>
+
+          <p className="text-[#a0b2c8] text-lg mb-14 leading-relaxed font-body max-w-3xl">
+            Every low-fit pursuit drains proposal hours, leadership attention, and scarce capture bandwidth. HE Pursuit helps your team evaluate opportunities against your actual business profile—before you commit resources to a bid that was never a strong fit to begin with.
+          </p>
+
+          <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {([
+              {
+                icon: Target,
+                title: 'See fit before you spend time',
+                body: 'Score opportunities against your NAICS, set-asides, certifications, location, and pursuit profile so your team can spot weak-fit bids early.',
+              },
+              {
+                icon: Zap,
+                title: 'Move faster with a repeatable workflow',
+                body: 'Use a structured pursuit process that takes you from initial triage to go/no-go with less confusion, less back-and-forth, and fewer "maybe" opportunities clogging the pipeline.',
+              },
+              {
+                icon: Scale,
+                title: 'Make decisions you can defend',
+                body: 'Get a clear recommendation backed by real signals—not optimism, habit, or whoever spoke last in the meeting.',
+              },
+            ] as { icon: React.ElementType; title: string; body: string }[]).map((card, i) => (
+              <div
+                key={card.title}
+                className={`group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 ${cardsInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+                style={{ animationDelay: `${i * 120}ms` }}
+              >
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+                <div className="w-10 h-10 flex items-center justify-center relative overflow-visible mb-6">
+                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                  <card.icon className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                </div>
+                <h3 className="font-headline font-black text-xl text-white mb-3 tracking-tight">{card.title}</h3>
+                <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{card.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 3 — What Makes Honest Echo Different ─────────────────── */}
+      <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row gap-16 items-center">
+
             {/* Left: Copy */}
             <div className="w-full md:w-1/2">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-                <span className="text-xs font-bold text-blue-200 tracking-wide uppercase">Why This Engine Is Different</span>
+                <span className="text-xs font-bold text-blue-200 tracking-wide uppercase">Why Honest Echo</span>
               </div>
 
               <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-5 leading-tight tracking-tight">
-                Built for how government opportunities are actually evaluated.
+                Built for practical bid decisions, not generic opportunity tracking.
               </h2>
 
-              <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed">
-                Most bid tools rely on generic signals. HE Pursuit reflects how requirements are structured, how proposals are scored, and where teams lose before proposal work begins.
+              <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body">
+                HE Pursuit is designed for lean GovCon teams that need to protect time, improve discipline, and qualify smarter. It helps you decide whether an opportunity is worth pursuing before the proposal scramble begins.
               </p>
 
               <Link to="/product" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all">
@@ -142,26 +184,31 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Right: "What that means for you" card */}
+            {/* Right: Differentiators card */}
             <div className="w-full md:w-1/2">
-              <div ref={cardRef} className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent"></div>
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
 
-                <h3 className="font-headline font-black text-2xl tracking-tighter text-white mb-6 relative z-10">What that means for you</h3>
-
                 <div className="relative z-10">
                   {([
-                    { icon: FileText,      label: 'Requirements written to be won',       body: 'Know what evaluators reward before your team writes a word.' },
-                    { icon: BarChart2,     label: 'Evaluation criteria decoded',           body: 'See how proposals get scored and where points are lost before writing starts.' },
-                    { icon: AlertTriangle, label: 'Real disqualifiers, surfaced early',    body: 'Surface what knocks teams out of contention before you commit pursuit time.' },
-                    { icon: Compass,       label: 'Real-world pursuit frameworks',          body: 'Pursuit tools built from real program experience, not generic templates.' },
-                  ] as { icon: React.ElementType; label: string; body: string }[]).map((item, i) => (
-                    <div
-                      key={item.label}
-                      className={`flex gap-5 items-start py-5 border-b border-[#1e2d4a] last:border-0 group/item ${cardInView ? 'animate-fade-in-up' : 'opacity-0'}`}
-                      style={{ animationDelay: `${i * 110}ms` }}
-                    >
+                    {
+                      icon: Target,
+                      label: 'Fit scoring based on your actual business',
+                      body: 'Evaluate each opportunity against the criteria that matter to your company, not a generic checklist.',
+                    },
+                    {
+                      icon: Compass,
+                      label: 'Structured 5-phase pursuit workflow',
+                      body: 'Move from opportunity triage to eligibility, strategic value, effort, and final go/no-go in one repeatable process.',
+                    },
+                    {
+                      icon: FileText,
+                      label: 'Decision-ready output',
+                      body: 'Turn scattered opportunity details into a practical recommendation your team can review, challenge, and act on.',
+                    },
+                  ] as { icon: React.ElementType; label: string; body: string }[]).map((item) => (
+                    <div key={item.label} className="flex gap-5 items-start py-5 border-b border-[#1e2d4a] last:border-0 group/item">
                       <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 relative overflow-visible">
                         <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover/item:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
                         <item.icon className="w-6 h-6 text-[#00c3ff] group-hover/item:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover/item:scale-110 group-hover/item:-rotate-12 group-hover/item:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
@@ -179,85 +226,146 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SECTION — How It Works */}
+      {/* ── SECTION 4 — How It Works (5 steps) ──────────────────────────── */}
       <section className="px-6 py-32 relative">
-        {/* Line grid */}
         <div className="max-w-7xl mx-auto relative z-10">
 
-          {/* Header */}
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
               <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">How HE Pursuit Works</span>
             </div>
-            <h2 className="font-headline font-black text-4xl md:text-5xl text-white mb-5 tracking-tight">
-              From opportunity review to bid/no-bid in minutes.
+            <h2 className="font-headline font-black text-4xl md:text-5xl text-white tracking-tight">
+              From opportunity to decision in minutes.
             </h2>
-            <p className="text-[#a0b2c8] text-lg max-w-2xl mx-auto font-body leading-relaxed">
-              HE Pursuit helps small government contractors qualify opportunities faster, surface risks earlier, and make clearer pursuit decisions before proposal work begins.
-            </p>
           </div>
 
-          {/* Step cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-            {/* Step 1 */}
-            <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-10 flex items-center justify-center relative overflow-visible flex-shrink-0">
-                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                  <Upload className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+            {[
+              { icon: Upload,      step: '01', title: 'Start with the opportunity',        body: 'Import or review an opportunity and capture the core signals that matter first.' },
+              { icon: Target,      step: '02', title: 'Check fit and eligibility',          body: 'Assess alignment across your business profile, set-asides, certifications, location, and other qualification criteria.' },
+              { icon: Scale,       step: '03', title: 'Evaluate pursuit value and effort',  body: 'Look beyond technical fit to determine whether the opportunity is worth the time, cost, and internal attention required.' },
+              { icon: FileText,    step: '04', title: 'Get a bid/no-bid recommendation',   body: 'Make a more disciplined decision with a recommendation grounded in evidence and structured review.' },
+              { icon: CheckCircle, step: '05', title: 'Move forward with confidence',      body: 'Pursue strong-fit opportunities faster and walk away from weak-fit ones earlier.' },
+            ].map(({ icon: Icon, step, title, body }) => (
+              <div key={step} className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-6 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 flex items-center justify-center relative overflow-visible flex-shrink-0">
+                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                    <Icon className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                  </div>
+                  <span className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest">Step {step}</span>
                 </div>
-                <span className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest">Step 01</span>
+                <h3 className="font-headline font-black text-lg text-white mb-2 tracking-tight">{title}</h3>
+                <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{body}</p>
               </div>
-              <h3 className="font-headline font-black text-xl text-white mb-3 tracking-tight">Import the opportunity</h3>
-              <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">Upload the solicitation, paste the notice, or pull in SAM.gov content to begin the review.</p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-10 flex items-center justify-center relative overflow-visible flex-shrink-0">
-                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                  <Target className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
-                </div>
-                <span className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest">Step 02</span>
-              </div>
-              <h3 className="font-headline font-black text-xl text-white mb-3 tracking-tight">Analyze fit and eligibility</h3>
-              <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">Evaluate set-asides, NAICS alignment, certifications, capability fit, geography, and disqualifiers.</p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-10 flex items-center justify-center relative overflow-visible flex-shrink-0">
-                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                  <CheckCircle className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
-                </div>
-                <span className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest">Step 03</span>
-              </div>
-              <h3 className="font-headline font-black text-xl text-white mb-3 tracking-tight">Make the call</h3>
-              <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">Get a Go, Conditional Go, or No-Bid recommendation backed by evidence and a repeatable decision workflow.</p>
-            </div>
-
+            ))}
           </div>
         </div>
       </section>
 
-      {/* SECTION — Pricing */}
-      <section id="pricing" className="py-32 px-6 relative">
-        {/* Line grid */}
-
+      {/* ── SECTION 5 — Ideal Buyer Fit ──────────────────────────────────── */}
+      <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-20 max-w-3xl mx-auto">
-            <h2 className="font-headline font-black text-5xl text-white mb-6">Start free.<br />Scale when you're ready.</h2>
-            <p className="text-xl text-[#a0b2c8] leading-relaxed">
-              Start free, test HE Pursuit on real opportunities, and scale as your pipeline grows.
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
+
+            <div className="w-full lg:w-1/2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+                <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Who It's For</span>
+              </div>
+              <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-5 leading-tight tracking-tight">
+                Who HE Pursuit is for.
+              </h2>
+              <p className="text-[#a0b2c8] text-lg leading-relaxed font-body">
+                HE Pursuit is built for small government contractors, owner-operators, capture leads, and lean BD teams that need a smarter way to qualify opportunities without burning time on every notice that looks interesting.
+              </p>
+            </div>
+
+            <div className="w-full lg:w-1/2">
+              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent"></div>
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.03)_0%,transparent_70%)] pointer-events-none"></div>
+                <ul className="space-y-5 relative z-10">
+                  {[
+                    'Small GovCon teams with limited proposal capacity',
+                    'Companies that need more discipline in bid/no-bid decisions',
+                    'Capture and BD leaders trying to reduce wasted effort',
+                    'Teams that want a clearer, more repeatable qualification process',
+                  ].map((bullet) => (
+                    <li key={bullet} className="flex gap-4 items-start group/item">
+                      <div className="w-8 h-8 flex items-center justify-center flex-shrink-0 relative overflow-visible mt-0.5">
+                        <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-15 group-hover/item:opacity-50 transition-opacity duration-500 rounded-full scale-110"></div>
+                        <CheckCircle className="w-5 h-5 text-[#00c3ff] relative z-10" fill="currentColor" fillOpacity={0.2} strokeWidth={2} />
+                      </div>
+                      <p className="text-[#a0b2c8] font-body leading-relaxed pt-1">{bullet}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 6 — Objection Handling ───────────────────────────────── */}
+      <section className="py-24 px-6 relative">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-14">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+              <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Common Questions</span>
+            </div>
+            <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight">
+              Built to support judgment—not replace it.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            {[
+              {
+                q: 'Do I need to upload a full solicitation to get value?',
+                a: 'No. Start with the opportunity itself, then go deeper when the pursuit warrants it.',
+              },
+              {
+                q: 'Is this a replacement for capture strategy?',
+                a: 'No. HE Pursuit helps your team qualify opportunities faster and more consistently so you can spend more time on the bids that deserve real strategy.',
+              },
+              {
+                q: 'Who gets value fastest?',
+                a: 'Small GovCon teams and business owners who need to protect proposal bandwidth and stop chasing low-fit opportunities.',
+              },
+              {
+                q: 'Why not just use spreadsheets or instinct?',
+                a: 'Because informal decisions break down when time is tight, resources are limited, and every pursuit feels urgent. HE Pursuit gives you a more consistent process.',
+              },
+            ].map(({ q, a }) => (
+              <div key={q} className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+                <p className="text-white font-bold font-headline text-base mb-3">{q}</p>
+                <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 7 — Pricing ───────────────────────────────────────────── */}
+      <section id="pricing" className="py-32 px-6 relative">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-6 max-w-3xl mx-auto">
+            <h2 className="font-headline font-black text-4xl md:text-5xl text-white mb-5 tracking-tight leading-tight">
+              Start simple. Upgrade when your pursuit process needs more structure.
+            </h2>
+            <p className="text-xl text-[#a0b2c8] leading-relaxed font-body">
+              Whether you are qualifying a handful of opportunities or building a more disciplined team workflow, HE Pursuit is designed to help you make better bid decisions without adding unnecessary overhead.
             </p>
           </div>
+
+          <p className="text-center text-sm text-[#8b9bb4] mb-12 font-body">
+            For many small contractors, avoiding just one low-fit proposal can justify the cost.
+          </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch max-w-6xl mx-auto">
 
@@ -336,24 +444,28 @@ export default function Home() {
         </div>
       </section>
 
-
-      {/* SECTION — Final CTA */}
+      {/* ── SECTION 8 — Final CTA ─────────────────────────────────────────── */}
       <section className="py-20 px-6 relative">
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Questions</span>
+            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Get Started</span>
           </div>
           <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-4 tracking-tight">
-            Want to see if HE Pursuit fits your team?
+            Analyze opportunities in minutes, not hours.
           </h2>
           <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body max-w-xl mx-auto">
-            HE Pursuit was built from real capture experience and real procurement workflows. If you have questions, we'll give you a straight answer.
+            Stop relying on scattered notes, gut feel, and costly proposal churn. HE Pursuit helps your team qualify smarter, decide faster, and focus effort where it has the best chance to pay off.
           </p>
-          <Link to="/contact" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all">
-            Talk to the Team
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/signup" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all">
+              Start Free
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link to="/pricing" className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] transition-all">
+              See Pricing
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -364,12 +476,12 @@ export default function Home() {
           onClick={() => setIsFullscreen(false)}
         >
           <div
-            className="rounded-xl p-2 bg-[#0b1120] border border-[#00c3ff]/50 shadow-[0_0_60px_rgba(0,195,255,0.3)] relative max-w-[860px] w-full"
+            className="relative max-w-[860px] w-full"
             onClick={(e) => e.stopPropagation()}
           >
-            <img src="/opportunity_card_v1.png" alt="Opportunity Snapshot and Fit Analysis" className="block w-full h-auto max-h-[80vh] object-contain rounded-lg" />
+            <img src="/opportunity_card_v1.png" alt="Opportunity Snapshot and Fit Analysis" className="block w-full h-auto max-h-[80vh] object-contain rounded-xl shadow-2xl" />
             <button
-              className="absolute -top-4 -right-4 w-10 h-10 bg-[#00c3ff] hover:bg-white text-[#030B17] font-black rounded-full flex items-center justify-center transition-colors shadow-lg"
+              className="absolute -top-4 -right-4 w-10 h-10 bg-[#00c3ff] hover:bg-white text-[#030B17] font-black rounded-full flex items-center justify-center transition-colors shadow-lg z-10"
               onClick={() => setIsFullscreen(false)}
             >
               ✕

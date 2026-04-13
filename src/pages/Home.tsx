@@ -35,33 +35,31 @@ export default function Home() {
       </Helmet>
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
-      <section className="relative px-6 pt-2 pb-16 lg:pt-4 lg:pb-20">
-        <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      <section className="relative px-6 pt-8 pb-16 lg:pt-6 lg:pb-20">
+        <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
 
           {/* Left Column: Copy */}
           <div className="w-full lg:w-1/2">
-            <h1 className="font-headline font-black text-5xl sm:text-6xl lg:text-[4rem] xl:text-[4.5rem] tracking-tighter text-white mb-5 leading-tight drop-shadow-2xl">
+            <h1 className="font-headline font-black text-4xl sm:text-5xl lg:text-[4rem] xl:text-[4.5rem] tracking-tighter text-white mb-5 leading-tight drop-shadow-2xl">
               Stop wasting proposal hours on bids you{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">shouldn't chase.</span>
             </h1>
 
-            <p className="text-[#a0b2c8] text-lg lg:text-xl mb-8 leading-relaxed font-body">
+            <p className="text-[#a0b2c8] text-base lg:text-xl mb-8 leading-relaxed font-body">
               HE Pursuit helps small government contractors assess fit, eligibility, and pursuit value in minutes, so your team can make faster, more defensible bid/no-bid decisions before committing time, money, and proposal capacity.
             </p>
 
-            {/* #7 — centered buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-5 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 mb-5">
               <Link to="/signup" className="px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
                 Start Free
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link to="/pricing" className="px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] transition-all flex items-center justify-center">
-                See How It Works
+                See Pricing
               </Link>
             </div>
 
-            {/* #6 — "pursue", centered */}
-            <p className="text-sm text-[#8b9bb4] font-body text-center">
+            <p className="text-sm text-[#8b9bb4] font-body">
               No credit card required. Start with live opportunities and pursue smarter from day one.
             </p>
           </div>

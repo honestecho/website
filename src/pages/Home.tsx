@@ -95,7 +95,7 @@ export default function Home() {
           </div>
 
           <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-6 leading-tight tracking-tight">
-            Most small GovCon teams do not lose because they can't do the work. They lose because they spend scarce time on the wrong pursuits.
+            Most small GovCon teams do not lose because they lack capability. They lose because they spend scarce time on the wrong pursuits.
           </h2>
 
           <p className="text-[#a0b2c8] text-lg mb-14 leading-relaxed font-body">

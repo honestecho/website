@@ -10,18 +10,18 @@ export default function Footer() {
 
           {/* Brand — centered */}
           <div className="flex flex-col items-center text-center md:w-64 shrink-0">
-            <Link to="/" className="flex items-center gap-2 mb-5">
+            <Link to="/" className="flex items-center gap-2 mb-3">
               <img src="/he-logo.png" alt="Honest Echo" className="h-8 w-auto" />
               <div className="flex flex-col leading-none gap-0.5">
                 <span className="font-headline font-black text-xl tracking-tighter text-white">Honest Echo</span>
                 <span className="font-body font-normal text-xs text-[#8b9bb4] tracking-wide">Better Signals. Smarter Pursuits</span>
               </div>
             </Link>
-            <p className="text-sm text-[#8b9bb4] leading-loose mb-5">
+            <p className="text-sm text-[#8b9bb4] leading-relaxed mb-3">
               The bid/no-bid decision engine for small government contractors.
             </p>
-            <p className="text-xs text-[#8b9bb4] leading-loose">4114 Legato Road, Fairfax, VA</p>
-            <a href="mailto:info@honestecho.com" className="text-xs text-[#8b9bb4] hover:text-[#00c3ff] transition-colors leading-loose">
+            <p className="text-xs text-[#8b9bb4]">4114 Legato Road, Fairfax, VA</p>
+            <a href="mailto:info@honestecho.com" className="text-xs text-[#8b9bb4] hover:text-[#00c3ff] transition-colors">
               info@honestecho.com
             </a>
           </div>
@@ -31,8 +31,8 @@ export default function Footer() {
 
             {/* Product column */}
             <div>
-              <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-6">Product</p>
-              <ul className="space-y-6">
+              <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-3">Product</p>
+              <ul className="space-y-3">
                 {[
                   { label: 'Product', to: '/product' },
                   { label: 'Pricing', to: '/pricing' },
@@ -50,8 +50,8 @@ export default function Footer() {
 
             {/* Company column */}
             <div>
-              <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-6">Company</p>
-              <ul className="space-y-6">
+              <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-3">Company</p>
+              <ul className="space-y-3">
                 {[
                   { label: 'About', to: '/about' },
                   { label: 'Contact', to: '/contact' },
@@ -68,8 +68,8 @@ export default function Footer() {
 
             {/* Legal column */}
             <div>
-              <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-6">Legal</p>
-              <ul className="space-y-6">
+              <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-3">Legal</p>
+              <ul className="space-y-3">
                 {[
                   { label: 'Terms of Service', to: '/terms' },
                   { label: 'Privacy Policy', to: '/privacy' },

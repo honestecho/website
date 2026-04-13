@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Honest Echo | GovCon Intelligence</title>
+        <title>HE Pursuit | Bid/No-Bid Software for Small Government Contractors</title>
         <meta name="description" content="Bid/no-bid decision software for small government contractors. AI-powered pursuit workflow — search SAM.gov, score opportunities, and make structured Go/No-Go decisions." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/" />
@@ -36,7 +36,7 @@ export default function Home() {
       </Helmet>
 
         {/* Hero Section */}
-        <section className="relative px-6 pt-2 pb-20 lg:pt-4 lg:pb-24 overflow-hidden">
+        <section className="relative px-6 pt-2 pb-20 lg:pt-4 lg:pb-24">
           {/* Line grid */}
   
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
@@ -117,7 +117,7 @@ export default function Home() {
 
 
       {/* SECTION — Consulting */}
-      <section className="py-24 px-6 overflow-hidden relative">
+      <section className="py-24 px-6 relative">
         {/* Line grid */}
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row gap-16 items-center">
@@ -180,7 +180,7 @@ export default function Home() {
       </section>
 
       {/* SECTION — How It Works */}
-      <section className="px-6 py-32 relative overflow-hidden">
+      <section className="px-6 py-32 relative">
         {/* Line grid */}
         <div className="max-w-7xl mx-auto relative z-10">
 
@@ -248,7 +248,7 @@ export default function Home() {
       </section>
 
       {/* SECTION — Pricing */}
-      <section id="pricing" className="py-32 px-6 relative overflow-hidden">
+      <section id="pricing" className="py-32 px-6 relative">
         {/* Line grid */}
 
         <div className="max-w-7xl mx-auto relative z-10">
@@ -264,32 +264,32 @@ export default function Home() {
             {/* Free */}
             <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
               <h3 className="font-headline text-xl font-bold text-white mb-1">Free</h3>
-              <p className="text-xs text-[#8b9bb4] mb-4">For evaluating the workflow</p>
+              <p className="text-xs text-[#8b9bb4] mb-4">Test the workflow</p>
               <div className="flex items-baseline gap-1 mb-4">
                 <span className="text-4xl font-black text-white">$0</span>
               </div>
               <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow">
-                {['10 active pursuits (Phase 1 only)', 'SAM.gov search & filters', 'NAICS + set-aside scoring'].map(f => (
+                {['Search SAM.gov opportunities', '10 pursuits / Phase 1 triage', 'Saved searches & nightly alerts'].map(f => (
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
-              <Link to="/signup" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Get Started</Link>
+              <Link to="/signup" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Start Free</Link>
             </div>
 
             {/* Starter */}
             <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
               <h3 className="font-headline text-xl font-bold text-white mb-1">Starter</h3>
-              <p className="text-xs text-[#8b9bb4] mb-4">For solo BD professionals</p>
+              <p className="text-xs text-[#8b9bb4] mb-4">For solo contractors</p>
               <div className="flex items-baseline gap-1 mb-4">
                 <span className="text-4xl font-black text-white">$99</span>
                 <span className="text-[#8b9bb4] text-sm">/mo</span>
               </div>
               <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow">
-                {['25 active pursuits (all 5 phases)', 'Pipeline dashboard', 'Saved searches + nightly alerts', 'Email digest'].map(f => (
+                {['25 pursuits', 'Full Phase 2–5 AI workflow', 'Eligibility & disqualifier review', 'Strategic & effort scoring', 'Go/No-Go decision tracking'].map(f => (
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
-              <Link to="/signup" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Start Free Trial</Link>
+              <Link to="/signup" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Start Starter</Link>
             </div>
 
             {/* Pro — highlighted */}
@@ -300,29 +300,29 @@ export default function Home() {
                 <h3 className="font-headline text-xl font-bold text-white">Pro</h3>
                 <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest">Most Popular</span>
               </div>
-              <p className="text-xs text-[#8b9bb4] mb-4">For serious capture managers</p>
+              <p className="text-xs text-[#8b9bb4] mb-4">For small contractors & proposal teams</p>
               <div className="flex items-baseline gap-1 mb-4">
                 <span className="text-4xl font-black text-white">$199</span>
                 <span className="text-[#8b9bb4] text-sm">/mo</span>
               </div>
               <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow relative z-10">
-                {['Unlimited pursuits', 'Decision Package PDF export', 'Everything in Starter', '24hr email support'].map(f => (
+                {['Unlimited pursuits', 'Everything in Starter', 'PDF Decision Package export', '24hr email support'].map(f => (
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
-              <Link to="/signup" className="block text-center w-full py-3 rounded-lg bg-[#00c3ff] text-[#030B17] font-bold shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all relative z-10 text-sm">Start Free Trial</Link>
+              <Link to="/signup" className="block text-center w-full py-3 rounded-lg bg-[#00c3ff] text-[#030B17] font-bold shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all relative z-10 text-sm">Start Pro</Link>
             </div>
 
             {/* Team */}
             <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
               <h3 className="font-headline text-xl font-bold text-white mb-1">Team</h3>
-              <p className="text-xs text-[#8b9bb4] mb-4">For small BD shops (2–5 people)</p>
+              <p className="text-xs text-[#8b9bb4] mb-4">For multi-user capture teams</p>
               <div className="flex items-baseline gap-1 mb-4">
                 <span className="text-4xl font-black text-white">$299</span>
                 <span className="text-[#8b9bb4] text-sm">/mo</span>
               </div>
               <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow">
-                {['Up to 5 seats', 'Shared pursuit pipeline', 'Everything in Pro', '12hr priority support + onboarding'].map(f => (
+                {['Everything in Pro', 'Up to 5 user seats', 'Shared pursuit pipeline', 'Priority parsing', '12hr support + onboarding'].map(f => (
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
@@ -338,7 +338,7 @@ export default function Home() {
 
 
       {/* SECTION — Final CTA */}
-      <section className="py-20 px-6 relative overflow-hidden">
+      <section className="py-20 px-6 relative">
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
@@ -359,16 +359,16 @@ export default function Home() {
 
       {/* Lightbox Modal */}
       {isFullscreen && (
-        <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#030B17]/90 backdrop-blur-sm p-4 cursor-pointer"
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#030B17]/90 backdrop-blur-sm p-10 cursor-pointer"
           onClick={() => setIsFullscreen(false)}
         >
           <div
-            className="rounded-xl p-2 bg-[#0b1120] border border-[#00c3ff]/50 shadow-[0_0_60px_rgba(0,195,255,0.3)] relative"
+            className="rounded-xl p-2 bg-[#0b1120] border border-[#00c3ff]/50 shadow-[0_0_60px_rgba(0,195,255,0.3)] relative max-w-[860px] w-full"
             onClick={(e) => e.stopPropagation()}
           >
-            <img src="/opportunity_card_v1.png" alt="Opportunity Snapshot and Fit Analysis" className="block max-h-[95vh] max-w-[85vw] w-auto rounded-lg" />
-            <button 
+            <img src="/opportunity_card_v1.png" alt="Opportunity Snapshot and Fit Analysis" className="block w-full h-auto max-h-[80vh] object-contain rounded-lg" />
+            <button
               className="absolute -top-4 -right-4 w-10 h-10 bg-[#00c3ff] hover:bg-white text-[#030B17] font-black rounded-full flex items-center justify-center transition-colors shadow-lg"
               onClick={() => setIsFullscreen(false)}
             >

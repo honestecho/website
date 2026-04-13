@@ -6,7 +6,7 @@ export default function Platform() {
   return (
     <>
       <Helmet>
-        <title>Product | Honest Echo</title>
+        <title>HE Pursuit — Bid/No-Bid Platform | Honest Echo</title>
         <meta name="description" content="HE Pursuit platform overview — 5-phase AI workflow for small GovCon teams: SAM.gov search, eligibility analysis, strategic scoring, and structured bid/no-bid decisions." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/product" />
@@ -48,8 +48,8 @@ export default function Platform() {
         <div className="bg-surface-container-low border border-outline-variant/10 rounded-2xl p-8 md:p-12 mb-24">
           <h2 className="font-headline font-bold text-3xl text-white mb-6">What it does</h2>
           <p className="text-xl text-on-surface-variant leading-relaxed max-w-4xl">
-            The Honest Echo tool replaces gut-feelings with systemic intelligence. 
-            It ingests opportunity data, analyzes your historical alignment, evaluates required effort 
+            HE Pursuit replaces gut-feelings with systemic intelligence.
+            It ingests opportunity data, analyzes your historical alignment, evaluates required effort
             against potential reward, and forces a disciplined Bid / No-Bid decision matrix.
           </p>
         </div>
@@ -164,7 +164,7 @@ export default function Platform() {
                     <div className="text-[9px] font-black uppercase text-white tracking-[0.1em] mb-2">Match Score</div>
                     <div className="flex items-center justify-end text-[#53d2aa] text-[11px] font-bold gap-1 whitespace-nowrap">
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                      Due Apr 13, 2026
+                      Due Oct 15, 2026
                     </div>
                   </div>
                 </div>
@@ -243,7 +243,7 @@ export default function Platform() {
                 {/* Footer */}
                 <div className="flex justify-between items-center text-xs">
                   <div className="text-slate-500 leading-tight">
-                    Scored <br/>03/21/2026
+                    Scored <br/>04/08/2026
                   </div>
                   <div className="flex gap-5 items-center">
                     <a href="#" className="flex items-center gap-1.5 text-slate-400 font-medium hover:text-white transition-colors">
@@ -278,55 +278,63 @@ export default function Platform() {
       </section>
 
       {/* Pricing */}
-      <section className="py-32 px-6">
+      <section className="py-32 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="font-headline font-bold text-4xl text-white mb-4">Simple, Transparent Pricing</h2>
-            <p className="text-on-surface-variant text-lg">Start free. Upgrade when you're ready to pursue.</p>
+            <h2 className="font-headline font-black text-4xl text-white mb-4 tracking-tight">Simple, transparent pricing.</h2>
+            <p className="text-[#a0b2c8] text-lg font-body">Start free. Upgrade when you're ready to pursue.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {/* Free */}
-            <div className="bg-surface-container rounded-xl p-7 border border-outline-variant/10 flex flex-col">
-              <h3 className="font-headline text-lg font-bold text-white mb-2">Free</h3>
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
+              <h3 className="font-headline text-xl font-bold text-white mb-1">Free</h3>
+              <p className="text-xs text-[#8b9bb4] mb-4 font-body">Test the workflow</p>
               <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-bold text-white">$0</span>
+                <span className="text-4xl font-black text-white font-headline">$0</span>
               </div>
-              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Search and browse SAM.gov opportunities. Run Phase 1 RFI triage on up to 10 pursuits.</p>
-              <Link to="/signup" className="block text-center w-full py-3 rounded border border-outline-variant text-white font-bold hover:bg-surface-container-high transition-all text-sm">Get Started Free</Link>
+              <p className="text-sm text-[#a0b2c8] mb-8 leading-relaxed flex-grow font-body">Search and browse SAM.gov opportunities. Run Phase 1 RFI triage on up to 10 pursuits.</p>
+              <Link to="/signup" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Start Free</Link>
             </div>
             {/* Starter */}
-            <div className="bg-surface-container rounded-xl p-7 border border-outline-variant/10 flex flex-col">
-              <h3 className="font-headline text-lg font-bold text-white mb-2">Starter</h3>
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
+              <h3 className="font-headline text-xl font-bold text-white mb-1">Starter</h3>
+              <p className="text-xs text-[#8b9bb4] mb-4 font-body">For solo contractors</p>
               <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-bold text-white">$99</span>
-                <span className="text-on-surface-variant text-sm">/mo</span>
+                <span className="text-4xl font-black text-white font-headline">$99</span>
+                <span className="text-[#8b9bb4] text-sm font-body">/mo</span>
               </div>
-              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Full 5-phase workflow for up to 25 pursuits. AI eligibility, scoring, and Go/No-Go decisions.</p>
-              <Link to="/pricing" className="block text-center w-full py-3 rounded border border-outline-variant text-white font-bold hover:bg-surface-container-high transition-all text-sm">Start Starter</Link>
+              <p className="text-sm text-[#a0b2c8] mb-8 leading-relaxed flex-grow font-body">Full 5-phase workflow for up to 25 pursuits. AI eligibility, scoring, and Go/No-Go decisions.</p>
+              <Link to="/signup" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Start Starter</Link>
             </div>
             {/* Pro */}
-            <div className="bg-surface-container-high rounded-xl p-7 border-2 border-primary-container shadow-2xl flex flex-col relative z-10">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary-container text-white px-4 py-1 rounded-full text-[0.6875rem] font-bold uppercase tracking-wider whitespace-nowrap">Most Popular</div>
-              <h3 className="font-headline text-lg font-bold text-white mb-2">Pro</h3>
-              <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-bold text-white">$199</span>
-                <span className="text-on-surface-variant text-sm">/mo</span>
+            <div className="bg-[#0b1120] border border-[#00c3ff]/50 rounded-2xl p-6 flex flex-col shadow-[0_0_60px_rgba(0,195,255,0.12)] relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/60 to-transparent rounded-t-2xl"></div>
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.06)_0%,transparent_65%)] pointer-events-none"></div>
+              <div className="flex items-center justify-between mb-1">
+                <h3 className="font-headline text-xl font-bold text-white">Pro</h3>
+                <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest font-label">Most Popular</span>
               </div>
-              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Unlimited pursuits, full AI pipeline, PDF Decision Package export — everything you need to win.</p>
-              <Link to="/pricing" className="block text-center w-full py-3 rounded bg-primary-container text-white font-bold hover:brightness-110 transition-all text-sm">Start Pro</Link>
+              <p className="text-xs text-[#8b9bb4] mb-4 font-body">For small contractors & proposal teams</p>
+              <div className="flex items-baseline gap-1 mb-4">
+                <span className="text-4xl font-black text-white font-headline">$199</span>
+                <span className="text-[#8b9bb4] text-sm font-body">/mo</span>
+              </div>
+              <p className="text-sm text-[#a0b2c8] mb-8 leading-relaxed flex-grow font-body relative z-10">Unlimited pursuits, full AI pipeline, PDF Decision Package export — everything you need to win.</p>
+              <Link to="/signup" className="block text-center w-full py-3 rounded-lg bg-[#00c3ff] text-[#030B17] font-bold shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all relative z-10 text-sm">Start Pro</Link>
             </div>
             {/* Team */}
-            <div className="bg-surface-container rounded-xl p-7 border border-outline-variant/10 flex flex-col">
-              <h3 className="font-headline text-lg font-bold text-white mb-2">Team</h3>
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
+              <h3 className="font-headline text-xl font-bold text-white mb-1">Team</h3>
+              <p className="text-xs text-[#8b9bb4] mb-4 font-body">For multi-user capture teams</p>
               <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-bold text-white">$299</span>
-                <span className="text-on-surface-variant text-sm">/mo</span>
+                <span className="text-4xl font-black text-white font-headline">$299</span>
+                <span className="text-[#8b9bb4] text-sm font-body">/mo</span>
               </div>
-              <p className="text-sm text-on-surface-variant mb-8 leading-relaxed flex-grow">Everything in Pro plus multi-seat access, shared pipeline, and priority parsing for up to 5 users.</p>
-              <Link to="/pricing" className="block text-center w-full py-3 rounded border border-outline-variant text-white font-bold hover:bg-surface-container-high transition-all text-sm">Start Team</Link>
+              <p className="text-sm text-[#a0b2c8] mb-8 leading-relaxed flex-grow font-body">Everything in Pro plus multi-seat access, shared pipeline, and priority parsing for up to 5 users.</p>
+              <Link to="/contact" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Talk to the Team</Link>
             </div>
           </div>
-          <p className="text-center text-sm text-on-surface-variant/60 mt-8">
+          <p className="text-center text-sm text-[#8b9bb4]/60 mt-8">
             <Link to="/pricing" className="text-[#00c3ff] hover:underline">See full feature comparison →</Link>
           </p>
         </div>

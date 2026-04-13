@@ -40,6 +40,15 @@ export default function Security() {
       <Helmet>
         <title>Security | Honest Echo</title>
         <meta name="description" content="Honest Echo security posture — US-hosted, encrypted at rest and in transit, row-level data isolation, no AI training on user data, SOC 2 compliant infrastructure." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://honestecho.com/security" />
+        <meta property="og:title" content="Security at Honest Echo — Trust & Data Protection" />
+        <meta property="og:description" content="US-hosted, AES-256 encrypted, row-level security, no AI training on user data. Built for GovCon teams that take security seriously." />
+        <meta property="og:image" content="https://honestecho.com/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Security at Honest Echo — Trust & Data Protection" />
+        <meta name="twitter:description" content="US-hosted, AES-256 encrypted, row-level security, no AI training on user data. Built for GovCon teams that take security seriously." />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.png" />
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-6 py-24">

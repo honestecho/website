@@ -8,6 +8,15 @@ export default function About() {
       <Helmet>
         <title>About | Honest Echo</title>
         <meta name="description" content="Honest Echo builds practical tools for real GovCon decisions. Learn why HE Pursuit was created and how we think about bid/no-bid clarity for small government contractors." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://honestecho.com/about" />
+        <meta property="og:title" content="About Honest Echo — Why We Built HE Pursuit" />
+        <meta property="og:description" content="Honest Echo builds practical tools for real GovCon decisions — bid/no-bid clarity for small government contractors who can't afford to waste proposal time." />
+        <meta property="og:image" content="https://honestecho.com/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="About Honest Echo — Why We Built HE Pursuit" />
+        <meta name="twitter:description" content="Honest Echo builds practical tools for real GovCon decisions — bid/no-bid clarity for small government contractors who can't afford to waste proposal time." />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.png" />
       </Helmet>
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}

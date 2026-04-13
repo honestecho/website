@@ -1,20 +1,15 @@
 import { Link } from 'react-router-dom';
-import { Zap } from 'lucide-react';
 
 export default function Navbar() {
   return (
-    <nav className="bg-surface/80 backdrop-blur-xl w-full top-0 z-50 shadow-[0_1px_0_0_rgba(255,255,255,0.05)] sticky">
+    <nav className="bg-[#0b1120] w-full top-0 z-50 shadow-[0_1px_0_0_rgba(255,255,255,0.05)] sticky">
       <div className="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
-        <Link to="/" className="flex items-center gap-3 text-2xl font-black tracking-tighter text-slate-100 font-headline group">
-          <div className="relative flex items-center justify-center">
-            <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-            <Zap 
-              className="w-10 h-10 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_15px_rgba(0,195,255,0.8)] transition-all duration-500 ease-out group-hover:scale-110 group-hover:-rotate-12 relative z-10" 
-              fill="currentColor" 
-              fillOpacity={0.2} 
-              strokeWidth={2} 
-            />
-          </div>
+        <Link to="/" className="flex items-center gap-2 text-2xl font-black tracking-tighter text-slate-100 font-headline group">
+          <img
+            src="/he-logo.png"
+            alt="Honest Echo"
+            className="h-8 w-auto group-hover:drop-shadow-[0_0_10px_rgba(0,195,255,0.6)] transition-all duration-500"
+          />
           <span className="hidden sm:block group-hover:text-white transition-colors">Honest Echo</span>
         </Link>
         <div className="hidden md:flex items-center gap-8">

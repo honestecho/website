@@ -8,6 +8,15 @@ export default function Consulting() {
       <Helmet>
         <title>Consulting | Honest Echo</title>
         <meta name="description" content="GovCon consulting built around practical pursuit judgment — qualification, evaluation readiness, and bid/no-bid decision support for small government contractors." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://honestecho.com/consulting" />
+        <meta property="og:title" content="GovCon Consulting — Honest Echo" />
+        <meta property="og:description" content="Practical pursuit judgment for small government contractors. Qualification reviews, evaluation readiness, and bid/no-bid decision support." />
+        <meta property="og:image" content="https://honestecho.com/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="GovCon Consulting — Honest Echo" />
+        <meta name="twitter:description" content="Practical pursuit judgment for small government contractors. Qualification reviews, evaluation readiness, and bid/no-bid decision support." />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.png" />
       </Helmet>
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}

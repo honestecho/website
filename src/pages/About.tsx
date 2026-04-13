@@ -305,7 +305,7 @@ export default function About() {
 
             {/* Right — 3 stacked buttons */}
             <div className="flex flex-col gap-4 lg:pl-12">
-              <Link to="/product" className="inline-flex items-center justify-between gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline group/btn">
+              <Link to="/signup" className="inline-flex items-center justify-between gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline group/btn">
                 <span>Explore HE Pursuit</span>
                 <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
               </Link>

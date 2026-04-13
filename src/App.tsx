@@ -4,7 +4,6 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import Consulting from './pages/Consulting';
-import Platform from './pages/Platform';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import AppRedirect from './pages/AppRedirect';
@@ -40,8 +39,8 @@ function App() {
       <main className="flex-grow relative z-10">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/product" element={<Platform />} />
-          <Route path="/platform" element={<Navigate to="/product" replace />} />
+          <Route path="/product" element={<Navigate to="/" replace />} />
+          <Route path="/platform" element={<Navigate to="/" replace />} />
           <Route path="/consulting" element={<Consulting />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

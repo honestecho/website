@@ -34,7 +34,6 @@ export default function Footer() {
               <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-3">Product</p>
               <ul className="space-y-3">
                 {[
-                  { label: 'Product', to: '/product' },
                   { label: 'Pricing', to: '/pricing' },
                   { label: 'Security', to: '/security' },
                   { label: 'FAQ', to: '/faq' },

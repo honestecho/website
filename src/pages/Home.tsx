@@ -55,7 +55,7 @@ export default function Home() {
                 Start Free
                 <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link to="/product" className="px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] transition-all flex items-center justify-center">
+              <Link to="/pricing" className="px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] transition-all flex items-center justify-center">
                 See How It Works
               </Link>
             </div>
@@ -167,7 +167,7 @@ export default function Home() {
               Many tools help you collect opportunities. HE Pursuit helps you decide which ones deserve your time. It gives lean GovCon teams a repeatable way to qualify opportunities, pressure-test assumptions, and avoid proposal churn.
             </p>
 
-            <Link to="/product" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all">
+            <Link to="/pricing" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all">
               See How It Works
               <ArrowRight className="w-4 h-4" />
             </Link>

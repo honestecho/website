@@ -230,7 +230,7 @@ export default function Consulting() {
                 <span>Talk to the Team</span>
                 <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
               </Link>
-              <Link to="/product" className="inline-flex items-center justify-between gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline group/btn">
+              <Link to="/pricing" className="inline-flex items-center justify-between gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline group/btn">
                 <span>Explore HE Pursuit</span>
                 <ArrowRight className="w-4 h-4 text-[#8b9bb4] group-hover/btn:text-[#00c3ff] group-hover/btn:translate-x-1 transition-all duration-300" />
               </Link>

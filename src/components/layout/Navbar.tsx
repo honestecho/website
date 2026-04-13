@@ -4,15 +4,15 @@ export default function Navbar() {
   return (
     <nav className="bg-[#0b1120] w-full top-0 z-50 shadow-[0_1px_0_0_rgba(255,255,255,0.05)] sticky">
       <div className="flex justify-between items-center w-full px-8 py-4 max-w-7xl mx-auto">
-        <Link to="/" className="flex items-center gap-2 text-2xl font-black tracking-tighter text-slate-100 font-headline group">
+        <Link to="/" className="flex items-center gap-2">
           <img
             src="/he-logo.png"
             alt="Honest Echo"
-            className="h-8 w-auto group-hover:drop-shadow-[0_0_10px_rgba(0,195,255,0.6)] transition-all duration-500"
+            className="h-8 w-auto"
           />
           <div className="hidden sm:flex flex-col leading-none gap-0.5">
-            <span className="font-headline font-black text-xl tracking-tighter text-white group-hover:text-white transition-colors">Honest Echo</span>
-            <span className="font-body text-[11px] text-[#8b9bb4] tracking-wide">Bid Intelligence</span>
+            <span className="font-headline font-black text-xl tracking-tighter text-white">Honest Echo</span>
+            <span className="font-body font-normal text-[11px] text-[#8b9bb4] tracking-wide">Better Signals. Smarter Pursuits</span>
           </div>
         </Link>
         <div className="hidden md:flex items-center gap-8">

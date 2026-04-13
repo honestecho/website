@@ -149,11 +149,11 @@ export default function Home() {
               <span className="text-xs font-bold text-blue-200 tracking-wide uppercase">Why HE Pursuit</span>
             </div>
 
-            <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-5 leading-tight tracking-tight max-w-4xl">
+            <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-5 leading-tight tracking-tight">
               Built for disciplined bid decisions, not generic opportunity tracking.
             </h2>
 
-            <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body max-w-3xl">
+            <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body">
               Many tools help you collect opportunities. HE Pursuit helps you decide which ones deserve your time. It gives lean GovCon teams a repeatable way to qualify opportunities, pressure-test assumptions, and avoid proposal churn.
             </p>
 

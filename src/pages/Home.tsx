@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, Sparkles, Zap, Target, Scale, FileText, CheckCircle, Upload, Compass } from 'lucide-react';
+import { ArrowRight, Sparkles, Target, Scale, FileText, CheckCircle, Upload, Compass, Clock, Shuffle, Filter } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -105,30 +105,30 @@ export default function Home() {
           <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {([
               {
-                icon: Target,
+                icon: Clock,
                 title: 'Wasted proposal hours',
                 body: 'Bad-fit pursuits consume scarce time and money before your team realizes they were never worth chasing.',
               },
               {
-                icon: Zap,
+                icon: Shuffle,
                 title: 'Inconsistent bid/no-bid decisions',
                 body: 'When qualification is informal, teams chase the wrong bids, miss warning signs, and struggle to make repeatable decisions.',
               },
               {
-                icon: Scale,
+                icon: Filter,
                 title: 'Too many low-quality pursuits in the pipeline',
                 body: 'Weak opportunities create noise, distract the team, and pull energy away from the bids with real win potential.',
               },
             ] as { icon: React.ElementType; title: string; body: string }[]).map((card, i) => (
               <div
                 key={card.title}
-                className={`group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 ${cardsInView ? 'animate-fade-in-up' : 'opacity-0'}`}
+                className={`group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#f5a623]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(245,166,35,0.08)] transition-all duration-500 ${cardsInView ? 'animate-fade-in-up' : 'opacity-0'}`}
                 style={{ animationDelay: `${i * 120}ms` }}
               >
-                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#f5a623]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
                 <div className="w-10 h-10 flex items-center justify-center relative overflow-visible mb-6">
-                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                  <card.icon className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                  <div className="absolute inset-0 bg-[#f5a623] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                  <card.icon className="w-6 h-6 text-[#f5a623] group-hover:text-white drop-shadow-[0_0_8px_rgba(245,166,35,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(245,166,35,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                 </div>
                 <h3 className="font-headline font-black text-xl text-white mb-3 tracking-tight">{card.title}</h3>
                 <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{card.body}</p>

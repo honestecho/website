@@ -94,11 +94,11 @@ export default function Home() {
             <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Why HE Pursuit</span>
           </div>
 
-          <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-6 leading-tight tracking-tight max-w-4xl">
+          <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-6 leading-tight tracking-tight">
             Most small GovCon teams do not lose because they can't do the work. They lose because they spend scarce time on the wrong pursuits.
           </h2>
 
-          <p className="text-[#a0b2c8] text-lg mb-14 leading-relaxed font-body max-w-3xl">
+          <p className="text-[#a0b2c8] text-lg mb-14 leading-relaxed font-body">
             Every weak-fit bid consumes proposal hours, leadership attention, and B&P dollars that could have gone to stronger opportunities. HE Pursuit helps your team qualify earlier, walk away sooner, and focus effort where it has a real chance to pay off.
           </p>
 
@@ -286,11 +286,11 @@ export default function Home() {
       {/* #15 — button labels → "Select [Tier]" */}
       <section id="pricing" className="py-32 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-6">
-            <h2 className="font-headline font-black text-4xl md:text-5xl text-white mb-5 tracking-tight leading-tight">
+          <div className="mb-10">
+            <h2 className="font-headline font-black text-4xl md:text-5xl text-white mb-6 tracking-tight leading-tight">
               Start simple. Upgrade when your pursuit process needs more structure.
             </h2>
-            <p className="text-xl text-[#a0b2c8] leading-relaxed font-body mb-4">
+            <p className="text-xl text-[#a0b2c8] leading-relaxed font-body mb-2">
               Whether you are qualifying a handful of opportunities or building a more disciplined team workflow, HE Pursuit is designed to help you make better bid decisions without adding unnecessary overhead.
             </p>
             <p className="text-xl text-[#a0b2c8] font-body">

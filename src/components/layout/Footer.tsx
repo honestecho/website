@@ -5,11 +5,11 @@ export default function Footer() {
     <footer className="relative z-10 border-t border-[#1e2d4a] bg-[#030B17] mt-auto">
       <div className="max-w-7xl mx-auto px-8 py-16">
 
-        {/* Top: logo + columns */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        {/* Top: brand (centered) + 3 link columns (right-grouped) */}
+        <div className="flex flex-col md:flex-row gap-12 mb-12">
 
-          {/* Brand */}
-          <div className="md:col-span-1">
+          {/* Brand — centered */}
+          <div className="flex flex-col items-center text-center md:w-64 shrink-0">
             <Link to="/" className="flex items-center gap-2 mb-4">
               <img src="/he-logo.png" alt="Honest Echo" className="h-8 w-auto" />
               <div className="flex flex-col leading-none gap-0.5">
@@ -26,60 +26,64 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Product column */}
-          <div>
-            <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-4">Product</p>
-            <ul className="space-y-3">
-              {[
-                { label: 'Product', to: '/product' },
-                { label: 'Pricing', to: '/pricing' },
-                { label: 'Security', to: '/security' },
-                { label: 'FAQ', to: '/faq' },
-              ].map(({ label, to }) => (
-                <li key={to}>
-                  <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Link columns — grow to fill remaining space, tightly spaced */}
+          <div className="flex flex-1 justify-end gap-8 md:gap-12">
 
-          {/* Company column */}
-          <div>
-            <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-4">Company</p>
-            <ul className="space-y-3">
-              {[
-                { label: 'About', to: '/about' },
-                { label: 'Contact', to: '/contact' },
-                { label: 'Consulting', to: '/consulting' },
-              ].map(({ label, to }) => (
-                <li key={to}>
-                  <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+            {/* Product column */}
+            <div>
+              <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-4">Product</p>
+              <ul className="space-y-3">
+                {[
+                  { label: 'Product', to: '/product' },
+                  { label: 'Pricing', to: '/pricing' },
+                  { label: 'Security', to: '/security' },
+                  { label: 'FAQ', to: '/faq' },
+                ].map(({ label, to }) => (
+                  <li key={to}>
+                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Legal column */}
-          <div>
-            <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-4">Legal</p>
-            <ul className="space-y-3">
-              {[
-                { label: 'Terms of Service', to: '/terms' },
-                { label: 'Privacy Policy', to: '/privacy' },
-              ].map(({ label, to }) => (
-                <li key={to}>
-                  <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+            {/* Company column */}
+            <div>
+              <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-4">Company</p>
+              <ul className="space-y-3">
+                {[
+                  { label: 'About', to: '/about' },
+                  { label: 'Contact', to: '/contact' },
+                  { label: 'Consulting', to: '/consulting' },
+                ].map(({ label, to }) => (
+                  <li key={to}>
+                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
+            {/* Legal column */}
+            <div>
+              <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-4">Legal</p>
+              <ul className="space-y-3">
+                {[
+                  { label: 'Terms of Service', to: '/terms' },
+                  { label: 'Privacy Policy', to: '/privacy' },
+                ].map(({ label, to }) => (
+                  <li key={to}>
+                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
         </div>
 
         {/* Bottom bar */}

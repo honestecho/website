@@ -46,10 +46,11 @@ export default function Home() {
             </h1>
 
             <p className="text-[#a0b2c8] text-lg lg:text-xl mb-8 leading-relaxed font-body">
-              HE Pursuit helps small government contractors assess fit, eligibility, and pursuit value in minutes—so your team can make faster, more defensible bid/no-bid decisions before committing time, money, and proposal capacity.
+              HE Pursuit helps small government contractors assess fit, eligibility, and pursuit value in minutes, so your team can make faster, more defensible bid/no-bid decisions before committing time, money, and proposal capacity.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-5">
+            {/* #7 — centered buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-5 justify-center">
               <Link to="/signup" className="px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
                 Start Free
                 <ArrowRight className="w-5 h-5" />
@@ -59,8 +60,9 @@ export default function Home() {
               </Link>
             </div>
 
-            <p className="text-sm text-[#8b9bb4] font-body">
-              No credit card. Start with live opportunities and qualify smarter from day one.
+            {/* #6 — "pursue", centered */}
+            <p className="text-sm text-[#8b9bb4] font-body text-center">
+              No credit card. Start with live opportunities and pursue smarter from day one.
             </p>
           </div>
 
@@ -80,64 +82,42 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        {/* Trust / Value Strip */}
-        <div className="max-w-7xl mx-auto mt-16 relative z-10">
-          <div className="border-t border-[#1e2d4a] pt-10">
-            <p className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest mb-6">
-              Built for small GovCon teams that cannot afford bad pursuit decisions
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
-              {([
-                { icon: CheckCircle, text: 'Qualify opportunities faster' },
-                { icon: Zap,         text: 'Protect limited proposal capacity' },
-                { icon: Target,      text: 'Replace gut feel with a repeatable process' },
-              ] as { icon: React.ElementType; text: string }[]).map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-center gap-3 group/item">
-                  <div className="w-7 h-7 flex items-center justify-center flex-shrink-0 relative overflow-visible">
-                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-10 group-hover/item:opacity-40 transition-opacity duration-500 rounded-full scale-110"></div>
-                    <Icon className="w-4 h-4 text-[#00c3ff] relative z-10" fill="currentColor" fillOpacity={0.2} strokeWidth={2} />
-                  </div>
-                  <span className="text-[#a0b2c8] font-body text-sm">{text}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        {/* #9 — trust strip removed */}
       </section>
 
-      {/* ── SECTION 2 — Why Buyers Need This ────────────────────────────── */}
+      {/* ── SECTION 2 — Why It Matters ───────────────────────────────────── */}
+      {/* #10 badge, #16 headline+body, #20 tiles */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Why This Matters</span>
+            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Why HE Pursuit</span>
           </div>
 
           <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-6 leading-tight tracking-tight max-w-4xl">
-            Most small contractors do not lose because they bid too little. They lose because they chase too much.
+            Most small GovCon teams do not lose because they bid too little. They lose because they spend scarce time on the wrong pursuits.
           </h2>
 
           <p className="text-[#a0b2c8] text-lg mb-14 leading-relaxed font-body max-w-3xl">
-            Every low-fit pursuit drains proposal hours, leadership attention, and scarce capture bandwidth. HE Pursuit helps your team evaluate opportunities against your actual business profile—before you commit resources to a bid that was never a strong fit to begin with.
+            Every weak-fit bid consumes proposal hours, leadership attention, and B&P dollars that could have gone to stronger opportunities. HE Pursuit helps your team qualify earlier, walk away sooner, and focus effort where it has a real chance to pay off.
           </p>
 
           <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {([
               {
                 icon: Target,
-                title: 'See fit before you spend time',
-                body: 'Score opportunities against your NAICS, set-asides, certifications, location, and pursuit profile so your team can spot weak-fit bids early.',
+                title: 'Wasted proposal hours',
+                body: 'Bad-fit pursuits consume scarce time and money before your team realizes they were never worth chasing.',
               },
               {
                 icon: Zap,
-                title: 'Move faster with a repeatable workflow',
-                body: 'Use a structured pursuit process that takes you from initial triage to go/no-go with less confusion, less back-and-forth, and fewer "maybe" opportunities clogging the pipeline.',
+                title: 'Inconsistent bid/no-bid decisions',
+                body: 'When qualification is informal, teams chase the wrong bids, miss warning signs, and struggle to make repeatable decisions.',
               },
               {
                 icon: Scale,
-                title: 'Make decisions you can defend',
-                body: 'Get a clear recommendation backed by real signals—not optimism, habit, or whoever spoke last in the meeting.',
+                title: 'Too many low-quality pursuits in the pipeline',
+                body: 'Weak opportunities create noise, distract the team, and pull energy away from the bids with real win potential.',
               },
             ] as { icon: React.ElementType; title: string; body: string }[]).map((card, i) => (
               <div
@@ -158,7 +138,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 3 — What Makes Honest Echo Different ─────────────────── */}
+      {/* ── SECTION 3 — Why HE Pursuit ───────────────────────────────────── */}
+      {/* #10 badge update, #17 headline+body */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row gap-16 items-center">
@@ -167,15 +148,15 @@ export default function Home() {
             <div className="w-full md:w-1/2">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-                <span className="text-xs font-bold text-blue-200 tracking-wide uppercase">Why Honest Echo</span>
+                <span className="text-xs font-bold text-blue-200 tracking-wide uppercase">Why HE Pursuit</span>
               </div>
 
               <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-5 leading-tight tracking-tight">
-                Built for practical bid decisions, not generic opportunity tracking.
+                Built for disciplined bid decisions—not generic opportunity tracking.
               </h2>
 
               <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body">
-                HE Pursuit is designed for lean GovCon teams that need to protect time, improve discipline, and qualify smarter. It helps you decide whether an opportunity is worth pursuing before the proposal scramble begins.
+                Many tools help you collect opportunities. HE Pursuit helps you decide which ones deserve your time. It gives lean GovCon teams a repeatable way to qualify opportunities, pressure-test assumptions, and avoid proposal churn.
               </p>
 
               <Link to="/product" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all">
@@ -184,7 +165,7 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Right: Differentiators card */}
+            {/* Right: Differentiators card — unchanged */}
             <div className="w-full md:w-1/2">
               <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent"></div>
@@ -265,7 +246,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 5 — Ideal Buyer Fit ──────────────────────────────────── */}
+      {/* ── SECTION 5 — Built for Small Businesses ───────────────────────── */}
+      {/* #11 title change */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
@@ -276,7 +258,7 @@ export default function Home() {
                 <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Who It's For</span>
               </div>
               <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-5 leading-tight tracking-tight">
-                Who HE Pursuit is for.
+                Built for Small Businesses.
               </h2>
               <p className="text-[#a0b2c8] text-lg leading-relaxed font-body">
                 HE Pursuit is built for small government contractors, owner-operators, capture leads, and lean BD teams that need a smarter way to qualify opportunities without burning time on every notice that looks interesting.
@@ -309,7 +291,103 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 6 — Objection Handling ───────────────────────────────── */}
+      {/* ── SECTION 6 — Pricing ───────────────────────────────────────────── */}
+      {/* #12 — moved before Common Questions */}
+      {/* #18 supporting line updated + sized up */}
+      {/* #15 — button labels → "Select [Tier]" */}
+      <section id="pricing" className="py-32 px-6 relative">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-6 max-w-3xl mx-auto">
+            <h2 className="font-headline font-black text-4xl md:text-5xl text-white mb-5 tracking-tight leading-tight">
+              Start simple. Upgrade when your pursuit process needs more structure.
+            </h2>
+            <p className="text-xl text-[#a0b2c8] leading-relaxed font-body mb-4">
+              Whether you are qualifying a handful of opportunities or building a more disciplined team workflow, HE Pursuit is designed to help you make better bid decisions without adding unnecessary overhead.
+            </p>
+            <p className="text-xl text-[#a0b2c8] font-body">
+              For many small contractors, avoiding just one bad-fit proposal can pay for the platform.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch max-w-6xl mx-auto mt-12">
+
+            {/* Free */}
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
+              <h3 className="font-headline text-xl font-bold text-white mb-1">Free</h3>
+              <p className="text-xs text-[#8b9bb4] mb-4">Test the workflow</p>
+              <div className="flex items-baseline gap-1 mb-4">
+                <span className="text-4xl font-black text-white">$0</span>
+              </div>
+              <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow">
+                {['Search SAM.gov opportunities', '10 pursuits / Phase 1 triage', 'Saved searches & nightly alerts'].map(f => (
+                  <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
+                ))}
+              </ul>
+              <Link to="/signup" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Select Free</Link>
+            </div>
+
+            {/* Starter */}
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
+              <h3 className="font-headline text-xl font-bold text-white mb-1">Starter</h3>
+              <p className="text-xs text-[#8b9bb4] mb-4">For solo contractors</p>
+              <div className="flex items-baseline gap-1 mb-4">
+                <span className="text-4xl font-black text-white">$99</span>
+                <span className="text-[#8b9bb4] text-sm">/mo</span>
+              </div>
+              <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow">
+                {['25 pursuits', 'Full Phase 2–5 AI workflow', 'Eligibility & disqualifier review', 'Strategic & effort scoring', 'Go/No-Go decision tracking'].map(f => (
+                  <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
+                ))}
+              </ul>
+              <Link to="/signup" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Select Starter</Link>
+            </div>
+
+            {/* Pro — highlighted */}
+            <div className="bg-[#0b1120] border border-[#00c3ff]/50 rounded-2xl p-6 flex flex-col shadow-[0_0_60px_rgba(0,195,255,0.12)] relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/60 to-transparent rounded-t-2xl"></div>
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.06)_0%,transparent_65%)] pointer-events-none"></div>
+              <div className="flex items-center justify-between mb-1">
+                <h3 className="font-headline text-xl font-bold text-white">Pro</h3>
+                <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest">Most Popular</span>
+              </div>
+              <p className="text-xs text-[#8b9bb4] mb-4">For small contractors & proposal teams</p>
+              <div className="flex items-baseline gap-1 mb-4">
+                <span className="text-4xl font-black text-white">$199</span>
+                <span className="text-[#8b9bb4] text-sm">/mo</span>
+              </div>
+              <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow relative z-10">
+                {['Unlimited pursuits', 'Everything in Starter', 'PDF Decision Package export', '24hr email support'].map(f => (
+                  <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
+                ))}
+              </ul>
+              <Link to="/signup" className="block text-center w-full py-3 rounded-lg bg-[#00c3ff] text-[#030B17] font-bold shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all relative z-10 text-sm">Select Pro</Link>
+            </div>
+
+            {/* Team */}
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
+              <h3 className="font-headline text-xl font-bold text-white mb-1">Team</h3>
+              <p className="text-xs text-[#8b9bb4] mb-4">For multi-user capture teams</p>
+              <div className="flex items-baseline gap-1 mb-4">
+                <span className="text-4xl font-black text-white">$299</span>
+                <span className="text-[#8b9bb4] text-sm">/mo</span>
+              </div>
+              <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow">
+                {['Everything in Pro', 'Up to 5 user seats', 'Shared pursuit pipeline', 'Priority parsing', '12hr support + onboarding'].map(f => (
+                  <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
+                ))}
+              </ul>
+              <Link to="/contact" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Talk to the Team</Link>
+            </div>
+
+          </div>
+          <p className="text-center text-sm text-[#8b9bb4]/60 mt-8 max-w-6xl mx-auto">
+            <Link to="/pricing" className="text-[#00c3ff] hover:underline">See full feature comparison →</Link>
+          </p>
+        </div>
+      </section>
+
+      {/* ── SECTION 7 — Common Questions ─────────────────────────────────── */}
+      {/* #12 — now after pricing */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-14">
@@ -351,100 +429,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 7 — Pricing ───────────────────────────────────────────── */}
-      <section id="pricing" className="py-32 px-6 relative">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-6 max-w-3xl mx-auto">
-            <h2 className="font-headline font-black text-4xl md:text-5xl text-white mb-5 tracking-tight leading-tight">
-              Start simple. Upgrade when your pursuit process needs more structure.
-            </h2>
-            <p className="text-xl text-[#a0b2c8] leading-relaxed font-body">
-              Whether you are qualifying a handful of opportunities or building a more disciplined team workflow, HE Pursuit is designed to help you make better bid decisions without adding unnecessary overhead.
-            </p>
-          </div>
-
-          <p className="text-center text-sm text-[#8b9bb4] mb-12 font-body">
-            For many small contractors, avoiding just one low-fit proposal can justify the cost.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch max-w-6xl mx-auto">
-
-            {/* Free */}
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
-              <h3 className="font-headline text-xl font-bold text-white mb-1">Free</h3>
-              <p className="text-xs text-[#8b9bb4] mb-4">Test the workflow</p>
-              <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-black text-white">$0</span>
-              </div>
-              <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow">
-                {['Search SAM.gov opportunities', '10 pursuits / Phase 1 triage', 'Saved searches & nightly alerts'].map(f => (
-                  <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
-                ))}
-              </ul>
-              <Link to="/signup" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Start Free</Link>
-            </div>
-
-            {/* Starter */}
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
-              <h3 className="font-headline text-xl font-bold text-white mb-1">Starter</h3>
-              <p className="text-xs text-[#8b9bb4] mb-4">For solo contractors</p>
-              <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-black text-white">$99</span>
-                <span className="text-[#8b9bb4] text-sm">/mo</span>
-              </div>
-              <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow">
-                {['25 pursuits', 'Full Phase 2–5 AI workflow', 'Eligibility & disqualifier review', 'Strategic & effort scoring', 'Go/No-Go decision tracking'].map(f => (
-                  <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
-                ))}
-              </ul>
-              <Link to="/signup" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Start Starter</Link>
-            </div>
-
-            {/* Pro — highlighted */}
-            <div className="bg-[#0b1120] border border-[#00c3ff]/50 rounded-2xl p-6 flex flex-col shadow-[0_0_60px_rgba(0,195,255,0.12)] relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/60 to-transparent rounded-t-2xl"></div>
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.06)_0%,transparent_65%)] pointer-events-none"></div>
-              <div className="flex items-center justify-between mb-1">
-                <h3 className="font-headline text-xl font-bold text-white">Pro</h3>
-                <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest">Most Popular</span>
-              </div>
-              <p className="text-xs text-[#8b9bb4] mb-4">For small contractors & proposal teams</p>
-              <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-black text-white">$199</span>
-                <span className="text-[#8b9bb4] text-sm">/mo</span>
-              </div>
-              <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow relative z-10">
-                {['Unlimited pursuits', 'Everything in Starter', 'PDF Decision Package export', '24hr email support'].map(f => (
-                  <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
-                ))}
-              </ul>
-              <Link to="/signup" className="block text-center w-full py-3 rounded-lg bg-[#00c3ff] text-[#030B17] font-bold shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all relative z-10 text-sm">Start Pro</Link>
-            </div>
-
-            {/* Team */}
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
-              <h3 className="font-headline text-xl font-bold text-white mb-1">Team</h3>
-              <p className="text-xs text-[#8b9bb4] mb-4">For multi-user capture teams</p>
-              <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-black text-white">$299</span>
-                <span className="text-[#8b9bb4] text-sm">/mo</span>
-              </div>
-              <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow">
-                {['Everything in Pro', 'Up to 5 user seats', 'Shared pursuit pipeline', 'Priority parsing', '12hr support + onboarding'].map(f => (
-                  <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
-                ))}
-              </ul>
-              <Link to="/contact" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Talk to the Team</Link>
-            </div>
-
-          </div>
-          <p className="text-center text-sm text-[#8b9bb4]/60 mt-8 max-w-6xl mx-auto">
-            <Link to="/pricing" className="text-[#00c3ff] hover:underline">See full feature comparison →</Link>
-          </p>
-        </div>
-      </section>
-
       {/* ── SECTION 8 — Final CTA ─────────────────────────────────────────── */}
+      {/* #13 line break, #14 remove See Pricing, #19 new headline */}
       <section className="py-20 px-6 relative">
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
@@ -452,20 +438,15 @@ export default function Home() {
             <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Get Started</span>
           </div>
           <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-4 tracking-tight">
-            Analyze opportunities in minutes, not hours.
+            Spend less time debating.<br />Spend more time pursuing the right bids.
           </h2>
           <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body max-w-xl mx-auto">
             Stop relying on scattered notes, gut feel, and costly proposal churn. HE Pursuit helps your team qualify smarter, decide faster, and focus effort where it has the best chance to pay off.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/signup" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all">
-              Start Free
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link to="/pricing" className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] transition-all">
-              See Pricing
-            </Link>
-          </div>
+          <Link to="/signup" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all">
+            Start Free
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
 

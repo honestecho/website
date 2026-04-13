@@ -12,7 +12,7 @@ export default function Navbar() {
           />
           <div className="hidden sm:flex flex-col leading-none gap-0.5">
             <span className="font-headline font-black text-xl tracking-tighter text-white">Honest Echo</span>
-            <span className="font-body font-normal text-[11px] text-[#8b9bb4] tracking-wide">Better Signals. Smarter Pursuits</span>
+            <span className="font-body font-normal text-xs text-[#8b9bb4] tracking-wide">Better Signals. Smarter Pursuits</span>
           </div>
         </Link>
         <div className="hidden md:flex items-center gap-8">

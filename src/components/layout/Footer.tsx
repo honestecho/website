@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { Zap } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -11,14 +10,12 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="md:col-span-1">
-            <Link to="/" className="flex items-center gap-3 group mb-4">
-              <Zap
-                className="w-8 h-8 text-[#00c3ff] opacity-80 group-hover:opacity-100 transition-all duration-300"
-                fill="currentColor"
-                fillOpacity={0.15}
-                strokeWidth={2}
-              />
-              <span className="text-lg font-bold text-white font-headline">Honest Echo</span>
+            <Link to="/" className="flex items-center gap-2 mb-4">
+              <img src="/he-logo.png" alt="Honest Echo" className="h-8 w-auto" />
+              <div className="flex flex-col leading-none gap-0.5">
+                <span className="font-headline font-black text-xl tracking-tighter text-white">Honest Echo</span>
+                <span className="font-body font-normal text-xs text-[#8b9bb4] tracking-wide">Better Signals. Smarter Pursuits</span>
+              </div>
             </Link>
             <p className="text-sm text-[#8b9bb4] leading-relaxed mb-4">
               The bid/no-bid decision engine for small government contractors.
@@ -87,7 +84,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-[#1e2d4a] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-[#8b9bb4]">© 2026 Honest Echo LLC. All rights reserved.</p>
+          <p className="text-xs text-[#8b9bb4]">© 2024 Honest Echo LLC. All rights reserved.</p>
           <a
             href="https://pursuit.honestecho.com"
             target="_blank"

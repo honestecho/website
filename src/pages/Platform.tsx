@@ -6,7 +6,7 @@ export default function Platform() {
   return (
     <>
       <Helmet>
-        <title>HE Pursuit — Bid/No-Bid Platform | Honest Echo</title>
+        <title>Platform | Honest Echo</title>
         <meta name="description" content="HE Pursuit platform overview — 5-phase AI workflow for small GovCon teams: SAM.gov search, eligibility analysis, strategic scoring, and structured bid/no-bid decisions." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/product" />

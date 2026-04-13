@@ -108,7 +108,7 @@ export default function Pricing() {
   return (
     <>
       <Helmet>
-        <title>Pricing | HE Pursuit by Honest Echo</title>
+        <title>Pricing | Honest Echo</title>
         <meta name="description" content="Simple 4-tier pricing for small GovCon teams. Free/$0, Starter/$99, Pro/$199, Team/$299. Start free, unlock full eligibility and decision workflows, scale to multi-user collaboration." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/pricing" />
@@ -123,7 +123,7 @@ export default function Pricing() {
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
       <section className="pt-24 pb-4 px-6 relative overflow-hidden">
-        <div className="max-w-3xl mx-auto text-center relative z-10">
+        <div className="max-w-6xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-3">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
             <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Pricing</span>

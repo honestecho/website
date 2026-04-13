@@ -1,4 +1,5 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
@@ -15,6 +16,12 @@ import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import FAQ from './pages/FAQ';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
+
 function App() {
   return (
     <div className="min-h-screen flex flex-col bg-[#030B17] relative">
@@ -28,6 +35,7 @@ function App() {
           <div className="animate-glow-b w-[120vw] h-[120vh] rounded-full blur-[140px] bg-[radial-gradient(ellipse,rgba(91,140,255,0.28)_0%,rgba(0,195,255,0.10)_52%,transparent_75%)]"></div>
         </div>
       </div>
+      <ScrollToTop />
       <Navbar />
       <main className="flex-grow relative z-10">
         <Routes>

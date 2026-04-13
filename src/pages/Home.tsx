@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>HE Pursuit | Bid/No-Bid Software for Small Government Contractors</title>
+        <title>Honest Echo</title>
         <meta name="description" content="HE Pursuit helps small government contractors assess fit, eligibility, and pursuit value in minutes. Make faster, more defensible bid/no-bid decisions before committing proposal resources." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/" />
@@ -62,7 +62,7 @@ export default function Home() {
 
             {/* #6 — "pursue", centered */}
             <p className="text-sm text-[#8b9bb4] font-body text-center">
-              No credit card. Start with live opportunities and pursue smarter from day one.
+              No credit card required. Start with live opportunities and pursue smarter from day one.
             </p>
           </div>
 
@@ -95,7 +95,7 @@ export default function Home() {
           </div>
 
           <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-6 leading-tight tracking-tight max-w-4xl">
-            Most small GovCon teams do not lose because they bid too little. They lose because they spend scarce time on the wrong pursuits.
+            Most small GovCon teams do not lose because they can't do the work. They lose because they spend scarce time on the wrong pursuits.
           </h2>
 
           <p className="text-[#a0b2c8] text-lg mb-14 leading-relaxed font-body max-w-3xl">
@@ -142,67 +142,56 @@ export default function Home() {
       {/* #10 badge update, #17 headline+body */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row gap-16 items-center">
-
-            {/* Left: Copy */}
-            <div className="w-full md:w-1/2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-                <span className="text-xs font-bold text-blue-200 tracking-wide uppercase">Why HE Pursuit</span>
-              </div>
-
-              <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-5 leading-tight tracking-tight">
-                Built for disciplined bid decisions—not generic opportunity tracking.
-              </h2>
-
-              <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body">
-                Many tools help you collect opportunities. HE Pursuit helps you decide which ones deserve your time. It gives lean GovCon teams a repeatable way to qualify opportunities, pressure-test assumptions, and avoid proposal churn.
-              </p>
-
-              <Link to="/product" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all">
-                See How It Works
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+          {/* Header — full width */}
+          <div className="mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+              <span className="text-xs font-bold text-blue-200 tracking-wide uppercase">Why HE Pursuit</span>
             </div>
 
-            {/* Right: Differentiators card — unchanged */}
-            <div className="w-full md:w-1/2">
-              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent"></div>
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
+            <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-5 leading-tight tracking-tight max-w-4xl">
+              Built for disciplined bid decisions, not generic opportunity tracking.
+            </h2>
 
-                <div className="relative z-10">
-                  {([
-                    {
-                      icon: Target,
-                      label: 'Fit scoring based on your actual business',
-                      body: 'Evaluate each opportunity against the criteria that matter to your company, not a generic checklist.',
-                    },
-                    {
-                      icon: Compass,
-                      label: 'Structured 5-phase pursuit workflow',
-                      body: 'Move from opportunity triage to eligibility, strategic value, effort, and final go/no-go in one repeatable process.',
-                    },
-                    {
-                      icon: FileText,
-                      label: 'Decision-ready output',
-                      body: 'Turn scattered opportunity details into a practical recommendation your team can review, challenge, and act on.',
-                    },
-                  ] as { icon: React.ElementType; label: string; body: string }[]).map((item) => (
-                    <div key={item.label} className="flex gap-5 items-start py-5 border-b border-[#1e2d4a] last:border-0 group/item">
-                      <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 relative overflow-visible">
-                        <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover/item:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                        <item.icon className="w-6 h-6 text-[#00c3ff] group-hover/item:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover/item:scale-110 group-hover/item:-rotate-12 group-hover/item:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
-                      </div>
-                      <div>
-                        <p className="text-white font-bold text-base font-headline mb-1">{item.label}</p>
-                        <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{item.body}</p>
-                      </div>
-                    </div>
-                  ))}
+            <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body max-w-3xl">
+              Many tools help you collect opportunities. HE Pursuit helps you decide which ones deserve your time. It gives lean GovCon teams a repeatable way to qualify opportunities, pressure-test assumptions, and avoid proposal churn.
+            </p>
+
+            <Link to="/product" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all">
+              See How It Works
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* Differentiators — 3-column grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {([
+              {
+                icon: Target,
+                label: 'Fit scoring based on your actual business',
+                body: 'Evaluate each opportunity against the criteria that matter to your company, not a generic checklist.',
+              },
+              {
+                icon: Compass,
+                label: 'Structured 5-phase pursuit workflow',
+                body: 'Move from opportunity triage to eligibility, strategic value, effort, and final go/no-go in one repeatable process.',
+              },
+              {
+                icon: FileText,
+                label: 'Decision-ready output',
+                body: 'Turn scattered opportunity details into a practical recommendation your team can review, challenge, and act on.',
+              },
+            ] as { icon: React.ElementType; label: string; body: string }[]).map((item) => (
+              <div key={item.label} className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+                <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 relative overflow-visible mb-5">
+                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                  <item.icon className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                 </div>
+                <p className="text-white font-bold text-base font-headline mb-2">{item.label}</p>
+                <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{item.body}</p>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -297,7 +286,7 @@ export default function Home() {
       {/* #15 — button labels → "Select [Tier]" */}
       <section id="pricing" className="py-32 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-6 max-w-3xl mx-auto">
+          <div className="text-center mb-6">
             <h2 className="font-headline font-black text-4xl md:text-5xl text-white mb-5 tracking-tight leading-tight">
               Start simple. Upgrade when your pursuit process needs more structure.
             </h2>
@@ -396,7 +385,7 @@ export default function Home() {
               <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Common Questions</span>
             </div>
             <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight">
-              Built to support judgment—not replace it.
+              Built to support judgment, not replace it.
             </h2>
           </div>
 

@@ -183,7 +183,7 @@ export default function About() {
 
       {/* ── CTA ────────────────────────────────────────────────────────────── */}
       <section className="py-8 pb-24 px-6">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto flex justify-center">
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline group"

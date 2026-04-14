@@ -112,7 +112,7 @@ export default function Privacy() {
       {/* ── Sections — 2-column grid ────────────────────────────────────────── */}
       <section className="pb-8 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {sections.map((s) => (
               <div
                 key={s.title}

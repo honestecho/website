@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
-import { AlertCircle, Target, Filter, Users, Lightbulb } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { AlertCircle, Target, Filter, Users, Lightbulb, ArrowRight } from 'lucide-react';
 
 export default function About() {
   return (
@@ -180,15 +181,16 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── Contact ────────────────────────────────────────────────────────── */}
+      {/* ── CTA ────────────────────────────────────────────────────────────── */}
       <section className="py-8 pb-24 px-6">
         <div className="max-w-7xl mx-auto">
-          <p className="text-[#8b9bb4] font-body text-sm">
-            Get in touch:{' '}
-            <a href="mailto:info@honestecho.com" className="text-[#00c3ff] hover:text-white transition-colors font-bold">
-              info@honestecho.com
-            </a>
-          </p>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline group"
+          >
+            Talk to the Team
+            <ArrowRight className="w-4 h-4 text-[#8b9bb4] group-hover:text-[#00c3ff] group-hover:translate-x-1 transition-all duration-300" />
+          </Link>
         </div>
       </section>
     </>

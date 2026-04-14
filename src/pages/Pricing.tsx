@@ -1,102 +1,150 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, X, Minus, ChevronDown } from 'lucide-react';
+import { ArrowRight, Check, X, ChevronDown, ShieldCheck, Clock, Ban } from 'lucide-react';
 
-// ─── Comparison table data ────────────────────────────────────────────────────
+// ─── Feature Matrix ───────────────────────────────────────────────────────────
 
-type CellValue = 'included' | 'limited' | 'unlimited' | 'none' | 'optional';
+// 'check' | 'none' | 'unlimited' | 'optional' | any string (rendered as text)
+type CV = string;
 
-interface Feature {
-  category: string;
-  name: string;
-  free: CellValue;
-  starter: CellValue;
-  pro: CellValue;
-  team: CellValue;
-}
+interface Feature { category: string; name: string; free: CV; starter: CV; pro: CV; team: CV; }
 
 const features: Feature[] = [
   // Core Access
-  { category: 'Core Access', name: 'Search opportunities',   free: 'included', starter: 'included', pro: 'included',   team: 'included'  },
-  { category: 'Core Access', name: 'Save pursuits',          free: 'limited',  starter: 'limited',  pro: 'unlimited',  team: 'unlimited' },
-  { category: 'Core Access', name: 'Opportunity summaries',  free: 'included', starter: 'included', pro: 'included',   team: 'included'  },
-  { category: 'Core Access', name: 'Pursuits (max)',         free: 'limited',  starter: 'limited',  pro: 'unlimited',  team: 'unlimited' },
-  { category: 'Core Access', name: 'Phase 1 — RFI triage',  free: 'included', starter: 'included', pro: 'included',   team: 'included'  },
+  { category: 'Core Access', name: 'Search opportunities',              free: 'check',     starter: 'check',     pro: 'check',     team: 'check'     },
+  { category: 'Core Access', name: 'Opportunity summaries',             free: 'check',     starter: 'check',     pro: 'check',     team: 'check'     },
+  { category: 'Core Access', name: 'Company profile setup',             free: 'check',     starter: 'check',     pro: 'check',     team: 'check'     },
+  { category: 'Core Access', name: 'Bookmark opportunities',            free: '15/mo',     starter: 'unlimited', pro: 'unlimited', team: 'unlimited' },
+  { category: 'Core Access', name: 'Opportunity evaluations',           free: '10/mo',     starter: '25/mo',     pro: 'unlimited', team: 'unlimited' },
+  { category: 'Core Access', name: 'Phase 1 — Initial evaluation',      free: 'check',     starter: 'check',     pro: 'check',     team: 'check'     },
   // Eligibility & Analysis
-  { category: 'Eligibility & Analysis', name: 'Phase 2 — AI eligibility review', free: 'none', starter: 'included', pro: 'included', team: 'included' },
-  { category: 'Eligibility & Analysis', name: 'Document parsing',                free: 'none', starter: 'included', pro: 'included', team: 'included' },
-  { category: 'Eligibility & Analysis', name: 'Disqualifier detection',          free: 'none', starter: 'included', pro: 'included', team: 'included' },
-  { category: 'Eligibility & Analysis', name: 'Requirements extraction',         free: 'none', starter: 'included', pro: 'included', team: 'included' },
-  { category: 'Eligibility & Analysis', name: 'Strategic & effort scoring',      free: 'none', starter: 'included', pro: 'included', team: 'included' },
-  // Decisions & Export
-  { category: 'Decisions & Export', name: 'Go / Conditional Go / No-Bid',    free: 'none', starter: 'included', pro: 'included', team: 'included' },
-  { category: 'Decisions & Export', name: 'Decision tracking & history',      free: 'none', starter: 'included', pro: 'included', team: 'included' },
-  { category: 'Decisions & Export', name: 'PDF Decision Package export',      free: 'none', starter: 'none',     pro: 'included', team: 'included' },
-  // Team / Admin
-  { category: 'Team / Admin', name: 'Multiple users',            free: 'none', starter: 'none', pro: 'none', team: 'included' },
-  { category: 'Team / Admin', name: 'Shared pursuits',           free: 'none', starter: 'none', pro: 'none', team: 'included' },
-  { category: 'Team / Admin', name: 'Priority parsing',          free: 'none', starter: 'none', pro: 'none', team: 'included' },
-  { category: 'Team / Admin', name: 'Export capabilities',       free: 'none', starter: 'none', pro: 'included', team: 'included' },
+  { category: 'Eligibility & Analysis', name: 'Full qualification workflow',  free: 'none', starter: 'check', pro: 'check', team: 'check' },
+  { category: 'Eligibility & Analysis', name: 'AI eligibility review',        free: 'none', starter: 'check', pro: 'check', team: 'check' },
+  { category: 'Eligibility & Analysis', name: 'Document parsing',             free: 'none', starter: 'check', pro: 'check', team: 'check' },
+  { category: 'Eligibility & Analysis', name: 'Disqualifier detection',       free: 'none', starter: 'check', pro: 'check', team: 'check' },
+  { category: 'Eligibility & Analysis', name: 'Requirements extraction',      free: 'none', starter: 'check', pro: 'check', team: 'check' },
+  { category: 'Eligibility & Analysis', name: 'Strategic & effort scoring',   free: 'none', starter: 'check', pro: 'check', team: 'check' },
+  // Decisions & Output
+  { category: 'Decisions & Output', name: 'Go / Conditional Go / No-Bid', free: 'none', starter: 'check', pro: 'check', team: 'check' },
+  { category: 'Decisions & Output', name: 'Decision tracking & history',   free: 'none', starter: 'none',  pro: 'check', team: 'check' },
+  { category: 'Decisions & Output', name: 'PDF decision report export',    free: 'none', starter: 'none',  pro: 'check', team: 'check' },
+  // Workflow & Visibility
+  { category: 'Workflow & Visibility', name: 'Dashboard (pipeline, deadlines)', free: 'none', starter: 'none', pro: 'check', team: 'check' },
+  { category: 'Workflow & Visibility', name: 'Priority processing',             free: 'none', starter: 'none', pro: 'check', team: 'check' },
+  // Team & Admin
+  { category: 'Team & Admin', name: 'Multiple users',       free: 'none', starter: 'none', pro: 'none', team: 'check' },
+  { category: 'Team & Admin', name: 'Shared pursuits',      free: 'none', starter: 'none', pro: 'none', team: 'check' },
+  { category: 'Team & Admin', name: 'Team-level visibility', free: 'none', starter: 'none', pro: 'none', team: 'check' },
   // Support
-  { category: 'Support',      name: 'Help center',               free: 'included', starter: 'included', pro: 'included',  team: 'included' },
-  { category: 'Support',      name: 'Email support',             free: 'none',     starter: 'included', pro: 'included',  team: 'included' },
-  { category: 'Support',      name: 'Response time',             free: 'none',     starter: 'limited',  pro: 'limited',   team: 'included' },
-  { category: 'Support',      name: 'Onboarding assistance',     free: 'none',     starter: 'none',     pro: 'optional',  team: 'included' },
+  { category: 'Support', name: 'Help center',           free: 'check', starter: 'check',    pro: 'check',    team: 'check'    },
+  { category: 'Support', name: 'Email support',         free: 'check', starter: 'check',    pro: 'check',    team: 'check'    },
+  { category: 'Support', name: 'Faster response time',  free: 'none',  starter: 'none',     pro: 'check',    team: 'check'    },
+  { category: 'Support', name: 'Onboarding assistance', free: 'none',  starter: 'Optional', pro: 'Optional', team: 'check'    },
 ];
 
 const categories = [...new Set(features.map(f => f.category))];
 
-function Cell({ value }: { value: CellValue }) {
-  if (value === 'included')  return <Check className="w-5 h-5 text-[#00c3ff] mx-auto" strokeWidth={2.5} />;
+function Cell({ value }: { value: CV }) {
+  if (value === 'check')     return <Check className="w-5 h-5 text-[#00c3ff] mx-auto" strokeWidth={2.5} />;
+  if (value === 'none')      return <X className="w-4 h-4 text-[#2a3a4e] mx-auto" strokeWidth={2} />;
   if (value === 'unlimited') return <span className="text-[#00c3ff] text-sm font-bold">Unlimited</span>;
-  if (value === 'limited')   return <Minus className="w-4 h-4 text-[#8b9bb4] mx-auto" strokeWidth={2} />;
-  if (value === 'optional')  return <span className="text-[#8b9bb4] text-xs font-body">Optional</span>;
-  return <X className="w-4 h-4 text-[#2a3a4e] mx-auto" strokeWidth={2} />;
+  return <span className="text-[#8b9bb4] text-xs font-body">{value}</span>;
 }
 
-// ─── FAQ data ─────────────────────────────────────────────────────────────────
+// ─── FAQ ──────────────────────────────────────────────────────────────────────
 
 const faqs = [
+  { q: 'Do I need to upload full solicitations?',           a: 'No. Start with the opportunity itself and go deeper only when the pursuit warrants it. Many evaluations complete without uploading a single document.' },
+  { q: 'Is this replacing capture strategy?',               a: 'No. HE Pursuit helps you decide which opportunities deserve real capture effort. It\'s what happens before strategy — qualification.' },
+  { q: 'How long does it take to evaluate an opportunity?', a: 'Minutes, not hours. The workflow is designed to move fast. Most evaluations complete in under 10 minutes.' },
+  { q: 'Who gets value fastest?',                           a: 'Small GovCon teams with limited proposal capacity. If you\'re choosing between 5 bids with bandwidth for 2, this was built for you.' },
+  { q: 'Do I need a credit card to start?',                 a: 'No. Free requires only your email. A card is only needed when you upgrade to a paid plan.' },
+  { q: 'Can I cancel anytime?',                             a: 'Yes. Cancel from your account settings — no notice period, no lock-in.' },
+  { q: 'What is the difference between Starter and Pro?',   a: 'Starter ($99/mo) gives you the full qualification workflow for up to 25 evaluations per month. Pro ($199/mo) removes limits entirely and adds the dashboard, decision tracking, and PDF export.' },
+  { q: 'When should I upgrade to Team?',                    a: 'When more than one person needs to work in the same pipeline. Team adds multiple users, shared pursuits, team-level visibility, and onboarding support.' },
+];
+
+// ─── Pricing cards data ───────────────────────────────────────────────────────
+
+const plans = [
   {
-    q: 'What does the Free plan include?',
-    a: 'Free gives you search, scoring, and Phase 1 RFI triage for up to 10 pursuits. It\'s designed to let you explore the platform before committing. Phases 2–5 require a paid plan.',
+    name: 'Free',
+    price: '$0',
+    tagline: 'Try the product',
+    sub: 'Evaluate opportunities against your business profile',
+    highlight: false,
+    features: [
+      'Create company profile (NAICS, set-aside, preferences)',
+      'Search and view opportunities',
+      'Basic opportunity summaries',
+      'Initial scoring against your profile',
+      'Bookmark opportunities (up to 15/month)',
+      'Evaluate opportunities (up to 10/month)',
+    ],
+    limits: [
+      'Triage-level insights only',
+      'No deep eligibility or document analysis',
+    ],
+    cta: 'Start Free',
+    ctaTo: '/signup',
   },
   {
-    q: 'What is the difference between Starter and Pro?',
-    a: 'Starter ($99/mo) covers the full 5-phase workflow for up to 25 pursuits — ideal for solo contractors who are just getting started. Pro ($199/mo) removes the pursuit limit and adds PDF Decision Package export, making it the right choice for active teams running multiple bids at once.',
+    name: 'Starter',
+    price: '$99',
+    tagline: 'Make real bid/no-bid decisions',
+    sub: 'Run full evaluations with structured analysis',
+    highlight: false,
+    includesAbove: 'Everything in Free, plus:',
+    features: [
+      'Full qualification workflow (all stages)',
+      'AI eligibility review',
+      'Document parsing',
+      'Disqualifier detection',
+      'Requirements extraction',
+      'Strategic fit and effort scoring',
+      'Go / Conditional Go / No-Bid recommendations',
+      'Bookmark unlimited opportunities',
+      'Evaluate opportunities (up to 25/month)',
+    ],
+    cta: 'Start Free',
+    ctaTo: '/signup',
   },
   {
-    q: 'When should I upgrade to Team?',
-    a: 'Team ($299/mo) is for multi-user capture teams. Upgrade when you need shared pursuits, collaboration across users, priority parsing, and up to 5 seats.',
+    name: 'Pro',
+    price: '$199',
+    tagline: 'Run your pursuit process',
+    sub: 'Scale decision-making with workflow and tracking',
+    highlight: true,
+    badge: 'Most Popular',
+    includesAbove: 'Everything in Starter, plus:',
+    features: [
+      'Unlimited opportunity evaluations',
+      'Decision tracking and history',
+      'Dashboard (pipeline, deadlines, priorities)',
+      'Downloadable decision reports (PDF)',
+      'Priority processing',
+    ],
+    cta: 'Start Free',
+    ctaTo: '/signup',
   },
   {
-    q: 'Is there a free trial?',
-    a: 'Yes. You can start on the Free plan and evaluate HE Pursuit before upgrading. No credit card required to get started.',
-  },
-  {
-    q: 'Do I need a credit card to get started?',
-    a: 'No. The Free plan requires only your email address. A credit card is only needed when you upgrade to a paid plan.',
-  },
-  {
-    q: 'Can I cancel anytime?',
-    a: 'Yes. You can cancel your subscription at any time from your account settings. No notice period, no lock-in.',
-  },
-  {
-    q: 'What counts as a pursuit?',
-    a: 'A pursuit is a government contract opportunity you save and work through inside HE Pursuit — from initial triage through eligibility, scoring, and the final bid/no-bid decision. Free: 10 pursuits. Starter: 25 pursuits. Pro and Team: unlimited.',
-  },
-  {
-    q: 'Can I upload solicitation documents?',
-    a: 'Yes. Starter, Pro, and Team plans support document-based Phase 2 analysis including eligibility review and disqualifier detection.',
-  },
-  {
-    q: 'Is HE Pursuit built for small GovCon teams?',
-    a: 'Yes. HE Pursuit is designed for small contractors, proposal teams, and capture teams that need faster, more structured bid/no-bid decisions.',
-  },
-  {
-    q: 'What support is available at each tier?',
-    a: 'Free: help center only. Starter: 48-hour email response. Pro: 24-hour email response. Team: 12-hour response plus onboarding assistance.',
+    name: 'Team',
+    price: '$299',
+    tagline: 'Scale across your team',
+    sub: 'Standardize decisions across users',
+    highlight: false,
+    includesAbove: 'Everything in Pro, plus:',
+    features: [
+      'Multiple users',
+      'Shared pursuits',
+      'Team-level visibility',
+      'Higher usage thresholds',
+      'Faster support response',
+      'Onboarding assistance',
+    ],
+    cta: 'Start Free',
+    ctaTo: '/signup',
   },
 ];
 
@@ -109,227 +157,197 @@ export default function Pricing() {
     <>
       <Helmet>
         <title>Pricing | Honest Echo</title>
-        <meta name="description" content="Simple 4-tier pricing for small GovCon teams. Free/$0, Starter/$99, Pro/$199, Team/$299. Start free, unlock full eligibility and decision workflows, scale to multi-user collaboration." />
+        <meta name="description" content="Simple pricing for better bid decisions. Start free and qualify opportunities in minutes. Upgrade when your team needs deeper analysis, more volume, and a structured pursuit process." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/pricing" />
         <meta property="og:title" content="HE Pursuit Pricing — Free, Starter, Pro, Team" />
-        <meta property="og:description" content="Start free. Upgrade to $99 Starter, $199 Pro, or $299 Team as your pursuit volume grows. Full AI bid/no-bid workflow at every paid tier." />
+        <meta property="og:description" content="Start free. Upgrade to $99 Starter, $199 Pro, or $299 Team as your evaluation volume grows." />
         <meta property="og:image" content="https://honestecho.com/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="HE Pursuit Pricing — Free, Starter, Pro, Team" />
-        <meta name="twitter:description" content="Start free. Upgrade to $99 Starter, $199 Pro, or $299 Team as your pursuit volume grows. Full AI bid/no-bid workflow at every paid tier." />
+        <meta name="twitter:description" content="Start free. Upgrade to $99 Starter, $199 Pro, or $299 Team as your evaluation volume grows." />
         <meta name="twitter:image" content="https://honestecho.com/og-image.png" />
       </Helmet>
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
-      <section className="pt-24 pb-4 px-6 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-3">
+      <section className="pt-20 pb-10 px-6 relative overflow-hidden">
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
             <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Pricing</span>
           </div>
-          <h1 className="font-headline font-black text-2xl md:text-3xl text-white mb-2 tracking-tight leading-tight">
-            Start free. Scale when you're ready.
+          <h1 className="font-headline font-black text-4xl md:text-5xl text-white mb-5 tracking-tight leading-tight">
+            Simple pricing for better bid decisions.
           </h1>
-          <p className="text-[#a0b2c8] text-sm leading-relaxed font-body">
-            Test HE Pursuit free. Upgrade for deeper analysis, decision support, and team workflows.
+          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body mb-6 max-w-3xl">
+            Start free and qualify opportunities in minutes. Upgrade when your team needs deeper analysis, more volume, and a structured pursuit process.
+          </p>
+          <p className="text-[#00c3ff] font-body text-sm font-medium">
+            For most small contractors, avoiding just one bad-fit proposal can pay for the platform.
           </p>
         </div>
       </section>
 
       {/* ── SECTION 2 — Pricing Cards ────────────────────────────────────── */}
-      <section className="pb-8 px-6 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto relative z-10">
+      <section className="pb-6 px-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
+            {plans.map((plan) => (
+              <div
+                key={plan.name}
+                className={`rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden transition-all duration-300 ${
+                  plan.highlight
+                    ? 'bg-[#0b1120] border border-[#00c3ff]/50 shadow-[0_0_60px_rgba(0,195,255,0.12)]'
+                    : 'bg-[#0b1120] border border-[#1e2d4a] group hover:border-[#00c3ff]/30'
+                }`}
+              >
+                {plan.highlight && (
+                  <>
+                    <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/60 to-transparent rounded-t-2xl"></div>
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.06)_0%,transparent_65%)] pointer-events-none"></div>
+                  </>
+                )}
+                {!plan.highlight && (
+                  <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+                )}
 
-            {/* Free */}
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-              <h3 className="font-headline text-xl font-bold text-white mb-1">Free</h3>
-              <p className="text-xs text-[#8b9bb4] mb-4 font-body">Test the workflow</p>
-              <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-black text-white font-headline">$0</span>
-              </div>
-              <ul className="space-y-2 text-sm text-[#a0b2c8] mb-3 flex-grow font-body">
-                {['Search SAM.gov opportunities', '10 pursuits / Phase 1 triage', 'Saved searches & nightly alerts'].map(f => (
-                  <li key={f} className="flex gap-3 items-start">
-                    <Check className="w-4 h-4 text-[#00c3ff] shrink-0 mt-0.5" strokeWidth={2.5} />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <p className="text-xs text-[#8b9bb4] font-body mb-5">No credit card required.</p>
-              <Link to="/signup" className="block w-full py-3 text-center border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline text-sm">
-                Start Free
-              </Link>
-            </div>
+                {/* Header */}
+                <div className="flex items-start justify-between mb-1">
+                  <h3 className="font-headline text-xl font-bold text-white">{plan.name}</h3>
+                  {plan.badge && (
+                    <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest font-label shrink-0 ml-2">{plan.badge}</span>
+                  )}
+                </div>
+                <p className="text-sm font-bold text-white mb-0.5 font-headline">{plan.tagline}</p>
+                <p className="text-xs text-[#8b9bb4] mb-4 font-body">{plan.sub}</p>
 
-            {/* Starter */}
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-              <h3 className="font-headline text-xl font-bold text-white mb-1">Starter</h3>
-              <p className="text-xs text-[#8b9bb4] mb-4 font-body">For solo contractors</p>
-              <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-black text-white font-headline">$99</span>
-                <span className="text-[#8b9bb4] text-sm font-body">/mo</span>
-              </div>
-              <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow font-body">
-                {['25 pursuits', 'Full Phase 2–5 AI workflow', 'Eligibility & disqualifier review', 'Strategic & effort scoring', 'Go/No-Go decision tracking'].map(f => (
-                  <li key={f} className="flex gap-3 items-start">
-                    <Check className="w-4 h-4 text-[#00c3ff] shrink-0 mt-0.5" strokeWidth={2.5} />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <Link to="/signup" className="block w-full py-3 text-center border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline text-sm">
-                Start Starter
-              </Link>
-            </div>
+                {/* Price */}
+                <div className="flex items-baseline gap-1 mb-5">
+                  <span className="text-4xl font-black text-white font-headline">{plan.price}</span>
+                  {plan.price !== '$0' && <span className="text-[#8b9bb4] text-sm font-body">/mo</span>}
+                </div>
 
-            {/* Pro — highlighted */}
-            <div className="bg-[#0b1120] border border-[#00c3ff]/50 rounded-2xl p-6 flex flex-col shadow-[0_0_60px_rgba(0,195,255,0.12)] relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/60 to-transparent rounded-t-2xl"></div>
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.06)_0%,transparent_65%)] pointer-events-none"></div>
-              <div className="flex items-center justify-between mb-1">
-                <h3 className="font-headline text-xl font-bold text-white">Pro</h3>
-                <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest font-label">Most Popular</span>
-              </div>
-              <p className="text-xs text-[#8b9bb4] mb-4 font-body">For small contractors & proposal teams</p>
-              <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-4xl font-black text-white font-headline">$199</span>
-                <span className="text-[#8b9bb4] text-sm font-body">/mo</span>
-              </div>
-              <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow font-body relative z-10">
-                {['Unlimited pursuits', 'Everything in Starter', 'PDF Decision Package export', '24hr email support'].map(f => (
-                  <li key={f} className="flex gap-3 items-start">
-                    <Check className="w-4 h-4 text-[#00c3ff] shrink-0 mt-0.5" strokeWidth={2.5} />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <Link to="/signup" className="block w-full py-3 text-center bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline relative z-10 text-sm">
-                Start Pro
-              </Link>
-            </div>
+                {/* Features */}
+                {plan.includesAbove && (
+                  <p className="text-xs text-[#8b9bb4] uppercase tracking-widest font-label mb-3">{plan.includesAbove}</p>
+                )}
+                <ul className="space-y-2 text-sm text-[#a0b2c8] flex-grow font-body mb-4 relative z-10">
+                  {plan.features.map(f => (
+                    <li key={f} className="flex gap-2.5 items-start">
+                      <Check className="w-4 h-4 text-[#00c3ff] shrink-0 mt-0.5" strokeWidth={2.5} />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
 
-            {/* Team */}
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-              <h3 className="font-headline text-xl font-bold text-white mb-1">Team</h3>
-              <p className="text-xs text-[#8b9bb4] mb-4 font-body">For multi-user capture teams</p>
-              <div className="flex items-baseline gap-1 mb-1">
-                <span className="text-4xl font-black text-white font-headline">$299</span>
-                <span className="text-[#8b9bb4] text-sm font-body">/mo</span>
-              </div>
-              <p className="text-xs text-[#8b9bb4] font-body mb-4">Per workspace · Up to 5 users</p>
-              <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow font-body">
-                {['Everything in Pro', 'Up to 5 user seats', 'Shared pursuit pipeline', 'Priority parsing', '12hr support + onboarding'].map(f => (
-                  <li key={f} className="flex gap-3 items-start">
-                    <Check className="w-4 h-4 text-[#00c3ff] shrink-0 mt-0.5" strokeWidth={2.5} />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <Link to="/contact" className="block w-full py-3 text-center border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline text-sm">
-                Talk to the Team
-              </Link>
-            </div>
+                {/* Limits (Free only) */}
+                {'limits' in plan && plan.limits && (
+                  <ul className="space-y-1.5 text-xs text-[#8b9bb4] font-body mb-4 border-t border-[#1e2d4a] pt-4">
+                    {plan.limits.map((l: string) => (
+                      <li key={l} className="flex gap-2 items-start">
+                        <Ban className="w-3.5 h-3.5 text-[#2a3a4e] shrink-0 mt-0.5" strokeWidth={2} />
+                        {l}
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
+                <Link
+                  to={plan.ctaTo}
+                  className={`block w-full py-3 text-center font-bold rounded-lg transition-all text-sm font-headline relative z-10 ${
+                    plan.highlight
+                      ? 'bg-[#00c3ff] text-[#030B17] shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98]'
+                      : 'border border-[#1e2d4a] text-white hover:bg-[#152033] hover:border-[#00c3ff]/40 duration-300'
+                  }`}
+                >
+                  {plan.cta}
+                </Link>
+              </div>
+            ))}
           </div>
-        </div>
-      </section>
 
-      {/* ── FRAMING STRIP — Most teams start here ───────────────────────── */}
-      <section className="pb-12 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="bg-[#0b1120]/60 border border-[#1e2d4a] rounded-2xl px-8 py-6 grid grid-cols-1 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[#1e2d4a]">
-            <div className="py-4 md:py-0 md:px-5 first:pt-0 last:pb-0 md:first:pl-0 md:last:pr-0">
-              <p className="text-xs font-label uppercase tracking-widest text-[#00c3ff] mb-1">Free</p>
-              <p className="text-white font-headline font-bold text-sm">Test the workflow</p>
-              <p className="text-[#8b9bb4] text-xs font-body mt-1">Search and explore before committing.</p>
+          {/* Trust signals */}
+          <div className="flex flex-wrap items-center justify-center gap-6 mt-8 text-xs text-[#8b9bb4] font-body">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-[#00c3ff]" strokeWidth={2} />
+              No credit card required
             </div>
-            <div className="py-4 md:py-0 md:px-5">
-              <p className="text-xs font-label uppercase tracking-widest text-[#00c3ff] mb-1">Starter</p>
-              <p className="text-white font-headline font-bold text-sm">Run the full decision workflow</p>
-              <p className="text-[#8b9bb4] text-xs font-body mt-1">25 pursuits through all 5 phases.</p>
+            <div className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-[#00c3ff]" strokeWidth={2.5} />
+              Start with real opportunities
             </div>
-            <div className="py-4 md:py-0 md:px-5">
-              <p className="text-xs font-label uppercase tracking-widest text-[#00c3ff] mb-1">Pro — most popular</p>
-              <p className="text-white font-headline font-bold text-sm">Unlimited pursuits + PDF export</p>
-              <p className="text-[#8b9bb4] text-xs font-body mt-1">No limits. Decision Package ready.</p>
-            </div>
-            <div className="py-4 md:py-0 md:px-5">
-              <p className="text-xs font-label uppercase tracking-widest text-[#00c3ff] mb-1">Team</p>
-              <p className="text-white font-headline font-bold text-sm">Share across your capture team</p>
-              <p className="text-[#8b9bb4] text-xs font-body mt-1">Multi-user workflows, shared pipeline.</p>
+            <div className="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-[#00c3ff]" strokeWidth={2} />
+              Cancel anytime
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── SECTION 3 — Plan Fit ─────────────────────────────────────────── */}
+      {/* ── SECTION 3 — What You're Paying For ───────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-              <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Plan Fit</span>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-10 md:p-14 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
+            <div className="relative z-10 max-w-3xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+                <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">What You're Paying For</span>
+              </div>
+              <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-5 tracking-tight leading-tight">
+                You're not paying for more data.<br />You're paying for better decisions.
+              </h2>
+              <p className="text-[#a0b2c8] text-lg leading-relaxed font-body">
+                Most teams already have access to opportunities. The challenge is knowing which ones are worth pursuing.
+                HE Pursuit helps you qualify faster, reduce wasted effort, and focus your time where it has the best chance to pay off.
+              </p>
             </div>
-            <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight mb-4 max-w-2xl mx-auto">
-              Choose the plan that matches how your team pursues work.
-            </h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        </div>
+      </section>
+
+      {/* ── SECTION 4 — Plan Positioning ─────────────────────────────────── */}
+      <section className="pb-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="font-headline font-black text-2xl text-white mb-8 tracking-tight">Find your fit.</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              {
-                plan: 'Free',
-                copy: 'Best for solo users who want to test the workflow, evaluate early opportunities, and see how HE Pursuit fits their process — before spending a dollar.',
-              },
-              {
-                plan: 'Starter',
-                copy: 'Best for individual contractors who need the full AI workflow on a limited number of active pursuits. Full eligibility, scoring, and decisions — up to 25 at a time.',
-              },
-              {
-                plan: 'Pro',
-                copy: 'Best for small proposal teams running multiple active bids. Unlimited pursuits, PDF Decision Package exports, and 24-hour support. The workhorse tier.',
-              },
-              {
-                plan: 'Team',
-                copy: 'Best for multi-user capture teams that need shared visibility, 5 seats, priority document parsing, and fast support with onboarding guidance.',
-              },
-            ].map(({ plan, copy }) => (
-              <div key={plan} className="bg-[#0b1120]/60 border border-[#1e2d4a] rounded-2xl p-8 group hover:border-[#00c3ff]/30 transition-all duration-300">
-                <h3 className="font-headline font-black text-xl text-white mb-3">{plan}</h3>
-                <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{copy}</p>
+              { plan: 'Free',    desc: 'Understand if the platform fits your workflow.' },
+              { plan: 'Starter', desc: 'Make structured, repeatable bid decisions.' },
+              { plan: 'Pro',     desc: 'Run your full pursuit process with confidence.' },
+              { plan: 'Team',    desc: 'Scale decision-making across your organization.' },
+            ].map(({ plan, desc }) => (
+              <div key={plan} className="bg-[#0b1120]/60 border border-[#1e2d4a] rounded-2xl p-6 group hover:border-[#00c3ff]/30 transition-all duration-300">
+                <p className="text-xs font-label uppercase tracking-widest text-[#00c3ff] mb-2">{plan}</p>
+                <p className="text-white font-body leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── SECTION 4 — Comparison Table ─────────────────────────────────── */}
+      {/* ── SECTION 5 — Comparison Table ─────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-5xl mx-auto relative z-10">
-          <div className="text-center mb-14">
+          <div className="mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
               <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Compare Plans</span>
             </div>
-            <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight mb-4">
+            <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight">
               See exactly what changes at each tier.
             </h2>
           </div>
 
           <div className="overflow-x-auto rounded-2xl border border-[#1e2d4a]">
-            <table className="w-full min-w-[680px] text-sm">
+            <table className="w-full min-w-[640px] text-sm">
               <thead>
                 <tr className="border-b border-[#1e2d4a] bg-[#0b1120]">
                   <th className="text-left px-6 py-4 text-[#8b9bb4] font-label uppercase tracking-widest text-xs w-2/5">Feature</th>
                   <th className="px-4 py-4 text-center text-white font-headline font-bold text-sm">Free</th>
                   <th className="px-4 py-4 text-center text-white font-headline font-bold text-sm">Starter</th>
-                  <th className="px-4 py-4 text-center font-headline font-bold text-sm">
-                    <span className="text-[#00c3ff]">Pro</span>
-                  </th>
+                  <th className="px-4 py-4 text-center font-headline font-bold text-sm"><span className="text-[#00c3ff]">Pro</span></th>
                   <th className="px-4 py-4 text-center text-white font-headline font-bold text-sm">Team</th>
                 </tr>
               </thead>
@@ -354,30 +372,29 @@ export default function Pricing() {
             </table>
           </div>
 
-          {/* Legend */}
           <div className="flex flex-wrap items-center gap-6 mt-5 px-1">
             <div className="flex items-center gap-2 text-xs text-[#8b9bb4] font-body">
               <Check className="w-4 h-4 text-[#00c3ff]" strokeWidth={2.5} /> Included
             </div>
             <div className="flex items-center gap-2 text-xs text-[#8b9bb4] font-body">
-              <Minus className="w-4 h-4 text-[#8b9bb4]" strokeWidth={2} /> Limited / varies
+              <X className="w-4 h-4 text-[#2a3a4e]" strokeWidth={2} /> Not included
             </div>
             <div className="flex items-center gap-2 text-xs text-[#8b9bb4] font-body">
-              <X className="w-4 h-4 text-[#2a3a4e]" strokeWidth={2} /> Not included
+              <span className="text-[#8b9bb4] text-xs">15/mo</span> Usage limit applies
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── SECTION 5 — FAQ ──────────────────────────────────────────────── */}
+      {/* ── SECTION 6 — FAQ ──────────────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-3xl mx-auto relative z-10">
-          <div className="text-center mb-14">
+          <div className="mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-              <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">FAQ</span>
+              <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Common Questions</span>
             </div>
-            <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight mb-4">
+            <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight">
               Questions before you choose a plan?
             </h2>
           </div>
@@ -386,7 +403,7 @@ export default function Pricing() {
             {faqs.map((faq, i) => (
               <div key={i} className="bg-[#0b1120] border border-[#1e2d4a] rounded-xl overflow-hidden">
                 <button
-                  className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-[#0d1828] transition-colors duration-200 group"
+                  className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-[#0d1828] transition-colors duration-200"
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
                 >
                   <span className="text-white font-bold font-headline pr-4">{faq.q}</span>
@@ -396,7 +413,7 @@ export default function Pricing() {
                   />
                 </button>
                 <div className={`overflow-hidden transition-all duration-300 ease-out ${openFaq === i ? 'max-h-48' : 'max-h-0'}`}>
-                  <p className="px-6 pb-5 text-[#a0b2c8] text-sm font-body leading-relaxed border-t border-[#1e2d4a] pt-4">
+                  <p className="px-6 pb-5 pt-4 text-[#a0b2c8] text-sm font-body leading-relaxed border-t border-[#1e2d4a]">
                     {faq.a}
                   </p>
                 </div>
@@ -406,18 +423,18 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* ── SECTION 6 — Final CTA ────────────────────────────────────────── */}
+      {/* ── SECTION 7 — Final CTA ────────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Ready to Start</span>
+            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Get Started</span>
           </div>
           <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-5 tracking-tight">
-            Choose your plan and start evaluating opportunities faster.
+            Start free. Upgrade when you're ready.
           </h2>
-          <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body max-w-xl mx-auto">
-            Start free, upgrade when you need deeper decision support, or talk to us about Team access.
+          <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body">
+            No credit card required. Real opportunities from day one.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/signup" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline">

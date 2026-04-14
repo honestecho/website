@@ -1,160 +1,210 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import { Database, Cpu, Share2, Lock, Clock, SlidersHorizontal, Bot, RefreshCw, Mail } from 'lucide-react';
+
+// ─── Content ──────────────────────────────────────────────────────────────────
+
+interface PrivacySection {
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  title: string;
+  lead: string;
+  body?: string;
+  bullets?: string[];
+  sub?: { label: string; bullets: string[] }[];
+  note?: string;
+  email?: string;
+}
+
+const sections: PrivacySection[] = [
+  {
+    Icon: Database,
+    title: 'Information We Collect',
+    lead: 'We collect information you provide and information collected automatically.',
+    sub: [
+      {
+        label: 'Information you provide',
+        bullets: ['Account information (name, email)', 'Company profile details (NAICS, certifications, preferences)', 'Pursuit data (notes, evaluations, decisions)'],
+      },
+      {
+        label: 'Information collected automatically',
+        bullets: ['Usage data (features used, activity)', 'Device and browser information', 'Log data (IP address, timestamps)'],
+      },
+    ],
+    note: 'We use publicly available information (such as SAM.gov) to support opportunity analysis.',
+  },
+  {
+    Icon: Cpu,
+    title: 'How We Use Information',
+    lead: 'We use your information to:',
+    bullets: [
+      'Provide and operate the platform',
+      'Improve product functionality and performance',
+      'Process subscriptions and billing',
+      'Communicate with you about your account and product updates',
+      'Maintain security and prevent misuse',
+    ],
+  },
+  {
+    Icon: Share2,
+    title: 'Data Sharing',
+    lead: 'We do not sell, rent, or trade your data.',
+    body: 'We share data only with service providers who help operate the platform (such as hosting and payment processing), and only as necessary.',
+    note: 'We may disclose information if required by law.',
+  },
+  {
+    Icon: Lock,
+    title: 'Data Security',
+    lead: 'We use commercially reasonable safeguards to protect your data, including encryption, access controls, and monitoring.',
+    note: 'No system is completely secure, but we take data protection seriously.',
+  },
+  {
+    Icon: Clock,
+    title: 'Data Retention',
+    lead: 'We retain your data while your account is active.',
+    body: 'If you delete your account, we will remove your personal data within a reasonable period, except where retention is required for legal or operational purposes.',
+  },
+  {
+    Icon: SlidersHorizontal,
+    title: 'Your Choices',
+    lead: 'You may:',
+    bullets: ['Update or correct your information', 'Request deletion of your data', 'Opt out of non-essential communications'],
+    note: 'To make a request, contact: support@honestecho.com',
+  },
+  {
+    Icon: Bot,
+    title: 'AI & Data Use',
+    lead: 'We do not use your data to train artificial intelligence or machine learning models.',
+  },
+  {
+    Icon: RefreshCw,
+    title: 'Changes to This Policy',
+    lead: 'We may update this Privacy Policy from time to time.',
+    body: 'The effective date at the top reflects the latest version.',
+  },
+];
+
+// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function Privacy() {
   return (
     <>
       <Helmet>
         <title>Privacy Policy | Honest Echo</title>
-        <meta name="description" content="Privacy Policy for Pursuit by Honest Echo LLC. Learn how we collect, use, and protect your data." />
+        <meta name="description" content="Privacy Policy for HE Pursuit by Honest Echo LLC. Learn how we collect, use, and protect your data." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/privacy" />
         <meta property="og:title" content="Privacy Policy — Honest Echo" />
-        <meta property="og:description" content="Privacy Policy for Pursuit by Honest Echo LLC." />
+        <meta property="og:description" content="What data we collect, how we use it, and your options." />
       </Helmet>
 
-      <div className="max-w-3xl mx-auto px-6 py-20 text-[#cbd5e1]">
-        <div className="mb-10">
-          <p className="text-xs font-bold tracking-widest uppercase text-[#00c3ff] mb-3">Legal</p>
-          <h1 className="text-4xl font-black text-white tracking-tight mb-2">Privacy Policy</h1>
-          <p className="text-sm text-[#64748b]">Effective date: April 10, 2026</p>
+      {/* ── Hero ───────────────────────────────────────────────────────────── */}
+      <section className="pt-32 pb-12 px-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
+            Privacy Policy
+          </h1>
+          <p className="text-[#8b9bb4] text-base font-body">
+            Effective Date: April 10, 2026 &nbsp;·&nbsp; Honest Echo LLC operates HE Pursuit. This policy explains what data we collect, how we use it, and your options.
+          </p>
         </div>
+      </section>
 
-        <div className="prose-legal space-y-8 text-[#94a3b8] text-sm leading-relaxed">
+      {/* ── Sections — 2-column grid ────────────────────────────────────────── */}
+      <section className="pb-8 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+            {sections.map((s) => (
+              <div
+                key={s.title}
+                className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500"
+              >
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
 
-          <p>Honest Echo LLC ("Company," "we," "us," or "our") operates Pursuit, a bid/no-bid decision platform for government contractors, accessible at pursuit.honestecho.com. This Privacy Policy describes what data we collect, how we use it, and your rights regarding that data.</p>
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
+                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                    <s.Icon
+                      className="w-5 h-5 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10"
+                      fill="currentColor"
+                      fillOpacity={0.15}
+                      strokeWidth={2}
+                    />
+                  </div>
+                  <h2 className="font-headline font-bold text-white text-xl tracking-tight pt-1.5">{s.title}</h2>
+                </div>
 
-          <section>
-            <h2 className="text-lg font-bold text-white mb-3">1. Information We Collect</h2>
-            <h3 className="font-semibold text-slate-200 mb-2">Information you provide</h3>
-            <div className="overflow-x-auto rounded-lg border border-[#1e2d4a] mb-4">
-              <table className="w-full text-xs">
-                <thead><tr className="border-b border-[#1e2d4a] bg-[#0b1120]"><th className="text-left px-4 py-2.5 text-slate-300 font-semibold">Data Type</th><th className="text-left px-4 py-2.5 text-slate-300 font-semibold">Examples</th><th className="text-left px-4 py-2.5 text-slate-300 font-semibold">Purpose</th></tr></thead>
-                <tbody className="divide-y divide-[#1e2d4a]">
-                  <tr><td className="px-4 py-2.5">Account information</td><td className="px-4 py-2.5">Name, email address, password</td><td className="px-4 py-2.5">Authentication and account management</td></tr>
-                  <tr><td className="px-4 py-2.5">Company profile</td><td className="px-4 py-2.5">Company name, NAICS codes, certifications, set-aside eligibility, geographic preferences</td><td className="px-4 py-2.5">Opportunity scoring and matching</td></tr>
-                  <tr><td className="px-4 py-2.5">Pursuit data</td><td className="px-4 py-2.5">Pursuit notes, strategic assessments, bid/no-bid decisions, score weight preferences</td><td className="px-4 py-2.5">Core product functionality</td></tr>
-                  <tr><td className="px-4 py-2.5">Billing information</td><td className="px-4 py-2.5">Payment method details</td><td className="px-4 py-2.5">Subscription billing (processed by Stripe; we do not store card numbers)</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <h3 className="font-semibold text-slate-200 mb-2">Information collected automatically</h3>
-            <div className="overflow-x-auto rounded-lg border border-[#1e2d4a] mb-4">
-              <table className="w-full text-xs">
-                <thead><tr className="border-b border-[#1e2d4a] bg-[#0b1120]"><th className="text-left px-4 py-2.5 text-slate-300 font-semibold">Data Type</th><th className="text-left px-4 py-2.5 text-slate-300 font-semibold">Examples</th><th className="text-left px-4 py-2.5 text-slate-300 font-semibold">Purpose</th></tr></thead>
-                <tbody className="divide-y divide-[#1e2d4a]">
-                  <tr><td className="px-4 py-2.5">Usage data</td><td className="px-4 py-2.5">Features used, searches performed, pages visited within the app</td><td className="px-4 py-2.5">Product improvement and analytics</td></tr>
-                  <tr><td className="px-4 py-2.5">Device information</td><td className="px-4 py-2.5">Browser type, operating system, screen resolution</td><td className="px-4 py-2.5">Technical support and compatibility</td></tr>
-                  <tr><td className="px-4 py-2.5">Log data</td><td className="px-4 py-2.5">IP address, access timestamps, error logs</td><td className="px-4 py-2.5">Security monitoring and debugging</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <h3 className="font-semibold text-slate-200 mb-2">Information from third-party sources</h3>
-            <p>We retrieve publicly available opportunity data from SAM.gov to power our scoring and search features. This data is public government information and does not contain your personal data.</p>
-          </section>
+                <p className="text-[#a0b2c8] text-sm font-body leading-relaxed mb-3">{s.lead}</p>
 
-          <section>
-            <h2 className="text-lg font-bold text-white mb-3">2. How We Use Your Information</h2>
-            <p>We use your information to:</p>
-            <ul className="list-disc list-outside ml-5 space-y-1 mt-2">
-              <li>Provide, maintain, and improve Pursuit's features and scoring accuracy</li>
-              <li>Process your subscription payments through Stripe</li>
-              <li>Send you transactional communications (account confirmations, billing receipts, security alerts)</li>
-              <li>Send you product communications (feature updates, usage summaries, deadline reminders) — you may opt out at any time</li>
-              <li>Monitor for security threats, abuse, and technical issues</li>
-              <li>Analyze aggregate usage patterns to improve the product (we do not sell individual usage data)</li>
-            </ul>
-          </section>
+                {s.body && (
+                  <p className="text-[#a0b2c8] text-sm font-body leading-relaxed mb-3">{s.body}</p>
+                )}
 
-          <section>
-            <h2 className="text-lg font-bold text-white mb-3">3. How We Share Your Information</h2>
-            <p>We do not sell, rent, or trade your personal information. We share data only with the following service providers, who process data on our behalf under contractual obligations:</p>
-            <div className="overflow-x-auto rounded-lg border border-[#1e2d4a] my-4">
-              <table className="w-full text-xs">
-                <thead><tr className="border-b border-[#1e2d4a] bg-[#0b1120]"><th className="text-left px-4 py-2.5 text-slate-300 font-semibold">Provider</th><th className="text-left px-4 py-2.5 text-slate-300 font-semibold">Purpose</th><th className="text-left px-4 py-2.5 text-slate-300 font-semibold">Data Shared</th></tr></thead>
-                <tbody className="divide-y divide-[#1e2d4a]">
-                  <tr><td className="px-4 py-2.5">Supabase</td><td className="px-4 py-2.5">Database hosting and authentication</td><td className="px-4 py-2.5">Account data, company profile, pursuit data</td></tr>
-                  <tr><td className="px-4 py-2.5">Stripe</td><td className="px-4 py-2.5">Payment processing</td><td className="px-4 py-2.5">Billing information, email address</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p>We may also disclose information if required by law, court order, or governmental regulation, or if we believe disclosure is necessary to protect our rights, your safety, or the safety of others.</p>
-          </section>
+                {s.bullets && (
+                  <ul className="space-y-2 mb-3">
+                    {s.bullets.map((item) => (
+                      <li key={item} className="flex items-start gap-2.5 text-sm text-[#a0b2c8] font-body">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff] shrink-0 mt-[0.35rem]"></div>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
-          <section>
-            <h2 className="text-lg font-bold text-white mb-3">4. Data Storage and Security</h2>
-            <p>Your data is stored on servers located in the United States, hosted by Supabase with the following security measures:</p>
-            <ul className="list-disc list-outside ml-5 space-y-1 mt-2">
-              <li>Encryption in transit (TLS 1.2+) and at rest (AES-256)</li>
-              <li>Row-level security (RLS) ensuring users can only access their own data</li>
-              <li>Regular security monitoring and access logging</li>
-              <li>No use of your data to train artificial intelligence or machine learning models</li>
-            </ul>
-            <p className="mt-3">While we implement commercially reasonable security measures, no system is completely secure. We cannot guarantee the absolute security of your data.</p>
-          </section>
+                {s.sub && (
+                  <div className="space-y-4 mb-3">
+                    {s.sub.map((sub) => (
+                      <div key={sub.label}>
+                        <p className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest mb-2">{sub.label}</p>
+                        <ul className="space-y-1.5">
+                          {sub.bullets.map((item) => (
+                            <li key={item} className="flex items-start gap-2.5 text-sm text-[#a0b2c8] font-body">
+                              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff] shrink-0 mt-[0.35rem]"></div>
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
-          <section>
-            <h2 className="text-lg font-bold text-white mb-3">5. Data Retention</h2>
-            <p>We retain your data for as long as your account is active. If you delete your account, we will remove your personal data within 30 days, except where retention is required by law (e.g., billing records for tax purposes, which we retain for 7 years).</p>
-            <p className="mt-2">Anonymized, aggregate usage data that cannot be linked back to you may be retained indefinitely for analytics purposes.</p>
-          </section>
-
-          <section>
-            <h2 className="text-lg font-bold text-white mb-3">6. Your Rights</h2>
-            <p>Depending on your jurisdiction, you may have the following rights:</p>
-            <ul className="list-disc list-outside ml-5 space-y-1 mt-2">
-              <li><strong className="text-slate-200">Access:</strong> Request a copy of the personal data we hold about you</li>
-              <li><strong className="text-slate-200">Correction:</strong> Request that we correct inaccurate data</li>
-              <li><strong className="text-slate-200">Deletion:</strong> Request that we delete your personal data</li>
-              <li><strong className="text-slate-200">Export:</strong> Request a machine-readable copy of your data</li>
-              <li><strong className="text-slate-200">Opt-out:</strong> Unsubscribe from non-transactional communications at any time</li>
-            </ul>
-            <p className="mt-3">To exercise any of these rights, contact us at <a href="mailto:support@honestecho.com" className="text-[#00c3ff] hover:underline">support@honestecho.com</a>. We will respond within 30 days.</p>
-          </section>
-
-          <section>
-            <h2 className="text-lg font-bold text-white mb-3">7. Cookies and Tracking</h2>
-            <p>Pursuit uses essential cookies required for authentication and session management. We do not use third-party advertising cookies or cross-site tracking pixels. If we add analytics tools in the future, we will update this policy and provide opt-out options.</p>
-          </section>
-
-          <section>
-            <h2 className="text-lg font-bold text-white mb-3">8. Children's Privacy</h2>
-            <p>Pursuit is a business tool designed for professional use. We do not knowingly collect personal information from anyone under the age of 18. If we learn that we have collected data from a minor, we will delete it promptly.</p>
-          </section>
-
-          <section>
-            <h2 className="text-lg font-bold text-white mb-3">9. California Residents (CCPA)</h2>
-            <p>If you are a California resident, you have additional rights under the California Consumer Privacy Act (CCPA):</p>
-            <ul className="list-disc list-outside ml-5 space-y-1 mt-2">
-              <li>The right to know what personal information we collect, use, and share</li>
-              <li>The right to request deletion of your personal information</li>
-              <li>The right to opt out of the sale of personal information — we do not sell personal information</li>
-              <li>The right to non-discrimination for exercising your privacy rights</li>
-            </ul>
-            <p className="mt-3">To make a CCPA request, contact <a href="mailto:support@honestecho.com" className="text-[#00c3ff] hover:underline">support@honestecho.com</a>.</p>
-          </section>
-
-          <section>
-            <h2 className="text-lg font-bold text-white mb-3">10. Changes to This Policy</h2>
-            <p>We may update this Privacy Policy from time to time. If we make material changes, we will notify you by email or by posting a notice within the application at least 30 days before the changes take effect. The "Effective date" at the top of this page indicates when this policy was last revised.</p>
-          </section>
-
-          <section>
-            <h2 className="text-lg font-bold text-white mb-3">11. Contact Us</h2>
-            <p>If you have questions about this Privacy Policy or how we handle your data, contact us at:</p>
-            <address className="not-italic mt-2 text-[#94a3b8]">
-              Honest Echo LLC<br />
-              4114 Legato Road, Fairfax, VA<br />
-              Privacy inquiries: <a href="mailto:support@honestecho.com" className="text-[#00c3ff] hover:underline">support@honestecho.com</a><br />
-              General inquiries: <a href="mailto:info@honestecho.com" className="text-[#00c3ff] hover:underline">info@honestecho.com</a>
-            </address>
-          </section>
-
-          <div className="pt-8 border-t border-[#1e2d4a] text-xs text-[#475569]">
-            <p>This document was last updated on April 10, 2026. Please also review our <Link to="/terms" className="text-[#00c3ff] hover:underline">Terms of Service</Link>.</p>
+                {s.note && (
+                  <p className="text-[#8b9bb4] text-xs font-body leading-relaxed border-t border-[#1e2d4a] pt-4 mt-1">{s.note}</p>
+                )}
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* ── Contact ────────────────────────────────────────────────────────── */}
+      <section className="py-8 pb-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
+                <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                <Mail
+                  className="w-5 h-5 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10"
+                  fill="currentColor"
+                  fillOpacity={0.15}
+                  strokeWidth={2}
+                />
+              </div>
+              <h2 className="font-headline font-bold text-white text-xl tracking-tight pt-1.5">Contact</h2>
+            </div>
+            <p className="text-[#a0b2c8] text-sm font-body leading-relaxed mb-3">For questions about privacy:</p>
+            <a href="mailto:support@honestecho.com" className="text-[#00c3ff] font-bold font-headline text-sm hover:text-white transition-colors">
+              support@honestecho.com
+            </a>
+            <p className="text-[#8b9bb4] text-xs font-body mt-4 border-t border-[#1e2d4a] pt-4">
+              Also see our{' '}
+              <Link to="/terms" className="text-[#00c3ff] hover:text-white transition-colors">Terms of Service</Link>.
+            </p>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

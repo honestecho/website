@@ -55,14 +55,10 @@ function Cell({ value }: { value: CV }) {
 // ─── FAQ ──────────────────────────────────────────────────────────────────────
 
 const faqs = [
-  { q: 'Do I need to upload full solicitations?',           a: 'No. Start with the opportunity itself and go deeper only when the pursuit warrants it. Many evaluations complete without uploading a single document.' },
-  { q: 'Is this replacing capture strategy?',               a: 'No. HE Pursuit helps you decide which opportunities deserve real capture effort. It\'s what happens before strategy — qualification.' },
-  { q: 'How long does it take to evaluate an opportunity?', a: 'Minutes, not hours. The workflow is designed to move fast. Most evaluations complete in under 10 minutes.' },
-  { q: 'Who gets value fastest?',                           a: 'Small GovCon teams with limited proposal capacity. If you\'re choosing between 5 bids with bandwidth for 2, this was built for you.' },
-  { q: 'Do I need a credit card to start?',                 a: 'No. Free requires only your email. A card is only needed when you upgrade to a paid plan.' },
-  { q: 'Can I cancel anytime?',                             a: 'Yes. Cancel from your account settings — no notice period, no lock-in.' },
-  { q: 'What is the difference between Starter and Pro?',   a: 'Starter ($99/mo) gives you the full qualification workflow for up to 25 evaluations per month. Pro ($199/mo) removes limits entirely and adds the dashboard, decision tracking, and PDF export.' },
-  { q: 'When should I upgrade to Team?',                    a: 'When more than one person needs to work in the same pipeline. Team adds multiple users, shared pursuits, team-level visibility, and onboarding support.' },
+  { q: 'Do I need a credit card to start?',               a: 'No. Free requires only your email. A card is only needed when you upgrade to a paid plan.' },
+  { q: 'Can I cancel anytime?',                           a: 'Yes. Cancel from your account settings — no notice period, no lock-in.' },
+  { q: 'What is the difference between Starter and Pro?', a: 'Starter ($99/mo) gives you the full qualification workflow for up to 25 evaluations per month. Pro ($199/mo) removes limits entirely and adds the dashboard, decision tracking, and PDF export.' },
+  { q: 'When should I upgrade to Team?',                  a: 'When more than one person needs to work in the same pipeline. Team adds multiple users, shared pursuits, team-level visibility, and onboarding support.' },
 ];
 
 // ─── Pricing cards data ───────────────────────────────────────────────────────
@@ -170,12 +166,8 @@ export default function Pricing() {
       </Helmet>
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
-      <section className="pt-20 pb-10 px-6 relative overflow-hidden">
+      <section className="pt-32 pb-10 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Pricing</span>
-          </div>
           <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
             Simple pricing for better bid decisions.
           </h1>
@@ -334,7 +326,7 @@ export default function Pricing() {
       {/* ── SECTION 5 — Comparison Table ─────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-5xl mx-auto relative z-10">
-          <div className="mb-12">
+          <div className="mb-12 text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
               <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Compare Plans</span>
@@ -393,7 +385,7 @@ export default function Pricing() {
       {/* ── SECTION 6 — FAQ ──────────────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-3xl mx-auto relative z-10">
-          <div className="mb-12">
+          <div className="mb-12 text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
               <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Common Questions</span>

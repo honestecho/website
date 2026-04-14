@@ -36,6 +36,13 @@ const sections: FAQSection[] = [
           'If you want deeper analysis, you can upload documents later as part of the full qualification workflow.',
         ],
       },
+      {
+        q: 'What do "Go," "Conditional Go," and "No-Bid" mean?',
+        parts: [
+          { bullets: ['Go: Strong fit and worth pursuing', 'Conditional Go: Potential fit with risks or gaps', 'No-Bid: Low fit or high risk relative to effort'] },
+          'These recommendations are designed to help you make faster, more consistent decisions.',
+        ],
+      },
     ],
   },
   {
@@ -61,13 +68,6 @@ const sections: FAQSection[] = [
         parts: [
           'Most evaluations take just a few minutes.',
           'The goal is to help you quickly determine whether an opportunity is worth deeper investment.',
-        ],
-      },
-      {
-        q: 'What do "Go," "Conditional Go," and "No-Bid" mean?',
-        parts: [
-          { bullets: ['Go: Strong fit and worth pursuing', 'Conditional Go: Potential fit with risks or gaps', 'No-Bid: Low fit or high risk relative to effort'] },
-          'These recommendations are designed to help you make faster, more consistent decisions.',
         ],
       },
       {
@@ -277,10 +277,12 @@ export default function FAQ() {
 
                 {/* Section header */}
                 <div className="flex items-center gap-3 mb-5">
-                  <div className="w-9 h-9 flex items-center justify-center relative overflow-visible shrink-0">
-                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 rounded-full scale-150"></div>
+                  <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
+                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
                     <section.Icon
-                      className="w-4 h-4 text-[#00c3ff] relative z-10"
+                      className="w-5 h-5 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10"
+                      fill="currentColor"
+                      fillOpacity={0.15}
                       strokeWidth={2}
                     />
                   </div>
@@ -311,10 +313,15 @@ export default function FAQ() {
       <section className="py-16 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-9 h-9 flex items-center justify-center relative overflow-visible shrink-0">
-              <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 rounded-full scale-150"></div>
-              <Target className="w-4 h-4 text-[#00c3ff] relative z-10" strokeWidth={2} />
+          <div className="flex items-center gap-3 mb-3 group/seo">
+            <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
+              <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover/seo:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+              <Target
+                className="w-5 h-5 text-[#00c3ff] group-hover/seo:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover/seo:scale-110 group-hover/seo:-rotate-12 group-hover/seo:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10"
+                fill="currentColor"
+                fillOpacity={0.15}
+                strokeWidth={2}
+              />
             </div>
             <h2 className="font-headline font-bold text-white text-lg tracking-tight">Bid/No-Bid & Government Contracting</h2>
           </div>

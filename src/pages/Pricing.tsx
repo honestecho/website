@@ -86,7 +86,7 @@ const plans = [
       'Triage-level insights only',
       'No deep eligibility or document analysis',
     ],
-    cta: 'Start Free',
+    cta: 'Select Free',
     ctaTo: '/signup',
   },
   {
@@ -107,7 +107,7 @@ const plans = [
       'Bookmark unlimited opportunities',
       'Evaluate opportunities (up to 25/month)',
     ],
-    cta: 'Start Starter',
+    cta: 'Select Starter',
     ctaTo: '/signup',
   },
   {
@@ -125,7 +125,7 @@ const plans = [
       'Downloadable decision reports (PDF)',
       'Priority processing',
     ],
-    cta: 'Start Pro',
+    cta: 'Select Pro',
     ctaTo: '/signup',
   },
   {
@@ -143,7 +143,7 @@ const plans = [
       'Faster support response',
       'Onboarding assistance',
     ],
-    cta: 'Start Team',
+    cta: 'Select Team',
     ctaTo: '/signup',
   },
 ];
@@ -442,7 +442,7 @@ export default function Pricing() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/signup" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline">
-              Start Free
+              Select Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline">

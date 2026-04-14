@@ -7,7 +7,6 @@ const navLinks = [
   { label: 'FAQ',        to: '/faq'        },
   { label: 'Security',   to: '/security'   },
   { label: 'About',      to: '/about'      },
-  { label: 'Consulting', to: '/consulting' },
 ];
 
 export default function Navbar() {

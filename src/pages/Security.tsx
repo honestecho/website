@@ -84,7 +84,7 @@ export default function Security() {
           <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
             Security
           </h1>
-          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-2xl">
+          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body">
             HE Pursuit is designed with a practical, straightforward approach to protecting customer data. We rely on established infrastructure, controlled access, and clear data handling practices to keep information secure.
           </p>
         </div>

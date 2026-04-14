@@ -107,7 +107,7 @@ const plans = [
       'Bookmark unlimited opportunities',
       'Evaluate opportunities (up to 25/month)',
     ],
-    cta: 'Start Free',
+    cta: 'Start Starter',
     ctaTo: '/signup',
   },
   {
@@ -125,7 +125,7 @@ const plans = [
       'Downloadable decision reports (PDF)',
       'Priority processing',
     ],
-    cta: 'Start Free',
+    cta: 'Start Pro',
     ctaTo: '/signup',
   },
   {
@@ -143,7 +143,7 @@ const plans = [
       'Faster support response',
       'Onboarding assistance',
     ],
-    cta: 'Start Free',
+    cta: 'Start Team',
     ctaTo: '/signup',
   },
 ];
@@ -171,15 +171,15 @@ export default function Pricing() {
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
       <section className="pt-20 pb-10 px-6 relative overflow-hidden">
-        <div className="max-w-4xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
             <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Pricing</span>
           </div>
-          <h1 className="font-headline font-black text-4xl md:text-5xl text-white mb-5 tracking-tight leading-tight">
+          <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
             Simple pricing for better bid decisions.
           </h1>
-          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body mb-6 max-w-3xl">
+          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body mb-6">
             Start free and qualify opportunities in minutes. Upgrade when your team needs deeper analysis, more volume, and a structured pursuit process.
           </p>
           <p className="text-[#00c3ff] font-body text-sm font-medium">
@@ -267,17 +267,26 @@ export default function Pricing() {
           </div>
 
           {/* Trust signals */}
-          <div className="flex flex-wrap items-center justify-center gap-6 mt-8 text-xs text-[#8b9bb4] font-body">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-[#00c3ff]" strokeWidth={2} />
+          <div className="flex flex-wrap items-center justify-center gap-8 mt-8 text-base text-[#8b9bb4] font-body">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 flex items-center justify-center relative overflow-visible shrink-0">
+                <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 rounded-full scale-150"></div>
+                <ShieldCheck className="w-5 h-5 text-[#00c3ff] relative z-10" strokeWidth={2} />
+              </div>
               No credit card required
             </div>
-            <div className="flex items-center gap-2">
-              <Check className="w-4 h-4 text-[#00c3ff]" strokeWidth={2.5} />
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 flex items-center justify-center relative overflow-visible shrink-0">
+                <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 rounded-full scale-150"></div>
+                <Check className="w-5 h-5 text-[#00c3ff] relative z-10" strokeWidth={2.5} />
+              </div>
               Start with real opportunities
             </div>
-            <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-[#00c3ff]" strokeWidth={2} />
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 flex items-center justify-center relative overflow-visible shrink-0">
+                <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 rounded-full scale-150"></div>
+                <Clock className="w-5 h-5 text-[#00c3ff] relative z-10" strokeWidth={2} />
+              </div>
               Cancel anytime
             </div>
           </div>
@@ -286,24 +295,19 @@ export default function Pricing() {
 
       {/* ── SECTION 3 — What You're Paying For ───────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-10 md:p-14 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
-            <div className="relative z-10 max-w-3xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-                <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">What You're Paying For</span>
-              </div>
-              <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-5 tracking-tight leading-tight">
-                You're not paying for more data.<br />You're paying for better decisions.
-              </h2>
-              <p className="text-[#a0b2c8] text-lg leading-relaxed font-body">
-                Most teams already have access to opportunities. The challenge is knowing which ones are worth pursuing.
-                HE Pursuit helps you qualify faster, reduce wasted effort, and focus your time where it has the best chance to pay off.
-              </p>
-            </div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">What You're Paying For</span>
           </div>
+          <h2 className="font-headline font-black text-4xl md:text-5xl xl:text-6xl text-white mb-6 tracking-tighter leading-tight drop-shadow-2xl">
+            You're not paying for more data.<br />You're paying for better decisions.
+          </h2>
+          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-3xl">
+            Most teams already have access to opportunities. The challenge is knowing which ones are worth pursuing.
+            HE Pursuit helps you qualify faster, reduce wasted effort, and focus your time where it has the best chance to pay off.
+          </p>
         </div>
       </section>
 

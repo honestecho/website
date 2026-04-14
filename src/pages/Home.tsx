@@ -35,7 +35,7 @@ export default function Home() {
       </Helmet>
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
-      <section className="relative px-6 pt-8 pb-16 lg:pt-6 lg:pb-20">
+      <section className="relative px-6 pt-32 pb-16 lg:pb-20">
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
 
           {/* Left Column: Copy */}

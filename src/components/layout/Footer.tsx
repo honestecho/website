@@ -9,20 +9,22 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-stretch gap-12 mb-6">
 
           {/* Brand */}
-          <div className="flex items-stretch gap-6 shrink-0">
-            <Link to="/" className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-3 shrink-0">
+            <Link to="/" aria-label="Honest Echo home">
               <img src="/he-logo.png" alt="Honest Echo" className="h-8 w-auto" />
-              <div className="flex flex-col leading-none gap-0.5">
+            </Link>
+            <div className="flex items-stretch gap-5">
+              <Link to="/" className="flex flex-col leading-none justify-between gap-1">
                 <span className="font-headline font-black text-xl tracking-tighter text-white">Honest Echo</span>
                 <span className="font-body font-normal text-xs text-[#8b9bb4] tracking-wide whitespace-nowrap">Better Signals. Smarter Pursuits</span>
+              </Link>
+              <div className="border-l border-[#1e2d4a] self-stretch"></div>
+              <div className="flex flex-col justify-between gap-1">
+                <p className="text-xs text-[#8b9bb4]">Fairfax, VA</p>
+                <a href="mailto:info@honestecho.com" className="text-xs text-[#8b9bb4] hover:text-[#00c3ff] transition-colors whitespace-nowrap">
+                  info@honestecho.com
+                </a>
               </div>
-            </Link>
-            <div className="border-l border-[#1e2d4a] self-stretch"></div>
-            <div className="flex flex-col justify-end gap-1">
-              <p className="text-xs text-[#8b9bb4]">Fairfax, VA</p>
-              <a href="mailto:info@honestecho.com" className="text-xs text-[#8b9bb4] hover:text-[#00c3ff] transition-colors whitespace-nowrap">
-                info@honestecho.com
-              </a>
             </div>
           </div>
 

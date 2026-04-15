@@ -132,20 +132,112 @@ src/
   pages/          # One file per route
   components/
     layout/       # Navbar.tsx, Footer.tsx
+    FlyIn.tsx     # Scroll-triggered fly-in animation wrapper (used on all tile grids)
+  lib/
+    supabase.ts   # Supabase client — used by Signup.tsx and Welcome.tsx
   assets/         # Static imports
 public/           # Images, robots.txt, icons served as-is
+  he-logo.png     # Primary brand logo (navbar + footer)
+  favicon.png     # Chrome tab icon (currently fav_icon_5)
+  pursuit-overview.png  # Hero dashboard screenshot
+references/       # Design assets (not deployed)
+  fav_icon_5.png        # Current live favicon source
+  honest_echo_logo_1/2.png  # Logo reference variants
+  ui-pages.md is NOT present — page templates live in CLAUDE.md (see below)
 ```
 
-## Pages
-- `/` — Home (hero, consulting teaser, testimonials, pricing)
-- `/platform` — HE Pursuit platform detail + pricing
-- `/consulting` — B2B GovCon consulting services
-- `/about` — Company story and team
-- `/contact` — Contact form
-- `/app` + `/pursuit` — AppRedirect (redirect stub, noindex)
+## Pages (v1.0 — all active)
+- `/` — Home: hero, problem tiles, differentiators, 5-step workflow, pricing preview, FAQ
+- `/pricing` — Full pricing: 4 plan cards, feature comparison table, FAQ accordion
+- `/faq` — FAQ: 4 accordion section cards + 5 SEO accordion cards
+- `/security` — Security practices: 4 main cards + 2 bottom cards
+- `/about` — Company: 4 info cards + full-width approach card + CTA
+- `/contact` — Contact form (Supabase-backed)
+- `/terms` — Terms of Service: 10 cards in 2-column grid
+- `/privacy` — Privacy Policy: 8 cards + centered contact card
+- `/signup` — User registration (Supabase auth)
+- `/welcome` — Post-signup confirmation (noindex)
+- `/app` + `/pursuit` + `/platform` + `/consulting` — Redirect stubs → `/` (noindex)
+
+## New Page Template
+Every new page follows this shell. Use the 2-column card grid pattern from About/Security/Privacy as the default layout for content pages:
+
+```tsx
+import { Helmet } from 'react-helmet-async';
+import FlyIn from '../components/FlyIn';
+import { IconName } from 'lucide-react';
+
+export default function PageName() {
+  return (
+    <>
+      <Helmet>
+        <title>Page Title | Honest Echo</title>
+        <meta name="description" content="..." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://honestecho.com/slug" />
+        <meta property="og:title" content="..." />
+        <meta property="og:description" content="..." />
+        <meta property="og:image" content="https://honestecho.com/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
+
+      {/* Hero — pt-32 always so content clears sticky navbar */}
+      <section className="pt-32 pb-12 px-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
+            Page Headline
+          </h1>
+          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-2xl">
+            Supporting copy.
+          </p>
+        </div>
+      </section>
+
+      {/* 2-column card grid */}
+      <section className="pb-8 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {sections.map((s, i) => (
+              <FlyIn key={s.title} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i % 4]}>
+              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+                <div className="flex items-start gap-4 mb-5">
+                  <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
+                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                    <s.Icon className="w-5 h-5 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                  </div>
+                  <h2 className="font-headline font-bold text-white text-xl tracking-tight pt-1.5">{s.title}</h2>
+                </div>
+                <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{s.body}</p>
+              </div>
+              </FlyIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="py-8 pb-24 px-6">
+        <div className="max-w-7xl mx-auto flex justify-center">
+          {/* Link to="/contact" or "/pricing" */}
+        </div>
+      </section>
+    </>
+  );
+}
+```
+
+After creating the page file, add the route to `src/App.tsx`:
+```tsx
+import NewPage from './pages/NewPage';
+// inside <Routes>:
+<Route path="/slug" element={<NewPage />} />
+```
 
 ## Deployment
-```bash
-npm run build && npx wrangler pages deploy dist --project-name honest-echo-website --branch main --commit-dirty=true
-```
-Live at: https://honestecho.com (Cloudflare Pages, project: `honest-echo-website`)
+Standard: `git add . && git commit -m "message" && git push`
+Cloudflare Pages auto-builds from `honestecho/website` on every push to `master`.
+Live at: https://honestecho.com (project: `honest-echo-website`)
+
+## Version
+**v1.0** — April 2026. All core marketing pages live. Supabase auth wired. Fly-in animations on all tile grids.

@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-8 py-16">
 
         {/* Top: brand (centered) + 3 link columns (right-grouped) */}
-        <div className="flex flex-col md:flex-row gap-12 mb-12">
+        <div className="flex flex-col md:flex-row items-center gap-12 mb-12">
 
           {/* Brand — centered */}
           <div className="flex flex-col items-center text-center md:w-64 shrink-0">
@@ -14,12 +14,9 @@ export default function Footer() {
               <img src="/he-logo.png" alt="Honest Echo" className="h-8 w-auto" />
               <div className="flex flex-col leading-none gap-0.5">
                 <span className="font-headline font-black text-xl tracking-tighter text-white">Honest Echo</span>
-                <span className="font-body font-normal text-xs text-[#8b9bb4] tracking-wide">Better Signals. Smarter Pursuits</span>
+                <span className="font-body font-normal text-xs text-[#8b9bb4] tracking-wide whitespace-nowrap">Better Signals. Smarter Pursuits</span>
               </div>
             </Link>
-            <p className="text-sm text-[#8b9bb4] leading-relaxed mb-3">
-              The bid/no-bid decision engine for small government contractors.
-            </p>
             <p className="text-xs text-[#8b9bb4]">Fairfax, VA</p>
             <a href="mailto:info@honestecho.com" className="text-xs text-[#8b9bb4] hover:text-[#00c3ff] transition-colors">
               info@honestecho.com
@@ -27,7 +24,7 @@ export default function Footer() {
           </div>
 
           {/* Link columns — centered in remaining space, generously spaced */}
-          <div className="flex flex-1 justify-center gap-16 md:gap-24">
+          <div className="flex flex-1 justify-center items-center gap-16 md:gap-24">
 
             {/* Product column */}
             <div>

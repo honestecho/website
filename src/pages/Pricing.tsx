@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, X, ChevronDown, ShieldCheck, Clock, Ban } from 'lucide-react';
+import FlyIn from '../components/FlyIn';
 
 // ─── Feature Matrix ───────────────────────────────────────────────────────────
 
@@ -184,10 +185,10 @@ export default function Pricing() {
       <section className="pb-6 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
-            {plans.map((plan) => (
+            {plans.map((plan, i) => (
+              <FlyIn key={plan.name} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
               <div
-                key={plan.name}
-                className={`rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden transition-all duration-300 ${
+                className={`rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden transition-all duration-300 h-full ${
                   plan.highlight
                     ? 'bg-[#0b1120] border border-[#00c3ff]/50 shadow-[0_0_60px_rgba(0,195,255,0.12)]'
                     : 'bg-[#0b1120] border border-[#1e2d4a] group hover:border-[#00c3ff]/30'
@@ -255,6 +256,7 @@ export default function Pricing() {
                   {plan.cta}
                 </Link>
               </div>
+              </FlyIn>
             ))}
           </div>
 
@@ -313,11 +315,13 @@ export default function Pricing() {
               { plan: 'Starter', desc: 'Make structured, repeatable bid decisions.' },
               { plan: 'Pro',     desc: 'Run your full pursuit process with confidence.' },
               { plan: 'Team',    desc: 'Scale decision-making across your organization.' },
-            ].map(({ plan, desc }) => (
-              <div key={plan} className="bg-[#0b1120]/60 border border-[#1e2d4a] rounded-2xl p-6 group hover:border-[#00c3ff]/30 transition-all duration-300">
+            ].map(({ plan, desc }, i) => (
+              <FlyIn key={plan} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
+              <div className="bg-[#0b1120]/60 border border-[#1e2d4a] rounded-2xl p-6 group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
                 <p className="text-xs font-label uppercase tracking-widest text-[#00c3ff] mb-2">{plan}</p>
                 <p className="text-white font-body leading-relaxed">{desc}</p>
               </div>
+              </FlyIn>
             ))}
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ChevronDown, Rocket, Cpu, ShieldCheck, CreditCard, Target } from 'lucide-react';
+import FlyIn from '../components/FlyIn';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -269,9 +270,9 @@ export default function FAQ() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {sections.map((section, si) => (
+              <FlyIn key={section.title} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][si]}>
               <div
-                key={section.title}
-                className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-7 relative overflow-hidden group hover:border-[#00c3ff]/20 transition-all duration-500"
+                className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-7 relative overflow-hidden group hover:border-[#00c3ff]/20 transition-all duration-500 h-full"
               >
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
 
@@ -304,6 +305,7 @@ export default function FAQ() {
                   })}
                 </div>
               </div>
+              </FlyIn>
             ))}
           </div>
         </div>
@@ -331,9 +333,9 @@ export default function FAQ() {
             {seoItems.map((item, ii) => {
               const key = `seo-${ii}`;
               return (
+                <FlyIn key={key} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]', ''][ii]}>
                 <div
-                  key={key}
-                  className={`bg-[#0b1120] rounded-xl border transition-colors duration-200 ${openKey === key ? 'border-[#00c3ff]/20' : 'border-[#1e2d4a] hover:border-[#00c3ff]/20'}`}
+                  className={`bg-[#0b1120] rounded-xl border transition-colors duration-200 h-full ${openKey === key ? 'border-[#00c3ff]/20' : 'border-[#1e2d4a] hover:border-[#00c3ff]/20'}`}
                 >
                   <button
                     type="button"
@@ -354,6 +356,7 @@ export default function FAQ() {
                     </div>
                   </div>
                 </div>
+                </FlyIn>
               );
             })}
           </div>

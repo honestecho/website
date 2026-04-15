@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { AlertCircle, Target, Filter, Users, Lightbulb, ArrowRight } from 'lucide-react';
+import FlyIn from '../components/FlyIn';
 
 export default function About() {
   return (
@@ -37,7 +38,8 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
             {/* Why We Built This */}
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+            <FlyIn>
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
               <div className="flex items-start gap-4 mb-5">
                 <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
@@ -67,9 +69,11 @@ export default function About() {
                 The result is wasted effort on opportunities that were never a strong fit. HE Pursuit was built to bring structure to that decision.
               </p>
             </div>
+            </FlyIn>
 
             {/* A More Practical Way */}
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+            <FlyIn delay="delay-150">
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
               <div className="flex items-start gap-4 mb-5">
                 <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
@@ -98,9 +102,11 @@ export default function About() {
                 Instead of relying on instinct or scattered notes, teams can make faster, more consistent bid/no-bid decisions.
               </p>
             </div>
+            </FlyIn>
 
             {/* What That Means in Practice */}
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+            <FlyIn delay="delay-300">
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
               <div className="flex items-start gap-4 mb-5">
                 <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
@@ -126,9 +132,11 @@ export default function About() {
                 ))}
               </ul>
             </div>
+            </FlyIn>
 
             {/* Who This Is Built For */}
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+            <FlyIn delay="delay-[450ms]">
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
               <div className="flex items-start gap-4 mb-5">
                 <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
@@ -153,6 +161,7 @@ export default function About() {
                 Teams that need to protect proposal capacity and make smarter decisions with limited resources.
               </p>
             </div>
+            </FlyIn>
 
           </div>
         </div>
@@ -162,6 +171,7 @@ export default function About() {
       <section className="py-8 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
+          <FlyIn>
           <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 md:p-12 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
             <div className="flex items-start gap-4 mb-5">
@@ -178,6 +188,7 @@ export default function About() {
               HE Pursuit is designed to support judgment — not replace it — by making evaluation more structured, consistent, and easier to act on.
             </p>
           </div>
+          </FlyIn>
         </div>
       </section>
 

@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Database, Cpu, Share2, Lock, Clock, SlidersHorizontal, Bot, RefreshCw, Mail } from 'lucide-react';
+import FlyIn from '../components/FlyIn';
 
 // ─── Content ──────────────────────────────────────────────────────────────────
 
@@ -113,10 +114,10 @@ export default function Privacy() {
       <section className="pb-8 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {sections.map((s) => (
+            {sections.map((s, i) => (
+              <FlyIn key={s.title} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]', '', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
               <div
-                key={s.title}
-                className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500"
+                className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full"
               >
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
 
@@ -172,6 +173,7 @@ export default function Privacy() {
                   <p className="text-[#8b9bb4] text-xs font-body leading-relaxed border-t border-[#1e2d4a] pt-4 mt-1">{s.note}</p>
                 )}
               </div>
+              </FlyIn>
             ))}
           </div>
         </div>
@@ -180,7 +182,8 @@ export default function Privacy() {
       {/* ── Contact ────────────────────────────────────────────────────────── */}
       <section className="py-8 pb-24 px-6">
         <div className="max-w-7xl mx-auto flex justify-center">
-          <div className="w-full lg:w-[calc(50%-12px)] bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+          <FlyIn className="w-full lg:w-[calc(50%-12px)]">
+          <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
             <div className="flex items-start gap-4 mb-4">
               <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
@@ -203,6 +206,7 @@ export default function Privacy() {
               <Link to="/terms" className="text-[#00c3ff] hover:text-white transition-colors">Terms of Service</Link>.
             </p>
           </div>
+          </FlyIn>
         </div>
       </section>
 

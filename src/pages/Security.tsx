@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { ShieldCheck, Eye, Lock, Server, FileCheck, Mail } from 'lucide-react';
+import FlyIn from '../components/FlyIn';
 
 // ─── Content ──────────────────────────────────────────────────────────────────
 
@@ -94,10 +95,10 @@ export default function Security() {
       <section className="pb-8 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {mainSections.map((s) => (
+            {mainSections.map((s, i) => (
+              <FlyIn key={s.title} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
               <div
-                key={s.title}
-                className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500"
+                className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full"
               >
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
 
@@ -131,6 +132,7 @@ export default function Security() {
                   <p className="text-[#8b9bb4] text-xs font-body leading-relaxed border-t border-[#1e2d4a] pt-4 mt-1">{s.note}</p>
                 )}
               </div>
+              </FlyIn>
             ))}
           </div>
         </div>
@@ -140,10 +142,10 @@ export default function Security() {
       <section className="py-8 px-6 pb-24">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {bottomSections.map((s) => (
+            {bottomSections.map((s, i) => (
+              <FlyIn key={s.title} delay={['', 'delay-150'][i]}>
               <div
-                key={s.title}
-                className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500"
+                className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full"
               >
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
 
@@ -175,6 +177,7 @@ export default function Security() {
                   <p className="text-[#8b9bb4] text-xs font-body leading-relaxed border-t border-[#1e2d4a] pt-4">{s.note}</p>
                 )}
               </div>
+              </FlyIn>
             ))}
           </div>
         </div>

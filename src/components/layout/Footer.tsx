@@ -18,7 +18,7 @@ export default function Footer() {
               </div>
             </Link>
             <div className="border-l border-[#1e2d4a] self-stretch"></div>
-            <div className="flex flex-col justify-center gap-1">
+            <div className="flex flex-col justify-end gap-1">
               <p className="text-xs text-[#8b9bb4]">Fairfax, VA</p>
               <a href="mailto:info@honestecho.com" className="text-xs text-[#8b9bb4] hover:text-[#00c3ff] transition-colors whitespace-nowrap">
                 info@honestecho.com

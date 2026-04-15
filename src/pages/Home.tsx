@@ -3,20 +3,32 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Sparkles, Target, Scale, FileText, CheckCircle, Upload, Compass, Clock, Shuffle, Filter } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-export default function Home() {
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
-  const cardsRef = useRef<HTMLDivElement>(null);
-  const [cardsInView, setCardsInView] = useState(false);
+// ─── Scroll-triggered fly-in wrapper ──────────────────────────────────────────
+function FlyIn({ children, delay = '', className = '' }: { children: React.ReactNode; delay?: string; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
   useEffect(() => {
-    const el = cardsRef.current;
+    const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) { setCardsInView(true); obs.disconnect(); }
-    }, { threshold: 0.1 });
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { threshold: 0.1 }
+    );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ease-out ${delay} ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+export default function Home() {
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   return (
     <>
@@ -110,7 +122,7 @@ export default function Home() {
             Every weak-fit bid consumes proposal hours, leadership attention, and B&P dollars that could have gone to stronger opportunities. HE Pursuit helps your team qualify earlier, walk away sooner, and focus effort where it has a real chance to pay off.
           </p>
 
-          <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {([
               {
                 icon: Clock,
@@ -128,10 +140,9 @@ export default function Home() {
                 body: 'Weak opportunities create noise, distract the team, and pull energy away from the bids with real win potential.',
               },
             ] as { icon: React.ElementType; title: string; body: string }[]).map((card, i) => (
+              <FlyIn key={card.title} delay={['', 'delay-150', 'delay-300'][i]}>
               <div
-                key={card.title}
-                className={`group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#f5a623]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(245,166,35,0.08)] transition-all duration-500 ${cardsInView ? 'animate-fade-in-up' : 'opacity-0'}`}
-                style={{ animationDelay: `${i * 120}ms` }}
+                className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#f5a623]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(245,166,35,0.08)] transition-all duration-500"
               >
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#f5a623]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
                 <div className="w-10 h-10 flex items-center justify-center relative overflow-visible mb-6">
@@ -141,6 +152,7 @@ export default function Home() {
                 <h3 className="font-headline font-black text-xl text-white mb-3 tracking-tight">{card.title}</h3>
                 <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{card.body}</p>
               </div>
+              </FlyIn>
             ))}
           </div>
         </div>
@@ -189,8 +201,9 @@ export default function Home() {
                 label: 'Decision-ready output',
                 body: 'Turn scattered opportunity details into a practical recommendation your team can review, challenge, and act on.',
               },
-            ] as { icon: React.ElementType; label: string; body: string }[]).map((item) => (
-              <div key={item.label} className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+            ] as { icon: React.ElementType; label: string; body: string }[]).map((item, i) => (
+              <FlyIn key={item.label} delay={['', 'delay-150', 'delay-300'][i]}>
+              <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
                 <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 relative overflow-visible mb-5">
                   <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
@@ -199,6 +212,7 @@ export default function Home() {
                 <p className="text-white font-bold text-base font-headline mb-2">{item.label}</p>
                 <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{item.body}</p>
               </div>
+              </FlyIn>
             ))}
           </div>
         </div>
@@ -225,8 +239,9 @@ export default function Home() {
               { icon: Scale,       step: '03', title: 'Evaluate pursuit value and effort',  body: 'Look beyond technical fit to determine whether the opportunity is worth the time, cost, and internal attention required.' },
               { icon: FileText,    step: '04', title: 'Get a bid/no-bid recommendation',   body: 'Make a more disciplined decision with a recommendation grounded in evidence and structured review.' },
               { icon: CheckCircle, step: '05', title: 'Move forward with confidence',      body: 'Pursue strong-fit opportunities faster and walk away from weak-fit ones earlier.' },
-            ].map(({ icon: Icon, step, title, body }) => (
-              <div key={step} className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-6 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+            ].map(({ icon: Icon, step, title, body }, i) => (
+              <FlyIn key={step} delay={['', 'delay-100', 'delay-200', 'delay-300', 'delay-[400ms]'][i]}>
+              <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-6 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 flex items-center justify-center relative overflow-visible flex-shrink-0">
@@ -238,6 +253,7 @@ export default function Home() {
                 <h3 className="font-headline font-black text-lg text-white mb-2 tracking-tight">{title}</h3>
                 <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{body}</p>
               </div>
+              </FlyIn>
             ))}
           </div>
         </div>
@@ -309,7 +325,8 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch max-w-6xl mx-auto mt-12">
 
             {/* Free */}
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
+            <FlyIn>
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
               <h3 className="font-headline text-xl font-bold text-white mb-1">Free</h3>
               <p className="text-xs text-[#8b9bb4] mb-4">Test the workflow</p>
               <div className="flex items-baseline gap-1 mb-4">
@@ -322,9 +339,11 @@ export default function Home() {
               </ul>
               <Link to="/signup" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Select Free</Link>
             </div>
+            </FlyIn>
 
             {/* Starter */}
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
+            <FlyIn delay="delay-150">
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
               <h3 className="font-headline text-xl font-bold text-white mb-1">Starter</h3>
               <p className="text-xs text-[#8b9bb4] mb-4">For solo contractors</p>
               <div className="flex items-baseline gap-1 mb-4">
@@ -338,9 +357,11 @@ export default function Home() {
               </ul>
               <Link to="/signup" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Select Starter</Link>
             </div>
+            </FlyIn>
 
             {/* Pro — highlighted */}
-            <div className="bg-[#0b1120] border border-[#00c3ff]/50 rounded-2xl p-6 flex flex-col shadow-[0_0_60px_rgba(0,195,255,0.12)] relative overflow-hidden">
+            <FlyIn delay="delay-300">
+            <div className="bg-[#0b1120] border border-[#00c3ff]/50 rounded-2xl p-6 flex flex-col shadow-[0_0_60px_rgba(0,195,255,0.12)] relative overflow-hidden h-full">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/60 to-transparent rounded-t-2xl"></div>
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.06)_0%,transparent_65%)] pointer-events-none"></div>
               <div className="flex items-center justify-between mb-1">
@@ -359,9 +380,11 @@ export default function Home() {
               </ul>
               <Link to="/signup" className="block text-center w-full py-3 rounded-lg bg-[#00c3ff] text-[#030B17] font-bold shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all relative z-10 text-sm">Select Pro</Link>
             </div>
+            </FlyIn>
 
             {/* Team */}
-            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
+            <FlyIn delay="delay-[450ms]">
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
               <h3 className="font-headline text-xl font-bold text-white mb-1">Team</h3>
               <p className="text-xs text-[#8b9bb4] mb-4">For multi-user capture teams</p>
               <div className="flex items-baseline gap-1 mb-4">
@@ -375,6 +398,7 @@ export default function Home() {
               </ul>
               <Link to="/contact" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Talk to the Team</Link>
             </div>
+            </FlyIn>
 
           </div>
           <p className="text-center text-sm text-[#8b9bb4]/60 mt-8 max-w-6xl mx-auto">
@@ -415,12 +439,14 @@ export default function Home() {
                 q: 'Why not just use spreadsheets or instinct?',
                 a: 'Because informal decisions break down when time is tight, resources are limited, and every pursuit feels urgent. HE Pursuit gives you a more consistent process.',
               },
-            ].map(({ q, a }) => (
-              <div key={q} className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300">
+            ].map(({ q, a }, i) => (
+              <FlyIn key={q} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
+              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
                 <p className="text-white font-bold font-headline text-base mb-3">{q}</p>
                 <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{a}</p>
               </div>
+              </FlyIn>
             ))}
           </div>
         </div>

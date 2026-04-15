@@ -2,57 +2,59 @@
 
 ## Stack
 - **Framework**: React 19 + Vite + TypeScript + Tailwind CSS 3
-- **Hosting**: Cloudflare Pages (project: `he-website`)
+- **Hosting**: Cloudflare Pages (project: `honest-echo-website`)
 - **Domain**: honestecho.com (DNS managed by Cloudflare)
 - **Source**: https://github.com/honestecho/website
 
 ## Deploy Pipeline
-Deployments are automatic. Every push to `master` triggers a Cloudflare Pages build.
+Deployments are automatic. Every push to `master` triggers a Cloudflare Pages build (~60 seconds).
 
 ```bash
-# Make changes, then:
 git add .
 git commit -m "your message"
 git push
 ```
 
-Cloudflare builds in ~60 seconds. Live at honestecho.com immediately after.
-
 ## Local Development
 ```bash
-cd "HE Website - 1"
 npm install        # first time only
 npm run dev        # http://localhost:5173
+npm run build      # verify before pushing — outputs to dist/
 ```
 
-## Build Locally (verify before pushing)
-```bash
-npm run build      # outputs to dist/
-```
-
-## Project Structure
+## Project Structure (v1.0)
 ```
 src/
   pages/
-    Home.tsx         # / — hero, consulting teaser, testimonials, pricing
-    Platform.tsx     # /platform
-    Consulting.tsx   # /consulting
-    About.tsx        # /about
-    Contact.tsx      # /contact
-    AppRedirect.tsx  # /app and /pursuit — redirects to pursuit.honestecho.com
+    Home.tsx          # /
+    Pricing.tsx       # /pricing
+    FAQ.tsx           # /faq
+    Security.tsx      # /security
+    About.tsx         # /about
+    Contact.tsx       # /contact
+    Terms.tsx         # /terms
+    Privacy.tsx       # /privacy
+    Signup.tsx        # /signup
+    Welcome.tsx       # /welcome (noindex)
+    AppRedirect.tsx   # /app, /pursuit, /platform, /consulting → redirect to /
   components/
     layout/
       Navbar.tsx
       Footer.tsx
+    FlyIn.tsx         # scroll-triggered tile animation wrapper
+  lib/
+    supabase.ts       # Supabase client (auth)
 public/
-  opportunitycard.jpg
-  consulting_collaboration.png
-  robots.txt         # blocks AI scrapers
-CLAUDE.md            # design system rules — read before building any component
+  he-logo.png
+  favicon.png         # fav_icon_5
+  pursuit-overview.png
+  robots.txt
+references/           # design assets only — not deployed
+CLAUDE.md             # design system + new page template — read before building
 ```
 
 ## Cloudflare Pages Settings
-- **Project name**: `he-website`
+- **Project name**: `honest-echo-website`
 - **GitHub repo**: `honestecho/website`
 - **Production branch**: `master`
 - **Build command**: `npm run build`
@@ -60,10 +62,10 @@ CLAUDE.md            # design system rules — read before building any componen
 - **Custom domains**: `honestecho.com`, `www.honestecho.com`
 
 ## DNS
-- Managed in Cloudflare (nameservers transferred from GoDaddy)
-- `honestecho.com` → CNAME to `he-website.pages.dev` (set by Cloudflare Pages automatically)
-- `pursuit.honestecho.com` → proxied to `he-pursuit.pages.dev` (the app)
+- Managed in Cloudflare
+- `honestecho.com` → Cloudflare Pages
+- `pursuit.honestecho.com` → HE Pursuit app (separate project: `he-pursuit`)
 
 ## Related Projects
-- **App (HE-Pursuit)**: `pursuit.honestecho.com` — separate Cloudflare Pages project (`he-pursuit`)
+- **App**: `pursuit.honestecho.com` — Cloudflare Pages project `he-pursuit`
 - **GitHub**: https://github.com/honestecho/HE-Pursuit

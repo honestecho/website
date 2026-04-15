@@ -20,7 +20,7 @@ export default function Footer() {
             <p className="text-sm text-[#8b9bb4] leading-relaxed mb-3">
               The bid/no-bid decision engine for small government contractors.
             </p>
-            <p className="text-xs text-[#8b9bb4]">4114 Legato Road, Fairfax, VA</p>
+            <p className="text-xs text-[#8b9bb4]">Fairfax, VA</p>
             <a href="mailto:info@honestecho.com" className="text-xs text-[#8b9bb4] hover:text-[#00c3ff] transition-colors">
               info@honestecho.com
             </a>
@@ -54,7 +54,6 @@ export default function Footer() {
                 {[
                   { label: 'About', to: '/about' },
                   { label: 'Contact', to: '/contact' },
-                  { label: 'Consulting', to: '/consulting' },
                 ].map(({ label, to }) => (
                   <li key={to}>
                     <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
@@ -87,7 +86,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-[#1e2d4a] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-[#8b9bb4]">© 2024 Honest Echo LLC. All rights reserved.</p>
+          <p className="text-xs text-[#8b9bb4]">© 2026 Honest Echo LLC. All rights reserved.</p>
           <a
             href="https://pursuit.honestecho.com"
             target="_blank"

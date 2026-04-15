@@ -6,24 +6,23 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-8 py-10">
 
         {/* Top: brand (centered) + 3 link columns (right-grouped) */}
-        <div className="flex flex-col md:flex-row items-start gap-12 mb-6">
+        <div className="flex flex-col md:flex-row items-stretch gap-12 mb-6">
 
           {/* Brand */}
-          <div className="flex flex-col md:w-64 shrink-0">
-            <div className="flex items-start gap-6">
-              <Link to="/" className="flex items-center gap-2 shrink-0">
-                <img src="/he-logo.png" alt="Honest Echo" className="h-8 w-auto" />
-                <div className="flex flex-col leading-none gap-0.5">
+          <div className="flex items-stretch gap-6 shrink-0">
+            <Link to="/" className="flex items-center gap-2 shrink-0">
+              <img src="/he-logo.png" alt="Honest Echo" className="h-8 w-auto" />
+              <div className="flex flex-col leading-none gap-0.5">
                 <span className="font-headline font-black text-xl tracking-tighter text-white">Honest Echo</span>
                 <span className="font-body font-normal text-xs text-[#8b9bb4] tracking-wide whitespace-nowrap">Better Signals. Smarter Pursuits</span>
-                </div>
-              </Link>
-              <div className="flex flex-col gap-1 border-l border-[#1e2d4a] pl-6">
-                <p className="text-xs text-[#8b9bb4]">Fairfax, VA</p>
-                <a href="mailto:info@honestecho.com" className="text-xs text-[#8b9bb4] hover:text-[#00c3ff] transition-colors whitespace-nowrap">
-                  info@honestecho.com
-                </a>
               </div>
+            </Link>
+            <div className="border-l border-[#1e2d4a] self-stretch"></div>
+            <div className="flex flex-col justify-center gap-1">
+              <p className="text-xs text-[#8b9bb4]">Fairfax, VA</p>
+              <a href="mailto:info@honestecho.com" className="text-xs text-[#8b9bb4] hover:text-[#00c3ff] transition-colors whitespace-nowrap">
+                info@honestecho.com
+              </a>
             </div>
           </div>
 

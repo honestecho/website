@@ -10,8 +10,8 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="flex flex-col md:w-64 shrink-0">
-            <div className="flex items-center gap-6">
-              <Link to="/" className="flex items-center gap-2">
+            <div className="flex items-start gap-6">
+              <Link to="/" className="flex items-center gap-2 shrink-0">
                 <img src="/he-logo.png" alt="Honest Echo" className="h-8 w-auto" />
                 <div className="flex flex-col leading-none gap-0.5">
                 <span className="font-headline font-black text-xl tracking-tighter text-white">Honest Echo</span>

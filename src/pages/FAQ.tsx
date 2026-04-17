@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ChevronDown, Rocket, Cpu, ShieldCheck, CreditCard, Target } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
+import { FAQPageSchema } from '../components/SchemaOrg';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -243,15 +244,29 @@ export default function FAQ() {
   return (
     <>
       <Helmet>
-        <title>FAQ | Honest Echo</title>
-        <meta name="description" content="Frequently asked questions about HE Pursuit — the bid/no-bid decision platform for government contractors." />
+        <title>FAQ — HE Pursuit | Bid/No-Bid Decisions for Government Contractors</title>
+        <meta name="description" content="Frequently asked questions about HE Pursuit — the bid/no-bid decision platform for small government contractors. Learn how we use SAM.gov data to help you evaluate opportunities faster." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/faq" />
-        <meta property="og:title" content="FAQ — Honest Echo" />
-        <meta property="og:description" content="Everything you need to know about HE Pursuit and how it helps government contractors make better bid decisions." />
-        <meta property="og:image" content="https://honestecho.com/og-image.png" />
+        <meta property="og:title" content="FAQ — HE Pursuit Bid/No-Bid Platform" />
+        <meta property="og:description" content="Everything you need to know about HE Pursuit and how it helps government contractors make better bid decisions using SAM.gov data." />
+        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="FAQ — HE Pursuit Bid/No-Bid Platform" />
+        <meta name="twitter:description" content="Everything you need to know about HE Pursuit and how it helps government contractors make better bid decisions using SAM.gov data." />
+        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
+      <FAQPageSchema items={[
+        { q: 'What is HE Pursuit and how does it help government contractors?', a: 'HE Pursuit is a bid/no-bid decision platform that helps small government contractors evaluate SAM.gov opportunities quickly and decide which ones are worth pursuing. It replaces scattered notes and gut-feel decisions with a structured way to assess fit, eligibility, effort, and overall pursuit value.' },
+        { q: 'How does HE Pursuit help with bid/no-bid decisions?', a: 'HE Pursuit evaluates each opportunity against your business profile and provides a structured assessment of fit, eligibility, effort, and risk. It then generates a clear recommendation — Go, Conditional Go, or No-Bid — to support your decision.' },
+        { q: 'Where does the opportunity data come from?', a: 'HE Pursuit uses publicly available data from sources like SAM.gov.' },
+        { q: 'Is my data shared or sold?', a: 'No. We do not sell, rent, or share your data.' },
+        { q: 'Is my data used to train AI models?', a: 'No. Your data is not used to train artificial intelligence or machine learning models.' },
+        { q: 'What does the free plan include?', a: 'The free plan allows you to evaluate a limited number of opportunities and see how the platform works before upgrading.' },
+        { q: 'Do I need a credit card to start?', a: 'No. You can start using the platform for free without a credit card.' },
+        { q: 'Can I cancel anytime?', a: 'Yes. You can cancel your subscription at any time.' },
+        { q: 'How long should it take to evaluate an opportunity?', a: 'Initial evaluation should take minutes, not hours. A quick, structured review helps you filter out low-fit opportunities before investing significant time.' },
+      ]} />
 
       {/* ── Hero ───────────────────────────────────────────────────────────── */}
       <section className="pt-32 pb-12 px-6 relative overflow-hidden">

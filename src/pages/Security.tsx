@@ -72,11 +72,11 @@ export default function Security() {
         <meta property="og:url" content="https://honestecho.com/security" />
         <meta property="og:title" content="Security — Honest Echo" />
         <meta property="og:description" content="A practical, straightforward approach to protecting customer data. Encryption, access controls, and clear data handling practices." />
-        <meta property="og:image" content="https://honestecho.com/og-image.png" />
+        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Security — Honest Echo" />
         <meta name="twitter:description" content="A practical, straightforward approach to protecting customer data." />
-        <meta name="twitter:image" content="https://honestecho.com/og-image.png" />
+        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
 
       {/* ── Hero ───────────────────────────────────────────────────────────── */}

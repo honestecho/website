@@ -13,6 +13,7 @@ import Security from './pages/Security';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import FAQ from './pages/FAQ';
+import { OrganizationSchema } from './components/SchemaOrg';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -33,6 +34,7 @@ function App() {
           <div className="animate-glow-b w-[120vw] h-[120vh] rounded-full blur-[140px] bg-[radial-gradient(ellipse,rgba(91,140,255,0.28)_0%,rgba(0,195,255,0.10)_52%,transparent_75%)]"></div>
         </div>
       </div>
+      <OrganizationSchema />
       <ScrollToTop />
       <Navbar />
       <main className="flex-grow relative z-10">

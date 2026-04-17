@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, X, ChevronDown, ShieldCheck, Clock, Ban } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
+import { SoftwareApplicationSchema } from '../components/SchemaOrg';
 
 // ─── Feature Matrix ───────────────────────────────────────────────────────────
 
@@ -159,12 +160,13 @@ export default function Pricing() {
         <meta property="og:url" content="https://honestecho.com/pricing" />
         <meta property="og:title" content="HE Pursuit Pricing — Free, Starter, Pro, Team" />
         <meta property="og:description" content="Start free. Upgrade to $99 Starter, $199 Pro, or $299 Team as your evaluation volume grows." />
-        <meta property="og:image" content="https://honestecho.com/og-image.png" />
+        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="HE Pursuit Pricing — Free, Starter, Pro, Team" />
         <meta name="twitter:description" content="Start free. Upgrade to $99 Starter, $199 Pro, or $299 Team as your evaluation volume grows." />
-        <meta name="twitter:image" content="https://honestecho.com/og-image.png" />
+        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
+      <SoftwareApplicationSchema />
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
       <section className="pt-32 pb-10 px-6 relative overflow-hidden">

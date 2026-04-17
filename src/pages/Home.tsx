@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Sparkles, Target, Scale, FileText, CheckCircle, Upload, Compass, Clock, Shuffle, Filter } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import FlyIn from '../components/FlyIn';
+import { SoftwareApplicationSchema } from '../components/SchemaOrg';
 
 export default function Home() {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -10,18 +11,19 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Honest Echo</title>
-        <meta name="description" content="HE Pursuit helps small government contractors assess fit, eligibility, and pursuit value in minutes. Make faster, more defensible bid/no-bid decisions before committing proposal resources." />
+        <title>Honest Echo — GovCon Bid/No-Bid Intelligence for Small Contractors</title>
+        <meta name="description" content="HE Pursuit helps small government contractors score SAM.gov opportunities, assess fit and eligibility, and make faster bid/no-bid decisions — before wasting proposal resources." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/" />
         <meta property="og:title" content="HE Pursuit — Bid/No-Bid Decisions for Small Government Contractors" />
-        <meta property="og:description" content="Stop wasting proposal hours on bids you shouldn't chase. Fit, eligibility, and pursuit value analysis for lean GovCon teams." />
-        <meta property="og:image" content="https://honestecho.com/og-image.png" />
+        <meta property="og:description" content="Stop wasting proposal hours on bids you shouldn't chase. SAM.gov opportunity scoring, fit analysis, and pursuit intelligence for lean GovCon teams." />
+        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="HE Pursuit — Bid/No-Bid Decisions for Small Government Contractors" />
-        <meta name="twitter:description" content="Stop wasting proposal hours on bids you shouldn't chase. Fit, eligibility, and pursuit value analysis for lean GovCon teams." />
-        <meta name="twitter:image" content="https://honestecho.com/og-image.png" />
+        <meta name="twitter:description" content="Stop wasting proposal hours on bids you shouldn't chase. SAM.gov opportunity scoring and pursuit intelligence for lean GovCon teams." />
+        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
+      <SoftwareApplicationSchema />
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
       <section className="relative px-6 pt-32 pb-16 lg:pb-20">

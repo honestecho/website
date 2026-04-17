@@ -11,11 +11,11 @@ export default function Contact() {
         <meta property="og:url" content="https://honestecho.com/contact" />
         <meta property="og:title" content="Contact Honest Echo — GovCon Intelligence" />
         <meta property="og:description" content="Reach out for consulting inquiries, enterprise tool access, or general questions about HE Pursuit." />
-        <meta property="og:image" content="https://honestecho.com/og-image.png" />
+        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Contact Honest Echo — GovCon Intelligence" />
         <meta name="twitter:description" content="Reach out for consulting inquiries, enterprise tool access, or general questions about HE Pursuit." />
-        <meta name="twitter:image" content="https://honestecho.com/og-image.png" />
+        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
       
       <div className="max-w-7xl mx-auto px-6 py-24 min-h-[80vh] flex flex-col md:flex-row gap-16">

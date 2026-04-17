@@ -1,0 +1,117 @@
+import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import { ArrowRight, BarChart2, Target, CheckCircle, Zap, Filter, Layers } from 'lucide-react';
+import FlyIn from '../components/FlyIn';
+import { SoftwareApplicationSchema } from '../components/SchemaOrg';
+
+const cards = [
+  {
+    Icon: Target,
+    title: 'Pursuit qualification, not market analytics',
+    body: "GovTribe provides market intelligence — contract history, agency spend, competitor analysis. HE Pursuit answers a different question: should you pursue this specific opportunity? It structures the go/no-go decision your team needs to make right now.",
+  },
+  {
+    Icon: BarChart2,
+    title: 'Stop browsing. Start deciding.',
+    body: "GovTribe is great for passive market research. HE Pursuit is an active decision workflow. It walks you through fit, eligibility, strategic value, and effort — and produces a structured recommendation your team can act on.",
+  },
+  {
+    Icon: Filter,
+    title: 'Filter out weak fits before they drain resources',
+    body: "GovTribe shows you the opportunity landscape. HE Pursuit helps you filter it. Most small contractors don't have a discovery problem — they have a qualification problem. HE Pursuit is built to solve that.",
+  },
+  {
+    Icon: CheckCircle,
+    title: 'Go / Conditional Go / No-Bid output',
+    body: "GovTribe gives you data. HE Pursuit gives you a decision. Each evaluation ends with a clear recommendation — Go, Conditional Go, or No-Bid — grounded in structured analysis, not gut feel.",
+  },
+  {
+    Icon: Zap,
+    title: 'Minutes to a decision, not hours of research',
+    body: "GovTribe research can take hours to produce a meaningful picture. HE Pursuit shortens the path from opportunity to decision. Most evaluations complete in minutes, so your team can qualify more opportunities without adding overhead.",
+  },
+  {
+    Icon: Layers,
+    title: 'Use what fits your stage',
+    body: "If you need deep market intel, GovTribe delivers. If you need to decide whether to pursue a specific SAM.gov opportunity — today, with limited BD bandwidth — HE Pursuit is the tool that fits.",
+  },
+];
+
+export default function VsGovTribe() {
+  return (
+    <>
+      <Helmet>
+        <title>HE Pursuit vs GovTribe — GovTribe Alternative for GovCon Teams</title>
+        <meta name="description" content="Looking for a GovTribe alternative focused on bid/no-bid decisions? HE Pursuit helps small government contractors evaluate SAM.gov opportunities with a structured qualification workflow." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://honestecho.com/vs-govtribe" />
+        <meta property="og:title" content="HE Pursuit vs GovTribe — GovTribe Alternative for GovCon Teams" />
+        <meta property="og:description" content="GovTribe is market analytics. HE Pursuit is bid/no-bid decision workflow. If you need to qualify SAM.gov opportunities fast, HE Pursuit is the right tool." />
+        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="HE Pursuit vs GovTribe — GovTribe Alternative for GovCon Teams" />
+        <meta name="twitter:description" content="GovTribe is market analytics. HE Pursuit is bid/no-bid decision workflow. If you need to qualify SAM.gov opportunities fast, HE Pursuit is the right tool." />
+        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
+      </Helmet>
+      <SoftwareApplicationSchema />
+
+      {/* Hero */}
+      <section className="pt-32 pb-12 px-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">GovTribe Alternative</span>
+          </div>
+          <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
+            Beyond market data.<br className="hidden md:block" /> Built for bid decisions.
+          </h1>
+          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-2xl">
+            GovTribe is a strong market intelligence tool. But if your team's real bottleneck is deciding which SAM.gov opportunities are worth pursuing — not finding them — HE Pursuit gives you the structured qualification workflow that market data tools don't.
+          </p>
+        </div>
+      </section>
+
+      {/* Cards */}
+      <section className="pb-8 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {cards.map((card, i) => (
+              <FlyIn key={card.title} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i % 4]}>
+              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+                <div className="flex items-start gap-4 mb-5">
+                  <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
+                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                    <card.Icon className="w-5 h-5 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                  </div>
+                  <h2 className="font-headline font-bold text-white text-xl tracking-tight pt-1.5">{card.title}</h2>
+                </div>
+                <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{card.body}</p>
+              </div>
+              </FlyIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-8 pb-24 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link
+            to="/signup"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline"
+          >
+            Start Free
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+          <Link
+            to="/pricing"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline"
+          >
+            See Pricing
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}

@@ -17,7 +17,7 @@
 | 6 | Cloudflare `_headers` security headers | Low | 15 min | ✅ Sprint 1 |
 | 7 | Static pre-rendering (SSG) | Critical | 4–8 hrs | ✅ Sprint 2 |
 | 8 | LSI keyword expansion — SAM.gov, GovWin alternative content | Medium | Ongoing | ✅ Sprint 3 |
-| 9 | Comparison/landing pages (GovWin alt, GovTribe alt) | High | 2 hrs ea | Sprint 4 |
+| 9 | Comparison/landing pages (GovWin alt, GovTribe alt) | High | 2 hrs ea | ✅ Sprint 4 |
 
 ---
 

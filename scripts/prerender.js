@@ -29,6 +29,9 @@ const routes = [
   '/terms',
   '/privacy',
   '/signup',
+  '/vs-govwin',
+  '/vs-govtribe',
+  '/sam-gov-opportunity-analysis',
 ];
 
 async function prerender() {

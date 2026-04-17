@@ -13,6 +13,9 @@ import Security from './pages/Security';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import FAQ from './pages/FAQ';
+import VsGovWin from './pages/VsGovWin';
+import VsGovTribe from './pages/VsGovTribe';
+import SamGovAnalysis from './pages/SamGovAnalysis';
 import { OrganizationSchema } from './components/SchemaOrg';
 
 function ScrollToTop() {
@@ -54,6 +57,9 @@ function App() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/vs-govwin" element={<VsGovWin />} />
+          <Route path="/vs-govtribe" element={<VsGovTribe />} />
+          <Route path="/sam-gov-opportunity-analysis" element={<SamGovAnalysis />} />
         </Routes>
       </main>
       <Footer />

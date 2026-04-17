@@ -37,7 +37,7 @@ export default function Home() {
             </h1>
 
             <p className="text-[#a0b2c8] text-base lg:text-xl mb-8 leading-relaxed font-body">
-              HE Pursuit helps small government contractors assess fit, eligibility, and pursuit value in minutes, so your team can make faster, more defensible bid/no-bid decisions before committing time, money, and proposal capacity.
+              HE Pursuit helps small government contractors evaluate SAM.gov opportunities for fit, eligibility, and pursuit value in minutes — so your team can make faster, more defensible bid/no-bid decisions before committing proposal capacity.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-5">
@@ -153,7 +153,7 @@ export default function Home() {
             </h2>
 
             <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body">
-              Many tools help you collect opportunities. HE Pursuit helps you decide which ones deserve your time. It gives lean GovCon teams a repeatable way to qualify opportunities, pressure-test assumptions, and avoid proposal churn.
+              Tools like GovWin and GovTribe help you discover SAM.gov opportunities. HE Pursuit helps you decide which ones deserve your time. It gives lean GovCon teams a repeatable way to qualify opportunities, pressure-test assumptions, and avoid proposal churn.
             </p>
 
             <Link to="/pricing" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all">
@@ -415,8 +415,8 @@ export default function Home() {
                 a: 'Small GovCon teams and business owners who need to protect proposal bandwidth and stop chasing low-fit opportunities.',
               },
               {
-                q: 'Why not just use spreadsheets or instinct?',
-                a: 'Because informal decisions break down when time is tight, resources are limited, and every pursuit feels urgent. HE Pursuit gives you a more consistent process.',
+                q: 'How is this different from GovWin or GovTribe?',
+                a: 'GovWin and GovTribe focus on opportunity discovery and pipeline data. HE Pursuit focuses on the next step: deciding which SAM.gov opportunities are actually worth pursuing. It structures the bid/no-bid decision — not just the collection of leads.',
               },
             ].map(({ q, a }, i) => (
               <FlyIn key={q} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>

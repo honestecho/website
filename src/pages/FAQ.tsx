@@ -181,6 +181,27 @@ const seoItems: FAQItem[] = [
       'A quick, structured review helps you filter out low-fit opportunities before investing significant time.',
     ],
   },
+  {
+    q: 'Can HE Pursuit help me find and evaluate SAM.gov opportunities?',
+    parts: [
+      'Yes. HE Pursuit works with data from SAM.gov, the official U.S. government contracting database.',
+      'You can evaluate SAM.gov opportunities against your company profile to determine which ones align with your capabilities, certifications, and set-aside status.',
+    ],
+  },
+  {
+    q: 'How is HE Pursuit different from GovWin IQ or GovTribe?',
+    parts: [
+      'GovWin and GovTribe are primarily opportunity discovery and pipeline data tools — they help you find contracts.',
+      'HE Pursuit focuses on what comes next: making a disciplined bid/no-bid decision. It structures the qualification process — fit, eligibility, effort, and risk — so you can decide faster and focus proposal resources on realistic wins.',
+    ],
+  },
+  {
+    q: 'What is capture management software for government contractors?',
+    parts: [
+      'Capture management software helps government contractors track, evaluate, and pursue contract opportunities.',
+      'HE Pursuit focuses on the earliest stage of capture: qualifying whether an opportunity is worth pursuing at all. This ensures your team only invests capture resources in opportunities with a realistic path to award.',
+    ],
+  },
 ];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -266,6 +287,9 @@ export default function FAQ() {
         { q: 'Do I need a credit card to start?', a: 'No. You can start using the platform for free without a credit card.' },
         { q: 'Can I cancel anytime?', a: 'Yes. You can cancel your subscription at any time.' },
         { q: 'How long should it take to evaluate an opportunity?', a: 'Initial evaluation should take minutes, not hours. A quick, structured review helps you filter out low-fit opportunities before investing significant time.' },
+        { q: 'Can HE Pursuit help me find and evaluate SAM.gov opportunities?', a: 'Yes. HE Pursuit works with data from SAM.gov, the official U.S. government contracting database. You can evaluate SAM.gov opportunities against your company profile to determine which ones align with your capabilities, certifications, and set-aside status.' },
+        { q: 'How is HE Pursuit different from GovWin IQ or GovTribe?', a: 'GovWin and GovTribe are primarily opportunity discovery and pipeline data tools — they help you find contracts. HE Pursuit focuses on what comes next: making a disciplined bid/no-bid decision. It structures the qualification process — fit, eligibility, effort, and risk — so you can decide faster and focus proposal resources on realistic wins.' },
+        { q: 'What is capture management software for government contractors?', a: 'Capture management software helps government contractors track, evaluate, and pursue contract opportunities. HE Pursuit focuses on the earliest stage of capture: qualifying whether an opportunity is worth pursuing at all, so your team only invests capture resources in opportunities with a realistic path to award.' },
       ]} />
 
       {/* ── Hero ───────────────────────────────────────────────────────────── */}

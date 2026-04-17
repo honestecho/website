@@ -30,7 +30,7 @@ export default function About() {
             Better Signals. Smarter Pursuits.
           </p>
           <p className="text-[#a0b2c8] text-lg leading-relaxed font-body">
-            Honest Echo builds practical tools to help small government contractors make better decisions.
+            Honest Echo builds practical tools to help small government contractors evaluate SAM.gov opportunities and make better bid/no-bid decisions.
           </p>
         </div>
       </section>

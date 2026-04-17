@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, X, ChevronDown, ShieldCheck, Clock, Ban } from 'lucide-react';
@@ -355,8 +355,8 @@ export default function Pricing() {
               </thead>
               <tbody className="bg-[#080f1c]">
                 {categories.map(cat => (
-                  <>
-                    <tr key={cat} className="border-t border-[#1e2d4a] bg-[#0b1120]/80">
+                  <React.Fragment key={cat}>
+                    <tr className="border-t border-[#1e2d4a] bg-[#0b1120]/80">
                       <td colSpan={5} className="px-6 py-3 text-xs font-bold text-[#00c3ff] uppercase tracking-widest font-label">{cat}</td>
                     </tr>
                     {features.filter(f => f.category === cat).map(f => (
@@ -368,7 +368,7 @@ export default function Pricing() {
                         <td className="px-4 py-4 text-center"><Cell value={f.team} /></td>
                       </tr>
                     ))}
-                  </>
+                  </React.Fragment>
                 ))}
               </tbody>
             </table>

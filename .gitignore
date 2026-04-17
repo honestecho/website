@@ -5,3 +5,5 @@ build2.log
 *.local
 .env
 .DS_Store
+
+dist-server/

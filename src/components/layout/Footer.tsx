@@ -66,6 +66,24 @@ export default function Footer() {
               </ul>
             </div>
 
+            {/* Compare column */}
+            <div>
+              <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-3">Compare</p>
+              <ul className="space-y-2">
+                {[
+                  { label: 'vs GovWin', to: '/vs-govwin' },
+                  { label: 'vs GovTribe', to: '/vs-govtribe' },
+                  { label: 'SAM.gov Analysis', to: '/sam-gov-opportunity-analysis' },
+                ].map(({ label, to }) => (
+                  <li key={to}>
+                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             {/* Legal column */}
             <div>
               <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-3">Legal</p>

@@ -65,7 +65,7 @@ export default function VsGovTribe() {
           <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
             Beyond market data.<br className="hidden md:block" /> Built for bid decisions.
           </h1>
-          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-2xl">
+          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body">
             GovTribe is a strong market intelligence tool. But if your team's real bottleneck is deciding which SAM.gov opportunities are worth pursuing — not finding them — HE Pursuit gives you the structured qualification workflow that market data tools don't.
           </p>
         </div>

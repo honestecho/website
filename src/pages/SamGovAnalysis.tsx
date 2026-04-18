@@ -65,7 +65,7 @@ export default function SamGovAnalysis() {
           <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
             SAM.gov opportunity analysis<br className="hidden md:block" /> built for small contractors.
           </h1>
-          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-2xl">
+          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body">
             SAM.gov is free and comprehensive. But listing opportunities is different from analyzing them. HE Pursuit gives small government contractors a structured way to evaluate SAM.gov opportunities for fit, eligibility, and pursuit value — so your team makes faster, more defensible bid/no-bid decisions.
           </p>
         </div>

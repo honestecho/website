@@ -65,7 +65,7 @@ export default function VsGovWin() {
           <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
             A GovWin alternative<br className="hidden md:block" /> built for small contractors.
           </h1>
-          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-2xl">
+          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body">
             GovWin IQ is a powerful enterprise market intelligence tool. If you're a small government contractor who needs to evaluate SAM.gov opportunities and make faster bid/no-bid decisions — not subscribe to a $10,000/year data platform — HE Pursuit was built for you.
           </p>
         </div>

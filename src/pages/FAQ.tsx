@@ -160,7 +160,7 @@ const seoItems: FAQItem[] = [
     ],
   },
   {
-    q: 'How do you evaluate if a government contract is a good fit?',
+    q: 'How do you evaluate government contracting opportunities?',
     parts: [
       "You evaluate fit by comparing the opportunity to your company's:",
       { bullets: ['NAICS codes', 'Certifications and set-aside status', 'Past performance', 'Geographic and agency alignment'] },

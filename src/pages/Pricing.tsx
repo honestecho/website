@@ -175,7 +175,7 @@ export default function Pricing() {
             Simple pricing for better bid decisions.
           </h1>
           <p className="text-[#a0b2c8] text-lg leading-relaxed font-body mb-6">
-            Start free and qualify opportunities in minutes. Upgrade when your team needs deeper analysis, more volume, and a structured pursuit process.
+            HE Pursuit helps you evaluate government contracting opportunities quickly so you can focus on the bids that matter. Start free and qualify opportunities in minutes. Upgrade when your team needs deeper analysis, more volume, and a structured pursuit process.
           </p>
           <p className="text-[#00c3ff] font-body text-sm font-medium">
             For most small contractors, avoiding just one bad-fit proposal can pay for the platform.

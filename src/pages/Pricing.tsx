@@ -60,7 +60,7 @@ const faqs = [
   { q: 'Do I need a credit card to start?',               a: 'No. Free requires only your email. A card is only needed when you upgrade to a paid plan.' },
   { q: 'Can I cancel anytime?',                           a: 'Yes. Cancel from your account settings — no notice period, no lock-in.' },
   { q: 'What is the difference between Starter and Pro?', a: 'Starter ($99/mo) gives you the full qualification workflow for up to 25 evaluations per month. Pro ($199/mo) removes limits entirely and adds the dashboard, decision tracking, and PDF export.' },
-  { q: 'When should I upgrade to Team?',                  a: 'When more than one person needs to work in the same pipeline. Team adds multiple users, shared pursuits, team-level visibility, and onboarding support.' },
+  { q: 'When should I upgrade to Team?',                  a: 'When more than one person needs to work in the same pipeline. Team adds multiple users, shared pursuits, team-level visibility, and onboarding support. Team is launching Q3 2026 — join the waitlist from the Team card above and we\'ll reach out with early-access pricing.' },
 ];
 
 // ─── Pricing cards data ───────────────────────────────────────────────────────
@@ -132,6 +132,7 @@ const plans = [
     tagline: 'Scale across your team',
     sub: 'Standardize decisions across users',
     highlight: false,
+    badge: 'Coming Q3',
     includesAbove: 'Everything in Pro, plus:',
     features: [
       'Multiple users',
@@ -141,8 +142,8 @@ const plans = [
       'Faster support response',
       'Onboarding assistance',
     ],
-    cta: 'Select Team',
-    ctaTo: '/signup',
+    cta: 'Join the Waitlist',
+    ctaTo: '/team-waitlist',
   },
 ];
 
@@ -155,7 +156,7 @@ export default function Pricing() {
     <>
       <Helmet>
         <title>Pricing | Honest Echo</title>
-        <meta name="description" content="Simple pricing for better bid decisions. Start free and qualify opportunities in minutes. Upgrade when your team needs deeper analysis, more volume, and a structured pursuit process." />
+        <meta name="description" content="Simple pricing for small contractors pursuing government contracting opportunities. Start free and qualify in minutes. Upgrade when your team needs deeper analysis and more volume." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/pricing" />
         <meta property="og:title" content="HE Pursuit Pricing — Free, Starter, Pro, Team" />

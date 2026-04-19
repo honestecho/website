@@ -12,15 +12,15 @@ export default function Home() {
     <>
       <Helmet>
         <title>Honest Echo — GovCon Bid/No-Bid Intelligence for Small Contractors</title>
-        <meta name="description" content="HE Pursuit helps small government contractors score SAM.gov opportunities, assess fit and eligibility, and make faster bid/no-bid decisions — before wasting proposal resources." />
+        <meta name="description" content="Find, qualify, and decide on government contracting opportunities faster. HE Pursuit analyzes SAM.gov notices and gives small contractors a bid/no-bid recommendation in minutes — before you waste proposal hours." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/" />
         <meta property="og:title" content="HE Pursuit — Bid/No-Bid Decisions for Small Government Contractors" />
-        <meta property="og:description" content="Stop wasting proposal hours on bids you shouldn't chase. SAM.gov opportunity scoring, fit analysis, and pursuit intelligence for lean GovCon teams." />
+        <meta property="og:description" content="Find, qualify, and decide on government contracting opportunities faster. SAM.gov opportunity scoring, fit analysis, and pursuit intelligence for lean GovCon teams." />
         <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="HE Pursuit — Bid/No-Bid Decisions for Small Government Contractors" />
-        <meta name="twitter:description" content="Stop wasting proposal hours on bids you shouldn't chase. SAM.gov opportunity scoring and pursuit intelligence for lean GovCon teams." />
+        <meta name="twitter:description" content="Qualify government contracting opportunities in minutes. SAM.gov opportunity scoring and pursuit intelligence for lean GovCon teams." />
         <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
       <SoftwareApplicationSchema />
@@ -45,9 +45,28 @@ export default function Home() {
                 Start Free
                 <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link to="/pricing" className="px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] transition-all flex items-center justify-center">
-                See Pricing
+              <Link to="/tools/sam-gov-notice-analyzer" className="px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all flex items-center justify-center gap-2">
+                <Sparkles className="w-4 h-4 text-[#00c3ff]" />
+                Try Now
               </Link>
+            </div>
+
+            {/* Hero stat strip — three defensible stats anchoring the value prop */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10 mt-8 mb-5">
+              <div>
+                <div className="text-2xl md:text-3xl font-black text-[#00c3ff] font-headline leading-none">30,000+</div>
+                <div className="text-sm text-[#a0b2c8] font-body mt-1">SAM.gov opportunities scored</div>
+              </div>
+              <div className="hidden sm:block h-10 w-px bg-[#1e2d4a]" />
+              <div>
+                <div className="text-2xl md:text-3xl font-black text-[#00c3ff] font-headline leading-none">5-phase</div>
+                <div className="text-sm text-[#a0b2c8] font-body mt-1">bid/no-bid workflow</div>
+              </div>
+              <div className="hidden sm:block h-10 w-px bg-[#1e2d4a]" />
+              <div>
+                <div className="text-2xl md:text-3xl font-black text-[#00c3ff] font-headline leading-none">Federal</div>
+                <div className="text-sm text-[#a0b2c8] font-body mt-1">capture experience — built for small contractors</div>
+              </div>
             </div>
 
             <p className="text-sm text-[#8b9bb4] font-body">

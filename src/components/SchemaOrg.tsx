@@ -43,7 +43,7 @@ export function SoftwareApplicationSchema() {
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web',
     url: 'https://pursuit.honestecho.com',
-    description: 'Bid/no-bid decision platform for small government contractors. Evaluate SAM.gov opportunities for fit, eligibility, effort, and pursuit value in minutes.',
+    description: 'Bid/no-bid decision platform for small government contractors. Evaluate government contracting opportunities on SAM.gov for fit, eligibility, effort, and pursuit value in minutes.',
     offers: [
       {
         '@type': 'Offer',

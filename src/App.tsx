@@ -16,6 +16,9 @@ import FAQ from './pages/FAQ';
 import VsGovWin from './pages/VsGovWin';
 import VsGovTribe from './pages/VsGovTribe';
 import SamGovAnalysis from './pages/SamGovAnalysis';
+import SamGovNoticeAnalyzer from './pages/SamGovNoticeAnalyzer';
+import SharedPackage from './pages/SharedPackage';
+import TeamWaitlist from './pages/TeamWaitlist';
 import { OrganizationSchema } from './components/SchemaOrg';
 
 function ScrollToTop() {
@@ -60,6 +63,9 @@ function App() {
           <Route path="/vs-govwin" element={<VsGovWin />} />
           <Route path="/vs-govtribe" element={<VsGovTribe />} />
           <Route path="/sam-gov-opportunity-analysis" element={<SamGovAnalysis />} />
+          <Route path="/tools/sam-gov-notice-analyzer" element={<SamGovNoticeAnalyzer />} />
+          <Route path="/p/:token" element={<SharedPackage />} />
+          <Route path="/team-waitlist" element={<TeamWaitlist />} />
         </Routes>
       </main>
       <Footer />

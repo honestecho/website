@@ -26,7 +26,7 @@ export default function Home() {
       <SoftwareApplicationSchema />
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
-      <section className="relative px-6 pt-24 pb-16 lg:pb-20">
+      <section className="relative px-6 pt-16 pb-16 lg:pb-20">
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
 
           {/* Left Column: Copy */}

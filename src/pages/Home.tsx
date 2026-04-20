@@ -85,7 +85,7 @@ export default function Home() {
         </div>
 
         {/* Full-width stat strip */}
-        <div className="max-w-7xl mx-auto relative z-10 mt-5">
+        <div className="max-w-7xl mx-auto relative z-10 mt-10">
           <div className="border border-[#1e2d4a] rounded-2xl bg-[#0b1120] px-8 py-6 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-0">
 
             <div className="flex items-center gap-4 sm:flex-1 justify-center group cursor-default">

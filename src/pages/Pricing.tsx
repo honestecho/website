@@ -170,7 +170,7 @@ export default function Pricing() {
       <SoftwareApplicationSchema />
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
-      <section className="pt-32 pb-10 px-6 relative overflow-hidden">
+      <section className="pt-24 pb-10 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
             Simple pricing for better bid decisions.

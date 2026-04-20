@@ -300,7 +300,7 @@ export default function SharedPackage() {
           <title>Shared Decision Package · HE Pursuit</title>
           <meta name="robots" content="noindex, nofollow" />
         </Helmet>
-        <section className="pt-32 pb-20 px-6">
+        <section className="pt-24 pb-20 px-6">
           <div className="max-w-xl mx-auto text-center">
             <div className="w-14 h-14 mx-auto rounded-full bg-[#0b1120] border border-[#1e2d4a] flex items-center justify-center mb-5">
               <m.Icon size={24} className="text-[#00c3ff]" strokeWidth={2} />

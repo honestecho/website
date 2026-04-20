@@ -276,7 +276,7 @@ export default function SamGovNoticeAnalyzer() {
       </Helmet>
 
       {/* ── Hero ───────────────────────────────────────────────────────────── */}
-      <section className="pt-32 pb-10 px-6 relative overflow-hidden">
+      <section className="pt-24 pb-10 px-6 relative overflow-hidden">
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
             <Sparkles className="w-3 h-3 text-[#00c3ff]" />

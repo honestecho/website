@@ -85,13 +85,13 @@ export default function Home() {
         </div>
 
         {/* Full-width stat strip */}
-        <div className="max-w-7xl mx-auto relative z-10 mt-10">
+        <div className="max-w-7xl mx-auto relative z-10 mt-5">
           <div className="border border-[#1e2d4a] rounded-2xl bg-[#0b1120] px-8 py-6 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-0">
 
-            <div className="flex items-center gap-4 sm:flex-1 justify-center">
+            <div className="flex items-center gap-4 sm:flex-1 justify-center group cursor-default">
               <div className="w-8 h-8 flex items-center justify-center relative overflow-visible shrink-0">
-                <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 rounded-full scale-150"></div>
-                <Target className="w-4 h-4 text-[#00c3ff] relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                <Target className="w-4 h-4 text-[#00c3ff] group-hover:text-white group-hover:scale-110 group-hover:-rotate-12 drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
               </div>
               <div>
                 <div className="text-xl font-black text-[#00c3ff] font-headline leading-none">100,000+</div>
@@ -102,10 +102,10 @@ export default function Home() {
             <div className="hidden sm:block h-10 w-px bg-[#1e2d4a]" />
             <div className="block sm:hidden w-full h-px bg-[#1e2d4a]" />
 
-            <div className="flex items-center gap-4 sm:flex-1 justify-center">
+            <div className="flex items-center gap-4 sm:flex-1 justify-center group cursor-default">
               <div className="w-8 h-8 flex items-center justify-center relative overflow-visible shrink-0">
-                <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 rounded-full scale-150"></div>
-                <Compass className="w-4 h-4 text-[#00c3ff] relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                <Compass className="w-4 h-4 text-[#00c3ff] group-hover:text-white group-hover:scale-110 group-hover:-rotate-12 drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
               </div>
               <div>
                 <div className="text-xl font-black text-[#00c3ff] font-headline leading-none">5-phase</div>
@@ -116,10 +116,10 @@ export default function Home() {
             <div className="hidden sm:block h-10 w-px bg-[#1e2d4a]" />
             <div className="block sm:hidden w-full h-px bg-[#1e2d4a]" />
 
-            <div className="flex items-center gap-4 sm:flex-1 justify-center">
+            <div className="flex items-center gap-4 sm:flex-1 justify-center group cursor-default">
               <div className="w-8 h-8 flex items-center justify-center relative overflow-visible shrink-0">
-                <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 rounded-full scale-150"></div>
-                <FileText className="w-4 h-4 text-[#00c3ff] relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                <FileText className="w-4 h-4 text-[#00c3ff] group-hover:text-white group-hover:scale-110 group-hover:-rotate-12 drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
               </div>
               <div>
                 <div className="text-xl font-black text-[#00c3ff] font-headline leading-none">Decision-ready</div>

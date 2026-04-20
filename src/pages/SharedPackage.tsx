@@ -330,7 +330,7 @@ export default function SharedPackage() {
           <title>Shared Decision Package · HE Pursuit</title>
           <meta name="robots" content="noindex, nofollow" />
         </Helmet>
-        <section className="pt-28 pb-16 px-6">
+        <section className="pt-16 pb-16 px-6">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center gap-2 text-xs font-bold text-[#8b9bb4] uppercase tracking-widest mb-8">
               <Loader2 className="w-3.5 h-3.5 animate-spin text-[#00c3ff]" />
@@ -380,7 +380,7 @@ export default function SharedPackage() {
       </Helmet>
 
       {/* ── Shared banner ──────────────────────────────────────────────────── */}
-      <section className="pt-28 pb-6 px-6">
+      <section className="pt-16 pb-6 px-6">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 rounded-md bg-[#0d1827] border border-[#1e2d4a] flex items-center justify-center">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -9,126 +9,92 @@ import {
   CheckCircle2,
   AlertTriangle,
   XCircle,
-  Pause,
   Loader2,
   Sparkles,
   FileText,
   ShieldCheck,
   Building2,
   Calendar,
-  Hash,
   Tag,
-  ScrollText,
+  Lock,
+  ChevronRight,
 } from 'lucide-react';
 
-// ── API base ─────────────────────────────────────────────────────────────────
+// ── API ───────────────────────────────────────────────────────────────────────
 
 const API_BASE = import.meta.env.VITE_API_URL
   ? `${import.meta.env.VITE_API_URL}/api`
   : 'https://pursuit.honestecho.com/api';
 
-// ── Types ────────────────────────────────────────────────────────────────────
+// ── Types ─────────────────────────────────────────────────────────────────────
 
-type TriageSuggestion = 'continue' | 'caution' | 'not_actionable' | 'stop';
+type Recommendation = 'GO' | 'CONDITIONAL_GO' | 'NO_BID';
 
 interface AnalysisResult {
-  rfi_title: string;
-  issuing_agency: string;
-  notice_type: string;
-  rfi_reference_number: string;
-  due_date: string;
-  naics_codes: string;
-  set_aside_indicated: string;
-  purpose_of_rfi: string;
-  ai_triage_suggestion: TriageSuggestion | string;
-  ai_triage_reason: string;
+  noticeId: string;
+  title: string;
+  agency: string;
+  dueDate: string | null;
+  score: number;
+  recommendation: Recommendation;
+  drivers: string[];
+  summary: string;
+  setAside?: string;
+  naics?: string;
 }
 
-// ── Triage styling helper ────────────────────────────────────────────────────
+// ── Config ────────────────────────────────────────────────────────────────────
 
-function triageStyle(suggestion: string) {
-  const s = (suggestion || '').toLowerCase();
-  if (s === 'continue') {
-    return {
-      label: 'Continue',
-      Icon: CheckCircle2,
-      border: 'border-emerald-500/40',
-      bg: 'bg-emerald-500/10',
-      text: 'text-emerald-400',
-      glow: 'shadow-[0_0_40px_rgba(16,185,129,0.12)]',
-    };
-  }
-  if (s === 'caution') {
-    return {
-      label: 'Caution',
-      Icon: AlertTriangle,
-      border: 'border-amber-500/40',
-      bg: 'bg-amber-500/10',
-      text: 'text-amber-400',
-      glow: 'shadow-[0_0_40px_rgba(245,158,11,0.10)]',
-    };
-  }
-  if (s === 'stop') {
-    return {
-      label: 'Stop',
-      Icon: XCircle,
-      border: 'border-red-500/40',
-      bg: 'bg-red-500/10',
-      text: 'text-red-400',
-      glow: 'shadow-[0_0_40px_rgba(239,68,68,0.10)]',
-    };
-  }
-  // not_actionable or unknown
-  return {
-    label: 'Not actionable',
-    Icon: Pause,
-    border: 'border-[#1e2d4a]',
-    bg: 'bg-[#8b9bb4]/10',
-    text: 'text-[#a0b2c8]',
-    glow: '',
-  };
-}
+const REC_CONFIG: Record<Recommendation, { label: string; color: string; bg: string; border: string; glow: string }> = {
+  GO: {
+    label: 'GO',
+    color: 'text-emerald-400',
+    bg: 'bg-emerald-500/10',
+    border: 'border-emerald-500/40',
+    glow: 'shadow-[0_0_40px_rgba(16,185,129,0.12)]',
+  },
+  CONDITIONAL_GO: {
+    label: 'CONDITIONAL GO',
+    color: 'text-amber-400',
+    bg: 'bg-amber-500/10',
+    border: 'border-amber-500/40',
+    glow: 'shadow-[0_0_40px_rgba(245,158,11,0.10)]',
+  },
+  NO_BID: {
+    label: 'NO-BID',
+    color: 'text-red-400',
+    bg: 'bg-red-500/10',
+    border: 'border-red-500/40',
+    glow: 'shadow-[0_0_40px_rgba(239,68,68,0.10)]',
+  },
+};
 
-// ── Small field row ──────────────────────────────────────────────────────────
+const REC_ICON: Record<Recommendation, typeof CheckCircle2> = {
+  GO: CheckCircle2,
+  CONDITIONAL_GO: AlertTriangle,
+  NO_BID: XCircle,
+};
 
-function Field({
-  icon: Icon,
-  label,
-  value,
-}: {
-  icon: React.ElementType;
-  label: string;
-  value: string;
-}) {
-  const displayed = value && value.trim() ? value : 'Not stated';
-  return (
-    <div className="flex items-start gap-3 py-3 border-b border-[#1e2d4a] last:border-b-0">
-      <div className="w-8 h-8 flex-shrink-0 rounded-md bg-[#0d1827] border border-[#1e2d4a] flex items-center justify-center">
-        <Icon size={15} className="text-[#00c3ff]" strokeWidth={2} />
-      </div>
-      <div className="flex-1 min-w-0">
-        <div className="text-[10px] font-bold text-[#8b9bb4] uppercase tracking-widest font-label mb-0.5">
-          {label}
-        </div>
-        <div className="text-sm text-white font-body break-words">{displayed}</div>
-      </div>
-    </div>
-  );
-}
-
-// ── Result card skeleton ─────────────────────────────────────────────────────
+// ── Skeleton ──────────────────────────────────────────────────────────────────
 
 function ResultSkeleton() {
   return (
     <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] p-6 md:p-8 shadow-2xl animate-pulse">
-      <div className="h-6 w-24 bg-[#152033] rounded mb-4" />
-      <div className="h-7 w-3/4 bg-[#152033] rounded mb-3" />
-      <div className="h-4 w-1/2 bg-[#152033] rounded mb-6" />
-      <div className="space-y-3">
-        {[0, 1, 2, 3, 4].map(i => (
+      <div className="h-4 w-24 bg-[#152033] rounded mb-3" />
+      <div className="h-7 w-3/4 bg-[#152033] rounded mb-6" />
+      <div className="flex items-center gap-6 mb-6">
+        <div className="h-14 w-16 bg-[#152033] rounded" />
+        <div className="w-px h-14 bg-[#152033]" />
+        <div className="flex-1 space-y-2">
+          <div className="h-6 w-28 bg-[#152033] rounded-full" />
+          <div className="h-4 w-full bg-[#152033] rounded" />
+        </div>
+      </div>
+      <div className="border-t border-[#1e2d4a] pt-5 space-y-3">
+        {[0, 1, 2].map(i => (
           <div key={i} className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-md bg-[#152033]" />
-            <div className="h-4 bg-[#152033] rounded flex-1" />
+            <div className="w-5 h-5 bg-[#152033] rounded" />
+            <div className="h-4 flex-1 bg-[#152033] rounded" />
           </div>
         ))}
       </div>
@@ -136,143 +102,78 @@ function ResultSkeleton() {
   );
 }
 
-// ── Page ─────────────────────────────────────────────────────────────────────
+// ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function SamGovNoticeAnalyzer() {
-  const [input, setInput] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<AnalysisResult | null>(null);
-  const [noticeId, setNoticeId] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [input, setInput]       = useState('');
+  const [loading, setLoading]   = useState(false);
+  const [result, setResult]     = useState<AnalysisResult | null>(null);
+  const [error, setError]       = useState<string | null>(null);
   const [rateLimited, setRateLimited] = useState(false);
-
-  // Email capture
-  const [showEmail, setShowEmail] = useState(false);
-  const [leadEmail, setLeadEmail] = useState('');
-  const [leadHoneypot, setLeadHoneypot] = useState('');
-  const [leadSubmitted, setLeadSubmitted] = useState(false);
-  const [leadError, setLeadError] = useState<string | null>(null);
-  const [leadLoading, setLeadLoading] = useState(false);
-
-  // 2-second reveal of email capture after a result
-  useEffect(() => {
-    if (!result) {
-      setShowEmail(false);
-      return;
-    }
-    const t = setTimeout(() => setShowEmail(true), 2000);
-    return () => clearTimeout(t);
-  }, [result]);
 
   async function handleAnalyze(e: FormEvent) {
     e.preventDefault();
     setError(null);
     setRateLimited(false);
     setResult(null);
-    setNoticeId(null);
-    setLeadSubmitted(false);
 
     const trimmed = input.trim();
-    if (!trimmed) {
-      setError('Paste a Notice ID or SAM.gov URL.');
-      return;
-    }
+    if (!trimmed) { setError('Paste a Notice ID or SAM.gov URL.'); return; }
 
     setLoading(true);
     try {
-      const res = await fetch(`${API_BASE}/public/notice-analyze`, {
-        method: 'POST',
+      const res  = await fetch(`${API_BASE}/public/analyze`, {
+        method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ notice_id: trimmed }),
+        body:    JSON.stringify({ input: trimmed }),
       });
-
       const body = await res.json().catch(() => ({}));
 
       if (res.status === 429) {
         setRateLimited(true);
-        setError(
-          body?.message ||
-            "You've hit the free analysis limit. Sign up free to keep going — no credit card required.",
-        );
+        setError("You've hit the free analysis limit. Sign up free to keep going — no credit card required.");
         setLoading(false);
         return;
       }
-
-      if (!res.ok || !body?.success) {
-        setError(body?.message || "We couldn't analyze that notice. Try again in a moment.");
+      if (res.status === 400 || body?.error === 'invalid_input') {
+        setError('Invalid Notice ID or URL. Try a 32-character hex ID or a full sam.gov/opp/… URL.');
         setLoading(false);
         return;
       }
-
-      setResult(body.result as AnalysisResult);
-      // Derive a cache-friendly notice id from the input for the lead capture
-      const urlMatch = trimmed.match(/sam\.gov\/opp\/([0-9a-fA-F]{20,})/);
-      const hexMatch = trimmed.match(/\b([0-9a-fA-F]{32})\b/);
-      setNoticeId((urlMatch?.[1] || hexMatch?.[1] || '').toLowerCase() || null);
-      setLoading(false);
-    } catch {
-      setError("We couldn't reach the server. Please check your connection and try again.");
-      setLoading(false);
-    }
-  }
-
-  async function handleLead(e: FormEvent) {
-    e.preventDefault();
-    setLeadError(null);
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(leadEmail.trim())) {
-      setLeadError('Please enter a valid email address.');
-      return;
-    }
-
-    setLeadLoading(true);
-    try {
-      const res = await fetch(`${API_BASE}/public/sandbox-lead`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: leadEmail.trim(),
-          notice_id: noticeId || undefined,
-          honeypot: leadHoneypot || undefined,
-        }),
-      });
+      if (res.status === 404 || body?.error === 'not_found') {
+        setError("We couldn't find that notice on SAM.gov. Check the ID and try again.");
+        setLoading(false);
+        return;
+      }
       if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        setLeadError(body?.message || 'Something went wrong. Please try again.');
-        setLeadLoading(false);
+        setError("Something went wrong. Please try again in a moment.");
+        setLoading(false);
         return;
       }
-      setLeadSubmitted(true);
-      setLeadLoading(false);
+
+      setResult(body as AnalysisResult);
+      setLoading(false);
     } catch {
-      setLeadError("We couldn't reach the server. Try again in a moment.");
-      setLeadLoading(false);
+      setError("We couldn't reach the server. Check your connection and try again.");
+      setLoading(false);
     }
   }
 
-  const triage = result ? triageStyle(result.ai_triage_suggestion) : null;
+  const cfg  = result ? (REC_CONFIG[result.recommendation] ?? REC_CONFIG.CONDITIONAL_GO) : null;
+  const Icon = result ? (REC_ICON[result.recommendation]   ?? AlertTriangle) : null;
 
   return (
     <>
       <Helmet>
         <title>Free SAM.gov Notice Analyzer — HE Pursuit</title>
-        <meta
-          name="description"
-          content="Paste any SAM.gov Notice ID or URL and get an instant AI-generated triage read in 60 seconds. Free, no signup required. Powered by HE Pursuit's Phase 1 analysis."
-        />
+        <meta name="description" content="Paste any SAM.gov Notice ID or URL. Get an instant bid/no-bid recommendation, match score, and top decision factors in seconds. Free, no account required." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/tools/sam-gov-notice-analyzer" />
         <meta property="og:title" content="Free SAM.gov Notice Analyzer — HE Pursuit" />
-        <meta
-          property="og:description"
-          content="Paste any SAM.gov Notice ID and get a structured triage read — title, agency, type, set-aside, deadline, and a go/caution/stop recommendation — in 60 seconds."
-        />
+        <meta property="og:description" content="Paste any SAM.gov Notice ID and get an instant bid/no-bid recommendation, match score, and top decision factors in seconds." />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Free SAM.gov Notice Analyzer — HE Pursuit" />
-        <meta
-          name="twitter:description"
-          content="Paste any SAM.gov Notice ID and get a structured triage read in 60 seconds. Free, no signup."
-        />
+        <meta name="twitter:description" content="Instant bid/no-bid recommendation for any SAM.gov notice. Free, no signup required." />
       </Helmet>
 
       {/* ── Hero ───────────────────────────────────────────────────────────── */}
@@ -281,21 +182,20 @@ export default function SamGovNoticeAnalyzer() {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
             <Sparkles className="w-3 h-3 text-[#00c3ff]" />
             <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">
-              Free tool · No signup
+              Free tool · No account required
             </span>
           </div>
 
           <h1 className="font-headline font-black text-5xl md:text-6xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
-            Analyze any SAM.gov notice in{' '}
+            Should you bid on this?{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">
-              60 seconds.
+              Find out in 60 seconds.
             </span>
           </h1>
 
           <p className="text-[#a0b2c8] text-lg leading-relaxed font-body mb-8 max-w-2xl">
-            Paste a Notice ID or SAM.gov URL. We'll pull the notice, extract the key fields, and
-            give you a structured triage read — continue, caution, not actionable, or stop — so you
-            can decide whether to spend another minute on it.
+            Paste a Notice ID or SAM.gov URL. Get a match score, bid/no-bid recommendation, and the
+            top factors driving the decision — before you spend another minute on it.
           </p>
 
           {/* ── Input card ───────────────────────────────────────────────── */}
@@ -305,19 +205,16 @@ export default function SamGovNoticeAnalyzer() {
             noValidate
           >
             <label className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-2 font-label">
-              SAM.gov Notice
+              SAM.gov Notice ID or URL
             </label>
             <div className="flex flex-col md:flex-row gap-3">
               <div className="flex-1 relative">
-                <Search
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8b9bb4] pointer-events-none"
-                  strokeWidth={2}
-                />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8b9bb4] pointer-events-none" strokeWidth={2} />
                 <input
                   type="text"
                   value={input}
                   onChange={e => setInput(e.target.value)}
-                  placeholder="Notice ID or SAM.gov URL"
+                  placeholder="Paste Notice ID or sam.gov/opp/… URL"
                   autoComplete="off"
                   className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg pl-11 pr-4 py-3.5 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors placeholder:text-[#8b9bb4]"
                 />
@@ -328,44 +225,23 @@ export default function SamGovNoticeAnalyzer() {
                 className="px-6 py-3.5 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 whitespace-nowrap"
               >
                 {loading ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Analyzing…
-                  </>
+                  <><Loader2 className="w-4 h-4 animate-spin" />Analyzing…</>
                 ) : (
-                  <>
-                    Analyze
-                    <ArrowRight className="w-4 h-4" />
-                  </>
+                  <>Analyze<ArrowRight className="w-4 h-4" /></>
                 )}
               </button>
             </div>
             <p className="text-xs text-[#8b9bb4] font-body mt-3">
-              Example: <span className="text-[#a0b2c8] font-mono">https://sam.gov/opp/…</span> or a
-              32-character Notice ID. Results cached for 24 hours.
+              3 free analyses per hour · Results cached 24 hours · No account needed
             </p>
 
             {error && !loading && (
-              <div
-                className={`mt-4 flex items-start gap-3 rounded-lg border p-3.5 ${
-                  rateLimited
-                    ? 'border-amber-500/40 bg-amber-500/10'
-                    : 'border-red-500/40 bg-red-500/10'
-                }`}
-              >
-                <AlertCircle
-                  className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
-                    rateLimited ? 'text-amber-400' : 'text-red-400'
-                  }`}
-                  strokeWidth={2}
-                />
+              <div className={`mt-4 flex items-start gap-3 rounded-lg border p-3.5 ${rateLimited ? 'border-amber-500/40 bg-amber-500/10' : 'border-red-500/40 bg-red-500/10'}`}>
+                <AlertCircle className={`w-4 h-4 mt-0.5 flex-shrink-0 ${rateLimited ? 'text-amber-400' : 'text-red-400'}`} strokeWidth={2} />
                 <div className="flex-1">
                   <p className="text-sm text-white font-body">{error}</p>
                   {rateLimited && (
-                    <Link
-                      to="/signup"
-                      className="inline-flex items-center gap-1.5 mt-2 text-sm font-bold text-[#00c3ff] hover:text-white transition-colors"
-                    >
+                    <Link to="/signup" className="inline-flex items-center gap-1.5 mt-2 text-sm font-bold text-[#00c3ff] hover:text-white transition-colors">
                       Start free <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   )}
@@ -376,226 +252,216 @@ export default function SamGovNoticeAnalyzer() {
         </div>
       </section>
 
-      {/* ── Result card ────────────────────────────────────────────────────── */}
+      {/* ── Result ─────────────────────────────────────────────────────────── */}
       {(loading || result) && (
         <section className="pb-6 px-6 relative">
-          <div className="max-w-4xl mx-auto relative z-10">
+          <div className="max-w-4xl mx-auto relative z-10 flex flex-col gap-4">
+
             {loading && !result && <ResultSkeleton />}
 
-            {result && triage && (
-              <div
-                className={`rounded-2xl bg-[#0b1120] border ${triage.border} p-6 md:p-8 shadow-2xl ${triage.glow}`}
-              >
-                {/* Triage badge */}
-                <div
-                  className={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${triage.bg} ${triage.border} border mb-5`}
-                >
-                  <triage.Icon size={14} className={triage.text} strokeWidth={2.5} />
-                  <span
-                    className={`text-xs font-bold uppercase tracking-widest font-label ${triage.text}`}
-                  >
-                    {triage.label}
-                  </span>
-                </div>
+            {result && cfg && Icon && (
+              <>
+                {/* SECTION 1+2 — Decision + Drivers */}
+                <div className={`rounded-2xl bg-[#0b1120] border ${cfg.border} p-6 md:p-8 shadow-2xl ${cfg.glow}`}>
 
-                {/* Title */}
-                <h2 className="font-headline font-black text-2xl md:text-3xl text-white mb-2 tracking-tight leading-tight">
-                  {result.rfi_title || 'Untitled notice'}
-                </h2>
-                <p className="text-[#a0b2c8] text-sm font-body mb-6">
-                  {result.issuing_agency || 'Agency not stated'}
-                  {result.notice_type ? ` · ${result.notice_type}` : ''}
-                </p>
+                  {/* Title / agency */}
+                  <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-1.5">
+                    {result.agency || 'Agency not stated'}
+                  </p>
+                  <h2 className="font-headline font-black text-xl md:text-2xl text-white mb-6 tracking-tight leading-tight">
+                    {result.title || 'Untitled notice'}
+                  </h2>
 
-                {/* Triage reason callout */}
-                {result.ai_triage_reason && (
-                  <div
-                    className={`rounded-lg ${triage.bg} border ${triage.border} p-4 mb-6 flex items-start gap-3`}
-                  >
-                    <triage.Icon
-                      size={16}
-                      className={`${triage.text} mt-0.5 flex-shrink-0`}
-                      strokeWidth={2}
-                    />
-                    <div>
-                      <div
-                        className={`text-[10px] font-bold uppercase tracking-widest font-label mb-1 ${triage.text}`}
-                      >
-                        AI triage reason
+                  {/* Score + Recommendation + Summary */}
+                  <div className="flex items-start gap-5 flex-wrap">
+                    <div className="text-center shrink-0 min-w-[64px]">
+                      <div className={`text-5xl font-black ${cfg.color} font-headline leading-none tabular-nums`}>
+                        {result.score}
                       </div>
-                      <p className="text-sm text-white font-body leading-relaxed">
-                        {result.ai_triage_reason}
+                      <div className="text-[10px] font-bold uppercase tracking-widest text-[#8b9bb4] mt-1">% Match</div>
+                    </div>
+
+                    <div className="hidden sm:block w-px h-14 bg-[#1e2d4a] shrink-0" />
+
+                    <div className="flex-1 min-w-[200px]">
+                      <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border ${cfg.bg} ${cfg.border} mb-2`}>
+                        <Icon size={12} className={cfg.color} strokeWidth={2.5} />
+                        <span className={`text-xs font-bold uppercase tracking-widest font-label ${cfg.color}`}>
+                          {cfg.label}
+                        </span>
+                      </div>
+                      <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">{result.summary}</p>
+                    </div>
+                  </div>
+
+                  {/* Divider → Drivers */}
+                  {result.drivers.length > 0 && (
+                    <div className="border-t border-[#1e2d4a] mt-6 pt-5">
+                      <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-3">
+                        Why this recommendation
+                      </p>
+                      <div className="flex flex-col gap-2.5 mb-3">
+                        {result.drivers.map((driver, i) => (
+                          <div key={i} className="flex items-center gap-3">
+                            <div className="w-5 h-5 rounded bg-[#0A1D3A] border border-[#1e2d4a] flex items-center justify-center text-[10px] font-bold text-[#4a7ab5] shrink-0">
+                              {i + 1}
+                            </div>
+                            <span className="text-sm text-[#a0b2c8] font-body">{driver}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <p className="text-xs text-[#4a7ab5] font-body">
+                        These factors determine whether an opportunity is worth pursuing.
                       </p>
                     </div>
-                  </div>
-                )}
-
-                {/* Structured fields */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
-                  <Field
-                    icon={Hash}
-                    label="Reference Number"
-                    value={result.rfi_reference_number}
-                  />
-                  <Field icon={Building2} label="Issuing Agency" value={result.issuing_agency} />
-                  <Field icon={FileText} label="Notice Type" value={result.notice_type} />
-                  <Field icon={Calendar} label="Response Deadline" value={result.due_date} />
-                  <Field icon={Tag} label="NAICS Code(s)" value={result.naics_codes} />
-                  <Field
-                    icon={ShieldCheck}
-                    label="Set-Aside"
-                    value={result.set_aside_indicated}
-                  />
+                  )}
                 </div>
 
-                {/* Purpose */}
-                {result.purpose_of_rfi && (
-                  <div className="mt-6 pt-6 border-t border-[#1e2d4a]">
-                    <div className="flex items-center gap-2 mb-2">
-                      <ScrollText size={14} className="text-[#00c3ff]" strokeWidth={2} />
-                      <span className="text-[10px] font-bold text-[#8b9bb4] uppercase tracking-widest font-label">
-                        Purpose
-                      </span>
+                {/* SECTION 3 — Key Signals */}
+                <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] px-6 py-5">
+                  <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-4">
+                    Key Signals
+                  </p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+                    {([
+                      { Icon: Building2,  label: 'Agency',    value: result.agency   || '—' },
+                      { Icon: Calendar,   label: 'Due Date',  value: result.dueDate  || '—' },
+                      { Icon: ShieldCheck,label: 'Set-Aside', value: result.setAside || '—' },
+                      { Icon: Tag,        label: 'NAICS',     value: result.naics    || '—' },
+                    ] as const).map(({ Icon: FieldIcon, label, value }) => (
+                      <div key={label}>
+                        <div className="flex items-center gap-1.5 mb-1">
+                          <FieldIcon size={11} className="text-[#00c3ff]" strokeWidth={2} />
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-[#8b9bb4] font-label">{label}</span>
+                        </div>
+                        <div className="text-sm text-white font-body">{value}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* SECTION 4 — Locked Insight */}
+                <div className="rounded-2xl border border-[#1e2d4a] overflow-hidden relative">
+
+                  {/* Blurred preview rows */}
+                  <div className="bg-[#0b1120] p-6 blur-[3px] select-none pointer-events-none">
+                    <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-4">
+                      Full Qualification Analysis
+                    </p>
+                    <div className="flex flex-col gap-3">
+                      {[
+                        { label: 'Eligibility Check',  badge: '❌  Potential Issue',   cls: 'text-red-400 bg-red-500/10 border-red-500/30' },
+                        { label: 'Disqualifiers',       badge: '⚠️  2 Flags Detected', cls: 'text-amber-400 bg-amber-500/10 border-amber-500/30' },
+                        { label: 'Requirements',        badge: '📄  Extracted',         cls: 'text-blue-400 bg-blue-500/10 border-blue-500/30' },
+                      ].map(({ label, badge, cls }) => (
+                        <div key={label} className="flex items-center justify-between p-3 rounded-lg bg-[#060f1e] border border-[#1e2d4a]">
+                          <span className="text-sm text-[#a0b2c8] font-body">{label}</span>
+                          <span className={`text-xs font-bold px-2.5 py-1 rounded-full border ${cls}`}>{badge}</span>
+                        </div>
+                      ))}
                     </div>
-                    <p className="text-sm text-white font-body leading-relaxed">
-                      {result.purpose_of_rfi}
-                    </p>
                   </div>
-                )}
 
-                {/* Upsell footer */}
-                <div className="mt-7 pt-6 border-t border-[#1e2d4a] flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                  <p className="text-xs text-[#8b9bb4] font-body max-w-md">
-                    This is Phase 1 of HE Pursuit's 5-phase workflow. Sign up free to unlock
-                    eligibility, strategic fit, effort scoring, and a final bid/no-bid
-                    recommendation.
-                  </p>
-                  <Link
-                    to="/signup"
-                    className="px-6 py-3 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all inline-flex items-center justify-center gap-2 whitespace-nowrap"
-                  >
-                    Unlock full analysis
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
-      )}
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#0b1120]/50 via-[#0b1120]/88 to-[#0b1120] flex flex-col items-center justify-center px-6 py-8 text-center">
 
-      {/* ── Email capture (appears 2s after result) ────────────────────────── */}
-      {result && showEmail && (
-        <section className="pb-16 px-6 relative">
-          <div className="max-w-4xl mx-auto relative z-10">
-            {!leadSubmitted ? (
-              <form
-                onSubmit={handleLead}
-                className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] p-6 md:p-7 shadow-2xl"
-                noValidate
-              >
-                <div className="flex flex-col md:flex-row md:items-start gap-5">
-                  <div className="flex-1">
-                    <h3 className="font-headline font-black text-lg text-white mb-1.5 tracking-tight">
-                      Want this emailed to you — plus 4 more phases?
+                    <div className="w-10 h-10 rounded-xl bg-[#00c3ff]/10 border border-[#00c3ff]/30 flex items-center justify-center mb-4">
+                      <Lock size={18} className="text-[#00c3ff]" strokeWidth={2} />
+                    </div>
+
+                    <h3 className="font-headline font-black text-white text-xl tracking-tight mb-2">
+                      This opportunity has deeper qualification risks
                     </h3>
-                    <p className="text-sm text-[#a0b2c8] font-body">
-                      We'll send a PDF of this analysis and show you what Phase 2–5 look like. No
-                      spam, unsubscribe anytime.
+                    <p className="text-sm text-[#8b9bb4] font-body mb-3">Unlock full analysis to see:</p>
+
+                    <ul className="text-sm text-[#a0b2c8] font-body mb-6 space-y-1.5 text-left">
+                      {[
+                        'Eligibility risks that could disqualify your bid',
+                        'Missing requirements that impact your chances',
+                        'Effort vs. return analysis before you commit',
+                      ].map(item => (
+                        <li key={item} className="flex items-center gap-2">
+                          <ChevronRight size={12} className="text-[#00c3ff] shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <Link
+                      to="/signup"
+                      className="w-full max-w-sm px-6 py-3.5 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 mb-3"
+                    >
+                      Create Free Account to Unlock Full Analysis
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+
+                    <a
+                      href="https://pursuit.honestecho.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-[#8b9bb4] hover:text-white transition-colors font-body mb-4"
+                    >
+                      Already have an account? Sign in
+                    </a>
+
+                    <p className="text-xs text-[#4a7ab5] font-body">
+                      Takes less than 30 seconds. No credit card required.
                     </p>
                   </div>
-                  <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
-                    {/* honeypot */}
-                    <input
-                      type="text"
-                      name="website"
-                      tabIndex={-1}
-                      autoComplete="off"
-                      value={leadHoneypot}
-                      onChange={e => setLeadHoneypot(e.target.value)}
-                      className="absolute -left-[9999px] w-px h-px opacity-0"
-                      aria-hidden="true"
-                    />
-                    <input
-                      type="email"
-                      required
-                      autoComplete="email"
-                      placeholder="you@yourcompany.com"
-                      value={leadEmail}
-                      onChange={e => setLeadEmail(e.target.value)}
-                      className="bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors placeholder:text-[#8b9bb4] min-w-[240px]"
-                    />
-                    <button
-                      type="submit"
-                      disabled={leadLoading}
-                      className="px-5 py-3 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg hover:scale-[1.02] active:scale-[0.98] transition-all whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
-                    >
-                      {leadLoading ? 'Sending…' : 'Send me the PDF'}
-                    </button>
-                  </div>
                 </div>
-                {leadError && (
-                  <p className="text-sm text-red-400 font-body mt-3">{leadError}</p>
-                )}
-              </form>
-            ) : (
-              <div className="rounded-2xl bg-[#0b1120] border border-[#00c3ff]/40 p-6 md:p-7 shadow-[0_0_40px_rgba(0,195,255,0.10)] flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/40 flex items-center justify-center flex-shrink-0">
-                  <CheckCircle2 size={20} className="text-[#00c3ff]" strokeWidth={2} />
-                </div>
-                <div>
-                  <h3 className="font-headline font-black text-white text-base mb-1">
-                    Got it — we'll be in touch.
-                  </h3>
-                  <p className="text-sm text-[#a0b2c8] font-body">
-                    Check your inbox shortly. Ready to run this on your own pipeline?{' '}
-                    <Link to="/signup" className="text-[#00c3ff] hover:text-white transition-colors">
-                      Create a free account.
-                    </Link>
+
+                {/* What happens next? */}
+                <div className="rounded-xl bg-[#060e1c] border border-[#1e2d4a] px-6 py-4">
+                  <p className="text-xs font-bold uppercase tracking-widest text-[#4a7ab5] font-label mb-1">
+                    What happens next?
+                  </p>
+                  <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">
+                    If you unlock full analysis, you'll see whether this opportunity is truly worth pursuing before committing proposal resources.
                   </p>
                 </div>
-              </div>
+              </>
             )}
           </div>
         </section>
       )}
 
-      {/* ── How it works / trust ───────────────────────────────────────────── */}
+      {/* ── How it works ───────────────────────────────────────────────────── */}
       <section className="py-20 px-6 relative">
         <div className="max-w-5xl mx-auto relative z-10">
           <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-3 tracking-tight">
             What this tool does — and what it doesn't.
           </h2>
           <p className="text-[#a0b2c8] font-body mb-10 max-w-2xl">
-            This is a public sandbox version of HE Pursuit's Phase 1 triage. It gives a fast
-            structured read on any SAM.gov notice. The full workflow adds eligibility, strategic
+            This is a public preview of HE Pursuit's Phase 1 qualification. It gives a fast,
+            decision-ready read on any SAM.gov notice. The full workflow adds eligibility, strategic
             fit, effort scoring, and a final bid/no-bid recommendation.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
+            {([
               {
-                icon: Search,
-                title: 'Structured extraction',
-                body: 'We pull the key fields — title, agency, type, reference number, deadline, NAICS, and set-aside — directly from the SAM.gov notice and any linked attachments.',
+                Icon: Search,
+                title: 'Instant notice lookup',
+                body: 'We pull the live notice from SAM.gov and extract agency, deadline, NAICS, set-aside, and the full opportunity description.',
               },
               {
-                icon: ShieldCheck,
-                title: 'AI triage in 60 seconds',
-                body: 'Claude reads the full description and flags whether the notice looks actionable, risky, informational-only, or not worth chasing.',
+                Icon: ShieldCheck,
+                title: 'Bid/no-bid decision',
+                body: 'You get a GO, CONDITIONAL GO, or NO-BID recommendation — with the specific factors driving it — in plain language.',
               },
               {
-                icon: FileText,
-                title: 'No signup, rate-limited',
-                body: 'Anonymous and free. Limited to a few analyses per hour so we can keep it free for everyone. Upgrade any time to run unlimited pursuits.',
+                Icon: FileText,
+                title: 'No account needed',
+                body: 'Free and anonymous. Limited to a few analyses per hour. Upgrade any time to run unlimited pursuits across your full pipeline.',
               },
-            ].map(({ icon: Icon, title, body }) => (
+            ] as const).map(({ Icon: CardIcon, title, body }) => (
               <div
                 key={title}
-                className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-6 hover:border-[#00c3ff]/40 transition-colors"
+                className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-6 hover:border-[#00c3ff]/40 transition-colors group"
               >
-                <div className="w-11 h-11 rounded-lg bg-[#0d1827] border border-[#1e2d4a] flex items-center justify-center mb-4">
-                  <Icon size={20} className="text-[#00c3ff]" strokeWidth={2} />
+                <div className="w-10 h-10 flex items-center justify-center relative overflow-visible mb-4">
+                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-50 transition-opacity duration-500 rounded-full scale-150" />
+                  <CardIcon size={18} className="text-[#00c3ff] relative z-10" strokeWidth={2} />
                 </div>
                 <h3 className="font-headline font-black text-white text-lg mb-2">{title}</h3>
                 <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">{body}</p>

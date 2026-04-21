@@ -162,7 +162,7 @@ export default function Home() {
               },
               {
                 icon: Filter,
-                title: 'Too many low-quality pursuits in the pipeline',
+                title: 'Too many low-quality pursuits.',
                 body: 'Weak opportunities create noise, distract the team, and pull energy away from the bids with real win potential.',
               },
             ] as { icon: React.ElementType; title: string; body: string }[]).map((card, i) => (

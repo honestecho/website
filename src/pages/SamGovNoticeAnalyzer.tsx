@@ -79,7 +79,7 @@ const REC_ICON: Record<Recommendation, typeof CheckCircle2> = {
 
 function ResultSkeleton() {
   return (
-    <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] p-6 md:p-8 shadow-2xl animate-pulse">
+    <div className="rounded-2xl bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] p-6 md:p-8 shadow-2xl animate-pulse">
       <div className="h-4 w-24 bg-[#152033] rounded mb-3" />
       <div className="h-7 w-3/4 bg-[#152033] rounded mb-6" />
       <div className="flex items-center gap-6 mb-6">
@@ -201,7 +201,7 @@ export default function SamGovNoticeAnalyzer() {
           {/* ── Input card ───────────────────────────────────────────────── */}
           <form
             onSubmit={handleAnalyze}
-            className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] p-5 md:p-6 shadow-2xl"
+            className="rounded-2xl bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] p-5 md:p-6 shadow-2xl"
             noValidate
           >
             <label className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-2 font-label">
@@ -318,7 +318,7 @@ export default function SamGovNoticeAnalyzer() {
                 </div>
 
                 {/* SECTION 3 — Key Signals */}
-                <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] px-6 py-5">
+                <div className="rounded-2xl bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] px-6 py-5">
                   <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-4">
                     Key Signals
                   </p>
@@ -457,7 +457,7 @@ export default function SamGovNoticeAnalyzer() {
             ] as const).map(({ Icon: CardIcon, title, body }) => (
               <div
                 key={title}
-                className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-6 hover:border-[#00c3ff]/40 transition-colors group"
+                className="rounded-xl bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] p-6 hover:border-[#00c3ff]/40 transition-colors group"
               >
                 <div className="w-10 h-10 flex items-center justify-center relative overflow-visible mb-4">
                   <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-50 transition-opacity duration-500 rounded-full scale-150" />

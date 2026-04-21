@@ -37,7 +37,7 @@ export default function Welcome() {
           </Link>
 
           {/* Card */}
-          <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-10 shadow-2xl relative overflow-hidden">
+          <div className="bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] rounded-2xl p-10 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/40 to-transparent"></div>
 
             {/* Glow icon */}

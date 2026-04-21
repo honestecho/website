@@ -173,7 +173,7 @@ function StatBlock({
     bad:     'text-red-400',
   };
   return (
-    <div className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-5">
+    <div className="rounded-xl bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] p-5">
       <div className="flex items-center gap-2 mb-2">
         <Icon size={13} className="text-[#8b9bb4]" strokeWidth={2} />
         <span className="text-[10px] font-bold text-[#8b9bb4] uppercase tracking-widest font-label">
@@ -302,7 +302,7 @@ export default function SharedPackage() {
         </Helmet>
         <section className="pt-16 pb-20 px-6">
           <div className="max-w-xl mx-auto text-center">
-            <div className="w-14 h-14 mx-auto rounded-full bg-[#0b1120] border border-[#1e2d4a] flex items-center justify-center mb-5">
+            <div className="w-14 h-14 mx-auto rounded-full bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] flex items-center justify-center mb-5">
               <m.Icon size={24} className="text-[#00c3ff]" strokeWidth={2} />
             </div>
             <h1 className="font-headline font-black text-3xl md:text-4xl text-white mb-3 tracking-tight">
@@ -336,7 +336,7 @@ export default function SharedPackage() {
               <Loader2 className="w-3.5 h-3.5 animate-spin text-[#00c3ff]" />
               Loading decision package…
             </div>
-            <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] p-6 md:p-8 animate-pulse">
+            <div className="rounded-2xl bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] p-6 md:p-8 animate-pulse">
               <div className="h-6 w-32 bg-[#152033] rounded mb-4" />
               <div className="h-8 w-3/4 bg-[#152033] rounded mb-3" />
               <div className="h-4 w-1/2 bg-[#152033] rounded mb-6" />
@@ -410,7 +410,7 @@ export default function SharedPackage() {
       {/* ── Opportunity card ───────────────────────────────────────────────── */}
       <section className="pb-6 px-6">
         <div className="max-w-4xl mx-auto">
-          <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] p-6 md:p-8 shadow-2xl">
+          <div className="rounded-2xl bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] p-6 md:p-8 shadow-2xl">
             <h1 className="font-headline font-black text-2xl md:text-3xl text-white mb-2 tracking-tight leading-tight">
               {snapshot.opportunity.rfi_title || 'Untitled opportunity'}
             </h1>
@@ -519,7 +519,7 @@ export default function SharedPackage() {
 
           {/* Requirements roll-up */}
           {snapshot.phase2.requirement_count > 0 && (
-            <div className="mt-4 rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-5">
+            <div className="mt-4 rounded-xl bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] p-5">
               <div className="flex items-center gap-2 mb-2">
                 <FileText size={13} className="text-[#8b9bb4]" strokeWidth={2} />
                 <span className="text-[10px] font-bold text-[#8b9bb4] uppercase tracking-widest font-label">
@@ -588,7 +588,7 @@ export default function SharedPackage() {
                 </Link>
                 <Link
                   to="/signup"
-                  className="px-6 py-3 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all inline-flex items-center justify-center gap-2 whitespace-nowrap"
+                  className="px-6 py-3 bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all inline-flex items-center justify-center gap-2 whitespace-nowrap"
                 >
                   Create a free account
                 </Link>

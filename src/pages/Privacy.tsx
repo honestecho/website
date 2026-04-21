@@ -117,7 +117,7 @@ export default function Privacy() {
             {sections.map((s, i) => (
               <FlyIn key={s.title} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]', '', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
               <div
-                className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full"
+                className="bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] rounded-2xl p-8 relative overflow-hidden group hover:bg-[rgba(11,17,32,0.70)] hover:border-[#00c3ff]/40 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_40px_rgba(0,195,255,0.10)] transition-all duration-500 h-full"
               >
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
 
@@ -183,7 +183,7 @@ export default function Privacy() {
       <section className="py-8 pb-24 px-6">
         <div className="max-w-7xl mx-auto flex justify-center">
           <FlyIn className="w-full lg:w-[calc(50%-12px)]">
-          <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
+          <div className="bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] rounded-2xl p-8 relative overflow-hidden group hover:bg-[rgba(11,17,32,0.70)] hover:border-[#00c3ff]/40 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_40px_rgba(0,195,255,0.10)] transition-all duration-500 h-full">
             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
             <div className="flex items-start gap-4 mb-4">
               <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">

@@ -24,7 +24,7 @@ import {
 
 const API_BASE = import.meta.env.VITE_API_URL
   ? `${import.meta.env.VITE_API_URL}/api`
-  : 'https://pursuit.honestecho.com/api';
+  : 'https://he-pursuit-api.onrender.com/api';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 

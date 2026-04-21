@@ -33,7 +33,7 @@ export default function Contact() {
           
           <div className="space-y-8">
             <div className="flex gap-4 items-start">
-              <div className="w-10 h-10 rounded-full bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-full bg-[#0b1120] border border-[#1e2d4a] flex items-center justify-center shrink-0">
                 <Mail className="w-4 h-4 text-[#00c3ff]" />
               </div>
               <div>
@@ -47,7 +47,7 @@ export default function Contact() {
               </div>
             </div>
             <div className="flex gap-4 items-start">
-              <div className="w-10 h-10 rounded-full bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-full bg-[#0b1120] border border-[#1e2d4a] flex items-center justify-center shrink-0">
                 <MapPin className="w-4 h-4 text-[#00c3ff]" />
               </div>
               <div>

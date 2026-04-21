@@ -194,7 +194,7 @@ export default function Signup() {
             </Link>
 
             {state === 'form' ? (
-              <div className="bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent"></div>
 
                 <h2 className="font-headline font-black text-2xl text-white mb-1">Create your account</h2>
@@ -341,7 +341,7 @@ export default function Signup() {
               </div>
             ) : (
               /* Post-signup state — account created, go to app */
-              <div className="bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] rounded-2xl p-10 shadow-2xl relative overflow-hidden text-center">
+              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-10 shadow-2xl relative overflow-hidden text-center">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent"></div>
 
                 <div className="flex items-center justify-center mb-6">

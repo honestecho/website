@@ -193,8 +193,8 @@ export default function Pricing() {
               <div
                 className={`rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden transition-all duration-300 h-full ${
                   plan.highlight
-                    ? 'bg-[rgba(11,17,32,0.70)] backdrop-blur-[20px] backdrop-saturate-[160%] border border-[#00c3ff]/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_60px_rgba(0,195,255,0.12)]'
-                    : 'bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] group hover:border-[#00c3ff]/30'
+                    ? 'bg-[#0b1120] border border-[#00c3ff]/50 shadow-[0_0_60px_rgba(0,195,255,0.12)]'
+                    : 'bg-[#0b1120] border border-[#1e2d4a] group hover:border-[#00c3ff]/30'
                 }`}
               >
                 {plan.highlight && (
@@ -404,7 +404,7 @@ export default function Pricing() {
 
           <div className="space-y-2">
             {faqs.map((faq, i) => (
-              <div key={i} className="bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] rounded-xl overflow-hidden">
+              <div key={i} className="bg-[#0b1120] border border-[#1e2d4a] rounded-xl overflow-hidden">
                 <button
                   className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-[#0d1828] transition-colors duration-200"
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
@@ -444,7 +444,7 @@ export default function Pricing() {
               Select Free
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline">
+            <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline">
               Talk to the Team
             </Link>
           </div>

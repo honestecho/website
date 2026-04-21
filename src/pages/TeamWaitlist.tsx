@@ -96,7 +96,7 @@ export default function TeamWaitlist() {
           {!submitted ? (
             <form
               onSubmit={handleSubmit}
-              className="rounded-2xl bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] p-6 md:p-8 space-y-5 shadow-2xl"
+              className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] p-6 md:p-8 space-y-5 shadow-2xl"
               noValidate
             >
               {/* Honeypot — hidden from humans, catches bots */}
@@ -204,7 +204,7 @@ export default function TeamWaitlist() {
               </p>
               <Link
                 to="/pricing#pro"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all"
               >
                 Not ready to wait? Start with Pro.
                 <ArrowRight className="w-4 h-4" />
@@ -244,7 +244,7 @@ export default function TeamWaitlist() {
             ].map(({ icon: Icon, title, body }) => (
               <div
                 key={title}
-                className="rounded-xl bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] p-6 hover:border-[#00c3ff]/40 transition-colors"
+                className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-6 hover:border-[#00c3ff]/40 transition-colors"
               >
                 <div className="w-11 h-11 rounded-lg bg-[#0d1827] border border-[#1e2d4a] flex items-center justify-center mb-4">
                   <Icon size={20} className="text-[#00c3ff]" strokeWidth={2} />
@@ -265,7 +265,7 @@ export default function TeamWaitlist() {
           </p>
           <Link
             to="/pricing#pro"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all"
           >
             See Pro pricing
             <ArrowRight className="w-4 h-4" />

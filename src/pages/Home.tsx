@@ -45,7 +45,7 @@ export default function Home() {
                 Start Free
                 <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link to="/tools/sam-gov-notice-analyzer" className="px-8 py-4 bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all flex items-center justify-center gap-2">
+              <Link to="/tools/sam-gov-notice-analyzer" className="px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all flex items-center justify-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#00c3ff]" />
                 Try Now
               </Link>
@@ -168,7 +168,7 @@ export default function Home() {
             ] as { icon: React.ElementType; title: string; body: string }[]).map((card, i) => (
               <FlyIn key={card.title} delay={['', 'delay-150', 'delay-300'][i]}>
               <div
-                className="group bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] hover:border-[#f5a623]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(245,166,35,0.08)] transition-all duration-500"
+                className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#f5a623]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(245,166,35,0.08)] transition-all duration-500"
               >
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#f5a623]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
                 <div className="w-10 h-10 flex items-center justify-center relative overflow-visible mb-6">
@@ -229,7 +229,7 @@ export default function Home() {
               },
             ] as { icon: React.ElementType; label: string; body: string }[]).map((item, i) => (
               <FlyIn key={item.label} delay={['', 'delay-150', 'delay-300'][i]}>
-              <div className="group bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+              <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
                 <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 relative overflow-visible mb-5">
                   <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
@@ -267,7 +267,7 @@ export default function Home() {
               { icon: CheckCircle, step: '05', title: 'Move forward with confidence',      body: 'Pursue strong-fit opportunities faster and walk away from weak-fit ones earlier.' },
             ].map(({ icon: Icon, step, title, body }, i) => (
               <FlyIn key={step} delay={['', 'delay-100', 'delay-200', 'delay-300', 'delay-[400ms]'][i]}>
-              <div className="group bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] hover:border-[#00c3ff]/40 p-6 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
+              <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-6 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 flex items-center justify-center relative overflow-visible flex-shrink-0">
@@ -305,7 +305,7 @@ export default function Home() {
             </div>
 
             <div className="w-full lg:w-1/2">
-              <div className="bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] rounded-2xl p-8 shadow-2xl relative overflow-hidden">
+              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent"></div>
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.03)_0%,transparent_70%)] pointer-events-none"></div>
                 <ul className="space-y-5 relative z-10">
@@ -352,7 +352,7 @@ export default function Home() {
 
             {/* Free */}
             <FlyIn>
-            <div className="bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
               <h3 className="font-headline text-xl font-bold text-white mb-1">Free</h3>
               <p className="text-xs text-[#8b9bb4] mb-4">Test the workflow</p>
               <div className="flex items-baseline gap-1 mb-4">
@@ -369,7 +369,7 @@ export default function Home() {
 
             {/* Starter */}
             <FlyIn delay="delay-150">
-            <div className="bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
               <h3 className="font-headline text-xl font-bold text-white mb-1">Starter</h3>
               <p className="text-xs text-[#8b9bb4] mb-4">For solo contractors</p>
               <div className="flex items-baseline gap-1 mb-4">
@@ -410,7 +410,7 @@ export default function Home() {
 
             {/* Team */}
             <FlyIn delay="delay-[450ms]">
-            <div className="bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
+            <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
               <h3 className="font-headline text-xl font-bold text-white mb-1">Team</h3>
               <p className="text-xs text-[#8b9bb4] mb-4">For multi-user capture teams</p>
               <div className="flex items-baseline gap-1 mb-4">
@@ -467,7 +467,7 @@ export default function Home() {
               },
             ].map(({ q, a }, i) => (
               <FlyIn key={q} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
-              <div className="bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
+              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
                 <p className="text-white font-bold font-headline text-base mb-3">{q}</p>
                 <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{a}</p>

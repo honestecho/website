@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -18,6 +18,7 @@ import {
   Tag,
   Lock,
   ChevronRight,
+  Info,
 } from 'lucide-react';
 
 // ── API ───────────────────────────────────────────────────────────────────────
@@ -26,21 +27,33 @@ const API_BASE = import.meta.env.VITE_API_URL
   ? `${import.meta.env.VITE_API_URL}/api`
   : 'https://he-pursuit-api.onrender.com/api';
 
+// ── Analytics ─────────────────────────────────────────────────────────────────
+
+function track(event: string, props: Record<string, unknown> = {}) {
+  const payload = { ...props, timestamp: new Date().toISOString(), mode: 'public_general' };
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as any).gtag?.('event', event, payload);
+  } catch { /* non-fatal */ }
+  if (import.meta.env.DEV) console.debug('[analytics]', event, payload);
+}
+
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 type Recommendation = 'GO' | 'CONDITIONAL_GO' | 'NO_BID';
 
 interface AnalysisResult {
+  mode: string;
   noticeId: string;
   title: string;
   agency: string;
   dueDate: string | null;
+  setAside: string | null;
+  naics: string | null;
   score: number;
   recommendation: Recommendation;
   drivers: string[];
   summary: string;
-  setAside?: string;
-  naics?: string;
 }
 
 // ── Config ────────────────────────────────────────────────────────────────────
@@ -105,11 +118,13 @@ function ResultSkeleton() {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function SamGovNoticeAnalyzer() {
-  const [input, setInput]       = useState('');
-  const [loading, setLoading]   = useState(false);
-  const [result, setResult]     = useState<AnalysisResult | null>(null);
-  const [error, setError]       = useState<string | null>(null);
+  const [input, setInput]             = useState('');
+  const [loading, setLoading]         = useState(false);
+  const [result, setResult]           = useState<AnalysisResult | null>(null);
+  const [error, setError]             = useState<string | null>(null);
   const [rateLimited, setRateLimited] = useState(false);
+
+  useEffect(() => { track('public_analyzer_page_viewed'); }, []);
 
   async function handleAnalyze(e: FormEvent) {
     e.preventDefault();
@@ -120,39 +135,54 @@ export default function SamGovNoticeAnalyzer() {
     const trimmed = input.trim();
     if (!trimmed) { setError('Paste a Notice ID or SAM.gov URL.'); return; }
 
+    const parsedFromUrl = trimmed.includes('sam.gov');
+    track('public_analyzer_input_submitted', { parsed_from_url: parsedFromUrl });
+
     setLoading(true);
     try {
       const res  = await fetch(`${API_BASE}/public/analyze`, {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ input: trimmed }),
+        body:    JSON.stringify({ input: trimmed, mode: 'public_general' }),
       });
       const body = await res.json().catch(() => ({}));
 
       if (res.status === 429) {
         setRateLimited(true);
-        setError("You've hit the free analysis limit. Sign up free to keep going — no credit card required.");
+        setError("You've reached the public analysis limit. Create a free account to continue.");
+        track('public_analyzer_rate_limit_hit');
         setLoading(false);
         return;
       }
       if (res.status === 400 || body?.error === 'invalid_input') {
         setError('Invalid Notice ID or URL. Try a 32-character hex ID or a full sam.gov/opp/… URL.');
+        track('public_analyzer_invalid_input');
         setLoading(false);
         return;
       }
       if (res.status === 404 || body?.error === 'not_found') {
-        setError("We couldn't find that notice on SAM.gov. Check the ID and try again.");
+        setError("We couldn't find that notice. Check the ID and try again.");
+        track('public_analyzer_notice_not_found');
         setLoading(false);
         return;
       }
       if (!res.ok) {
-        setError("Something went wrong. Please try again in a moment.");
+        setError("Something went wrong. Please try again.");
         setLoading(false);
         return;
       }
 
-      setResult(body as AnalysisResult);
+      const data = body as AnalysisResult;
+      setResult(data);
       setLoading(false);
+
+      const scoreBand = data.score >= 70 ? 'high' : data.score >= 40 ? 'medium' : 'low';
+      track('public_analyzer_result_rendered', {
+        notice_id:      data.noticeId,
+        recommendation: data.recommendation,
+        score_band:     scoreBand,
+        parsed_from_url: parsedFromUrl,
+      });
     } catch {
       setError("We couldn't reach the server. Check your connection and try again.");
       setLoading(false);
@@ -181,21 +211,20 @@ export default function SamGovNoticeAnalyzer() {
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
             <Sparkles className="w-3 h-3 text-[#00c3ff]" />
-            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">
+            <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">
               Free tool · No account required
             </span>
           </div>
 
           <h1 className="font-headline font-black text-5xl md:text-6xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
-            Should you bid on this?{' '}
+            Analyze a SAM.gov Notice{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">
-              Find out in 60 seconds.
+              in Seconds.
             </span>
           </h1>
 
           <p className="text-[#a0b2c8] text-lg leading-relaxed font-body mb-8 max-w-2xl">
-            Paste a Notice ID or SAM.gov URL. Get a match score, bid/no-bid recommendation, and the
-            top factors driving the decision — before you spend another minute on it.
+            Get a general assessment first. Add your company profile for a personalized bid/no-bid evaluation.
           </p>
 
           {/* ── Input card ───────────────────────────────────────────────── */}
@@ -214,7 +243,7 @@ export default function SamGovNoticeAnalyzer() {
                   type="text"
                   value={input}
                   onChange={e => setInput(e.target.value)}
-                  placeholder="Paste Notice ID or sam.gov/opp/… URL"
+                  placeholder="Paste SAM.gov Notice ID or URL"
                   autoComplete="off"
                   className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg pl-11 pr-4 py-3.5 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors placeholder:text-[#8b9bb4]"
                 />
@@ -232,7 +261,7 @@ export default function SamGovNoticeAnalyzer() {
               </button>
             </div>
             <p className="text-xs text-[#8b9bb4] font-body mt-3">
-              3 free analyses per hour · Results cached 24 hours · No account needed
+              No login required for an initial assessment.
             </p>
 
             {error && !loading && (
@@ -261,10 +290,9 @@ export default function SamGovNoticeAnalyzer() {
 
             {result && cfg && Icon && (
               <>
-                {/* SECTION 1+2 — Decision + Drivers */}
+                {/* SECTION 1 — Decision */}
                 <div className={`rounded-2xl bg-[#0b1120] border ${cfg.border} p-6 md:p-8 shadow-2xl ${cfg.glow}`}>
 
-                  {/* Title / agency */}
                   <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-1.5">
                     {result.agency || 'Agency not stated'}
                   </p>
@@ -294,7 +322,7 @@ export default function SamGovNoticeAnalyzer() {
                     </div>
                   </div>
 
-                  {/* Divider → Drivers */}
+                  {/* Drivers */}
                   {result.drivers.length > 0 && (
                     <div className="border-t border-[#1e2d4a] mt-6 pt-5">
                       <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-3">
@@ -303,31 +331,44 @@ export default function SamGovNoticeAnalyzer() {
                       <div className="flex flex-col gap-2.5 mb-3">
                         {result.drivers.map((driver, i) => (
                           <div key={i} className="flex items-center gap-3">
-                            <div className="w-5 h-5 rounded bg-[#0A1D3A] border border-[#1e2d4a] flex items-center justify-center text-[10px] font-bold text-[#4a7ab5] shrink-0">
+                            <div className="w-5 h-5 rounded bg-[#0f1a2e] border border-[#1e2d4a] flex items-center justify-center text-[10px] font-bold text-[#8b9bb4] shrink-0">
                               {i + 1}
                             </div>
                             <span className="text-sm text-[#a0b2c8] font-body">{driver}</span>
                           </div>
                         ))}
                       </div>
-                      <p className="text-xs text-[#4a7ab5] font-body">
+                      <p className="text-xs text-[#8b9bb4] font-body">
                         These factors determine whether an opportunity is worth pursuing.
                       </p>
                     </div>
                   )}
                 </div>
 
-                {/* SECTION 3 — Key Signals */}
+                {/* General Assessment disclosure */}
+                <div className="rounded-xl bg-[#0f1a2e] border border-[#1e2d4a] px-5 py-4 flex items-start gap-3">
+                  <Info size={15} className="text-[#00c3ff] shrink-0 mt-0.5" strokeWidth={2} />
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-widest text-[#00c3ff] font-label mb-1">
+                      General Assessment
+                    </p>
+                    <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">
+                      This initial result is based on a default small-business contractor profile. Your personalized results may change once you add your company profile.
+                    </p>
+                  </div>
+                </div>
+
+                {/* SECTION 2 — Key Signals */}
                 <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] shadow-2xl px-6 py-5">
                   <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-4">
-                    Key Signals
+                    Notice Details
                   </p>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                     {([
-                      { Icon: Building2,  label: 'Agency',    value: result.agency   || '—' },
-                      { Icon: Calendar,   label: 'Due Date',  value: result.dueDate  || '—' },
-                      { Icon: ShieldCheck,label: 'Set-Aside', value: result.setAside || '—' },
-                      { Icon: Tag,        label: 'NAICS',     value: result.naics    || '—' },
+                      { Icon: Building2,   label: 'Agency',    value: result.agency   || '—' },
+                      { Icon: Calendar,    label: 'Due Date',  value: result.dueDate  || '—' },
+                      { Icon: ShieldCheck, label: 'Set-Aside', value: result.setAside || '—' },
+                      { Icon: Tag,         label: 'NAICS',     value: result.naics    || '—' },
                     ] as const).map(({ Icon: FieldIcon, label, value }) => (
                       <div key={label}>
                         <div className="flex items-center gap-1.5 mb-1">
@@ -340,19 +381,19 @@ export default function SamGovNoticeAnalyzer() {
                   </div>
                 </div>
 
-                {/* SECTION 4 — Locked Insight */}
-                <div className="rounded-2xl border border-[#1e2d4a] overflow-hidden relative">
+                {/* SECTION 3 — Locked Personalized Section */}
+                <div className="rounded-2xl border border-[#1e2d4a] overflow-hidden relative shadow-2xl">
 
-                  {/* Blurred preview rows */}
+                  {/* Blurred preview */}
                   <div className="bg-[#0b1120] p-6 blur-[3px] select-none pointer-events-none">
                     <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-4">
-                      Full Qualification Analysis
+                      Personalized Analysis
                     </p>
                     <div className="flex flex-col gap-3">
                       {[
-                        { label: 'Eligibility Check',  badge: '❌  Potential Issue',   cls: 'text-red-400 bg-red-500/10 border-red-500/30' },
-                        { label: 'Disqualifiers',       badge: '⚠️  2 Flags Detected', cls: 'text-amber-400 bg-amber-500/10 border-amber-500/30' },
-                        { label: 'Requirements',        badge: '📄  Extracted',         cls: 'text-blue-400 bg-blue-500/10 border-blue-500/30' },
+                        { label: 'Eligibility Check',    badge: 'Potential Issue',    cls: 'text-red-400 bg-red-500/10 border-red-500/30' },
+                        { label: 'Disqualifier Review',  badge: '2 Flags Detected',   cls: 'text-amber-400 bg-amber-500/10 border-amber-500/30' },
+                        { label: 'Requirements',         badge: 'Extracted',          cls: 'text-[#00c3ff] bg-[#00c3ff]/10 border-[#00c3ff]/30' },
                       ].map(({ label, badge, cls }) => (
                         <div key={label} className="flex items-center justify-between p-3 rounded-lg bg-[#060f1e] border border-[#1e2d4a]">
                           <span className="text-sm text-[#a0b2c8] font-body">{label}</span>
@@ -370,15 +411,18 @@ export default function SamGovNoticeAnalyzer() {
                     </div>
 
                     <h3 className="font-headline font-black text-white text-xl tracking-tight mb-2">
-                      This opportunity has deeper qualification risks
+                      Unlock Personalized Analysis
                     </h3>
-                    <p className="text-sm text-[#8b9bb4] font-body mb-3">Unlock full analysis to see:</p>
+                    <p className="text-sm text-[#a0b2c8] font-body mb-4 max-w-sm">
+                      Create a free account to evaluate this opportunity against your company profile, eligibility, and pursuit priorities.
+                    </p>
 
                     <ul className="text-sm text-[#a0b2c8] font-body mb-6 space-y-1.5 text-left">
                       {[
-                        'Eligibility risks that could disqualify your bid',
-                        'Missing requirements that impact your chances',
-                        'Effort vs. return analysis before you commit',
+                        'Personalized fit scoring',
+                        'Eligibility checks',
+                        'Disqualifier flags',
+                        'Requirements analysis',
                       ].map(item => (
                         <li key={item} className="flex items-center gap-2">
                           <ChevronRight size={12} className="text-[#00c3ff] shrink-0" />
@@ -389,9 +433,10 @@ export default function SamGovNoticeAnalyzer() {
 
                     <Link
                       to="/signup"
+                      onClick={() => track('public_analyzer_unlock_cta_clicked', { notice_id: result.noticeId })}
                       className="w-full max-w-sm px-6 py-3.5 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 mb-3"
                     >
-                      Create Free Account to Unlock Full Analysis
+                      Create Free Account
                       <ArrowRight className="w-4 h-4" />
                     </Link>
 
@@ -399,25 +444,16 @@ export default function SamGovNoticeAnalyzer() {
                       href="https://pursuit.honestecho.com"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => track('public_analyzer_sign_in_clicked', { notice_id: result.noticeId })}
                       className="text-sm text-[#8b9bb4] hover:text-white transition-colors font-body mb-4"
                     >
                       Already have an account? Sign in
                     </a>
 
-                    <p className="text-xs text-[#4a7ab5] font-body">
+                    <p className="text-xs text-[#8b9bb4] font-body">
                       Takes less than 30 seconds. No credit card required.
                     </p>
                   </div>
-                </div>
-
-                {/* What happens next? */}
-                <div className="rounded-xl bg-[#060e1c] border border-[#1e2d4a] px-6 py-4">
-                  <p className="text-xs font-bold uppercase tracking-widest text-[#4a7ab5] font-label mb-1">
-                    What happens next?
-                  </p>
-                  <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">
-                    If you unlock full analysis, you'll see whether this opportunity is truly worth pursuing before committing proposal resources.
-                  </p>
                 </div>
               </>
             )}
@@ -432,9 +468,9 @@ export default function SamGovNoticeAnalyzer() {
             What this tool does — and what it doesn't.
           </h2>
           <p className="text-[#a0b2c8] font-body mb-10 max-w-2xl">
-            This is a public preview of HE Pursuit's Phase 1 qualification. It gives a fast,
-            decision-ready read on any SAM.gov notice. The full workflow adds eligibility, strategic
-            fit, effort scoring, and a final bid/no-bid recommendation.
+            This is a general assessment of any SAM.gov notice based on opportunity-level signals.
+            It is not a personalized evaluation. The full HE Pursuit workflow adds eligibility checks,
+            strategic fit, effort scoring, and a company-specific bid/no-bid recommendation.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -442,22 +478,22 @@ export default function SamGovNoticeAnalyzer() {
               {
                 Icon: Search,
                 title: 'Instant notice lookup',
-                body: 'We pull the live notice from SAM.gov and extract agency, deadline, NAICS, set-aside, and the full opportunity description.',
+                body: 'Pull the live notice from SAM.gov and extract agency, deadline, NAICS, set-aside, and the full description automatically.',
               },
               {
                 Icon: ShieldCheck,
-                title: 'Bid/no-bid decision',
-                body: 'You get a GO, CONDITIONAL GO, or NO-BID recommendation — with the specific factors driving it — in plain language.',
+                title: 'General bid/no-bid read',
+                body: 'Get a GO, CONDITIONAL GO, or NO-BID signal — with the top factors driving it — based on opportunity-level signals, not your company profile.',
               },
               {
                 Icon: FileText,
                 title: 'No account needed',
-                body: 'Free and anonymous. Limited to a few analyses per hour. Upgrade any time to run unlimited pursuits across your full pipeline.',
+                body: 'Free and anonymous. Limited analyses per hour. Upgrade to run unlimited pursuits with personalized analysis across your full pipeline.',
               },
             ] as const).map(({ Icon: CardIcon, title, body }) => (
               <div
                 key={title}
-                className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-6 hover:border-[#00c3ff]/40 transition-colors group"
+                className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-6 shadow-2xl hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 group"
               >
                 <div className="w-10 h-10 flex items-center justify-center relative overflow-visible mb-4">
                   <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-50 transition-opacity duration-500 rounded-full scale-150" />

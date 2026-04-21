@@ -336,7 +336,7 @@ export default function SharedPackage() {
               <Loader2 className="w-3.5 h-3.5 animate-spin text-[#00c3ff]" />
               Loading decision package…
             </div>
-            <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] p-6 md:p-8 animate-pulse">
+            <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] shadow-2xl p-6 md:p-8 animate-pulse">
               <div className="h-6 w-32 bg-[#152033] rounded mb-4" />
               <div className="h-8 w-3/4 bg-[#152033] rounded mb-3" />
               <div className="h-4 w-1/2 bg-[#152033] rounded mb-6" />

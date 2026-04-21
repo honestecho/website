@@ -320,7 +320,7 @@ export default function Pricing() {
               { plan: 'Team',    desc: 'Scale decision-making across your organization.' },
             ].map(({ plan, desc }, i) => (
               <FlyIn key={plan} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
-              <div className="bg-[#0b1120]/60 border border-[#1e2d4a] rounded-2xl p-6 group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
+              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 shadow-2xl group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-300 h-full">
                 <p className="text-xs font-label uppercase tracking-widest text-[#00c3ff] mb-2">{plan}</p>
                 <p className="text-white font-body leading-relaxed">{desc}</p>
               </div>

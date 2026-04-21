@@ -311,7 +311,7 @@ export default function FAQ() {
             {sections.map((section, si) => (
               <FlyIn key={section.title} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][si]}>
               <div
-                className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-7 relative overflow-hidden group hover:border-[#00c3ff]/20 transition-all duration-500 h-full"
+                className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-7 shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full"
               >
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
 

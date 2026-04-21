@@ -318,7 +318,7 @@ export default function SamGovNoticeAnalyzer() {
                 </div>
 
                 {/* SECTION 3 — Key Signals */}
-                <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] px-6 py-5">
+                <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] shadow-2xl px-6 py-5">
                   <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-4">
                     Key Signals
                   </p>

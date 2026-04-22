@@ -206,8 +206,8 @@ export default function SamGovNoticeAnalyzer() {
       </Helmet>
 
       {/* ── Hero ───────────────────────────────────────────────────────────── */}
-      <section className="pt-16 pb-10 px-6 relative overflow-hidden">
-        <div className="max-w-4xl mx-auto relative z-10">
+      <section className="pt-32 pb-10 px-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
             <Sparkles className="w-3 h-3 text-[#00c3ff]" />
             <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">
@@ -293,10 +293,10 @@ export default function SamGovNoticeAnalyzer() {
       {/* ── Result ─────────────────────────────────────────────────────────── */}
       {(loading || result) && (
         <section className="pb-6 px-6 relative">
-          <div className="max-w-6xl mx-auto relative z-10">
+          <div className="max-w-7xl mx-auto relative z-10">
 
             {loading && !result && (
-              <div className="max-w-4xl mx-auto">
+              <div className="max-w-7xl mx-auto">
                 <ResultSkeleton />
               </div>
             )}
@@ -389,7 +389,7 @@ export default function SamGovNoticeAnalyzer() {
 
       {/* ── How it works ───────────────────────────────────────────────────── */}
       <section className="py-20 px-6 relative">
-        <div className="max-w-5xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
           <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-3 tracking-tight">
             What this tool does — and what it doesn't.
           </h2>
@@ -435,7 +435,7 @@ export default function SamGovNoticeAnalyzer() {
 
       {/* ── Final CTA ──────────────────────────────────────────────────────── */}
       <section className="py-16 px-6 relative">
-        <div className="max-w-3xl mx-auto text-center relative z-10">
+        <div className="max-w-7xl mx-auto text-center relative z-10">
           <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-4 tracking-tight">
             Ready to run this on your whole pipeline?
           </h2>

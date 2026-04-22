@@ -228,8 +228,8 @@ export default function Home() {
                 body: 'Turn scattered opportunity details into a practical recommendation your team can review, challenge, and act on.',
               },
             ] as { icon: React.ElementType; label: string; body: string }[]).map((item, i) => (
-              <FlyIn key={item.label} delay={['', 'delay-150', 'delay-300'][i]}>
-              <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+              <FlyIn key={item.label} delay={['', 'delay-150', 'delay-300'][i]} className="h-full">
+              <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
                 <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 relative overflow-visible mb-5">
                   <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>

@@ -19,6 +19,9 @@ import {
   Lock,
   ChevronRight,
   Info,
+  BarChart2,
+  Download,
+  Cpu,
 } from 'lucide-react';
 
 // ── API ───────────────────────────────────────────────────────────────────────
@@ -284,178 +287,172 @@ export default function SamGovNoticeAnalyzer() {
       {/* ── Result ─────────────────────────────────────────────────────────── */}
       {(loading || result) && (
         <section className="pb-6 px-6 relative">
-          <div className="max-w-4xl mx-auto relative z-10 flex flex-col gap-4">
+          <div className="max-w-6xl mx-auto relative z-10">
 
-            {loading && !result && <ResultSkeleton />}
+            {loading && !result && (
+              <div className="max-w-4xl mx-auto">
+                <ResultSkeleton />
+              </div>
+            )}
 
             {result && cfg && Icon && (
-              <>
-                {/* SECTION 1 — Decision */}
-                <div className={`rounded-2xl bg-[#0b1120] border ${cfg.border} p-6 md:p-8 shadow-2xl ${cfg.glow}`}>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start">
 
-                  <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-1.5">
-                    {result.agency || 'Agency not stated'}
-                  </p>
-                  <h2 className="font-headline font-black text-xl md:text-2xl text-white mb-6 tracking-tight leading-tight">
-                    {result.title || 'Untitled notice'}
-                  </h2>
+                {/* ── Left: Data cards ─────────────────────────────────────── */}
+                <div className="lg:col-span-2 flex flex-col gap-4">
 
-                  {/* Score + Recommendation + Summary */}
-                  <div className="flex items-start gap-5 flex-wrap">
-                    <div className="text-center shrink-0 min-w-[64px]">
-                      <div className={`text-5xl font-black ${cfg.color} font-headline leading-none tabular-nums`}>
-                        {result.score}
-                      </div>
-                      <div className="text-[10px] font-bold uppercase tracking-widest text-[#8b9bb4] mt-1">% Match</div>
-                    </div>
+                  {/* Decision card */}
+                  <div className={`rounded-2xl bg-[#0b1120] border ${cfg.border} p-6 md:p-8 shadow-2xl ${cfg.glow} group relative overflow-hidden`}>
+                    <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent rounded-t-2xl" />
 
-                    <div className="hidden sm:block w-px h-14 bg-[#1e2d4a] shrink-0" />
-
-                    <div className="flex-1 min-w-[200px]">
-                      <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border ${cfg.bg} ${cfg.border} mb-2`}>
-                        <Icon size={12} className={cfg.color} strokeWidth={2.5} />
-                        <span className={`text-xs font-bold uppercase tracking-widest font-label ${cfg.color}`}>
-                          {cfg.label}
-                        </span>
-                      </div>
-                      <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">{result.summary}</p>
-                    </div>
-                  </div>
-
-                  {/* Drivers */}
-                  {result.drivers.length > 0 && (
-                    <div className="border-t border-[#1e2d4a] mt-6 pt-5">
-                      <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-3">
-                        Why this recommendation
-                      </p>
-                      <div className="flex flex-col gap-2.5 mb-3">
-                        {result.drivers.map((driver, i) => (
-                          <div key={i} className="flex items-center gap-3">
-                            <div className="w-5 h-5 rounded bg-[#0f1a2e] border border-[#1e2d4a] flex items-center justify-center text-[10px] font-bold text-[#8b9bb4] shrink-0">
-                              {i + 1}
-                            </div>
-                            <span className="text-sm text-[#a0b2c8] font-body">{driver}</span>
-                          </div>
-                        ))}
-                      </div>
-                      <p className="text-xs text-[#8b9bb4] font-body">
-                        These factors determine whether an opportunity is worth pursuing.
-                      </p>
-                    </div>
-                  )}
-                </div>
-
-                {/* General Assessment disclosure */}
-                <div className="rounded-xl bg-[#0f1a2e] border border-[#1e2d4a] px-5 py-4 flex items-start gap-3">
-                  <Info size={15} className="text-[#00c3ff] shrink-0 mt-0.5" strokeWidth={2} />
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-[#00c3ff] font-label mb-1">
-                      General Assessment
+                    <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-1.5">
+                      {result.agency || 'Agency not stated'}
                     </p>
-                    <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">
-                      This initial result is based on a default small-business contractor profile. Your personalized results may change once you add your company profile.
-                    </p>
-                  </div>
-                </div>
+                    <h2 className="font-headline font-black text-xl md:text-2xl text-white mb-6 tracking-tight leading-tight">
+                      {result.title || 'Untitled notice'}
+                    </h2>
 
-                {/* SECTION 2 — Key Signals */}
-                <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] shadow-2xl px-6 py-5">
-                  <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-4">
-                    Notice Details
-                  </p>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-                    {([
-                      { Icon: Building2,   label: 'Agency',    value: result.agency   || '—' },
-                      { Icon: Calendar,    label: 'Due Date',  value: result.dueDate  || '—' },
-                      { Icon: ShieldCheck, label: 'Set-Aside', value: result.setAside || '—' },
-                      { Icon: Tag,         label: 'NAICS',     value: result.naics    || '—' },
-                    ] as const).map(({ Icon: FieldIcon, label, value }) => (
-                      <div key={label}>
-                        <div className="flex items-center gap-1.5 mb-1">
-                          <FieldIcon size={11} className="text-[#00c3ff]" strokeWidth={2} />
-                          <span className="text-[10px] font-bold uppercase tracking-widest text-[#8b9bb4] font-label">{label}</span>
+                    <div className="flex items-start gap-5 flex-wrap">
+                      <div className="text-center shrink-0 min-w-[64px]">
+                        <div className={`text-5xl font-black ${cfg.color} font-headline leading-none tabular-nums drop-shadow-2xl`}>
+                          {result.score}
                         </div>
-                        <div className="text-sm text-white font-body">{value}</div>
+                        <div className="text-[10px] font-bold uppercase tracking-widest text-[#8b9bb4] mt-1">% Match</div>
                       </div>
-                    ))}
+
+                      <div className="hidden sm:block w-px h-14 bg-[#1e2d4a] shrink-0" />
+
+                      <div className="flex-1 min-w-[200px]">
+                        <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border ${cfg.bg} ${cfg.border} mb-3`}>
+                          <Icon size={13} className={cfg.color} strokeWidth={2.5} />
+                          <span className={`text-xs font-black uppercase tracking-widest font-label ${cfg.color}`}>
+                            {cfg.label}
+                          </span>
+                        </div>
+                        <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">{result.summary}</p>
+                      </div>
+                    </div>
+
+                    {result.drivers.length > 0 && (
+                      <div className="border-t border-[#1e2d4a] mt-6 pt-5">
+                        <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-3">
+                          Why this recommendation
+                        </p>
+                        <div className="flex flex-col gap-2.5">
+                          {result.drivers.map((driver, i) => {
+                            const isPos = i < Math.ceil(result.drivers.length / 2);
+                            return (
+                              <div key={i} className="flex items-start gap-3">
+                                {isPos
+                                  ? <CheckCircle2 size={14} className="text-[#4ade80] shrink-0 mt-0.5" />
+                                  : <AlertTriangle size={14} className="text-[#fbbf24] shrink-0 mt-0.5" />
+                                }
+                                <span className="text-sm text-[#a0b2c8] font-body leading-snug">{driver}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </div>
 
-                {/* SECTION 3 — Locked Personalized Section */}
-                <div className="rounded-2xl border border-[#1e2d4a] overflow-hidden relative shadow-2xl">
-
-                  {/* Blurred preview */}
-                  <div className="bg-[#0b1120] p-6 blur-[3px] select-none pointer-events-none">
+                  {/* Notice Details */}
+                  <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] shadow-2xl px-6 py-5 group relative overflow-hidden hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+                    <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl" />
                     <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-4">
-                      Personalized Analysis
+                      Notice Details
                     </p>
-                    <div className="flex flex-col gap-3">
-                      {[
-                        { label: 'Eligibility Check',    badge: 'Potential Issue',    cls: 'text-red-400 bg-red-500/10 border-red-500/30' },
-                        { label: 'Disqualifier Review',  badge: '2 Flags Detected',   cls: 'text-amber-400 bg-amber-500/10 border-amber-500/30' },
-                        { label: 'Requirements',         badge: 'Extracted',          cls: 'text-[#00c3ff] bg-[#00c3ff]/10 border-[#00c3ff]/30' },
-                      ].map(({ label, badge, cls }) => (
-                        <div key={label} className="flex items-center justify-between p-3 rounded-lg bg-[#060f1e] border border-[#1e2d4a]">
-                          <span className="text-sm text-[#a0b2c8] font-body">{label}</span>
-                          <span className={`text-xs font-bold px-2.5 py-1 rounded-full border ${cls}`}>{badge}</span>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+                      {([
+                        { Icon: Building2,   label: 'Agency',    value: result.agency   || '—' },
+                        { Icon: Calendar,    label: 'Due Date',  value: result.dueDate  || '—' },
+                        { Icon: ShieldCheck, label: 'Set-Aside', value: result.setAside || '—' },
+                        { Icon: Tag,         label: 'NAICS',     value: result.naics    || '—' },
+                      ] as const).map(({ Icon: FieldIcon, label, value }) => (
+                        <div key={label}>
+                          <div className="flex items-center gap-1.5 mb-1">
+                            <FieldIcon size={11} className="text-[#00c3ff]" strokeWidth={2} />
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-[#8b9bb4] font-label">{label}</span>
+                          </div>
+                          <div className="text-sm text-white font-body">{value}</div>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-[#0b1120]/50 via-[#0b1120]/88 to-[#0b1120] flex flex-col items-center justify-center px-6 py-8 text-center">
-
-                    <div className="w-10 h-10 rounded-xl bg-[#00c3ff]/10 border border-[#00c3ff]/30 flex items-center justify-center mb-4">
-                      <Lock size={18} className="text-[#00c3ff]" strokeWidth={2} />
+                  {/* General Assessment disclosure */}
+                  <div className="rounded-xl bg-[#0f1a2e] border border-[#1e2d4a] px-5 py-4 flex items-start gap-3">
+                    <Info size={15} className="text-[#00c3ff] shrink-0 mt-0.5" strokeWidth={2} />
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-widest text-[#00c3ff] font-label mb-1">
+                        General Assessment
+                      </p>
+                      <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">
+                        This result is based on a default small-business contractor profile. Add your company profile for a personalized evaluation.
+                      </p>
                     </div>
-
-                    <h3 className="font-headline font-black text-white text-xl tracking-tight mb-2">
-                      Unlock Personalized Analysis
-                    </h3>
-                    <p className="text-sm text-[#a0b2c8] font-body mb-4 max-w-sm">
-                      Create a free account to evaluate this opportunity against your company profile, eligibility, and pursuit priorities.
-                    </p>
-
-                    <ul className="text-sm text-[#a0b2c8] font-body mb-6 space-y-1.5 text-left">
-                      {[
-                        'Personalized fit scoring',
-                        'Eligibility checks',
-                        'Disqualifier flags',
-                        'Requirements analysis',
-                      ].map(item => (
-                        <li key={item} className="flex items-center gap-2">
-                          <ChevronRight size={12} className="text-[#00c3ff] shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <Link
-                      to="/signup"
-                      onClick={() => track('public_analyzer_unlock_cta_clicked', { notice_id: result.noticeId })}
-                      className="w-full max-w-sm px-6 py-3.5 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 mb-3"
-                    >
-                      Create Free Account
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-
-                    <a
-                      href="https://pursuit.honestecho.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => track('public_analyzer_sign_in_clicked', { notice_id: result.noticeId })}
-                      className="text-sm text-[#8b9bb4] hover:text-white transition-colors font-body mb-4"
-                    >
-                      Already have an account? Sign in
-                    </a>
-
-                    <p className="text-xs text-[#8b9bb4] font-body">
-                      Takes less than 30 seconds. No credit card required.
-                    </p>
                   </div>
                 </div>
-              </>
+
+                {/* ── Right: What Happened panel ───────────────────────────── */}
+                <div className="lg:col-span-1 lg:sticky lg:top-24">
+                  <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] shadow-2xl overflow-hidden">
+
+                    {/* Header */}
+                    <div className="px-5 pt-5 pb-4 border-b border-[#1e2d4a]">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-6 h-6 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/30 flex items-center justify-center shrink-0">
+                          <Info size={11} className="text-[#00c3ff]" strokeWidth={2.5} />
+                        </div>
+                        <span className="text-xs font-bold uppercase tracking-widest text-[#00c3ff] font-label">What Happened</span>
+                      </div>
+                      <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">
+                        We analyzed this opportunity using open source data from SAM.gov and applied our initial evaluation model.
+                      </p>
+                    </div>
+
+                    {/* Steps */}
+                    <div className="px-5 py-4 space-y-4">
+                      {([
+                        { Icon: Download,   title: 'Notice Data Extracted',  body: 'We pulled key details including requirements, timeline, NAICS codes, and set-aside information.' },
+                        { Icon: Cpu,        title: 'Initial Evaluation Run', body: 'Our algorithm compared this opportunity against thousands of government patterns and best practices.' },
+                        { Icon: BarChart2,  title: 'Score Calculation',      body: 'We scored the opportunity across core factors that influence bid/no-bid decisions.' },
+                        { Icon: ShieldCheck,title: 'Insights Generated',     body: 'We identified key strengths, potential risks, and what to review before deciding.' },
+                      ] as const).map(({ Icon: StepIcon, title, body }, i) => (
+                        <div key={title} className="flex items-start gap-3 group/step">
+                          <div className="w-8 h-8 rounded-lg bg-[#0f1a2e] border border-[#1e2d4a] flex items-center justify-center shrink-0 relative overflow-visible">
+                            <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-0 group-hover/step:opacity-20 transition-opacity duration-300 rounded-lg" />
+                            <StepIcon size={14} className="text-[#00c3ff] relative z-10" strokeWidth={2} />
+                          </div>
+                          <div>
+                            <p className="text-sm font-bold text-white font-headline leading-snug">{i + 1}. {title}</p>
+                            <p className="text-xs text-[#8b9bb4] font-body leading-snug mt-0.5">{body}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Unlock CTA */}
+                    <div className="border-t border-[#1e2d4a]">
+                      <Link
+                        to="/signup"
+                        onClick={() => track('public_analyzer_unlock_cta_clicked', { notice_id: result.noticeId })}
+                        className="flex items-center gap-3 px-5 py-4 hover:bg-[#0f1a2e] transition-colors duration-300 group/unlock"
+                      >
+                        <div className="w-8 h-8 rounded-lg bg-[#00c3ff]/10 border border-[#00c3ff]/30 flex items-center justify-center shrink-0">
+                          <Lock size={14} className="text-[#00c3ff]" strokeWidth={2} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-bold text-[#00c3ff] font-headline">Unlock Full Analysis</p>
+                          <p className="text-xs text-[#8b9bb4] font-body leading-snug">Create a free account to see disqualifiers, requirements, and eligibility analysis.</p>
+                        </div>
+                        <ChevronRight size={15} className="text-[#00c3ff] shrink-0 group-hover/unlock:translate-x-0.5 transition-transform duration-200" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
             )}
           </div>
         </section>

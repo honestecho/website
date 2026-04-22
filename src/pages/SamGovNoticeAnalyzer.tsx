@@ -13,9 +13,6 @@ import {
   Sparkles,
   FileText,
   ShieldCheck,
-  Building2,
-  Calendar,
-  Tag,
   Lock,
   ChevronRight,
   Info,
@@ -23,6 +20,7 @@ import {
   Download,
   Cpu,
 } from 'lucide-react';
+import AnalyzerOpportunityCard from '../components/AnalyzerOpportunityCard';
 
 // ── API ───────────────────────────────────────────────────────────────────────
 
@@ -192,8 +190,6 @@ export default function SamGovNoticeAnalyzer() {
     }
   }
 
-  const cfg  = result ? (REC_CONFIG[result.recommendation] ?? REC_CONFIG.CONDITIONAL_GO) : null;
-  const Icon = result ? (REC_ICON[result.recommendation]   ?? AlertTriangle) : null;
 
   return (
     <>
@@ -295,92 +291,15 @@ export default function SamGovNoticeAnalyzer() {
               </div>
             )}
 
-            {result && cfg && Icon && (
+            {result && (
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start">
 
-                {/* ── Left: Data cards ─────────────────────────────────────── */}
+                {/* ── Left: Opportunity card ───────────────────────────────── */}
                 <div className="lg:col-span-2 flex flex-col gap-4">
-
-                  {/* Decision card */}
-                  <div className={`rounded-2xl bg-[#0b1120] border ${cfg.border} p-6 md:p-8 shadow-2xl ${cfg.glow} group relative overflow-hidden`}>
-                    <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent rounded-t-2xl" />
-
-                    <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-1.5">
-                      {result.agency || 'Agency not stated'}
-                    </p>
-                    <h2 className="font-headline font-black text-xl md:text-2xl text-white mb-6 tracking-tight leading-tight">
-                      {result.title || 'Untitled notice'}
-                    </h2>
-
-                    <div className="flex items-start gap-5 flex-wrap">
-                      <div className="text-center shrink-0 min-w-[64px]">
-                        <div className={`text-5xl font-black ${cfg.color} font-headline leading-none tabular-nums drop-shadow-2xl`}>
-                          {result.score}
-                        </div>
-                        <div className="text-[10px] font-bold uppercase tracking-widest text-[#8b9bb4] mt-1">% Match</div>
-                      </div>
-
-                      <div className="hidden sm:block w-px h-14 bg-[#1e2d4a] shrink-0" />
-
-                      <div className="flex-1 min-w-[200px]">
-                        <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border ${cfg.bg} ${cfg.border} mb-3`}>
-                          <Icon size={13} className={cfg.color} strokeWidth={2.5} />
-                          <span className={`text-xs font-black uppercase tracking-widest font-label ${cfg.color}`}>
-                            {cfg.label}
-                          </span>
-                        </div>
-                        <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">{result.summary}</p>
-                      </div>
-                    </div>
-
-                    {result.drivers.length > 0 && (
-                      <div className="border-t border-[#1e2d4a] mt-6 pt-5">
-                        <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-3">
-                          Why this recommendation
-                        </p>
-                        <div className="flex flex-col gap-2.5">
-                          {result.drivers.map((driver, i) => {
-                            const isPos = i < Math.ceil(result.drivers.length / 2);
-                            return (
-                              <div key={i} className="flex items-start gap-3">
-                                {isPos
-                                  ? <CheckCircle2 size={14} className="text-[#4ade80] shrink-0 mt-0.5" />
-                                  : <AlertTriangle size={14} className="text-[#fbbf24] shrink-0 mt-0.5" />
-                                }
-                                <span className="text-sm text-[#a0b2c8] font-body leading-snug">{driver}</span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Notice Details */}
-                  <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] shadow-2xl px-6 py-5 group relative overflow-hidden hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
-                    <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl" />
-                    <p className="text-[10px] font-bold uppercase tracking-widest font-label text-[#8b9bb4] mb-4">
-                      Notice Details
-                    </p>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-                      {([
-                        { Icon: Building2,   label: 'Agency',    value: result.agency   || '—' },
-                        { Icon: Calendar,    label: 'Due Date',  value: result.dueDate  || '—' },
-                        { Icon: ShieldCheck, label: 'Set-Aside', value: result.setAside || '—' },
-                        { Icon: Tag,         label: 'NAICS',     value: result.naics    || '—' },
-                      ] as const).map(({ Icon: FieldIcon, label, value }) => (
-                        <div key={label}>
-                          <div className="flex items-center gap-1.5 mb-1">
-                            <FieldIcon size={11} className="text-[#00c3ff]" strokeWidth={2} />
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-[#8b9bb4] font-label">{label}</span>
-                          </div>
-                          <div className="text-sm text-white font-body">{value}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* General Assessment disclosure */}
+                  <AnalyzerOpportunityCard
+                    result={result}
+                    onTrack={event => track(event, { notice_id: result.noticeId })}
+                  />
                   <div className="rounded-xl bg-[#0f1a2e] border border-[#1e2d4a] px-5 py-4 flex items-start gap-3">
                     <Info size={15} className="text-[#00c3ff] shrink-0 mt-0.5" strokeWidth={2} />
                     <div>

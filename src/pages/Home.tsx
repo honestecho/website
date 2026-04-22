@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, Sparkles, Target, Scale, FileText, CheckCircle, Upload, Compass, Clock, Shuffle, Filter } from 'lucide-react';
+import { ArrowRight, Sparkles, Target, Scale, FileText, CheckCircle, Upload, Compass, Clock, Shuffle, Filter, Shield, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import FlyIn from '../components/FlyIn';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
@@ -84,49 +84,33 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Full-width stat strip */}
+        {/* Full-width filmstrip */}
         <div className="max-w-7xl mx-auto relative z-10 mt-10">
-          <div className="rounded-2xl bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] px-8 py-6 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-0">
-
-            <div className="flex items-center gap-4 sm:flex-1 justify-center group cursor-default">
-              <div className="w-8 h-8 flex items-center justify-center relative overflow-visible shrink-0">
-                <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                <Target className="w-4 h-4 text-[#00c3ff] group-hover:text-white group-hover:scale-110 group-hover:-rotate-12 drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
-              </div>
-              <div>
-                <div className="text-xl font-black text-[#00c3ff] font-headline leading-none">100,000+</div>
-                <div className="text-xs text-[#8b9bb4] font-body mt-0.5">SAM.gov opportunities analyzed</div>
-              </div>
+          <div className="flex justify-center mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+              <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Trusted by government contractors nationwide</span>
             </div>
-
-            <div className="hidden sm:block h-10 w-px bg-[rgba(255,255,255,0.08)]" />
-            <div className="block sm:hidden w-full h-px bg-[#1e2d4a]" />
-
-            <div className="flex items-center gap-4 sm:flex-1 justify-center group cursor-default">
-              <div className="w-8 h-8 flex items-center justify-center relative overflow-visible shrink-0">
-                <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                <Compass className="w-4 h-4 text-[#00c3ff] group-hover:text-white group-hover:scale-110 group-hover:-rotate-12 drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+          </div>
+          <div className="rounded-2xl bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] px-8 py-6 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0">
+            {([
+              { Icon: Clock,      title: 'Save Hours',   body: 'Analyze in seconds, not hours'            },
+              { Icon: Target,     title: 'Bid Smarter',  body: 'Focus on opportunities worth pursuing'    },
+              { Icon: Shield,     title: 'Reduce Risk',  body: 'Spot potential issues before you invest'  },
+              { Icon: TrendingUp, title: 'Win More',     body: 'Make data-driven go / no-go decisions'    },
+            ] as { Icon: React.ElementType; title: string; body: string }[]).map((item, i) => (
+              <div key={item.title} className="flex items-center gap-4 justify-center group cursor-default">
+                {i > 0 && <div className="hidden md:block absolute h-10 w-px bg-[rgba(255,255,255,0.08)] -translate-x-3" />}
+                <div className="w-8 h-8 flex items-center justify-center relative overflow-visible shrink-0">
+                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                  <item.Icon className="w-4 h-4 text-[#00c3ff] group-hover:text-white group-hover:scale-110 group-hover:-rotate-12 drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                </div>
+                <div>
+                  <div className="text-sm font-black text-white font-headline leading-none">{item.title}</div>
+                  <div className="text-xs text-[#8b9bb4] font-body mt-0.5">{item.body}</div>
+                </div>
               </div>
-              <div>
-                <div className="text-xl font-black text-[#00c3ff] font-headline leading-none">5-phase</div>
-                <div className="text-xs text-[#8b9bb4] font-body mt-0.5">structured bid/no-bid workflow</div>
-              </div>
-            </div>
-
-            <div className="hidden sm:block h-10 w-px bg-[rgba(255,255,255,0.08)]" />
-            <div className="block sm:hidden w-full h-px bg-[#1e2d4a]" />
-
-            <div className="flex items-center gap-4 sm:flex-1 justify-center group cursor-default">
-              <div className="w-8 h-8 flex items-center justify-center relative overflow-visible shrink-0">
-                <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                <FileText className="w-4 h-4 text-[#00c3ff] group-hover:text-white group-hover:scale-110 group-hover:-rotate-12 drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
-              </div>
-              <div>
-                <div className="text-xl font-black text-[#00c3ff] font-headline leading-none">Decision-ready</div>
-                <div className="text-xs text-[#8b9bb4] font-body mt-0.5">output built for small GovCon teams</div>
-              </div>
-            </div>
-
+            ))}
           </div>
         </div>
       </section>

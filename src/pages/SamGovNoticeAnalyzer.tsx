@@ -264,13 +264,23 @@ export default function SamGovNoticeAnalyzer() {
             </p>
 
             {error && !loading && (
-              <div className={`mt-4 flex items-start gap-3 rounded-lg border p-3.5 ${rateLimited ? 'border-amber-500/40 bg-amber-500/10' : 'border-red-500/40 bg-red-500/10'}`}>
-                <AlertCircle className={`w-4 h-4 mt-0.5 flex-shrink-0 ${rateLimited ? 'text-amber-400' : 'text-red-400'}`} strokeWidth={2} />
+              <div className={`mt-4 flex items-start gap-3 rounded-xl border p-4 ${
+                rateLimited
+                  ? 'border-[#4A3800] bg-[#2A2000]'
+                  : 'border-[#4A0A0A] bg-[#2A0505]'
+              }`}>
+                <div className="relative shrink-0 w-5 h-5 flex items-center justify-center mt-0.5">
+                  <div className={`absolute inset-0 blur-sm rounded-full opacity-30 ${rateLimited ? 'bg-[#fbbf24]' : 'bg-[#f87171]'}`} />
+                  <AlertCircle className={`w-4 h-4 relative z-10 ${rateLimited ? 'text-[#fbbf24]' : 'text-[#f87171]'}`} strokeWidth={2} />
+                </div>
                 <div className="flex-1">
-                  <p className="text-sm text-white font-body">{error}</p>
+                  <p className="text-sm font-semibold text-white font-body">{error}</p>
                   {rateLimited && (
-                    <Link to="/signup" className="inline-flex items-center gap-1.5 mt-2 text-sm font-bold text-[#00c3ff] hover:text-white transition-colors">
-                      Start free <ArrowRight className="w-3.5 h-3.5" />
+                    <Link
+                      to="/signup"
+                      className="inline-flex items-center gap-1.5 mt-2.5 px-4 py-1.5 bg-[#00c3ff] text-[#030B17] text-xs font-black rounded-lg shadow-[0_0_20px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all"
+                    >
+                      Start free <ArrowRight className="w-3 h-3" />
                     </Link>
                   )}
                 </div>

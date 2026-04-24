@@ -86,12 +86,6 @@ export default function Home() {
 
         {/* Full-width filmstrip */}
         <div className="max-w-7xl mx-auto relative z-10 mt-10">
-          <div className="flex justify-center mb-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-              <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Trusted by government contractors nationwide</span>
-            </div>
-          </div>
           <div className="rounded-2xl bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] grid grid-cols-2 md:grid-cols-4 divide-x divide-[rgba(255,255,255,0.06)]">
             {([
               { Icon: Clock,      title: 'Save Hours',   body: 'Analyze in seconds, not hours'           },

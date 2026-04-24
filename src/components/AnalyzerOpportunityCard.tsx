@@ -99,12 +99,18 @@ export default function AnalyzerOpportunityCard({ result, onTrack }: {
   const abbr    = agencyAbbr(result.agency);
   const agency  = agencyDisplay(result.agency);
 
-  // Derive factors: drivers with positive keywords → check, rest → warning
-  const positiveRe = /strong|good|align|match|compat|eligible|solid|high|relevant/i;
-  const factors = result.drivers.slice(0, 5).map(d => ({
-    label: d,
-    pos: positiveRe.test(d),
-  }));
+  // Synthesize factors: inject score-based positives so GO cards aren't all warnings
+  const syntheticPositives: string[] =
+    result.recommendation === 'GO'
+      ? ['Strong overall fit for this opportunity', 'Score indicates a pursue signal']
+      : result.recommendation === 'CONDITIONAL_GO'
+      ? ['Opportunity has notable fit signals']
+      : [];
+  const warningDrivers = result.drivers.slice(0, 5 - syntheticPositives.length);
+  const factors = [
+    ...syntheticPositives.map(label => ({ label, pos: true })),
+    ...warningDrivers.map(label => ({ label, pos: false })),
+  ];
 
   // Row content
   const rowContent: Record<string, React.ReactNode> = {
@@ -114,13 +120,7 @@ export default function AnalyzerOpportunityCard({ result, onTrack }: {
         </span>
       : <span className={gapText}>Not specified</span>,
 
-    keywords: result.drivers.length > 0
-      ? <div className="flex items-center gap-1.5 overflow-hidden">
-          {result.drivers.slice(0, 2).map((kw, i) => (
-            <span key={i} className={`${chip} text-[#00c3ff] whitespace-nowrap truncate max-w-[120px]`}>{kw.split(' ').slice(0, 3).join(' ')}</span>
-          ))}
-        </div>
-      : <span className={gapText}>No matches</span>,
+    keywords: <span className={gapText}>No matches</span>,
 
     setaside: result.setAside
       ? <span className={`${chip} text-[#00c3ff]`}>{abbrevSetAside(result.setAside)}</span>

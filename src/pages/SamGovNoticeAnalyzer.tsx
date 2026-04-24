@@ -173,7 +173,7 @@ export default function SamGovNoticeAnalyzer() {
 
       {/* ── Hero ───────────────────────────────────────────────────────────── */}
       <section className="pt-32 pb-10 px-6 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-[960px] mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
             <Sparkles className="w-3 h-3 text-[#00c3ff]" />
             <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">
@@ -230,14 +230,10 @@ export default function SamGovNoticeAnalyzer() {
             </p>
 
             {error && !loading && (
-              <div className={`mt-4 flex items-start gap-3 rounded-xl border p-4 ${
-                rateLimited
-                  ? 'border-[#4A3800] bg-[#2A2000]'
-                  : 'border-[#4A0A0A] bg-[#2A0505]'
-              }`}>
+              <div className="mt-4 flex items-start gap-3 rounded-xl border border-[#1e2d4a] bg-[#0b1120] p-4">
                 <div className="relative shrink-0 w-5 h-5 flex items-center justify-center mt-0.5">
-                  <div className={`absolute inset-0 blur-sm rounded-full opacity-30 ${rateLimited ? 'bg-[#fbbf24]' : 'bg-[#f87171]'}`} />
-                  <AlertCircle className={`w-4 h-4 relative z-10 ${rateLimited ? 'text-[#fbbf24]' : 'text-[#f87171]'}`} strokeWidth={2} />
+                  <div className={`absolute inset-0 blur-sm rounded-full opacity-25 ${rateLimited ? 'bg-[#00c3ff]' : 'bg-[#f87171]'}`} />
+                  <AlertCircle className={`w-4 h-4 relative z-10 ${rateLimited ? 'text-[#00c3ff]' : 'text-[#f87171]'}`} strokeWidth={2} />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm font-semibold text-white font-body">{error}</p>

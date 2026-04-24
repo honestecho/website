@@ -26,7 +26,7 @@ export default function Home() {
       <SoftwareApplicationSchema />
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
-      <section className="relative px-6 pt-16 pb-16 lg:pb-20">
+      <section className="relative px-6 pt-16 pb-24">
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
 
           {/* Left Column: Copy */}
@@ -92,22 +92,21 @@ export default function Home() {
               <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Trusted by government contractors nationwide</span>
             </div>
           </div>
-          <div className="rounded-2xl bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] px-8 py-6 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0">
+          <div className="rounded-2xl bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] grid grid-cols-2 md:grid-cols-4 divide-x divide-[rgba(255,255,255,0.06)]">
             {([
-              { Icon: Clock,      title: 'Save Hours',   body: 'Analyze in seconds, not hours'            },
-              { Icon: Target,     title: 'Bid Smarter',  body: 'Focus on opportunities worth pursuing'    },
-              { Icon: Shield,     title: 'Reduce Risk',  body: 'Spot potential issues before you invest'  },
-              { Icon: TrendingUp, title: 'Win More',     body: 'Make data-driven go / no-go decisions'    },
+              { Icon: Clock,      title: 'Save Hours',   body: 'Analyze in seconds, not hours'           },
+              { Icon: Target,     title: 'Bid Smarter',  body: 'Focus on opportunities worth pursuing'   },
+              { Icon: Shield,     title: 'Reduce Risk',  body: 'Spot potential issues before you invest' },
+              { Icon: TrendingUp, title: 'Win More',     body: 'Make data-driven go / no-go decisions'   },
             ] as { Icon: React.ElementType; title: string; body: string }[]).map((item, i) => (
-              <div key={item.title} className="flex items-center gap-4 justify-center group cursor-default">
-                {i > 0 && <div className="hidden md:block absolute h-10 w-px bg-[rgba(255,255,255,0.08)] -translate-x-3" />}
-                <div className="w-8 h-8 flex items-center justify-center relative overflow-visible shrink-0">
+              <div key={item.title} className={`flex items-center gap-4 px-8 py-6 group cursor-default ${i >= 2 ? 'border-t border-[rgba(255,255,255,0.06)] md:border-t-0' : ''}`}>
+                <div className="w-9 h-9 flex items-center justify-center relative overflow-visible shrink-0">
                   <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                  <item.Icon className="w-4 h-4 text-[#00c3ff] group-hover:text-white group-hover:scale-110 group-hover:-rotate-12 drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                  <item.Icon className="w-5 h-5 text-[#00c3ff] group-hover:text-white group-hover:scale-110 group-hover:-rotate-12 drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                 </div>
                 <div>
-                  <div className="text-sm font-black text-white font-headline leading-none">{item.title}</div>
-                  <div className="text-xs text-[#8b9bb4] font-body mt-0.5">{item.body}</div>
+                  <div className="text-base font-black text-white font-headline leading-none mb-1">{item.title}</div>
+                  <div className="text-xs text-[#8b9bb4] font-body leading-snug">{item.body}</div>
                 </div>
               </div>
             ))}

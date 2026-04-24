@@ -259,19 +259,15 @@ export default function SamGovNoticeAnalyzer() {
       {/* ── Result ─────────────────────────────────────────────────────────── */}
       {(loading || result) && (
         <section className="pb-6 px-6 relative">
-          <div className="max-w-7xl mx-auto relative z-10">
+          <div className="max-w-[960px] mx-auto relative z-10">
 
-            {loading && !result && (
-              <div className="max-w-7xl mx-auto">
-                <ResultSkeleton />
-              </div>
-            )}
+            {loading && !result && <ResultSkeleton />}
 
             {result && (
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_288px] gap-5 items-start">
 
                 {/* ── Left: Opportunity card ───────────────────────────────── */}
-                <div className="lg:col-span-2 flex flex-col gap-4">
+                <div className="flex flex-col gap-4">
                   <AnalyzerOpportunityCard
                     result={result}
                     onTrack={event => track(event, { notice_id: result.noticeId })}

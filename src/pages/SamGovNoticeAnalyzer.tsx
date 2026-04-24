@@ -6,9 +6,6 @@ import {
   ArrowRight,
   Search,
   AlertCircle,
-  CheckCircle2,
-  AlertTriangle,
-  XCircle,
   Loader2,
   Sparkles,
   FileText,
@@ -57,37 +54,6 @@ interface AnalysisResult {
   summary: string;
 }
 
-// ── Config ────────────────────────────────────────────────────────────────────
-
-const REC_CONFIG: Record<Recommendation, { label: string; color: string; bg: string; border: string; glow: string }> = {
-  GO: {
-    label: 'GO',
-    color: 'text-emerald-400',
-    bg: 'bg-emerald-500/10',
-    border: 'border-emerald-500/40',
-    glow: 'shadow-[0_0_40px_rgba(16,185,129,0.12)]',
-  },
-  CONDITIONAL_GO: {
-    label: 'CONDITIONAL GO',
-    color: 'text-amber-400',
-    bg: 'bg-amber-500/10',
-    border: 'border-amber-500/40',
-    glow: 'shadow-[0_0_40px_rgba(245,158,11,0.10)]',
-  },
-  NO_BID: {
-    label: 'NO-BID',
-    color: 'text-red-400',
-    bg: 'bg-red-500/10',
-    border: 'border-red-500/40',
-    glow: 'shadow-[0_0_40px_rgba(239,68,68,0.10)]',
-  },
-};
-
-const REC_ICON: Record<Recommendation, typeof CheckCircle2> = {
-  GO: CheckCircle2,
-  CONDITIONAL_GO: AlertTriangle,
-  NO_BID: XCircle,
-};
 
 // ── Skeleton ──────────────────────────────────────────────────────────────────
 

@@ -135,16 +135,8 @@ export default function Signup() {
 
         <div className="w-full max-w-5xl mx-auto px-6 flex flex-col lg:flex-row items-center lg:items-stretch gap-0 relative z-10">
 
-        {/* Left column — branding / value props (hidden on mobile) */}
-        <div className="hidden lg:flex flex-col justify-center w-[400px] shrink-0 pr-16">
-          <Link to="/" className="flex items-center gap-3 mb-16 group w-fit">
-            <div className="relative flex items-center justify-center">
-              <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-              <Zap className="w-9 h-9 text-[#00c3ff] drop-shadow-[0_0_12px_rgba(0,195,255,0.8)] transition-all duration-500 relative z-10" fill="currentColor" fillOpacity={0.2} strokeWidth={2} />
-            </div>
-            <span className="text-xl font-black tracking-tighter text-white font-headline">Honest Echo</span>
-          </Link>
-
+        {/* Left column — value props (hidden on mobile) */}
+        <div className="hidden lg:flex flex-col justify-start pt-8 w-[400px] shrink-0 pr-16">
           <h1 className="font-headline font-black text-4xl xl:text-5xl tracking-tighter text-white mb-4 leading-tight">
             Win more contracts.<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">Waste less time.</span>
@@ -172,12 +164,6 @@ export default function Signup() {
             ))}
           </ul>
 
-          <p className="mt-12 text-xs text-[#8b9bb4] font-body">
-            Already have an account?{' '}
-            <a href="https://pursuit.honestecho.com" target="_blank" rel="noopener noreferrer" className="text-[#00c3ff] hover:text-white transition-colors">
-              Sign in
-            </a>
-          </p>
         </div>
 
         {/* Right column — form card */}
@@ -317,8 +303,8 @@ export default function Signup() {
                   <p className="text-xs text-[#64748b] text-center leading-relaxed">
                     By creating an account, you agree to our{' '}
                     <Link to="/terms" className="text-[#00c3ff] hover:underline">Terms of Service</Link>
-                    {' '}and{' '}
-                    <Link to="/privacy" className="text-[#00c3ff] hover:underline">Privacy Policy</Link>.
+                    <br />
+                    and <Link to="/privacy" className="text-[#00c3ff] hover:underline">Privacy Policy</Link>.
                   </p>
 
                   <button

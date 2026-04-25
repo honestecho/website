@@ -11,12 +11,14 @@ export default function Footer() {
           {/* Brand */}
           <div className="flex items-center gap-3 shrink-0">
             <Link to="/" aria-label="Honest Echo home">
-              <img src="/he-logo.png" alt="Honest Echo" className="h-8 w-auto" />
+              <img src="/he-logo-mark.png" alt="Honest Echo" className="h-10 w-auto" />
             </Link>
             <div className="flex items-stretch gap-5">
               <Link to="/" className="flex flex-col leading-none justify-between gap-1">
-                <span className="font-headline font-black text-xl tracking-tighter text-white">Honest Echo</span>
-                <span className="font-body font-normal text-xs text-[#8b9bb4] tracking-wide whitespace-nowrap">Better Signals. Smarter Pursuits</span>
+                <span className="font-headline font-black text-xl tracking-tighter leading-none">
+                  <span className="text-white">honest</span><span className="text-[#00c3ff]">echo</span>
+                </span>
+                <span className="font-body text-[10px] text-[#8b9bb4] tracking-widest uppercase whitespace-nowrap">Know Before You Bid</span>
               </Link>
               <div className="border-l border-[#1e2d4a] self-stretch"></div>
               <div className="flex flex-col justify-end gap-0.5 leading-none">

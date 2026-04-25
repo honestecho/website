@@ -88,7 +88,7 @@ export default function About() {
                   'They make inconsistent bid/no-bid decisions under pressure',
                 ].map(item => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-[#a0b2c8] font-body">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#f87171] shrink-0 mt-[0.35rem]"></div>
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#fbbf24] shrink-0 mt-[0.35rem]"></div>
                     {item}
                   </li>
                 ))}

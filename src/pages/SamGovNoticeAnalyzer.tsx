@@ -260,7 +260,7 @@ export default function SamGovNoticeAnalyzer() {
             {loading && !result && <ResultSkeleton />}
 
             {result && (
-              <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-5 items-stretch">
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-5 items-stretch">
 
                 {/* ── Left: Opportunity card ───────────────────────────────── */}
                 <div className="flex flex-col">
@@ -288,7 +288,7 @@ export default function SamGovNoticeAnalyzer() {
                     </div>
 
                     {/* Steps */}
-                    <div className="px-5 py-4 space-y-4 flex-1">
+                    <div className="px-5 py-4 flex-1 flex flex-col justify-between gap-3">
                       {([
                         { Icon: Download,   title: 'Notice Data Extracted',  body: 'We pulled key details including requirements, timeline, NAICS codes, and set-aside information.' },
                         { Icon: Cpu,        title: 'Initial Evaluation Run', body: 'Our algorithm compared this opportunity against thousands of government patterns and best practices.' },

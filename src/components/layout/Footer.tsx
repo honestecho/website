@@ -16,7 +16,7 @@ export default function Footer() {
             <div className="flex items-stretch gap-5">
               <Link to="/" className="flex flex-col leading-none justify-between gap-1">
                 <span className="font-headline font-black text-xl tracking-tighter leading-none">
-                  <span className="text-white">honest</span><span className="text-[#00c3ff]">echo</span>
+                  <span className="text-white">Honest </span><span className="text-[#00c3ff]">Echo</span>
                 </span>
                 <span className="font-body text-[10px] text-[#8b9bb4] tracking-widest uppercase whitespace-nowrap">Know Before You Bid</span>
               </Link>

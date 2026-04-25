@@ -21,7 +21,7 @@ export default function Navbar() {
           <img src="/he-logo-mark.png" alt="Honest Echo" className="h-10 w-auto" />
           <div className="flex flex-col leading-none gap-1">
             <span className="font-headline font-black text-xl tracking-tighter leading-none">
-              <span className="text-white">honest</span><span className="text-[#00c3ff]">echo</span>
+              <span className="text-white">Honest </span><span className="text-[#00c3ff]">Echo</span>
             </span>
             <span className="font-body text-[10px] text-[#8b9bb4] tracking-widest uppercase hidden sm:block">Know Before You Bid</span>
           </div>

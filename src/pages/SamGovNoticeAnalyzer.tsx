@@ -173,7 +173,7 @@ export default function SamGovNoticeAnalyzer() {
 
       {/* ── Hero ───────────────────────────────────────────────────────────── */}
       <section className="pt-32 pb-10 px-6 relative overflow-hidden">
-        <div className="max-w-[960px] mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
             <Sparkles className="w-3 h-3 text-[#00c3ff]" />
             <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">
@@ -260,30 +260,19 @@ export default function SamGovNoticeAnalyzer() {
             {loading && !result && <ResultSkeleton />}
 
             {result && (
-              <div className="grid grid-cols-1 lg:grid-cols-[1fr_288px] gap-5 items-start">
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-5 items-stretch">
 
                 {/* ── Left: Opportunity card ───────────────────────────────── */}
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col">
                   <AnalyzerOpportunityCard
                     result={result}
                     onTrack={event => track(event, { notice_id: result.noticeId })}
                   />
-                  <div className="rounded-xl bg-[#0f1a2e] border border-[#1e2d4a] px-5 py-4 flex items-start gap-3">
-                    <Info size={15} className="text-[#00c3ff] shrink-0 mt-0.5" strokeWidth={2} />
-                    <div>
-                      <p className="text-xs font-bold uppercase tracking-widest text-[#00c3ff] font-label mb-1">
-                        General Assessment
-                      </p>
-                      <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">
-                        This result is based on a default small-business contractor profile. Add your company profile for a personalized evaluation.
-                      </p>
-                    </div>
-                  </div>
                 </div>
 
                 {/* ── Right: What Happened panel ───────────────────────────── */}
-                <div className="lg:col-span-1 lg:sticky lg:top-24">
-                  <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] shadow-2xl overflow-hidden">
+                <div className="flex flex-col h-full">
+                  <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] shadow-2xl overflow-hidden flex flex-col h-full">
 
                     {/* Header */}
                     <div className="px-5 pt-5 pb-4 border-b border-[#1e2d4a]">
@@ -299,7 +288,7 @@ export default function SamGovNoticeAnalyzer() {
                     </div>
 
                     {/* Steps */}
-                    <div className="px-5 py-4 space-y-4">
+                    <div className="px-5 py-4 space-y-4 flex-1">
                       {([
                         { Icon: Download,   title: 'Notice Data Extracted',  body: 'We pulled key details including requirements, timeline, NAICS codes, and set-aside information.' },
                         { Icon: Cpu,        title: 'Initial Evaluation Run', body: 'Our algorithm compared this opportunity against thousands of government patterns and best practices.' },

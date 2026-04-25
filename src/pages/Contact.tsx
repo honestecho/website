@@ -52,7 +52,7 @@ export default function Contact() {
               </div>
               <div>
                 <h4 className="text-white font-bold text-sm mb-1">Location</h4>
-                <p className="text-[#a0b2c8] font-body text-sm leading-relaxed">Honest Echo LLC<br />4114 Legato Road, Fairfax, VA</p>
+                <p className="text-[#a0b2c8] font-body text-sm leading-relaxed">Honest Echo LLC<br />Fairfax, VA</p>
               </div>
             </div>
           </div>

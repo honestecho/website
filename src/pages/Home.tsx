@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Sparkles, Target, Scale, FileText, CheckCircle, Upload, Compass, Clock, Shuffle, Filter, Shield, TrendingUp } from 'lucide-react';
+// Scale, Upload used in How It Works steps
 import { Link } from 'react-router-dom';
 import FlyIn from '../components/FlyIn';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
@@ -103,6 +104,47 @@ export default function Home() {
                   <div className="text-xs text-[#8b9bb4] font-body leading-snug">{item.body}</div>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── How It Works (5 steps) ───────────────────────────────────────── */}
+      <section className="px-6 py-32 relative">
+        <div className="max-w-7xl mx-auto relative z-10">
+
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+              <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">How HE Pursuit Works</span>
+            </div>
+            <h2 className="font-headline font-black text-4xl md:text-5xl text-white tracking-tight">
+              From opportunity to decision in minutes.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+            {[
+              { icon: Upload,      step: '01', title: 'Start with the opportunity',        body: 'Import or review an opportunity and capture the core signals that matter first.' },
+              { icon: Target,      step: '02', title: 'Check fit and eligibility',          body: 'Assess alignment across your business profile, set-asides, certifications, location, and other qualification criteria.' },
+              { icon: Scale,       step: '03', title: 'Evaluate pursuit value and effort',  body: 'Look beyond technical fit to determine whether the opportunity is worth the time, cost, and internal attention required.' },
+              { icon: FileText,    step: '04', title: 'Get a bid/no-bid recommendation',   body: 'Make a more disciplined decision with a recommendation grounded in evidence and structured review.' },
+              { icon: CheckCircle, step: '05', title: 'Move forward with confidence',      body: 'Pursue strong-fit opportunities faster and walk away from weak-fit ones earlier.' },
+            ].map(({ icon: Icon, step, title, body }, i) => (
+              <FlyIn key={step} delay={['', 'delay-100', 'delay-200', 'delay-300', 'delay-[400ms]'][i]}>
+              <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-6 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 flex items-center justify-center relative overflow-visible flex-shrink-0">
+                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                    <Icon className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                  </div>
+                  <span className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest">Step {step}</span>
+                </div>
+                <h3 className="font-headline font-black text-lg text-white mb-2 tracking-tight">{title}</h3>
+                <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{body}</p>
+              </div>
+              </FlyIn>
             ))}
           </div>
         </div>
@@ -214,47 +256,6 @@ export default function Home() {
                 </div>
                 <p className="text-white font-bold text-base font-headline mb-2">{item.label}</p>
                 <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{item.body}</p>
-              </div>
-              </FlyIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 4 — How It Works (5 steps) ──────────────────────────── */}
-      <section className="px-6 py-32 relative">
-        <div className="max-w-7xl mx-auto relative z-10">
-
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-              <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">How HE Pursuit Works</span>
-            </div>
-            <h2 className="font-headline font-black text-4xl md:text-5xl text-white tracking-tight">
-              From opportunity to decision in minutes.
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
-            {[
-              { icon: Upload,      step: '01', title: 'Start with the opportunity',        body: 'Import or review an opportunity and capture the core signals that matter first.' },
-              { icon: Target,      step: '02', title: 'Check fit and eligibility',          body: 'Assess alignment across your business profile, set-asides, certifications, location, and other qualification criteria.' },
-              { icon: Scale,       step: '03', title: 'Evaluate pursuit value and effort',  body: 'Look beyond technical fit to determine whether the opportunity is worth the time, cost, and internal attention required.' },
-              { icon: FileText,    step: '04', title: 'Get a bid/no-bid recommendation',   body: 'Make a more disciplined decision with a recommendation grounded in evidence and structured review.' },
-              { icon: CheckCircle, step: '05', title: 'Move forward with confidence',      body: 'Pursue strong-fit opportunities faster and walk away from weak-fit ones earlier.' },
-            ].map(({ icon: Icon, step, title, body }, i) => (
-              <FlyIn key={step} delay={['', 'delay-100', 'delay-200', 'delay-300', 'delay-[400ms]'][i]}>
-              <div className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-6 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
-                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 flex items-center justify-center relative overflow-visible flex-shrink-0">
-                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                    <Icon className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
-                  </div>
-                  <span className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest">Step {step}</span>
-                </div>
-                <h3 className="font-headline font-black text-lg text-white mb-2 tracking-tight">{title}</h3>
-                <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{body}</p>
               </div>
               </FlyIn>
             ))}

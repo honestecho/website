@@ -18,11 +18,11 @@ export default function Home() {
         <meta property="og:url" content="https://honestecho.com/" />
         <meta property="og:title" content="HE Pursuit — Bid/No-Bid Decisions for Small Government Contractors" />
         <meta property="og:description" content="Find, qualify, and decide on government contracting opportunities faster. SAM.gov opportunity scoring, fit analysis, and pursuit intelligence for lean GovCon teams." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview-2.png" />
+        <meta property="og:image" content="https://honestecho.com/pursuit-overview-3.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="HE Pursuit — Bid/No-Bid Decisions for Small Government Contractors" />
         <meta name="twitter:description" content="Qualify government contracting opportunities in minutes. SAM.gov opportunity scoring and pursuit intelligence for lean GovCon teams." />
-        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview-2.png" />
+        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview-3.png" />
       </Helmet>
       <SoftwareApplicationSchema />
 
@@ -66,7 +66,7 @@ export default function Home() {
               className="relative overflow-hidden rounded-xl shadow-2xl cursor-pointer hover:scale-[1.02] transition-all duration-700 aspect-[3/2]"
             >
               <img
-                src="/pursuit-overview-2.png"
+                src="/pursuit-overview-3.png"
                 alt="HE Pursuit Dashboard Overview"
                 className="absolute inset-0 w-full h-full object-cover object-center"
               />
@@ -487,7 +487,7 @@ export default function Home() {
             className="relative max-w-[860px] w-full"
             onClick={(e) => e.stopPropagation()}
           >
-            <img src="/pursuit-overview-2.png" alt="HE Pursuit Dashboard Overview" className="block w-full h-auto max-h-[85vh] object-contain rounded-xl shadow-2xl" />
+            <img src="/pursuit-overview-3.png" alt="HE Pursuit Dashboard Overview" className="block w-full h-auto max-h-[85vh] object-contain rounded-xl shadow-2xl" />
             <button
               className="absolute -top-4 -right-4 w-10 h-10 bg-[#00c3ff] hover:bg-white text-[#030B17] font-black rounded-full flex items-center justify-center transition-colors shadow-lg z-10"
               onClick={() => setIsFullscreen(false)}

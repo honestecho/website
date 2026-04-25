@@ -1,6 +1,7 @@
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { AlertCircle, Target, Shield, Users, Compass, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { AlertCircle, Target, Shield, Users, Compass, ArrowRight, CheckCircle2, DollarSign, TrendingUp, Sparkles } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
 
 export default function About() {
@@ -23,17 +24,13 @@ export default function About() {
       {/* ── Hero ─────────────────────────────────────────────────────────────── */}
       <section className="pt-32 pb-12 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Our Story</span>
-          </div>
           <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
             About Honest Echo
           </h1>
           <p className="font-headline font-black text-2xl md:text-3xl text-[#00c3ff] mb-5 tracking-tight leading-snug">
             The government contracting opportunity we should have never pursued.
           </p>
-          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-2xl">
+          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body">
             Honest Echo helps small government contractors evaluate government contracting opportunities with clarity — so you can pursue smarter from the start.
           </p>
         </div>
@@ -189,15 +186,21 @@ export default function About() {
               </Link>
               , and focus on opportunities they can actually win.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border-t border-[#1e2d4a] pt-6">
-              {[
-                { stat: 'One bad bid', body: 'can cost weeks of proposal effort and real B&P dollars.' },
-                { stat: 'One right decision', body: 'protects your team\'s bandwidth and redirects energy to stronger pursuits.' },
-                { stat: 'Better signals', body: 'mean smarter pursuits — and that\'s the difference between reacting and winning.' },
-              ].map(({ stat, body }) => (
-                <div key={stat}>
-                  <p className="font-headline font-black text-[#00c3ff] text-lg mb-1">{stat}</p>
-                  <p className="text-[#8b9bb4] text-sm font-body leading-relaxed">{body}</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#1e2d4a] border-t border-[#1e2d4a] mt-6">
+              {([
+                { Icon: DollarSign,  title: 'One bad bid',      body: 'can cost weeks of proposal effort and real B&P dollars.'                              },
+                { Icon: TrendingUp,  title: 'One right decision',body: "protects your team's bandwidth and redirects energy to stronger pursuits."             },
+                { Icon: Sparkles,    title: 'Better signals',    body: "mean smarter pursuits — and that's the difference between reacting and winning."      },
+              ] as { Icon: React.ElementType; title: string; body: string }[]).map(({ Icon, title, body }) => (
+                <div key={title} className="flex items-center gap-4 px-6 py-5 group cursor-default">
+                  <div className="w-9 h-9 flex items-center justify-center relative overflow-visible shrink-0">
+                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                    <Icon className="w-5 h-5 text-[#00c3ff] group-hover:text-white group-hover:scale-110 group-hover:-rotate-12 drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                  </div>
+                  <div>
+                    <p className="font-headline font-black text-white text-base leading-none mb-1">{title}</p>
+                    <p className="text-[#8b9bb4] text-xs font-body leading-snug">{body}</p>
+                  </div>
                 </div>
               ))}
             </div>

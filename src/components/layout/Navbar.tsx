@@ -47,7 +47,7 @@ export default function Navbar() {
             Login
           </a>
           <button
-            className="md:hidden flex items-center justify-center w-10 h-10 rounded-lg border border-[#1e2d4a] text-white hover:border-[#00c3ff]/40 transition-colors"
+            className="md:hidden flex items-center justify-center w-11 h-11 rounded-lg border border-[#1e2d4a] text-white hover:border-[#00c3ff]/40 transition-colors"
             onClick={() => setOpen(prev => !prev)}
             aria-label="Toggle menu"
           >

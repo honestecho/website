@@ -18,7 +18,7 @@ export default function Contact() {
         <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
       
-      <div className="max-w-7xl mx-auto px-6 py-24 min-h-[80vh] flex flex-col md:flex-row gap-16">
+      <div className="max-w-7xl mx-auto px-6 py-24 min-h-[80vh] flex flex-col md:flex-row gap-8 md:gap-16">
         {/* Left Side: Info */}
         <div className="w-full md:w-1/3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6 animate-fade-in">

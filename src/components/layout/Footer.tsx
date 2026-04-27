@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 export default function Footer() {
   return (
     <footer className="relative z-10 border-t border-[#1e2d4a] bg-[#030B17] mt-auto">
-      <div className="max-w-7xl mx-auto px-8 py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-10">
 
         {/* Top: brand (centered) + 3 link columns (right-grouped) */}
         <div className="flex flex-col md:flex-row items-stretch gap-12 mb-6">
@@ -31,7 +31,7 @@ export default function Footer() {
           </div>
 
           {/* Link columns — centered in remaining space, generously spaced */}
-          <div className="flex flex-1 justify-center items-start gap-16 md:gap-24">
+          <div className="flex flex-1 flex-wrap justify-center items-start gap-8 md:gap-16 lg:gap-24">
 
             {/* Product column */}
             <div>

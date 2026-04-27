@@ -201,7 +201,7 @@ export default function AnalyzerOpportunityCard({ result, onTrack }: {
       </div>
 
       {/* ── MIDDLE: icon rows (left) + recommendation panel (right) ── */}
-      <div className="mb-5 flex gap-6 w-full border-t border-[#1e2d4a] pt-5 relative z-10">
+      <div className="mb-5 flex flex-col md:flex-row gap-6 w-full border-t border-[#1e2d4a] pt-5 relative z-10">
 
         {/* Left: icon rows */}
         <div className="flex-1 min-w-0 space-y-[9px]">
@@ -216,7 +216,7 @@ export default function AnalyzerOpportunityCard({ result, onTrack }: {
         </div>
 
         {/* Right: recommendation + factors */}
-        <div className="shrink-0 w-64 border-l border-[#1e2d4a] pl-5 flex flex-col gap-3">
+        <div className="md:shrink-0 md:w-64 md:border-l border-t md:border-t-0 border-[#1e2d4a] md:pl-5 pt-5 md:pt-0 flex flex-col gap-3">
           <p className="text-[10px] font-bold uppercase tracking-widest text-[#8b9bb4]">Recommendation</p>
           <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border ${dec.bg} ${dec.border} self-center`}>
             <CheckCircle2 size={13} className={dec.text} />

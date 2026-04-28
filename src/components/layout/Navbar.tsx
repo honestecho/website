@@ -23,7 +23,7 @@ export default function Navbar() {
             <span className="font-headline font-black text-xl tracking-tighter leading-none">
               <span className="text-white">Honest </span><span className="text-[#00c3ff]">Echo</span>
             </span>
-            <span className="font-body text-[10px] text-[#8b9bb4] tracking-widest uppercase hidden sm:block">Know Before You Bid</span>
+            <span className="font-body text-[10px] text-[#a0b2c8] tracking-widest uppercase hidden sm:block">Know Before You Bid</span>
           </div>
         </Link>
 

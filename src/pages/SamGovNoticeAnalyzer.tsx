@@ -27,13 +27,27 @@ const API_BASE = import.meta.env.VITE_API_URL
 
 // ── Analytics ─────────────────────────────────────────────────────────────────
 
-function track(event: string, props: Record<string, unknown> = {}) {
-  const payload = { ...props, timestamp: new Date().toISOString(), mode: 'public_general' };
+const ANALYTICS_API = 'https://he-pursuit-api.onrender.com/api/analytics/track';
+
+function getAnonId(): string {
+  const KEY = 'he_anon_id';
   try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (window as any).gtag?.('event', event, payload);
+    let id = localStorage.getItem(KEY);
+    if (!id) { id = crypto.randomUUID(); localStorage.setItem(KEY, id); }
+    return id;
+  } catch { return 'unknown'; }
+}
+
+function track(event: string, props: Record<string, unknown> = {}) {
+  if (import.meta.env.DEV) { console.debug('[analytics]', event, props); return; }
+  try {
+    fetch(ANALYTICS_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ events: [{ event_name: event, anonymous_id: getAnonId(), page: window.location.pathname, properties: props, source: 'website' }] }),
+      keepalive: true,
+    }).catch(() => {});
   } catch { /* non-fatal */ }
-  if (import.meta.env.DEV) console.debug('[analytics]', event, payload);
 }
 
 // ── Types ─────────────────────────────────────────────────────────────────────

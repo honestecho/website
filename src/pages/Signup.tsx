@@ -102,6 +102,13 @@ export default function Signup() {
         phone: form.phone.trim() || null,
       });
 
+      // Send welcome email
+      fetch(`${import.meta.env.VITE_API_URL || 'https://pursuit-api.honestecho.com'}/api/public/welcome-email`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: form.email.trim(), fullName: form.fullName.trim() })
+      }).catch(err => console.warn('Welcome email trigger failed:', err));
+
       // If Supabase returns a session immediately (email confirmation disabled),
       // data.session will be non-null — still show the verify screen for consistency.
       void data;

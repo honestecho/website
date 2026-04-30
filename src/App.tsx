@@ -19,6 +19,7 @@ import SamGovAnalysis from './pages/SamGovAnalysis';
 import SamGovNoticeAnalyzer from './pages/SamGovNoticeAnalyzer';
 import SharedPackage from './pages/SharedPackage';
 import TeamWaitlist from './pages/TeamWaitlist';
+import NotFound from './pages/NotFound';
 import { OrganizationSchema } from './components/SchemaOrg';
 
 function ScrollToTop() {
@@ -66,6 +67,7 @@ function App() {
           <Route path="/tools/sam-gov-notice-analyzer" element={<SamGovNoticeAnalyzer />} />
           <Route path="/p/:token" element={<SharedPackage />} />
           <Route path="/team-waitlist" element={<TeamWaitlist />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

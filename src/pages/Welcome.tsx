@@ -31,7 +31,7 @@ export default function Welcome() {
           <Link to="/" className="inline-flex items-center gap-3 mb-12 group">
             <div className="relative flex items-center justify-center">
               <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-25 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-              <Zap className="w-9 h-9 text-[#00c3ff] drop-shadow-[0_0_15px_rgba(0,195,255,0.8)] transition-all duration-500 group-hover:scale-110 group-hover:-rotate-12 relative z-10" fill="currentColor" fillOpacity={0.2} strokeWidth={2} />
+              <Zap className="w-9 h-9 text-[#00c3ff] drop-shadow-[0_0_15px_rgba(0,195,255,0.8)] transition-all duration-500 group-hover:scale-110 relative z-10" fill="currentColor" fillOpacity={0.2} strokeWidth={2} />
             </div>
             <span className="text-xl font-black tracking-tighter text-white font-headline">Honest Echo</span>
           </Link>

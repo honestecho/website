@@ -97,7 +97,7 @@ export default function Home() {
               <div key={item.title} className={`flex items-center gap-3 px-4 sm:px-6 md:px-8 py-5 md:py-6 group cursor-default ${i >= 2 ? 'border-t border-[#1e2d4a] md:border-t-0' : ''}`}>
                 <div className="w-9 h-9 flex items-center justify-center relative overflow-visible shrink-0">
                   <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                  <item.Icon className="w-5 h-5 text-[#00c3ff] group-hover:text-white group-hover:scale-110 group-hover:-rotate-12 drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                  <item.Icon className="w-5 h-5 text-[#00c3ff] group-hover:text-white group-hover:scale-110 drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                 </div>
                 <div>
                   <div className="text-base font-black text-white font-headline leading-none mb-1">{item.title}</div>
@@ -137,7 +137,7 @@ export default function Home() {
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-10 h-10 flex items-center justify-center relative overflow-visible flex-shrink-0">
                     <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                    <Icon className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                    <Icon className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                   </div>
                   <span className="text-[#8b9bb4] text-xs font-label uppercase tracking-widest">Step {step}</span>
                 </div>
@@ -192,7 +192,7 @@ export default function Home() {
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#f5a623]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
                 <div className="w-10 h-10 flex items-center justify-center relative overflow-visible mb-6">
                   <div className="absolute inset-0 bg-[#f5a623] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                  <card.icon className="w-6 h-6 text-[#f5a623] group-hover:text-white drop-shadow-[0_0_8px_rgba(245,166,35,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(245,166,35,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                  <card.icon className="w-6 h-6 text-[#f5a623] group-hover:text-white drop-shadow-[0_0_8px_rgba(245,166,35,0.8)] group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(245,166,35,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                 </div>
                 <h3 className="font-headline font-black text-xl text-white mb-3 tracking-tight">{card.title}</h3>
                 <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{card.body}</p>
@@ -252,7 +252,7 @@ export default function Home() {
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
                 <div className="w-12 h-12 flex items-center justify-center flex-shrink-0 relative overflow-visible mb-5">
                   <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                  <item.icon className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                  <item.icon className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                 </div>
                 <p className="text-white font-bold text-base font-headline mb-2">{item.label}</p>
                 <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{item.body}</p>

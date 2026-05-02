@@ -71,9 +71,11 @@ export default function TeamWaitlist() {
         <meta property="og:url" content="https://honestecho.com/team-waitlist" />
         <meta property="og:title" content="Team Waitlist — HE Pursuit" />
         <meta property="og:description" content="Team adds multi-user workspaces, shared pursuits, and team-level visibility. Join the waitlist for early access." />
+        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Team Waitlist — HE Pursuit" />
         <meta name="twitter:description" content="Team adds multi-user workspaces, shared pursuits, and team-level visibility. Join the waitlist for early access." />
+        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
 
       {/* ── Hero ───────────────────────────────────────────────────────────── */}

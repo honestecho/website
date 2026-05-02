@@ -96,6 +96,11 @@ export default function Privacy() {
         <meta property="og:url" content="https://honestecho.com/privacy" />
         <meta property="og:title" content="Privacy Policy — Honest Echo" />
         <meta property="og:description" content="What data we collect, how we use it, and your options." />
+        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Privacy Policy — Honest Echo" />
+        <meta name="twitter:description" content="What data we collect, how we use it, and your options." />
+        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
 
       {/* ── Hero ───────────────────────────────────────────────────────────── */}

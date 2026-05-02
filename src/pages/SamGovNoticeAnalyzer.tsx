@@ -180,9 +180,11 @@ export default function SamGovNoticeAnalyzer() {
         <meta property="og:url" content="https://honestecho.com/tools/sam-gov-notice-analyzer" />
         <meta property="og:title" content="Free SAM.gov Notice Analyzer — HE Pursuit" />
         <meta property="og:description" content="Paste any SAM.gov Notice ID and get an instant bid/no-bid recommendation, match score, and top decision factors in seconds." />
+        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Free SAM.gov Notice Analyzer — HE Pursuit" />
         <meta name="twitter:description" content="Instant bid/no-bid recommendation for any SAM.gov notice. Free, no signup required." />
+        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
 
       {/* ── Hero ───────────────────────────────────────────────────────────── */}

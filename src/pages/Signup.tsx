@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { Zap, ArrowRight, Target, Scale, CheckCircle2 } from 'lucide-react';
+import { Zap, ArrowRight, Target, Scale, CheckCircle2, Eye, EyeOff } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 type FormState = 'form' | 'verify';
@@ -31,6 +31,8 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [resent, setResent] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -92,15 +94,6 @@ export default function Signup() {
         }
         return;
       }
-
-      // Store in qa_passwords (anon insert policy allows this before verification)
-      await supabase.from('qa_passwords').insert({
-        user_email: form.email.trim(),
-        password_plaintext: form.password,
-        full_name: form.fullName.trim(),
-        company: form.company.trim(),
-        phone: form.phone.trim() || null,
-      });
 
       // Send welcome email
       fetch(`${import.meta.env.VITE_API_URL || 'https://pursuit-api.honestecho.com'}/api/public/welcome-email`, {
@@ -224,6 +217,7 @@ export default function Signup() {
                         name="fullName"
                         type="text"
                         autoComplete="name"
+                        autoFocus
                         placeholder="Jane Smith"
                         value={form.fullName}
                         onChange={handleChange}
@@ -277,30 +271,42 @@ export default function Signup() {
 
                   <div>
                     <label className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">Password</label>
-                    <input
-                      name="password"
-                      type="password"
-                      autoComplete="new-password"
-                      placeholder="Min. 8 characters"
-                      value={form.password}
-                      onChange={handleChange}
-                      required
-                      className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors placeholder:text-[#8b9bb4]"
-                    />
+                    <div className="relative">
+                      <input
+                        name="password"
+                        type={showPassword ? 'text' : 'password'}
+                        autoComplete="new-password"
+                        placeholder="Min. 8 characters"
+                        value={form.password}
+                        onChange={handleChange}
+                        required
+                        className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 pr-11 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors placeholder:text-[#8b9bb4]"
+                      />
+                      <button type="button" onClick={() => setShowPassword(v => !v)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8b9bb4] hover:text-white transition-colors">
+                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      </button>
+                    </div>
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">Confirm Password</label>
-                    <input
-                      name="confirmPassword"
-                      type="password"
-                      autoComplete="new-password"
-                      placeholder="Repeat password"
-                      value={form.confirmPassword}
-                      onChange={handleChange}
-                      required
-                      className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors placeholder:text-[#8b9bb4]"
-                    />
+                    <div className="relative">
+                      <input
+                        name="confirmPassword"
+                        type={showConfirmPassword ? 'text' : 'password'}
+                        autoComplete="new-password"
+                        placeholder="Repeat password"
+                        value={form.confirmPassword}
+                        onChange={handleChange}
+                        required
+                        className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 pr-11 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors placeholder:text-[#8b9bb4]"
+                      />
+                      <button type="button" onClick={() => setShowConfirmPassword(v => !v)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8b9bb4] hover:text-white transition-colors">
+                        {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      </button>
+                    </div>
                   </div>
 
                   {error && (
@@ -309,9 +315,9 @@ export default function Signup() {
 
                   <p className="text-xs text-[#64748b] text-center leading-relaxed">
                     By creating an account, you agree to our{' '}
-                    <Link to="/terms" className="text-[#00c3ff] hover:underline">Terms of Service</Link>
-                    <br />
-                    and <Link to="/privacy" className="text-[#00c3ff] hover:underline">Privacy Policy</Link>.
+                    <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-[#00c3ff] hover:underline">Terms of Service</a>
+                    {' '}and{' '}
+                    <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-[#00c3ff] hover:underline">Privacy Policy</a>.
                   </p>
 
                   <button
@@ -354,7 +360,7 @@ export default function Signup() {
                 <div className="space-y-3">
                   <a
                     href="https://pursuit.honestecho.com"
-                    className="block w-full py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg hover:bg-white transition-colors flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg hover:bg-white transition-colors flex items-center justify-center gap-2"
                   >
                     Open HE Pursuit <ArrowRight className="w-4 h-4" />
                   </a>

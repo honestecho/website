@@ -87,14 +87,14 @@ export default function Home() {
 
         {/* Full-width filmstrip */}
         <div className="max-w-7xl mx-auto relative z-10 mt-10">
-          <div className="rounded-2xl bg-[rgba(11,17,32,0.55)] backdrop-blur-[16px] backdrop-saturate-[140%] border border-[rgba(255,255,255,0.06)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] grid grid-cols-2 md:grid-cols-4 divide-x divide-[rgba(255,255,255,0.06)]">
+          <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] grid grid-cols-2 md:grid-cols-4 divide-x divide-[#1e2d4a]">
             {([
               { Icon: Clock,      title: 'Save Hours',   body: 'Analyze in seconds, not hours'           },
               { Icon: Target,     title: 'Bid Smarter',  body: 'Focus on opportunities worth pursuing'   },
               { Icon: Shield,     title: 'Reduce Risk',  body: 'Spot potential issues before you invest' },
               { Icon: TrendingUp, title: 'Win More',     body: 'Make data-driven go / no-go decisions'   },
             ] as { Icon: React.ElementType; title: string; body: string }[]).map((item, i) => (
-              <div key={item.title} className={`flex items-center gap-3 px-4 sm:px-6 md:px-8 py-5 md:py-6 group cursor-default ${i >= 2 ? 'border-t border-[rgba(255,255,255,0.06)] md:border-t-0' : ''}`}>
+              <div key={item.title} className={`flex items-center gap-3 px-4 sm:px-6 md:px-8 py-5 md:py-6 group cursor-default ${i >= 2 ? 'border-t border-[#1e2d4a] md:border-t-0' : ''}`}>
                 <div className="w-9 h-9 flex items-center justify-center relative overflow-visible shrink-0">
                   <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
                   <item.Icon className="w-5 h-5 text-[#00c3ff] group-hover:text-white group-hover:scale-110 group-hover:-rotate-12 drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />

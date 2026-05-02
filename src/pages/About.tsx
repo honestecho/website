@@ -76,7 +76,7 @@ export default function About() {
                   <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
                   <Target className="w-5 h-5 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:-rotate-12 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                 </div>
-                <h2 className="font-headline font-bold text-white text-xl tracking-tight pt-1.5">The Hidden Risk in Government Contracting Opportunities</h2>
+                <h2 className="font-headline font-bold text-white text-lg tracking-tight pt-1.5">The Hidden Risk in Government Contracting Opportunities</h2>
               </div>
               <p className="text-[#a0b2c8] text-sm font-body leading-relaxed mb-4">
                 Most small government contractors don't lose because they lack capability. They lose because of how they pursue.

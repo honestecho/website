@@ -102,9 +102,16 @@ export default function Signup() {
         body: JSON.stringify({ email: form.email.trim(), fullName: form.fullName.trim() })
       }).catch(err => console.warn('Welcome email trigger failed:', err));
 
-      // If Supabase returns a session immediately (email confirmation disabled),
-      // data.session will be non-null — still show the verify screen for consistency.
-      void data;
+      if (data?.session) {
+        // Email confirmation is disabled — session is live immediately.
+        // Bridge to pursuit via URL hash tokens; Supabase client there picks
+        // them up automatically and fires SIGNED_IN without a second login.
+        const { access_token, refresh_token } = data.session;
+        window.location.href =
+          `https://pursuit.honestecho.com#access_token=${access_token}&refresh_token=${refresh_token}&type=signup`;
+        return;
+      }
+      // Fallback: confirmation still required — show verify state.
       setState('verify');
     } catch {
       setError('Something went wrong. Please try again.');

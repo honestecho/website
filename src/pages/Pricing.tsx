@@ -207,15 +207,17 @@ export default function Pricing() {
                   <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
                 )}
 
-                {/* Header */}
-                <div className="flex items-start justify-between mb-1">
-                  <h3 className="font-headline text-xl font-bold text-white">{plan.name}</h3>
-                  {plan.badge && (
-                    <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest font-label shrink-0 ml-2">{plan.badge}</span>
-                  )}
+                {/* Header — min-h ensures price aligns across all cards */}
+                <div className="min-h-[6rem]">
+                  <div className="flex items-start justify-between mb-1">
+                    <h3 className="font-headline text-xl font-bold text-white">{plan.name}</h3>
+                    {plan.badge && (
+                      <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest font-label shrink-0 ml-2">{plan.badge}</span>
+                    )}
+                  </div>
+                  <p className="text-sm font-bold text-white mb-0.5 font-headline">{plan.tagline}</p>
+                  <p className="text-xs text-[#8b9bb4] font-body">{plan.sub}</p>
                 </div>
-                <p className="text-sm font-bold text-white mb-0.5 font-headline">{plan.tagline}</p>
-                <p className="text-xs text-[#8b9bb4] mb-4 font-body">{plan.sub}</p>
 
                 {/* Price */}
                 <div className="flex items-baseline gap-1 mb-5">

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Sparkles, Target, Scale, FileText, CheckCircle, Upload, Compass, Clock, Shuffle, Filter, Shield, TrendingUp } from 'lucide-react';
 // Scale, Upload used in How It Works steps
 import { Link } from 'react-router-dom';
 import FlyIn from '../components/FlyIn';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
+import PursuitDemoAnimation from '../components/PursuitDemoAnimation';
 
 export default function Home() {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -12,22 +13,22 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Honest Echo — GovCon Bid/No-Bid Intelligence for Small Contractors</title>
-        <meta name="description" content="Find, qualify, and decide on government contracting opportunities faster. HE Pursuit analyzes SAM.gov notices and gives small contractors a bid/no-bid recommendation in minutes — before you waste proposal hours." />
+        <title>Honest Echo â€” GovCon Bid/No-Bid Intelligence for Small Contractors</title>
+        <meta name="description" content="Find, qualify, and decide on government contracting opportunities faster. HE Pursuit analyzes SAM.gov notices and gives small contractors a bid/no-bid recommendation in minutes â€” before you waste proposal hours." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/" />
-        <meta property="og:title" content="HE Pursuit — Bid/No-Bid Decisions for Small Government Contractors" />
+        <meta property="og:title" content="HE Pursuit â€” Bid/No-Bid Decisions for Small Government Contractors" />
         <meta property="og:description" content="Find, qualify, and decide on government contracting opportunities faster. SAM.gov opportunity scoring, fit analysis, and pursuit intelligence for lean GovCon teams." />
         <meta property="og:image" content="https://honestecho.com/pursuit-overview-3.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="HE Pursuit — Bid/No-Bid Decisions for Small Government Contractors" />
+        <meta name="twitter:title" content="HE Pursuit â€” Bid/No-Bid Decisions for Small Government Contractors" />
         <meta name="twitter:description" content="Qualify government contracting opportunities in minutes. SAM.gov opportunity scoring and pursuit intelligence for lean GovCon teams." />
         <meta name="twitter:image" content="https://honestecho.com/pursuit-overview-3.png" />
       </Helmet>
       <SoftwareApplicationSchema />
 
-      {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
-      <section className="relative px-6 pt-16 pb-24">
+      {/* â”€â”€ SECTION 1 â€” Hero â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      <section className="relative px-6 py-32">
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
 
           {/* Left Column: Copy */}
@@ -38,7 +39,7 @@ export default function Home() {
             </h1>
 
             <p className="text-[#a0b2c8] text-base lg:text-xl mb-8 leading-relaxed font-body">
-              HE Pursuit helps small government contractors evaluate government contracting opportunities for fit, eligibility, and pursuit value in minutes — so your team can make faster, more defensible bid/no-bid decisions before committing proposal capacity.
+              HE Pursuit helps small government contractors evaluate government contracting opportunities for fit, eligibility, and pursuit value in minutes â€” so your team can make faster, more defensible bid/no-bid decisions before committing proposal capacity.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-4">
@@ -58,30 +59,10 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Right Column: Dashboard Overview */}
-          <div className="w-full lg:w-[58%] relative group hidden md:block transition-transform duration-700 hover:-translate-y-2">
-            <div className="absolute inset-0 bg-[#00c3ff]/8 blur-2xl -z-10 rounded-[3rem] group-hover:bg-[#00c3ff]/15 transition-colors duration-700"></div>
-            <div
-              onClick={() => setIsFullscreen(true)}
-              className="relative overflow-hidden rounded-xl shadow-2xl cursor-pointer hover:scale-[1.02] transition-all duration-700 aspect-[3/2]"
-            >
-              <img
-                src="/pursuit-overview-3.png"
-                alt="HE Pursuit Dashboard Overview"
-                className="absolute inset-0 w-full h-full object-cover object-center"
-              />
-              {/* Vignette — fades all four edges into the page background */}
-              <div className="absolute inset-0 pointer-events-none"
-                style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(3,11,23,0.55) 75%, rgba(3,11,23,0.92) 100%)' }}
-              ></div>
-              {/* Expand button */}
-              <div className="absolute inset-0 flex items-end justify-end p-4">
-                <span className="opacity-0 group-hover:opacity-100 bg-[#00c3ff] text-[#030B17] font-bold text-sm px-4 py-2 rounded shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
-                  Expand
-                </span>
-              </div>
-            </div>
+          {/* Right Column: Animated Demo */}
+          <div className="w-full lg:w-[58%] relative hidden md:block">
+            <div className="absolute inset-0 bg-[#00c3ff]/5 blur-3xl -z-10 rounded-full"></div>
+            <PursuitDemoAnimation />
           </div>
         </div>
 
@@ -109,21 +90,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── How It Works (5 steps) ───────────────────────────────────────── */}
+      {/* â”€â”€ How It Works (5 steps) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="px-6 py-32 relative">
         <div className="max-w-7xl mx-auto relative z-10">
 
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-              <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">How HE Pursuit Works</span>
+              <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">How HE Pursuit Works</span>
             </div>
             <h2 className="font-headline font-black text-4xl md:text-5xl text-white tracking-tight">
               From opportunity to decision in minutes.
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {[
               { icon: Upload,      step: '01', title: 'Start with the opportunity',        body: 'Import or review an opportunity and capture the core signals that matter first.' },
               { icon: Target,      step: '02', title: 'Check fit and eligibility',          body: 'Assess alignment across your business profile, set-asides, certifications, location, and other qualification criteria.' },
@@ -150,13 +131,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 2 — Why It Matters ───────────────────────────────────── */}
+      {/* â”€â”€ SECTION 2 â€” Why It Matters â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {/* #10 badge, #16 headline+body, #20 tiles */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Why HE Pursuit</span>
+            <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">Why HE Pursuit</span>
           </div>
 
           <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-6 leading-tight tracking-tight">
@@ -203,15 +184,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 3 — Why HE Pursuit ───────────────────────────────────── */}
+      {/* â”€â”€ SECTION 3 â€” Why HE Pursuit â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {/* #10 badge update, #17 headline+body */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
-          {/* Header — full width */}
+          {/* Header â€” full width */}
           <div className="mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-              <span className="text-xs font-bold text-blue-200 tracking-wide uppercase">Why HE Pursuit</span>
+              <span className="text-xs font-bold text-[#bfdbfe] tracking-wide uppercase">Why HE Pursuit</span>
             </div>
 
             <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-5 leading-tight tracking-tight">
@@ -228,7 +209,7 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Differentiators — 3-column grid */}
+          {/* Differentiators â€” 3-column grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {([
               {
@@ -263,16 +244,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 5 — Built for Small Businesses ───────────────────────── */}
+      {/* â”€â”€ SECTION 5 â€” Built for Small Businesses â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {/* #11 title change */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
 
             <div className="w-full lg:w-1/2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-                <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Who It's For</span>
+                <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">Who It's For</span>
               </div>
               <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-5 leading-tight tracking-tight">
                 Built for Small Businesses.
@@ -308,10 +289,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 6 — Pricing ───────────────────────────────────────────── */}
-      {/* #12 — moved before Common Questions */}
+      {/* â”€â”€ SECTION 6 â€” Pricing â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* #12 â€” moved before Common Questions */}
       {/* #18 supporting line updated + sized up */}
-      {/* #15 — button labels → "Select [Tier]" */}
+      {/* #15 â€” button labels â†’ "Select [Tier]" */}
       <section id="pricing" className="py-32 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="mb-10">
@@ -326,7 +307,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch max-w-6xl mx-auto mt-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch max-w-6xl mx-auto mt-12">
 
             {/* Free */}
             <FlyIn>
@@ -355,7 +336,7 @@ export default function Home() {
                 <span className="text-[#8b9bb4] text-sm">/mo</span>
               </div>
               <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow">
-                {['25 pursuits', 'Full Phase 2–5 AI workflow', 'Eligibility & disqualifier review', 'Strategic & effort scoring', 'Go/No-Go decision tracking'].map(f => (
+                {['25 pursuits', 'Full Phase 2â€“5 AI workflow', 'Eligibility & disqualifier review', 'Strategic & effort scoring', 'Go/No-Go decision tracking'].map(f => (
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
@@ -363,14 +344,14 @@ export default function Home() {
             </div>
             </FlyIn>
 
-            {/* Pro — highlighted */}
+            {/* Pro â€” highlighted */}
             <FlyIn delay="delay-300">
             <div className="bg-[#0b1120] border border-[#00c3ff]/50 rounded-2xl p-6 flex flex-col shadow-[0_0_60px_rgba(0,195,255,0.12)] relative overflow-hidden h-full">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/60 to-transparent rounded-t-2xl"></div>
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.06)_0%,transparent_65%)] pointer-events-none"></div>
               <div className="flex items-center justify-between mb-1">
                 <h3 className="font-headline text-xl font-bold text-white">Pro</h3>
-                <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest">Most Popular</span>
+                <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest">Recommended</span>
               </div>
               <p className="text-xs text-[#8b9bb4] mb-4">For small contractors & proposal teams</p>
               <div className="flex items-baseline gap-1 mb-4">
@@ -406,19 +387,19 @@ export default function Home() {
 
           </div>
           <p className="text-center text-sm text-[#8b9bb4]/60 mt-8 max-w-6xl mx-auto">
-            <Link to="/pricing" className="text-[#00c3ff] hover:underline">See full feature comparison →</Link>
+            <Link to="/pricing" className="text-[#00c3ff] hover:underline">See full feature comparison â†’</Link>
           </p>
         </div>
       </section>
 
-      {/* ── SECTION 7 — Common Questions ─────────────────────────────────── */}
-      {/* #12 — now after pricing */}
+      {/* â”€â”€ SECTION 7 â€” Common Questions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* #12 â€” now after pricing */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-              <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Common Questions</span>
+              <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">Common Questions</span>
             </div>
             <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight">
               Built to support judgment, not replace it.
@@ -441,7 +422,7 @@ export default function Home() {
               },
               {
                 q: 'How is this different from GovWin or GovTribe?',
-                a: 'GovWin and GovTribe focus on opportunity discovery and pipeline data. HE Pursuit focuses on the next step: deciding which SAM.gov opportunities are actually worth pursuing. It structures the bid/no-bid decision — not just the collection of leads.',
+                a: 'GovWin and GovTribe focus on opportunity discovery and pipeline data. HE Pursuit focuses on the next step: deciding which SAM.gov opportunities are actually worth pursuing. It structures the bid/no-bid decision â€” not just the collection of leads.',
               },
             ].map(({ q, a }, i) => (
               <FlyIn key={q} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
@@ -456,13 +437,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SECTION 8 — Final CTA ─────────────────────────────────────────── */}
+      {/* â”€â”€ SECTION 8 â€” Final CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {/* #13 line break, #14 remove See Pricing, #19 new headline */}
       <section className="py-20 px-6 relative">
         <div className="max-w-3xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Get Started</span>
+            <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">Get Started</span>
           </div>
           <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-4 tracking-tight">
             Spend less time debating.<br />Spend more time pursuing the right bids.
@@ -492,7 +473,7 @@ export default function Home() {
               className="absolute -top-4 -right-4 w-10 h-10 bg-[#00c3ff] hover:bg-white text-[#030B17] font-black rounded-full flex items-center justify-center transition-colors shadow-lg z-10"
               onClick={() => setIsFullscreen(false)}
             >
-              ✕
+              âœ•
             </button>
           </div>
         </div>

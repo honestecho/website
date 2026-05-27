@@ -370,7 +370,10 @@ export default function Home() {
             {/* Team */}
             <FlyIn delay="delay-[450ms]">
             <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
-              <h3 className="font-headline text-xl font-bold text-white mb-1">Team</h3>
+              <div className="flex items-center justify-between mb-1">
+                <h3 className="font-headline text-xl font-bold text-white">Team</h3>
+                <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest">Coming Q3</span>
+              </div>
               <p className="text-xs text-[#8b9bb4] mb-4">For multi-user capture teams</p>
               <div className="flex items-baseline gap-1 mb-4">
                 <span className="text-4xl font-black text-white">$299</span>
@@ -381,7 +384,7 @@ export default function Home() {
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
-              <Link to="/contact" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Talk to the Team</Link>
+              <Link to="/team-waitlist" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Join the Waitlist</Link>
             </div>
             </FlyIn>
 

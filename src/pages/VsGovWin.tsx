@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+﻿import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight, DollarSign, Target, Scale, Users, Zap, Layers } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
@@ -8,7 +8,7 @@ const cards = [
   {
     Icon: DollarSign,
     title: 'Accessible pricing, not enterprise licensing',
-    body: 'GovWin IQ is priced for large primes and enterprise BD teams — typically $10,000–$50,000+ per year. HE Pursuit starts free and scales to $299/month, built for small contractors who need serious decision support without the enterprise overhead.',
+    body: 'GovWin IQ is priced for large primes and enterprise BD teams â€” typically $10,000â€“$50,000+ per year. HE Pursuit starts free and scales to $299/month, built for small contractors who need serious decision support without the enterprise overhead.',
   },
   {
     Icon: Target,
@@ -18,7 +18,7 @@ const cards = [
   {
     Icon: Scale,
     title: 'Structured qualification, not data subscriptions',
-    body: 'GovWin gives you more data. HE Pursuit gives you a decision. Each evaluation walks you through fit, eligibility, effort, and risk — and produces a Go, Conditional Go, or No-Bid recommendation your team can act on.',
+    body: 'GovWin gives you more data. HE Pursuit gives you a decision. Each evaluation walks you through fit, eligibility, effort, and risk â€” and produces a Go, Conditional Go, or No-Bid recommendation your team can act on.',
   },
   {
     Icon: Users,
@@ -28,12 +28,12 @@ const cards = [
   {
     Icon: Zap,
     title: 'Minutes to a decision, not days of research',
-    body: 'GovWin accelerates opportunity discovery. HE Pursuit accelerates the qualification decision. Most evaluations take minutes — giving you a structured answer before you commit proposal resources.',
+    body: 'GovWin accelerates opportunity discovery. HE Pursuit accelerates the qualification decision. Most evaluations take minutes â€” giving you a structured answer before you commit proposal resources.',
   },
   {
     Icon: Layers,
-    title: 'SAM.gov is free — what you need is the decision layer',
-    body: "If you're a small contractor, you may not need GovWin at all. SAM.gov gives you the opportunities. HE Pursuit helps you decide which ones to pursue — structured evaluation on top of what's already publicly available.",
+    title: 'SAM.gov is free â€” what you need is the decision layer',
+    body: "If you're a small contractor, you may not need GovWin at all. SAM.gov gives you the opportunities. HE Pursuit helps you decide which ones to pursue â€” structured evaluation on top of what's already publicly available.",
   },
 ];
 
@@ -41,32 +41,32 @@ export default function VsGovWin() {
   return (
     <>
       <Helmet>
-        <title>HE Pursuit vs GovWin IQ — GovWin Alternative for Small Contractors</title>
-        <meta name="description" content="Looking for a GovWin alternative? HE Pursuit helps small government contractors evaluate SAM.gov opportunities and make faster bid/no-bid decisions — at a fraction of the cost." />
+        <title>HE Pursuit vs GovWin IQ â€” GovWin Alternative for Small Contractors</title>
+        <meta name="description" content="Looking for a GovWin alternative? HE Pursuit helps small government contractors evaluate SAM.gov opportunities and make faster bid/no-bid decisions â€” at a fraction of the cost." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/vs-govwin" />
-        <meta property="og:title" content="HE Pursuit vs GovWin IQ — GovWin Alternative for Small Contractors" />
+        <meta property="og:title" content="HE Pursuit vs GovWin IQ â€” GovWin Alternative for Small Contractors" />
         <meta property="og:description" content="GovWin is built for enterprise. HE Pursuit is built for small government contractors who need bid/no-bid decisions, not a $10,000/year market intelligence subscription." />
         <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="HE Pursuit vs GovWin IQ — GovWin Alternative for Small Contractors" />
+        <meta name="twitter:title" content="HE Pursuit vs GovWin IQ â€” GovWin Alternative for Small Contractors" />
         <meta name="twitter:description" content="GovWin is built for enterprise. HE Pursuit is built for small contractors who need a bid/no-bid decision platform, not a market intelligence subscription." />
         <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
       <SoftwareApplicationSchema />
 
       {/* Hero */}
-      <section className="pt-16 pb-12 px-6 relative overflow-hidden">
+      <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">GovWin Alternative</span>
+            <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">GovWin Alternative</span>
           </div>
           <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
             A GovWin alternative<br className="hidden md:block" /> built for small contractors.
           </h1>
           <p className="text-[#a0b2c8] text-lg leading-relaxed font-body">
-            GovWin IQ is a powerful enterprise market intelligence tool. If you're a small government contractor who needs to evaluate SAM.gov opportunities and make faster bid/no-bid decisions — not subscribe to a $10,000/year data platform — HE Pursuit was built for you.
+            GovWin IQ is a powerful enterprise market intelligence tool. If you're a small government contractor who needs to evaluate SAM.gov opportunities and make faster bid/no-bid decisions â€” not subscribe to a $10,000/year data platform â€” HE Pursuit was built for you.
           </p>
         </div>
       </section>
@@ -90,6 +90,33 @@ export default function VsGovWin() {
               </div>
               </FlyIn>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Appian Example */}
+      <section className="pb-8 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-[#0b1120] border border-[#00c3ff]/30 rounded-2xl p-8 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/60 to-transparent rounded-t-2xl"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+                <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">Based on Real Events</span>
+              </div>
+              <p className="text-[#a0b2c8] text-base font-body leading-relaxed mb-4">
+                A recent federal services solicitation asked for a{' '}
+                <strong className="text-white">senior Appian-certified developer with 10+ years of federal acquisition experience and an active Top Secret clearance</strong>.
+                {' '}A LinkedIn search for people who meet all three criteria returns fewer than twenty results worldwide.
+                The buyer wasn't trying to be exclusive — they were trying to sound thorough.
+                The result: every small business that read the requirement either self-disqualified or burned an afternoon writing a{' '}
+                <em>"we don't quite meet this but..."</em> paragraph that wouldn't survive compliance review.
+              </p>
+              <p className="text-[#00c3ff] font-bold font-body">
+                HE Pursuit catches requirements like this in Phase 2 eligibility review — where every requirement is scanned for hard disqualifiers before your team commits an afternoon to a proposal you can't win.
+              </p>
+            </div>
           </div>
         </div>
       </section>

@@ -19,6 +19,7 @@ const features: Feature[] = [
   { category: 'Core Access', name: 'Company profile setup',             free: 'check',     starter: 'check',     pro: 'check',     team: 'check'     },
   { category: 'Core Access', name: 'Bookmark opportunities',            free: '15/mo',     starter: 'unlimited', pro: 'unlimited', team: 'unlimited' },
   { category: 'Core Access', name: 'Opportunity evaluations',           free: '10/mo',     starter: '25/mo',     pro: 'unlimited', team: 'unlimited' },
+  { category: 'Core Access', name: 'Saved searches & nightly alerts',   free: 'check',     starter: 'check',     pro: 'check',     team: 'check'     },
   { category: 'Core Access', name: 'Phase 1 â€” Initial evaluation',      free: 'check',     starter: 'check',     pro: 'check',     team: 'check'     },
   // Eligibility & Analysis
   { category: 'Eligibility & Analysis', name: 'Full qualification workflow',  free: 'none', starter: 'check', pro: 'check', team: 'check' },
@@ -79,6 +80,7 @@ const plans = [
       'Initial scoring against your profile',
       'Bookmark opportunities (up to 15/month)',
       'Evaluate opportunities (up to 10/month)',
+      'Saved searches & nightly alerts',
     ],
     limits: [
       'Triage-level insights only',

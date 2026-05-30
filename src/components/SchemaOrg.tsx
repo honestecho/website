@@ -50,7 +50,7 @@ export function SoftwareApplicationSchema() {
         name: 'Free',
         price: '0',
         priceCurrency: 'USD',
-        description: 'SAM.gov search, opportunity scoring, 10 evaluations/month',
+        description: 'SAM.gov search, opportunity scoring, and bookmarks (up to 15/month)',
       },
       {
         '@type': 'Offer',

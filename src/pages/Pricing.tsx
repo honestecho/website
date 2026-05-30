@@ -18,9 +18,9 @@ const features: Feature[] = [
   { category: 'Core Access', name: 'Opportunity summaries',             free: 'check',     starter: 'check',     pro: 'check',     team: 'check'     },
   { category: 'Core Access', name: 'Company profile setup',             free: 'check',     starter: 'check',     pro: 'check',     team: 'check'     },
   { category: 'Core Access', name: 'Bookmark opportunities',            free: '15/mo',     starter: 'unlimited', pro: 'unlimited', team: 'unlimited' },
-  { category: 'Core Access', name: 'Opportunity evaluations',           free: '10/mo',     starter: '25/mo',     pro: 'unlimited', team: 'unlimited' },
+  { category: 'Core Access', name: 'Opportunity evaluations',           free: 'none',      starter: '25/mo',     pro: 'unlimited', team: 'unlimited' },
   { category: 'Core Access', name: 'Saved searches & nightly alerts',   free: 'check',     starter: 'check',     pro: 'check',     team: 'check'     },
-  { category: 'Core Access', name: 'Phase 1 â€” Initial evaluation',      free: 'check',     starter: 'check',     pro: 'check',     team: 'check'     },
+  { category: 'Core Access', name: 'Phase 1 â€” Initial evaluation',      free: 'none',      starter: 'check',     pro: 'check',     team: 'check'     },
   // Eligibility & Analysis
   { category: 'Eligibility & Analysis', name: 'Full qualification workflow',  free: 'none', starter: 'check', pro: 'check', team: 'check' },
   { category: 'Eligibility & Analysis', name: 'AI eligibility review',        free: 'none', starter: 'check', pro: 'check', team: 'check' },
@@ -30,7 +30,7 @@ const features: Feature[] = [
   { category: 'Eligibility & Analysis', name: 'Strategic & effort scoring',   free: 'none', starter: 'check', pro: 'check', team: 'check' },
   // Decisions & Output
   { category: 'Decisions & Output', name: 'Go / Conditional Go / No-Bid', free: 'none', starter: 'check', pro: 'check', team: 'check' },
-  { category: 'Decisions & Output', name: 'Decision tracking & history',   free: 'none', starter: 'none',  pro: 'check', team: 'check' },
+  { category: 'Decisions & Output', name: 'Decision tracking & history',   free: 'none', starter: 'Limited', pro: 'check', team: 'check' },
   { category: 'Decisions & Output', name: 'PDF decision report export',    free: 'none', starter: 'none',  pro: 'check', team: 'check' },
   // Workflow & Visibility
   { category: 'Workflow & Visibility', name: 'Dashboard (pipeline, deadlines)', free: 'none', starter: 'none', pro: 'check', team: 'check' },
@@ -79,11 +79,10 @@ const plans = [
       'Basic opportunity summaries',
       'Initial scoring against your profile',
       'Bookmark opportunities (up to 15/month)',
-      'Evaluate opportunities (up to 10/month)',
       'Saved searches & nightly alerts',
     ],
     limits: [
-      'Triage-level insights only',
+      'No pursuit workflow or bid decisions',
       'No deep eligibility or document analysis',
     ],
     cta: 'Select Free',

@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "check:mojibake": "node scripts/check-mojibake.mjs",
+    "prebuild": "node scripts/check-mojibake.mjs",
     "build": "tsc -b && vite build",
     "build:static": "npm run build && node scripts/prerender.js",
     "lint": "eslint .",

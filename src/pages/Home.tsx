@@ -26,7 +26,7 @@ export default function Home() {
       </Helmet>
       <SoftwareApplicationSchema />
 
-      {/* â”€â”€ SECTION 1 — Hero â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
       <section className="relative px-6 py-32">
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
 
@@ -109,7 +109,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ Testimonials â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── Testimonials ───────────────────────────────────────────────── */}
       <section className="px-6 pb-8 relative" aria-label="What customers say">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
@@ -155,7 +155,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ How It Works (5 steps) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── How It Works (5 steps) ───────────────────────────────────────── */}
       <section className="px-6 py-32 relative">
         <div className="max-w-7xl mx-auto relative z-10">
 
@@ -196,7 +196,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 2 — Why It Matters â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 2 — Why It Matters ───────────────────────────────────── */}
       {/* #10 badge, #16 headline+body, #20 tiles */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
@@ -249,7 +249,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 3 — Why HE Pursuit â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 3 — Why HE Pursuit ───────────────────────────────────── */}
       {/* #10 badge update, #17 headline+body */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
@@ -309,7 +309,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 5 — Built for Small Businesses â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 5 — Built for Small Businesses ───────────────────────── */}
       {/* #11 title change */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
@@ -354,7 +354,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 6 — Pricing â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 6 — Pricing ───────────────────────────────────────────── */}
       {/* #12 — moved before Common Questions */}
       {/* #18 supporting line updated + sized up */}
       {/* #15 — button labels → "Select [Tier]" */}
@@ -460,7 +460,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 7 — Common Questions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 7 — Common Questions ─────────────────────────────────── */}
       {/* #12 — now after pricing */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
@@ -505,7 +505,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 8 — Final CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 8 — Final CTA ─────────────────────────────────────────── */}
       {/* #13 line break, #14 remove See Pricing, #19 new headline */}
       <section className="py-20 px-6 relative">
         <div className="max-w-3xl mx-auto text-center relative z-10">

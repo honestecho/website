@@ -5,7 +5,7 @@ import { ArrowRight, Check, X, ChevronDown, ShieldCheck, Clock, Ban, Eye, Clipbo
 import FlyIn from '../components/FlyIn';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
 
-// â”€â”€â”€ Feature Matrix â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Feature Matrix ───────────────────────────────────────────────────────────
 
 // 'check' | 'none' | 'unlimited' | 'optional' | any string (rendered as text)
 type CV = string;
@@ -55,7 +55,7 @@ function Cell({ value }: { value: CV }) {
   return <span className="text-[#8b9bb4] text-xs font-body">{value}</span>;
 }
 
-// â”€â”€â”€ FAQ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── FAQ ──────────────────────────────────────────────────────────────────────
 
 const faqs = [
   { q: 'Do I need a credit card to start?',               a: 'No. Free requires only your email. A card is only needed when you upgrade to a paid plan.' },
@@ -64,7 +64,7 @@ const faqs = [
   { q: 'When should I upgrade to Team?',                  a: 'When more than one person needs to work in the same pipeline. Team adds multiple users, shared pursuits, team-level visibility, and onboarding support. Team is launching Q3 2026 — join the waitlist from the Team card above and we\'ll reach out with early-access pricing.' },
 ];
 
-// â”€â”€â”€ Pricing cards data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Pricing cards data ───────────────────────────────────────────────────────
 
 const plans = [
   {
@@ -148,7 +148,7 @@ const plans = [
   },
 ];
 
-// â”€â”€â”€ Component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function Pricing() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -170,7 +170,7 @@ export default function Pricing() {
       </Helmet>
       <SoftwareApplicationSchema />
 
-      {/* â”€â”€ SECTION 1 — Hero â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
@@ -185,7 +185,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 2 — Pricing Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 2 — Pricing Cards ────────────────────────────────────── */}
       <section className="pb-6 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
@@ -293,7 +293,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 3 — What You're Paying For â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 3 — What You're Paying For ───────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
@@ -311,7 +311,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 4 — Plan Positioning â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 4 — Plan Positioning ─────────────────────────────────── */}
       <section className="pb-24 px-6">
         <div className="max-w-7xl mx-auto">
           <h2 className="font-headline font-black text-2xl text-white mb-8 tracking-tight">Find your fit.</h2>
@@ -340,7 +340,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 5 — Comparison Table â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 5 — Comparison Table ─────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-5xl mx-auto relative z-10">
           <div className="mb-12 text-center">
@@ -399,7 +399,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 6 — FAQ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 6 — FAQ ──────────────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-3xl mx-auto relative z-10">
           <div className="mb-12 text-center">
@@ -436,7 +436,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 7 — Final CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* ── SECTION 7 — Final CTA ────────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">

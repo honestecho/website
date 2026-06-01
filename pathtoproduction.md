@@ -22,35 +22,49 @@ npm run dev        # http://localhost:5173
 npm run build      # verify before pushing — outputs to dist/
 ```
 
-## Project Structure (v1.0)
+## Project Structure
 ```
 src/
   pages/
-    Home.tsx          # /
-    Pricing.tsx       # /pricing
-    FAQ.tsx           # /faq
-    Security.tsx      # /security
-    About.tsx         # /about
-    Contact.tsx       # /contact
-    Terms.tsx         # /terms
-    Privacy.tsx       # /privacy
-    Signup.tsx        # /signup
-    Welcome.tsx       # /welcome (noindex)
-    AppRedirect.tsx   # /app, /pursuit, /platform, /consulting → redirect to /
+    Home.tsx                  # /
+    Pricing.tsx               # /pricing
+    FAQ.tsx                   # /faq
+    Security.tsx              # /security
+    About.tsx                 # /about
+    Contact.tsx               # /contact
+    Terms.tsx                 # /terms
+    Privacy.tsx               # /privacy
+    Signup.tsx                # /signup
+    Welcome.tsx               # /welcome (noindex)
+    VsGovWin.tsx              # /vs-govwin
+    VsGovTribe.tsx            # /vs-govtribe
+    SamGovAnalysis.tsx        # /sam-gov-opportunity-analysis
+    SamGovNoticeAnalyzer.tsx  # /tools/sam-gov-notice-analyzer (no login required)
+    SharedPackage.tsx         # /p/:token (shared decision package)
+    TeamWaitlist.tsx          # /team-waitlist
+    AppRedirect.tsx           # /app, /pursuit → redirect to /
+    NotFound.tsx              # * (404 catch-all)
+                              # /product, /platform, /consulting → inline <Navigate> to /
   components/
     layout/
       Navbar.tsx
       Footer.tsx
-    FlyIn.tsx         # scroll-triggered tile animation wrapper
+    FlyIn.tsx                 # scroll-triggered tile animation wrapper
+    PursuitDemoAnimation.tsx  # animated hero demo
+    AnalyzerOpportunityCard.tsx
+    SchemaOrg.tsx             # JSON-LD structured data
   lib/
-    supabase.ts       # Supabase client (auth)
+    supabase.ts               # Supabase client (auth)
 public/
-  he-logo.png
-  favicon.png         # fav_icon_5
-  pursuit-overview.png
-  robots.txt
-references/           # design assets only — not deployed
-CLAUDE.md             # design system + new page template — read before building
+  he-logo.png, he-logo-mark.png
+  favicon.png, favicon.svg
+  pursuit-overview.png, pursuit-overview-2.png, pursuit-overview-3.png
+  hero-dashboard.png, data-network.png, opportunity_card_v1.png
+  consulting_collaboration.png, consulting_command_center.png, strategic_war_room.png
+  icons.svg
+  robots.txt, sitemap.xml, _headers
+references/                   # design assets only — not deployed
+CLAUDE.md                     # design system + new page template — read before building
 ```
 
 ## Cloudflare Pages Settings

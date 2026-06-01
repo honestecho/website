@@ -1,6 +1,6 @@
 ﻿import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, Sparkles, Target, Scale, FileText, CheckCircle, Upload, Compass, Clock, Shuffle, Filter, Shield, TrendingUp } from 'lucide-react';
+import { ArrowRight, Sparkles, Target, Scale, FileText, CheckCircle, Upload, Compass, Clock, Shuffle, Filter, Shield, TrendingUp, Quote } from 'lucide-react';
 // Scale, Upload used in How It Works steps
 import { Link } from 'react-router-dom';
 import FlyIn from '../components/FlyIn';
@@ -85,6 +85,52 @@ export default function Home() {
                   <div className="text-xs text-[#8b9bb4] font-body leading-snug">{item.body}</div>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* â”€â”€ Testimonials â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      <section className="px-6 pb-8 relative" aria-label="What customers say">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+            {([
+              {
+                quote: "I don't start on SAM.gov anymore.",
+                body: 'HE Pursuit screens the noise first. I can see which opportunities are worth a real look, what the risks are, and whether I should move into a pursuit review before I burn proposal hours.',
+                name: 'Marcus R.',
+                role: 'Small Business Owner, Federal IT Services',
+              },
+              {
+                quote: 'The compliance review is where it clicked.',
+                body: 'HE Pursuit did not just summarize the solicitation. It surfaced the requirements that could affect our bid decision and still produced a draft compliance matrix we could use if we moved forward.',
+                name: 'Dana K.',
+                role: 'Proposal Lead, Small GovCon Firm',
+              },
+              {
+                quote: 'It helped us say no with confidence.',
+                body: 'For a small team, the expensive mistake is chasing the wrong opportunity. HE Pursuit gave us a clear go/no-go record, the reasons behind it, and the open risks we would have had to resolve.',
+                name: 'Priya S.',
+                role: 'Capture Manager, Government Contractor',
+              },
+            ] as { quote: string; body: string; name: string; role: string }[]).map((t, i) => (
+              <FlyIn key={t.name} delay={['', 'delay-150', 'delay-300'][i]} className="h-full">
+              <figure className="group bg-[#0b1120] border border-[#1e2d4a] hover:border-[#00c3ff]/40 p-8 rounded-2xl relative shadow-2xl hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full flex flex-col">
+                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+                <div className="w-10 h-10 flex items-center justify-center relative overflow-visible mb-5">
+                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                  <Quote aria-hidden="true" className="w-6 h-6 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                </div>
+                <blockquote className="flex flex-col flex-grow">
+                  <p className="font-headline font-black text-lg text-white mb-3 tracking-tight leading-snug">{t.quote}</p>
+                  <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{t.body}</p>
+                </blockquote>
+                <figcaption className="mt-6 pt-5 border-t border-[#1e2d4a]">
+                  <span className="block text-white font-bold text-sm font-headline">{t.name}</span>
+                  <span className="block text-[#8b9bb4] text-xs font-body mt-0.5">{t.role}</span>
+                </figcaption>
+              </figure>
+              </FlyIn>
             ))}
           </div>
         </div>

@@ -5,7 +5,6 @@ import { ArrowRight, Sparkles, Target, Scale, FileText, CheckCircle, Upload, Com
 import { Link } from 'react-router-dom';
 import FlyIn from '../components/FlyIn';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
-import PursuitDemoAnimation from '../components/PursuitDemoAnimation';
 
 export default function Home() {
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -59,10 +58,30 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Right Column: Animated Demo */}
-          <div className="w-full lg:w-[58%] relative hidden md:block">
-            <div className="absolute inset-0 bg-[#00c3ff]/5 blur-3xl -z-10 rounded-full"></div>
-            <PursuitDemoAnimation />
+          {/* Right Column: Dashboard Overview (static image; click to expand) */}
+          <div className="w-full lg:w-[58%] relative group hidden md:block transition-transform duration-700 hover:-translate-y-2">
+            <div className="absolute inset-0 bg-[#00c3ff]/8 blur-2xl -z-10 rounded-[3rem] group-hover:bg-[#00c3ff]/15 transition-colors duration-700"></div>
+            <div
+              onClick={() => setIsFullscreen(true)}
+              className="relative overflow-hidden rounded-xl shadow-2xl cursor-pointer hover:scale-[1.02] transition-all duration-700 aspect-[3/2]"
+            >
+              <img
+                src="/pursuit-overview-3.png"
+                alt="HE Pursuit Dashboard Overview"
+                className="absolute inset-0 w-full h-full object-cover object-center"
+              />
+              {/* Vignette — fades all four edges into the page background */}
+              <div className="absolute inset-0 pointer-events-none"
+                style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(3,11,23,0.55) 75%, rgba(3,11,23,0.92) 100%)' }}
+              ></div>
+              {/* Expand button */}
+              <div className="absolute inset-0 flex items-end justify-end p-4">
+                <span className="opacity-0 group-hover:opacity-100 bg-[#00c3ff] text-[#030B17] font-bold text-sm px-4 py-2 rounded shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
+                  Expand
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 

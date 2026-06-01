@@ -1,6 +1,6 @@
 ﻿import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, Sparkles, Target, Scale, FileText, CheckCircle, Upload, Compass, Clock, Shuffle, Filter, Shield, TrendingUp, Quote } from 'lucide-react';
+import { ArrowRight, Sparkles, Target, Scale, FileText, CheckCircle, Upload, Compass, Clock, Shuffle, Filter, Shield, TrendingUp, Quote, X } from 'lucide-react';
 // Scale, Upload used in How It Works steps
 import { Link } from 'react-router-dom';
 import FlyIn from '../components/FlyIn';
@@ -12,21 +12,21 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Honest Echo â€” GovCon Bid/No-Bid Intelligence for Small Contractors</title>
-        <meta name="description" content="Find, qualify, and decide on government contracting opportunities faster. HE Pursuit analyzes SAM.gov notices and gives small contractors a bid/no-bid recommendation in minutes â€” before you waste proposal hours." />
+        <title>Honest Echo — GovCon Bid/No-Bid Intelligence for Small Contractors</title>
+        <meta name="description" content="Find, qualify, and decide on government contracting opportunities faster. HE Pursuit analyzes SAM.gov notices and gives small contractors a bid/no-bid recommendation in minutes — before you waste proposal hours." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/" />
-        <meta property="og:title" content="HE Pursuit â€” Bid/No-Bid Decisions for Small Government Contractors" />
+        <meta property="og:title" content="HE Pursuit — Bid/No-Bid Decisions for Small Government Contractors" />
         <meta property="og:description" content="Find, qualify, and decide on government contracting opportunities faster. SAM.gov opportunity scoring, fit analysis, and pursuit intelligence for lean GovCon teams." />
         <meta property="og:image" content="https://honestecho.com/pursuit-overview-3.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="HE Pursuit â€” Bid/No-Bid Decisions for Small Government Contractors" />
+        <meta name="twitter:title" content="HE Pursuit — Bid/No-Bid Decisions for Small Government Contractors" />
         <meta name="twitter:description" content="Qualify government contracting opportunities in minutes. SAM.gov opportunity scoring and pursuit intelligence for lean GovCon teams." />
         <meta name="twitter:image" content="https://honestecho.com/pursuit-overview-3.png" />
       </Helmet>
       <SoftwareApplicationSchema />
 
-      {/* â”€â”€ SECTION 1 â€” Hero â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* â”€â”€ SECTION 1 — Hero â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="relative px-6 py-32">
         <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
 
@@ -38,7 +38,7 @@ export default function Home() {
             </h1>
 
             <p className="text-[#a0b2c8] text-base lg:text-xl mb-8 leading-relaxed font-body">
-              HE Pursuit helps small government contractors evaluate government contracting opportunities for fit, eligibility, and pursuit value in minutes â€” so your team can make faster, more defensible bid/no-bid decisions before committing proposal capacity.
+              HE Pursuit helps small government contractors evaluate government contracting opportunities for fit, eligibility, and pursuit value in minutes — so your team can make faster, more defensible bid/no-bid decisions before committing proposal capacity.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-4">
@@ -196,7 +196,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 2 â€” Why It Matters â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* â”€â”€ SECTION 2 — Why It Matters â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {/* #10 badge, #16 headline+body, #20 tiles */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
@@ -249,11 +249,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 3 â€” Why HE Pursuit â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* â”€â”€ SECTION 3 — Why HE Pursuit â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {/* #10 badge update, #17 headline+body */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
-          {/* Header â€” full width */}
+          {/* Header — full width */}
           <div className="mb-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
@@ -274,7 +274,7 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Differentiators â€” 3-column grid */}
+          {/* Differentiators — 3-column grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {([
               {
@@ -309,7 +309,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 5 â€” Built for Small Businesses â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* â”€â”€ SECTION 5 — Built for Small Businesses â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {/* #11 title change */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
@@ -354,10 +354,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 6 â€” Pricing â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-      {/* #12 â€” moved before Common Questions */}
+      {/* â”€â”€ SECTION 6 — Pricing â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* #12 — moved before Common Questions */}
       {/* #18 supporting line updated + sized up */}
-      {/* #15 â€” button labels â†’ "Select [Tier]" */}
+      {/* #15 — button labels → "Select [Tier]" */}
       <section id="pricing" className="py-32 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="mb-10">
@@ -409,7 +409,7 @@ export default function Home() {
             </div>
             </FlyIn>
 
-            {/* Pro â€” highlighted */}
+            {/* Pro — highlighted */}
             <FlyIn delay="delay-300">
             <div className="bg-[#0b1120] border border-[#00c3ff]/50 rounded-2xl p-6 flex flex-col shadow-[0_0_60px_rgba(0,195,255,0.12)] relative overflow-hidden h-full">
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/60 to-transparent rounded-t-2xl"></div>
@@ -455,13 +455,13 @@ export default function Home() {
 
           </div>
           <p className="text-center text-sm text-[#8b9bb4]/60 mt-8 max-w-6xl mx-auto">
-            <Link to="/pricing" className="text-[#00c3ff] hover:underline">See full feature comparison â†’</Link>
+            <Link to="/pricing" className="text-[#00c3ff] hover:underline">See full feature comparison →</Link>
           </p>
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 7 â€” Common Questions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-      {/* #12 â€” now after pricing */}
+      {/* â”€â”€ SECTION 7 — Common Questions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* #12 — now after pricing */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-14">
@@ -490,7 +490,7 @@ export default function Home() {
               },
               {
                 q: 'How is this different from GovWin or GovTribe?',
-                a: 'GovWin and GovTribe focus on opportunity discovery and pipeline data. HE Pursuit focuses on the next step: deciding which SAM.gov opportunities are actually worth pursuing. It structures the bid/no-bid decision â€” not just the collection of leads.',
+                a: 'GovWin and GovTribe focus on opportunity discovery and pipeline data. HE Pursuit focuses on the next step: deciding which SAM.gov opportunities are actually worth pursuing. It structures the bid/no-bid decision — not just the collection of leads.',
               },
             ].map(({ q, a }, i) => (
               <FlyIn key={q} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
@@ -505,7 +505,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 8 â€” Final CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* â”€â”€ SECTION 8 — Final CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       {/* #13 line break, #14 remove See Pricing, #19 new headline */}
       <section className="py-20 px-6 relative">
         <div className="max-w-3xl mx-auto text-center relative z-10">
@@ -540,8 +540,9 @@ export default function Home() {
             <button
               className="absolute -top-4 -right-4 w-10 h-10 bg-[#00c3ff] hover:bg-white text-[#030B17] font-black rounded-full flex items-center justify-center transition-colors shadow-lg z-10"
               onClick={() => setIsFullscreen(false)}
+              aria-label="Close"
             >
-              âœ•
+              <X className="w-5 h-5" strokeWidth={3} />
             </button>
           </div>
         </div>

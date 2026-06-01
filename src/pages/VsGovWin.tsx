@@ -8,7 +8,7 @@ const cards = [
   {
     Icon: DollarSign,
     title: 'Accessible pricing, not enterprise licensing',
-    body: 'GovWin IQ is priced for large primes and enterprise BD teams â€” typically $10,000â€“$50,000+ per year. HE Pursuit starts free and scales to $299/month, built for small contractors who need serious decision support without the enterprise overhead.',
+    body: 'GovWin IQ is priced for large primes and enterprise BD teams — typically $10,000–$50,000+ per year. HE Pursuit starts free and scales to $299/month, built for small contractors who need serious decision support without the enterprise overhead.',
   },
   {
     Icon: Target,
@@ -18,7 +18,7 @@ const cards = [
   {
     Icon: Scale,
     title: 'Structured qualification, not data subscriptions',
-    body: 'GovWin gives you more data. HE Pursuit gives you a decision. Each evaluation walks you through fit, eligibility, effort, and risk â€” and produces a Go, Conditional Go, or No-Bid recommendation your team can act on.',
+    body: 'GovWin gives you more data. HE Pursuit gives you a decision. Each evaluation walks you through fit, eligibility, effort, and risk — and produces a Go, Conditional Go, or No-Bid recommendation your team can act on.',
   },
   {
     Icon: Users,
@@ -28,12 +28,12 @@ const cards = [
   {
     Icon: Zap,
     title: 'Minutes to a decision, not days of research',
-    body: 'GovWin accelerates opportunity discovery. HE Pursuit accelerates the qualification decision. Most evaluations take minutes â€” giving you a structured answer before you commit proposal resources.',
+    body: 'GovWin accelerates opportunity discovery. HE Pursuit accelerates the qualification decision. Most evaluations take minutes — giving you a structured answer before you commit proposal resources.',
   },
   {
     Icon: Layers,
-    title: 'SAM.gov is free â€” what you need is the decision layer',
-    body: "If you're a small contractor, you may not need GovWin at all. SAM.gov gives you the opportunities. HE Pursuit helps you decide which ones to pursue â€” structured evaluation on top of what's already publicly available.",
+    title: 'SAM.gov is free — what you need is the decision layer',
+    body: "If you're a small contractor, you may not need GovWin at all. SAM.gov gives you the opportunities. HE Pursuit helps you decide which ones to pursue — structured evaluation on top of what's already publicly available.",
   },
 ];
 
@@ -41,15 +41,15 @@ export default function VsGovWin() {
   return (
     <>
       <Helmet>
-        <title>HE Pursuit vs GovWin IQ â€” GovWin Alternative for Small Contractors</title>
-        <meta name="description" content="Looking for a GovWin alternative? HE Pursuit helps small government contractors evaluate SAM.gov opportunities and make faster bid/no-bid decisions â€” at a fraction of the cost." />
+        <title>HE Pursuit vs GovWin IQ — GovWin Alternative for Small Contractors</title>
+        <meta name="description" content="Looking for a GovWin alternative? HE Pursuit helps small government contractors evaluate SAM.gov opportunities and make faster bid/no-bid decisions — at a fraction of the cost." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/vs-govwin" />
-        <meta property="og:title" content="HE Pursuit vs GovWin IQ â€” GovWin Alternative for Small Contractors" />
+        <meta property="og:title" content="HE Pursuit vs GovWin IQ — GovWin Alternative for Small Contractors" />
         <meta property="og:description" content="GovWin is built for enterprise. HE Pursuit is built for small government contractors who need bid/no-bid decisions, not a $10,000/year market intelligence subscription." />
         <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="HE Pursuit vs GovWin IQ â€” GovWin Alternative for Small Contractors" />
+        <meta name="twitter:title" content="HE Pursuit vs GovWin IQ — GovWin Alternative for Small Contractors" />
         <meta name="twitter:description" content="GovWin is built for enterprise. HE Pursuit is built for small contractors who need a bid/no-bid decision platform, not a market intelligence subscription." />
         <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
@@ -66,7 +66,7 @@ export default function VsGovWin() {
             A GovWin alternative<br className="hidden md:block" /> built for small contractors.
           </h1>
           <p className="text-[#a0b2c8] text-lg leading-relaxed font-body">
-            GovWin IQ is a powerful enterprise market intelligence tool. If you're a small government contractor who needs to evaluate SAM.gov opportunities and make faster bid/no-bid decisions â€” not subscribe to a $10,000/year data platform â€” HE Pursuit was built for you.
+            GovWin IQ is a powerful enterprise market intelligence tool. If you're a small government contractor who needs to evaluate SAM.gov opportunities and make faster bid/no-bid decisions — not subscribe to a $10,000/year data platform — HE Pursuit was built for you.
           </p>
         </div>
       </section>

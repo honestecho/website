@@ -31,7 +31,7 @@ export default function About() {
             The government contracting opportunity we should have never pursued.
           </p>
           <p className="text-[#a0b2c8] text-lg leading-relaxed font-body">
-            Honest Echo helps small government contractors evaluate government contracting opportunities with clarity â€” so you can pursue smarter from the start.
+            Honest Echo helps small government contractors evaluate government contracting opportunities with clarity — so you can pursue smarter from the start.
           </p>
         </div>
       </section>
@@ -56,10 +56,10 @@ export default function About() {
                 It started with a strong-looking government contracting opportunity. Right agency. Relevant scope. It looked like a clear fit.
               </p>
               <p className="text-[#a0b2c8] text-sm font-body leading-relaxed mb-3">
-                So we did what most small GovCon teams do â€” we leaned in. Weeks of review. Internal discussions. Early capture work. Time we didn't really have.
+                So we did what most small GovCon teams do — we leaned in. Weeks of review. Internal discussions. Early capture work. Time we didn't really have.
               </p>
               <p className="text-[#a0b2c8] text-sm font-body leading-relaxed mb-4">
-                And then â€” buried deep in the RFP â€” was the detail that killed it. A disqualifier. Something small, easy to miss, but absolute.
+                And then — buried deep in the RFP — was the detail that killed it. A disqualifier. Something small, easy to miss, but absolute.
               </p>
               <div className="border-t border-[#1e2d4a] pt-4">
                 <p className="text-white font-headline font-black text-base tracking-tight">We were never eligible to win.</p>
@@ -94,7 +94,7 @@ export default function About() {
                 ))}
               </ul>
               <div className="border-t border-[#1e2d4a] pt-4">
-                <p className="text-[#8b9bb4] text-xs font-body leading-relaxed">Every poor pursuit decision costs proposal hours, leadership attention, and real money. And once it's spent â€” you don't get it back.</p>
+                <p className="text-[#8b9bb4] text-xs font-body leading-relaxed">Every poor pursuit decision costs proposal hours, leadership attention, and real money. And once it's spent — you don't get it back.</p>
               </div>
             </div>
             </FlyIn>
@@ -115,7 +115,7 @@ export default function About() {
                 <Link to="/tools/sam-gov-notice-analyzer" className="text-[#00c3ff] hover:text-white transition-colors">
                   evaluate government contracting opportunities
                 </Link>{' '}
-                before committing proposal resources. Not to help you find more opportunities â€” but to help you decide which ones are actually worth pursuing.
+                before committing proposal resources. Not to help you find more opportunities — but to help you decide which ones are actually worth pursuing.
               </p>
               <ul className="space-y-2.5 mb-4">
                 {[
@@ -148,7 +148,7 @@ export default function About() {
                 Honest Echo is a woman-owned, veteran-owned small business built specifically for the government contracting community. We've evaluated complex solicitations, chased opportunities that weren't winnable, and experienced the cost of poor qualification decisions firsthand.
               </p>
               <p className="text-[#a0b2c8] text-sm font-body leading-relaxed mb-4">
-                This platform is built for real-world government contracting workflows â€” not theoretical use cases.
+                This platform is built for real-world government contracting workflows — not theoretical use cases.
               </p>
               <div className="flex items-center gap-3 flex-wrap">
                 {['Woman-Owned', 'Veteran-Owned', 'Small Business'].map(badge => (
@@ -165,7 +165,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* â”€â”€ Our Mission â€” full width â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* â”€â”€ Our Mission — full width â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-8 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
@@ -190,7 +190,7 @@ export default function About() {
               {([
                 { Icon: DollarSign,  title: 'One bad bid',      body: 'can cost weeks of proposal effort and real B&P dollars.'                              },
                 { Icon: TrendingUp,  title: 'One right decision',body: "protects your team's bandwidth and redirects energy to stronger pursuits."             },
-                { Icon: Sparkles,    title: 'Better signals',    body: "mean smarter pursuits â€” and that's the difference between reacting and winning."      },
+                { Icon: Sparkles,    title: 'Better signals',    body: "mean smarter pursuits — and that's the difference between reacting and winning."      },
               ] as { Icon: React.ElementType; title: string; body: string }[]).map(({ Icon, title, body }) => (
                 <div key={title} className="flex items-center gap-4 px-6 py-5 group cursor-default">
                   <div className="w-9 h-9 flex items-center justify-center relative overflow-visible shrink-0">

@@ -8,22 +8,22 @@ const cards = [
   {
     Icon: Target,
     title: 'Pursuit qualification, not market analytics',
-    body: "GovTribe provides market intelligence â€” contract history, agency spend, competitor analysis. HE Pursuit answers a different question: should you pursue this specific opportunity? It structures the go/no-go decision your team needs to make right now.",
+    body: "GovTribe provides market intelligence — contract history, agency spend, competitor analysis. HE Pursuit answers a different question: should you pursue this specific opportunity? It structures the go/no-go decision your team needs to make right now.",
   },
   {
     Icon: BarChart2,
     title: 'Stop browsing. Start deciding.',
-    body: "GovTribe is great for passive market research. HE Pursuit is an active decision workflow. It walks you through fit, eligibility, strategic value, and effort â€” and produces a structured recommendation your team can act on.",
+    body: "GovTribe is great for passive market research. HE Pursuit is an active decision workflow. It walks you through fit, eligibility, strategic value, and effort — and produces a structured recommendation your team can act on.",
   },
   {
     Icon: Filter,
     title: 'Filter out weak fits before they drain resources',
-    body: "GovTribe shows you the opportunity landscape. HE Pursuit helps you filter it. Most small contractors don't have a discovery problem â€” they have a qualification problem. HE Pursuit is built to solve that.",
+    body: "GovTribe shows you the opportunity landscape. HE Pursuit helps you filter it. Most small contractors don't have a discovery problem — they have a qualification problem. HE Pursuit is built to solve that.",
   },
   {
     Icon: CheckCircle,
     title: 'Go / Conditional Go / No-Bid output',
-    body: "GovTribe gives you data. HE Pursuit gives you a decision. Each evaluation ends with a clear recommendation â€” Go, Conditional Go, or No-Bid â€” grounded in structured analysis, not gut feel.",
+    body: "GovTribe gives you data. HE Pursuit gives you a decision. Each evaluation ends with a clear recommendation — Go, Conditional Go, or No-Bid — grounded in structured analysis, not gut feel.",
   },
   {
     Icon: Zap,
@@ -33,7 +33,7 @@ const cards = [
   {
     Icon: Layers,
     title: 'Use what fits your stage',
-    body: "If you need deep market intel, GovTribe delivers. If you need to decide whether to pursue a specific SAM.gov opportunity â€” today, with limited BD bandwidth â€” HE Pursuit is the tool that fits.",
+    body: "If you need deep market intel, GovTribe delivers. If you need to decide whether to pursue a specific SAM.gov opportunity — today, with limited BD bandwidth — HE Pursuit is the tool that fits.",
   },
 ];
 
@@ -41,15 +41,15 @@ export default function VsGovTribe() {
   return (
     <>
       <Helmet>
-        <title>HE Pursuit vs GovTribe â€” GovTribe Alternative for GovCon Teams</title>
+        <title>HE Pursuit vs GovTribe — GovTribe Alternative for GovCon Teams</title>
         <meta name="description" content="Looking for a GovTribe alternative focused on bid/no-bid decisions? HE Pursuit helps small government contractors evaluate SAM.gov opportunities with a structured qualification workflow." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/vs-govtribe" />
-        <meta property="og:title" content="HE Pursuit vs GovTribe â€” GovTribe Alternative for GovCon Teams" />
+        <meta property="og:title" content="HE Pursuit vs GovTribe — GovTribe Alternative for GovCon Teams" />
         <meta property="og:description" content="GovTribe is market analytics. HE Pursuit is bid/no-bid decision workflow. If you need to qualify SAM.gov opportunities fast, HE Pursuit is the right tool." />
         <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="HE Pursuit vs GovTribe â€” GovTribe Alternative for GovCon Teams" />
+        <meta name="twitter:title" content="HE Pursuit vs GovTribe — GovTribe Alternative for GovCon Teams" />
         <meta name="twitter:description" content="GovTribe is market analytics. HE Pursuit is bid/no-bid decision workflow. If you need to qualify SAM.gov opportunities fast, HE Pursuit is the right tool." />
         <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
@@ -66,7 +66,7 @@ export default function VsGovTribe() {
             Beyond market data.<br className="hidden md:block" /> Built for bid decisions.
           </h1>
           <p className="text-[#a0b2c8] text-lg leading-relaxed font-body">
-            GovTribe is a strong market intelligence tool. But if your team's real bottleneck is deciding which SAM.gov opportunities are worth pursuing â€” not finding them â€” HE Pursuit gives you the structured qualification workflow that market data tools don't.
+            GovTribe is a strong market intelligence tool. But if your team's real bottleneck is deciding which SAM.gov opportunities are worth pursuing — not finding them — HE Pursuit gives you the structured qualification workflow that market data tools don't.
           </p>
         </div>
       </section>

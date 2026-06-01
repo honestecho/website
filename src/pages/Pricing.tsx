@@ -20,7 +20,7 @@ const features: Feature[] = [
   { category: 'Core Access', name: 'Bookmark opportunities',            free: '15/mo',     starter: 'unlimited', pro: 'unlimited', team: 'unlimited' },
   { category: 'Core Access', name: 'Opportunity evaluations',           free: 'none',      starter: '25/mo',     pro: 'unlimited', team: 'unlimited' },
   { category: 'Core Access', name: 'Saved searches & nightly alerts',   free: 'check',     starter: 'check',     pro: 'check',     team: 'check'     },
-  { category: 'Core Access', name: 'Phase 1 â€” Initial evaluation',      free: 'none',      starter: 'check',     pro: 'check',     team: 'check'     },
+  { category: 'Core Access', name: 'Phase 1 — Initial evaluation',      free: 'none',      starter: 'check',     pro: 'check',     team: 'check'     },
   // Eligibility & Analysis
   { category: 'Eligibility & Analysis', name: 'Full qualification workflow',  free: 'none', starter: 'check', pro: 'check', team: 'check' },
   { category: 'Eligibility & Analysis', name: 'AI eligibility review',        free: 'none', starter: 'check', pro: 'check', team: 'check' },
@@ -59,9 +59,9 @@ function Cell({ value }: { value: CV }) {
 
 const faqs = [
   { q: 'Do I need a credit card to start?',               a: 'No. Free requires only your email. A card is only needed when you upgrade to a paid plan.' },
-  { q: 'Can I cancel anytime?',                           a: 'Yes. Cancel from your account settings â€” no notice period, no lock-in.' },
+  { q: 'Can I cancel anytime?',                           a: 'Yes. Cancel from your account settings — no notice period, no lock-in.' },
   { q: 'What is the difference between Starter and Pro?', a: 'Starter ($99/mo) gives you the full qualification workflow for up to 25 evaluations per month. Pro ($199/mo) removes limits entirely and adds the dashboard, decision tracking, and PDF export.' },
-  { q: 'When should I upgrade to Team?',                  a: 'When more than one person needs to work in the same pipeline. Team adds multiple users, shared pursuits, team-level visibility, and onboarding support. Team is launching Q3 2026 â€” join the waitlist from the Team card above and we\'ll reach out with early-access pricing.' },
+  { q: 'When should I upgrade to Team?',                  a: 'When more than one person needs to work in the same pipeline. Team adds multiple users, shared pursuits, team-level visibility, and onboarding support. Team is launching Q3 2026 — join the waitlist from the Team card above and we\'ll reach out with early-access pricing.' },
 ];
 
 // â”€â”€â”€ Pricing cards data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -160,17 +160,17 @@ export default function Pricing() {
         <meta name="description" content="Simple pricing for small contractors pursuing government contracting opportunities. Start free and qualify in minutes. Upgrade when your team needs deeper analysis and more volume." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/pricing" />
-        <meta property="og:title" content="HE Pursuit Pricing â€” Free, Starter, Pro, Team" />
+        <meta property="og:title" content="HE Pursuit Pricing — Free, Starter, Pro, Team" />
         <meta property="og:description" content="Start free. Upgrade to $99 Starter, $199 Pro, or $299 Team as your evaluation volume grows." />
         <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="HE Pursuit Pricing â€” Free, Starter, Pro, Team" />
+        <meta name="twitter:title" content="HE Pursuit Pricing — Free, Starter, Pro, Team" />
         <meta name="twitter:description" content="Start free. Upgrade to $99 Starter, $199 Pro, or $299 Team as your evaluation volume grows." />
         <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
       <SoftwareApplicationSchema />
 
-      {/* â”€â”€ SECTION 1 â€” Hero â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* â”€â”€ SECTION 1 — Hero â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
@@ -185,7 +185,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 2 â€” Pricing Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* â”€â”€ SECTION 2 — Pricing Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="pb-6 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
@@ -208,7 +208,7 @@ export default function Pricing() {
                   <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
                 )}
 
-                {/* Header â€” min-h ensures price aligns across all cards */}
+                {/* Header — min-h ensures price aligns across all cards */}
                 <div className="min-h-[6rem]">
                   <div className="flex items-start justify-between mb-1">
                     <h3 className="font-headline text-xl font-bold text-white">{plan.name}</h3>
@@ -293,7 +293,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 3 â€” What You're Paying For â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* â”€â”€ SECTION 3 — What You're Paying For â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
@@ -311,7 +311,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 4 â€” Plan Positioning â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* â”€â”€ SECTION 4 — Plan Positioning â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="pb-24 px-6">
         <div className="max-w-7xl mx-auto">
           <h2 className="font-headline font-black text-2xl text-white mb-8 tracking-tight">Find your fit.</h2>
@@ -340,7 +340,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 5 â€” Comparison Table â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* â”€â”€ SECTION 5 — Comparison Table â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-5xl mx-auto relative z-10">
           <div className="mb-12 text-center">
@@ -399,7 +399,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 6 â€” FAQ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* â”€â”€ SECTION 6 — FAQ â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-3xl mx-auto relative z-10">
           <div className="mb-12 text-center">
@@ -436,7 +436,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* â”€â”€ SECTION 7 â€” Final CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+      {/* â”€â”€ SECTION 7 — Final CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">

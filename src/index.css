@@ -77,3 +77,41 @@
 }
 .animate-glow-a { animation: glow-drift-a 18s ease-in-out infinite; }
 .animate-glow-b { animation: glow-drift-b 24s ease-in-out infinite 5s backwards; }
+
+/* ── High-end rotating conic-gradient border (a light beam travels the perimeter) ── */
+@property --he-border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes he-border-spin {
+  to { --he-border-angle: 360deg; }
+}
+.he-animated-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;                 /* border thickness */
+  background: conic-gradient(
+    from var(--he-border-angle),
+    transparent 0%,
+    rgba(0, 195, 255, 0.15) 8%,
+    #00c3ff 16%,
+    #7fd8ff 21%,
+    #00c3ff 26%,
+    rgba(0, 195, 255, 0.15) 34%,
+    transparent 45%,
+    transparent 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  animation: he-border-spin 5s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .he-animated-border::before { animation: none; }
+}

@@ -1,14 +1,13 @@
-﻿import React, { useState } from 'react';
+﻿import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, Sparkles, Target, Scale, FileText, CheckCircle, Upload, Compass, Clock, Shuffle, Filter, Shield, TrendingUp, Quote, X } from 'lucide-react';
+import { ArrowRight, Sparkles, Target, Scale, FileText, CheckCircle, Upload, Compass, Clock, Shuffle, Filter, Shield, TrendingUp, Quote } from 'lucide-react';
 // Scale, Upload used in How It Works steps
 import { Link } from 'react-router-dom';
 import FlyIn from '../components/FlyIn';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
+import HeroPursuitCard from '../components/HeroPursuitCard';
 
 export default function Home() {
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
   return (
     <>
       <Helmet>
@@ -58,30 +57,9 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Right Column: Dashboard Overview (static image; click to expand) */}
-          <div className="w-full lg:w-[58%] relative group hidden md:block transition-transform duration-700 hover:-translate-y-2">
-            <div className="absolute inset-0 bg-[#00c3ff]/8 blur-2xl -z-10 rounded-[3rem] group-hover:bg-[#00c3ff]/15 transition-colors duration-700"></div>
-            <div
-              onClick={() => setIsFullscreen(true)}
-              className="relative overflow-hidden rounded-xl shadow-2xl cursor-pointer hover:scale-[1.02] transition-all duration-700 aspect-[3/2]"
-            >
-              <img
-                src="/pursuit-overview-3.png"
-                alt="HE Pursuit Dashboard Overview"
-                className="absolute inset-0 w-full h-full object-cover object-center"
-              />
-              {/* Vignette — fades all four edges into the page background */}
-              <div className="absolute inset-0 pointer-events-none"
-                style={{ background: 'radial-gradient(ellipse at center, transparent 40%, rgba(3,11,23,0.55) 75%, rgba(3,11,23,0.92) 100%)' }}
-              ></div>
-              {/* Expand button */}
-              <div className="absolute inset-0 flex items-end justify-end p-4">
-                <span className="opacity-0 group-hover:opacity-100 bg-[#00c3ff] text-[#030B17] font-bold text-sm px-4 py-2 rounded shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg>
-                  Expand
-                </span>
-              </div>
-            </div>
+          {/* Right Column: static opportunity card */}
+          <div className="w-full lg:w-[58%] relative hidden md:flex items-center transition-transform duration-700 hover:-translate-y-2">
+            <HeroPursuitCard />
           </div>
         </div>
 
@@ -526,27 +504,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Lightbox Modal */}
-      {isFullscreen && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#030B17]/90 backdrop-blur-sm p-10 cursor-pointer"
-          onClick={() => setIsFullscreen(false)}
-        >
-          <div
-            className="relative max-w-[860px] w-full"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img src="/pursuit-overview-3.png" alt="HE Pursuit Dashboard Overview" className="block w-full h-auto max-h-[85vh] object-contain rounded-xl shadow-2xl" />
-            <button
-              className="absolute -top-4 -right-4 w-10 h-10 bg-[#00c3ff] hover:bg-white text-[#030B17] font-black rounded-full flex items-center justify-center transition-colors shadow-lg z-10"
-              onClick={() => setIsFullscreen(false)}
-              aria-label="Close"
-            >
-              <X className="w-5 h-5" strokeWidth={3} />
-            </button>
-          </div>
-        </div>
-      )}
     </>
   );
 }

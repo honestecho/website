@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search, Shield, Layers, Landmark, CheckCircle2, AlertTriangle, ArrowRight, Clock, DollarSign, MapPin, Hash
@@ -12,62 +12,76 @@ export default function PursuitDemoAnimation() {
   const [activeStep, setActiveStep] = useState(0);
   const [pursueHovered, setPursueHovered] = useState(false);
   const [pursueClicked, setPursueClicked] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const visibleRef = useRef(true);
 
   const fullQuery = "SETA Follow on Systems Engineering...";
   const pipelineSteps = ['Triage', 'Eligibility', 'Strategic', 'Effort - Win', 'Decision'];
 
+  // Pause the loop while the hero is scrolled out of view.
   useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout> | undefined;
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const obs = new IntersectionObserver(
+      ([entry]) => { visibleRef.current = entry.isIntersecting; },
+      { threshold: 0.25 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    const sleep = (ms: number) => new Promise(r => setTimeout(r, ms));
 
     const runSequence = async () => {
-      // Reset state
-      setPhase('search');
-      setSearchQuery('');
-      setActiveStep(0);
-      setPursueHovered(false);
-      setPursueClicked(false);
+      while (!cancelled) {
+        // Wait here (without animating) while scrolled out of view.
+        while (!visibleRef.current && !cancelled) await sleep(400);
+        if (cancelled) return;
 
-      // Phase 1: Typing
-      await new Promise(r => setTimeout(r, 1000));
-      for (let i = 0; i <= fullQuery.length; i++) {
-        setSearchQuery(fullQuery.slice(0, i));
-        await new Promise(r => setTimeout(r, 40));
+        // Reset state
+        setPhase('search');
+        setSearchQuery('');
+        setActiveStep(0);
+        setPursueHovered(false);
+        setPursueClicked(false);
+
+        // Phase 1: Typing (~1.3s)
+        await sleep(400); if (cancelled) return;
+        for (let i = 0; i <= fullQuery.length; i++) {
+          if (cancelled) return;
+          setSearchQuery(fullQuery.slice(0, i));
+          await sleep(22);
+        }
+        await sleep(500); if (cancelled) return;
+        setPhase('card');
+
+        // Phase 2: Card, then simulated hover/click on "Pursue" (~2.2s)
+        await sleep(1400); if (cancelled) return;
+        setPursueHovered(true);
+        await sleep(500); if (cancelled) return;
+        setPursueClicked(true);
+        await sleep(300); if (cancelled) return;
+
+        // Phase 3: Pipeline steps (~3s)
+        setPhase('pipeline');
+        for (let i = 1; i <= 5; i++) {
+          await sleep(600); if (cancelled) return;
+          setActiveStep(i);
+        }
+
+        // Hold on the decision, then rest before looping.
+        await sleep(5000);
       }
-
-      // Pause after typing
-      await new Promise(r => setTimeout(r, 800));
-      setPhase('card');
-
-      // Phase 2: Card appears, wait, then simulate hover/click on "Pursue"
-      await new Promise(r => setTimeout(r, 2000));
-      setPursueHovered(true);
-      await new Promise(r => setTimeout(r, 600));
-      setPursueClicked(true);
-      await new Promise(r => setTimeout(r, 300));
-
-      // Phase 3: Transition to Pipeline
-      setPhase('pipeline');
-
-      // Step sequentially through the pipeline
-      for (let i = 1; i <= 5; i++) {
-        await new Promise(r => setTimeout(r, 800));
-        setActiveStep(i);
-      }
-
-      // Hold at the end
-      await new Promise(r => setTimeout(r, 4000));
-
-      // Loop!
-      runSequence();
     };
 
     runSequence();
-
-    return () => clearTimeout(timeout);
+    return () => { cancelled = true; };
   }, []);
 
   return (
-    <div className="relative w-full max-w-3xl mx-auto h-[500px] flex items-center justify-center bg-transparent perspective-1000">
+    <div ref={containerRef} className="relative w-full max-w-3xl mx-auto h-[500px] flex items-center justify-center bg-transparent perspective-1000">
       <AnimatePresence mode="wait">
         
         {/* --- SEARCH BAR PHASE --- */}

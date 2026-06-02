@@ -117,20 +117,20 @@ export default function Home() {
               {
                 quote: "I don't start on SAM.gov anymore.",
                 body: 'HE Pursuit screens the noise first. I can see which opportunities are worth a real look, what the risks are, and whether I should move into a pursuit review before I burn proposal hours.',
-                name: 'Marcus R.',
-                role: 'Small Business Owner, Federal IT Services',
+                name: 'Keith L.',
+                role: 'Small Business Owner, Audio/Visual Services',
               },
               {
                 quote: 'The compliance review is where it clicked.',
                 body: 'HE Pursuit did not just summarize the solicitation. It surfaced the requirements that could affect our bid decision and still produced a draft compliance matrix we could use if we moved forward.',
-                name: 'Dana K.',
-                role: 'Proposal Lead, Small GovCon Firm',
+                name: 'Matt S.',
+                role: 'Small Business Owner, IT Services',
               },
               {
                 quote: 'It helped us say no with confidence.',
                 body: 'For a small team, the expensive mistake is chasing the wrong opportunity. HE Pursuit gave us a clear go/no-go record, the reasons behind it, and the open risks we would have had to resolve.',
-                name: 'Priya S.',
-                role: 'Capture Manager, Government Contractor',
+                name: 'Aaron S.',
+                role: 'Capture Lead, Government Contractor',
               },
             ] as { quote: string; body: string; name: string; role: string }[]).map((t, i) => (
               <FlyIn key={t.name} delay={['', 'delay-150', 'delay-300'][i]} className="h-full">

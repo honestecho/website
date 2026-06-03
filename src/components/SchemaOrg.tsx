@@ -57,14 +57,14 @@ export function SoftwareApplicationSchema() {
         name: 'Starter',
         price: '99',
         priceCurrency: 'USD',
-        description: 'Full bid/no-bid workflow, 25 evaluations/month',
+        description: 'Full bid/no-bid workflow, 25 pursuits/month',
       },
       {
         '@type': 'Offer',
         name: 'Pro',
         price: '199',
         priceCurrency: 'USD',
-        description: 'Unlimited evaluations, dashboard, PDF export',
+        description: 'Unlimited pursuits, dashboard, PDF export',
       },
       {
         '@type': 'Offer',

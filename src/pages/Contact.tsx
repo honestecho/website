@@ -1,7 +1,63 @@
+import { useState } from 'react';
+import type { FormEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Mail, MapPin, Send } from 'lucide-react';
+import { Mail, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { track } from '../lib/analytics';
 
 export default function Contact() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName]   = useState('');
+  const [email, setEmail]         = useState('');
+  const [message, setMessage]     = useState('');
+  const [honeypot, setHoneypot]   = useState(''); // bot trap
+  const [loading, setLoading]     = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError]         = useState<string | null>(null);
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    setError(null);
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+    if (!message.trim()) {
+      setError('Please include a message.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const res = await fetch('/api/contact', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({
+          first_name: firstName.trim() || undefined,
+          last_name:  lastName.trim() || undefined,
+          email:      email.trim(),
+          message:    message.trim(),
+          honeypot:   honeypot || undefined,
+        }),
+      });
+
+      if (!res.ok) {
+        const fallback = 'We couldn\'t send your message right now. Please email info@honestecho.com directly.';
+        const body = await res.json().catch(() => ({ message: fallback }));
+        setError(body.message || fallback);
+        setLoading(false);
+        return;
+      }
+
+      track('contact_submitted');
+      setSubmitted(true);
+      setLoading(false);
+    } catch {
+      setError("We couldn't reach the server. Please email info@honestecho.com directly.");
+      setLoading(false);
+    }
+  }
+
   return (
     <>
       <Helmet>
@@ -17,7 +73,7 @@ export default function Contact() {
         <meta name="twitter:description" content="Reach out for consulting inquiries, enterprise tool access, or general questions about HE Pursuit." />
         <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
-      
+
       <div className="max-w-7xl mx-auto px-6 py-24 min-h-[80vh] flex flex-col md:flex-row gap-8 md:gap-16">
         {/* Left Side: Info */}
         <div className="w-full md:w-1/3">
@@ -30,7 +86,7 @@ export default function Contact() {
           <p className="text-lg text-[#a0b2c8] mb-12 font-body leading-relaxed">
             Reach out for consulting inquiries, enterprise tool access, or general questions about Honest Echo's pursuit engine.
           </p>
-          
+
           <div className="space-y-8">
             <div className="flex gap-4 items-start">
               <div className="w-10 h-10 rounded-full bg-[#0b1120] border border-[#1e2d4a] flex items-center justify-center shrink-0">
@@ -60,34 +116,62 @@ export default function Contact() {
 
         {/* Right Side: Form */}
         <div className="w-full md:w-2/3">
-          <form className="bg-[#0b1120] p-8 md:p-12 rounded-2xl border border-[#1e2d4a] shadow-2xl relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#00c3ff]/5 to-transparent pointer-events-none"></div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label htmlFor="firstName" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-wider mb-2">First Name</label>
-                <input type="text" id="firstName" className="w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white focus:border-[#00c3ff] focus:ring-1 focus:ring-[#00c3ff] focus:outline-none transition-all placeholder-[#1e2d4a]" placeholder="Jane" />
+          {!submitted ? (
+            <form onSubmit={handleSubmit} noValidate className="bg-[#0b1120] p-8 md:p-12 rounded-2xl border border-[#1e2d4a] shadow-2xl relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#00c3ff]/5 to-transparent pointer-events-none"></div>
+
+              {/* Honeypot — hidden from humans, catches bots */}
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={honeypot}
+                onChange={e => setHoneypot(e.target.value)}
+                className="absolute -left-[9999px] w-px h-px opacity-0"
+                aria-hidden="true"
+              />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label htmlFor="firstName" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-wider mb-2">First Name</label>
+                  <input type="text" id="firstName" autoComplete="given-name" value={firstName} onChange={e => setFirstName(e.target.value)} className="w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white focus:border-[#00c3ff] focus:ring-1 focus:ring-[#00c3ff] focus:outline-none transition-all placeholder-[#1e2d4a]" placeholder="Jane" />
+                </div>
+                <div>
+                  <label htmlFor="lastName" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-wider mb-2">Last Name</label>
+                  <input type="text" id="lastName" autoComplete="family-name" value={lastName} onChange={e => setLastName(e.target.value)} className="w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white focus:border-[#00c3ff] focus:ring-1 focus:ring-[#00c3ff] focus:outline-none transition-all placeholder-[#1e2d4a]" placeholder="Doe" />
+                </div>
               </div>
-              <div>
-                <label htmlFor="lastName" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-wider mb-2">Last Name</label>
-                <input type="text" id="lastName" className="w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white focus:border-[#00c3ff] focus:ring-1 focus:ring-[#00c3ff] focus:outline-none transition-all placeholder-[#1e2d4a]" placeholder="Doe" />
+
+              <div className="mb-6">
+                <label htmlFor="email" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-wider mb-2">Work Email</label>
+                <input type="email" id="email" required autoComplete="email" value={email} onChange={e => setEmail(e.target.value)} className="w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white focus:border-[#00c3ff] focus:ring-1 focus:ring-[#00c3ff] focus:outline-none transition-all placeholder-[#1e2d4a]" placeholder="jane@company.com" />
               </div>
+
+              <div className="mb-8">
+                <label htmlFor="message" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-wider mb-2">Message</label>
+                <textarea id="message" rows={5} required maxLength={4000} value={message} onChange={e => setMessage(e.target.value)} className="w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white focus:border-[#00c3ff] focus:ring-1 focus:ring-[#00c3ff] focus:outline-none transition-all placeholder-[#1e2d4a]" placeholder="How can we help your team win?"></textarea>
+              </div>
+
+              {error && (
+                <p className="text-red-400 text-sm bg-red-900/20 border border-red-700/30 rounded-lg px-4 py-3 mb-6 relative z-10">{error}</p>
+              )}
+
+              <button type="submit" disabled={loading} className="w-full py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(0,195,255,0.2)] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100">
+                {loading ? 'Sending…' : (<>Send Message <Send className="w-4 h-4" /></>)}
+              </button>
+            </form>
+          ) : (
+            <div className="bg-[#0b1120] p-8 md:p-12 rounded-2xl border border-[#00c3ff]/40 shadow-[0_0_60px_rgba(0,195,255,0.15)] text-center flex flex-col items-center justify-center min-h-[360px]">
+              <div className="w-14 h-14 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/40 flex items-center justify-center mb-5">
+                <CheckCircle2 size={28} className="text-[#00c3ff]" strokeWidth={2} />
+              </div>
+              <h2 className="font-headline font-black text-2xl md:text-3xl text-white mb-3">Message sent.</h2>
+              <p className="text-[#a0b2c8] font-body max-w-md">
+                Thanks for reaching out — we'll get back to you at <span className="text-white font-semibold">{email}</span> within one business day.
+              </p>
             </div>
-            
-            <div className="mb-6">
-              <label htmlFor="email" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-wider mb-2">Work Email</label>
-              <input type="email" id="email" className="w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white focus:border-[#00c3ff] focus:ring-1 focus:ring-[#00c3ff] focus:outline-none transition-all placeholder-[#1e2d4a]" placeholder="jane@company.com" />
-            </div>
-            
-            <div className="mb-8">
-              <label htmlFor="message" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-wider mb-2">Message</label>
-              <textarea id="message" rows={5} className="w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white focus:border-[#00c3ff] focus:ring-1 focus:ring-[#00c3ff] focus:outline-none transition-all placeholder-[#1e2d4a]" placeholder="How can we help your team win?"></textarea>
-            </div>
-            
-            <button type="button" className="w-full py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(0,195,255,0.2)]">
-              Send Message <Send className="w-4 h-4" />
-            </button>
-          </form>
+          )}
         </div>
       </div>
     </>

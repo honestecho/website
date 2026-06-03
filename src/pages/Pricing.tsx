@@ -18,7 +18,7 @@ const features: Feature[] = [
   { category: 'Core Access', name: 'Opportunity summaries',             free: 'check',     starter: 'check',     pro: 'check',     team: 'check'     },
   { category: 'Core Access', name: 'Company profile setup',             free: 'check',     starter: 'check',     pro: 'check',     team: 'check'     },
   { category: 'Core Access', name: 'Bookmark opportunities',            free: '15/mo',     starter: 'unlimited', pro: 'unlimited', team: 'unlimited' },
-  { category: 'Core Access', name: 'Opportunity evaluations',           free: 'none',      starter: '25/mo',     pro: 'unlimited', team: 'unlimited' },
+  { category: 'Core Access', name: 'Opportunity pursuits',              free: 'none',      starter: '25/mo',     pro: 'unlimited', team: 'unlimited' },
   { category: 'Core Access', name: 'Saved searches & nightly alerts',   free: 'check',     starter: 'check',     pro: 'check',     team: 'check'     },
   { category: 'Core Access', name: 'Phase 1 — Initial evaluation',      free: 'none',      starter: 'check',     pro: 'check',     team: 'check'     },
   // Eligibility & Analysis
@@ -60,7 +60,7 @@ function Cell({ value }: { value: CV }) {
 const faqs = [
   { q: 'Do I need a credit card to start?',               a: 'No. Free requires only your email. A card is only needed when you upgrade to a paid plan.' },
   { q: 'Can I cancel anytime?',                           a: 'Yes. Cancel from your account settings — no notice period, no lock-in.' },
-  { q: 'What is the difference between Starter and Pro?', a: 'Starter ($99/mo) gives you the full qualification workflow for up to 25 evaluations per month. Pro ($199/mo) removes limits entirely and adds the dashboard, decision tracking, and PDF export.' },
+  { q: 'What is the difference between Starter and Pro?', a: 'Starter ($99/mo) gives you the full qualification workflow for up to 25 pursuits per month. Pro ($199/mo) removes limits entirely and adds the dashboard, decision tracking, and PDF export.' },
   { q: 'When should I upgrade to Team?',                  a: 'When more than one person needs to work in the same pipeline. Team adds multiple users, shared pursuits, team-level visibility, and onboarding support. Team is launching Q3 2026 — join the waitlist from the Team card above and we\'ll reach out with early-access pricing.' },
 ];
 
@@ -92,7 +92,7 @@ const plans = [
     name: 'Starter',
     price: '$99',
     tagline: 'Make real bid/no-bid decisions',
-    sub: 'Run full evaluations with structured analysis',
+    sub: 'Run full pursuits with structured analysis',
     highlight: false,
     includesAbove: 'Everything in Free, plus:',
     features: [
@@ -104,7 +104,7 @@ const plans = [
       'Strategic fit and effort scoring',
       'Go / Conditional Go / No-Bid recommendations',
       'Bookmark unlimited opportunities',
-      'Evaluate opportunities (up to 25/month)',
+      'Up to 25 pursuits per month',
     ],
     cta: 'Select Starter',
     ctaTo: '/signup',
@@ -118,7 +118,7 @@ const plans = [
     badge: 'Recommended',
     includesAbove: 'Everything in Starter, plus:',
     features: [
-      'Unlimited opportunity evaluations',
+      'Unlimited opportunity pursuits',
       'Decision tracking and history',
       'Dashboard (pipeline, deadlines, priorities)',
       'Downloadable decision reports (PDF)',

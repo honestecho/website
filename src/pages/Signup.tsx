@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Zap, ArrowRight, Target, Scale, CheckCircle2, Eye, EyeOff } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { API_BASE } from '../lib/api';
+import { track } from '../lib/analytics';
 
 type FormState = 'form' | 'verify';
 
@@ -42,6 +44,7 @@ export default function Signup() {
   async function handleGoogleSignIn() {
     setError('');
     setGoogleLoading(true);
+    track('signup_submitted', { method: 'google' });
     try {
       const { error: oauthError } = await supabase.auth.signInWithOAuth({
         provider: 'google',
@@ -95,8 +98,10 @@ export default function Signup() {
         return;
       }
 
+      track('signup_submitted', { method: 'email' });
+
       // Send welcome email
-      fetch(`${import.meta.env.VITE_API_URL || 'https://pursuit-api.honestecho.com'}/api/public/welcome-email`, {
+      fetch(`${API_BASE}/public/welcome-email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: form.email.trim(), fullName: form.fullName.trim() })

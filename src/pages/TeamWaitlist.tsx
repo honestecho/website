@@ -3,12 +3,8 @@ import type { FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Users, Share2, BarChart3, ArrowRight, CheckCircle2 } from 'lucide-react';
-
-// ── API base ─────────────────────────────────────────────────────────────────
-
-const API_BASE = import.meta.env.VITE_API_URL
-  ? `${import.meta.env.VITE_API_URL}/api`
-  : 'https://pursuit.honestecho.com/api';
+import { API_BASE } from '../lib/api';
+import { track } from '../lib/analytics';
 
 // ── Page ─────────────────────────────────────────────────────────────────────
 
@@ -54,6 +50,7 @@ export default function TeamWaitlist() {
         return;
       }
 
+      track('team_waitlist_submitted', { team_size: teamSize || undefined });
       setSubmitted(true);
       setLoading(false);
     } catch {

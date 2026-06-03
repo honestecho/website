@@ -21,11 +21,18 @@ import SharedPackage from './pages/SharedPackage';
 import TeamWaitlist from './pages/TeamWaitlist';
 import NotFound from './pages/NotFound';
 import { OrganizationSchema } from './components/SchemaOrg';
+import { track } from './lib/analytics';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
   useLayoutEffect(() => { window.scrollTo(0, 0); }, [pathname]);
   useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
+
+function PageViews() {
+  const { pathname } = useLocation();
+  useEffect(() => { track('page_viewed', { path: pathname }); }, [pathname]);
   return null;
 }
 
@@ -44,6 +51,7 @@ function App() {
       </div>
       <OrganizationSchema />
       <ScrollToTop />
+      <PageViews />
       <Navbar />
       <main className="flex-grow relative z-10">
         <Routes>

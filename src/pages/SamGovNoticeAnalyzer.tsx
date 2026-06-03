@@ -18,37 +18,8 @@ import {
   Cpu,
 } from 'lucide-react';
 import AnalyzerOpportunityCard from '../components/AnalyzerOpportunityCard';
-
-// ── API ───────────────────────────────────────────────────────────────────────
-
-const API_BASE = import.meta.env.VITE_API_URL
-  ? `${import.meta.env.VITE_API_URL}/api`
-  : 'https://he-pursuit-api.onrender.com/api';
-
-// ── Analytics ─────────────────────────────────────────────────────────────────
-
-const ANALYTICS_API = 'https://he-pursuit-api.onrender.com/api/analytics/track';
-
-function getAnonId(): string {
-  const KEY = 'he_anon_id';
-  try {
-    let id = localStorage.getItem(KEY);
-    if (!id) { id = crypto.randomUUID(); localStorage.setItem(KEY, id); }
-    return id;
-  } catch { return 'unknown'; }
-}
-
-function track(event: string, props: Record<string, unknown> = {}) {
-  if (import.meta.env.DEV) { console.debug('[analytics]', event, props); return; }
-  try {
-    fetch(ANALYTICS_API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ events: [{ event_name: event, anonymous_id: getAnonId(), page: window.location.pathname, properties: props, source: 'website' }] }),
-      keepalive: true,
-    }).catch(() => {});
-  } catch { /* non-fatal */ }
-}
+import { API_BASE } from '../lib/api';
+import { track } from '../lib/analytics';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 

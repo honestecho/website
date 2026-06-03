@@ -30,7 +30,7 @@ const features: Feature[] = [
   { category: 'Eligibility & Analysis', name: 'Strategic & effort scoring',   free: 'none', starter: 'check', pro: 'check', team: 'check' },
   // Decisions & Output
   { category: 'Decisions & Output', name: 'Go / Conditional Go / No-Bid', free: 'none', starter: 'check', pro: 'check', team: 'check' },
-  { category: 'Decisions & Output', name: 'Decision tracking & history',   free: 'none', starter: 'Limited', pro: 'check', team: 'check' },
+  { category: 'Decisions & Output', name: 'Decision tracking & history',   free: 'none', starter: 'Per-pursuit', pro: 'check', team: 'check' },
   { category: 'Decisions & Output', name: 'PDF decision report export',    free: 'none', starter: 'none',  pro: 'check', team: 'check' },
   // Workflow & Visibility
   { category: 'Workflow & Visibility', name: 'Dashboard (pipeline, deadlines)', free: 'none', starter: 'none', pro: 'check', team: 'check' },
@@ -61,7 +61,7 @@ const faqs = [
   { q: 'Do I need a credit card to start?',               a: 'No. Free requires only your email. A card is only needed when you upgrade to a paid plan.' },
   { q: 'Can I cancel anytime?',                           a: 'Yes. Cancel from your account settings — no notice period, no lock-in.' },
   { q: 'What is the difference between Starter and Pro?', a: 'Starter ($99/mo) gives you the full qualification workflow for up to 25 pursuits per month. Pro ($199/mo) removes limits entirely and adds the dashboard, decision tracking, and PDF export.' },
-  { q: 'When should I upgrade to Team?',                  a: 'When more than one person needs to work in the same pipeline. Team adds multiple users, shared pursuits, team-level visibility, and onboarding support. Team is launching Q3 2026 — join the waitlist from the Team card above and we\'ll reach out with early-access pricing.' },
+  { q: 'When should I upgrade to Team?',                  a: 'When more than one person needs to work in the same pipeline. Team adds multiple users, shared pursuits, team-level visibility, and onboarding support. Team is launching soon — join the waitlist from the Team card above and we\'ll reach out with early-access pricing.' },
 ];
 
 // ─── Pricing cards data ───────────────────────────────────────────────────────
@@ -133,7 +133,7 @@ const plans = [
     tagline: 'Scale across your team',
     sub: 'Standardize decisions across users',
     highlight: false,
-    badge: 'Coming Q3',
+    badge: 'Coming Soon',
     includesAbove: 'Everything in Pro, plus:',
     features: [
       'Multiple users',

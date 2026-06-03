@@ -63,7 +63,7 @@ export default function TeamWaitlist() {
     <>
       <Helmet>
         <title>Team Waitlist | HE Pursuit</title>
-        <meta name="description" content="Team pricing for HE Pursuit launches Q3 2026. Join the waitlist for multi-user workspaces, shared pursuits, and team-level visibility across your government contracting pipeline." />
+        <meta name="description" content="Team pricing for HE Pursuit is launching soon. Join the waitlist for multi-user workspaces, shared pursuits, and team-level visibility across your government contracting pipeline." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/team-waitlist" />
         <meta property="og:title" content="Team Waitlist — HE Pursuit" />
@@ -80,7 +80,7 @@ export default function TeamWaitlist() {
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]" />
-            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Coming Q3 2026</span>
+            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Coming Soon</span>
           </div>
 
           <h1 className="font-headline font-black text-5xl md:text-6xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">

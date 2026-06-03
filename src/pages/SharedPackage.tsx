@@ -20,12 +20,12 @@ import {
   Link2Off,
   AlertCircle,
 } from 'lucide-react';
+import { API_BASE } from '../lib/api';
+import { track } from '../lib/analytics';
 
-// ── API base ─────────────────────────────────────────────────────────────────
-
-const API_BASE = import.meta.env.VITE_API_URL
-  ? `${import.meta.env.VITE_API_URL}/api`
-  : 'https://pursuit.honestecho.com/api';
+// API base is centralized in lib/api (he-pursuit-api.onrender.com). The old
+// hard-coded pursuit.honestecho.com/api fallback returned SPA HTML for this GET,
+// which broke every shared-package link in production.
 
 // ── Snapshot shape (matches api-server.js assembleShareSnapshot) ────────────
 
@@ -243,6 +243,9 @@ export default function SharedPackage() {
         const body = await res.json().catch(() => ({}));
         if (cancelled) return;
         if (res.status === 200 && body?.success) {
+          // NOTE: never log the raw share token — it's a bearer credential for
+          // /p/:token. Track the view without it.
+          track('shared_package_viewed');
           setState({ kind: 'ok', snapshot: body.snapshot as Snapshot, createdAt: body.created_at });
           return;
         }

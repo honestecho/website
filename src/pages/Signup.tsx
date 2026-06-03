@@ -44,7 +44,7 @@ export default function Signup() {
   async function handleGoogleSignIn() {
     setError('');
     setGoogleLoading(true);
-    track('signup_submitted', { method: 'google' });
+    track('signup_started', { method: 'google' });
     try {
       const { error: oauthError } = await supabase.auth.signInWithOAuth({
         provider: 'google',
@@ -75,6 +75,7 @@ export default function Signup() {
     if (form.password !== form.confirmPassword) { setError('Passwords do not match.'); return; }
 
     setLoading(true);
+    track('signup_started', { method: 'email' });
     try {
       const { data, error: signUpError } = await supabase.auth.signUp({
         email: form.email.trim(),
@@ -98,7 +99,7 @@ export default function Signup() {
         return;
       }
 
-      track('signup_submitted', { method: 'email' });
+      track('signup_completed', { method: 'email' });
 
       // Send welcome email
       fetch(`${API_BASE}/public/welcome-email`, {

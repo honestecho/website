@@ -415,7 +415,7 @@ export default function Home() {
             <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
               <div className="flex items-center justify-between mb-1">
                 <h3 className="font-headline text-xl font-bold text-white">Team</h3>
-                <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest">Coming Q3</span>
+                <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest">Coming Soon</span>
               </div>
               <p className="text-xs text-[#8b9bb4] mb-4">For multi-user capture teams</p>
               <div className="flex items-baseline gap-1 mb-4">

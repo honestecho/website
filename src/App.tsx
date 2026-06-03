@@ -1,27 +1,31 @@
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect, useLayoutEffect, lazy, Suspense } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import AppRedirect from './pages/AppRedirect';
-import Signup from './pages/Signup';
-import Welcome from './pages/Welcome';
-import Pricing from './pages/Pricing';
-import Security from './pages/Security';
-import Terms from './pages/Terms';
-import Privacy from './pages/Privacy';
-import FAQ from './pages/FAQ';
-import VsGovWin from './pages/VsGovWin';
-import VsGovTribe from './pages/VsGovTribe';
-import SamGovAnalysis from './pages/SamGovAnalysis';
-import SamGovNoticeAnalyzer from './pages/SamGovNoticeAnalyzer';
-import SharedPackage from './pages/SharedPackage';
-import TeamWaitlist from './pages/TeamWaitlist';
-import NotFound from './pages/NotFound';
 import { OrganizationSchema } from './components/SchemaOrg';
 import { track } from './lib/analytics';
+
+// Home stays eager (it's the landing LCP). Everything else is code-split into
+// its own chunk so the initial bundle isn't dragged down by framer-motion-heavy
+// secondary pages.
+const About = lazy(() => import('./pages/About'));
+const Contact = lazy(() => import('./pages/Contact'));
+const AppRedirect = lazy(() => import('./pages/AppRedirect'));
+const Signup = lazy(() => import('./pages/Signup'));
+const Welcome = lazy(() => import('./pages/Welcome'));
+const Pricing = lazy(() => import('./pages/Pricing'));
+const Security = lazy(() => import('./pages/Security'));
+const Terms = lazy(() => import('./pages/Terms'));
+const Privacy = lazy(() => import('./pages/Privacy'));
+const FAQ = lazy(() => import('./pages/FAQ'));
+const VsGovWin = lazy(() => import('./pages/VsGovWin'));
+const VsGovTribe = lazy(() => import('./pages/VsGovTribe'));
+const SamGovAnalysis = lazy(() => import('./pages/SamGovAnalysis'));
+const SamGovNoticeAnalyzer = lazy(() => import('./pages/SamGovNoticeAnalyzer'));
+const SharedPackage = lazy(() => import('./pages/SharedPackage'));
+const TeamWaitlist = lazy(() => import('./pages/TeamWaitlist'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -54,6 +58,7 @@ function App() {
       <PageViews />
       <Navbar />
       <main className="flex-grow relative z-10">
+        <Suspense fallback={<div className="min-h-[60vh]" />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product" element={<Navigate to="/" replace />} />
@@ -78,6 +83,7 @@ function App() {
           <Route path="/team-waitlist" element={<TeamWaitlist />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </Suspense>
       </main>
       <Footer />
     </div>

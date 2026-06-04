@@ -1,0 +1,21 @@
+# Honest Echo — HE Pursuit
+
+> HE Pursuit is bid/no-bid intelligence for small government contractors. It analyzes SAM.gov opportunities and returns a clear Go / Conditional Go / No-Bid recommendation with the reasoning behind it, so lean GovCon teams stop burning proposal hours on the wrong pursuits.
+
+Honest Echo LLC is a woman-owned, veteran-owned small business based in Fairfax, VA. HE Pursuit is its SaaS product; the application lives at pursuit.honestecho.com and the public marketing site is honestecho.com. HE Pursuit analyzes publicly available U.S. government solicitation documents (SAM.gov notices) — it does not use customer data to train AI models.
+
+## Product
+- [Home](https://honestecho.com/): What HE Pursuit does — qualify SAM.gov opportunities, score fit against your company profile, and produce a defensible bid/no-bid decision in minutes.
+- [Pricing](https://honestecho.com/pricing/): Free, Starter ($99/mo), Pro ($199/mo), and Team (coming soon). No credit card required to start.
+- [Free SAM.gov Notice Analyzer](https://honestecho.com/tools/sam-gov-notice-analyzer/): Paste any SAM.gov Notice ID or URL for a free initial assessment — no login required.
+
+## Comparisons
+- [HE Pursuit vs GovWin](https://honestecho.com/vs-govwin/): A GovWin alternative for small business — discovery tools help you find opportunities; HE Pursuit helps you decide which ones deserve your time.
+- [HE Pursuit vs GovTribe](https://honestecho.com/vs-govtribe/): A GovTribe alternative built for lean GovCon capture teams.
+- [SAM.gov Opportunity Analysis](https://honestecho.com/sam-gov-opportunity-analysis/): How HE Pursuit analyzes SAM.gov opportunities against your business profile.
+
+## Company
+- [About](https://honestecho.com/about/): Honest Echo LLC — a woman-owned, veteran-owned small business serving the government contracting community.
+- [FAQ](https://honestecho.com/faq/): Common questions about HE Pursuit, pricing, and data handling.
+- [Security](https://honestecho.com/security/): Data handling, hosting, and security practices.
+- [Contact](https://honestecho.com/contact/): Reach out for consulting inquiries, enterprise access, or general questions.

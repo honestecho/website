@@ -243,7 +243,7 @@ export default function Home() {
             </h2>
 
             <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body">
-              Tools like <Link to="/vs-govwin" className="text-[#00c3ff] hover:text-white transition-colors">GovWin</Link> and <Link to="/vs-govtribe" className="text-[#00c3ff] hover:text-white transition-colors">GovTribe</Link> help you discover SAM.gov opportunities. HE Pursuit helps you decide which ones deserve your time. It gives lean GovCon teams a repeatable way to qualify opportunities, pressure-test assumptions, and avoid proposal churn.
+              Tools like <Link to="/vs-govwin" className="text-[#00c3ff] underline hover:text-white transition-colors">GovWin</Link> and <Link to="/vs-govtribe" className="text-[#00c3ff] underline hover:text-white transition-colors">GovTribe</Link> help you discover SAM.gov opportunities. HE Pursuit helps you decide which ones deserve your time. It gives lean GovCon teams a repeatable way to qualify opportunities, pressure-test assumptions, and avoid proposal churn.
             </p>
 
             <Link to="/pricing" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all">

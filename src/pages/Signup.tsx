@@ -56,6 +56,14 @@ export default function Signup() {
       if (oauthError) {
         setError(oauthError.message);
         setGoogleLoading(false);
+      } else {
+        // Success: the browser is redirecting to Google now. The post-auth
+        // session lands on pursuit.honestecho.com (a different app), so this is
+        // the last point the website sees the Google flow — mark its part of the
+        // funnel complete here, otherwise every Google signup reads as abandoned
+        // (started with no completed). track() uses keepalive so the event
+        // survives the navigation.
+        track('signup_completed', { method: 'google' });
       }
       // On success Supabase redirects away — no need to reset loading.
     } catch {

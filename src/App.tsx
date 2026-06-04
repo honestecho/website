@@ -8,7 +8,9 @@ import { track } from './lib/analytics';
 
 // Home stays eager (it's the landing LCP). Everything else is code-split into
 // its own chunk so the initial bundle isn't dragged down by framer-motion-heavy
-// secondary pages.
+// secondary pages. The prerender (scripts/prerender.js) resolves these lazy
+// boundaries via React 19's async prerenderToNodeStream, so SSG still produces
+// full per-route HTML + Helmet head — see src/entry-server.tsx.
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
 const AppRedirect = lazy(() => import('./pages/AppRedirect'));

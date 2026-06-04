@@ -18,7 +18,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = resolve(__dirname, '..');
 const distDir = resolve(rootDir, 'dist');
 
-// All indexable routes — must match sitemap.xml
+// All indexable routes — must match sitemap.xml (public/sitemap.xml).
 const routes = [
   '/',
   '/pricing',
@@ -32,6 +32,8 @@ const routes = [
   '/vs-govwin',
   '/vs-govtribe',
   '/sam-gov-opportunity-analysis',
+  '/team-waitlist',
+  '/tools/sam-gov-notice-analyzer',
 ];
 
 async function prerender() {
@@ -53,7 +55,7 @@ async function prerender() {
     const template = readFileSync(resolve(distDir, 'index.html'), 'utf-8');
 
     for (const route of routes) {
-      const { html, helmetContext } = render(route);
+      const { html, helmetContext } = await render(route);
       const helmet = helmetContext.helmet;
 
       // Collect helmet-managed head tags
@@ -72,11 +74,38 @@ async function prerender() {
         .filter(Boolean)
         .join('\n    ');
 
-      // Inject rendered HTML + page-specific head tags into the client build template
-      const output = template
-        .replace('<div id="root"></div>', `<div id="root">${html}</div>`)
-        .replace(/<title>[^<]*<\/title>/, '')
-        .replace('</head>', `    ${helmetHead}\n  </head>`);
+      // Per-route self-canonical. No page sets <link rel="canonical"> in its
+      // Helmet, so without this every prerendered route would inherit the
+      // template's hard-coded homepage canonical — telling Google every landing
+      // page is a duplicate of "/". Match the sitemap's canonical form (no
+      // trailing slash; "/" for home).
+      const canonical = `https://honestecho.com${route}`;
+
+      const headTags = [helmetHead, `<link rel="canonical" href="${canonical}" />`]
+        .filter(Boolean)
+        .join('\n    ');
+
+      // Strip the template's homepage-specific SEO tags so the per-route Helmet
+      // values (and the canonical above) are the only ones that survive —
+      // otherwise the home defaults leak onto every deep route. Scope the strip
+      // to <head> only: page bodies can contain inline SVG <title> elements
+      // (lucide icons) that must never be touched.
+      const headEnd = template.indexOf('</head>');
+      const head = template
+        .slice(0, headEnd)
+        .replace(/\s*<title>[\s\S]*?<\/title>/i, '')
+        .replace(/\s*<meta\s+name=["']description["'][^>]*>/i, '')
+        .replace(/\s*<link\s+rel=["']canonical["'][^>]*>/i, '')
+        .replace(/\s*<meta\s+property=["']og:url["'][^>]*>/i, '')
+        .replace(/\s*<meta\s+property=["']og:title["'][^>]*>/i, '')
+        .replace(/\s*<meta\s+property=["']og:description["'][^>]*>/i, '')
+        .replace(/\s*<meta\s+name=["']twitter:title["'][^>]*>/i, '')
+        .replace(/\s*<meta\s+name=["']twitter:description["'][^>]*>/i, '');
+
+      // Reassemble: cleaned <head> + injected per-route tags + original body
+      // with the SSR markup spliced into the root container.
+      const output = (head + `    ${headTags}\n  ` + template.slice(headEnd))
+        .replace('<div id="root"></div>', `<div id="root">${html}</div>`);
 
       const filePath =
         route === '/'

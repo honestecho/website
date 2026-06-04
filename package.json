@@ -7,8 +7,9 @@
     "dev": "vite",
     "check:mojibake": "node scripts/check-mojibake.mjs",
     "prebuild": "node scripts/check-mojibake.mjs",
-    "build": "tsc -b && vite build",
-    "build:static": "npm run build && node scripts/prerender.js",
+    "build": "tsc -b && vite build && node scripts/prerender.js",
+    "build:client": "tsc -b && vite build",
+    "build:static": "npm run build",
     "lint": "eslint .",
     "preview": "vite preview"
   },

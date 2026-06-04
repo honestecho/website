@@ -2,18 +2,20 @@
 
 ## Stack
 - **Framework**: React 19 + Vite + TypeScript + Tailwind CSS 3
-- **Hosting**: Cloudflare Pages (project: `honest-echo-website`)
+- **Hosting**: Cloudflare Pages (project: **`he-website`** — serves honestecho.com + www.honestecho.com. NOTE: there is also a stray domainless `honest-echo-website` project on the same account — do NOT deploy there.)
 - **Domain**: honestecho.com (DNS managed by Cloudflare)
 - **Source**: https://github.com/honestecho/website
 
 ## Deploy Pipeline
-Deployments are automatic. Every push to `master` triggers a Cloudflare Pages build (~60 seconds).
+⚠️ GitHub auto-deploy is UNRELIABLE — pushes have silently failed to ship (prod sat on a pre-SP-1 build while pricing/SEO/testimonials commits were live on GitHub). **Deploy manually after every push** (verified working 2026-06-01):
 
 ```bash
-git add .
-git commit -m "your message"
-git push
+git add . && git commit -m "your message" && git push        # source of truth
+npm run build                                                  # must pass (tsc -b && vite build && prerender — emits dist/{route}/index.html for crawlers)
+# export CLOUDFLARE_API_TOKEN + CLOUDFLARE_ACCOUNT_ID (reuse HE-Pursuit/.env if none here), then:
+npx wrangler pages deploy dist --project-name he-website --branch master --commit-dirty=true
 ```
+Then verify: `curl -s https://honestecho.com | grep index-…js` → fetch that asset → confirm your change is in it.
 
 ## Local Development
 ```bash
@@ -68,7 +70,7 @@ CLAUDE.md                     # design system + new page template — read befor
 ```
 
 ## Cloudflare Pages Settings
-- **Project name**: `honest-echo-website`
+- **Project name**: `he-website` (NOT `honest-echo-website` — that one has no domain)
 - **GitHub repo**: `honestecho/website`
 - **Production branch**: `master`
 - **Build command**: `npm run build`

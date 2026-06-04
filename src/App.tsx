@@ -6,24 +6,29 @@ import Home from './pages/Home';
 import { OrganizationSchema } from './components/SchemaOrg';
 import { track } from './lib/analytics';
 
-// Home stays eager (it's the landing LCP). Everything else is code-split into
-// its own chunk so the initial bundle isn't dragged down by framer-motion-heavy
-// secondary pages. The prerender (scripts/prerender.js) resolves these lazy
-// boundaries via React 19's async prerenderToNodeStream, so SSG still produces
-// full per-route HTML + Helmet head — see src/entry-server.tsx.
+// Eager pages: the LCP landing (Home) plus the dedicated SEO landing pages
+// (pricing + the three comparison/analysis pages). These receive hard-load
+// organic/ad traffic, and a lazy() Suspense boundary flashes its fallback over
+// the prerendered content during the initial client render — a ~0.3 CLS exactly
+// on the pages where Core Web Vitals affect ranking. Eager-loading removes the
+// boundary so they render in place with no shift (like Home). None of these pull
+// framer-motion (that's only in Home's hero), so the bundle cost is small.
+import Pricing from './pages/Pricing';
+import VsGovWin from './pages/VsGovWin';
+import VsGovTribe from './pages/VsGovTribe';
+import SamGovAnalysis from './pages/SamGovAnalysis';
+
+// Everything else stays code-split — lower-traffic / interactive pages where a
+// brief hard-load shift is inconsequential and the bundle savings are worth more.
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
 const AppRedirect = lazy(() => import('./pages/AppRedirect'));
 const Signup = lazy(() => import('./pages/Signup'));
 const Welcome = lazy(() => import('./pages/Welcome'));
-const Pricing = lazy(() => import('./pages/Pricing'));
 const Security = lazy(() => import('./pages/Security'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Privacy = lazy(() => import('./pages/Privacy'));
 const FAQ = lazy(() => import('./pages/FAQ'));
-const VsGovWin = lazy(() => import('./pages/VsGovWin'));
-const VsGovTribe = lazy(() => import('./pages/VsGovTribe'));
-const SamGovAnalysis = lazy(() => import('./pages/SamGovAnalysis'));
 const SamGovNoticeAnalyzer = lazy(() => import('./pages/SamGovNoticeAnalyzer'));
 const SharedPackage = lazy(() => import('./pages/SharedPackage'));
 const TeamWaitlist = lazy(() => import('./pages/TeamWaitlist'));

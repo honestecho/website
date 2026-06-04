@@ -54,59 +54,54 @@ async function prerender() {
     const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
     const template = readFileSync(resolve(distDir, 'index.html'), 'utf-8');
 
-    for (const route of routes) {
-      const { html, helmetContext } = await render(route);
-      const helmet = helmetContext.helmet;
+    // Strip the template's homepage-specific SEO tags once, scoped to <head>, so
+    // per-route Helmet values + canonical are the only ones that survive (the
+    // home defaults must not leak onto deep routes). Scoping to <head> keeps
+    // inline SVG <title> in page bodies (lucide icons) untouched.
+    const headEnd = template.indexOf('</head>');
+    const cleanHead = template
+      .slice(0, headEnd)
+      .replace(/\s*<title>[\s\S]*?<\/title>/i, '')
+      .replace(/\s*<meta\s+name=["']description["'][^>]*>/i, '')
+      .replace(/\s*<link\s+rel=["']canonical["'][^>]*>/i, '')
+      .replace(/\s*<meta\s+property=["']og:url["'][^>]*>/i, '')
+      .replace(/\s*<meta\s+property=["']og:title["'][^>]*>/i, '')
+      .replace(/\s*<meta\s+property=["']og:description["'][^>]*>/i, '')
+      .replace(/\s*<meta\s+name=["']twitter:title["'][^>]*>/i, '')
+      .replace(/\s*<meta\s+name=["']twitter:description["'][^>]*>/i, '');
+    const tailHtml = template.slice(headEnd);
 
-      // Collect helmet-managed head tags
-      const helmetHead = (
-        helmet
-          ? [
-              helmet.title?.toString() ?? '',
-              helmet.priority?.toString() ?? '',
-              helmet.meta?.toString() ?? '',
-              helmet.link?.toString() ?? '',
-              helmet.script?.toString() ?? '',
-            ]
-          : []
+    const helmetTags = helmet =>
+      (helmet
+        ? [
+            helmet.title?.toString() ?? '',
+            helmet.priority?.toString() ?? '',
+            helmet.meta?.toString() ?? '',
+            helmet.link?.toString() ?? '',
+            helmet.script?.toString() ?? '',
+          ]
+        : []
       )
         .map(s => s.trim())
         .filter(Boolean)
         .join('\n    ');
 
-      // Per-route self-canonical. No page sets <link rel="canonical"> in its
-      // Helmet, so without this every prerendered route would inherit the
-      // template's hard-coded homepage canonical — telling Google every landing
-      // page is a duplicate of "/". Match the sitemap's canonical form (no
-      // trailing slash; "/" for home).
-      const canonical = `https://honestecho.com${route}`;
+    const buildPage = (html, headTags) =>
+      (cleanHead + `    ${headTags}\n  ` + tailHtml)
+        .replace('<div id="root"></div>', `<div id="root">${html}</div>`);
 
-      const headTags = [helmetHead, `<link rel="canonical" href="${canonical}" />`]
+    for (const route of routes) {
+      const { html, helmetContext } = await render(route);
+
+      // Self-canonical in the trailing-slash form Cloudflare Pages actually
+      // serves (/route/ — requesting /route 308-redirects to add the slash).
+      // Matching the served URL keeps the canonical a 200, not a redirect target.
+      const canonical = `https://honestecho.com${route}${route === '/' ? '' : '/'}`;
+      const headTags = [helmetTags(helmetContext.helmet), `<link rel="canonical" href="${canonical}" />`]
         .filter(Boolean)
         .join('\n    ');
 
-      // Strip the template's homepage-specific SEO tags so the per-route Helmet
-      // values (and the canonical above) are the only ones that survive —
-      // otherwise the home defaults leak onto every deep route. Scope the strip
-      // to <head> only: page bodies can contain inline SVG <title> elements
-      // (lucide icons) that must never be touched.
-      const headEnd = template.indexOf('</head>');
-      const head = template
-        .slice(0, headEnd)
-        .replace(/\s*<title>[\s\S]*?<\/title>/i, '')
-        .replace(/\s*<meta\s+name=["']description["'][^>]*>/i, '')
-        .replace(/\s*<link\s+rel=["']canonical["'][^>]*>/i, '')
-        .replace(/\s*<meta\s+property=["']og:url["'][^>]*>/i, '')
-        .replace(/\s*<meta\s+property=["']og:title["'][^>]*>/i, '')
-        .replace(/\s*<meta\s+property=["']og:description["'][^>]*>/i, '')
-        .replace(/\s*<meta\s+name=["']twitter:title["'][^>]*>/i, '')
-        .replace(/\s*<meta\s+name=["']twitter:description["'][^>]*>/i, '');
-
-      // Reassemble: cleaned <head> + injected per-route tags + original body
-      // with the SSR markup spliced into the root container.
-      const output = (head + `    ${headTags}\n  ` + template.slice(headEnd))
-        .replace('<div id="root"></div>', `<div id="root">${html}</div>`);
-
+      const output = buildPage(html, headTags);
       const filePath =
         route === '/'
           ? resolve(distDir, 'index.html')
@@ -114,8 +109,16 @@ async function prerender() {
 
       mkdirSync(dirname(filePath), { recursive: true });
       writeFileSync(filePath, output);
-      console.log(`  ✓  ${route.padEnd(12)}  →  ${filePath.replace(rootDir + '\\', '')}`);
+      console.log(`  ✓  ${route.padEnd(30)}  →  ${filePath.replace(rootDir + '\\', '')}`);
     }
+
+    // 404 page — Cloudflare Pages serves dist/404.html with an HTTP 404 for any
+    // path that matches no static asset. Without it, unknown URLs fall back to
+    // index.html with a 200 (soft 404 — wastes crawl budget, can index junk).
+    // Render the catch-all NotFound route; it sets robots=noindex, no canonical.
+    const notFound = await render('/__not_found__');
+    writeFileSync(resolve(distDir, '404.html'), buildPage(notFound.html, helmetTags(notFound.helmetContext.helmet)));
+    console.log(`  ✓  ${'404'.padEnd(30)}  →  ${resolve(distDir, '404.html').replace(rootDir + '\\', '')}`);
 
     console.log('\n✓ Pre-rendering complete\n');
   } finally {

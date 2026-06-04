@@ -30,9 +30,25 @@ const TeamWaitlist = lazy(() => import('./pages/TeamWaitlist'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
-  useLayoutEffect(() => { window.scrollTo(0, 0); }, [pathname]);
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  const { pathname, hash } = useLocation();
+  useLayoutEffect(() => {
+    // No hash → normal top-scroll on route change.
+    if (!hash) { window.scrollTo(0, 0); return; }
+    // Hash → scroll to the target once it mounts. Routes are lazy-loaded, so the
+    // element may not exist on the first frame; retry across a few frames before
+    // falling back to top. scroll-mt-* on targets offsets the sticky navbar.
+    let raf = 0;
+    let tries = 0;
+    const id = hash.slice(1);
+    const tryScroll = () => {
+      const el = document.getElementById(id);
+      if (el) { el.scrollIntoView(); return; }
+      if (tries++ < 30) { raf = requestAnimationFrame(tryScroll); return; }
+      window.scrollTo(0, 0);
+    };
+    tryScroll();
+    return () => cancelAnimationFrame(raf);
+  }, [pathname, hash]);
   return null;
 }
 

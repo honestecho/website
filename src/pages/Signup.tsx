@@ -233,8 +233,9 @@ export default function Signup() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="col-span-2 sm:col-span-1">
-                      <label className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">Full Name</label>
+                      <label htmlFor="fullName" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">Full Name</label>
                       <input
+                        id="fullName"
                         name="fullName"
                         type="text"
                         autoComplete="name"
@@ -247,8 +248,9 @@ export default function Signup() {
                       />
                     </div>
                     <div className="col-span-2 sm:col-span-1">
-                      <label className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">Company</label>
+                      <label htmlFor="company" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">Company</label>
                       <input
+                        id="company"
                         name="company"
                         type="text"
                         autoComplete="organization"
@@ -262,8 +264,9 @@ export default function Signup() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">Work Email</label>
+                    <label htmlFor="email" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">Work Email</label>
                     <input
+                      id="email"
                       name="email"
                       type="email"
                       autoComplete="email"
@@ -276,10 +279,11 @@ export default function Signup() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">
+                    <label htmlFor="phone" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">
                       Phone <span className="text-[#8b9bb4] normal-case font-normal tracking-normal">(optional)</span>
                     </label>
                     <input
+                      id="phone"
                       name="phone"
                       type="tel"
                       autoComplete="tel"
@@ -291,9 +295,10 @@ export default function Signup() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">Password</label>
+                    <label htmlFor="password" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">Password</label>
                     <div className="relative">
                       <input
+                        id="password"
                         name="password"
                         type={showPassword ? 'text' : 'password'}
                         autoComplete="new-password"
@@ -311,9 +316,10 @@ export default function Signup() {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">Confirm Password</label>
+                    <label htmlFor="confirmPassword" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">Confirm Password</label>
                     <div className="relative">
                       <input
+                        id="confirmPassword"
                         name="confirmPassword"
                         type={showConfirmPassword ? 'text' : 'password'}
                         autoComplete="new-password"
@@ -331,7 +337,7 @@ export default function Signup() {
                   </div>
 
                   {error && (
-                    <p className="text-red-400 text-sm bg-red-900/20 border border-red-700/30 rounded-lg px-4 py-3">{error}</p>
+                    <p role="alert" className="text-red-400 text-sm bg-red-900/20 border border-red-700/30 rounded-lg px-4 py-3">{error}</p>
                   )}
 
                   <p className="text-xs text-[#64748b] text-center leading-relaxed">

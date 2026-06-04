@@ -185,13 +185,14 @@ export default function SamGovNoticeAnalyzer() {
             className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] p-5 md:p-6 shadow-2xl"
             noValidate
           >
-            <label className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-2 font-label">
+            <label htmlFor="notice-input" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-2 font-label">
               SAM.gov Notice ID or URL
             </label>
             <div className="flex flex-col md:flex-row gap-3">
               <div className="flex-1 relative">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8b9bb4] pointer-events-none" strokeWidth={2} />
                 <input
+                  id="notice-input"
                   type="text"
                   value={input}
                   onChange={e => setInput(e.target.value)}
@@ -217,7 +218,7 @@ export default function SamGovNoticeAnalyzer() {
             </p>
 
             {error && !loading && (
-              <div className="mt-4 flex items-start gap-3 rounded-xl border border-[#1e2d4a] bg-[#0b1120] p-4">
+              <div role="alert" className="mt-4 flex items-start gap-3 rounded-xl border border-[#1e2d4a] bg-[#0b1120] p-4">
                 <div className="relative shrink-0 w-5 h-5 flex items-center justify-center mt-0.5">
                   <div className={`absolute inset-0 blur-sm rounded-full opacity-25 ${rateLimited ? 'bg-[#00c3ff]' : 'bg-[#f87171]'}`} />
                   <AlertCircle className={`w-4 h-4 relative z-10 ${rateLimited ? 'text-[#00c3ff]' : 'text-[#f87171]'}`} strokeWidth={2} />

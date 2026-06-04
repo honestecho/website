@@ -85,7 +85,7 @@ const plans = [
       'No pursuit workflow or bid decisions',
       'No deep eligibility or document analysis',
     ],
-    cta: 'Select Free',
+    cta: 'Start Free',
     ctaTo: '/signup',
   },
   {
@@ -192,7 +192,8 @@ export default function Pricing() {
             {plans.map((plan, i) => (
               <FlyIn key={plan.name} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
               <div
-                className={`rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden transition-all duration-300 h-full ${
+                id={plan.name.toLowerCase()}
+                className={`scroll-mt-24 rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden transition-all duration-300 h-full ${
                   plan.highlight
                     ? 'bg-[#0b1120] border border-[#00c3ff]/50 shadow-[0_0_60px_rgba(0,195,255,0.12)]'
                     : 'bg-[#0b1120] border border-[#1e2d4a] group hover:border-[#00c3ff]/30'
@@ -451,7 +452,7 @@ export default function Pricing() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/signup" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline">
-              Select Free
+              Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline">

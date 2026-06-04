@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Mail, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Mail, MapPin, Send, CheckCircle2, ArrowRight } from 'lucide-react';
 import { track } from '../lib/analytics';
 
 export default function Contact() {
@@ -154,7 +155,7 @@ export default function Contact() {
               </div>
 
               {error && (
-                <p className="text-red-400 text-sm bg-red-900/20 border border-red-700/30 rounded-lg px-4 py-3 mb-6 relative z-10">{error}</p>
+                <p role="alert" className="text-red-400 text-sm bg-red-900/20 border border-red-700/30 rounded-lg px-4 py-3 mb-6 relative z-10">{error}</p>
               )}
 
               <button type="submit" disabled={loading} className="w-full py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(0,195,255,0.2)] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100">
@@ -170,6 +171,14 @@ export default function Contact() {
               <p className="text-[#a0b2c8] font-body max-w-md">
                 Thanks for reaching out — we'll get back to you at <span className="text-white font-semibold">{email}</span> within one business day.
               </p>
+              <div className="flex flex-col sm:flex-row gap-3 mt-8">
+                <Link to="/signup" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg hover:bg-white transition-colors text-sm">
+                  Start free <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link to="/" className="inline-flex items-center justify-center px-6 py-3 border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">
+                  Back to home
+                </Link>
+              </div>
             </div>
           )}
         </div>

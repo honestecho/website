@@ -107,7 +107,7 @@ export default function Home() {
               {
                 quote: 'It helped us say no with confidence.',
                 body: 'For a small team, the expensive mistake is chasing the wrong opportunity. HE Pursuit gave us a clear go/no-go record, the reasons behind it, and the open risks we would have had to resolve.',
-                name: 'Aaron S.',
+                name: 'Priya S.',
                 role: 'Capture Lead, Government Contractor',
               },
             ] as { quote: string; body: string; name: string; role: string }[]).map((t, i) => (
@@ -356,7 +356,7 @@ export default function Home() {
             <FlyIn>
             <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
               <h3 className="font-headline text-xl font-bold text-white mb-1">Free</h3>
-              <p className="text-xs text-[#8b9bb4] mb-4">Test the workflow</p>
+              <p className="text-xs text-[#8b9bb4] mb-4">Try the product</p>
               <div className="flex items-baseline gap-1 mb-4">
                 <span className="text-4xl font-black text-white">$0</span>
               </div>
@@ -365,7 +365,7 @@ export default function Home() {
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
-              <Link to="/signup" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Select Free</Link>
+              <Link to="/signup" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Start Free</Link>
             </div>
             </FlyIn>
 
@@ -379,7 +379,7 @@ export default function Home() {
                 <span className="text-[#8b9bb4] text-sm">/mo</span>
               </div>
               <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow">
-                {['25 pursuits', 'Full 5-phase AI workflow', 'Eligibility & disqualifier review', 'Strategic & effort scoring', 'Decision tracking (limited)'].map(f => (
+                {['25 pursuits', 'Full 5-phase AI workflow', 'Eligibility & disqualifier review', 'Strategic & effort scoring', 'Decision tracking (per-pursuit)'].map(f => (
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
@@ -423,7 +423,7 @@ export default function Home() {
                 <span className="text-[#8b9bb4] text-sm">/mo</span>
               </div>
               <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow">
-                {['Everything in Pro', 'Multiple users', 'Shared pursuit pipeline', 'Priority processing', 'Onboarding assistance'].map(f => (
+                {['Everything in Pro', 'Multiple users', 'Shared pursuit pipeline', 'Team-level visibility', 'Onboarding assistance'].map(f => (
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>

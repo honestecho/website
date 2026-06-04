@@ -111,10 +111,11 @@ export default function TeamWaitlist() {
               />
 
               <div>
-                <label className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">
+                <label htmlFor="tw-email" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">
                   Work email
                 </label>
                 <input
+                  id="tw-email"
                   type="email"
                   required
                   autoComplete="email"
@@ -127,10 +128,11 @@ export default function TeamWaitlist() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">
+                  <label htmlFor="tw-company" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">
                     Company <span className="text-[#8b9bb4] normal-case font-normal tracking-normal">(optional)</span>
                   </label>
                   <input
+                    id="tw-company"
                     type="text"
                     autoComplete="organization"
                     placeholder="Acme Federal Services"
@@ -141,10 +143,11 @@ export default function TeamWaitlist() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">
+                  <label htmlFor="tw-team-size" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">
                     Team size <span className="text-[#8b9bb4] normal-case font-normal tracking-normal">(optional)</span>
                   </label>
                   <select
+                    id="tw-team-size"
                     value={teamSize}
                     onChange={e => setTeamSize(e.target.value)}
                     className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors"
@@ -158,10 +161,11 @@ export default function TeamWaitlist() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">
+                <label htmlFor="tw-usecase" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">
                   What are you trying to do? <span className="text-[#8b9bb4] normal-case font-normal tracking-normal">(optional)</span>
                 </label>
                 <input
+                  id="tw-usecase"
                   type="text"
                   maxLength={500}
                   placeholder="e.g. Standardize our bid/no-bid process across 8 capture managers"
@@ -172,7 +176,7 @@ export default function TeamWaitlist() {
               </div>
 
               {error && (
-                <p className="text-sm text-red-400 font-body">{error}</p>
+                <p role="alert" className="text-sm text-red-400 font-body">{error}</p>
               )}
 
               <button

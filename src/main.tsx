@@ -1,16 +1,17 @@
 import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { hydrateRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
 import App from './App.tsx'
 
 // Lazy route chunks, keyed by path — a mirror of the lazy() imports in App.tsx.
-// Before the first client render we preload + await the chunk for the current
-// path so its lazy() route resolves synchronously instead of briefly rendering
-// the Suspense fallback. That fallback swap (a tall prerendered page collapsing
-// to the fallback's min-height, then snapping back) is what caused CLS on
-// hard-loaded landing pages. Other routes stay code-split and load on demand.
+// Each page is prerendered (scripts/prerender.js) and the client HYDRATES that
+// markup rather than re-rendering it. Before hydrating we preload + await the
+// current path's chunk so the lazy() route's Suspense boundary hydrates in place
+// instead of deopting to its fallback — that fallback swap (a tall prerendered
+// page collapsing to the fallback's min-height, then snapping back) was the CLS
+// on hard-loaded landing pages. Other routes stay code-split and load on demand.
 // Keep this map in sync with the routes in App.tsx.
 const routeChunkLoaders: Record<string, () => Promise<unknown>> = {
   '/about': () => import('./pages/About'),
@@ -30,7 +31,8 @@ const routeChunkLoaders: Record<string, () => Promise<unknown>> = {
 }
 
 function render() {
-  createRoot(document.getElementById('root')!).render(
+  hydrateRoot(
+    document.getElementById('root')!,
     <StrictMode>
       <HelmetProvider>
         <BrowserRouter>

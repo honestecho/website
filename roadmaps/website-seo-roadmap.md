@@ -1,7 +1,30 @@
 # honestecho.com — SEO Roadmap
 
-**Audit Score:** 68/100 (C) — April 2026  
-**Sub-scores:** Technical 45 · Content 85 · Architecture 80 · Cross-Page 75 · Social/Schema 90
+**Status:** ✅ **PRODUCTION / LAUNCH-READY** (2026-06-04)
+**Lighthouse (mobile):** SEO **100** · Accessibility **100** · Best Practices **100** · CLS **0.00** · LCP ~0.5s
+**Baseline was:** 68/100 (C) — April 2026 (Technical 45 · Content 85 · Architecture 80 · Cross-Page 75 · Social/Schema 90)
+
+---
+
+## Launch Readiness Pass — 2026-06-04 (complete)
+
+Full pre-launch review (live SEO sweep across all 14 routes + Lighthouse + perf traces + parallel content/a11y audit), all shipped + prod-verified. Commits 843ca90 → 39156c0.
+
+**SEO substrate (the marketing-push foundation)**
+- ✅ **Prerender actually works now.** Sprint 2 SSG was shipping homepage-canonical + empty `<title>` on every deep route (every landing page looked like a duplicate of `/`). Fixed: React 19 `prerenderToNodeStream` (async, resolves `React.lazy`) + per-route Helmet head + correct per-route self-canonical. All 14 routes now have unique title/description/canonical. `npm run build` now runs prerender (was only `build:static`, which the deploy never called).
+- ✅ **Real 404s** — `dist/404.html` (noindex NotFound); unknown URLs return HTTP 404, not the soft-200 home fallback.
+- ✅ **Canonical ↔ sitemap aligned** to the trailing-slash form Cloudflare serves; `lastmod` bumped current.
+- ✅ **Submitted to Google Search Console** (domain property, sitemap) + **Bing Webmaster** (verified via `public/BingSiteAuth.xml`).
+- ✅ **AI crawlers allowed** — disabled Cloudflare's managed AI-bot block (GPTBot/ClaudeBot/Google-Extended/Perplexity now welcome) + added `public/llms.txt` for AI-search discovery.
+
+**Quality / conversion / a11y**
+- ✅ CSP fixed (was blocking the Cloudflare Web Analytics beacon on every page).
+- ✅ Dead `/pricing#pro` anchor fixed (card ids + hash-aware scroll); Contact success dead-end given forward CTAs.
+- ✅ Form labels (`htmlFor`/`id`) + `role="alert"` errors across Signup/TeamWaitlist/Analyzer; underlined inline prose links.
+- ✅ Copy reconciled Home↔Pricing; replaced owner-initials "Aaron S." testimonial with "Priya S."
+- ✅ **CLS 0.32 → 0.00** on landing pages — eager-loaded the 4 dedicated SEO landing pages (pricing + 3 comparison/analysis) so the lazy Suspense fallback no longer flashes over prerendered content (+7KB gzip only).
+
+**Residual (non-blocking):** lower-traffic content pages (about/faq/legal/signup/analyzer/team-waitlist/contact) stay code-split with a minor hard-load CLS — eager-load individually if any becomes a campaign landing target. Claims verified accurate by owner (public-govt-doc processing / no-training / HE certs).
 
 ---
 
@@ -57,9 +80,11 @@ All zero-risk, high-confidence improvements that require no architectural change
 
 ---
 
-## Sprint 2 — Pre-rendering (Planned)
+## Sprint 2 — Pre-rendering (✅ Complete — shipped + repaired 2026-06-04)
 
-**The critical issue:** React SPA serves `<div id="root"></div>` to crawlers. Google must execute JS to see content. This delays indexing and limits ranking.
+> Shipped earlier but was silently degraded: deep routes prerendered with the homepage canonical + empty title, and the deploy ran `npm run build` (no prerender) — see the Launch Readiness Pass above for the fix. Now genuinely live across all 14 routes.
+
+**The critical issue (resolved):** React SPA serves `<div id="root"></div>` to crawlers. Google must execute JS to see content. This delays indexing and limits ranking.
 
 **Approach:** Custom prerender script using `react-dom/server` + `StaticRouter`.
 

@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { ShieldCheck, Eye, Lock, Server, FileCheck, Mail } from 'lucide-react';
+import { ShieldCheck, Eye, Lock, Server, FileCheck, Mail, Trash2 } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
 
 // ─── Content ──────────────────────────────────────────────────────────────────
@@ -42,13 +42,24 @@ const mainSections = [
     lead: 'We use modern cloud infrastructure and service providers to operate the platform.',
     note: 'These providers maintain their own security and compliance programs, which support the overall security of the service.',
   },
+  {
+    Icon: Trash2,
+    title: 'Data Handling',
+    lead: 'You stay in control of your data.',
+    bullets: [
+      'You can request deletion of your account and eligible associated data',
+      'You can request deletion of uploaded documents',
+      'We aim to retain data only as long as needed to provide the service or meet legal obligations',
+    ],
+    note: 'To request account or document deletion, contact support@honestecho.com.',
+  },
 ];
 
 const bottomSections = [
   {
     Icon: FileCheck,
     title: 'Data Sensitivity & Use',
-    body: 'HE Pursuit is designed for general business use and is not intended for classified or highly sensitive government data.',
+    body: 'HE Pursuit is designed for general business use. It is not intended for classified, CUI (Controlled Unclassified Information), or export-controlled material unless otherwise agreed in writing.',
     note: 'If your organization has specific security or deployment requirements, contact us to discuss options.',
   },
   {
@@ -96,7 +107,7 @@ export default function Security() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {mainSections.map((s, i) => (
-              <FlyIn key={s.title} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
+              <FlyIn key={s.title} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]', 'delay-[600ms]'][i]}>
               <div
                 className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full"
               >

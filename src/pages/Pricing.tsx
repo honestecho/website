@@ -188,6 +188,11 @@ export default function Pricing() {
       {/* ── SECTION 2 — Pricing Cards ────────────────────────────────────── */}
       <section className="pb-6 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
+          <div className="mb-8 rounded-xl border border-[#00c3ff]/30 bg-[#00c3ff]/5 px-6 py-4 text-center">
+            <p className="font-headline font-bold text-white text-base md:text-lg tracking-tight">
+              Free helps you <span className="text-[#00c3ff]">screen</span> opportunities. Paid plans help you make <span className="text-[#00c3ff]">bid/no-bid decisions</span>.
+            </p>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
             {plans.map((plan, i) => (
               <FlyIn key={plan.name} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>

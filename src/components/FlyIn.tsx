@@ -16,10 +16,12 @@ export default function FlyIn({
   children,
   delay = '',
   className = '',
+  alwaysAnimate = false,
 }: {
   children: React.ReactNode;
   delay?: string;
   className?: string;
+  alwaysAnimate?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   // 'ssr'     — initial state, matches server render (content visible)
@@ -34,11 +36,14 @@ export default function FlyIn({
       return;
     }
 
-    // Elements already in or near the viewport show immediately
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 1.05) {
-      setState('visible');
-      return;
+    // Elements already in or near the viewport show immediately —
+    // unless alwaysAnimate forces the scroll-triggered fly-in.
+    if (!alwaysAnimate) {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 1.05) {
+        setState('visible');
+        return;
+      }
     }
 
     // Below-fold elements get hidden and animated in on scroll

@@ -36,7 +36,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right: Login + hamburger */}
+        {/* Right: Launch App + hamburger */}
         <div className="flex items-center gap-3">
           <a
             href="https://pursuit.honestecho.com"
@@ -44,7 +44,7 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="px-5 py-2.5 text-sm font-bold bg-[#00c3ff] text-[#030B17] shadow-[0_0_15px_rgba(0,195,255,0.2)] rounded hover:bg-white hover:scale-105 transition-all duration-300"
           >
-            Login
+            Launch App
           </a>
           <button
             className="md:hidden flex items-center justify-center w-11 h-11 rounded-lg border border-[#1e2d4a] text-white hover:border-[#00c3ff]/40 transition-colors"

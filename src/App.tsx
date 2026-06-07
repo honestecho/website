@@ -34,11 +34,28 @@ const SharedPackage = lazy(() => import('./pages/SharedPackage'));
 const TeamWaitlist = lazy(() => import('./pages/TeamWaitlist'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
+// Own scroll restoration before hydration. With the default 'auto', the browser
+// restores the previous (bottom-of-page) scroll position during hydration/layout
+// of the prerendered build *after* our scrollTo runs — so footer-link clicks would
+// land mid-page in prod (never reproduces in dev, which serves no prerendered HTML).
+// Module scope so it runs at import, before hydrateRoot; guarded for the prerender
+// pass where `window` is absent.
+if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+  window.history.scrollRestoration = 'manual';
+}
+
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
   useLayoutEffect(() => {
-    // No hash → normal top-scroll on route change.
-    if (!hash) { window.scrollTo(0, 0); return; }
+    // No hash → normal top-scroll on route change. Scroll synchronously (no flash)
+    // and re-assert across the next two frames (true post-paint) to defeat any late
+    // browser scroll restoration in the hydrated build.
+    if (!hash) {
+      window.scrollTo(0, 0);
+      let raf2 = 0;
+      const raf1 = requestAnimationFrame(() => { raf2 = requestAnimationFrame(() => window.scrollTo(0, 0)); });
+      return () => { cancelAnimationFrame(raf1); cancelAnimationFrame(raf2); };
+    }
     // Hash → scroll to the target once it mounts. Routes are lazy-loaded, so the
     // element may not exist on the first frame; retry across a few frames before
     // falling back to top. scroll-mt-* on targets offsets the sticky navbar.

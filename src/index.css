@@ -6,6 +6,11 @@
   body {
     @apply bg-surface text-on-surface font-body selection:bg-primary-container selection:text-white;
   }
+  /* Disable browser scroll anchoring so it can't hold the viewport mid-page
+     against our scroll-to-top on route change (prerendered/hydrated build). */
+  html, body {
+    overflow-anchor: none;
+  }
 }
 
 @layer utilities {

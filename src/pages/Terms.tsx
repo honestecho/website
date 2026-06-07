@@ -116,7 +116,7 @@ export default function Terms() {
       </Helmet>
 
       {/* ── Hero ───────────────────────────────────────────────────────────── */}
-      <section className="pt-16 pb-12 px-6 relative overflow-hidden">
+      <section className="pt-24 pb-12 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
             Terms of Service

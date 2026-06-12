@@ -79,7 +79,7 @@ export default function Home() {
                 </div>
                 <div>
                   <div className="text-base font-black text-white font-headline leading-none mb-1">{item.title}</div>
-                  <div className="text-sm text-[#8b9bb4] font-body leading-snug">{item.body}</div>
+                  <div className="text-sm text-[#a0b2c8] font-body leading-snug">{item.body}</div>
                 </div>
               </div>
             ))}

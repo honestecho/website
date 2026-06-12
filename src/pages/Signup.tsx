@@ -33,6 +33,7 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const [resent, setResent] = useState(false);
+  const [resendError, setResendError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [invalidField, setInvalidField] = useState<keyof FormData | null>(null);
@@ -151,11 +152,20 @@ export default function Signup() {
 
   async function handleResend() {
     setResent(false);
-    const { error: resendError } = await supabase.auth.resend({
-      type: 'signup',
-      email: form.email.trim(),
-    });
-    if (!resendError) setResent(true);
+    setResendError(false);
+    try {
+      const { error: resendErr } = await supabase.auth.resend({
+        type: 'signup',
+        email: form.email.trim(),
+      });
+      if (resendErr) {
+        setResendError(true);
+      } else {
+        setResent(true);
+      }
+    } catch {
+      setResendError(true);
+    }
   }
 
   return (
@@ -414,7 +424,7 @@ export default function Signup() {
                 <div className="space-y-3">
                   <a
                     href="https://pursuit.honestecho.com"
-                    className="w-full py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg hover:bg-white transition-colors flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg hover:bg-white transition-colors flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1120]"
                   >
                     Open HE Pursuit <ArrowRight className="w-4 h-4" />
                   </a>
@@ -424,6 +434,11 @@ export default function Signup() {
                   >
                     {resent ? 'Confirmation email resent.' : 'Resend confirmation email'}
                   </button>
+                  {resendError && (
+                    <p role="alert" className="text-red-400 text-xs font-body">
+                      Couldn't resend — try again in a minute.
+                    </p>
+                  )}
                 </div>
 
                 <p className="mt-6 text-xs text-[#8b9bb4] font-body">

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Calendar, CheckCircle2, AlertTriangle, XCircle, Eye, ExternalLink, ArrowRight,
-  MapPin, DollarSign, Layers, Hash, Shield, Landmark, Clock, Sparkles,
+  MapPin, DollarSign, Layers, Hash, Shield, Landmark, Clock, Sparkles, ChevronDown,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
@@ -146,8 +146,11 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack }:
 
     agency: <span className={`${chip} text-[#00c3ff] whitespace-nowrap overflow-hidden text-ellipsis max-w-full inline-block`}>{agency}</span>,
 
-    geo:   <span className={gapText}>Not disclosed — low risk if remote-eligible</span>,
-    value: <span className={gapText}>Not posted — request pre-sol estimate</span>,
+    // The public analyze response carries no place-of-performance or contract-value
+    // fields end-to-end (the scorer uses them server-side only), so these rows are
+    // honest gap text rather than hardcoded assumptions about the notice.
+    geo:   <span className={gapText}>Not included in this notice's data — check SAM.gov</span>,
+    value: <span className={gapText}>Not included in this notice's data — check SAM.gov</span>,
 
     timing: due.label
       ? <span className={`${chip} inline-flex items-center gap-1.5 whitespace-nowrap`} style={{ color: due.color }}>
@@ -289,11 +292,18 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack }:
               aria-expanded={breakdownOpen}
               aria-label="Toggle score breakdown"
               onClick={() => setBreakdownOpen(o => !o)}
-              className="cursor-pointer bg-transparent border-0 p-0 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] rounded"
+              className="cursor-pointer bg-transparent border-0 p-0 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] rounded inline-flex items-center gap-1"
             >
               <span className="text-[40px] font-black tabular-nums leading-none tracking-tight text-white">
                 {computed}<span className="text-xl tracking-normal opacity-50">%</span>
               </span>
+              {Object.keys(dimension_scores).length > 0 && (
+                <ChevronDown
+                  size={14}
+                  className={`text-[#8b9bb4] shrink-0 transition-transform duration-200 ${breakdownOpen ? 'rotate-180' : ''}`}
+                  aria-hidden="true"
+                />
+              )}
             </button>
             {Object.keys(dimension_scores).length > 0 && (
               <div className={`absolute right-0 top-full mt-2 z-50 w-52 bg-[#0b1120] border border-[#1e2d4a] rounded-xl p-3 shadow-2xl transition-opacity duration-200 ${breakdownOpen ? 'opacity-100' : 'opacity-0 group-hover/score:opacity-100 pointer-events-none'}`}
@@ -367,10 +377,15 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack }:
                 type="button"
                 aria-expanded={confidenceOpen}
                 onClick={() => setConfidenceOpen(o => !o)}
-                className="md:min-w-[170px] inline-flex items-center justify-center px-3 py-1 rounded-lg bg-white/5 border border-[#1e2d4a] text-sm font-bold tracking-[0.12em] uppercase text-[#a0b2c8] shrink-0 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
+                className="md:min-w-[170px] inline-flex items-center justify-center gap-1.5 px-3 py-1 rounded-lg bg-white/5 border border-[#1e2d4a] text-sm font-bold tracking-[0.12em] uppercase text-[#a0b2c8] shrink-0 cursor-pointer whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
                 title={`Confidence ${confidenceRating}/10 — ${strongDimCount} of ${totalDimCount} scoring dimensions hit at least 50% of their max. Measures how substantiated the ${computed}% match score is, not the magnitude.`}
               >
                 {confidenceLabel}
+                <ChevronDown
+                  size={12}
+                  className={`shrink-0 transition-transform duration-200 ${confidenceOpen ? 'rotate-180' : ''}`}
+                  aria-hidden="true"
+                />
               </button>
             </div>
             {confidenceOpen && (

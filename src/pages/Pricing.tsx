@@ -241,10 +241,15 @@ export default function Pricing() {
                 </div>
 
                 {/* Price */}
-                <div className={`flex items-baseline gap-1 ${'valueLine' in plan && plan.valueLine ? 'mb-1' : 'mb-5'}`}>
+                <div className={`flex items-baseline gap-1 ${plan.price !== '$0' || ('valueLine' in plan && plan.valueLine) ? 'mb-1' : 'mb-5'}`}>
                   <span className="text-4xl font-black text-white font-headline">{plan.price}</span>
                   {plan.price !== '$0' && <span className="text-[#8b9bb4] text-sm font-body">/mo</span>}
                 </div>
+                {plan.price !== '$0' && (
+                  <p className={`text-[#00c3ff] text-xs font-bold font-body ${'valueLine' in plan && plan.valueLine ? 'mb-1' : 'mb-5'}`}>
+                    $0 during beta &mdash; code BETA100
+                  </p>
+                )}
                 {'valueLine' in plan && plan.valueLine && (
                   <p className="text-xs text-[#8b9bb4] font-body mb-5">{plan.valueLine}</p>
                 )}
@@ -392,7 +397,7 @@ export default function Pricing() {
             <table className="w-full min-w-[640px] text-sm">
               <thead>
                 <tr className="border-b border-[#1e2d4a] bg-[#0b1120]">
-                  <th className="text-left px-6 py-4 text-[#8b9bb4] font-label uppercase tracking-widest text-xs w-2/5 sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Feature</th>
+                  <th className="text-left px-6 py-4 text-[#8b9bb4] font-label uppercase tracking-widest text-xs sm:w-2/5 max-w-[40vw] sm:max-w-none whitespace-normal break-words sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Feature</th>
                   <th className="px-4 py-4 text-center text-white font-headline font-bold text-sm">Free</th>
                   <th className="px-4 py-4 text-center text-white font-headline font-bold text-sm">Starter</th>
                   <th className="px-4 py-4 text-center font-headline font-bold text-sm"><span className="text-[#00c3ff]">Pro</span></th>
@@ -403,12 +408,12 @@ export default function Pricing() {
                 {categories.map(cat => (
                   <React.Fragment key={cat}>
                     <tr className="border-t border-[#1e2d4a] bg-[#0b1120]/80">
-                      <td className="px-6 py-3 text-xs font-bold text-[#00c3ff] uppercase tracking-widest font-label sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">{cat}</td>
+                      <td className="px-6 py-3 text-xs font-bold text-[#00c3ff] uppercase tracking-widest font-label max-w-[40vw] sm:max-w-none whitespace-normal break-words sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">{cat}</td>
                       <td colSpan={4}></td>
                     </tr>
                     {features.filter(f => f.category === cat).map(f => (
                       <tr key={f.name} className="border-t border-[#1e2d4a]/60 hover:bg-[#0d1625] transition-colors">
-                        <td className="px-6 py-4 text-[#a0b2c8] font-body sticky left-0 z-10 bg-[#080f1c] border-r border-[#1e2d4a]">{f.name}</td>
+                        <td className="px-6 py-4 text-[#a0b2c8] font-body max-w-[40vw] sm:max-w-none whitespace-normal break-words sticky left-0 z-10 bg-[#080f1c] border-r border-[#1e2d4a]">{f.name}</td>
                         <td className="px-4 py-4 text-center"><Cell value={f.free} /></td>
                         <td className="px-4 py-4 text-center"><Cell value={f.starter} /></td>
                         <td className="px-4 py-4 text-center bg-[#00c3ff]/[0.03]"><Cell value={f.pro} /></td>

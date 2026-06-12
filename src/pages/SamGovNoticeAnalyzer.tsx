@@ -345,7 +345,7 @@ export default function SamGovNoticeAnalyzer() {
                               </div>
                               <div>
                                 <p className="text-sm font-bold text-white font-headline leading-snug">{i + 1}. {title}</p>
-                                <p className="text-xs text-[#8b9bb4] font-body leading-snug mt-0.5">{body}</p>
+                                <p className="text-sm text-[#8b9bb4] font-body leading-snug mt-0.5">{body}</p>
                               </div>
                             </div>
                           ))}
@@ -363,7 +363,7 @@ export default function SamGovNoticeAnalyzer() {
                             </div>
                             <div className="flex-1 min-w-0">
                               <p className="text-sm font-bold text-[#00c3ff] font-headline">Score against your real profile</p>
-                              <p className="text-xs text-[#8b9bb4] font-body leading-snug">Create a free account to score every notice against your actual NAICS, certifications, and past performance.</p>
+                              <p className="text-sm text-[#8b9bb4] font-body leading-snug">Create a free account to score every notice against your actual NAICS, certifications, and past performance.</p>
                             </div>
                             <ChevronRight size={15} className="text-[#00c3ff] shrink-0 group-hover/unlock:translate-x-0.5 transition-transform duration-200" />
                           </Link>
@@ -415,7 +415,7 @@ export default function SamGovNoticeAnalyzer() {
                                 {pscore}%
                               </span>
                             </div>
-                            <p className="text-xs text-[#8b9bb4] font-body leading-snug line-clamp-2">{m.blurb}</p>
+                            <p className="text-sm text-[#8b9bb4] font-body leading-snug line-clamp-2">{m.blurb}</p>
                           </button>
                         );
                       })}

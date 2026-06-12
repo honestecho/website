@@ -113,7 +113,7 @@ export default function SamGovAnalysis() {
               <FlyIn key={card.title} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i % 4]} className={card.phase === 5 ? 'lg:col-span-2' : ''}>
               <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 text-[#00c3ff] text-[10px] font-bold tracking-widest uppercase font-label mb-4">
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 text-[#00c3ff] text-xs font-bold tracking-widest uppercase font-label mb-4">
                   Phase {card.phase}
                 </span>
                 <div className="flex items-start gap-4 mb-5">
@@ -133,7 +133,10 @@ export default function SamGovAnalysis() {
 
       {/* Mid-page CTA */}
       <section className="py-8 px-6">
-        <div className="max-w-7xl mx-auto flex justify-center">
+        <div className="max-w-7xl mx-auto flex flex-col items-center gap-5">
+          <p className="text-[#a0b2c8] text-base font-body text-center">
+            Paste a live notice number and see the analysis for yourself.
+          </p>
           <Link
             to="/tools/sam-gov-notice-analyzer/"
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline"

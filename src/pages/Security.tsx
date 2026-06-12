@@ -20,7 +20,7 @@ const mainSections = [
     bullets: [
       'Data is encrypted in transit and at rest',
       'Access to systems is restricted and monitored',
-      'Infrastructure is hosted on trusted cloud providers (Cloudflare, Supabase, and Render)',
+      'Infrastructure is hosted on trusted cloud providers',
     ],
     note: 'No system is completely secure, but we take data protection seriously and continue to improve our practices over time.',
   },
@@ -59,7 +59,7 @@ const mainSections = [
   {
     Icon: Server,
     title: 'Infrastructure',
-    lead: 'We use modern cloud infrastructure and service providers to operate the platform.',
+    lead: 'We operate the platform on Cloudflare (edge/CDN), Supabase (database & auth), and Render (application hosting).',
     note: 'These providers maintain their own security and compliance programs, which support the overall security of the service.',
   },
   {
@@ -133,7 +133,8 @@ export default function Security() {
                   className="inline-flex items-center gap-2.5 bg-[#0b1120] border border-[#1e2d4a] rounded-full px-4 py-2 text-sm font-body text-[#a0b2c8] hover:text-white hover:border-[#00c3ff]/40 transition-colors"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-[#00c3ff] shrink-0"></span>
-                  {chip.label}
+                  <Mail className="w-3 h-3 shrink-0" aria-hidden="true" />
+                  <span className="underline underline-offset-2">{chip.label}</span>
                 </a>
               ) : (
                 <span
@@ -245,10 +246,13 @@ export default function Security() {
               href="mailto:security@honestecho.com"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline"
             >
-              security@honestecho.com
+              Email our security team
             </a>
             <Link to="/privacy/" className="text-[#a0b2c8] hover:text-white transition-colors font-body text-sm">
               Read the Privacy Policy →
+            </Link>
+            <Link to="/signup/" className="text-[#a0b2c8] hover:text-white transition-colors font-body text-sm">
+              Start free →
             </Link>
           </div>
         </div>

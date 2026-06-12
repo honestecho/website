@@ -90,43 +90,47 @@ export default function VsGovWin() {
       <section className="pb-12 px-6">
         <div className="max-w-7xl mx-auto">
           <FlyIn>
+            <p className="sm:hidden text-xs text-[#8b9bb4] font-body text-right mb-2">Swipe to compare &rarr;</p>
+            <div className="relative">
             <div className="overflow-x-auto rounded-2xl border border-[#1e2d4a] bg-[#0b1120]">
               <table className="w-full min-w-[640px] text-left text-sm font-body">
                 <thead>
                   <tr className="border-b border-[#1e2d4a]">
-                    <th className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] w-[22%]"></th>
+                    <th className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] w-[22%] sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]"><span className="sr-only">Comparison dimension</span></th>
                     <th className="px-6 py-4 font-headline font-bold text-white tracking-tight">GovWin</th>
                     <th className="px-6 py-4 font-headline font-bold text-[#00c3ff] tracking-tight border-l border-[#1e2d4a]">HE Pursuit</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="border-b border-[#1e2d4a]">
-                    <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top">Built for</th>
+                    <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Built for</th>
                     <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top">Large primes and enterprise BD teams with dedicated capture staff</td>
                     <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top border-l border-[#1e2d4a]">Owner-operators, solo capture leads, and lean teams</td>
                   </tr>
                   <tr className="border-b border-[#1e2d4a]">
-                    <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top">The job it does</th>
+                    <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">The job it does</th>
                     <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top">Opportunity discovery, pipeline data, and market research</td>
                     <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top border-l border-[#1e2d4a]">Evaluating whether a specific opportunity is worth pursuing — bid/no-bid qualification</td>
                   </tr>
                   <tr className="border-b border-[#1e2d4a]">
-                    <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top">What you get</th>
+                    <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">What you get</th>
                     <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top">More data</td>
                     <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top border-l border-[#1e2d4a]">A Go, Conditional Go, or No-Bid recommendation your team can act on</td>
                   </tr>
                   <tr className="border-b border-[#1e2d4a]">
-                    <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top">Time to a decision</th>
+                    <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Time to a decision</th>
                     <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top">Days of research</td>
                     <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top border-l border-[#1e2d4a]">Minutes</td>
                   </tr>
                   <tr>
-                    <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top">Price</th>
+                    <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Price</th>
                     <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top">Typically $10,000–$50,000+ per year</td>
                     <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top border-l border-[#1e2d4a]">Starts free and scales to $299/month</td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+            <div className="sm:hidden pointer-events-none absolute inset-y-0 right-0 w-12 rounded-r-2xl bg-gradient-to-l from-[#0b1120] to-transparent" aria-hidden="true"></div>
             </div>
             <p className="text-[#8b9bb4] text-sm font-body leading-relaxed mt-4">
               Different tools for different jobs — GovWin for enterprise market intelligence, HE Pursuit for the bid/no-bid decision.
@@ -164,9 +168,9 @@ export default function VsGovWin() {
             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/60 to-transparent rounded-t-2xl"></div>
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-                <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">Based on Real Events</span>
+                <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">Based on Real Events</span>
               </div>
               <p className="text-[#a0b2c8] text-base font-body leading-relaxed mb-4">
                 A recent federal services solicitation asked for a{' '}

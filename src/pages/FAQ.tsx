@@ -121,7 +121,7 @@ const sections: FAQSection[] = [
     items: [
       {
         q: 'What does the free plan include?',
-        parts: ['The Free plan lets you screen live SAM.gov opportunities against your company profile and see how the platform works. The full 5-phase pursuit workflow starts with Starter.'],
+        parts: ['The Free plan lets you screen live SAM.gov opportunities against your company profile and see how the platform works — including one full Phase 1 evaluation on a notice of your choice. The full 5-phase pursuit workflow starts with Starter.'],
       },
       {
         q: 'What happens when I hit my usage limit?',
@@ -295,7 +295,7 @@ export default function FAQ() {
         { q: 'Where does the opportunity data come from?', a: 'HE Pursuit uses publicly available data from sources like SAM.gov.' },
         { q: 'Is my data shared or sold?', a: 'No. We do not sell, rent, or share your data.' },
         { q: 'Is my data used to train AI models?', a: 'No. Your data is not used to train artificial intelligence or machine learning models.' },
-        { q: 'What does the free plan include?', a: 'The Free plan lets you screen live SAM.gov opportunities against your company profile and see how the platform works. The full 5-phase pursuit workflow starts with Starter.' },
+        { q: 'What does the free plan include?', a: 'The Free plan lets you screen live SAM.gov opportunities against your company profile and see how the platform works — including one full Phase 1 evaluation on a notice of your choice. The full 5-phase pursuit workflow starts with Starter.' },
         { q: 'Do I need a credit card to start?', a: 'No. You can start using the platform for free without a credit card.' },
         { q: 'Can I cancel anytime?', a: 'Yes. You can cancel your subscription at any time.' },
         { q: 'How long should it take to evaluate an opportunity?', a: 'Initial evaluation should take minutes, not hours. A quick, structured review helps you filter out low-fit opportunities before investing significant time.' },

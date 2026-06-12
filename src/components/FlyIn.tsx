@@ -36,6 +36,12 @@ export default function FlyIn({
       return;
     }
 
+    // Respect reduced-motion: never hide content to animate it back in.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setState('visible');
+      return;
+    }
+
     // Elements already in or near the viewport show immediately —
     // unless alwaysAnimate forces the scroll-triggered fly-in.
     if (!alwaysAnimate) {

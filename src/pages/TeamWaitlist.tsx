@@ -78,9 +78,9 @@ export default function TeamWaitlist() {
       {/* ── Hero ───────────────────────────────────────────────────────────── */}
       <section className="pt-24 pb-12 px-6 relative overflow-hidden">
         <div className="max-w-4xl mx-auto relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]" />
-            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Coming Soon</span>
+            <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">Coming Soon</span>
           </div>
 
           <h1 className="font-headline font-black text-5xl md:text-6xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
@@ -122,7 +122,7 @@ export default function TeamWaitlist() {
                   placeholder="you@yourcompany.com"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors placeholder:text-[#8b9bb4]"
+                  className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors placeholder:text-[#8b9bb4]"
                 />
               </div>
 
@@ -138,7 +138,7 @@ export default function TeamWaitlist() {
                     placeholder="Acme Federal Services"
                     value={companyName}
                     onChange={e => setCompanyName(e.target.value)}
-                    className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors placeholder:text-[#8b9bb4]"
+                    className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors placeholder:text-[#8b9bb4]"
                   />
                 </div>
 
@@ -150,7 +150,7 @@ export default function TeamWaitlist() {
                     id="tw-team-size"
                     value={teamSize}
                     onChange={e => setTeamSize(e.target.value)}
-                    className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors"
+                    className={`w-full bg-[#060e1c] border border-[#1e2d4a] rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors ${teamSize === '' ? 'text-[#8b9bb4]' : 'text-white'}`}
                   >
                     <option value="">Select a range</option>
                     {TEAM_SIZE_OPTIONS.map(size => (
@@ -164,14 +164,14 @@ export default function TeamWaitlist() {
                 <label htmlFor="tw-usecase" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">
                   What are you trying to do? <span className="text-[#8b9bb4] normal-case font-normal tracking-normal">(optional)</span>
                 </label>
-                <input
+                <textarea
                   id="tw-usecase"
-                  type="text"
+                  rows={2}
                   maxLength={500}
-                  placeholder="e.g. Standardize our bid/no-bid process across 8 capture managers"
+                  placeholder="How would your team use HE Pursuit?"
                   value={useCase}
                   onChange={e => setUseCase(e.target.value)}
-                  className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors placeholder:text-[#8b9bb4]"
+                  className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors placeholder:text-[#8b9bb4] resize-none"
                 />
               </div>
 
@@ -182,7 +182,7 @@ export default function TeamWaitlist() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full md:w-auto px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="w-full md:w-auto px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1120]"
               >
                 {loading ? 'Joining…' : (
                   <>
@@ -195,6 +195,10 @@ export default function TeamWaitlist() {
               <p className="text-xs text-[#8b9bb4] font-body">
                 We'll only email you about Team availability. No newsletter, no spam.
               </p>
+
+              <p className="text-xs text-[#8b9bb4] font-body">
+                Pro <Link to="/pricing/" className="text-[#00c3ff] hover:text-white transition-colors">plans</Link> run $199/mo today — waitlist members get early-access pricing.
+              </p>
             </form>
           ) : (
             <div className="rounded-2xl bg-[#0b1120] border border-[#00c3ff]/40 p-8 md:p-10 text-center shadow-[0_0_60px_rgba(0,195,255,0.15)]">
@@ -206,7 +210,7 @@ export default function TeamWaitlist() {
                 We'll email you when Team is ready — and when the waitlist pricing window opens.
               </p>
               <Link
-                to="/pricing#pro"
+                to="/pricing/#pro"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all"
               >
                 Not ready to wait? Start with Pro.
@@ -267,7 +271,7 @@ export default function TeamWaitlist() {
             Not ready to wait? You can standardize your own bid/no-bid process today with Pro.
           </p>
           <Link
-            to="/pricing#pro"
+            to="/pricing/#pro"
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all"
           >
             See Pro pricing

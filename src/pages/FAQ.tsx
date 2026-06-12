@@ -1,12 +1,14 @@
 import { useState } from 'react';
+import type { ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ChevronDown, Rocket, Cpu, ShieldCheck, CreditCard, Target } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ChevronDown, Rocket, Cpu, ShieldCheck, CreditCard, Target, ArrowRight } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
 import { FAQPageSchema } from '../components/SchemaOrg';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type Part = string | { bullets: string[] };
+type Part = string | { bullets: ReactNode[] };
 interface FAQItem { q: string; parts: Part[]; }
 interface FAQSection { title: string; Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>; items: FAQItem[]; }
 
@@ -27,8 +29,8 @@ const sections: FAQSection[] = [
       {
         q: 'How do I get started?',
         parts: [
-          'Create a free account, build your company profile, and start evaluating opportunities immediately.',
-          'You can begin with live opportunities and see how the platform works before upgrading.',
+          'Create a free account, build your company profile, and start screening live SAM.gov opportunities against it immediately.',
+          'You can see how the platform scores opportunities for you before upgrading to the full 5-phase pursuit workflow.',
         ],
       },
       {
@@ -119,11 +121,11 @@ const sections: FAQSection[] = [
     items: [
       {
         q: 'What does the free plan include?',
-        parts: ['The free plan allows you to evaluate a limited number of opportunities and see how the platform works before upgrading.'],
+        parts: ['The Free plan lets you screen live SAM.gov opportunities against your company profile and see how the platform works. The full 5-phase pursuit workflow starts with Starter.'],
       },
       {
         q: 'What happens when I hit my usage limit?',
-        parts: ['You can upgrade to continue evaluating opportunities with deeper analysis and higher usage limits.'],
+        parts: ['You can upgrade to unlock the full pursuit workflow, deeper analysis, and higher usage limits.'],
       },
       {
         q: 'Do I need a credit card to start?',
@@ -136,7 +138,15 @@ const sections: FAQSection[] = [
       {
         q: 'Which plan is right for me?',
         parts: [
-          { bullets: ['Free: Try the product and evaluate initial opportunities', 'Starter: Make structured bid/no-bid decisions', 'Pro: Run your full pursuit process', 'Team: Scale across multiple users'] },
+          { bullets: [
+            'Free: Screen live SAM.gov opportunities against your profile',
+            'Starter: Make structured bid/no-bid decisions',
+            'Pro: Run your full pursuit process',
+            <>
+              Team: Scale across multiple users — launching soon,{' '}
+              <Link to="/team-waitlist/" className="text-[#00c3ff] hover:text-white transition-colors">join the waitlist</Link>
+            </>,
+          ] },
         ],
       },
     ],
@@ -230,12 +240,14 @@ function renderParts(parts: Part[]) {
 
 // ─── Accordion item ───────────────────────────────────────────────────────────
 
-function AccordionItem({ item, isOpen, onToggle }: { item: FAQItem; isOpen: boolean; onToggle: () => void }) {
+function AccordionItem({ item, panelId, isOpen, onToggle }: { item: FAQItem; panelId: string; isOpen: boolean; onToggle: () => void }) {
   return (
     <div className={`rounded-xl border transition-colors duration-200 ${isOpen ? 'border-[#00c3ff]/20' : 'border-transparent hover:border-[#1e2d4a]'}`}>
       <button
         type="button"
         onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-controls={panelId}
         className="w-full flex items-center justify-between gap-4 px-4 py-3.5 text-left"
       >
         <span className={`text-sm font-bold font-headline leading-snug ${isOpen ? 'text-white' : 'text-[#a0b2c8]'}`}>
@@ -246,8 +258,8 @@ function AccordionItem({ item, isOpen, onToggle }: { item: FAQItem; isOpen: bool
           strokeWidth={2}
         />
       </button>
-      <div className={`overflow-hidden transition-all duration-300 ease-out ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
-        <div className="px-4 pb-4 pt-0.5 border-t border-[#1e2d4a] pt-3">
+      <div id={panelId} className={`overflow-hidden transition-all duration-300 ease-out ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
+        <div className="px-4 pb-4 border-t border-[#1e2d4a] pt-3">
           {renderParts(item.parts)}
         </div>
       </div>
@@ -283,7 +295,7 @@ export default function FAQ() {
         { q: 'Where does the opportunity data come from?', a: 'HE Pursuit uses publicly available data from sources like SAM.gov.' },
         { q: 'Is my data shared or sold?', a: 'No. We do not sell, rent, or share your data.' },
         { q: 'Is my data used to train AI models?', a: 'No. Your data is not used to train artificial intelligence or machine learning models.' },
-        { q: 'What does the free plan include?', a: 'The free plan allows you to evaluate a limited number of opportunities and see how the platform works before upgrading.' },
+        { q: 'What does the free plan include?', a: 'The Free plan lets you screen live SAM.gov opportunities against your company profile and see how the platform works. The full 5-phase pursuit workflow starts with Starter.' },
         { q: 'Do I need a credit card to start?', a: 'No. You can start using the platform for free without a credit card.' },
         { q: 'Can I cancel anytime?', a: 'Yes. You can cancel your subscription at any time.' },
         { q: 'How long should it take to evaluate an opportunity?', a: 'Initial evaluation should take minutes, not hours. A quick, structured review helps you filter out low-fit opportunities before investing significant time.' },
@@ -337,6 +349,7 @@ export default function FAQ() {
                       <AccordionItem
                         key={key}
                         item={item}
+                        panelId={`cat-faq-panel-${key}`}
                         isOpen={openKey === key}
                         onToggle={() => toggle(key)}
                       />
@@ -379,6 +392,8 @@ export default function FAQ() {
                   <button
                     type="button"
                     onClick={() => toggle(key)}
+                    aria-expanded={openKey === key}
+                    aria-controls={`seo-faq-panel-${key}`}
                     className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left"
                   >
                     <span className={`text-sm font-bold font-headline leading-snug ${openKey === key ? 'text-white' : 'text-[#a0b2c8]'}`}>
@@ -389,7 +404,7 @@ export default function FAQ() {
                       strokeWidth={2}
                     />
                   </button>
-                  <div className={`overflow-hidden transition-all duration-300 ease-out ${openKey === key ? 'max-h-96' : 'max-h-0'}`}>
+                  <div id={`seo-faq-panel-${key}`} className={`overflow-hidden transition-all duration-300 ease-out ${openKey === key ? 'max-h-96' : 'max-h-0'}`}>
                     <div className="px-5 pb-5 border-t border-[#1e2d4a] pt-3">
                       {renderParts(item.parts)}
                     </div>
@@ -399,6 +414,30 @@ export default function FAQ() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* ── Closing CTA ──────────────────────────────────────────────────────── */}
+      <section className="pb-12 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="font-headline font-black text-2xl md:text-3xl text-white tracking-tight mb-6">
+            Ready to make your next bid decision with confidence?
+          </h2>
+          <Link
+            to="/signup/"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all"
+          >
+            Start Free
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+          <p className="mt-5">
+            <Link
+              to="/tools/sam-gov-notice-analyzer/"
+              className="text-[#a0b2c8] hover:text-[#00c3ff] transition-colors text-sm font-body"
+            >
+              Or score a notice with the free analyzer →
+            </Link>
+          </p>
         </div>
       </section>
 

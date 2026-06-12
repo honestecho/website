@@ -12,6 +12,8 @@ const IDENTITY = [
   { Icon: Landmark, text: 'DEPT OF THE ARMY' },
 ];
 
+const DUE_DATE = new Date(Date.now() + 45 * 86400000).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
 const WHY = [
   'NAICS code closely matches the requirement',
   'Strong alignment with this agency',
@@ -54,8 +56,8 @@ export default function HeroPursuitCard() {
               <div className="h-[3px] w-14 rounded bg-[#4ade80] mb-1" />
               <span className="text-[13px] font-bold text-[#4ade80]">Strong Fit</span>
             </div>
-            <span className="mt-2 flex items-center gap-1 text-[11px] font-semibold text-[#d4a017]">
-              <Clock size={11} /> Due Jun 5, 2026
+            <span className="mt-2 flex items-center gap-1 text-[11px] font-semibold text-[#d4a017]" suppressHydrationWarning>
+              <Clock size={11} /> Due {DUE_DATE}
             </span>
           </div>
         </div>
@@ -88,7 +90,7 @@ export default function HeroPursuitCard() {
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Clock size={13} className="text-[#d4a017] shrink-0" />
-                  <span className="text-[12px] text-[#d4a017]">Due Jun 5, 2026</span>
+                  <span className="text-[12px] text-[#d4a017]" suppressHydrationWarning>Due {DUE_DATE}</span>
                 </div>
               </div>
             </div>

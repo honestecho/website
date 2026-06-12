@@ -82,6 +82,12 @@ const sections: PrivacySection[] = [
     lead: 'We may update this Privacy Policy from time to time.',
     body: 'The effective date at the top reflects the latest version.',
   },
+  {
+    Icon: Mail,
+    title: 'Contact',
+    lead: 'For questions about privacy:',
+    email: 'support@honestecho.com',
+  },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -115,22 +121,20 @@ export default function Privacy() {
         </div>
       </section>
 
-      {/* ── Sections — 2-column grid ────────────────────────────────────────── */}
-      <section className="pb-8 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {sections.map((s, i) => (
-              <FlyIn key={s.title} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]', '', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
+      {/* ── Sections — single column ───────────────────────────────────────── */}
+      <section className="pb-24 px-6">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex flex-col gap-6">
+            {sections.map((s) => (
+              <FlyIn key={s.title}>
               <div
-                className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full"
+                className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden h-full"
               >
-                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
-                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 rounded-full scale-150"></div>
                     <s.Icon
-                      className="w-5 h-5 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10"
+                      className="w-5 h-5 text-[#00c3ff] drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] relative z-10"
                       fill="currentColor"
                       fillOpacity={0.15}
                       strokeWidth={2}
@@ -174,8 +178,21 @@ export default function Privacy() {
                   </div>
                 )}
 
+                {s.email && (
+                  <a href={`mailto:${s.email}`} className="inline-block text-[#00c3ff] font-bold font-headline text-sm hover:text-white transition-colors mb-3">
+                    {s.email}
+                  </a>
+                )}
+
                 {s.note && (
-                  <p className="text-[#8b9bb4] text-xs font-body leading-relaxed border-t border-[#1e2d4a] pt-4 mt-1">{s.note}</p>
+                  <p className="text-[#8b9bb4] text-sm font-body leading-relaxed border-t border-[#1e2d4a] pt-4 mt-1">{s.note}</p>
+                )}
+
+                {s.title === 'Contact' && (
+                  <p className="text-[#8b9bb4] text-sm font-body mt-4 border-t border-[#1e2d4a] pt-4">
+                    Also see our{' '}
+                    <Link to="/terms/" className="text-[#00c3ff] hover:text-white transition-colors">Terms of Service</Link>.
+                  </p>
                 )}
               </div>
               </FlyIn>
@@ -183,38 +200,6 @@ export default function Privacy() {
           </div>
         </div>
       </section>
-
-      {/* ── Contact ────────────────────────────────────────────────────────── */}
-      <section className="py-8 pb-24 px-6">
-        <div className="max-w-7xl mx-auto flex justify-center">
-          <FlyIn className="w-full lg:w-[calc(50%-12px)]">
-          <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
-                <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                <Mail
-                  className="w-5 h-5 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10"
-                  fill="currentColor"
-                  fillOpacity={0.15}
-                  strokeWidth={2}
-                />
-              </div>
-              <h2 className="font-headline font-bold text-white text-xl tracking-tight pt-1.5">Contact</h2>
-            </div>
-            <p className="text-[#a0b2c8] text-sm font-body leading-relaxed mb-3">For questions about privacy:</p>
-            <a href="mailto:support@honestecho.com" className="text-[#00c3ff] font-bold font-headline text-sm hover:text-white transition-colors">
-              support@honestecho.com
-            </a>
-            <p className="text-[#8b9bb4] text-xs font-body mt-4 border-t border-[#1e2d4a] pt-4">
-              Also see our{' '}
-              <Link to="/terms" className="text-[#00c3ff] hover:text-white transition-colors">Terms of Service</Link>.
-            </p>
-          </div>
-          </FlyIn>
-        </div>
-      </section>
-
     </>
   );
 }

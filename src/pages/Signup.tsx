@@ -35,10 +35,24 @@ export default function Signup() {
   const [resent, setResent] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [invalidField, setInvalidField] = useState<keyof FormData | null>(null);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
     setError('');
+    setInvalidField(null);
+  }
+
+  function failValidation(field: keyof FormData, message: string) {
+    setError(message);
+    setInvalidField(field);
+    document.getElementById(field)?.focus();
+  }
+
+  function errorProps(field: keyof FormData) {
+    return invalidField === field
+      ? { 'aria-invalid': true as const, 'aria-describedby': 'signup-error' }
+      : {};
   }
 
   async function handleGoogleSignIn() {
@@ -75,12 +89,13 @@ export default function Signup() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError('');
+    setInvalidField(null);
 
-    if (!form.fullName.trim()) { setError('Full name is required.'); return; }
-    if (!form.company.trim()) { setError('Company name is required.'); return; }
-    if (!form.email.trim()) { setError('Email is required.'); return; }
-    if (form.password.length < 8) { setError('Password must be at least 8 characters.'); return; }
-    if (form.password !== form.confirmPassword) { setError('Passwords do not match.'); return; }
+    if (!form.fullName.trim()) { failValidation('fullName', 'Full name is required.'); return; }
+    if (!form.company.trim()) { failValidation('company', 'Company name is required.'); return; }
+    if (!form.email.trim()) { failValidation('email', 'Email is required.'); return; }
+    if (form.password.length < 8) { failValidation('password', 'Password must be at least 8 characters.'); return; }
+    if (form.password !== form.confirmPassword) { failValidation('confirmPassword', 'Passwords do not match.'); return; }
 
     setLoading(true);
     track('signup_started', { method: 'email' });
@@ -191,14 +206,16 @@ export default function Signup() {
         <div className="flex-1 flex items-center justify-center lg:pl-16 py-8 lg:py-0">
           <div className="w-full max-w-md">
 
-            {/* Mobile logo */}
-            <Link to="/" className="flex items-center gap-3 mb-10 lg:hidden group w-fit">
-              <div className="relative flex items-center justify-center">
-                <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 rounded-full scale-150"></div>
-                <Zap className="w-8 h-8 text-[#00c3ff] drop-shadow-[0_0_12px_rgba(0,195,255,0.8)] relative z-10" fill="currentColor" fillOpacity={0.2} strokeWidth={2} />
-              </div>
-              <span className="text-lg font-black tracking-tighter text-white font-headline">Honest Echo</span>
-            </Link>
+            {/* Mobile pitch — compact value prop (desktop gets the full left column) */}
+            <div className="lg:hidden mb-8">
+              <h1 className="font-headline font-black text-2xl tracking-tighter text-white mb-2 leading-tight">
+                Win more contracts.{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">Waste less time.</span>
+              </h1>
+              <p className="text-[#a0b2c8] text-sm leading-relaxed font-body">
+                The bid/no-bid intelligence engine built for small government contractors. Free to start.
+              </p>
+            </div>
 
             {state === 'form' ? (
               <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden">
@@ -212,7 +229,7 @@ export default function Signup() {
                   type="button"
                   onClick={handleGoogleSignIn}
                   disabled={googleLoading || loading}
-                  className="w-full py-3.5 bg-white text-[#1f2937] font-bold rounded-lg border border-[#d1d5db] hover:bg-[#f9fafb] active:scale-[0.99] transition-all flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed text-sm"
+                  className="w-full py-3 bg-white text-[#1f2937] font-bold rounded-lg border border-[#d1d5db] hover:bg-[#f9fafb] active:scale-[0.99] transition-all flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1120]"
                 >
                   <svg aria-hidden="true" width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                     <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
@@ -239,12 +256,12 @@ export default function Signup() {
                         name="fullName"
                         type="text"
                         autoComplete="name"
-                        autoFocus
                         placeholder="Jane Smith"
                         value={form.fullName}
                         onChange={handleChange}
                         required
-                        className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors placeholder:text-[#8b9bb4]"
+                        {...errorProps('fullName')}
+                        className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors placeholder:text-[#8b9bb4]"
                       />
                     </div>
                     <div className="col-span-2 sm:col-span-1">
@@ -258,7 +275,8 @@ export default function Signup() {
                         value={form.company}
                         onChange={handleChange}
                         required
-                        className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors placeholder:text-[#8b9bb4]"
+                        {...errorProps('company')}
+                        className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors placeholder:text-[#8b9bb4]"
                       />
                     </div>
                   </div>
@@ -274,7 +292,8 @@ export default function Signup() {
                       value={form.email}
                       onChange={handleChange}
                       required
-                      className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors placeholder:text-[#8b9bb4]"
+                      {...errorProps('email')}
+                      className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors placeholder:text-[#8b9bb4]"
                     />
                   </div>
 
@@ -290,7 +309,7 @@ export default function Signup() {
                       placeholder="+1 (555) 000-0000"
                       value={form.phone}
                       onChange={handleChange}
-                      className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors placeholder:text-[#8b9bb4]"
+                      className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors placeholder:text-[#8b9bb4]"
                     />
                   </div>
 
@@ -306,10 +325,12 @@ export default function Signup() {
                         value={form.password}
                         onChange={handleChange}
                         required
-                        className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 pr-11 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors placeholder:text-[#8b9bb4]"
+                        {...errorProps('password')}
+                        className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 pr-12 text-sm focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors placeholder:text-[#8b9bb4]"
                       />
                       <button type="button" onClick={() => setShowPassword(v => !v)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8b9bb4] hover:text-white transition-colors">
+                        aria-label={showPassword ? 'Hide password' : 'Show password'}
+                        className="absolute right-1 top-1/2 -translate-y-1/2 p-3 text-[#8b9bb4] hover:text-white transition-colors rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]">
                         {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                       </button>
                     </div>
@@ -327,40 +348,46 @@ export default function Signup() {
                         value={form.confirmPassword}
                         onChange={handleChange}
                         required
-                        className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 pr-11 text-sm focus:outline-none focus:border-[#00c3ff]/60 transition-colors placeholder:text-[#8b9bb4]"
+                        {...errorProps('confirmPassword')}
+                        className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 pr-12 text-sm focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors placeholder:text-[#8b9bb4]"
                       />
                       <button type="button" onClick={() => setShowConfirmPassword(v => !v)}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8b9bb4] hover:text-white transition-colors">
+                        aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+                        className="absolute right-1 top-1/2 -translate-y-1/2 p-3 text-[#8b9bb4] hover:text-white transition-colors rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]">
                         {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                       </button>
                     </div>
                   </div>
 
                   {error && (
-                    <p role="alert" className="text-red-400 text-sm bg-red-900/20 border border-red-700/30 rounded-lg px-4 py-3">{error}</p>
+                    <p id="signup-error" role="alert" className="text-red-400 text-sm bg-red-900/20 border border-red-700/30 rounded-lg px-4 py-3">{error}</p>
                   )}
 
-                  <p className="text-xs text-[#64748b] text-center leading-relaxed">
+                  <p className="text-xs text-[#8b9bb4] text-center leading-relaxed">
                     By creating an account, you agree to our{' '}
-                    <a href="/terms" target="_blank" rel="noopener noreferrer" className="text-[#00c3ff] hover:underline">Terms of Service</a>
+                    <a href="/terms/" target="_blank" rel="noopener noreferrer" className="text-[#00c3ff] hover:underline">Terms of Service</a>
                     {' '}and{' '}
-                    <a href="/privacy" target="_blank" rel="noopener noreferrer" className="text-[#00c3ff] hover:underline">Privacy Policy</a>.
+                    <a href="/privacy/" target="_blank" rel="noopener noreferrer" className="text-[#00c3ff] hover:underline">Privacy Policy</a>.
                   </p>
 
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
+                    className="w-full py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b1120]"
                   >
                     {loading ? 'Creating account…' : (
                       <>Create Free Account <ArrowRight className="w-4 h-4" /></>
                     )}
                   </button>
+
+                  <p className="text-xs text-[#8b9bb4] text-center font-body !mt-3">
+                    Takes about 2 minutes. No credit card required.
+                  </p>
                 </form>
 
                 <p className="mt-6 text-center text-xs text-[#8b9bb4] font-body">
                   Already have an account?{' '}
-                  <a href="https://pursuit.honestecho.com" target="_blank" rel="noopener noreferrer" className="text-[#00c3ff] hover:text-white transition-colors">
+                  <a href="https://pursuit.honestecho.com" className="text-[#00c3ff] hover:text-white transition-colors">
                     Sign in
                   </a>
                 </p>
@@ -381,7 +408,7 @@ export default function Signup() {
                 <p className="text-[#a0b2c8] text-sm mb-2 font-body">Account created for</p>
                 <p className="text-white font-bold mb-8 text-sm">{form.email}</p>
                 <p className="text-[#8b9bb4] text-xs mb-8 font-body leading-relaxed">
-                  We sent a confirmation email so you can verify later. For now, head straight to your dashboard and set up your first pursuit.
+                  We sent a confirmation email so you can verify later. For now, head straight to your dashboard and score your first SAM.gov notice.
                 </p>
 
                 <div className="space-y-3">
@@ -393,7 +420,7 @@ export default function Signup() {
                   </a>
                   <button
                     onClick={handleResend}
-                    className="block w-full py-3 border border-[#1e2d4a] text-[#a0b2c8] text-sm font-body rounded-lg hover:bg-[#152033] hover:text-white transition-all"
+                    className="block w-full py-3 border border-[#1e2d4a] text-[#a0b2c8] text-sm font-body rounded-lg hover:bg-[#152033] hover:text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
                   >
                     {resent ? 'Confirmation email resent.' : 'Resend confirmation email'}
                   </button>

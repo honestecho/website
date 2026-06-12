@@ -38,9 +38,10 @@ export default function Footer() {
               <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-3">Product</p>
               <ul className="space-y-2">
                 {[
-                  { label: 'Pricing', to: '/pricing' },
-                  { label: 'Security', to: '/security' },
-                  { label: 'FAQ', to: '/faq' },
+                  { label: 'Free Analyzer', to: '/tools/sam-gov-notice-analyzer/' },
+                  { label: 'Pricing', to: '/pricing/' },
+                  { label: 'Security', to: '/security/' },
+                  { label: 'FAQ', to: '/faq/' },
                 ].map(({ label, to }) => (
                   <li key={to}>
                     <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
@@ -56,8 +57,8 @@ export default function Footer() {
               <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-3">Company</p>
               <ul className="space-y-2">
                 {[
-                  { label: 'About', to: '/about' },
-                  { label: 'Contact', to: '/contact' },
+                  { label: 'About', to: '/about/' },
+                  { label: 'Contact', to: '/contact/' },
                 ].map(({ label, to }) => (
                   <li key={to}>
                     <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
@@ -73,9 +74,9 @@ export default function Footer() {
               <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-3">Compare</p>
               <ul className="space-y-2">
                 {[
-                  { label: 'vs GovWin', to: '/vs-govwin' },
-                  { label: 'vs GovTribe', to: '/vs-govtribe' },
-                  { label: 'SAM.gov Analysis', to: '/sam-gov-opportunity-analysis' },
+                  { label: 'vs GovWin', to: '/vs-govwin/' },
+                  { label: 'vs GovTribe', to: '/vs-govtribe/' },
+                  { label: 'SAM.gov Analysis', to: '/sam-gov-opportunity-analysis/' },
                 ].map(({ label, to }) => (
                   <li key={to}>
                     <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
@@ -91,8 +92,8 @@ export default function Footer() {
               <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-3">Legal</p>
               <ul className="space-y-2">
                 {[
-                  { label: 'Terms of Service', to: '/terms' },
-                  { label: 'Privacy Policy', to: '/privacy' },
+                  { label: 'Terms of Service', to: '/terms/' },
+                  { label: 'Privacy Policy', to: '/privacy/' },
                 ].map(({ label, to }) => (
                   <li key={to}>
                     <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
@@ -109,14 +110,19 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-[#1e2d4a] pt-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[#8b9bb4]">© 2026 Honest Echo LLC. All rights reserved.</p>
-          <a
-            href="https://pursuit.honestecho.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs font-bold text-[#00c3ff] hover:text-white transition-colors"
-          >
-            Launch App →
-          </a>
+          <div className="flex items-center gap-6">
+            <Link to="/signup/" className="text-xs font-bold text-[#00c3ff] hover:text-white transition-colors">
+              Start Free →
+            </Link>
+            <a
+              href="https://pursuit.honestecho.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-bold text-[#8b9bb4] hover:text-white transition-colors"
+            >
+              Sign In →
+            </a>
+          </div>
         </div>
 
       </div>

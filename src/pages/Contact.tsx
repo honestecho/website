@@ -14,17 +14,21 @@ export default function Contact() {
   const [loading, setLoading]     = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError]         = useState<string | null>(null);
+  const [errorField, setErrorField] = useState<'email' | 'message' | null>(null);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setError(null);
+    setErrorField(null);
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
       setError('Please enter a valid email address.');
+      setErrorField('email');
       return;
     }
     if (!message.trim()) {
       setError('Please include a message.');
+      setErrorField('message');
       return;
     }
 
@@ -75,7 +79,7 @@ export default function Contact() {
         <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
 
-      <div className="max-w-7xl mx-auto px-6 py-24 min-h-[80vh] flex flex-col md:flex-row gap-8 md:gap-16">
+      <div className="max-w-7xl mx-auto px-6 py-24 min-h-[80vh] flex flex-col-reverse md:flex-row gap-8 md:gap-16">
         {/* Left Side: Info */}
         <div className="w-full md:w-1/3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6 animate-fade-in">
@@ -94,7 +98,7 @@ export default function Contact() {
                 <Mail className="w-4 h-4 text-[#00c3ff]" />
               </div>
               <div>
-                <h4 className="text-white font-bold text-sm mb-1">Email Us</h4>
+                <h2 className="text-white font-bold text-sm mb-1">Email Us</h2>
                 <p className="text-[#a0b2c8] font-body text-sm">
                   <a href="mailto:info@honestecho.com" className="hover:text-[#00c3ff] transition-colors">info@honestecho.com</a>
                 </p>
@@ -108,7 +112,7 @@ export default function Contact() {
                 <MapPin className="w-4 h-4 text-[#00c3ff]" />
               </div>
               <div>
-                <h4 className="text-white font-bold text-sm mb-1">Location</h4>
+                <h2 className="text-white font-bold text-sm mb-1">Location</h2>
                 <p className="text-[#a0b2c8] font-body text-sm leading-relaxed">Honest Echo LLC<br />Fairfax, VA</p>
               </div>
             </div>
@@ -135,27 +139,27 @@ export default function Contact() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
-                  <label htmlFor="firstName" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-wider mb-2">First Name</label>
-                  <input type="text" id="firstName" autoComplete="given-name" value={firstName} onChange={e => setFirstName(e.target.value)} className="w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white focus:border-[#00c3ff] focus:ring-1 focus:ring-[#00c3ff] focus:outline-none transition-all placeholder-[#1e2d4a]" placeholder="Jane" />
+                  <label htmlFor="firstName" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-wider mb-2">First Name (optional)</label>
+                  <input type="text" id="firstName" autoComplete="given-name" value={firstName} onChange={e => setFirstName(e.target.value)} className="w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white focus:border-[#00c3ff] focus:ring-1 focus:ring-[#00c3ff] focus:outline-none transition-all placeholder-[#5a6b85]" placeholder="Jane" />
                 </div>
                 <div>
-                  <label htmlFor="lastName" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-wider mb-2">Last Name</label>
-                  <input type="text" id="lastName" autoComplete="family-name" value={lastName} onChange={e => setLastName(e.target.value)} className="w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white focus:border-[#00c3ff] focus:ring-1 focus:ring-[#00c3ff] focus:outline-none transition-all placeholder-[#1e2d4a]" placeholder="Doe" />
+                  <label htmlFor="lastName" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-wider mb-2">Last Name (optional)</label>
+                  <input type="text" id="lastName" autoComplete="family-name" value={lastName} onChange={e => setLastName(e.target.value)} className="w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white focus:border-[#00c3ff] focus:ring-1 focus:ring-[#00c3ff] focus:outline-none transition-all placeholder-[#5a6b85]" placeholder="Doe" />
                 </div>
               </div>
 
               <div className="mb-6">
                 <label htmlFor="email" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-wider mb-2">Work Email</label>
-                <input type="email" id="email" required autoComplete="email" value={email} onChange={e => setEmail(e.target.value)} className="w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white focus:border-[#00c3ff] focus:ring-1 focus:ring-[#00c3ff] focus:outline-none transition-all placeholder-[#1e2d4a]" placeholder="jane@company.com" />
+                <input type="email" id="email" required autoComplete="email" aria-invalid={errorField === 'email' || undefined} aria-describedby={errorField === 'email' ? 'contact-form-error' : undefined} value={email} onChange={e => setEmail(e.target.value)} className="w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white focus:border-[#00c3ff] focus:ring-1 focus:ring-[#00c3ff] focus:outline-none transition-all placeholder-[#5a6b85]" placeholder="jane@company.com" />
               </div>
 
               <div className="mb-8">
                 <label htmlFor="message" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-wider mb-2">Message</label>
-                <textarea id="message" rows={5} required maxLength={4000} value={message} onChange={e => setMessage(e.target.value)} className="w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white focus:border-[#00c3ff] focus:ring-1 focus:ring-[#00c3ff] focus:outline-none transition-all placeholder-[#1e2d4a]" placeholder="How can we help your team win?"></textarea>
+                <textarea id="message" rows={5} required maxLength={4000} aria-invalid={errorField === 'message' || undefined} aria-describedby={errorField === 'message' ? 'contact-form-error' : undefined} value={message} onChange={e => setMessage(e.target.value)} className="w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white focus:border-[#00c3ff] focus:ring-1 focus:ring-[#00c3ff] focus:outline-none transition-all placeholder-[#5a6b85]" placeholder="How can we help your team win?"></textarea>
               </div>
 
               {error && (
-                <p role="alert" className="text-red-400 text-sm bg-red-900/20 border border-red-700/30 rounded-lg px-4 py-3 mb-6 relative z-10">{error}</p>
+                <p id="contact-form-error" role="alert" className="text-red-400 text-sm bg-red-900/20 border border-red-700/30 rounded-lg px-4 py-3 mb-6 relative z-10">{error}</p>
               )}
 
               <button type="submit" disabled={loading} className="w-full py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-[0_0_30px_rgba(0,195,255,0.2)] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100">
@@ -172,7 +176,7 @@ export default function Contact() {
                 Thanks for reaching out — we'll get back to you at <span className="text-white font-semibold">{email}</span> within one business day.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mt-8">
-                <Link to="/signup" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg hover:bg-white transition-colors text-sm">
+                <Link to="/signup/" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg hover:bg-white transition-colors text-sm">
                   Start free <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link to="/" className="inline-flex items-center justify-center px-6 py-3 border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">

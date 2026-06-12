@@ -1,7 +1,7 @@
 ﻿import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, X, ChevronDown, ShieldCheck, Clock, Ban, Eye, ClipboardList, Rocket, Users } from 'lucide-react';
+import { ArrowRight, Check, ChevronDown, ShieldCheck, Clock, Ban, Eye, ClipboardList, Rocket, Users } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
 
@@ -34,7 +34,6 @@ const features: Feature[] = [
   { category: 'Decisions & Output', name: 'PDF decision report export',    free: 'none', starter: 'none',  pro: 'check', team: 'check' },
   // Workflow & Visibility
   { category: 'Workflow & Visibility', name: 'Dashboard (pipeline, deadlines)', free: 'none', starter: 'none', pro: 'check', team: 'check' },
-  { category: 'Workflow & Visibility', name: 'Priority processing',             free: 'none', starter: 'none', pro: 'check', team: 'check' },
   // Team & Admin
   { category: 'Team & Admin', name: 'Multiple users',       free: 'none', starter: 'none', pro: 'none', team: 'check' },
   { category: 'Team & Admin', name: 'Shared pursuits',      free: 'none', starter: 'none', pro: 'none', team: 'check' },
@@ -50,9 +49,9 @@ const categories = [...new Set(features.map(f => f.category))];
 
 function Cell({ value }: { value: CV }) {
   if (value === 'check')     return <Check className="w-5 h-5 text-[#00c3ff] mx-auto" strokeWidth={2.5} />;
-  if (value === 'none')      return <X className="w-4 h-4 text-[#2a3a4e] mx-auto" strokeWidth={2} />;
+  if (value === 'none')      return <span className="text-[#8b9bb4] text-sm font-body" aria-label="Not included">&mdash;</span>;
   if (value === 'unlimited') return <span className="text-[#00c3ff] text-sm font-bold">Unlimited</span>;
-  return <span className="text-[#8b9bb4] text-xs font-body">{value}</span>;
+  return <span className="text-[#8b9bb4] text-sm font-body">{value}</span>;
 }
 
 // ─── FAQ ──────────────────────────────────────────────────────────────────────
@@ -86,7 +85,7 @@ const plans = [
       'No deep eligibility or document analysis',
     ],
     cta: 'Start Free',
-    ctaTo: '/signup',
+    ctaTo: '/signup/?plan=free',
   },
   {
     name: 'Starter',
@@ -107,7 +106,7 @@ const plans = [
       'Up to 25 pursuits per month',
     ],
     cta: 'Select Starter',
-    ctaTo: '/signup',
+    ctaTo: '/signup/?plan=starter',
   },
   {
     name: 'Pro',
@@ -116,16 +115,16 @@ const plans = [
     sub: 'Scale decision-making with workflow and tracking',
     highlight: true,
     badge: 'Recommended',
+    valueLine: 'Everything in Starter, unlimited',
     includesAbove: 'Everything in Starter, plus:',
     features: [
       'Unlimited opportunity pursuits',
       'Decision tracking and history',
       'Dashboard (pipeline, deadlines, priorities)',
       'Downloadable decision reports (PDF)',
-      'Priority processing',
     ],
     cta: 'Select Pro',
-    ctaTo: '/signup',
+    ctaTo: '/signup/?plan=pro',
   },
   {
     name: 'Team',
@@ -144,7 +143,7 @@ const plans = [
       'Onboarding assistance',
     ],
     cta: 'Join the Waitlist',
-    ctaTo: '/team-waitlist',
+    ctaTo: '/team-waitlist/',
   },
 ];
 
@@ -219,7 +218,11 @@ export default function Pricing() {
                   <div className="flex items-start justify-between mb-1">
                     <h3 className="font-headline text-xl font-bold text-white">{plan.name}</h3>
                     {plan.badge && (
-                      <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest font-label shrink-0 ml-2">{plan.badge}</span>
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full uppercase tracking-widest font-label shrink-0 ml-2 ${
+                        plan.highlight
+                          ? 'text-[#030B17] bg-[#00c3ff]'
+                          : 'border border-[#8b9bb4]/40 text-[#8b9bb4]'
+                      }`}>{plan.badge}</span>
                     )}
                   </div>
                   <p className="text-sm font-bold text-white mb-0.5 font-headline">{plan.tagline}</p>
@@ -227,10 +230,13 @@ export default function Pricing() {
                 </div>
 
                 {/* Price */}
-                <div className="flex items-baseline gap-1 mb-5">
+                <div className={`flex items-baseline gap-1 ${'valueLine' in plan && plan.valueLine ? 'mb-1' : 'mb-5'}`}>
                   <span className="text-4xl font-black text-white font-headline">{plan.price}</span>
                   {plan.price !== '$0' && <span className="text-[#8b9bb4] text-sm font-body">/mo</span>}
                 </div>
+                {'valueLine' in plan && plan.valueLine && (
+                  <p className="text-xs text-[#8b9bb4] font-body mb-5">{plan.valueLine}</p>
+                )}
 
                 {/* Features */}
                 {plan.includesAbove && (
@@ -272,6 +278,10 @@ export default function Pricing() {
             ))}
           </div>
 
+          <p className="text-sm text-[#8b9bb4] font-body text-center mt-6">
+            A pursuit = one opportunity run through the full 5-phase bid/no-bid workflow.
+          </p>
+
           {/* Trust signals */}
           <div className="flex flex-wrap items-center justify-center gap-8 mt-8 text-base text-[#8b9bb4] font-body">
             <div className="flex items-center gap-2.5">
@@ -303,9 +313,9 @@ export default function Pricing() {
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_70%)] pointer-events-none"></div>
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-            <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">What You're Paying For</span>
+            <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">What You're Paying For</span>
           </div>
           <h2 className="font-headline font-black text-4xl md:text-5xl xl:text-6xl text-white mb-6 tracking-tighter leading-tight drop-shadow-2xl">
             You're not paying for more data.<br />You're paying for better decisions.
@@ -320,13 +330,19 @@ export default function Pricing() {
       {/* ── SECTION 4 — Plan Positioning ─────────────────────────────────── */}
       <section className="pb-24 px-6">
         <div className="max-w-7xl mx-auto">
-          <h2 className="font-headline font-black text-2xl text-white mb-8 tracking-tight">Find your fit.</h2>
+          <div className="mb-12 text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+              <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">Who It's For</span>
+            </div>
+            <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight">Find your fit.</h2>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { plan: 'Free',    desc: 'Understand if the platform fits your workflow.',  Icon: Eye          },
-              { plan: 'Starter', desc: 'Make structured, repeatable bid decisions.',      Icon: ClipboardList },
-              { plan: 'Pro',     desc: 'Run your full pursuit process with confidence.',  Icon: Rocket       },
-              { plan: 'Team',    desc: 'Scale decision-making across your organization.', Icon: Users        },
+              { plan: 'Free',    desc: 'Just exploring GovCon? Screen live SAM.gov notices at no cost.',                Icon: Eye           },
+              { plan: 'Starter', desc: 'Bidding actively on your own? Run the full 5-phase workflow on your real profile.', Icon: ClipboardList },
+              { plan: 'Pro',     desc: 'Managing a pipeline? Track decisions across every pursuit, unlimited.',         Icon: Rocket        },
+              { plan: 'Team',    desc: 'Running a capture team? Join the waitlist for shared workspaces.',              Icon: Users         },
             ].map(({ plan, desc, Icon }, i) => (
               <FlyIn key={plan} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
               <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
@@ -350,20 +366,22 @@ export default function Pricing() {
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-5xl mx-auto relative z-10">
           <div className="mb-12 text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-              <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">Compare Plans</span>
+              <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">Compare Plans</span>
             </div>
             <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight">
               See exactly what changes at each tier.
             </h2>
           </div>
 
+          <p className="sm:hidden text-xs text-[#8b9bb4] font-body text-right mb-2">Swipe to compare &rarr;</p>
+          <div className="relative">
           <div className="overflow-x-auto rounded-2xl border border-[#1e2d4a]">
             <table className="w-full min-w-[640px] text-sm">
               <thead>
                 <tr className="border-b border-[#1e2d4a] bg-[#0b1120]">
-                  <th className="text-left px-6 py-4 text-[#8b9bb4] font-label uppercase tracking-widest text-xs w-2/5">Feature</th>
+                  <th className="text-left px-6 py-4 text-[#8b9bb4] font-label uppercase tracking-widest text-xs w-2/5 sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Feature</th>
                   <th className="px-4 py-4 text-center text-white font-headline font-bold text-sm">Free</th>
                   <th className="px-4 py-4 text-center text-white font-headline font-bold text-sm">Starter</th>
                   <th className="px-4 py-4 text-center font-headline font-bold text-sm"><span className="text-[#00c3ff]">Pro</span></th>
@@ -374,11 +392,12 @@ export default function Pricing() {
                 {categories.map(cat => (
                   <React.Fragment key={cat}>
                     <tr className="border-t border-[#1e2d4a] bg-[#0b1120]/80">
-                      <td colSpan={5} className="px-6 py-3 text-xs font-bold text-[#00c3ff] uppercase tracking-widest font-label">{cat}</td>
+                      <td className="px-6 py-3 text-xs font-bold text-[#00c3ff] uppercase tracking-widest font-label sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">{cat}</td>
+                      <td colSpan={4}></td>
                     </tr>
                     {features.filter(f => f.category === cat).map(f => (
                       <tr key={f.name} className="border-t border-[#1e2d4a]/60 hover:bg-[#0d1625] transition-colors">
-                        <td className="px-6 py-4 text-[#a0b2c8] font-body">{f.name}</td>
+                        <td className="px-6 py-4 text-[#a0b2c8] font-body sticky left-0 z-10 bg-[#080f1c] border-r border-[#1e2d4a]">{f.name}</td>
                         <td className="px-4 py-4 text-center"><Cell value={f.free} /></td>
                         <td className="px-4 py-4 text-center"><Cell value={f.starter} /></td>
                         <td className="px-4 py-4 text-center bg-[#00c3ff]/[0.03]"><Cell value={f.pro} /></td>
@@ -390,16 +409,18 @@ export default function Pricing() {
               </tbody>
             </table>
           </div>
+          <div className="sm:hidden pointer-events-none absolute inset-y-0 right-0 w-12 rounded-r-2xl bg-gradient-to-l from-[#030B17] to-transparent" aria-hidden="true"></div>
+          </div>
 
           <div className="flex flex-wrap items-center gap-6 mt-5 px-1">
-            <div className="flex items-center gap-2 text-xs text-[#8b9bb4] font-body">
+            <div className="flex items-center gap-2 text-sm text-[#8b9bb4] font-body">
               <Check className="w-4 h-4 text-[#00c3ff]" strokeWidth={2.5} /> Included
             </div>
-            <div className="flex items-center gap-2 text-xs text-[#8b9bb4] font-body">
-              <X className="w-4 h-4 text-[#2a3a4e]" strokeWidth={2} /> Not included
+            <div className="flex items-center gap-2 text-sm text-[#8b9bb4] font-body">
+              <span className="text-[#8b9bb4]" aria-label="Not included">&mdash;</span> Not included
             </div>
-            <div className="flex items-center gap-2 text-xs text-[#8b9bb4] font-body">
-              <span className="text-[#8b9bb4] text-xs">15/mo</span> Usage limit applies
+            <div className="flex items-center gap-2 text-sm text-[#8b9bb4] font-body">
+              <span className="text-[#8b9bb4] text-sm">15/mo</span> Usage limit applies
             </div>
           </div>
         </div>
@@ -409,9 +430,9 @@ export default function Pricing() {
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-3xl mx-auto relative z-10">
           <div className="mb-12 text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-              <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">Common Questions</span>
+              <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">Common Questions</span>
             </div>
             <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight">
               Questions before you choose a plan?
@@ -431,7 +452,7 @@ export default function Pricing() {
                     strokeWidth={2}
                   />
                 </button>
-                <div className={`overflow-hidden transition-all duration-300 ease-out ${openFaq === i ? 'max-h-48' : 'max-h-0'}`}>
+                <div className={`overflow-hidden transition-all duration-300 ease-out ${openFaq === i ? 'max-h-96' : 'max-h-0'}`}>
                   <p className="px-6 pb-5 pt-4 text-[#a0b2c8] text-sm font-body leading-relaxed border-t border-[#1e2d4a]">
                     {faq.a}
                   </p>
@@ -445,9 +466,9 @@ export default function Pricing() {
       {/* ── SECTION 7 — Final CTA ────────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
         <div className="max-w-3xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-            <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">Get Started</span>
+            <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">Get Started</span>
           </div>
           <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-5 tracking-tight">
             Start free. Upgrade when you're ready.
@@ -456,14 +477,20 @@ export default function Pricing() {
             No credit card required. Real opportunities from day one.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/signup" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline">
+            <Link to="/signup/" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline">
               Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link to="/contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline">
+            <Link to="/contact/" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline">
               Talk to the Team
             </Link>
           </div>
+          <p className="mt-6 text-sm text-[#8b9bb4] font-body">
+            Not sure yet?{' '}
+            <Link to="/tools/sam-gov-notice-analyzer/" className="text-[#00c3ff] hover:underline">
+              Score a SAM.gov notice free &rarr;
+            </Link>
+          </p>
         </div>
       </section>
     </>

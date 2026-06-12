@@ -41,11 +41,11 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-4">
-              <Link to="/signup" className="px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+              <Link to="/signup/" className="px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
                 Start Free
                 <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link to="/tools/sam-gov-notice-analyzer" className="px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all flex items-center justify-center gap-2">
+              <Link to="/tools/sam-gov-notice-analyzer/" className="px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all flex items-center justify-center gap-2">
                 <Sparkles className="w-4 h-4 text-[#00c3ff]" />
                 Analyze a SAM.gov Notice
               </Link>
@@ -79,7 +79,7 @@ export default function Home() {
                 </div>
                 <div>
                   <div className="text-base font-black text-white font-headline leading-none mb-1">{item.title}</div>
-                  <div className="text-xs text-[#8b9bb4] font-body leading-snug">{item.body}</div>
+                  <div className="text-sm text-[#8b9bb4] font-body leading-snug">{item.body}</div>
                 </div>
               </div>
             ))}
@@ -138,9 +138,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto relative z-10">
 
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-              <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">How HE Pursuit Works</span>
+              <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">How HE Pursuit Works</span>
             </div>
             <h2 className="font-headline font-black text-4xl md:text-5xl text-white tracking-tight">
               From opportunity to decision in minutes.
@@ -178,16 +178,16 @@ export default function Home() {
       {/* #10 badge, #16 headline+body, #20 tiles */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-            <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">Why HE Pursuit</span>
+            <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">The Problem</span>
           </div>
 
-          <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-6 leading-tight tracking-tight">
+          <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-6 leading-tight tracking-tight max-w-4xl">
             Most small GovCon teams do not lose because they lack capability. They lose because they spend scarce time on the wrong pursuits.
           </h2>
 
-          <p className="text-[#a0b2c8] text-lg mb-14 leading-relaxed font-body">
+          <p className="text-[#a0b2c8] text-lg mb-14 leading-relaxed font-body max-w-4xl">
             Every weak-fit bid consumes proposal hours, leadership attention, and B&P dollars that could have gone to stronger opportunities. HE Pursuit helps your team qualify earlier, walk away sooner, and focus effort where it has a real chance to pay off.
           </p>
 
@@ -205,7 +205,7 @@ export default function Home() {
               },
               {
                 icon: Filter,
-                title: 'Too many low-quality pursuits.',
+                title: 'Too many low-quality pursuits',
                 body: 'Weak opportunities create noise, distract the team, and pull energy away from the bids with real win potential.',
               },
             ] as { icon: React.ElementType; title: string; body: string }[]).map((card, i) => (
@@ -233,9 +233,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Header — full width */}
           <div className="mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-              <span className="text-xs font-bold text-[#bfdbfe] tracking-wide uppercase">Why HE Pursuit</span>
+              <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">Why HE Pursuit</span>
             </div>
 
             <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-5 leading-tight tracking-tight">
@@ -243,11 +243,11 @@ export default function Home() {
             </h2>
 
             <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body">
-              Tools like <Link to="/vs-govwin" className="text-[#00c3ff] underline hover:text-white transition-colors">GovWin</Link> and <Link to="/vs-govtribe" className="text-[#00c3ff] underline hover:text-white transition-colors">GovTribe</Link> help you discover SAM.gov opportunities. HE Pursuit helps you decide which ones deserve your time. It gives lean GovCon teams a repeatable way to qualify opportunities, pressure-test assumptions, and avoid proposal churn.
+              Tools like <Link to="/vs-govwin/" className="text-[#00c3ff] underline hover:text-white transition-colors">GovWin</Link> and <Link to="/vs-govtribe/" className="text-[#00c3ff] underline hover:text-white transition-colors">GovTribe</Link> help you discover SAM.gov opportunities. HE Pursuit helps you decide which ones deserve your time. It gives lean GovCon teams a repeatable way to qualify opportunities, pressure-test assumptions, and avoid proposal churn.
             </p>
 
-            <Link to="/pricing" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all">
-              See How It Works
+            <Link to="/pricing/" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:bg-white hover:scale-[1.02] active:scale-[0.98] transition-all">
+              See Pricing
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -294,9 +294,9 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
 
             <div className="w-full lg:w-1/2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-                <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">Who It's For</span>
+                <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">Who It's For</span>
               </div>
               <h2 className="font-headline font-black text-4xl xl:text-5xl text-white mb-5 leading-tight tracking-tight">
                 Built for Small Businesses.
@@ -338,7 +338,7 @@ export default function Home() {
       {/* #15 — button labels → "Select [Tier]" */}
       <section id="pricing" className="py-32 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="mb-10">
+          <div className="mb-10 max-w-4xl">
             <h2 className="font-headline font-black text-4xl md:text-5xl text-white mb-6 tracking-tight leading-tight">
               Start simple. Upgrade when your pursuit process needs more structure.
             </h2>
@@ -365,7 +365,7 @@ export default function Home() {
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
-              <Link to="/signup" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Start Free</Link>
+              <Link to="/signup/" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Start Free</Link>
             </div>
             </FlyIn>
 
@@ -383,7 +383,7 @@ export default function Home() {
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
-              <Link to="/signup" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Select Starter</Link>
+              <Link to="/signup/" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Select Starter</Link>
             </div>
             </FlyIn>
 
@@ -394,7 +394,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.06)_0%,transparent_65%)] pointer-events-none"></div>
               <div className="flex items-center justify-between mb-1">
                 <h3 className="font-headline text-xl font-bold text-white">Pro</h3>
-                <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest">Recommended</span>
+                <span className="text-xs font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest">Recommended</span>
               </div>
               <p className="text-xs text-[#8b9bb4] mb-4">For small contractors & proposal teams</p>
               <div className="flex items-baseline gap-1 mb-4">
@@ -406,7 +406,7 @@ export default function Home() {
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
-              <Link to="/signup" className="block text-center w-full py-3 rounded-lg bg-[#00c3ff] text-[#030B17] font-bold shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all relative z-10 text-sm">Select Pro</Link>
+              <Link to="/signup/" className="block text-center w-full py-3 rounded-lg bg-[#00c3ff] text-[#030B17] font-bold shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all relative z-10 text-sm">Select Pro</Link>
             </div>
             </FlyIn>
 
@@ -415,7 +415,7 @@ export default function Home() {
             <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
               <div className="flex items-center justify-between mb-1">
                 <h3 className="font-headline text-xl font-bold text-white">Team</h3>
-                <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest">Coming Soon</span>
+                <span className="text-xs font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest">Coming Soon</span>
               </div>
               <p className="text-xs text-[#8b9bb4] mb-4">For multi-user capture teams</p>
               <div className="flex items-baseline gap-1 mb-4">
@@ -427,13 +427,13 @@ export default function Home() {
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
-              <Link to="/team-waitlist" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Join the Waitlist</Link>
+              <Link to="/team-waitlist/" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Join the Waitlist</Link>
             </div>
             </FlyIn>
 
           </div>
           <p className="text-center text-sm text-[#8b9bb4]/60 mt-8 max-w-6xl mx-auto">
-            <Link to="/pricing" className="text-[#00c3ff] hover:underline">See full feature comparison →</Link>
+            <Link to="/pricing/" className="text-[#00c3ff] hover:underline">See full feature comparison →</Link>
           </p>
         </div>
       </section>
@@ -443,9 +443,9 @@ export default function Home() {
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-14">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-              <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">Common Questions</span>
+              <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">Common Questions</span>
             </div>
             <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight">
               Built to support judgment, not replace it.
@@ -487,9 +487,9 @@ export default function Home() {
       {/* #13 line break, #14 remove See Pricing, #19 new headline */}
       <section className="py-20 px-6 relative">
         <div className="max-w-3xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] mb-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-            <span className="text-xs font-bold text-[#bfdbfe] tracking-widest uppercase font-label">Get Started</span>
+            <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">Get Started</span>
           </div>
           <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-4 tracking-tight">
             Spend less time debating.<br />Spend more time pursuing the right bids.
@@ -497,7 +497,7 @@ export default function Home() {
           <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body max-w-xl mx-auto">
             Stop relying on scattered notes, gut feel, and costly proposal churn. HE Pursuit helps your team qualify smarter, decide faster, and focus effort where it has the best chance to pay off.
           </p>
-          <Link to="/signup" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all">
+          <Link to="/signup/" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all">
             Start Free
             <ArrowRight className="w-4 h-4" />
           </Link>

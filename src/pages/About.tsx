@@ -76,7 +76,7 @@ export default function About() {
                   <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
                   <Target className="w-5 h-5 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                 </div>
-                <h2 className="font-headline font-bold text-white text-lg tracking-tight pt-1.5">The Hidden Risk in Government Contracting Opportunities</h2>
+                <h2 className="font-headline font-bold text-white text-xl tracking-tight pt-1.5">The Hidden Risk in Government Contracting Opportunities</h2>
               </div>
               <p className="text-[#a0b2c8] text-sm font-body leading-relaxed mb-4">
                 Most small government contractors don't lose because they lack capability. They lose because of how they pursue.
@@ -88,13 +88,13 @@ export default function About() {
                   'They make inconsistent bid/no-bid decisions under pressure',
                 ].map(item => (
                   <li key={item} className="flex items-start gap-2.5 text-sm text-[#a0b2c8] font-body">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#fbbf24] shrink-0 mt-[0.35rem]"></div>
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff] shrink-0 mt-[0.35rem]"></div>
                     {item}
                   </li>
                 ))}
               </ul>
               <div className="border-t border-[#1e2d4a] pt-4">
-                <p className="text-[#8b9bb4] text-xs font-body leading-relaxed">Every poor pursuit decision costs proposal hours, leadership attention, and real money. And once it's spent — you don't get it back.</p>
+                <p className="text-[#8b9bb4] text-sm font-body leading-relaxed">Every poor pursuit decision costs proposal hours, leadership attention, and real money. And once it's spent — you don't get it back.</p>
               </div>
             </div>
             </FlyIn>
@@ -112,7 +112,7 @@ export default function About() {
               </div>
               <p className="text-[#a0b2c8] text-sm font-body leading-relaxed mb-4">
                 We built HE Pursuit to help small businesses{' '}
-                <Link to="/tools/sam-gov-notice-analyzer" className="text-[#00c3ff] hover:text-white transition-colors">
+                <Link to="/tools/sam-gov-notice-analyzer/" className="text-[#00c3ff] hover:text-white transition-colors">
                   evaluate government contracting opportunities
                 </Link>{' '}
                 before committing proposal resources. Not to help you find more opportunities — but to help you decide which ones are actually worth pursuing.
@@ -152,7 +152,7 @@ export default function About() {
               </p>
               <div className="flex items-center gap-3 flex-wrap">
                 {['Woman-Owned', 'Veteran-Owned', 'Small Business'].map(badge => (
-                  <span key={badge} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[rgba(30,58,138,0.20)] border border-[rgba(29,78,216,0.30)] text-xs font-bold text-[#bfdbfe] tracking-wide">
+                  <span key={badge} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 text-xs font-bold text-[#00c3ff] tracking-wide">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
                     {badge}
                   </span>
@@ -181,7 +181,7 @@ export default function About() {
             </div>
             <p className="font-headline font-black text-2xl md:text-3xl text-white tracking-tight leading-snug mb-6">
               To help small government contractors qualify opportunities faster, make confident{' '}
-              <Link to="/pricing" className="text-[#00c3ff] hover:text-white transition-colors">
+              <Link to="/pricing/" className="text-[#00c3ff] hover:text-white transition-colors">
                 bid/no-bid decisions
               </Link>
               , and focus on opportunities they can actually win.
@@ -192,13 +192,13 @@ export default function About() {
                 { Icon: TrendingUp,  title: 'One right decision',body: "protects your team's bandwidth and redirects energy to stronger pursuits."             },
                 { Icon: Sparkles,    title: 'Better signals',    body: "mean smarter pursuits — and that's the difference between reacting and winning."      },
               ] as { Icon: React.ElementType; title: string; body: string }[]).map(({ Icon, title, body }) => (
-                <div key={title} className="flex items-center gap-4 px-6 py-5 group cursor-default">
+                <div key={title} className="flex items-center gap-4 px-6 py-5">
                   <div className="w-9 h-9 flex items-center justify-center relative overflow-visible shrink-0">
-                    <Icon className="w-5 h-5 text-[#00c3ff] group-hover:text-white group-hover:scale-110 transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                    <Icon className="w-5 h-5 text-[#00c3ff] relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                   </div>
                   <div>
                     <p className="font-headline font-black text-white text-base leading-none mb-1">{title}</p>
-                    <p className="text-[#8b9bb4] text-xs font-body leading-snug">{body}</p>
+                    <p className="text-[#8b9bb4] text-sm font-body leading-snug">{body}</p>
                   </div>
                 </div>
               ))}
@@ -212,14 +212,14 @@ export default function About() {
       <section className="py-8 pb-24 px-6">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
-            to="/tools/sam-gov-notice-analyzer"
+            to="/tools/sam-gov-notice-analyzer/"
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all"
           >
             Analyze an Opportunity Free
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
-            to="/pricing"
+            to="/pricing/"
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all"
           >
             See Pricing

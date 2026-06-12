@@ -187,6 +187,17 @@ export default function Pricing() {
       {/* ── SECTION 2 — Pricing Cards ────────────────────────────────────── */}
       <section className="pb-6 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
+          {/* Beta offer strip */}
+          <div className="mb-4 rounded-xl border border-[#00c3ff]/50 bg-[#00c3ff]/10 px-6 py-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-center">
+            <span className="text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-widest font-label text-[#030B17] bg-[#00c3ff] shrink-0">
+              Beta
+            </span>
+            <p className="font-body text-white text-sm md:text-base">
+              Paid plans are <span className="font-bold text-[#00c3ff]">100% off during beta</span> — use code{' '}
+              <span className="font-mono font-bold text-[#00c3ff] bg-[#030B17] border border-[#00c3ff]/30 rounded px-2 py-0.5 select-all">BETA100</span>{' '}
+              at checkout.
+            </p>
+          </div>
           <div className="mb-8 rounded-xl border border-[#00c3ff]/30 bg-[#00c3ff]/5 px-6 py-4 text-center">
             <p className="font-headline font-bold text-white text-base md:text-lg tracking-tight">
               Free helps you <span className="text-[#00c3ff]">screen</span> opportunities. Paid plans help you make <span className="text-[#00c3ff]">bid/no-bid decisions</span>.

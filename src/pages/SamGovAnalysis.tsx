@@ -147,21 +147,6 @@ export default function SamGovAnalysis() {
         </div>
       </section>
 
-      {/* Product proof */}
-      <section className="py-8 px-6">
-        <div className="max-w-7xl mx-auto">
-          <FlyIn delay="">
-            <img
-              src="/pursuit-overview.png"
-              alt="HE Pursuit dashboard showing a SAM.gov opportunity moving through the 5-phase pursuit analysis workflow"
-              loading="lazy"
-              className="w-full border border-[#1e2d4a] rounded-xl"
-            />
-            <p className="text-[#8b9bb4] text-sm font-body text-center mt-4">The 5-phase pursuit view inside HE Pursuit.</p>
-          </FlyIn>
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="py-8 pb-24 px-6">
         <div className="max-w-7xl mx-auto">

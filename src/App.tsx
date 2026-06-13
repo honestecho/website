@@ -116,7 +116,9 @@ function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/vs-govwin" element={<VsGovWin />} />
+          <Route path="/vs-govwin/" element={<VsGovWin />} />
           <Route path="/vs-govtribe" element={<VsGovTribe />} />
+          <Route path="/vs-govtribe/" element={<VsGovTribe />} />
           <Route path="/sam-gov-opportunity-analysis" element={<SamGovAnalysis />} />
           <Route path="/tools/sam-gov-notice-analyzer" element={<SamGovNoticeAnalyzer />} />
           <Route path="/p/:token" element={<SharedPackage />} />

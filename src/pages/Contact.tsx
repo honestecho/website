@@ -103,7 +103,7 @@ export default function Contact() {
                   <a href="mailto:info@honestecho.com" className="hover:text-[#00c3ff] transition-colors">info@honestecho.com</a>
                 </p>
                 <p className="text-[#a0b2c8] font-body text-sm mt-1">
-                  Support: <a href="mailto:support@honestecho.com" className="hover:text-[#00c3ff] transition-colors">support@honestecho.com</a>
+                  <a href="mailto:support@honestecho.com" className="hover:text-[#00c3ff] transition-colors">support@honestecho.com</a>
                 </p>
               </div>
             </div>

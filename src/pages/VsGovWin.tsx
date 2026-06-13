@@ -146,11 +146,11 @@ export default function VsGovWin() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {cards.map((card, i) => (
               <FlyIn key={card.title} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i % 4]}>
-              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden h-full">
+              <div className="group bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 relative overflow-hidden h-full">
                 <div className="flex items-start gap-4 mb-5">
                   <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
-                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 rounded-full scale-150"></div>
-                    <card.Icon className="w-5 h-5 text-[#00c3ff] drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
+                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
+                    <card.Icon className="w-5 h-5 text-[#00c3ff] group-hover:text-white group-hover:scale-110 drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
                   </div>
                   <h2 className="font-headline font-bold text-white text-xl tracking-tight pt-1.5">{card.title}</h2>
                 </div>

@@ -5,13 +5,6 @@ import FlyIn from '../components/FlyIn';
 
 // ─── Content ──────────────────────────────────────────────────────────────────
 
-const atAGlance = [
-  { label: 'Public SAM.gov data only' },
-  { label: 'Encrypted in transit & at rest' },
-  { label: 'No AI training on your data' },
-  { label: 'security@honestecho.com', href: 'mailto:security@honestecho.com' },
-];
-
 const mainSections = [
   {
     Icon: ShieldCheck,
@@ -121,33 +114,10 @@ export default function Security() {
         </div>
       </section>
 
-      {/* ── At a glance ────────────────────────────────────────────────────── */}
+      {/* ── Last reviewed ──────────────────────────────────────────────────── */}
       <section className="pb-10 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-wrap gap-3">
-            {atAGlance.map((chip) =>
-              chip.href ? (
-                <a
-                  key={chip.label}
-                  href={chip.href}
-                  className="inline-flex items-center gap-2.5 bg-[#0b1120] border border-[#1e2d4a] rounded-full px-4 py-2 text-sm font-body text-[#a0b2c8] hover:text-white hover:border-[#00c3ff]/40 transition-colors"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00c3ff] shrink-0"></span>
-                  <Mail className="w-3 h-3 shrink-0" aria-hidden="true" />
-                  <span className="underline underline-offset-2">{chip.label}</span>
-                </a>
-              ) : (
-                <span
-                  key={chip.label}
-                  className="inline-flex items-center gap-2.5 bg-[#0b1120] border border-[#1e2d4a] rounded-full px-4 py-2 text-sm font-body text-[#a0b2c8]"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00c3ff] shrink-0"></span>
-                  {chip.label}
-                </span>
-              )
-            )}
-          </div>
-          <p className="text-[#8b9bb4] text-sm font-body mt-4">Last reviewed: June 2026</p>
+          <p className="text-[#8b9bb4] text-sm font-body">Last reviewed: June 2026</p>
         </div>
       </section>
 
@@ -157,12 +127,12 @@ export default function Security() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {mainSections.map((s, i) => (
               <FlyIn key={s.title} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]', 'delay-[600ms]', 'delay-[750ms]'][i]}>
-              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 relative overflow-hidden h-full">
+              <div className="group bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 relative overflow-hidden h-full">
                 <div className="flex items-start gap-4 mb-5">
                   <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
-                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 rounded-full scale-150"></div>
+                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
                     <s.Icon
-                      className="w-5 h-5 text-[#00c3ff] drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] relative z-10"
+                      className="w-5 h-5 text-[#00c3ff] group-hover:text-white group-hover:scale-110 drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10"
                       fill="currentColor"
                       fillOpacity={0.15}
                       strokeWidth={2}
@@ -200,12 +170,12 @@ export default function Security() {
           <div className="grid grid-cols-1 gap-6">
             {bottomSections.map((s, i) => (
               <FlyIn key={s.title} delay={['', 'delay-150'][i]}>
-              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 relative overflow-hidden h-full">
+              <div className="group bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 relative overflow-hidden h-full">
                 <div className="flex items-start gap-4 mb-5">
                   <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
-                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 rounded-full scale-150"></div>
+                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
                     <s.Icon
-                      className="w-5 h-5 text-[#00c3ff] drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] relative z-10"
+                      className="w-5 h-5 text-[#00c3ff] group-hover:text-white group-hover:scale-110 drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10"
                       fill="currentColor"
                       fillOpacity={0.15}
                       strokeWidth={2}

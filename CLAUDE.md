@@ -104,6 +104,24 @@ text-xs font-bold text-blue-200 tracking-wide
 ```
 Dot indicator: `w-1.5 h-1.5 rounded-full bg-[#00c3ff]`
 
+### Notice / Important-Note Pattern
+The one approved way to call out a single high-signal message — beta offers, deadlines, policy callouts, "read this first" context. **Component:** `src/components/Notice.tsx`. Never hand-roll a bordered/tinted strip inline (see Never rule below).
+
+```tsx
+import Notice, { NoticeCode } from '../components/Notice';
+
+<Notice label="Beta" className="mb-4">
+  Paid plans are <span className="font-bold text-[#00c3ff]">100% off during beta</span> — use code{' '}
+  <NoticeCode>BETA100</NoticeCode> at checkout.
+</Notice>
+```
+- `label?` — all-caps cyan badge (e.g. `"Beta"`, `"New"`, `"Note"`). Omit for a badge-less note.
+- `tone?` — `"strong"` (default; `border/50` + `bg/10`, for announcements) or `"soft"` (`border/30` + `bg/5`, for quiet context notes). Emphasis is opacity, never a second hue.
+- `align?` — `"center"` (default) or `"left"`.
+- `className` — outer margin only (e.g. `"mb-4"`).
+- `<NoticeCode>` — inline monospace chip for a copyable code/value.
+- Reference implementation: the beta strip in `Pricing.tsx`.
+
 ## Animation Principles
 - Duration: `300ms` for micro-interactions, `500–700ms` for larger transitions
 - Easing: `ease-out` for entrances, `transition-all` for multi-property
@@ -134,6 +152,7 @@ Dot indicator: `w-1.5 h-1.5 rounded-full bg-[#00c3ff]`
 - No placeholder lorem ipsum copy in components
 - No mixed accent colors in the same section — everything is `#00c3ff`
 - No Tailwind `prose` class — style typography manually
+- No hand-rolled callout/announcement strips — use `<Notice>` (see Notice / Important-Note Pattern)
 
 ### Section Structure
 Every page section follows this shell:

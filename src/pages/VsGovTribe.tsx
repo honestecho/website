@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, BarChart2, Target, CheckCircle, Zap, Filter, Layers } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
+import Notice from '../components/Notice';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
 
 const cards = [
@@ -89,46 +90,48 @@ export default function VsGovTribe() {
       {/* Comparison table */}
       <section className="pb-12 px-6">
         <div className="max-w-7xl mx-auto">
-          <p className="sm:hidden text-xs text-[#8b9bb4] font-body text-right mb-2">Swipe to compare &rarr;</p>
-          <div className="relative">
-          <div className="overflow-x-auto rounded-2xl border border-[#1e2d4a] bg-[#0b1120]">
-            <table className="w-full min-w-[560px] text-left font-body text-sm">
-              <thead>
-                <tr className="border-b border-[#1e2d4a]">
-                  <th scope="col" className="px-6 py-4 sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]"><span className="sr-only">Category</span></th>
-                  <th scope="col" className="px-6 py-4 font-headline font-bold text-white text-base tracking-tight">GovTribe</th>
-                  <th scope="col" className="px-6 py-4 font-headline font-bold text-[#00c3ff] text-base tracking-tight">HE Pursuit</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-[#1e2d4a]">
-                  <th scope="row" className="px-6 py-4 font-bold text-white whitespace-nowrap sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Built for</th>
-                  <td className="px-6 py-4 text-[#a0b2c8]">Researchers and analysts</td>
-                  <td className="px-6 py-4 text-[#a0b2c8]">Owner-operators and small contracting teams</td>
-                </tr>
-                <tr className="border-b border-[#1e2d4a]">
-                  <th scope="row" className="px-6 py-4 font-bold text-white whitespace-nowrap sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">The job it does</th>
-                  <td className="px-6 py-4 text-[#a0b2c8]">Market intelligence — contract history, agency spend, competitor analysis</td>
-                  <td className="px-6 py-4 text-[#a0b2c8]">Bid/no-bid qualification of a specific opportunity</td>
-                </tr>
-                <tr className="border-b border-[#1e2d4a]">
-                  <th scope="row" className="px-6 py-4 font-bold text-white whitespace-nowrap sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">What you get</th>
-                  <td className="px-6 py-4 text-[#a0b2c8]">Data on the opportunity landscape</td>
-                  <td className="px-6 py-4 text-[#a0b2c8]">A Go, Conditional Go, or No-Bid recommendation</td>
-                </tr>
-                <tr>
-                  <th scope="row" className="px-6 py-4 font-bold text-white whitespace-nowrap sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Time to a decision</th>
-                  <td className="px-6 py-4 text-[#a0b2c8]">Hours of research</td>
-                  <td className="px-6 py-4 text-[#a0b2c8]">Minutes per evaluation</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div className="sm:hidden pointer-events-none absolute inset-y-0 right-0 w-12 rounded-r-2xl bg-gradient-to-l from-[#0b1120] to-transparent" aria-hidden="true"></div>
-          </div>
-          <p className="text-[#8b9bb4] text-sm font-body leading-relaxed mt-4">
-            If you need deep market intel, GovTribe delivers — HE Pursuit answers whether to bid.
-          </p>
+          <FlyIn>
+            <p className="sm:hidden text-xs text-[#8b9bb4] font-body text-right mb-2">Swipe to compare &rarr;</p>
+            <div className="relative">
+            <div className="overflow-x-auto rounded-2xl border border-[#1e2d4a] bg-[#0b1120]">
+              <table className="w-full min-w-[560px] text-left font-body text-sm">
+                <thead>
+                  <tr className="border-b border-[#1e2d4a]">
+                    <th scope="col" className="px-6 py-4 w-[22%] sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]"><span className="sr-only">Category</span></th>
+                    <th scope="col" className="px-6 py-4 font-headline font-bold text-[#8b9bb4] tracking-tight">GovTribe</th>
+                    <th scope="col" className="px-6 py-4 font-headline font-bold text-[#00c3ff] tracking-tight border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.07]">HE&nbsp;Pursuit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-[#1e2d4a]">
+                    <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Built for</th>
+                    <td className="px-6 py-4 text-[#8b9bb4] leading-relaxed align-top">Researchers and analysts</td>
+                    <td className="px-6 py-4 text-white leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]">Owner-operators and small contracting teams</td>
+                  </tr>
+                  <tr className="border-b border-[#1e2d4a]">
+                    <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">The job it does</th>
+                    <td className="px-6 py-4 text-[#8b9bb4] leading-relaxed align-top">Market intelligence — contract history, agency spend, competitor analysis</td>
+                    <td className="px-6 py-4 text-white leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]">Bid/no-bid qualification of a specific opportunity</td>
+                  </tr>
+                  <tr className="border-b border-[#1e2d4a]">
+                    <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">What you get</th>
+                    <td className="px-6 py-4 text-[#8b9bb4] leading-relaxed align-top">Data on the opportunity landscape</td>
+                    <td className="px-6 py-4 text-white leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]">A Go, Conditional Go, or No-Bid recommendation</td>
+                  </tr>
+                  <tr>
+                    <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Time to a decision</th>
+                    <td className="px-6 py-4 text-[#8b9bb4] leading-relaxed align-top">Hours of research</td>
+                    <td className="px-6 py-4 leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]"><span className="text-[#00c3ff] font-bold">Minutes</span> per evaluation</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="sm:hidden pointer-events-none absolute inset-y-0 right-0 w-12 rounded-r-2xl bg-gradient-to-l from-[#0b1120] to-transparent" aria-hidden="true"></div>
+            </div>
+            <Notice tone="soft" align="left" className="mt-4">
+              If you need deep market intel, GovTribe delivers — <span className="font-bold text-[#00c3ff]">HE Pursuit</span> answers whether to bid.
+            </Notice>
+          </FlyIn>
         </div>
       </section>
 

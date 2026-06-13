@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, DollarSign, Target, Scale, Users, Zap, Layers } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
+import Notice from '../components/Notice';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
 
 const cards = [
@@ -97,44 +98,44 @@ export default function VsGovWin() {
                 <thead>
                   <tr className="border-b border-[#1e2d4a]">
                     <th className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] w-[22%] sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]"><span className="sr-only">Comparison dimension</span></th>
-                    <th className="px-6 py-4 font-headline font-bold text-white tracking-tight">GovWin</th>
-                    <th className="px-6 py-4 font-headline font-bold text-[#00c3ff] tracking-tight border-l border-[#1e2d4a]">HE Pursuit</th>
+                    <th className="px-6 py-4 font-headline font-bold text-[#8b9bb4] tracking-tight">GovWin</th>
+                    <th className="px-6 py-4 font-headline font-bold text-[#00c3ff] tracking-tight border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.07]">HE&nbsp;Pursuit</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="border-b border-[#1e2d4a]">
                     <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Built for</th>
-                    <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top">Large primes and enterprise BD teams with dedicated capture staff</td>
-                    <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top border-l border-[#1e2d4a]">Owner-operators, solo capture leads, and lean teams</td>
+                    <td className="px-6 py-4 text-[#8b9bb4] leading-relaxed align-top">Large primes and enterprise BD teams with dedicated capture staff</td>
+                    <td className="px-6 py-4 text-white leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]">Owner-operators, solo capture leads, and lean teams</td>
                   </tr>
                   <tr className="border-b border-[#1e2d4a]">
                     <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">The job it does</th>
-                    <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top">Opportunity discovery, pipeline data, and market research</td>
-                    <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top border-l border-[#1e2d4a]">Evaluating whether a specific opportunity is worth pursuing — bid/no-bid qualification</td>
+                    <td className="px-6 py-4 text-[#8b9bb4] leading-relaxed align-top">Opportunity discovery, pipeline data, and market research</td>
+                    <td className="px-6 py-4 text-white leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]">Evaluating whether a specific opportunity is worth pursuing — bid/no-bid qualification</td>
                   </tr>
                   <tr className="border-b border-[#1e2d4a]">
                     <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">What you get</th>
-                    <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top">More data</td>
-                    <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top border-l border-[#1e2d4a]">A Go, Conditional Go, or No-Bid recommendation your team can act on</td>
+                    <td className="px-6 py-4 text-[#8b9bb4] leading-relaxed align-top">More data</td>
+                    <td className="px-6 py-4 text-white leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]">A Go, Conditional Go, or No-Bid recommendation your team can act on</td>
                   </tr>
                   <tr className="border-b border-[#1e2d4a]">
                     <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Time to a decision</th>
-                    <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top">Days of research</td>
-                    <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top border-l border-[#1e2d4a]">Minutes</td>
+                    <td className="px-6 py-4 text-[#8b9bb4] leading-relaxed align-top">Days of research</td>
+                    <td className="px-6 py-4 leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]"><span className="text-[#00c3ff] font-bold">Minutes</span></td>
                   </tr>
                   <tr>
                     <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Price</th>
-                    <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top">Typically $10,000–$50,000+ per year</td>
-                    <td className="px-6 py-4 text-[#a0b2c8] leading-relaxed align-top border-l border-[#1e2d4a]">Starts free and scales to $299/month</td>
+                    <td className="px-6 py-4 text-[#8b9bb4] leading-relaxed align-top">Typically $10,000–$50,000+ per year</td>
+                    <td className="px-6 py-4 text-white leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]"><span className="text-[#00c3ff] font-bold">Starts free</span> and scales to $299/month</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div className="sm:hidden pointer-events-none absolute inset-y-0 right-0 w-12 rounded-r-2xl bg-gradient-to-l from-[#0b1120] to-transparent" aria-hidden="true"></div>
             </div>
-            <p className="text-[#8b9bb4] text-sm font-body leading-relaxed mt-4">
-              Different tools for different jobs — GovWin for enterprise market intelligence, HE Pursuit for the bid/no-bid decision.
-            </p>
+            <Notice tone="soft" align="left" className="mt-4">
+              Different tools for different jobs — GovWin for enterprise market intelligence, <span className="font-bold text-[#00c3ff]">HE Pursuit</span> for the bid/no-bid decision.
+            </Notice>
           </FlyIn>
         </div>
       </section>

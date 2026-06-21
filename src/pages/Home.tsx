@@ -5,7 +5,7 @@ import { ArrowRight, Sparkles, Target, Scale, FileText, CheckCircle, Upload, Com
 import { Link } from 'react-router-dom';
 import FlyIn from '../components/FlyIn';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
-import HeroPursuitCard from '../components/HeroPursuitCard';
+import HeroPursuitCardZoom from '../components/HeroPursuitCardZoom';
 
 export default function Home() {
   return (
@@ -59,7 +59,7 @@ export default function Home() {
 
           {/* Right Column: static opportunity card */}
           <div className="w-full lg:w-[58%] relative hidden md:flex items-center transition-transform duration-700 hover:-translate-y-2">
-            <HeroPursuitCard />
+            <HeroPursuitCardZoom />
           </div>
         </div>
 

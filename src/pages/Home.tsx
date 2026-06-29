@@ -31,6 +31,11 @@ export default function Home() {
 
           {/* Left Column: Copy */}
           <div className="w-full lg:w-1/2">
+            {/* Summer Bid Clarity Pass promo */}
+            <div className="mb-5 rounded-xl border border-[#00c3ff]/50 bg-[#00c3ff]/10 px-5 py-3">
+              <p className="font-headline font-bold text-white text-sm md:text-base">Friends don't let friends read SAM.gov raw.</p>
+              <p className="text-[#a0b2c8] text-xs md:text-sm font-body mt-1">Summer Bid Clarity Pass: 2 months of any paid plan, free. Cancel anytime.</p>
+            </div>
             <h1 className="font-headline font-black text-4xl sm:text-5xl lg:text-[4rem] xl:text-[4.5rem] tracking-tighter text-white mb-5 leading-tight drop-shadow-2xl">
               Stop wasting proposal hours on bids you{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">shouldn't chase.</span>
@@ -41,7 +46,7 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-4">
-              <Link to="/signup/" className="px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+              <Link to="/signup/?promo=summer2026" className="px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
                 Start Free
                 <ArrowRight className="w-5 h-5" />
               </Link>
@@ -70,7 +75,7 @@ export default function Home() {
               { Icon: Clock,      title: 'Save Hours',   body: 'Analyze in seconds, not hours'           },
               { Icon: Target,     title: 'Bid Smarter',  body: 'Focus on opportunities worth pursuing'   },
               { Icon: Shield,     title: 'Reduce Risk',  body: 'Spot potential issues before you invest' },
-              { Icon: TrendingUp, title: 'Win More',     body: 'Make data-driven go / no-go decisions'   },
+              { Icon: TrendingUp, title: 'Decide Faster', body: 'Make defensible go / no-go decisions'      },
             ] as { Icon: React.ElementType; title: string; body: string }[]).map((item, i) => (
               <div key={item.title} className={`flex items-center gap-3 px-4 sm:px-6 md:px-8 py-5 md:py-6 group cursor-default ${i >= 2 ? 'border-t border-[#1e2d4a] md:border-t-0' : ''}`}>
                 <div className="w-9 h-9 flex items-center justify-center relative overflow-visible shrink-0">

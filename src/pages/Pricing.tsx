@@ -87,7 +87,7 @@ const plans = [
       'No deep eligibility or document analysis',
     ],
     cta: 'Start Free',
-    ctaTo: '/signup/?plan=free',
+    ctaTo: '/signup/?plan=free&promo=summer2026',
   },
   {
     name: 'Starter',
@@ -108,7 +108,7 @@ const plans = [
       'Up to 25 pursuits per month',
     ],
     cta: 'Select Starter',
-    ctaTo: '/signup/?plan=starter',
+    ctaTo: '/signup/?plan=starter&promo=summer2026',
   },
   {
     name: 'Pro',
@@ -126,7 +126,7 @@ const plans = [
       'Downloadable decision reports (PDF)',
     ],
     cta: 'Select Pro',
-    ctaTo: '/signup/?plan=pro',
+    ctaTo: '/signup/?plan=pro&promo=summer2026',
   },
   {
     name: 'Team',
@@ -189,11 +189,11 @@ export default function Pricing() {
       {/* ── SECTION 2 — Pricing Cards ────────────────────────────────────── */}
       <section className="pb-6 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          {/* Beta offer strip — reference usage of the Notice pattern */}
-          <Notice label="Beta" className="mb-4">
-            Paid plans are <span className="font-bold text-[#00c3ff]">100% off during beta</span> — use code{' '}
-            <NoticeCode>BETA100</NoticeCode>{' '}
-            at checkout.
+          {/* Summer Bid Clarity Pass offer strip */}
+          <Notice label="Summer Offer" className="mb-4">
+            <span className="font-bold text-[#00c3ff]">Summer Bid Clarity Pass:</span> get 2 months of Starter or Pro, free. Use code{' '}
+            <NoticeCode>SUMMER2026</NoticeCode>{' '}
+            at checkout. Cancel anytime; it renews at the regular price after.
           </Notice>
           <div className="mb-8 rounded-xl border border-[#00c3ff]/30 bg-[#00c3ff]/5 px-6 py-4 text-center">
             <p className="font-headline font-bold text-white text-base md:text-lg tracking-tight">
@@ -244,7 +244,7 @@ export default function Pricing() {
                 </div>
                 {plan.price !== '$0' && plan.name !== 'Team' && (
                   <p className={`text-[#00c3ff] text-xs font-bold font-body ${'valueLine' in plan && plan.valueLine ? 'mb-1' : 'mb-5'}`}>
-                    $0 during beta &mdash; code BETA100
+                    2 months free with code SUMMER2026
                   </p>
                 )}
                 {'valueLine' in plan && plan.valueLine && (
@@ -490,7 +490,7 @@ export default function Pricing() {
             No credit card required. Real opportunities from day one.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/signup/" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline">
+            <Link to="/signup/?promo=summer2026" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline">
               Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { Zap, ArrowRight, Target, Scale, CheckCircle2, Eye, EyeOff } from 'lucide-react';
@@ -37,6 +37,12 @@ export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [invalidField, setInvalidField] = useState<keyof FormData | null>(null);
+
+  // Summer Bid Clarity Pass attribution: log when a promo link lands here.
+  useEffect(() => {
+    const promo = new URLSearchParams(window.location.search).get('promo');
+    if (promo) track('signup_promo_landed', { promo });
+  }, []);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));

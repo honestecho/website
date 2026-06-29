@@ -72,11 +72,52 @@ function computeLiveScore(dimensionScores: Record<string, number>, scoringWeight
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
-function agencyAbbr(name: string): string {
-  return name.split(/[\s.]+/).filter(Boolean).map(w => w[0]).join('').toUpperCase().slice(0, 4);
-}
 function agencyDisplay(name: string): string {
   return name.split('.').pop()?.trim() || name;
+}
+
+// Agency logo + abbreviation — mirrors the dashboard's agencyUtils so the public
+// card shows the same icon (e.g. DHA → DoD seal). Assets live in /public/agency-icons.
+function getAgencyLogoUrl(agency: string): string | null {
+  const a = agency.toUpperCase();
+  if (a.includes('NAVY') || a.includes('NAVAL')) return '/agency-icons/navy.svg';
+  if (a.includes('AIR FORCE') || a.includes('SPACE FORCE')) return '/agency-icons/airforce.svg';
+  if (a.includes('ARMY')) return '/agency-icons/army.svg';
+  if (a.includes('MARINE')) return '/agency-icons/marines.png';
+  if (a.includes('COAST GUARD')) return '/agency-icons/coastguard.svg';
+  if (a.includes('NASA') || a.includes('AERONAUTICS')) return '/agency-icons/nasa.svg';
+  if (a.includes('VETERAN') || / VA[. ]/.test(a) || a === 'VA') return '/agency-icons/va.svg';
+  if (a.includes('HOMELAND') || a.includes('DHS')) return '/agency-icons/dhs.svg';
+  // DEFENSE before HEALTH: "DEFENSE HEALTH AGENCY (DHA)" is DoD, not HHS.
+  if (a.includes('DEFENSE') || a.includes('DOD')) return '/agency-icons/dod.svg';
+  if (a.includes('HEALTH') || a.includes('HHS')) return '/agency-icons/hhs.svg';
+  if (a.includes('GENERAL SERVICES') || a.includes('GSA')) return '/agency-icons/gsa.png';
+  return null;
+}
+function getAgencyAbbr(agency: string): string {
+  const a = agency.toUpperCase();
+  if (a.includes('NAVY') || a.includes('NAVAL')) return 'DON';
+  if (a.includes('AIR FORCE') || a.includes('SPACE FORCE')) return 'DAF';
+  if (a.includes('ARMY')) return 'USA';
+  if (a.includes('MARINE')) return 'USMC';
+  if (a.includes('COAST GUARD')) return 'USCG';
+  if (a.includes('NASA')) return 'NASA';
+  if (a.includes('VETERAN') || / VA[. ]/.test(a)) return 'VA';
+  if (a.includes('HOMELAND') || a.includes('DHS')) return 'DHS';
+  if (a.includes('DEFENSE') || a.includes('DOD')) return 'DOD';
+  if (a.includes('HEALTH') || a.includes('HHS')) return 'HHS';
+  if (a.includes('GSA')) return 'GSA';
+  const words = agency.trim().split(/[\s.]+/).filter(w => w.length > 2);
+  return words.slice(0, 3).map(w => w[0].toUpperCase()).join('') || agency[0]?.toUpperCase() || '?';
+}
+function AgencyIcon({ agency }: { agency: string }) {
+  const url = getAgencyLogoUrl(agency);
+  const abbr = getAgencyAbbr(agency);
+  const [failed, setFailed] = useState(false);
+  if (!url || failed) {
+    return <span className="text-xs font-black tracking-wider text-[#00c3ff]">{abbr}</span>;
+  }
+  return <img src={url} alt={abbr} className="w-11 h-11 object-contain" onError={() => setFailed(true)} />;
 }
 
 const MATURITY_DISPLAY: Record<string, string> = {
@@ -131,7 +172,6 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack }:
   const computed = Number.isFinite(score.match_score)
     ? Math.round(score.match_score)
     : computeLiveScore(dimension_scores);
-  const abbr = agencyAbbr(opp.agency);
   const agency = agencyDisplay(opp.agency);
   const due = dueInfo(opp.dueDate);
   const [breakdownOpen, setBreakdownOpen] = useState(false);
@@ -212,7 +252,9 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack }:
         {/* Agency badge */}
         <div className="w-14 h-14 rounded-xl border border-[#1e2d4a] bg-[#0f1a2e] flex items-center justify-center shrink-0 relative overflow-visible" title={opp.agency}>
           <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-0 group-hover/card:opacity-15 transition-opacity duration-500 rounded-xl scale-125" />
-          <span className="text-xs font-black tracking-wider text-[#00c3ff] relative z-10 transition-all duration-500 group-hover/card:scale-105 group-hover/card:drop-shadow-[0_0_12px_rgba(0,195,255,0.4)]">{abbr}</span>
+          <div className="relative z-10 transition-all duration-500 group-hover/card:scale-105 group-hover/card:drop-shadow-[0_0_12px_rgba(0,195,255,0.4)]">
+            <AgencyIcon agency={opp.agency} />
+          </div>
         </div>
 
         {/* Title → agency → metadata chips */}

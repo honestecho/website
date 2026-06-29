@@ -363,7 +363,7 @@ export default function SamGovNoticeAnalyzer() {
                             </div>
                             <div className="flex-1 min-w-0">
                               <p className="text-sm font-bold text-[#00c3ff] font-headline">Score against your real profile</p>
-                              <p className="text-sm text-[#8b9bb4] font-body leading-snug">Create a free account to score every notice against your actual NAICS, certifications, and past performance. The Summer Bid Clarity Pass gives 2 months of any paid plan free.</p>
+                              <p className="text-sm text-[#8b9bb4] font-body leading-snug">Create a free account to score every notice against your actual NAICS, certifications, and past performance. The Summer Bid Clarity Pass gives 2 months of any paid plan free. Offer ends July 31.</p>
                             </div>
                             <ChevronRight size={15} className="text-[#00c3ff] shrink-0 group-hover/unlock:translate-x-0.5 transition-transform duration-200" />
                           </Link>

@@ -193,7 +193,7 @@ export default function Pricing() {
           <Notice label="Summer Offer" className="mb-4">
             <span className="font-bold text-[#00c3ff]">Summer Bid Clarity Pass:</span> get 2 months of Starter or Pro, free. Use code{' '}
             <NoticeCode>SUMMER2026</NoticeCode>{' '}
-            at checkout. Cancel anytime; it renews at the regular price after.
+            at checkout. <span className="font-bold text-[#00c3ff]">Offer ends July 31.</span> Cancel anytime; it renews at the regular price after.
           </Notice>
           <div className="mb-8 rounded-xl border border-[#00c3ff]/30 bg-[#00c3ff]/5 px-6 py-4 text-center">
             <p className="font-headline font-bold text-white text-base md:text-lg tracking-tight">
@@ -244,7 +244,7 @@ export default function Pricing() {
                 </div>
                 {plan.price !== '$0' && plan.name !== 'Team' && (
                   <p className={`text-[#00c3ff] text-xs font-bold font-body ${'valueLine' in plan && plan.valueLine ? 'mb-1' : 'mb-5'}`}>
-                    2 months free with code SUMMER2026
+                    2 months free with SUMMER2026 · ends July 31
                   </p>
                 )}
                 {'valueLine' in plan && plan.valueLine && (

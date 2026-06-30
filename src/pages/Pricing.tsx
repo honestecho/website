@@ -191,9 +191,9 @@ export default function Pricing() {
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Summer Bid Clarity Pass offer strip */}
           <Notice label="Summer Offer" className="mb-4">
-            <span className="font-bold text-[#00c3ff]">Summer Bid Clarity Pass:</span> get 2 months of Starter or Pro, free. Use code{' '}
-            <NoticeCode>SUMMER2026</NoticeCode>{' '}
-            at checkout. <span className="font-bold text-[#00c3ff]">Offer ends July 31.</span> Cancel anytime; it renews at the regular price after.
+            <span className="font-bold text-[#00c3ff]">Summer Bid Clarity Pass:</span> Try Starter or Pro free for 2 months with code{' '}
+            <NoticeCode>SUMMER2026</NoticeCode>
+            . <span className="font-bold text-[#00c3ff]">Offer ends July 31.</span> Cancel anytime; renews at the regular price unless canceled.
           </Notice>
           <div className="mb-8 rounded-xl border border-[#00c3ff]/30 bg-[#00c3ff]/5 px-6 py-4 text-center">
             <p className="font-headline font-bold text-white text-base md:text-lg tracking-tight">

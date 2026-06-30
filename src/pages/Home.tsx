@@ -34,7 +34,7 @@ export default function Home() {
             {/* Summer Bid Clarity Pass promo */}
             <div className="mb-5 rounded-xl border border-[#00c3ff]/50 bg-[#00c3ff]/10 px-5 py-3">
               <p className="font-headline font-bold text-white text-sm md:text-base">Friends don't let friends read SAM.gov raw.</p>
-              <p className="text-[#a0b2c8] text-xs md:text-sm font-body mt-1">Summer Bid Clarity Pass: 2 months of any paid plan, free. <span className="text-[#00c3ff] font-bold">Offer ends July 31.</span> Cancel anytime.</p>
+              <p className="text-[#a0b2c8] text-xs md:text-sm font-body mt-1">Summer Bid Clarity Pass: Try any paid plan free for 2 months. <span className="text-[#00c3ff] font-bold">Ends July 31.</span></p>
             </div>
             <h1 className="font-headline font-black text-4xl sm:text-5xl lg:text-[4rem] xl:text-[4.5rem] tracking-tighter text-white mb-5 leading-tight drop-shadow-2xl">
               Stop wasting proposal hours on bids you{' '}

@@ -193,7 +193,7 @@ export default function Pricing() {
           <Notice label="Summer Offer" className="mb-4">
             <span className="font-bold text-[#00c3ff]">Summer Bid Clarity Pass:</span> Try Starter or Pro free for 2 months with code{' '}
             <NoticeCode>SUMMER2026</NoticeCode>
-            . <span className="font-bold text-[#00c3ff]">Offer ends July 31.</span> Cancel anytime; renews at the regular price unless canceled.
+.<br /> <span className="font-bold text-[#00c3ff]">Offer ends July 31.</span> Cancel anytime; renews at the regular price unless canceled.
           </Notice>
           <div className="mb-8 rounded-xl border border-[#00c3ff]/30 bg-[#00c3ff]/5 px-6 py-4 text-center">
             <p className="font-headline font-bold text-white text-base md:text-lg tracking-tight">

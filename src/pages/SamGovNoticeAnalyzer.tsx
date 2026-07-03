@@ -18,8 +18,26 @@ import {
   Cpu,
 } from 'lucide-react';
 import AnalyzerOpportunityCard from '../components/AnalyzerOpportunityCard';
+import { FAQPageSchema } from '../components/SchemaOrg';
 import { API_BASE } from '../lib/api';
 import { track } from '../lib/analytics';
+
+// ── FAQ (visible section + FAQPage schema for search/AI answer engines) ───────
+
+const ANALYZER_FAQ = [
+  {
+    q: 'What is the SAM.gov Notice Analyzer?',
+    a: 'A free tool that reads a live SAM.gov notice and returns a plain-English summary of what it asks for, who appears eligible to bid, and what gaps or blockers to check before committing proposal hours. No account is required.',
+  },
+  {
+    q: 'Does it write proposals or generate FAR citations?',
+    a: 'No. It analyzes notices to support bid/no-bid decisions. It does not write proposal content and it does not generate FAR citations. Verify any regulatory references against the source notice.',
+  },
+  {
+    q: 'Can I use it on sources sought and presolicitation notices?',
+    a: 'Yes. Paste any live SAM.gov notice link, including sources sought and presolicitation notices. Early-stage notices are often the best time to check fit, before the requirements harden.',
+  },
+];
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -468,6 +486,27 @@ export default function SamGovNoticeAnalyzer() {
                 </div>
                 <h3 className="font-headline font-black text-white text-lg mb-2">{title}</h3>
                 <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ────────────────────────────────────────────────────────────── */}
+      <FAQPageSchema items={ANALYZER_FAQ} />
+      <section className="py-16 px-6 relative" aria-label="Frequently asked questions">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-10 tracking-tight">
+            Common questions
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {ANALYZER_FAQ.map(({ q, a }) => (
+              <div
+                key={q}
+                className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-6 shadow-2xl hover:border-[#00c3ff]/30 transition-all duration-300"
+              >
+                <p className="text-white font-bold font-headline text-base mb-3">{q}</p>
+                <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">{a}</p>
               </div>
             ))}
           </div>

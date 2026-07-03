@@ -42,7 +42,7 @@ export default function Home() {
             </h1>
 
             <p className="text-[#a0b2c8] text-base lg:text-xl mb-8 leading-relaxed font-body">
-              HE Pursuit helps small government contractors evaluate government contracting opportunities for fit, eligibility, and pursuit value in minutes — so your team can make faster, more defensible bid/no-bid decisions before committing proposal capacity.
+              HE Pursuit is a bid/no-bid decision tool for small government contractors. It evaluates SAM.gov opportunities for fit, eligibility, and pursuit value in minutes — so your team can make faster, more defensible decisions before committing proposal capacity.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-4">

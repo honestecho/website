@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useLayoutEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { Maximize2, X } from 'lucide-react';
 import HeroPursuitCard from './HeroPursuitCard';
 
@@ -11,16 +12,22 @@ export default function HeroPursuitCardZoom() {
   const [open, setOpen] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
     document.addEventListener('keydown', onKey);
+    // Lock scroll BEFORE paint and reserve the scrollbar's width so removing it
+    // doesn't reflow the page horizontally (the "everything jumps" mishap).
     const prevOverflow = document.body.style.overflow;
+    const prevPaddingRight = document.body.style.paddingRight;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = 'hidden';
+    if (scrollbarWidth > 0) document.body.style.paddingRight = `${scrollbarWidth}px`;
     closeRef.current?.focus();
     return () => {
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = prevOverflow;
+      document.body.style.paddingRight = prevPaddingRight;
     };
   }, [open]);
 
@@ -40,8 +47,9 @@ export default function HeroPursuitCardZoom() {
         </span>
       </button>
 
-      {/* Lightbox */}
-      {open && (
+      {/* Lightbox — portaled to <body> so it escapes the transformed hero
+          column's stacking context (otherwise the filmstrip paints over it). */}
+      {open && createPortal(
         <div
           role="dialog"
           aria-modal="true"
@@ -60,10 +68,11 @@ export default function HeroPursuitCardZoom() {
           </button>
 
           {/* Stop backdrop-close when interacting with the card itself */}
-          <div onClick={(e) => e.stopPropagation()} className="my-auto origin-center scale-100 sm:scale-110 lg:scale-[1.3] transition-transform duration-200">
+          <div onClick={(e) => e.stopPropagation()} className="my-auto origin-center scale-100 sm:scale-110 lg:scale-[1.3]">
             <HeroPursuitCard />
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

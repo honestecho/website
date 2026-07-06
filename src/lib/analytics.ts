@@ -40,7 +40,13 @@ function getAttribution(): Record<string, string> {
     const params = new URLSearchParams(window.location.search);
     const captured: Record<string, string> = {};
     params.forEach((v, k) => {
-      if (k === 'src' || k === 'promo' || k.startsWith('utm_')) captured[k] = v;
+      if (k === 'src' || k === 'promo' || k.startsWith('utm_')) {
+        // Email clients sometimes fold trailing punctuation into the link
+        // (e.g. a closing quote arrives as %22) — strip it so campaign codes
+        // group cleanly.
+        const clean = v.replace(/[\s"'.,;:)\]}>]+$/, '');
+        if (clean) captured[k] = clean;
+      }
     });
     if (Object.keys(captured).length === 0) return {};
     try { sessionStorage.setItem(KEY, JSON.stringify(captured)); } catch { /* still return captured */ }

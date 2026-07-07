@@ -142,9 +142,18 @@ export default function Signup() {
         // Email confirmation is disabled — session is live immediately.
         // Bridge to pursuit via URL hash tokens; Supabase client there picks
         // them up automatically and fires SIGNED_IN without a second login.
-        const { access_token, refresh_token } = data.session;
-        window.location.href =
-          `https://pursuit.honestecho.com#access_token=${access_token}&refresh_token=${refresh_token}&type=signup`;
+        // auth-js rejects the hash as an implicit-grant redirect unless
+        // expires_in AND token_type are present alongside the tokens.
+        const { access_token, refresh_token, expires_in, expires_at, token_type } = data.session;
+        const params = new URLSearchParams({
+          access_token,
+          refresh_token,
+          expires_in: String(expires_in ?? 3600),
+          ...(expires_at ? { expires_at: String(expires_at) } : {}),
+          token_type: token_type ?? 'bearer',
+          type: 'signup',
+        });
+        window.location.href = `https://pursuit.honestecho.com#${params.toString()}`;
         return;
       }
       // Fallback: confirmation still required — show verify state.
@@ -232,6 +241,17 @@ export default function Signup() {
                 The bid/no-bid intelligence engine built for small government contractors. Free to start.
               </p>
             </div>
+
+            {/* Summer Bid Clarity Pass strip — mirrors the Home/Pricing banners so the
+                offer survives the click into signup. Manual wind-down after July 31. */}
+            {state === 'form' && (
+              <div className="mb-4 border border-[#00c3ff]/40 rounded-xl px-4 py-3 bg-[#0b1120]/80">
+                <p className="text-[#a0b2c8] text-xs md:text-sm font-body">
+                  <span className="text-[#00c3ff] font-bold">Summer Bid Clarity Pass:</span>{' '}
+                  after signup, use code <span className="text-white font-bold">SUMMER2026</span> at checkout for 2 months of any paid plan free. <span className="text-[#00c3ff] font-bold">Ends July 31.</span>
+                </p>
+              </div>
+            )}
 
             {state === 'form' ? (
               <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden">

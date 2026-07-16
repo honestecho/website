@@ -40,7 +40,11 @@ function getAttribution(): Record<string, string> {
     const params = new URLSearchParams(window.location.search);
     const captured: Record<string, string> = {};
     params.forEach((v, k) => {
-      if (k === 'src' || k === 'promo' || k.startsWith('utm_')) {
+      // gclid/gbraid/wbraid: Google Ads auto-tagging identifiers. Without them
+      // ad clicks can't be joined to sessions and the paid test can't be
+      // reconciled click-by-click (Codex, 2026-07-15). Keep ?src= as the
+      // human-readable campaign tag; capture both.
+      if (k === 'src' || k === 'promo' || k === 'gclid' || k === 'gbraid' || k === 'wbraid' || k.startsWith('utm_')) {
         // Email clients sometimes fold trailing punctuation into the link
         // (e.g. a closing quote arrives as %22) — strip it so campaign codes
         // group cleanly.

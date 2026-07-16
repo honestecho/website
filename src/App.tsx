@@ -30,6 +30,7 @@ const Terms = lazy(() => import('./pages/Terms'));
 const Privacy = lazy(() => import('./pages/Privacy'));
 const FAQ = lazy(() => import('./pages/FAQ'));
 const SamGovNoticeAnalyzer = lazy(() => import('./pages/SamGovNoticeAnalyzer'));
+const PursuitReadout = lazy(() => import('./pages/PursuitReadout'));
 const SharedPackage = lazy(() => import('./pages/SharedPackage'));
 const TeamWaitlist = lazy(() => import('./pages/TeamWaitlist'));
 const NotFound = lazy(() => import('./pages/NotFound'));
@@ -121,6 +122,7 @@ function App() {
           <Route path="/vs-govtribe/" element={<VsGovTribe />} />
           <Route path="/sam-gov-opportunity-analysis" element={<SamGovAnalysis />} />
           <Route path="/tools/sam-gov-notice-analyzer" element={<SamGovNoticeAnalyzer />} />
+          <Route path="/tools/pursuit-readout" element={<PursuitReadout />} />
           <Route path="/p/:token" element={<SharedPackage />} />
           <Route path="/team-waitlist" element={<TeamWaitlist />} />
           <Route path="*" element={<NotFound />} />

@@ -34,6 +34,7 @@ const routes = [
   '/sam-gov-opportunity-analysis',
   '/team-waitlist',
   '/tools/sam-gov-notice-analyzer',
+  '/tools/pursuit-readout',
 ];
 
 async function prerender() {

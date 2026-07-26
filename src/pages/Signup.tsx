@@ -12,18 +12,14 @@ interface FormData {
   fullName: string;
   company: string;
   email: string;
-  phone: string;
   password: string;
-  confirmPassword: string;
 }
 
 const initialForm: FormData = {
   fullName: '',
   company: '',
   email: '',
-  phone: '',
   password: '',
-  confirmPassword: '',
 };
 
 export default function Signup() {
@@ -35,8 +31,8 @@ export default function Signup() {
   const [resent, setResent] = useState(false);
   const [resendError, setResendError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [invalidField, setInvalidField] = useState<keyof FormData | null>(null);
+  const [interacted, setInteracted] = useState(false);
 
   // Summer Bid Clarity Pass attribution: log when a promo link lands here.
   useEffect(() => {
@@ -45,6 +41,9 @@ export default function Signup() {
   }, []);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    // Fire once on first field interaction so we can measure form engagement
+    // vs. valid-submit (signup_started only fires post-validation). (Codex 2026-07-26.)
+    if (!interacted) { setInteracted(true); track('signup_form_interacted'); }
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
     setError('');
     setInvalidField(null);
@@ -97,12 +96,11 @@ export default function Signup() {
     e.preventDefault();
     setError('');
     setInvalidField(null);
+    track('signup_submit_attempted', { method: 'email' });
 
     if (!form.fullName.trim()) { failValidation('fullName', 'Full name is required.'); return; }
-    if (!form.company.trim()) { failValidation('company', 'Company name is required.'); return; }
     if (!form.email.trim()) { failValidation('email', 'Email is required.'); return; }
     if (form.password.length < 8) { failValidation('password', 'Password must be at least 8 characters.'); return; }
-    if (form.password !== form.confirmPassword) { failValidation('confirmPassword', 'Passwords do not match.'); return; }
 
     setLoading(true);
     track('signup_started', { method: 'email' });
@@ -113,8 +111,10 @@ export default function Signup() {
         options: {
           data: {
             full_name: form.fullName.trim(),
-            company: form.company.trim(),
-            phone: form.phone.trim(),
+            // Omit company entirely when blank — an empty string is not the same
+            // as "unknown" downstream (profile create / welcome email). Collected
+            // again during in-app onboarding. (Codex review 2026-07-26.)
+            ...(form.company.trim() ? { company: form.company.trim() } : {}),
           },
           emailRedirectTo: 'https://honestecho.com/welcome',
         },
@@ -301,7 +301,9 @@ export default function Signup() {
                       />
                     </div>
                     <div className="col-span-2 sm:col-span-1">
-                      <label htmlFor="company" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">Company</label>
+                      <label htmlFor="company" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">
+                        Company <span className="text-[#8b9bb4] normal-case font-normal tracking-normal">(optional)</span>
+                      </label>
                       <input
                         id="company"
                         name="company"
@@ -310,7 +312,6 @@ export default function Signup() {
                         placeholder="Acme Federal LLC"
                         value={form.company}
                         onChange={handleChange}
-                        required
                         {...errorProps('company')}
                         className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors placeholder:text-[#8b9bb4]"
                       />
@@ -329,22 +330,6 @@ export default function Signup() {
                       onChange={handleChange}
                       required
                       {...errorProps('email')}
-                      className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors placeholder:text-[#8b9bb4]"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="phone" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">
-                      Phone <span className="text-[#8b9bb4] normal-case font-normal tracking-normal">(optional)</span>
-                    </label>
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      autoComplete="tel"
-                      placeholder="+1 (555) 000-0000"
-                      value={form.phone}
-                      onChange={handleChange}
                       className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors placeholder:text-[#8b9bb4]"
                     />
                   </div>
@@ -372,28 +357,6 @@ export default function Signup() {
                     </div>
                   </div>
 
-                  <div>
-                    <label htmlFor="confirmPassword" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-1.5">Confirm Password</label>
-                    <div className="relative">
-                      <input
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        type={showConfirmPassword ? 'text' : 'password'}
-                        autoComplete="new-password"
-                        placeholder="Repeat password"
-                        value={form.confirmPassword}
-                        onChange={handleChange}
-                        required
-                        {...errorProps('confirmPassword')}
-                        className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg px-4 py-3 pr-12 text-sm focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors placeholder:text-[#8b9bb4]"
-                      />
-                      <button type="button" onClick={() => setShowConfirmPassword(v => !v)}
-                        aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
-                        className="absolute right-1 top-1/2 -translate-y-1/2 p-3 text-[#8b9bb4] hover:text-white transition-colors rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]">
-                        {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                      </button>
-                    </div>
-                  </div>
 
                   {error && (
                     <p id="signup-error" role="alert" className="text-red-400 text-sm bg-red-900/20 border border-red-700/30 rounded-lg px-4 py-3">{error}</p>

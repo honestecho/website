@@ -98,10 +98,20 @@ function ResultSkeleton() {
   );
 }
 
+// ── Experiment P-B: sample-notice pre-fill ───────────────────────────────────
+// Pre-load a real, known-good SAM.gov notice so a first-time visitor sees a full
+// result in one click instead of hunting for a Notice ID (measured: 105 analyzer
+// views → 2 submissions before this). Durable: this notice is stored in our
+// `opportunities` table, so /public/analyze scores it from our own DB/cache even
+// after it closes on SAM.gov. Rotate the example by swapping this single id.
+const SAMPLE_NOTICE_ID  = '49d361df71ec4419932f66097e1a498e';
+const SAMPLE_NOTICE_URL = `https://sam.gov/opp/${SAMPLE_NOTICE_ID}/view`;
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function SamGovNoticeAnalyzer() {
-  const [input, setInput]             = useState('');
+  const [input, setInput]             = useState(SAMPLE_NOTICE_URL);
+  const [isExample, setIsExample]     = useState(true);
   const [loading, setLoading]         = useState(false);
   const [result, setResult]           = useState<AnalysisResult | null>(null);
   const [error, setError]             = useState<string | null>(null);
@@ -120,7 +130,7 @@ export default function SamGovNoticeAnalyzer() {
     if (!trimmed) { setError('Paste a Notice ID or SAM.gov URL.'); return; }
 
     const parsedFromUrl = trimmed.includes('sam.gov');
-    track('public_analyzer_input_submitted', { parsed_from_url: parsedFromUrl });
+    track('public_analyzer_input_submitted', { parsed_from_url: parsedFromUrl, example: isExample });
 
     setLoading(true);
     try {
@@ -237,7 +247,8 @@ export default function SamGovNoticeAnalyzer() {
                   id="notice-input"
                   type="text"
                   value={input}
-                  onChange={e => setInput(e.target.value)}
+                  onChange={e => { setInput(e.target.value); if (isExample) setIsExample(false); }}
+                  onFocus={e => { if (isExample) e.currentTarget.select(); }}
                   placeholder="Paste SAM.gov Notice ID or URL"
                   autoComplete="off"
                   className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg pl-11 pr-4 py-3.5 text-sm focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors placeholder:text-[#8b9bb4]"
@@ -255,6 +266,22 @@ export default function SamGovNoticeAnalyzer() {
                 )}
               </button>
             </div>
+            {isExample && (
+              <p className="text-xs text-[#00c3ff] font-body mt-3 flex items-start gap-2">
+                <Sparkles className="w-3 h-3 shrink-0 mt-0.5" strokeWidth={2} />
+                <span>
+                  <span className="font-bold">Example notice loaded</span> — a real GPO IT-services opportunity. Hit{' '}
+                  <span className="font-bold">Analyze</span> to see a live read, or{' '}
+                  <button
+                    type="button"
+                    onClick={() => { setInput(''); setIsExample(false); document.getElementById('notice-input')?.focus(); }}
+                    className="underline hover:text-white transition-colors font-semibold"
+                  >
+                    clear it and paste your own
+                  </button>.
+                </span>
+              </p>
+            )}
             <p className="text-xs text-[#8b9bb4] font-body mt-3">
               Find the Notice ID on any SAM.gov opportunity page — or just paste the full URL.
               No login required for an initial assessment.

@@ -135,7 +135,10 @@ export default function SamGovAnalysis() {
       <section className="py-8 px-6">
         <div className="max-w-7xl mx-auto flex flex-col items-center gap-5">
           <p className="text-[#a0b2c8] text-base font-body text-center">
-            Paste a live notice number and see the analysis for yourself.
+            Paste a live notice number and see the analysis for yourself. Not sure where to look?{' '}
+            <Link to="/sam-gov-hidden-opportunities/" className="text-[#00c3ff] hover:text-white transition-colors underline underline-offset-4">
+              Start with the opportunities SAM.gov&rsquo;s search hides
+            </Link>.
           </p>
           <Link
             to="/tools/sam-gov-notice-analyzer/"

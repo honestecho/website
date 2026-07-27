@@ -14,6 +14,8 @@ Honest Echo LLC is a woman-owned, veteran-owned small business based in Fairfax,
 - [HE Pursuit vs GovTribe](https://honestecho.com/vs-govtribe/): A GovTribe alternative built for lean GovCon capture teams.
 - [SAM.gov Opportunity Analysis](https://honestecho.com/sam-gov-opportunity-analysis/): How HE Pursuit analyzes SAM.gov opportunities against your business profile.
 - [SAM.gov Opportunities Its Search Hides](https://honestecho.com/sam-gov-hidden-opportunities/): NAICS-filtered search skips Sources Sought, Special Notices, and draft RFPs posted with no NAICS code; HE Pursuit indexes every notice and makes it searchable by keyword.
+- [Should You Respond to a Sources Sought Notice?](https://honestecho.com/sources-sought-worth-responding/): When responding to a Sources Sought/RFI is worth the effort — set-aside influence, requirement shaping, and how to decide in minutes.
+- [SAM.gov Recompete Tracking](https://honestecho.com/sam-gov-recompete-tracking/): Track expiring federal contracts in your NAICS lane and position for recompetes quarters before the RFP posts.
 
 ## Company
 - [About](https://honestecho.com/about/): Honest Echo LLC — a woman-owned, veteran-owned small business serving the government contracting community.

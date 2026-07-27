@@ -60,6 +60,31 @@ function getAttribution(): Record<string, string> {
   }
 }
 
+// First-touch external referrer (organic-vs-direct attribution). Captured once
+// per session from document.referrer at the first tracked event, kept in
+// sessionStorage so SPA navigation doesn't lose it. Same-site referrers are
+// ignored (SPA hard-loads / internal navigation aren't a traffic source).
+// Stored as hostname only — enough to distinguish google.com / bing.com /
+// chatgpt.com / a backlink, with no URL payload to leak.
+function getFirstTouchReferrer(): string {
+  const KEY = 'he_referrer';
+  try {
+    const stored = sessionStorage.getItem(KEY);
+    if (stored !== null) return stored; // '' = already checked, none/internal
+    let host = '';
+    if (document.referrer) {
+      try {
+        const refHost = new URL(document.referrer).hostname;
+        if (refHost && refHost !== window.location.hostname) host = refHost;
+      } catch { /* malformed referrer — treat as none */ }
+    }
+    sessionStorage.setItem(KEY, host);
+    return host;
+  } catch {
+    return '';
+  }
+}
+
 export function track(event: string, props: Record<string, unknown> = {}): void {
   if (import.meta.env.DEV) { console.debug('[analytics]', event, props); return; }
   try {
@@ -71,7 +96,11 @@ export function track(event: string, props: Record<string, unknown> = {}): void 
           event_name:   event,
           anonymous_id: getAnonId(),
           page:         window.location.pathname,
-          properties:   { ...getAttribution(), ...props },
+          properties:   {
+            ...getAttribution(),
+            ...(getFirstTouchReferrer() ? { referrer: getFirstTouchReferrer() } : {}),
+            ...props,
+          },
           source:       'website',
         }],
       }),

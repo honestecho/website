@@ -33,6 +33,8 @@ const routes = [
   '/vs-govtribe',
   '/sam-gov-opportunity-analysis',
   '/sam-gov-hidden-opportunities',
+  '/sources-sought-worth-responding',
+  '/sam-gov-recompete-tracking',
   '/team-waitlist',
   '/tools/sam-gov-notice-analyzer',
   '/tools/pursuit-readout',

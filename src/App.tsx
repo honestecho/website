@@ -18,6 +18,8 @@ import VsGovWin from './pages/VsGovWin';
 import VsGovTribe from './pages/VsGovTribe';
 import SamGovAnalysis from './pages/SamGovAnalysis';
 import SamGovHiddenOpportunities from './pages/SamGovHiddenOpportunities';
+import SourcesSoughtGuide from './pages/SourcesSoughtGuide';
+import SamGovRecompeteTracking from './pages/SamGovRecompeteTracking';
 
 // Everything else stays code-split — lower-traffic / interactive pages where a
 // brief hard-load shift is inconsequential and the bundle savings are worth more.
@@ -124,6 +126,10 @@ function App() {
           <Route path="/sam-gov-opportunity-analysis" element={<SamGovAnalysis />} />
           <Route path="/sam-gov-hidden-opportunities" element={<SamGovHiddenOpportunities />} />
           <Route path="/sam-gov-hidden-opportunities/" element={<SamGovHiddenOpportunities />} />
+          <Route path="/sources-sought-worth-responding" element={<SourcesSoughtGuide />} />
+          <Route path="/sources-sought-worth-responding/" element={<SourcesSoughtGuide />} />
+          <Route path="/sam-gov-recompete-tracking" element={<SamGovRecompeteTracking />} />
+          <Route path="/sam-gov-recompete-tracking/" element={<SamGovRecompeteTracking />} />
           <Route path="/tools/sam-gov-notice-analyzer" element={<SamGovNoticeAnalyzer />} />
           <Route path="/tools/pursuit-readout" element={<PursuitReadout />} />
           <Route path="/p/:token" element={<SharedPackage />} />

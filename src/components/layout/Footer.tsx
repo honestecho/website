@@ -77,6 +77,9 @@ export default function Footer() {
                   { label: 'vs GovWin', to: '/vs-govwin/' },
                   { label: 'vs GovTribe', to: '/vs-govtribe/' },
                   { label: 'SAM.gov Analysis', to: '/sam-gov-opportunity-analysis/' },
+                  { label: 'Hidden Opportunities', to: '/sam-gov-hidden-opportunities/' },
+                  { label: 'Sources Sought Guide', to: '/sources-sought-worth-responding/' },
+                  { label: 'Recompete Tracking', to: '/sam-gov-recompete-tracking/' },
                 ].map(({ label, to }) => (
                   <li key={to}>
                     <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">

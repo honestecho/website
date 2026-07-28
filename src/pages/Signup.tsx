@@ -34,7 +34,7 @@ export default function Signup() {
   const [invalidField, setInvalidField] = useState<keyof FormData | null>(null);
   const [interacted, setInteracted] = useState(false);
 
-  // Summer Bid Clarity Pass attribution: log when a promo link lands here.
+  // Fall Bid Clarity Pass attribution: log when a promo link lands here.
   useEffect(() => {
     const promo = new URLSearchParams(window.location.search).get('promo');
     if (promo) track('signup_promo_landed', { promo });
@@ -242,13 +242,13 @@ export default function Signup() {
               </p>
             </div>
 
-            {/* Summer Bid Clarity Pass strip — mirrors the Home/Pricing banners so the
-                offer survives the click into signup. Manual wind-down after July 31. */}
+            {/* Fall Bid Clarity Pass strip — mirrors the Home/Pricing banners so the
+                offer survives the click into signup. Manual wind-down after November 30. */}
             {state === 'form' && (
               <div className="mb-4 border border-[#00c3ff]/40 rounded-xl px-4 py-3 bg-[#0b1120]/80">
                 <p className="text-[#a0b2c8] text-xs md:text-sm font-body">
-                  <span className="text-[#00c3ff] font-bold">Summer Bid Clarity Pass:</span>{' '}
-                  after signup, use code <span className="text-white font-bold">SUMMER2026</span> at checkout for 2 months of any paid plan free. <span className="text-[#00c3ff] font-bold">Ends July 31.</span>
+                  <span className="text-[#00c3ff] font-bold">Fall Bid Clarity Pass:</span>{' '}
+                  after signup, use code <span className="text-white font-bold">FALL2026</span> at checkout for 2 months of any paid plan free. <span className="text-[#00c3ff] font-bold">Ends November 30.</span>
                 </p>
               </div>
             )}

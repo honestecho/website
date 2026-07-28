@@ -408,7 +408,7 @@ export default function SamGovNoticeAnalyzer() {
                         {/* Unlock CTA */}
                         <div className="border-t border-[#1e2d4a]">
                           <Link
-                            to="/signup/?promo=summer2026"
+                            to="/signup/?promo=fall2026"
                             onClick={() => track('public_analyzer_unlock_cta_clicked', { notice_id: result.noticeId })}
                             className="flex items-center gap-3 px-5 py-4 hover:bg-[#0f1a2e] transition-colors duration-300 group/unlock"
                           >
@@ -417,7 +417,7 @@ export default function SamGovNoticeAnalyzer() {
                             </div>
                             <div className="flex-1 min-w-0">
                               <p className="text-sm font-bold text-[#00c3ff] font-headline">Score against your real profile</p>
-                              <p className="text-sm text-[#8b9bb4] font-body leading-snug">Create a free account to score every notice against your actual NAICS, certifications, and past performance. The Summer Bid Clarity Pass gives 2 months of any paid plan free. Offer ends July 31.</p>
+                              <p className="text-sm text-[#8b9bb4] font-body leading-snug">Create a free account to score every notice against your actual NAICS, certifications, and past performance. The Fall Bid Clarity Pass gives 2 months of any paid plan free. Offer ends November 30.</p>
                             </div>
                             <ChevronRight size={15} className="text-[#00c3ff] shrink-0 group-hover/unlock:translate-x-0.5 transition-transform duration-200" />
                           </Link>

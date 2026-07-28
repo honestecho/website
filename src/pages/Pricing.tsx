@@ -87,7 +87,7 @@ const plans = [
       'No deep eligibility or document analysis',
     ],
     cta: 'Start Free',
-    ctaTo: '/signup/?plan=free&promo=summer2026',
+    ctaTo: '/signup/?plan=free&promo=fall2026',
   },
   {
     name: 'Starter',
@@ -108,7 +108,7 @@ const plans = [
       'Up to 25 pursuits per month',
     ],
     cta: 'Select Starter',
-    ctaTo: '/signup/?plan=starter&promo=summer2026',
+    ctaTo: '/signup/?plan=starter&promo=fall2026',
   },
   {
     name: 'Pro',
@@ -126,7 +126,7 @@ const plans = [
       'Downloadable decision reports (PDF)',
     ],
     cta: 'Select Pro',
-    ctaTo: '/signup/?plan=pro&promo=summer2026',
+    ctaTo: '/signup/?plan=pro&promo=fall2026',
   },
   {
     name: 'Team',
@@ -189,11 +189,11 @@ export default function Pricing() {
       {/* ── SECTION 2 — Pricing Cards ────────────────────────────────────── */}
       <section className="pb-6 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          {/* Summer Bid Clarity Pass offer strip */}
+          {/* Fall Bid Clarity Pass offer strip */}
           <Notice label="Summer Offer" className="mb-4">
-            <span className="font-bold text-[#00c3ff]">Summer Bid Clarity Pass:</span> Try Starter or Pro free for 2 months with code{' '}
-            <NoticeCode>SUMMER2026</NoticeCode>
-.<br /> <span className="font-bold text-[#00c3ff]">Offer ends July 31.</span> Cancel anytime; renews at the regular price unless canceled.
+            <span className="font-bold text-[#00c3ff]">Fall Bid Clarity Pass:</span> Try Starter or Pro free for 2 months with code{' '}
+            <NoticeCode>FALL2026</NoticeCode>
+.<br /> <span className="font-bold text-[#00c3ff]">Offer ends November 30.</span> Cancel anytime; renews at the regular price unless canceled.
           </Notice>
           <div className="mb-8 rounded-xl border border-[#00c3ff]/30 bg-[#00c3ff]/5 px-6 py-4 text-center">
             <p className="font-headline font-bold text-white text-base md:text-lg tracking-tight">
@@ -244,7 +244,7 @@ export default function Pricing() {
                 </div>
                 {plan.price !== '$0' && plan.name !== 'Team' && (
                   <p className={`text-[#00c3ff] text-xs font-bold font-body ${'valueLine' in plan && plan.valueLine ? 'mb-1' : 'mb-5'}`}>
-                    2 months free with SUMMER2026 · ends July 31
+                    2 months free with FALL2026 · ends November 30
                   </p>
                 )}
                 {'valueLine' in plan && plan.valueLine && (
@@ -490,7 +490,7 @@ export default function Pricing() {
             No credit card required. Real opportunities from day one.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/signup/?promo=summer2026" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline">
+            <Link to="/signup/?promo=fall2026" className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline">
               Start Free
               <ArrowRight className="w-4 h-4" />
             </Link>

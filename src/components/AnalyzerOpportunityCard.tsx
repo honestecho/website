@@ -443,7 +443,7 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack }:
           <ExternalLink size={13} /> View on SAM.gov
         </a>
         <Link
-          to="/signup/?promo=summer2026"
+          to="/signup/?promo=fall2026"
           onClick={() => onTrack?.('analyzer_card_signup_clicked')}
           className="flex items-center justify-center gap-1.5 px-5 py-2 rounded-lg font-headline font-bold text-sm bg-[#00c3ff] text-[#030B17] shadow-[0_0_15px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
         >

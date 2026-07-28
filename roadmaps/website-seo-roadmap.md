@@ -1,6 +1,6 @@
 # honestecho.com — SEO Roadmap
 
-**Status:** ✅ **PRODUCTION / LAUNCH-READY** (2026-06-04)
+**Status:** ✅ **PRODUCTION / LAUNCH-READY** (2026-06-04 · polish + analyzer pass 2026-06-07)
 **Lighthouse (mobile):** SEO **100** · Accessibility **100** · Best Practices **100** · CLS **0.00** · LCP ~0.5s
 **Baseline was:** 68/100 (C) — April 2026 (Technical 45 · Content 85 · Architecture 80 · Cross-Page 75 · Social/Schema 90)
 
@@ -25,6 +25,28 @@ Full pre-launch review (live SEO sweep across all 14 routes + Lighthouse + perf 
 - ✅ **CLS 0.32 → 0.00** on landing pages — eager-loaded the 4 dedicated SEO landing pages (pricing + 3 comparison/analysis) so the lazy Suspense fallback no longer flashes over prerendered content (+7KB gzip only).
 
 **Residual (non-blocking):** lower-traffic content pages (about/faq/legal/signup/analyzer/team-waitlist/contact) stay code-split with a minor hard-load CLS — eager-load individually if any becomes a campaign landing target. Claims verified accurate by owner (public-govt-doc processing / no-training / HE certs).
+
+---
+
+## Pre-Launch Polish + Analyzer Pass — 2026-06-07 (complete)
+
+Leadership pre-launch notes + analyzer fixes. All shipped to prod (CF Pages master + Render), Codex-reviewed.
+
+**Leadership polish** (commit `9fa1070`)
+- ✅ Hero CTA "Try Now" → **"Analyze a SAM.gov Notice"**; removed trust eyebrow.
+- ✅ Header CTA "Login" → **"Launch App"** (matches footer).
+- ✅ Pricing **boundary callout** above cards: "Free helps you screen opportunities. Paid plans help you make bid/no-bid decisions."
+- ✅ Security **Data Handling** card (account/document deletion, retention — request-phrased) + named **CUI / export-controlled** in the sensitivity note.
+- ✅ Testimonial cards now fly in like other boxes (`FlyIn` opt-in `alwaysAnimate` — they were eager-shown at the fold).
+
+**Consistency + scroll fix** (commit `b945fa7`)
+- ✅ **Consistent page-start** — normalized hero top padding `pt-16 → pt-24` across FAQ, Security, Terms, Privacy, SamGovAnalysis, TeamWaitlist (now 96px like Pricing/About/Contact).
+- ✅ **Footer scroll-to-top fixed** — in the prerendered/hydrated build the browser restored the prior bottom-scroll *after* the `useLayoutEffect` scroll, so footer-link clicks landed mid-page (never reproduced in `vite dev`). Fix: `history.scrollRestoration='manual'` pre-hydration + two-frame post-paint re-assert + `overflow-anchor:none`. Verified in a prerendered preview build (served `dist`).
+
+**Analyzer** (card commit `ce55fc7`; backend bug fix HE-Pursuit `e316303`)
+- ✅ **Prod analyzer was 100% broken** — `/api/public/analyze` missing `await` on the async rate-limiter → returned 429 on *every* call (website + dashboard). Fixed; fresh visitors get working analyses. Local-dev bypass gated on `NODE_ENV=development` (inert on Render). See [[project_he_analyzer_local_testing]].
+- ✅ **Analyzer result card now matches the production dashboard `OpportunityCard`** — plain-text grouped rows (Contract Identity / Operational Fit), blue Solicitation badge, fit bar + 5-band label under score (no "MATCH SCORE"), production decision banner + vocab (GO / CONDITIONAL GO / NO-GO), Calendar due icon, matching action bar. Source-of-truth = live dashboard card (Aaron's call); hero card left as-is.
+- ⏳ **Known gap:** analyzer badge hardcoded "Solicitation" — the public analyzer API doesn't return notice maturity; needs a small backend change to show real maturity (presol / sources-sought) + non-actionable footer copy.
 
 ---
 

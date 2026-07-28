@@ -1,0 +1,223 @@
+## LIVE EVIDENCE (curl, 2026-06-04)
+https://honestecho.com/vs-govwin/ prerendered <head>:
+  <meta name="description" content="Find, qualify, and decide ... bid/no-bid recommendation in minutes"  <-- HOME generic desc
+  <link rel="canonical" href="https://honestecho.com/" />   <-- HOMEPAGE canonical on EVERY deep route
+  <meta property="og:title" content="HE Pursuit — Bid/No-Bid Decisions..." />  <-- generic
+  NO per-page <title> tag at all
+Home route / is correct. Body content IS present on deep routes on the CURRENTLY-LIVE deploy.
+Deploy pipeline (pathtoproduction.md) runs `npm run build` = tsc + vite build, NO prerender. Only `build:static` runs scripts/prerender.js.
+
+## App.tsx (routing — note React.lazy for all non-Home routes + single Suspense)
+import { useEffect, useLayoutEffect, lazy, Suspense } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+import Home from './pages/Home';
+import { OrganizationSchema } from './components/SchemaOrg';
+import { track } from './lib/analytics';
+
+// Home stays eager (it's the landing LCP). Everything else is code-split into
+// its own chunk so the initial bundle isn't dragged down by framer-motion-heavy
+// secondary pages.
+const About = lazy(() => import('./pages/About'));
+const Contact = lazy(() => import('./pages/Contact'));
+const AppRedirect = lazy(() => import('./pages/AppRedirect'));
+const Signup = lazy(() => import('./pages/Signup'));
+const Welcome = lazy(() => import('./pages/Welcome'));
+const Pricing = lazy(() => import('./pages/Pricing'));
+const Security = lazy(() => import('./pages/Security'));
+const Terms = lazy(() => import('./pages/Terms'));
+const Privacy = lazy(() => import('./pages/Privacy'));
+const FAQ = lazy(() => import('./pages/FAQ'));
+const VsGovWin = lazy(() => import('./pages/VsGovWin'));
+const VsGovTribe = lazy(() => import('./pages/VsGovTribe'));
+const SamGovAnalysis = lazy(() => import('./pages/SamGovAnalysis'));
+const SamGovNoticeAnalyzer = lazy(() => import('./pages/SamGovNoticeAnalyzer'));
+const SharedPackage = lazy(() => import('./pages/SharedPackage'));
+const TeamWaitlist = lazy(() => import('./pages/TeamWaitlist'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useLayoutEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+}
+
+function PageViews() {
+  const { pathname } = useLocation();
+  useEffect(() => { track('page_viewed', { path: pathname }); }, [pathname]);
+  return null;
+}
+
+function App() {
+  return (
+    <div className="min-h-screen flex flex-col bg-[#030B17] relative">
+      {/* Global background — grid + two drifting glow blobs */}
+      <div className="fixed inset-0 pointer-events-none z-0" aria-hidden="true">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808018_1px,transparent_1px),linear-gradient(to_bottom,#80808018_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="animate-glow-a w-[150vw] h-[150vh] rounded-full blur-[160px] bg-[radial-gradient(ellipse,rgba(0,195,255,0.40)_0%,rgba(91,140,255,0.16)_45%,transparent_72%)]"></div>
+        </div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="animate-glow-b w-[120vw] h-[120vh] rounded-full blur-[140px] bg-[radial-gradient(ellipse,rgba(91,140,255,0.28)_0%,rgba(0,195,255,0.10)_52%,transparent_75%)]"></div>
+        </div>
+      </div>
+      <OrganizationSchema />
+      <ScrollToTop />
+      <PageViews />
+      <Navbar />
+      <main className="flex-grow relative z-10">
+        <Suspense fallback={<div className="min-h-[60vh]" />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product" element={<Navigate to="/" replace />} />
+          <Route path="/platform" element={<Navigate to="/" replace />} />
+          <Route path="/consulting" element={<Navigate to="/" replace />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/welcome" element={<Welcome />} />
+          <Route path="/app" element={<AppRedirect />} />
+          <Route path="/pursuit" element={<AppRedirect />} />
+          <Route path="/security" element={<Security />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/vs-govwin" element={<VsGovWin />} />
+          <Route path="/vs-govtribe" element={<VsGovTribe />} />
+          <Route path="/sam-gov-opportunity-analysis" element={<SamGovAnalysis />} />
+          <Route path="/tools/sam-gov-notice-analyzer" element={<SamGovNoticeAnalyzer />} />
+          <Route path="/p/:token" element={<SharedPackage />} />
+          <Route path="/team-waitlist" element={<TeamWaitlist />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        </Suspense>
+      </main>
+      <Footer />
+    </div>
+  );
+
+## src/entry-server.tsx
+import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import type { HelmetServerState } from 'react-helmet-async';
+import App from './App';
+
+type HelmetContext = { helmet?: HelmetServerState | null };
+
+export function render(url: string): { html: string; helmetContext: HelmetContext } {
+  const helmetContext: HelmetContext = {};
+  const html = renderToString(
+    <HelmetProvider context={helmetContext}>
+      <StaticRouter location={url}>
+        <App />
+      </StaticRouter>
+    </HelmetProvider>
+  );
+  return { html, helmetContext };
+}
+
+## scripts/prerender.js
+/**
+ * Pre-render script — Sprint 2 SSG
+ *
+ * Uses Vite's createServer + ssrLoadModule to render each route to static HTML.
+ * This approach works with OneDrive (where Node's ESM loader can't read cloud-synced
+ * node_modules) because it uses the same Vite file pipeline as `npm run dev`.
+ *
+ * Run after `vite build` — reads dist/index.html as template, writes
+ * dist/{route}/index.html for Cloudflare Pages to serve to crawlers.
+ */
+
+import { createServer } from 'vite';
+import { readFileSync, writeFileSync, mkdirSync } from 'fs';
+import { resolve, dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const rootDir = resolve(__dirname, '..');
+const distDir = resolve(rootDir, 'dist');
+
+// All indexable routes — must match sitemap.xml
+const routes = [
+  '/',
+  '/pricing',
+  '/about',
+  '/contact',
+  '/faq',
+  '/security',
+  '/terms',
+  '/privacy',
+  '/signup',
+  '/vs-govwin',
+  '/vs-govtribe',
+  '/sam-gov-opportunity-analysis',
+];
+
+async function prerender() {
+  // Spin up a Vite dev server in SSR middleware mode.
+  // ssrLoadModule loads TypeScript source via Vite's transform pipeline —
+  // works with OneDrive because Vite handles its own file reads.
+  const vite = await createServer({
+    root: rootDir,
+    server: { middlewareMode: true },
+    appType: 'custom',
+    logLevel: 'warn',
+    // Disable the dep optimizer — it reads the lockfile which is a cloud-synced
+    // OneDrive file and causes UNKNOWN read errors during the build step.
+    optimizeDeps: { disabled: true },
+  });
+
+  try {
+    const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
+    const template = readFileSync(resolve(distDir, 'index.html'), 'utf-8');
+
+    for (const route of routes) {
+      const { html, helmetContext } = render(route);
+      const helmet = helmetContext.helmet;
+
+      // Collect helmet-managed head tags
+      const helmetHead = (
+        helmet
+          ? [
+              helmet.title?.toString() ?? '',
+              helmet.priority?.toString() ?? '',
+              helmet.meta?.toString() ?? '',
+              helmet.link?.toString() ?? '',
+              helmet.script?.toString() ?? '',
+            ]
+          : []
+      )
+        .map(s => s.trim())
+        .filter(Boolean)
+        .join('\n    ');
+
+      // Inject rendered HTML + page-specific head tags into the client build template
+      const output = template
+        .replace('<div id="root"></div>', `<div id="root">${html}</div>`)
+        .replace(/<title>[^<]*<\/title>/, '')
+        .replace('</head>', `    ${helmetHead}\n  </head>`);
+
+      const filePath =
+        route === '/'
+          ? resolve(distDir, 'index.html')
+          : resolve(distDir, route.slice(1), 'index.html');
+
+      mkdirSync(dirname(filePath), { recursive: true });
+      writeFileSync(filePath, output);
+      console.log(`  ✓  ${route.padEnd(12)}  →  ${filePath.replace(rootDir + '\\', '')}`);
+    }
+
+    console.log('\n✓ Pre-rendering complete\n');
+  } finally {
+    await vite.close();
+  }
+}
+
+prerender().catch(err => {
+  console.error('\nPre-render failed:', err);
+  process.exit(1);
+});

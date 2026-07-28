@@ -1,0 +1,197 @@
+diff --git a/src/App.tsx b/src/App.tsx
+index cba5893..97bb0bc 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -1,28 +1,32 @@
+-import { useEffect, useLayoutEffect } from 'react';
++import { useEffect, useLayoutEffect, lazy, Suspense } from 'react';
+ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+ import Navbar from './components/layout/Navbar';
+ import Footer from './components/layout/Footer';
+ import Home from './pages/Home';
+-import About from './pages/About';
+-import Contact from './pages/Contact';
+-import AppRedirect from './pages/AppRedirect';
+-import Signup from './pages/Signup';
+-import Welcome from './pages/Welcome';
+-import Pricing from './pages/Pricing';
+-import Security from './pages/Security';
+-import Terms from './pages/Terms';
+-import Privacy from './pages/Privacy';
+-import FAQ from './pages/FAQ';
+-import VsGovWin from './pages/VsGovWin';
+-import VsGovTribe from './pages/VsGovTribe';
+-import SamGovAnalysis from './pages/SamGovAnalysis';
+-import SamGovNoticeAnalyzer from './pages/SamGovNoticeAnalyzer';
+-import SharedPackage from './pages/SharedPackage';
+-import TeamWaitlist from './pages/TeamWaitlist';
+-import NotFound from './pages/NotFound';
+ import { OrganizationSchema } from './components/SchemaOrg';
+ import { track } from './lib/analytics';
+ 
++// Home stays eager (it's the landing LCP). Everything else is code-split into
++// its own chunk so the initial bundle isn't dragged down by framer-motion-heavy
++// secondary pages.
++const About = lazy(() => import('./pages/About'));
++const Contact = lazy(() => import('./pages/Contact'));
++const AppRedirect = lazy(() => import('./pages/AppRedirect'));
++const Signup = lazy(() => import('./pages/Signup'));
++const Welcome = lazy(() => import('./pages/Welcome'));
++const Pricing = lazy(() => import('./pages/Pricing'));
++const Security = lazy(() => import('./pages/Security'));
++const Terms = lazy(() => import('./pages/Terms'));
++const Privacy = lazy(() => import('./pages/Privacy'));
++const FAQ = lazy(() => import('./pages/FAQ'));
++const VsGovWin = lazy(() => import('./pages/VsGovWin'));
++const VsGovTribe = lazy(() => import('./pages/VsGovTribe'));
++const SamGovAnalysis = lazy(() => import('./pages/SamGovAnalysis'));
++const SamGovNoticeAnalyzer = lazy(() => import('./pages/SamGovNoticeAnalyzer'));
++const SharedPackage = lazy(() => import('./pages/SharedPackage'));
++const TeamWaitlist = lazy(() => import('./pages/TeamWaitlist'));
++const NotFound = lazy(() => import('./pages/NotFound'));
++
+ function ScrollToTop() {
+   const { pathname } = useLocation();
+   useLayoutEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+@@ -54,6 +58,7 @@ function App() {
+       <PageViews />
+       <Navbar />
+       <main className="flex-grow relative z-10">
++        <Suspense fallback={<div className="min-h-[60vh]" />}>
+         <Routes>
+           <Route path="/" element={<Home />} />
+           <Route path="/product" element={<Navigate to="/" replace />} />
+@@ -78,6 +83,7 @@ function App() {
+           <Route path="/team-waitlist" element={<TeamWaitlist />} />
+           <Route path="*" element={<NotFound />} />
+         </Routes>
++        </Suspense>
+       </main>
+       <Footer />
+     </div>
+diff --git a/src/pages/Home.tsx b/src/pages/Home.tsx
+index 1d7e3c2..510022f 100644
+--- a/src/pages/Home.tsx
++++ b/src/pages/Home.tsx
+@@ -415,7 +415,7 @@ export default function Home() {
+             <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
+               <div className="flex items-center justify-between mb-1">
+                 <h3 className="font-headline text-xl font-bold text-white">Team</h3>
+-                <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest">Coming Q3</span>
++                <span className="text-[10px] font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest">Coming Soon</span>
+               </div>
+               <p className="text-xs text-[#8b9bb4] mb-4">For multi-user capture teams</p>
+               <div className="flex items-baseline gap-1 mb-4">
+diff --git a/src/pages/Pricing.tsx b/src/pages/Pricing.tsx
+index 7d959f8..d8ebc49 100644
+--- a/src/pages/Pricing.tsx
++++ b/src/pages/Pricing.tsx
+@@ -30,7 +30,7 @@ const features: Feature[] = [
+   { category: 'Eligibility & Analysis', name: 'Strategic & effort scoring',   free: 'none', starter: 'check', pro: 'check', team: 'check' },
+   // Decisions & Output
+   { category: 'Decisions & Output', name: 'Go / Conditional Go / No-Bid', free: 'none', starter: 'check', pro: 'check', team: 'check' },
+-  { category: 'Decisions & Output', name: 'Decision tracking & history',   free: 'none', starter: 'Limited', pro: 'check', team: 'check' },
++  { category: 'Decisions & Output', name: 'Decision tracking & history',   free: 'none', starter: 'Per-pursuit', pro: 'check', team: 'check' },
+   { category: 'Decisions & Output', name: 'PDF decision report export',    free: 'none', starter: 'none',  pro: 'check', team: 'check' },
+   // Workflow & Visibility
+   { category: 'Workflow & Visibility', name: 'Dashboard (pipeline, deadlines)', free: 'none', starter: 'none', pro: 'check', team: 'check' },
+@@ -61,7 +61,7 @@ const faqs = [
+   { q: 'Do I need a credit card to start?',               a: 'No. Free requires only your email. A card is only needed when you upgrade to a paid plan.' },
+   { q: 'Can I cancel anytime?',                           a: 'Yes. Cancel from your account settings — no notice period, no lock-in.' },
+   { q: 'What is the difference between Starter and Pro?', a: 'Starter ($99/mo) gives you the full qualification workflow for up to 25 pursuits per month. Pro ($199/mo) removes limits entirely and adds the dashboard, decision tracking, and PDF export.' },
+-  { q: 'When should I upgrade to Team?',                  a: 'When more than one person needs to work in the same pipeline. Team adds multiple users, shared pursuits, team-level visibility, and onboarding support. Team is launching Q3 2026 — join the waitlist from the Team card above and we\'ll reach out with early-access pricing.' },
++  { q: 'When should I upgrade to Team?',                  a: 'When more than one person needs to work in the same pipeline. Team adds multiple users, shared pursuits, team-level visibility, and onboarding support. Team is launching soon — join the waitlist from the Team card above and we\'ll reach out with early-access pricing.' },
+ ];
+ 
+ // ─── Pricing cards data ───────────────────────────────────────────────────────
+@@ -133,7 +133,7 @@ const plans = [
+     tagline: 'Scale across your team',
+     sub: 'Standardize decisions across users',
+     highlight: false,
+-    badge: 'Coming Q3',
++    badge: 'Coming Soon',
+     includesAbove: 'Everything in Pro, plus:',
+     features: [
+       'Multiple users',
+diff --git a/src/pages/SharedPackage.tsx b/src/pages/SharedPackage.tsx
+index 0917c50..3e03361 100644
+--- a/src/pages/SharedPackage.tsx
++++ b/src/pages/SharedPackage.tsx
+@@ -20,12 +20,12 @@ import {
+   Link2Off,
+   AlertCircle,
+ } from 'lucide-react';
++import { API_BASE } from '../lib/api';
++import { track } from '../lib/analytics';
+ 
+-// ── API base ─────────────────────────────────────────────────────────────────
+-
+-const API_BASE = import.meta.env.VITE_API_URL
+-  ? `${import.meta.env.VITE_API_URL}/api`
+-  : 'https://pursuit.honestecho.com/api';
++// API base is centralized in lib/api (he-pursuit-api.onrender.com). The old
++// hard-coded pursuit.honestecho.com/api fallback returned SPA HTML for this GET,
++// which broke every shared-package link in production.
+ 
+ // ── Snapshot shape (matches api-server.js assembleShareSnapshot) ────────────
+ 
+@@ -243,6 +243,7 @@ export default function SharedPackage() {
+         const body = await res.json().catch(() => ({}));
+         if (cancelled) return;
+         if (res.status === 200 && body?.success) {
++          track('shared_package_viewed', { token });
+           setState({ kind: 'ok', snapshot: body.snapshot as Snapshot, createdAt: body.created_at });
+           return;
+         }
+diff --git a/src/pages/Signup.tsx b/src/pages/Signup.tsx
+index b4fe24e..1336b47 100644
+--- a/src/pages/Signup.tsx
++++ b/src/pages/Signup.tsx
+@@ -44,7 +44,7 @@ export default function Signup() {
+   async function handleGoogleSignIn() {
+     setError('');
+     setGoogleLoading(true);
+-    track('signup_submitted', { method: 'google' });
++    track('signup_started', { method: 'google' });
+     try {
+       const { error: oauthError } = await supabase.auth.signInWithOAuth({
+         provider: 'google',
+@@ -75,6 +75,7 @@ export default function Signup() {
+     if (form.password !== form.confirmPassword) { setError('Passwords do not match.'); return; }
+ 
+     setLoading(true);
++    track('signup_started', { method: 'email' });
+     try {
+       const { data, error: signUpError } = await supabase.auth.signUp({
+         email: form.email.trim(),
+@@ -98,7 +99,7 @@ export default function Signup() {
+         return;
+       }
+ 
+-      track('signup_submitted', { method: 'email' });
++      track('signup_completed', { method: 'email' });
+ 
+       // Send welcome email
+       fetch(`${API_BASE}/public/welcome-email`, {
+diff --git a/src/pages/TeamWaitlist.tsx b/src/pages/TeamWaitlist.tsx
+index 47030f1..3fe3cc7 100644
+--- a/src/pages/TeamWaitlist.tsx
++++ b/src/pages/TeamWaitlist.tsx
+@@ -63,7 +63,7 @@ export default function TeamWaitlist() {
+     <>
+       <Helmet>
+         <title>Team Waitlist | HE Pursuit</title>
+-        <meta name="description" content="Team pricing for HE Pursuit launches Q3 2026. Join the waitlist for multi-user workspaces, shared pursuits, and team-level visibility across your government contracting pipeline." />
++        <meta name="description" content="Team pricing for HE Pursuit is launching soon. Join the waitlist for multi-user workspaces, shared pursuits, and team-level visibility across your government contracting pipeline." />
+         <meta property="og:type" content="website" />
+         <meta property="og:url" content="https://honestecho.com/team-waitlist" />
+         <meta property="og:title" content="Team Waitlist — HE Pursuit" />
+@@ -80,7 +80,7 @@ export default function TeamWaitlist() {
+         <div className="max-w-4xl mx-auto relative z-10">
+           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 mb-6">
+             <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]" />
+-            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Coming Q3 2026</span>
++            <span className="text-xs font-bold text-blue-200 tracking-widest uppercase font-label">Coming Soon</span>
+           </div>
+ 
+           <h1 className="font-headline font-black text-5xl md:text-6xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">

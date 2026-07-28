@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Card Style Comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { background-color: #030B17; font-family: 'Inter', sans-serif; }
+  .font-headline { font-family: 'Manrope', sans-serif; }
+
+  /* Aurora background */
+  .aurora {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      linear-gradient(to right, rgba(128,128,128,0.094) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(128,128,128,0.094) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .aurora::before {
+    content: '';
+    position: absolute;
+    width: 150vw; height: 150vh;
+    top: -40vh; left: -25vw;
+    background: radial-gradient(circle, rgba(0,195,255,0.07) 0%, rgba(91,140,255,0.04) 40%, transparent 70%);
+    filter: blur(160px);
+    animation: drift-a 18s ease-in-out infinite alternate;
+  }
+  .aurora::after {
+    content: '';
+    position: absolute;
+    width: 120vw; height: 120vh;
+    top: 10vh; right: -20vw;
+    background: radial-gradient(circle, rgba(91,140,255,0.05) 0%, rgba(0,195,255,0.03) 40%, transparent 70%);
+    filter: blur(140px);
+    animation: drift-b 24s ease-in-out 5s infinite alternate;
+  }
+  @keyframes drift-a { from { transform: translate(0,0) scale(1); } to { transform: translate(60px, 40px) scale(1.08); } }
+  @keyframes drift-b { from { transform: translate(0,0) scale(1); } to { transform: translate(-50px, 30px) scale(1.05); } }
+
+  /* Card A — Current (Glass) */
+  .card-glass {
+    background: rgba(11,17,32,0.55);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 1px 0 rgba(0,0,0,0.4);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all 500ms;
+    cursor: default;
+  }
+  .card-glass:hover {
+    background: rgba(11,17,32,0.70);
+    border-color: rgba(0,195,255,0.4);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 0 40px rgba(0,195,255,0.10);
+  }
+  .card-glass .top-line {
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0,195,255,0.3), transparent);
+    opacity: 0; transition: opacity 500ms; border-radius: 16px 16px 0 0;
+  }
+  .card-glass:hover .top-line { opacity: 1; }
+
+  /* Card B — Design System (Solid) */
+  .card-solid {
+    background: #0b1120;
+    border: 1px solid #1e2d4a;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all 500ms;
+    cursor: default;
+  }
+  .card-solid:hover {
+    border-color: rgba(0,195,255,0.4);
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7), 0 0 40px rgba(0,195,255,0.08);
+  }
+  .card-solid .top-line {
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0,195,255,0.3), transparent);
+    opacity: 0; transition: opacity 500ms; border-radius: 16px 16px 0 0;
+  }
+  .card-solid:hover .top-line { opacity: 1; }
+
+  /* Icon halo */
+  .icon-wrap { width: 40px; height: 40px; position: relative; display: flex; align-items: center; justify-content: center; overflow: visible; }
+  .icon-halo { position: absolute; inset: 0; background: #00c3ff; filter: blur(8px); opacity: 0.2; border-radius: 50%; transform: scale(1.5); transition: opacity 500ms; }
+  .card-glass:hover .icon-halo,
+  .card-solid:hover .icon-halo { opacity: 0.6; }
+  .icon-svg { width: 22px; height: 22px; color: #00c3ff; position: relative; z-index: 1; transition: all 500ms ease-out; filter: drop-shadow(0 0 8px rgba(0,195,255,0.8)); }
+  .card-glass:hover .icon-svg,
+  .card-solid:hover .icon-svg { color: #fff; transform: scale(1.1) rotate(-12deg); filter: drop-shadow(0 0 15px rgba(0,195,255,1)); }
+</style>
+</head>
+<body class="min-h-screen">
+  <div class="aurora"></div>
+
+  <div class="relative z-10 max-w-5xl mx-auto px-6 py-20">
+
+    <div class="text-center mb-16">
+      <p class="text-[#00c3ff] text-xs font-headline font-bold uppercase tracking-widest mb-3">Card Style Comparison</p>
+      <h1 class="font-headline font-black text-4xl text-white tracking-tight mb-3">Glass vs. Solid</h1>
+      <p class="text-[#8b9bb4] text-sm">Hover each card to see the interactive state. Both use the same colors and icon treatment.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+      <!-- Column A: Glass (current) -->
+      <div>
+        <div class="mb-4 flex items-center gap-3">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 text-xs font-bold text-blue-200 tracking-wide">Current — Implemented</span>
+        </div>
+        <p class="text-[#8b9bb4] text-xs mb-6 leading-relaxed">
+          <strong class="text-white">Glass:</strong> rgba(11,17,32,0.55) + backdrop-blur(16px) + subtle white inner highlight.<br/>
+          Background bleeds through — the grid and aurora are visible behind the card.
+        </p>
+
+        <div class="card-glass">
+          <div class="top-line"></div>
+          <div style="display:flex;align-items:flex-start;gap:16px;margin-bottom:20px">
+            <div class="icon-wrap">
+              <div class="icon-halo"></div>
+              <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(0,195,255,0.15)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <h3 class="font-headline font-black text-white text-xl tracking-tight" style="margin-top:8px">Bid/No-Bid Clarity</h3>
+          </div>
+          <p style="color:#a0b2c8;font-size:14px;line-height:1.6;margin:0">Stop spending proposal hours on pursuits you shouldn't chase. HE Pursuit evaluates fit, eligibility, and pursuit value in minutes.</p>
+        </div>
+
+        <div class="card-glass mt-5">
+          <div class="top-line"></div>
+          <div style="display:flex;align-items:flex-start;gap:16px;margin-bottom:20px">
+            <div class="icon-wrap">
+              <div class="icon-halo"></div>
+              <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(0,195,255,0.15)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c1.51 0 2.93.37 4.18 1.03"/></svg>
+            </div>
+            <h3 class="font-headline font-black text-white text-xl tracking-tight" style="margin-top:8px">Phase-by-Phase Workflow</h3>
+          </div>
+          <p style="color:#a0b2c8;font-size:14px;line-height:1.6;margin:0">A structured 5-phase evaluation framework that mirrors how disciplined capture teams actually think — not a checklist, a decision process.</p>
+        </div>
+      </div>
+
+      <!-- Column B: Solid (design system) -->
+      <div>
+        <div class="mb-4 flex items-center gap-3">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/20 border border-blue-700/30 text-xs font-bold text-blue-200 tracking-wide">Design System Spec</span>
+        </div>
+        <p class="text-[#8b9bb4] text-xs mb-6 leading-relaxed">
+          <strong class="text-white">Solid:</strong> opaque #0b1120 + border #1e2d4a + shadow-2xl.<br/>
+          Card is fully opaque — grid/aurora are not visible. Hover adds cyan border + glow only.
+        </p>
+
+        <div class="card-solid">
+          <div class="top-line"></div>
+          <div style="display:flex;align-items:flex-start;gap:16px;margin-bottom:20px">
+            <div class="icon-wrap">
+              <div class="icon-halo"></div>
+              <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(0,195,255,0.15)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <h3 class="font-headline font-black text-white text-xl tracking-tight" style="margin-top:8px">Bid/No-Bid Clarity</h3>
+          </div>
+          <p style="color:#a0b2c8;font-size:14px;line-height:1.6;margin:0">Stop spending proposal hours on pursuits you shouldn't chase. HE Pursuit evaluates fit, eligibility, and pursuit value in minutes.</p>
+        </div>
+
+        <div class="card-solid mt-5">
+          <div class="top-line"></div>
+          <div style="display:flex;align-items:flex-start;gap:16px;margin-bottom:20px">
+            <div class="icon-wrap">
+              <div class="icon-halo"></div>
+              <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(0,195,255,0.15)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c1.51 0 2.93.37 4.18 1.03"/></svg>
+            </div>
+            <h3 class="font-headline font-black text-white text-xl tracking-tight" style="margin-top:8px">Phase-by-Phase Workflow</h3>
+          </div>
+          <p style="color:#a0b2c8;font-size:14px;line-height:1.6;margin:0">A structured 5-phase evaluation framework that mirrors how disciplined capture teams actually think — not a checklist, a decision process.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-16 border border-[#1e2d4a] rounded-2xl p-8 bg-[#0b1120]">
+      <h2 class="font-headline font-bold text-white text-lg mb-3 tracking-tight">Key difference</h2>
+      <ul style="color:#a0b2c8;font-size:14px;line-height:2;list-style:none;padding:0;margin:0">
+        <li><span style="color:#00c3ff">Glass →</span> Aurora grid bleeds through. Cards feel lighter, more layered. Closer to a frosted panel.</li>
+        <li><span style="color:#00c3ff">Solid →</span> Cards are opaque, higher contrast against the background. Aurora is fully visible in the gaps between cards, not behind them. Crisper "command center" feel.</li>
+        <li style="margin-top:8px;color:#8b9bb4">Hover behavior is identical in both versions.</li>
+      </ul>
+    </div>
+
+  </div>
+</body>
+</html>

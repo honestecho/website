@@ -1,0 +1,281 @@
+<!--
+  HE PURSUIT / HONEST ECHO — SUPABASE AUTH EMAIL TEMPLATES
+  =========================================================
+  Ordered to match the Supabase dashboard (Authentication → Email Templates),
+  top to bottom, so you can paste straight down the list. One consistent design,
+  matched to the live honestecho.com header: the HE echo-wave logo mark +
+  "Honest Echo" wordmark + "Know Before You Bid" tagline, on the site's dark
+  navy, with the site's true cyan (#00c3ff) and dark-text-on-cyan buttons.
+
+  Paste each block's HTML into the matching template; set the subject (above
+  each block) in the same screen.
+
+  Dashboard order:
+    1. Confirm sign up        subject: Confirm your email — Honest Echo
+    2. Invite user            subject: You're invited to the HE Pursuit beta
+    3. Magic link or OTP      subject: Your HE Pursuit sign-in link
+    4. Change email address   subject: Confirm your new email — Honest Echo
+    5. Reset password         subject: Reset your HE Pursuit password
+    6. Reauthentication       subject: Your HE Pursuit verification code
+
+  Notes:
+   - Logo loads from https://honestecho.com/he-logo-mark.png. The wordmark +
+     tagline are live HTML text, so the brand still shows if a client blocks
+     remote images (the mark falls back to its alt text).
+   - Supabase variables ({{ .ConfirmationURL }}, {{ .Token }}, {{ .Email }},
+     {{ .NewEmail }}) must stay exactly as written.
+   - Palette: header/footer-dark #0b1120, page #f8fafc, body text #334155,
+     muted #94a3b8, brand cyan #00c3ff, button text #030B17.
+   - Open this file in a browser to preview all six stacked.
+-->
+
+
+<!-- ============================================================= -->
+<!-- 1. CONFIRM SIGN UP                                            -->
+<!--    Subject: Confirm your email — Honest Echo                  -->
+<!-- ============================================================= -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirm your email — Honest Echo</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f8fafc; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color:#334155; line-height:1.6;">
+  <div style="max-width:600px; width:100%; margin:40px auto; background-color:#ffffff; border-radius:12px; border:1px solid #e2e8f0; overflow:hidden; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);">
+    <div style="background-color:#0b1120; padding:28px 40px; background-image:linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px); background-size:32px 32px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td style="vertical-align:middle; padding-right:14px;"><img src="https://honestecho.com/he-logo-mark.png" alt="Honest Echo" width="44" height="44" style="display:block; width:44px; height:auto; border:0;"></td>
+        <td style="vertical-align:middle;">
+          <div style="font-size:24px; font-weight:800; letter-spacing:-0.5px; line-height:1;"><span style="color:#ffffff;">Honest </span><span style="color:#00c3ff;">Echo</span></div>
+          <div style="margin-top:5px; font-size:10px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:#a0b2c8;">Know Before You Bid</div>
+        </td>
+      </tr></table>
+    </div>
+    <div style="padding:40px;">
+      <h2 style="margin-top:0; color:#0f172a; font-size:20px;">Confirm your email</h2>
+      <p>Welcome to HE Pursuit! You're one click away from making smarter bid/no-bid decisions on government opportunities.</p>
+      <p>Confirm this email address to secure your account:</p>
+      <div style="text-align:center; margin:28px 0;">
+        <a href="{{ .ConfirmationURL }}" style="background-color:#00c3ff; color:#030B17; padding:13px 26px; text-decoration:none; border-radius:8px; font-weight:bold; display:inline-block;">Confirm my email</a>
+      </div>
+      <p style="font-size:13px; color:#64748b;">If the button doesn't work, copy and paste this link into your browser:<br><a href="{{ .ConfirmationURL }}" style="color:#0090c4; word-break:break-all;">{{ .ConfirmationURL }}</a></p>
+      <p style="font-size:13px; color:#64748b;">If you didn't create an HE Pursuit account, you can safely ignore this email.</p>
+    </div>
+    <div style="background-color:#0b1120; padding:20px 40px; text-align:center;">
+      <p style="margin:0; font-size:12px; color:#64748b;">&copy; 2026 Honest Echo LLC. All rights reserved.</p>
+      <p style="margin:4px 0 0 0; font-size:12px; color:#64748b;">You're receiving this because an account was created with this email at honestecho.com.</p>
+    </div>
+  </div>
+</body>
+</html>
+
+
+<!-- ============================================================= -->
+<!-- 2. INVITE USER                                                -->
+<!--    Subject: You're invited to the HE Pursuit beta            -->
+<!-- ============================================================= -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're invited to the HE Pursuit beta</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f8fafc; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color:#334155; line-height:1.6;">
+  <div style="max-width:600px; width:100%; margin:40px auto; background-color:#ffffff; border-radius:12px; border:1px solid #e2e8f0; overflow:hidden; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);">
+    <div style="background-color:#0b1120; padding:28px 40px; background-image:linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px); background-size:32px 32px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td style="vertical-align:middle; padding-right:14px;"><img src="https://honestecho.com/he-logo-mark.png" alt="Honest Echo" width="44" height="44" style="display:block; width:44px; height:auto; border:0;"></td>
+        <td style="vertical-align:middle;">
+          <div style="font-size:24px; font-weight:800; letter-spacing:-0.5px; line-height:1;"><span style="color:#ffffff;">Honest </span><span style="color:#00c3ff;">Echo</span></div>
+          <div style="margin-top:5px; font-size:10px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:#a0b2c8;">Know Before You Bid</div>
+        </td>
+      </tr></table>
+    </div>
+    <div style="padding:40px;">
+      <h2 style="margin-top:0; color:#0f172a; font-size:20px;">You're invited! &#128640;</h2>
+      <p>Hi Team,</p>
+      <p>I'm incredibly excited to share that <strong>HE Pursuit</strong> is ready for private beta testing!</p>
+      <p>If you've ever felt overwhelmed manually digging through SAM.gov, HE Pursuit is built to change that. We've built an intelligent, low-friction platform that automatically connects your company profile and preferences to the best government opportunities out there&mdash;and then guides you through winning them.</p>
+      <div style="background-color:#f1f5f9; border-left:4px solid #00c3ff; padding:20px; margin:24px 0; border-radius:0 8px 8px 0;">
+        <h3 style="margin-top:0; font-size:16px; color:#0f172a;">How to get started:</h3>
+        <p style="margin-bottom:0;">You've been granted exclusive access to our private beta.</p>
+        <p style="margin-bottom:0; font-weight:bold; color:#0090c4;">1. Activate your account</p>
+        <p style="margin-top:4px; margin-bottom:12px;">Click the button below to accept your invitation, set your password, and enter the platform.</p>
+        <div style="text-align:center; margin:24px 0;">
+          <a href="{{ .ConfirmationURL }}" style="background-color:#00c3ff; color:#030B17; padding:13px 26px; text-decoration:none; border-radius:8px; font-weight:bold; display:inline-block;">Accept Invitation &amp; Set Password</a>
+        </div>
+        <p style="margin-bottom:0; font-weight:bold; color:#0090c4;">2. Break things</p>
+        <p style="margin-top:4px; margin-bottom:0;">Once you're in, build out a test company profile, find an active opportunity, and run it through the 5-phase pursuit framework.</p>
+      </div>
+      <p>If you encounter any bugs (you probably will!) or have feedback on the UI/UX, please reply directly or let me know.</p>
+      <p>Happy hunting!<br><strong>Honest Echo LLC</strong></p>
+    </div>
+    <div style="background-color:#0b1120; padding:20px 40px; text-align:center;">
+      <p style="margin:0; font-size:12px; color:#64748b;">&copy; 2026 Honest Echo LLC. All rights reserved.</p>
+      <p style="margin:4px 0 0 0; font-size:12px; color:#64748b;">You are receiving this email because you are part of the HE Pursuit private beta.</p>
+    </div>
+  </div>
+</body>
+</html>
+
+
+<!-- ============================================================= -->
+<!-- 3. MAGIC LINK OR OTP                                          -->
+<!--    Subject: Your HE Pursuit sign-in link                     -->
+<!-- ============================================================= -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your HE Pursuit sign-in link</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f8fafc; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color:#334155; line-height:1.6;">
+  <div style="max-width:600px; width:100%; margin:40px auto; background-color:#ffffff; border-radius:12px; border:1px solid #e2e8f0; overflow:hidden; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);">
+    <div style="background-color:#0b1120; padding:28px 40px; background-image:linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px); background-size:32px 32px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td style="vertical-align:middle; padding-right:14px;"><img src="https://honestecho.com/he-logo-mark.png" alt="Honest Echo" width="44" height="44" style="display:block; width:44px; height:auto; border:0;"></td>
+        <td style="vertical-align:middle;">
+          <div style="font-size:24px; font-weight:800; letter-spacing:-0.5px; line-height:1;"><span style="color:#ffffff;">Honest </span><span style="color:#00c3ff;">Echo</span></div>
+          <div style="margin-top:5px; font-size:10px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:#a0b2c8;">Know Before You Bid</div>
+        </td>
+      </tr></table>
+    </div>
+    <div style="padding:40px;">
+      <h2 style="margin-top:0; color:#0f172a; font-size:20px;">Your sign-in link</h2>
+      <p>Click below to sign in to HE Pursuit. This link is single-use and expires shortly.</p>
+      <div style="text-align:center; margin:28px 0;">
+        <a href="{{ .ConfirmationURL }}" style="background-color:#00c3ff; color:#030B17; padding:13px 26px; text-decoration:none; border-radius:8px; font-weight:bold; display:inline-block;">Sign in to HE Pursuit</a>
+      </div>
+      <p style="font-size:13px; color:#64748b;">If the button doesn't work, copy and paste this link into your browser:<br><a href="{{ .ConfirmationURL }}" style="color:#0090c4; word-break:break-all;">{{ .ConfirmationURL }}</a></p>
+      <p style="font-size:13px; color:#64748b;">If you didn't request this link, you can safely ignore this email &mdash; no one can sign in without it.</p>
+    </div>
+    <div style="background-color:#0b1120; padding:20px 40px; text-align:center;">
+      <p style="margin:0; font-size:12px; color:#64748b;">&copy; 2026 Honest Echo LLC. All rights reserved.</p>
+      <p style="margin:4px 0 0 0; font-size:12px; color:#64748b;">You're receiving this because a sign-in link was requested for this email.</p>
+    </div>
+  </div>
+</body>
+</html>
+
+
+<!-- ============================================================= -->
+<!-- 4. CHANGE EMAIL ADDRESS                                       -->
+<!--    Subject: Confirm your new email — Honest Echo              -->
+<!-- ============================================================= -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confirm your new email — Honest Echo</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f8fafc; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color:#334155; line-height:1.6;">
+  <div style="max-width:600px; width:100%; margin:40px auto; background-color:#ffffff; border-radius:12px; border:1px solid #e2e8f0; overflow:hidden; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);">
+    <div style="background-color:#0b1120; padding:28px 40px; background-image:linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px); background-size:32px 32px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td style="vertical-align:middle; padding-right:14px;"><img src="https://honestecho.com/he-logo-mark.png" alt="Honest Echo" width="44" height="44" style="display:block; width:44px; height:auto; border:0;"></td>
+        <td style="vertical-align:middle;">
+          <div style="font-size:24px; font-weight:800; letter-spacing:-0.5px; line-height:1;"><span style="color:#ffffff;">Honest </span><span style="color:#00c3ff;">Echo</span></div>
+          <div style="margin-top:5px; font-size:10px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:#a0b2c8;">Know Before You Bid</div>
+        </td>
+      </tr></table>
+    </div>
+    <div style="padding:40px;">
+      <h2 style="margin-top:0; color:#0f172a; font-size:20px;">Confirm your new email</h2>
+      <p>We received a request to change the email on your HE Pursuit account from <strong>{{ .Email }}</strong> to <strong>{{ .NewEmail }}</strong>.</p>
+      <p>Confirm the change to finish:</p>
+      <div style="text-align:center; margin:28px 0;">
+        <a href="{{ .ConfirmationURL }}" style="background-color:#00c3ff; color:#030B17; padding:13px 26px; text-decoration:none; border-radius:8px; font-weight:bold; display:inline-block;">Confirm email change</a>
+      </div>
+      <p style="font-size:13px; color:#64748b;">If the button doesn't work, copy and paste this link into your browser:<br><a href="{{ .ConfirmationURL }}" style="color:#0090c4; word-break:break-all;">{{ .ConfirmationURL }}</a></p>
+      <p style="font-size:13px; color:#64748b;">If you didn't request this change, please reset your password and contact support@honestecho.com right away.</p>
+    </div>
+    <div style="background-color:#0b1120; padding:20px 40px; text-align:center;">
+      <p style="margin:0; font-size:12px; color:#64748b;">&copy; 2026 Honest Echo LLC. All rights reserved.</p>
+      <p style="margin:4px 0 0 0; font-size:12px; color:#64748b;">You're receiving this because an email change was requested on your account.</p>
+    </div>
+  </div>
+</body>
+</html>
+
+
+<!-- ============================================================= -->
+<!-- 5. RESET PASSWORD                                             -->
+<!--    Subject: Reset your HE Pursuit password                    -->
+<!-- ============================================================= -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reset your HE Pursuit password</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f8fafc; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color:#334155; line-height:1.6;">
+  <div style="max-width:600px; width:100%; margin:40px auto; background-color:#ffffff; border-radius:12px; border:1px solid #e2e8f0; overflow:hidden; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);">
+    <div style="background-color:#0b1120; padding:28px 40px; background-image:linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px); background-size:32px 32px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td style="vertical-align:middle; padding-right:14px;"><img src="https://honestecho.com/he-logo-mark.png" alt="Honest Echo" width="44" height="44" style="display:block; width:44px; height:auto; border:0;"></td>
+        <td style="vertical-align:middle;">
+          <div style="font-size:24px; font-weight:800; letter-spacing:-0.5px; line-height:1;"><span style="color:#ffffff;">Honest </span><span style="color:#00c3ff;">Echo</span></div>
+          <div style="margin-top:5px; font-size:10px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:#a0b2c8;">Know Before You Bid</div>
+        </td>
+      </tr></table>
+    </div>
+    <div style="padding:40px;">
+      <h2 style="margin-top:0; color:#0f172a; font-size:20px;">Reset your password</h2>
+      <p>We received a request to reset the password for your HE Pursuit account. Click below to choose a new one:</p>
+      <div style="text-align:center; margin:28px 0;">
+        <a href="{{ .ConfirmationURL }}" style="background-color:#00c3ff; color:#030B17; padding:13px 26px; text-decoration:none; border-radius:8px; font-weight:bold; display:inline-block;">Reset my password</a>
+      </div>
+      <p style="font-size:13px; color:#64748b;">If the button doesn't work, copy and paste this link into your browser:<br><a href="{{ .ConfirmationURL }}" style="color:#0090c4; word-break:break-all;">{{ .ConfirmationURL }}</a></p>
+      <p style="font-size:13px; color:#64748b;">If you didn't request a password reset, you can safely ignore this email &mdash; your password won't change.</p>
+    </div>
+    <div style="background-color:#0b1120; padding:20px 40px; text-align:center;">
+      <p style="margin:0; font-size:12px; color:#64748b;">&copy; 2026 Honest Echo LLC. All rights reserved.</p>
+      <p style="margin:4px 0 0 0; font-size:12px; color:#64748b;">You're receiving this because a password reset was requested for this email.</p>
+    </div>
+  </div>
+</body>
+</html>
+
+
+<!-- ============================================================= -->
+<!-- 6. REAUTHENTICATION (one-time code, no link)                  -->
+<!--    Subject: Your HE Pursuit verification code                 -->
+<!-- ============================================================= -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your HE Pursuit verification code</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f8fafc; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color:#334155; line-height:1.6;">
+  <div style="max-width:600px; width:100%; margin:40px auto; background-color:#ffffff; border-radius:12px; border:1px solid #e2e8f0; overflow:hidden; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05);">
+    <div style="background-color:#0b1120; padding:28px 40px; background-image:linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px); background-size:32px 32px;">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
+        <td style="vertical-align:middle; padding-right:14px;"><img src="https://honestecho.com/he-logo-mark.png" alt="Honest Echo" width="44" height="44" style="display:block; width:44px; height:auto; border:0;"></td>
+        <td style="vertical-align:middle;">
+          <div style="font-size:24px; font-weight:800; letter-spacing:-0.5px; line-height:1;"><span style="color:#ffffff;">Honest </span><span style="color:#00c3ff;">Echo</span></div>
+          <div style="margin-top:5px; font-size:10px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:#a0b2c8;">Know Before You Bid</div>
+        </td>
+      </tr></table>
+    </div>
+    <div style="padding:40px;">
+      <h2 style="margin-top:0; color:#0f172a; font-size:20px;">Your verification code</h2>
+      <p>Use this code to confirm it's you:</p>
+      <div style="text-align:center; margin:28px 0;">
+        <div style="display:inline-block; background-color:#f1f5f9; border:1px solid #e2e8f0; border-radius:8px; padding:16px 28px; font-size:32px; font-weight:800; letter-spacing:8px; color:#0f172a;">{{ .Token }}</div>
+      </div>
+      <p style="font-size:13px; color:#64748b;">This code expires shortly. If you didn't request it, you can safely ignore this email.</p>
+    </div>
+    <div style="background-color:#0b1120; padding:20px 40px; text-align:center;">
+      <p style="margin:0; font-size:12px; color:#64748b;">&copy; 2026 Honest Echo LLC. All rights reserved.</p>
+      <p style="margin:4px 0 0 0; font-size:12px; color:#64748b;">You're receiving this because a verification code was requested for this email.</p>
+    </div>
+  </div>
+</body>
+</html>

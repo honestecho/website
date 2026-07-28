@@ -104,7 +104,16 @@ function ResultSkeleton() {
 // views → 2 submissions before this). Durable: this notice is stored in our
 // `opportunities` table, so /public/analyze scores it from our own DB/cache even
 // after it closes on SAM.gov. Rotate the example by swapping this single id.
-const SAMPLE_NOTICE_ID  = '49d361df71ec4419932f66097e1a498e';
+//
+// Pick the replacement so it scores WELL against the public personas (migration
+// 094): the old GPO IT notice (541511, no set-aside) floored every persona at an
+// identical 25/85 = 29% "Poor Fit", because 094 dropped the only IT persona. A
+// good example needs (a) a NAICS one persona matches exactly, (b) a set-aside,
+// (c) a title keyword hit, and (d) 45+ days of runway — past the deadline the
+// card hard-flips to NOT BIDDABLE. This one scores 74 (GO) for
+// building_construction vs 39-44 for the other seven, so the persona selector
+// actually demonstrates that the profile changes the answer.
+const SAMPLE_NOTICE_ID  = '9c73de6224ab4a8ea88dfbb60e8d085f';
 const SAMPLE_NOTICE_URL = `https://sam.gov/opp/${SAMPLE_NOTICE_ID}/view`;
 
 // ── Page ──────────────────────────────────────────────────────────────────────
@@ -270,7 +279,7 @@ export default function SamGovNoticeAnalyzer() {
               <p className="text-xs text-[#00c3ff] font-body mt-3 flex items-start gap-2">
                 <Sparkles className="w-3 h-3 shrink-0 mt-0.5" strokeWidth={2} />
                 <span>
-                  <span className="font-bold">Example notice loaded</span> — a real GPO IT-services opportunity. Hit{' '}
+                  <span className="font-bold">Example notice loaded</span> — a real Forest Service renovation solicitation. Hit{' '}
                   <span className="font-bold">Analyze</span> to see a live read, or{' '}
                   <button
                     type="button"

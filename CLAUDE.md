@@ -281,3 +281,12 @@ Live at: https://honestecho.com (project: `honest-echo-website`)
 
 ## Version
 **v1.0** — April 2026. All core marketing pages live. Supabase auth wired. Fly-in animations on all tile grids.
+
+## SEO skills (vendored claude-seo subset)
+`.claude/skills/` carries 8 skills vendored from AgriciDaniel/claude-seo @ v2.2.4 (see `.claude/skills/claude-seo-UPSTREAM.md` for provenance + update policy). Ground rules when using them:
+- **Max 2 agents per run.** Never the upstream master orchestrator / 15-agent fan-out; this is an 18-URL site.
+- **No extensions or API keys** (DataForSEO, Firecrawl, Google APIs) without Aaron's explicit approval.
+- **Audit the DEPLOYED site** (honestecho.com, prerendered HTML), not just the React source.
+- **Every finding must state**: expected impact, the evidence, and how we'd know it failed. Reject generic advice.
+- **Backlinks are the #1 KPI.** The site's binding constraint is authority (GSC External links = 0, diagnosed 2026-07-28); on-page findings must not displace link-acquisition work. Weekly tracking lives in `seo-pulse.md`.
+- Schema validation: run `.claude/skills/seo-schema/scripts/validate-schema.py <file>` explicitly after JSON-LD edits (we do not install the upstream plugin hook).

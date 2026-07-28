@@ -7,3 +7,7 @@ build2.log
 .DS_Store
 
 dist-server/
+
+# Internal SEO working docs — never publish (public repo)
+seo-pulse.md
+link-building-drafts.md

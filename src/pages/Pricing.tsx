@@ -190,7 +190,7 @@ export default function Pricing() {
       <section className="pb-6 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Fall Bid Clarity Pass offer strip */}
-          <Notice label="Summer Offer" className="mb-4">
+          <Notice label="Fall Offer" className="mb-4">
             <span className="font-bold text-[#00c3ff]">Fall Bid Clarity Pass:</span> Try Starter or Pro free for 2 months with code{' '}
             <NoticeCode>FALL2026</NoticeCode>
 .<br /> <span className="font-bold text-[#00c3ff]">Offer ends November 30.</span> Cancel anytime; renews at the regular price unless canceled.

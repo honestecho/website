@@ -33,20 +33,28 @@ export interface AnalyzerOpportunity {
   maturity: string | null;
 }
 
+// These maxes MUST match the server scorer (migrations/096_route_recommendation.sql)
+// and the PUBLIC_SCORE_DIMS set in api-server.js — they drive the hover breakdown,
+// the "Why It Fits" / "Watch Before Pursuing" split, and the confidence label, all of
+// which sit under a headline number the server computed. They were previously out of
+// sync (naics 20 vs 25, set_aside 15 vs 17, agency 10 vs 5) and listed geo, value and
+// a past_performance/synergy dimension the public scorer never emits, so the panels
+// disagreed with the number above them.
+//
+// geo and value are deliberately absent: the public path has no data for either and
+// the server now excludes them from the score entirely (see api-server.js).
 const DIMS: { key: string; weightKey: string; Icon: LucideIcon; tip: string; max: number }[] = [
-  { key: 'naics',            weightKey: 'naics',        Icon: Layers,    tip: 'Capability Fit', max: 20 },
-  { key: 'keywords',         weightKey: 'keywords',     Icon: Hash,      tip: 'Keyword Fit',    max: 10 },
-  { key: 'set_aside',        weightKey: 'set_aside',    Icon: Shield,    tip: 'Set-Aside Fit',  max: 15 },
-  { key: 'agency',           weightKey: 'agency',       Icon: Landmark,  tip: 'Agency Fit',     max: 10 },
-  { key: 'geo',              weightKey: 'geographic',   Icon: Clock,     tip: 'Geographic Fit', max: 10 },
-  { key: 'value',            weightKey: 'dollar_value', Icon: Clock,     tip: 'Value Fit',      max: 10 },
-  { key: 'timing',           weightKey: 'timing',       Icon: Clock,     tip: 'Timing Fit',     max: 10 },
-  { key: 'past_performance', weightKey: 'synergy',      Icon: Sparkles,  tip: 'Synergy Bonus',  max: 15 },
+  { key: 'naics',     weightKey: 'naics',     Icon: Layers,   tip: 'Capability Fit', max: 25 },
+  { key: 'keywords',  weightKey: 'keywords',  Icon: Hash,     tip: 'Keyword Fit',    max: 10 },
+  { key: 'set_aside', weightKey: 'set_aside', Icon: Shield,   tip: 'Set-Aside Fit',  max: 17 },
+  { key: 'agency',    weightKey: 'agency',    Icon: Landmark, tip: 'Agency Fit',     max: 5  },
+  { key: 'timing',    weightKey: 'timing',    Icon: Clock,    tip: 'Timing Fit',     max: 10 },
 ];
 
+// Weights mirror the DIMS maxes, so the fallback computeLiveScore below reproduces
+// the server's earned/67 arithmetic exactly instead of diverging from it.
 const DEFAULT_WEIGHTS: Record<string, number> = {
-  naics: 20, keywords: 10, set_aside: 15, agency: 10,
-  geographic: 10, dollar_value: 10, timing: 10, synergy: 15,
+  naics: 25, keywords: 10, set_aside: 17, agency: 5, timing: 10,
 };
 
 const DIM_DESC: Record<string, { pos: string; neg: string }> = {
@@ -55,7 +63,6 @@ const DIM_DESC: Record<string, { pos: string; neg: string }> = {
   set_aside:        { pos: 'Set-aside type aligns with this profile',           neg: 'Set-aside may affect eligibility'                       },
   agency:           { pos: 'Strong alignment with this agency',                 neg: 'Limited prior activity with this agency'                },
   timing:           { pos: 'Response window allows a quality response',         neg: 'Tight timeline may strain pursuit resources'            },
-  past_performance: { pos: 'Past-performance synergy assumed for this sample',  neg: 'Limited past performance signal'                        },
 };
 
 function computeLiveScore(dimensionScores: Record<string, number>, scoringWeights?: Record<string, number>): number {
@@ -194,7 +201,6 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack }:
   let strongDimCount = 0;
   let totalDimCount = 0;
   for (const dim of DIMS) {
-    if (dim.key === 'geo' || dim.key === 'value') continue; // no data on the public notice — don't penalize
     const raw = dimension_scores[dim.key];
     if (raw == null) continue;
     totalDimCount++;
@@ -206,8 +212,8 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack }:
     : 'Limited evidence';
 
   // ── Decision band ── recommendation derived from the score (no workflow on the
-  //    public card). geo/value carry no data end-to-end, so they're excluded from
-  //    the evidence read rather than scored as misses.
+  //    public card). geo/value are absent from DIMS entirely — the server no longer
+  //    scores them, so there is nothing to exclude here.
   type Band = { Icon: LucideIcon; color: string; label: string; reason: string };
   const band: Band = notBiddable
     ? { Icon: XCircle, color: '#8b9bb4', label: 'NOT BIDDABLE', reason: 'This notice is awarded or closed. It is no longer open for response.' }
@@ -223,9 +229,8 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack }:
         reason: 'Profile alignment is weak for this sample. Review only if the opportunity is strategically important.' };
   const BandIcon = band.Icon;
 
-  // ── Evidence vs risk ── built from scored dimensions only (geo/value excluded:
-  //    the public notice carries no place-of-performance or value data).
-  const evidenceDims = DIMS.filter(d => d.key !== 'geo' && d.key !== 'value');
+  // ── Evidence vs risk ── built from the scored dimensions.
+  const evidenceDims = DIMS;
   const scoredEv = evidenceDims
     .map(d => ({ d, pct: dimension_scores[d.key] != null ? dimension_scores[d.key] / d.max : null }))
     .filter((x): x is { d: typeof evidenceDims[number]; pct: number } => x.pct != null);

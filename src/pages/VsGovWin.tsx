@@ -3,7 +3,30 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, DollarSign, Target, Scale, Users, Zap, Layers } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
 import Notice from '../components/Notice';
-import { SoftwareApplicationSchema } from '../components/SchemaOrg';
+import { SoftwareApplicationSchema, FAQPageSchema } from '../components/SchemaOrg';
+
+const faqs = [
+  {
+    q: 'What is the best GovWin alternative for a small government contractor?',
+    a: 'It depends which job you need done. GovWin IQ is a market intelligence subscription built for enterprise BD teams — pre-RFP forecasting, pipeline data, and competitor research at scale. If what you actually need is to decide whether a specific SAM.gov opportunity is worth bidding, HE Pursuit is built for that job: it evaluates fit, eligibility, effort, and risk, then returns a Go, Conditional Go, or No-Bid recommendation. Small contractors who already find opportunities on SAM.gov but struggle to qualify them are the fit.',
+  },
+  {
+    q: 'How much does GovWin IQ cost compared to HE Pursuit?',
+    a: 'Deltek does not publish list pricing for GovWin IQ; it is quoted per seat, and commonly reported figures for small teams land in the five-figure-per-year range. HE Pursuit publishes its pricing: Free, Starter at $99/month, Pro at $199/month, and Team at $299/month. No credit card is required to start, and the SAM.gov notice analyzer is free to use without an account.',
+  },
+  {
+    q: 'Who should NOT use HE Pursuit?',
+    a: 'Teams that need what GovWin actually sells. If you need multi-year pre-RFP forecasting, state and local coverage, agency spend analytics, or a shared pipeline database for a large BD department, HE Pursuit does not replace those and is not trying to. It also adds little if you already have a dedicated capture team running a disciplined bid/no-bid process. HE Pursuit is for lean teams whose qualification process today is a spreadsheet and a gut call.',
+  },
+  {
+    q: 'Can I use HE Pursuit and GovWin together?',
+    a: 'Yes, and for teams that already own GovWin that is the normal pattern. GovWin surfaces and forecasts opportunities; HE Pursuit qualifies the ones you are seriously considering and documents the reasoning behind the decision. They sit at different stages of the same pipeline.',
+  },
+  {
+    q: 'Do I need to buy anything to try HE Pursuit?',
+    a: 'No. The SAM.gov notice analyzer at honestecho.com/tools/sam-gov-notice-analyzer is public and requires no login — paste a notice ID or SAM.gov URL and it returns a scored assessment. The Free plan adds search and bookmarks without a credit card.',
+  },
+];
 
 const cards = [
   {
@@ -186,6 +209,24 @@ export default function VsGovWin() {
                 HE Pursuit catches requirements like this in Phase 2 eligibility review — where every requirement is scanned for hard disqualifiers before your team commits an afternoon to a proposal you can't win.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <FAQPageSchema items={faqs} />
+      <section className="py-8 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-headline font-bold text-white text-3xl tracking-tight text-center mb-8">
+            GovWin alternative questions, answered
+          </h2>
+          <div className="space-y-4">
+            {faqs.map(f => (
+              <div key={f.q} className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6">
+                <h3 className="font-headline font-bold text-white text-base mb-2">{f.q}</h3>
+                <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{f.a}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

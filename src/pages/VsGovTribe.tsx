@@ -3,7 +3,30 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, BarChart2, Target, CheckCircle, Zap, Filter, Layers } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
 import Notice from '../components/Notice';
-import { SoftwareApplicationSchema } from '../components/SchemaOrg';
+import { SoftwareApplicationSchema, FAQPageSchema } from '../components/SchemaOrg';
+
+const faqs = [
+  {
+    q: 'What is the best GovTribe alternative for bid/no-bid decisions?',
+    a: 'GovTribe is a federal market research tool — contract history, agency spend, competitor and people search. It is strong at answering "what is happening in this market." It is not built to answer "should we bid this one." HE Pursuit is: it evaluates a specific SAM.gov notice against your company profile and returns a Go, Conditional Go, or No-Bid recommendation with the drivers behind it. If your bottleneck is qualification rather than research, that is the swap.',
+  },
+  {
+    q: 'How much does GovTribe cost compared to HE Pursuit?',
+    a: 'GovTribe sells per-seat annual subscriptions and quotes pricing on request. HE Pursuit publishes its pricing: Free, Starter at $99/month, Pro at $199/month, and Team at $299/month, with no credit card required to start. The SAM.gov notice analyzer is free and requires no account at all.',
+  },
+  {
+    q: 'Who should NOT use HE Pursuit?',
+    a: 'Teams whose real need is market research. If you want to study an agency\'s spending history, map competitors, track federal award data across years, or find the contracting officer behind a program, GovTribe does those things and HE Pursuit does not. HE Pursuit assumes you can already find opportunities and helps you decide which ones deserve proposal hours.',
+  },
+  {
+    q: 'Does HE Pursuit replace GovTribe?',
+    a: 'For most small contractors it solves a different problem rather than replacing it. Teams that use both typically research the market in GovTribe and run the go/no-go decision in HE Pursuit. Teams that were only using GovTribe to triage new notices often find HE Pursuit covers that use case directly.',
+  },
+  {
+    q: 'Can I try HE Pursuit without signing up?',
+    a: 'Yes. The SAM.gov notice analyzer at honestecho.com/tools/sam-gov-notice-analyzer is public and requires no login — paste any notice ID or SAM.gov URL and it returns a scored assessment with the reasoning behind it.',
+  },
+];
 
 const cards = [
   {
@@ -183,6 +206,24 @@ export default function VsGovTribe() {
                 That's the qualification gap. HE Pursuit's Phase 2 eligibility review scans every requirement for hard disqualifiers like this one — so the no-bid call costs you minutes, not the afternoon.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <FAQPageSchema items={faqs} />
+      <section className="py-8 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-headline font-bold text-white text-3xl tracking-tight text-center mb-8">
+            GovTribe alternative questions, answered
+          </h2>
+          <div className="space-y-4">
+            {faqs.map(f => (
+              <div key={f.q} className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6">
+                <h3 className="font-headline font-bold text-white text-base mb-2">{f.q}</h3>
+                <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{f.a}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

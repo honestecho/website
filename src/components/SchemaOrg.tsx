@@ -23,6 +23,7 @@ export function OrganizationSchema() {
     },
     sameAs: [
       'https://pursuit.honestecho.com',
+      'https://www.crunchbase.com/organization/honest-echo-llc',
     ],
   };
 

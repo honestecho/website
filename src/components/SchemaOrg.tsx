@@ -9,7 +9,7 @@ export function OrganizationSchema() {
     name: 'Honest Echo LLC',
     url: 'https://honestecho.com',
     logo: 'https://honestecho.com/he-logo.png',
-    description: 'Honest Echo builds HE Pursuit — a bid/no-bid decision platform for small government contractors. We help lean GovCon teams evaluate SAM.gov opportunities faster and with more confidence.',
+    description: 'Honest Echo LLC is a woman-owned, veteran-owned small business based in Fairfax, VA. It builds HE Pursuit — a bid/no-bid decision platform for small government contractors — helping lean GovCon teams evaluate SAM.gov opportunities faster and with more confidence.',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Fairfax',

@@ -113,8 +113,13 @@ function ResultSkeleton() {
 // card hard-flips to NOT BIDDABLE. This one scores 74 (GO) for
 // building_construction vs 39-44 for the other seven, so the persona selector
 // actually demonstrates that the profile changes the answer.
+// FALLBACK ONLY — the live sample id now comes from GET /public/analyze/sample,
+// which picks a current, well-spread notice from the corpus so the demo can
+// never expire. This constant is the last-resort pre-fill when that request
+// fails, and it does go stale (this one closes 2026-10-08).
 const SAMPLE_NOTICE_ID  = '9c73de6224ab4a8ea88dfbb60e8d085f';
 const SAMPLE_NOTICE_URL = `https://sam.gov/opp/${SAMPLE_NOTICE_ID}/view`;
+const sampleUrlFor = (id: string) => `https://sam.gov/opp/${id}/view`;
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 
@@ -128,6 +133,23 @@ export default function SamGovNoticeAnalyzer() {
   const [selectedProfile, setSelectedProfile] = useState<string>('it_software');
 
   useEffect(() => { track('public_analyzer_page_viewed'); }, []);
+
+  // Swap the fallback pre-fill for the server's current sample pick. Only while
+  // the field is still untouched — never clobber something the visitor typed.
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`${API_BASE}/public/analyze/sample`);
+        if (!res.ok) return;
+        const j = await res.json() as { notice_id?: string };
+        if (!cancelled && j.notice_id && /^[0-9a-f]{32}$/.test(j.notice_id)) {
+          setInput(prev => prev === SAMPLE_NOTICE_URL ? sampleUrlFor(j.notice_id!) : prev);
+        }
+      } catch { /* fallback pre-fill stands */ }
+    })();
+    return () => { cancelled = true; };
+  }, []);
 
   async function handleAnalyze(e: FormEvent) {
     e.preventDefault();

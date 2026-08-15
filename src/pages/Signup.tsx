@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Zap, ArrowRight, Target, Scale, CheckCircle2, Eye, EyeOff } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { API_BASE } from '../lib/api';
-import { track } from '../lib/analytics';
+import { track, getAttribution } from '../lib/analytics';
 
 type FormState = 'form' | 'verify';
 
@@ -115,6 +115,11 @@ export default function Signup() {
             // as "unknown" downstream (profile create / welcome email). Collected
             // again during in-app onboarding. (Codex review 2026-07-26.)
             ...(form.company.trim() ? { company: form.company.trim() } : {}),
+            // First-touch campaign params (gclid/utm/vt_*) stamped onto the
+            // user record so paid-acquisition users stay identifiable after
+            // the session ends on pursuit.honestecho.com. Namespaced so
+            // profile-create/onboarding readers of this metadata are untouched.
+            ...(Object.keys(getAttribution()).length ? { acquisition: getAttribution() } : {}),
           },
           emailRedirectTo: 'https://honestecho.com/welcome',
         },

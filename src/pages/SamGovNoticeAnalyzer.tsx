@@ -301,7 +301,7 @@ export default function SamGovNoticeAnalyzer() {
               <p className="text-xs text-[#00c3ff] font-body mt-3 flex items-start gap-2">
                 <Sparkles className="w-3 h-3 shrink-0 mt-0.5" strokeWidth={2} />
                 <span>
-                  <span className="font-bold">Example notice loaded</span> — a real Forest Service renovation solicitation. Hit{' '}
+                  <span className="font-bold">Example notice loaded</span> — a real, live SAM.gov notice, refreshed daily. Hit{' '}
                   <span className="font-bold">Analyze</span> to see a live read, or{' '}
                   <button
                     type="button"

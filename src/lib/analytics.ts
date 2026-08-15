@@ -25,7 +25,7 @@ function getAnonId(): string {
 // per session: the first campaign params seen win, kept in sessionStorage so
 // SPA navigation doesn't lose them, and stamped onto every event's properties.
 // Explicit event props take precedence on key collision.
-function getAttribution(): Record<string, string> {
+export function getAttribution(): Record<string, string> {
   const KEY = 'he_attribution';
   try {
     const stored = sessionStorage.getItem(KEY);
@@ -44,7 +44,11 @@ function getAttribution(): Record<string, string> {
       // ad clicks can't be joined to sessions and the paid test can't be
       // reconciled click-by-click (Codex, 2026-07-15). Keep ?src= as the
       // human-readable campaign tag; capture both.
-      if (k === 'src' || k === 'promo' || k === 'gclid' || k === 'gbraid' || k === 'wbraid' || k.startsWith('utm_')) {
+      // vt_*: Google Ads ValueTrack params ({keyword},{matchtype},{creative},
+      // {device},{network},{campaignid},{adgroupid}) named vt_kw, vt_mt, etc.
+      // in the campaign's final URL suffix — keyword-level attribution without
+      // any Google tag (paid-test plan, 2026-08-14).
+      if (k === 'src' || k === 'promo' || k === 'gclid' || k === 'gbraid' || k === 'wbraid' || k.startsWith('utm_') || k.startsWith('vt_')) {
         // Email clients sometimes fold trailing punctuation into the link
         // (e.g. a closing quote arrives as %22) — strip it so campaign codes
         // group cleanly.

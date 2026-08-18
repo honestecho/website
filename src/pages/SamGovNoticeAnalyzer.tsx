@@ -130,7 +130,10 @@ export default function SamGovNoticeAnalyzer() {
   const [result, setResult]           = useState<AnalysisResult | null>(null);
   const [error, setError]             = useState<string | null>(null);
   const [rateLimited, setRateLimited] = useState(false);
-  const [selectedProfile, setSelectedProfile] = useState<string>('it_software');
+  // Empty until the visitor picks — the render guard falls through to the
+  // server's defaultProfile (best-scoring persona). Do not seed a real key here:
+  // it would pin the initial render to that persona for every notice.
+  const [selectedProfile, setSelectedProfile] = useState<string>('');
 
   useEffect(() => { track('public_analyzer_page_viewed'); }, []);
 

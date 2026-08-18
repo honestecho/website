@@ -83,7 +83,7 @@ export default function SamGovAnalysis() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              to="/signup/"
+              to="/signup/?promo=fall2026"
               className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline"
             >
               Start Free
@@ -158,7 +158,7 @@ export default function SamGovAnalysis() {
         </h2>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
-            to="/signup/"
+            to="/signup/?promo=fall2026"
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline"
           >
             Start Free

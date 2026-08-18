@@ -62,7 +62,7 @@ export default function Navbar() {
           </a>
           {!onSignup && (
             <Link
-              to="/signup/"
+              to="/signup/?promo=fall2026"
               className={`px-5 py-2.5 text-sm font-bold bg-[#00c3ff] text-[#030B17] shadow-[0_0_15px_rgba(0,195,255,0.2)] rounded hover:bg-white hover:scale-105 transition-all duration-300 ${focusRing}`}
             >
               Start Free
@@ -106,7 +106,7 @@ export default function Navbar() {
           </a>
           {!onSignup && (
             <Link
-              to="/signup/"
+              to="/signup/?promo=fall2026"
               onClick={() => setOpen(false)}
               className={`mt-2 w-full text-center py-3 rounded-lg bg-[#00c3ff] text-[#030B17] font-bold text-sm hover:bg-white transition-colors ${focusRing}`}
             >

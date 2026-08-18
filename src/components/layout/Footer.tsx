@@ -115,7 +115,7 @@ export default function Footer() {
         <div className="border-t border-[#1e2d4a] pt-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[#8b9bb4]">© 2026 Honest Echo LLC. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <Link to="/signup/" className="text-xs font-bold text-[#00c3ff] hover:text-white transition-colors">
+            <Link to="/signup/?promo=fall2026" className="text-xs font-bold text-[#00c3ff] hover:text-white transition-colors">
               Start Free →
             </Link>
             <a

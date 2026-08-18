@@ -590,7 +590,7 @@ export default function SharedPackage() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
-                  to="/signup"
+                  to="/signup?promo=fall2026"
                   className="px-6 py-3 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all inline-flex items-center justify-center gap-2 whitespace-nowrap"
                 >
                   Create a free account

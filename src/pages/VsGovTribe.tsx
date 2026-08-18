@@ -4,6 +4,7 @@ import { ArrowRight, BarChart2, Target, CheckCircle, Zap, Filter, Layers } from 
 import FlyIn from '../components/FlyIn';
 import Notice from '../components/Notice';
 import { SoftwareApplicationSchema, FAQPageSchema } from '../components/SchemaOrg';
+import HeroPursuitCardZoom from '../components/HeroPursuitCardZoom';
 
 const faqs = [
   {
@@ -79,33 +80,43 @@ export default function VsGovTribe() {
       </Helmet>
       <SoftwareApplicationSchema />
 
-      {/* Hero */}
+      {/* Hero — copy left, live sample verdict right (same pattern as Home) */}
       <section className="py-24 px-6 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-            <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">GovTribe Alternative</span>
+        <div className="max-w-7xl mx-auto relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+          <div className="w-full lg:w-1/2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
+              <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">GovTribe Alternative</span>
+            </div>
+            <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
+              Beyond market data.<br className="hidden md:block" /> Built for bid decisions.
+            </h1>
+            <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-3xl">
+              GovTribe is a strong market intelligence tool. But if your team's real bottleneck is deciding which SAM.gov opportunities are worth pursuing — not finding them — HE Pursuit gives you the structured qualification workflow that market data tools don't.
+            </p>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8">
+              <Link
+                to="/tools/sam-gov-notice-analyzer/"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline focus-visible:ring-2 focus-visible:ring-[#00c3ff] focus-visible:outline-none"
+              >
+                Analyze a SAM.gov Notice — Free
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/signup/?promo=fall2026"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline focus-visible:ring-2 focus-visible:ring-[#00c3ff] focus-visible:outline-none"
+              >
+                Start Free
+              </Link>
+            </div>
+            <Notice align="left" className="mt-6">
+              <span className="font-bold text-[#00c3ff]">Fall Bid Clarity Pass:</span>{' '}
+              2 months of Starter or Pro free — applied automatically at checkout.{' '}
+              <span className="font-bold text-[#00c3ff]">Ends November 30.</span>
+            </Notice>
           </div>
-          <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
-            Beyond market data.<br className="hidden md:block" /> Built for bid decisions.
-          </h1>
-          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-3xl">
-            GovTribe is a strong market intelligence tool. But if your team's real bottleneck is deciding which SAM.gov opportunities are worth pursuing — not finding them — HE Pursuit gives you the structured qualification workflow that market data tools don't.
-          </p>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8">
-            <Link
-              to="/tools/sam-gov-notice-analyzer/"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline focus-visible:ring-2 focus-visible:ring-[#00c3ff] focus-visible:outline-none"
-            >
-              Analyze a SAM.gov Notice — Free
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              to="/signup/"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline focus-visible:ring-2 focus-visible:ring-[#00c3ff] focus-visible:outline-none"
-            >
-              Start Free
-            </Link>
+          <div className="w-full lg:w-[58%] relative hidden md:flex items-center transition-transform duration-700 hover:-translate-y-2">
+            <HeroPursuitCardZoom />
           </div>
         </div>
       </section>
@@ -232,7 +243,7 @@ export default function VsGovTribe() {
       <section className="py-8 pb-24 px-6">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
-            to="/signup/"
+            to="/signup/?promo=fall2026"
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline focus-visible:ring-2 focus-visible:ring-[#00c3ff] focus-visible:outline-none"
           >
             Start Free

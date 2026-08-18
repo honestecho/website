@@ -424,7 +424,7 @@ export default function FAQ() {
             Ready to make your next bid decision with confidence?
           </h2>
           <Link
-            to="/signup/"
+            to="/signup/?promo=fall2026"
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all"
           >
             Start Free

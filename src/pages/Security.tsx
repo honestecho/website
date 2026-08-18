@@ -223,7 +223,7 @@ export default function Security() {
             <Link to="/privacy/" className="text-[#a0b2c8] hover:text-white transition-colors font-body text-sm">
               Read the Privacy Policy →
             </Link>
-            <Link to="/signup/" className="text-[#a0b2c8] hover:text-white transition-colors font-body text-sm">
+            <Link to="/signup/?promo=fall2026" className="text-[#a0b2c8] hover:text-white transition-colors font-body text-sm">
               Start free →
             </Link>
           </div>

@@ -151,15 +151,15 @@ export default function PursuitReadout() {
     <>
       <Helmet>
         <title>Free Pursuit Readout | 3 Federal Opportunities Worth Your Time | Honest Echo</title>
-        <meta name="description" content="Tell us what your company does. Get a reasoned shortlist of 3 federal opportunities worth pursuing — vetted for hidden disqualifiers — plus one near-miss, free during beta." />
+        <meta name="description" content="Tell us what your company does. Get a reasoned shortlist of 3 federal opportunities worth pursuing — vetted for hidden disqualifiers — plus one near-miss. Free — no account required." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/tools/pursuit-readout" />
         <meta property="og:title" content="Free Pursuit Readout | 3 Federal Opportunities Worth Your Time | Honest Echo" />
-        <meta property="og:description" content="Tell us what your company does. Get a reasoned shortlist of 3 federal opportunities worth pursuing — vetted for hidden disqualifiers — plus one near-miss, free during beta." />
+        <meta property="og:description" content="Tell us what your company does. Get a reasoned shortlist of 3 federal opportunities worth pursuing — vetted for hidden disqualifiers — plus one near-miss. Free — no account required." />
         <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Free Pursuit Readout | 3 Federal Opportunities Worth Your Time | Honest Echo" />
-        <meta name="twitter:description" content="Tell us what your company does. Get a reasoned shortlist of 3 federal opportunities worth pursuing — vetted for hidden disqualifiers — plus one near-miss, free during beta." />
+        <meta name="twitter:description" content="Tell us what your company does. Get a reasoned shortlist of 3 federal opportunities worth pursuing — vetted for hidden disqualifiers — plus one near-miss. Free — no account required." />
         <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
 
@@ -169,7 +169,7 @@ export default function PursuitReadout() {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
             <Sparkles className="w-3 h-3 text-[#00c3ff]" />
             <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">
-              Free during beta · No account required
+              Free · No account required
             </span>
           </div>
 
@@ -180,7 +180,7 @@ export default function PursuitReadout() {
             Vetted for hidden disqualifiers. Reasoned. Defensible.
           </p>
           <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-3xl">
-            Tell us what your company does — it takes about 60 seconds. Within 48 hours you get a reasoned shortlist: three live federal opportunities worth pursuing, and one that looks right for you but isn't — so you can see how we think. Free during beta.
+            Tell us what your company does — it takes about 60 seconds. Within 48 hours you get a reasoned shortlist: three live federal opportunities worth pursuing, and one that looks right for you but isn't — so you can see how we think. Free.
           </p>
         </div>
       </section>

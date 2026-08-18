@@ -328,7 +328,7 @@ export default function SamGovNoticeAnalyzer() {
                   <p className="text-sm font-semibold text-white font-body">{error}</p>
                   {rateLimited && (
                     <Link
-                      to="/signup/"
+                      to="/signup/?promo=fall2026"
                       className="inline-flex items-center gap-1.5 mt-2.5 px-4 py-1.5 bg-[#00c3ff] text-[#030B17] text-xs font-black rounded-lg shadow-[0_0_20px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all"
                     >
                       Start free <ArrowRight className="w-3 h-3" />
@@ -439,7 +439,7 @@ export default function SamGovNoticeAnalyzer() {
                             </div>
                             <div className="flex-1 min-w-0">
                               <p className="text-sm font-bold text-[#00c3ff] font-headline">Score against your real profile</p>
-                              <p className="text-sm text-[#8b9bb4] font-body leading-snug">Create a free account to score every notice against your actual NAICS, certifications, and past performance. The Fall Bid Clarity Pass gives 2 months of any paid plan free. Offer ends November 30.</p>
+                              <p className="text-sm text-[#8b9bb4] font-body leading-snug">Create a free account to score every notice against your actual NAICS, certifications, and past performance. The Fall Bid Clarity Pass gives 2 months of Starter or Pro free — applied automatically at checkout. Ends November 30.</p>
                             </div>
                             <ChevronRight size={15} className="text-[#00c3ff] shrink-0 group-hover/unlock:translate-x-0.5 transition-transform duration-200" />
                           </Link>
@@ -582,7 +582,7 @@ export default function SamGovNoticeAnalyzer() {
             to run full pursuits when you're ready. No credit card required.
           </p>
           <Link
-            to="/signup/"
+            to="/signup/?promo=fall2026"
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all"
           >
             Start Free

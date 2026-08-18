@@ -4,25 +4,7 @@
 You are a senior UI/UX designer and front-end developer who builds premium marketing websites that command $10,000+ contracts. You write clean, purposeful code with meticulous attention to visual hierarchy, spacing, and motion. Every component earns its place.
 
 ## Coding Discipline
-
-### Think Before Coding
-- State assumptions explicitly before implementing. If uncertain, ask.
-- If multiple interpretations exist, present them — don't pick silently.
-- If something is unclear, stop, name what's confusing, and ask.
-- If a simpler approach exists, say so. Push back when warranted.
-
-### Simplicity First
-- Minimum code that solves the problem. Nothing speculative.
-- No features beyond what was asked.
-- No abstractions for single-use code.
-- No error handling for impossible scenarios.
-- If you write 200 lines and it could be 50, rewrite it.
-
-### Surgical Changes
-- Touch only what the task requires. Don't improve adjacent code.
-- Don't refactor things that aren't broken. Match existing style.
-- If you notice unrelated dead code, mention it — don't delete it.
-- Remove imports/variables/functions that YOUR changes made unused, but leave pre-existing dead code alone.
+Inherited from global `~/.claude/CLAUDE.md` § Coding discipline (think before coding · simplicity first · surgical changes · goal-driven execution). Not duplicated here.
 
 ## Project
 React 19 + Vite + Tailwind CSS 3 + TypeScript. Deploy: `git add . && git commit -m "message" && git push` — Cloudflare Pages auto-builds from `honestecho/website` on every push to `master`.
@@ -105,22 +87,22 @@ text-xs font-bold text-blue-200 tracking-wide
 Dot indicator: `w-1.5 h-1.5 rounded-full bg-[#00c3ff]`
 
 ### Notice / Important-Note Pattern
-The one approved way to call out a single high-signal message — beta offers, deadlines, policy callouts, "read this first" context. **Component:** `src/components/Notice.tsx`. Never hand-roll a bordered/tinted strip inline (see Never rule below).
+The one approved way to call out a single high-signal message — offers, deadlines, policy callouts, "read this first" context. **Component:** `src/components/Notice.tsx`. Never hand-roll a bordered/tinted strip inline (see Never rule below).
 
 ```tsx
-import Notice, { NoticeCode } from '../components/Notice';
+import Notice from '../components/Notice';
 
-<Notice label="Beta" className="mb-4">
-  Paid plans are <span className="font-bold text-[#00c3ff]">100% off during beta</span> — use code{' '}
-  <NoticeCode>BETA100</NoticeCode> at checkout.
+<Notice label="Fall Offer" className="mb-4">
+  <span className="font-bold text-[#00c3ff]">Fall Bid Clarity Pass:</span> 2 months of Starter or Pro free — applied automatically at checkout.
+  <br /> <span className="font-bold text-[#00c3ff]">Ends November 30.</span> Renews at the regular price unless canceled.
 </Notice>
 ```
-- `label?` — all-caps cyan badge (e.g. `"Beta"`, `"New"`, `"Note"`). Omit for a badge-less note.
+- `label?` — all-caps cyan badge (e.g. `"Fall Offer"`, `"New"`, `"Note"`). Omit for a badge-less note.
 - `tone?` — `"strong"` (default; `border/50` + `bg/10`, for announcements) or `"soft"` (`border/30` + `bg/5`, for quiet context notes). Emphasis is opacity, never a second hue.
 - `align?` — `"center"` (default) or `"left"`.
 - `className` — outer margin only (e.g. `"mb-4"`).
-- `<NoticeCode>` — inline monospace chip for a copyable code/value.
-- Reference implementation: the beta strip in `Pricing.tsx`.
+- `<NoticeCode>` — inline monospace chip for a copyable code/value (import `{ NoticeCode }` when a typed code is actually in play; the Fall offer is auto-applied, so it isn't).
+- Reference implementations: the Fall Offer strip in `Pricing.tsx`; `Home.tsx` and `Signup.tsx` carry the same offer via `Notice`.
 
 ## Animation Principles
 - Duration: `300ms` for micro-interactions, `500–700ms` for larger transitions

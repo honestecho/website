@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, ChevronDown, ShieldCheck, Clock, Ban, Eye, ClipboardList, Rocket, Users } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
-import Notice, { NoticeCode } from '../components/Notice';
+import Notice from '../components/Notice';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
 
 // ─── Feature Matrix ───────────────────────────────────────────────────────────
@@ -191,9 +191,8 @@ export default function Pricing() {
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Fall Bid Clarity Pass offer strip */}
           <Notice label="Fall Offer" className="mb-4">
-            <span className="font-bold text-[#00c3ff]">Fall Bid Clarity Pass:</span> Try Starter or Pro free for 2 months with code{' '}
-            <NoticeCode>FALL2026</NoticeCode>
-.<br /> <span className="font-bold text-[#00c3ff]">Offer ends November 30.</span> Cancel anytime; renews at the regular price unless canceled.
+            <span className="font-bold text-[#00c3ff]">Fall Bid Clarity Pass:</span> 2 months of Starter or Pro free — applied automatically at checkout.
+            <br /> <span className="font-bold text-[#00c3ff]">Ends November 30.</span> Renews at the regular price unless canceled.
           </Notice>
           <div className="mb-8 rounded-xl border border-[#00c3ff]/30 bg-[#00c3ff]/5 px-6 py-4 text-center">
             <p className="font-headline font-bold text-white text-base md:text-lg tracking-tight">
@@ -244,7 +243,7 @@ export default function Pricing() {
                 </div>
                 {plan.price !== '$0' && plan.name !== 'Team' && (
                   <p className={`text-[#00c3ff] text-xs font-bold font-body ${'valueLine' in plan && plan.valueLine ? 'mb-1' : 'mb-5'}`}>
-                    2 months free with FALL2026 · ends November 30
+                    2 months free — applied automatically · ends November 30
                   </p>
                 )}
                 {'valueLine' in plan && plan.valueLine && (

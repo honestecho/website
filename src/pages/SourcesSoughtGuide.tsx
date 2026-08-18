@@ -193,7 +193,7 @@ export default function SourcesSoughtGuide() {
             <ArrowRight className="w-4 h-4" />
           </Link>
           <Link
-            to="/signup/"
+            to="/signup/?promo=fall2026"
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline"
           >
             Start Free

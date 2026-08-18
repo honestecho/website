@@ -176,7 +176,7 @@ export default function Contact() {
                 Thanks for reaching out — we'll get back to you at <span className="text-white font-semibold">{email}</span> within one business day.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mt-8">
-                <Link to="/signup/" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg hover:bg-white transition-colors text-sm">
+                <Link to="/signup/?promo=fall2026" className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg hover:bg-white transition-colors text-sm">
                   Start free <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link to="/" className="inline-flex items-center justify-center px-6 py-3 border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">

@@ -106,7 +106,7 @@ export default function SamGovRecompeteTracking() {
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8">
             <Link
-              to="/signup/"
+              to="/signup/?promo=fall2026"
               className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline"
             >
               Start Free — Track Your Lane
@@ -186,7 +186,7 @@ export default function SamGovRecompeteTracking() {
         </h2>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
-            to="/signup/"
+            to="/signup/?promo=fall2026"
             className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline"
           >
             Start Free

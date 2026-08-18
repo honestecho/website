@@ -4,6 +4,7 @@ import { ArrowRight, Sparkles, Target, Scale, FileText, CheckCircle, Upload, Com
 // Scale, Upload used in How It Works steps
 import { Link } from 'react-router-dom';
 import FlyIn from '../components/FlyIn';
+import Notice from '../components/Notice';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
 import HeroPursuitCardZoom from '../components/HeroPursuitCardZoom';
 
@@ -32,10 +33,11 @@ export default function Home() {
           {/* Left Column: Copy */}
           <div className="w-full lg:w-1/2">
             {/* Fall Bid Clarity Pass promo */}
-            <div className="mb-5 rounded-xl border border-[#00c3ff]/50 bg-[#00c3ff]/10 px-5 py-3">
-              <p className="font-headline font-bold text-white text-sm md:text-base">Friends don't let friends read SAM.gov raw.</p>
-              <p className="text-[#a0b2c8] text-xs md:text-sm font-body mt-1">Fall Bid Clarity Pass: Try any paid plan free for 2 months. <span className="text-[#00c3ff] font-bold">Ends November 30.</span></p>
-            </div>
+            <Notice align="left" className="mb-5">
+              <span className="font-headline font-bold">Friends don't let friends read SAM.gov raw.</span>{' '}
+              Fall Bid Clarity Pass: 2 months of Starter or Pro free — applied automatically at checkout.{' '}
+              <span className="text-[#00c3ff] font-bold">Ends November 30.</span>
+            </Notice>
             <h1 className="font-headline font-black text-4xl sm:text-5xl lg:text-[4rem] xl:text-[4.5rem] tracking-tighter text-white mb-5 leading-tight drop-shadow-2xl">
               Stop wasting proposal hours on bids you{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">shouldn't chase.</span>
@@ -324,7 +326,7 @@ export default function Home() {
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
-              <Link to="/signup/" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Start Free</Link>
+              <Link to="/signup/?promo=fall2026" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Start Free</Link>
             </div>
             </FlyIn>
 
@@ -342,7 +344,7 @@ export default function Home() {
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
-              <Link to="/signup/" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Select Starter</Link>
+              <Link to="/signup/?promo=fall2026" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Select Starter</Link>
             </div>
             </FlyIn>
 
@@ -365,7 +367,7 @@ export default function Home() {
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
-              <Link to="/signup/" className="block text-center w-full py-3 rounded-lg bg-[#00c3ff] text-[#030B17] font-bold shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all relative z-10 text-sm">Select Pro</Link>
+              <Link to="/signup/?promo=fall2026" className="block text-center w-full py-3 rounded-lg bg-[#00c3ff] text-[#030B17] font-bold shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all relative z-10 text-sm">Select Pro</Link>
             </div>
             </FlyIn>
 
@@ -456,7 +458,7 @@ export default function Home() {
           <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body max-w-xl mx-auto">
             Stop relying on scattered notes, gut feel, and costly proposal churn. HE Pursuit helps your team qualify smarter, decide faster, and focus effort where it has the best chance to pay off.
           </p>
-          <Link to="/signup/" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all">
+          <Link to="/signup/?promo=fall2026" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all">
             Start Free
             <ArrowRight className="w-4 h-4" />
           </Link>

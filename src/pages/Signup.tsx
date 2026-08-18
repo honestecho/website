@@ -5,6 +5,7 @@ import { Zap, ArrowRight, Target, Scale, CheckCircle2, Eye, EyeOff } from 'lucid
 import { supabase } from '../lib/supabase';
 import { API_BASE } from '../lib/api';
 import { track, getAttribution } from '../lib/analytics';
+import Notice from '../components/Notice';
 
 type FormState = 'form' | 'verify';
 
@@ -250,12 +251,11 @@ export default function Signup() {
             {/* Fall Bid Clarity Pass strip — mirrors the Home/Pricing banners so the
                 offer survives the click into signup. Manual wind-down after November 30. */}
             {state === 'form' && (
-              <div className="mb-4 border border-[#00c3ff]/40 rounded-xl px-4 py-3 bg-[#0b1120]/80">
-                <p className="text-[#a0b2c8] text-xs md:text-sm font-body">
-                  <span className="text-[#00c3ff] font-bold">Fall Bid Clarity Pass:</span>{' '}
-                  after signup, use code <span className="text-white font-bold">FALL2026</span> at checkout for 2 months of any paid plan free. <span className="text-[#00c3ff] font-bold">Ends November 30.</span>
-                </p>
-              </div>
+              <Notice tone="soft" align="left" className="mb-4">
+                <span className="text-[#00c3ff] font-bold">Fall Bid Clarity Pass:</span>{' '}
+                2 months of Starter or Pro free — applied automatically at checkout.{' '}
+                <span className="text-[#00c3ff] font-bold">Ends November 30.</span>
+              </Notice>
             )}
 
             {state === 'form' ? (

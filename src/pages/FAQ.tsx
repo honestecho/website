@@ -47,6 +47,20 @@ const sections: FAQSection[] = [
           'These recommendations are designed to help you make faster, more consistent decisions.',
         ],
       },
+      {
+        q: 'I just got my 8(a), SDVOSB, WOSB, or HUBZone certification — how do I find contracts it unlocks?',
+        parts: [
+          'A set-aside certification is a window that starts closing the day you receive it — 8(a) runs nine years, and every year without set-aside wins is spent runway.',
+          'HE Pursuit matches your certifications against every incoming SAM.gov notice automatically, so set-aside and sole-source-eligible opportunities surface daily instead of hiding in the feed.',
+        ],
+      },
+      {
+        q: 'Should I bid as a prime or look for subcontracting work?',
+        parts: [
+          'It depends on the specific opportunity, not on your company in general — the same business can be a strong sub on one notice and a viable prime on another.',
+          'HE Pursuit gives every analyzed opportunity a recommended route — pursue it as a prime, or position as a subcontractor — based on the requirement\'s size, set-aside, and what your profile supports. Notices flagged as primeable at your size are where sub-to-prime transitions start.',
+        ],
+      },
     ],
   },
   {

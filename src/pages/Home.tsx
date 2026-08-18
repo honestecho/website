@@ -75,7 +75,7 @@ export default function Home() {
           <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] grid grid-cols-2 md:grid-cols-4 divide-x divide-[#1e2d4a]">
             {([
               { Icon: Clock,      title: 'Save Hours',   body: 'Analyze in seconds, not hours'           },
-              { Icon: Target,     title: 'Bid Smarter',  body: 'Focus on opportunities worth pursuing'   },
+              { Icon: Target,     title: 'Bid Smarter',  body: 'Prime it or sub it — every notice gets a recommended route' },
               { Icon: Shield,     title: 'Reduce Risk',  body: 'Spot potential issues before you invest' },
               { Icon: TrendingUp, title: 'Decide Faster', body: 'Make defensible go / no-go decisions'      },
             ] as { Icon: React.ElementType; title: string; body: string }[]).map((item, i) => (

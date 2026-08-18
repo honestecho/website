@@ -37,6 +37,10 @@ const ANALYZER_FAQ = [
     q: 'Can I use it on sources sought and presolicitation notices?',
     a: 'Yes. Paste any live SAM.gov notice link, including sources sought and presolicitation notices. Early-stage notices are often the best time to check fit, before the requirements harden.',
   },
+  {
+    q: 'Does it tell me whether to bid as a prime or find a subcontracting route?',
+    a: 'The free analyzer gives a general fit read against sample business profiles. Inside HE Pursuit, every opportunity you evaluate against your own profile also gets a recommended route — pursue it as a prime, or position as a subcontractor — based on the requirement\'s size, set-aside, and your capabilities.',
+  },
 ];
 
 // ── Types ─────────────────────────────────────────────────────────────────────

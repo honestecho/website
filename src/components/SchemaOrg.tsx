@@ -72,7 +72,8 @@ export function SoftwareApplicationSchema() {
         name: 'Team',
         price: '299',
         priceCurrency: 'USD',
-        description: 'Multi-user workspace, shared pursuit pipeline',
+        description: 'Multi-user workspace, shared pursuit pipeline (waitlist)',
+        availability: 'https://schema.org/PreOrder',
       },
     ],
     creator: {

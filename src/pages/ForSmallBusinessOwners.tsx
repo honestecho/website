@@ -8,11 +8,11 @@ import { SoftwareApplicationSchema, FAQPageSchema } from '../components/SchemaOr
 const faqs = [
   {
     q: 'How do small business owners find government contracts worth bidding on?',
-    a: 'Most small contractors start on SAM.gov, which lists every federal opportunity but ranks none of them for your business. The practical workflow is: define your NAICS codes, certifications, and capacity once, then screen every incoming notice against that profile. HE Pursuit automates that screening — each SAM.gov notice gets a fit score and a Go, Conditional Go, or No-Bid read against your actual profile, so you spend proposal hours only on winnable work.',
+    a: 'Most small contractors start on SAM.gov, which lists federal contract opportunities but ranks none of them for your business. The practical workflow is: define your NAICS codes, certifications, and capacity once, then screen every incoming notice against that profile. HE Pursuit automates that screening — each SAM.gov notice gets a fit score and a Go, Conditional Go, or No-Bid read against your actual profile, so you spend proposal hours only on winnable work.',
   },
   {
     q: 'I just got my 8(a), SDVOSB, WOSB, or HUBZone certification. Now what?',
-    a: 'A certification is a clock, not a guarantee — 8(a) runs nine years, and every year without set-aside wins is spent runway. The first step is visibility: a daily feed of notices filtered to your set-aside and NAICS codes, scored for fit. HE Pursuit flags set-aside matches automatically, including sole-source-eligible opportunities, so the certification starts paying for itself instead of sitting in a drawer.',
+    a: 'A certification creates eligibility, not awards — and 8(a) in particular is a nine-year program, so every year without set-aside pursuits is spent runway. The first step is visibility: a feed of notices filtered to your set-aside and NAICS codes, scored for fit. HE Pursuit flags set-aside matches against your certifications automatically, so the opportunities your certification unlocks stop hiding in the feed.',
   },
   {
     q: 'Can a small subcontractor become a prime contractor?',
@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     q: 'How much time should a small business spend on a federal proposal?',
-    a: 'Industry rules of thumb put a competitive federal proposal at 40–200+ hours. That is exactly why the bid/no-bid decision matters more than the writing: a disciplined no-bid saves the entire cost of a doomed pursuit. Screening with HE Pursuit takes minutes per notice, so the expensive hours only start after a defensible Go.',
+    a: 'A competitive federal proposal routinely consumes days to weeks of working time, depending on scope. That is exactly why the bid/no-bid decision matters more than the writing: a disciplined no-bid saves the entire cost of a doomed pursuit. Screening with HE Pursuit takes minutes per notice, so the expensive hours only start after a defensible Go.',
   },
   {
     q: 'Is HE Pursuit free for small businesses?',
@@ -46,8 +46,8 @@ const cards = [
   },
   {
     Icon: ShieldCheck,
-    title: 'Make your certification pay before the clock runs out',
-    body: '8(a), SDVOSB, WOSB, HUBZone — every set-aside certification is a window, not a wall plaque. HE Pursuit surfaces the set-aside and sole-source-eligible notices your certification actually unlocks, every day, so the window converts to contracts.',
+    title: 'Put your certification to work',
+    body: '8(a), SDVOSB, WOSB, HUBZone — a set-aside certification creates eligibility, not awards, and 8(a) is a nine-year program. HE Pursuit surfaces the set-aside notices your certification actually unlocks, so the eligibility gets used instead of framed.',
   },
   {
     Icon: Scale,
@@ -57,7 +57,7 @@ const cards = [
   {
     Icon: Compass,
     title: 'Built for owner-operators, priced like it',
-    body: "You don't have a BD department. HE Pursuit does the first 80% of that job — finding, screening, and scoring — for less per month than one hour of consulting. Start free; upgrade when the pipeline earns it.",
+    body: "You don't have a BD department. HE Pursuit does the finding, screening, and scoring a BD hire would start with — at a small-business monthly price. Start free; upgrade when the pipeline earns it.",
   },
 ];
 
@@ -68,7 +68,7 @@ export default function ForSmallBusinessOwners() {
         <title>Government Contracts for Small Business Owners — HE Pursuit</title>
         <meta name="description" content="Find and qualify federal contracts that fit your small business. HE Pursuit screens SAM.gov notices against your NAICS, certifications, and capacity — bid/no-bid decisions in minutes, not weekends." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://honestecho.com/for-small-business-owners" />
+        <meta property="og:url" content="https://honestecho.com/for-small-business-owners/" />
         <meta property="og:title" content="Government Contracts for Small Business Owners — HE Pursuit" />
         <meta property="og:description" content="SAM.gov lists 2,000 notices a day. HE Pursuit tells you which ones fit your small business — and whether to prime, sub, or pass." />
         <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />

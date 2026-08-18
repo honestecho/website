@@ -8,7 +8,7 @@ import { SoftwareApplicationSchema, FAQPageSchema } from '../components/SchemaOr
 const faqs = [
   {
     q: 'What tools do GovCon consultants use to screen opportunities for clients?',
-    a: 'The traditional stack is GovWin IQ or GovTribe for discovery plus manual judgment for screening — powerful, but priced for firms, not solo consultants, and the screening hours don\'t scale past a handful of clients. HE Pursuit covers the screening layer: each client gets a profile, every SAM.gov notice gets scored against it, and the consultant reviews a ranked shortlist per client instead of running the same searches ten times.',
+    a: 'The traditional stack is GovWin IQ or GovTribe for discovery plus manual judgment for screening — powerful, but priced for firms rather than solo consultants, and the screening hours don\'t scale past a handful of clients. HE Pursuit covers the screening layer: build a profile reflecting the client business you\'re advising, and incoming SAM.gov notices are scored against it — so your review starts from a ranked shortlist instead of a raw feed.',
   },
   {
     q: 'How do consultants justify a no-bid recommendation to a client?',
@@ -16,23 +16,23 @@ const faqs = [
   },
   {
     q: 'Can I use HE Pursuit in client workshops or training?',
-    a: 'Yes — the SAM.gov notice analyzer is free and needs no account, which makes it a live demo you can run in any workshop: paste a real notice, watch the verdict and reasoning render, switch sample business profiles to show how fit changes the answer. Advisors who must stay vendor-neutral can present the analysis method without endorsing a purchase.',
+    a: 'Yes — the SAM.gov notice analyzer is free and needs no account, which makes it a natural live demo: paste a real notice, watch the verdict and reasoning render, switch sample business profiles to show how fit changes the answer. It allows 3 free analyses per hour per visitor, so plan a workshop around a few well-chosen examples. Advisors who must stay vendor-neutral can present the analysis method without endorsing a purchase.',
   },
   {
     q: 'Is HE Pursuit a GovWin alternative for consultants?',
-    a: 'For opportunity screening and bid/no-bid decisions, yes — at $99–$199/month instead of five figures a year. It does not replace GovWin\'s market-intelligence depth (pre-RFP forecasting, competitor analysis, state/local coverage). Many consultants use HE Pursuit as the per-client screening layer and reserve enterprise tools for the engagements that pay for them.',
+    a: 'For opportunity screening and bid/no-bid decisions, yes — at $99–$199/month, against enterprise data subscriptions whose commonly reported pricing runs far higher. It does not replace GovWin\'s market-intelligence depth (pre-RFP forecasting, competitor analysis, state/local coverage); it covers the screening-and-decision layer at a price a solo practice can carry.',
   },
   {
     q: 'How does pricing work for consultants with multiple clients?',
-    a: 'Plans are priced per account ($99 Starter / $199 Pro), and through November 30 two months of Starter or Pro are free, applied automatically at checkout. The free analyzer needs no account at all — many consultants start there, then upgrade when the multi-client workflow earns it.',
+    a: 'Plans are priced per account ($99 Starter / $199 Pro), each built around one company profile — for multiple client engagements, that means an account per client business, and the math still undercuts a single enterprise data seat. Through November 30, two months of Starter or Pro are free, applied automatically at checkout. The free analyzer needs no account at all.',
   },
 ];
 
 const cards = [
   {
     Icon: Users,
-    title: 'Ten clients. One screening pass.',
-    body: 'Sunday night SAM.gov searches, once per client, was never a business model. Set a profile per client and every notice scores against all of them — your judgment goes where it\'s worth billing: the top of each list.',
+    title: 'Screening that starts ranked, not raw',
+    body: 'Sunday-night SAM.gov searches were never a business model. A profile built for the client you\'re advising turns the raw feed into a scored shortlist — your judgment goes where it\'s worth billing: the top of the list.',
   },
   {
     Icon: Scale,
@@ -47,17 +47,17 @@ const cards = [
   {
     Icon: Zap,
     title: 'Faster intake, more clients',
-    body: 'When screening a new client\'s pipeline takes an hour instead of a week, intake stops being the bottleneck. Take the engagement; let the scored feed do the first pass.',
+    body: 'When the first screening pass on a new client\'s pipeline is automated, intake stops being the bottleneck. Take the engagement; let the scored feed do the first pass and spend your hours on the calls that close.',
   },
   {
     Icon: DollarSign,
-    title: 'Enterprise-tool output without the enterprise invoice',
-    body: 'GovWin-grade triage at $99–$199 a month means the math works for a solo practice — and for recommending to clients who would never sign a five-figure data contract.',
+    title: 'Serious screening without the enterprise invoice',
+    body: 'At $99–$199 a month, the math works for a solo practice — and for recommending to clients who would never sign an enterprise data contract.',
   },
   {
     Icon: Layers,
-    title: 'Deliverables your clients keep',
-    body: 'Scored pipelines, documented no-bids, decision records — artifacts that survive the engagement and prove your value at renewal time.',
+    title: 'Analyses your clients can hold onto',
+    body: 'Evidence-backed verdicts and shareable analyses — reasoning that survives the meeting and proves your value at renewal time.',
   },
 ];
 
@@ -66,15 +66,15 @@ export default function ForGovconConsultants() {
     <>
       <Helmet>
         <title>Opportunity Screening for GovCon Consultants — HE Pursuit</title>
-        <meta name="description" content="Multi-client SAM.gov screening for GovCon consultants, capture advisors, and proposal shops. Defensible bid/no-bid scores per client — without GovWin pricing." />
+        <meta name="description" content="SAM.gov opportunity screening for GovCon consultants, capture advisors, and proposal shops. Defensible bid/no-bid scores for the clients you advise — without enterprise-tool pricing." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://honestecho.com/for-govcon-consultants" />
+        <meta property="og:url" content="https://honestecho.com/for-govcon-consultants/" />
         <meta property="og:title" content="Opportunity Screening for GovCon Consultants — HE Pursuit" />
-        <meta property="og:description" content="Screen SAM.gov for every client from one place. Evidence-backed bid/no-bid recommendations your clients can interrogate." />
+        <meta property="og:description" content="Turn raw SAM.gov feeds into ranked shortlists for the clients you advise. Evidence-backed bid/no-bid recommendations your clients can interrogate." />
         <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Opportunity Screening for GovCon Consultants — HE Pursuit" />
-        <meta name="twitter:description" content="Multi-client SAM.gov triage with defensible scores. Free analyzer for live workshop demos." />
+        <meta name="twitter:description" content="SAM.gov triage with defensible scores for the clients you advise. Free analyzer for live workshop demos." />
         <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
       </Helmet>
       <SoftwareApplicationSchema />
@@ -91,7 +91,7 @@ export default function ForGovconConsultants() {
             Your judgment is the product.<br className="hidden md:block" /> Make it scale.
           </h1>
           <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-3xl">
-            You can read a solicitation in minutes — that was never the bottleneck. The bottleneck is running the same SAM.gov searches for ten clients, writing the same &ldquo;here&rsquo;s why this one isn&rsquo;t a fit&rdquo; email for the ninth time, and turning away work because screening doesn&rsquo;t scale. HE Pursuit runs the per-client screening layer: one scored feed per client profile, evidence-backed recommendations you can put in front of anyone, and a free no-login analyzer you can demo live in a workshop.
+            You can read a solicitation in minutes — that was never the bottleneck. The bottleneck is running the same SAM.gov searches for every client, writing the same &ldquo;here&rsquo;s why this one isn&rsquo;t a fit&rdquo; email for the ninth time, and turning away work because screening doesn&rsquo;t scale. HE Pursuit runs the screening layer: a scored feed against the client profile you&rsquo;re advising, evidence-backed recommendations you can put in front of anyone, and a free no-login analyzer you can demo live in a workshop.
           </p>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8">
             <Link

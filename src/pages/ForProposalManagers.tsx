@@ -12,15 +12,15 @@ const faqs = [
   },
   {
     q: 'How do proposal teams triage a high volume of SAM.gov notices?',
-    a: 'Manual triage breaks down around 30–50 notices a week — good opportunities sit unread while the team writes. The fix is screening before reading: every incoming notice gets scored against the company profile, and only the top slice earns human review. HE Pursuit maintains that scored inflow daily, so triage becomes reviewing a ranked shortlist instead of reading a feed.',
+    a: 'Manual triage breaks down as volume grows — good opportunities sit unread while the team writes. The fix is screening before reading: every incoming notice gets scored against the company profile, and only the top slice earns human review. HE Pursuit maintains that scored inflow daily, so triage becomes reviewing a ranked shortlist instead of reading a feed.',
   },
   {
     q: 'How do you tell if an RFP is wired for the incumbent?',
-    a: 'Signals include: requirements written around a specific existing solution, unusually short response windows on complex scopes, incumbent-specific past-performance requirements, and a Sources Sought that closed without requirement changes. No tool proves intent, but HE Pursuit surfaces the structural signals — incumbency indicators, timing anomalies, and restrictive requirements — so you can weigh the wire risk before committing hours.',
+    a: 'Signals include: requirements written around a specific existing solution, unusually short response windows on complex scopes, incumbent-specific past-performance requirements, and a Sources Sought that closed without requirement changes. No tool proves intent, but HE Pursuit surfaces structural signals like timing anomalies and restrictive requirements, so you can weigh the wire risk before committing hours.',
   },
   {
     q: 'What win rate should a small GovCon team expect?',
-    a: 'Published federal win rates for small businesses cluster around 20–40% for well-qualified pursuits — and far lower for teams that chase everything. The lever is selection, not writing: bidding 4 well-fit opportunities beats bidding 11 mixed ones with the same capacity. A disciplined no-bid is the highest-ROI decision a proposal team makes.',
+    a: 'Win rate depends on selection discipline more than writing quality: teams that qualify hard before bidding consistently outperform teams that chase everything with the same capacity. Whatever your current rate, the cheapest way to raise it is fewer, better-fit pursuits — a disciplined no-bid is the highest-ROI decision a proposal team makes.',
   },
   {
     q: 'Does HE Pursuit write proposals?',
@@ -42,7 +42,7 @@ const cards = [
   {
     Icon: Target,
     title: 'Kill criteria before the kickoff',
-    body: 'Disqualifiers surface first: set-aside you don\'t hold, vehicle you\'re not on, clearance you can\'t staff, wage determination that breaks the price. The fastest no-bid is the one made before the color-team calendar exists.',
+    body: 'Disqualifiers surface first: a set-aside you don\'t hold, a contract vehicle you\'re not on, requirements your profile can\'t support. The fastest no-bid is the one made before the color-team calendar exists.',
   },
   {
     Icon: Clock,
@@ -68,7 +68,7 @@ export default function ForProposalManagers() {
         <title>Bid/No-Bid Decisions for Proposal Managers — HE Pursuit</title>
         <meta name="description" content="Bid/no-bid discipline for proposal and capture teams. HE Pursuit scores every SAM.gov notice on fit, eligibility, timing, and risk — a filled-in decision scorecard before anyone commits proposal hours." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://honestecho.com/for-proposal-managers" />
+        <meta property="og:url" content="https://honestecho.com/for-proposal-managers/" />
         <meta property="og:title" content="Bid/No-Bid Decisions for Proposal Managers — HE Pursuit" />
         <meta property="og:description" content="The bid/no-bid scorecard, already filled in. Triage SAM.gov at volume, kill bad pursuits early, and defend every decision with documented reasoning." />
         <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />

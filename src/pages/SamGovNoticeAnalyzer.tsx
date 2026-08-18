@@ -38,6 +38,10 @@ const ANALYZER_FAQ = [
     a: 'Yes. Paste any live SAM.gov notice link, including sources sought and presolicitation notices. Early-stage notices are often the best time to check fit, before the requirements harden.',
   },
   {
+    q: 'Can this replace my bid/no-bid checklist or decision matrix?',
+    a: 'It automates the first pass of one. A bid/no-bid checklist scores capability fit, eligibility, timing, and competitive position — this tool runs those dimensions against a real notice and shows the score behind the verdict. The full HE Pursuit workflow extends that into a complete, documented bid/no-bid decision against your own company profile.',
+  },
+  {
     q: 'Does it tell me whether to bid as a prime or find a subcontracting route?',
     a: 'The free analyzer gives a general fit read against sample business profiles. Inside HE Pursuit, every opportunity you evaluate against your own profile also gets a recommended route — pursue it as a prime, or position as a subcontractor — based on the requirement\'s size, set-aside, and your capabilities.',
   },
@@ -266,7 +270,7 @@ export default function SamGovNoticeAnalyzer() {
           </h1>
 
           <p className="text-[#a0b2c8] text-lg leading-relaxed font-body mb-8 max-w-2xl">
-            Get a general assessment first. Add your company profile for a personalized bid/no-bid evaluation.
+            Get a free bid/no-bid read on any live notice — score, verdict, and the reasoning behind it. Add your company profile for a personalized evaluation.
           </p>
 
           {/* ── Input card ───────────────────────────────────────────────── */}
@@ -586,7 +590,8 @@ export default function SamGovNoticeAnalyzer() {
           </h2>
           <p className="text-[#a0b2c8] font-body mb-8 max-w-xl mx-auto">
             Create a free account to score notices against your real business profile — and upgrade
-            to run full pursuits when you're ready. No credit card required.
+            to run full pursuits when you're ready. No credit card required. Fall Bid Clarity Pass:
+            2 months of Starter or Pro free, applied automatically at checkout. Ends November 30.
           </p>
           <Link
             to="/signup/?promo=fall2026"

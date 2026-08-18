@@ -20,6 +20,9 @@ import SamGovAnalysis from './pages/SamGovAnalysis';
 import SamGovHiddenOpportunities from './pages/SamGovHiddenOpportunities';
 import SourcesSoughtGuide from './pages/SourcesSoughtGuide';
 import SamGovRecompeteTracking from './pages/SamGovRecompeteTracking';
+import ForSmallBusinessOwners from './pages/ForSmallBusinessOwners';
+import ForProposalManagers from './pages/ForProposalManagers';
+import ForGovconConsultants from './pages/ForGovconConsultants';
 
 // Everything else stays code-split — lower-traffic / interactive pages where a
 // brief hard-load shift is inconsequential and the bundle savings are worth more.
@@ -130,6 +133,12 @@ function App() {
           <Route path="/sources-sought-worth-responding/" element={<SourcesSoughtGuide />} />
           <Route path="/sam-gov-recompete-tracking" element={<SamGovRecompeteTracking />} />
           <Route path="/sam-gov-recompete-tracking/" element={<SamGovRecompeteTracking />} />
+          <Route path="/for-small-business-owners" element={<ForSmallBusinessOwners />} />
+          <Route path="/for-small-business-owners/" element={<ForSmallBusinessOwners />} />
+          <Route path="/for-proposal-managers" element={<ForProposalManagers />} />
+          <Route path="/for-proposal-managers/" element={<ForProposalManagers />} />
+          <Route path="/for-govcon-consultants" element={<ForGovconConsultants />} />
+          <Route path="/for-govcon-consultants/" element={<ForGovconConsultants />} />
           <Route path="/tools/sam-gov-notice-analyzer" element={<SamGovNoticeAnalyzer />} />
           <Route path="/tools/pursuit-readout" element={<PursuitReadout />} />
           <Route path="/p/:token" element={<SharedPackage />} />

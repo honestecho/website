@@ -53,6 +53,24 @@ export default function Footer() {
               </ul>
             </div>
 
+            {/* Who it's for column */}
+            <div>
+              <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-3">Who It&rsquo;s For</p>
+              <ul className="space-y-2">
+                {[
+                  { label: 'Small Business Owners', to: '/for-small-business-owners/' },
+                  { label: 'Proposal Managers', to: '/for-proposal-managers/' },
+                  { label: 'GovCon Consultants', to: '/for-govcon-consultants/' },
+                ].map(({ label, to }) => (
+                  <li key={to}>
+                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             {/* Company column */}
             <div>
               <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-3">Company</p>

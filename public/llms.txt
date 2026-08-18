@@ -10,6 +10,11 @@ Honest Echo LLC is a woman-owned, veteran-owned small business based in Fairfax,
 - [Free SAM.gov Notice Analyzer](https://honestecho.com/tools/sam-gov-notice-analyzer/): Paste any SAM.gov Notice ID or URL for a free initial assessment — no login required.
 - [Pursuit Readout](https://honestecho.com/tools/pursuit-readout/): Request a free readout of the SAM.gov opportunities worth pursuing for your business.
 
+## Who It's For
+- [Small Business Owners](https://honestecho.com/for-small-business-owners/): Screen SAM.gov opportunities against your NAICS, certifications, and capacity; see whether to prime, sub, or pass — including set-aside (8(a), SDVOSB, WOSB, HUBZone) matches and notices primeable at your size.
+- [Proposal Managers](https://honestecho.com/for-proposal-managers/): A bid/no-bid scorecard that arrives already filled in — triage SAM.gov at volume, surface disqualifiers early, and document every Go/No-Bid decision.
+- [GovCon Consultants](https://honestecho.com/for-govcon-consultants/): Multi-client opportunity screening with evidence-backed recommendations, and a free no-login analyzer for live client workshops.
+
 ## Comparisons
 - [HE Pursuit vs GovWin](https://honestecho.com/vs-govwin/): A GovWin alternative for small business — discovery tools help you find opportunities; HE Pursuit helps you decide which ones deserve your time.
 - [HE Pursuit vs GovTribe](https://honestecho.com/vs-govtribe/): A GovTribe alternative built for lean GovCon capture teams.

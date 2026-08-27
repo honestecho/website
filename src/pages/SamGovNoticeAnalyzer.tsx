@@ -79,6 +79,35 @@ interface AnalysisResult {
   profileMeta: ProfileMeta[];
 }
 
+// The sample card renders a cached analysis straight from the server. `as
+// AnalysisResult` is compile-time only, so if the scorer's shape ever drifts
+// from the card's — it already has twice — an unchecked payload throws during
+// render and takes the page down. Validate every field the card touches; a
+// payload that fails falls back to the static preview.
+const isStr = (v: unknown): v is string => typeof v === 'string';
+const isNullableStr = (v: unknown) => v === null || typeof v === 'string';
+const isNum = (v: unknown) => typeof v === 'number' && Number.isFinite(v);
+const isObj = (v: unknown): v is Record<string, unknown> =>
+  typeof v === 'object' && v !== null && !Array.isArray(v);
+
+function isProfileScore(v: unknown): v is ProfileScore {
+  return isObj(v)
+    && isNum(v.match_score)
+    && isObj(v.dimension_scores) && Object.values(v.dimension_scores).every(isNum)
+    && Array.isArray(v.reasons) && v.reasons.every(isStr)
+    && (v.recommendation === 'GO' || v.recommendation === 'CONDITIONAL_GO' || v.recommendation === 'NO_BID');
+}
+
+function isAnalysisResult(v: unknown): v is AnalysisResult {
+  return isObj(v)
+    && [v.noticeId, v.title, v.agency, v.summary, v.defaultProfile].every(isStr)
+    && [v.dueDate, v.setAside, v.naics, v.maturity].every(isNullableStr)
+    && Array.isArray(v.profileMeta)
+    && v.profileMeta.every(m => isObj(m) && [m.key, m.label, m.blurb].every(isStr))
+    && isObj(v.profiles) && Object.values(v.profiles).every(isProfileScore)
+    && isProfileScore(v.profiles[v.defaultProfile as string]);
+}
+
 
 // ── Skeleton ──────────────────────────────────────────────────────────────────
 
@@ -159,15 +188,16 @@ export default function SamGovNoticeAnalyzer() {
       try {
         const res = await fetch(`${API_BASE}/public/analyze/sample?full=1`);
         if (!res.ok) return;
-        const j = await res.json() as { notice_id?: string; result?: AnalysisResult | null };
+        const j = await res.json() as { notice_id?: string; result?: unknown };
         if (cancelled) return;
         if (j.notice_id && /^[0-9a-f]{32}$/.test(j.notice_id)) {
           setInput(prev => prev === SAMPLE_NOTICE_URL ? sampleUrlFor(j.notice_id!) : prev);
         }
-        // Only trust a payload that can actually render a card.
-        const r = j.result;
-        if (r?.noticeId && r.profiles && r.profiles[r.defaultProfile]) {
-          setSampleResult(r);
+        // Only trust a payload that can actually render a card, and only if it
+        // describes the same notice the hero just pre-filled — otherwise the
+        // input and the card would show two different opportunities.
+        if (isAnalysisResult(j.result) && j.result.noticeId === j.notice_id) {
+          setSampleResult(j.result);
         }
       } catch { /* fallback pre-fill stands */ }
     })();

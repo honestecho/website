@@ -7,7 +7,7 @@ import {
   Search,
   AlertCircle,
   Loader2,
-  Sparkles,
+  Zap,
   FileText,
   ShieldCheck,
   Lock,
@@ -18,6 +18,7 @@ import {
   Cpu,
 } from 'lucide-react';
 import AnalyzerOpportunityCard from '../components/AnalyzerOpportunityCard';
+import AnalyzerOutputPreview from '../components/AnalyzerOutputPreview';
 import { FAQPageSchema } from '../components/SchemaOrg';
 import { API_BASE } from '../lib/api';
 import { track } from '../lib/analytics';
@@ -142,6 +143,11 @@ export default function SamGovNoticeAnalyzer() {
   // server's defaultProfile (best-scoring persona). Do not seed a real key here:
   // it would pin the initial render to that persona for every notice.
   const [selectedProfile, setSelectedProfile] = useState<string>('');
+  // A real, cached analysis of the current sample notice, used as the hero
+  // preview so the visitor sees actual output — not a mock — before clicking.
+  // null until it arrives (or if the server has no fresh cache row), in which
+  // case the static structural preview stands in.
+  const [sampleResult, setSampleResult] = useState<AnalysisResult | null>(null);
 
   useEffect(() => { track('public_analyzer_page_viewed'); }, []);
 
@@ -151,11 +157,17 @@ export default function SamGovNoticeAnalyzer() {
     let cancelled = false;
     (async () => {
       try {
-        const res = await fetch(`${API_BASE}/public/analyze/sample`);
+        const res = await fetch(`${API_BASE}/public/analyze/sample?full=1`);
         if (!res.ok) return;
-        const j = await res.json() as { notice_id?: string };
-        if (!cancelled && j.notice_id && /^[0-9a-f]{32}$/.test(j.notice_id)) {
+        const j = await res.json() as { notice_id?: string; result?: AnalysisResult | null };
+        if (cancelled) return;
+        if (j.notice_id && /^[0-9a-f]{32}$/.test(j.notice_id)) {
           setInput(prev => prev === SAMPLE_NOTICE_URL ? sampleUrlFor(j.notice_id!) : prev);
+        }
+        // Only trust a payload that can actually render a card.
+        const r = j.result;
+        if (r?.noticeId && r.profiles && r.profiles[r.defaultProfile]) {
+          setSampleResult(r);
         }
       } catch { /* fallback pre-fill stands */ }
     })();
@@ -236,6 +248,11 @@ export default function SamGovNoticeAnalyzer() {
   }
 
 
+  // The sample-output preview exists only to explain the tool before the first
+  // click. Once a real analysis is running or rendered, it unmounts so the screen
+  // never shows an illustrative verdict beside a real one.
+  const showPreview = !loading && !result;
+
   return (
     <>
       <Helmet>
@@ -255,14 +272,16 @@ export default function SamGovNoticeAnalyzer() {
       {/* ── Hero ───────────────────────────────────────────────────────────── */}
       <section className="pt-32 pb-10 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
+        <div className={showPreview ? 'flex flex-col lg:flex-row items-start gap-10 lg:gap-14' : ''}>
+        <div className={showPreview ? 'w-full lg:w-[56%] min-w-0' : ''}>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
-            <Sparkles className="w-3 h-3 text-[#00c3ff]" />
+            <Zap className="w-3 h-3 text-[#00c3ff]" />
             <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">
               Free tool · No account required
             </span>
           </div>
 
-          <h1 className="font-headline font-black text-5xl md:text-6xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
+          <h1 className="font-headline font-black text-5xl md:text-6xl lg:text-5xl xl:text-6xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
             Analyze a SAM.gov Notice{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">
               in Seconds.
@@ -309,8 +328,8 @@ export default function SamGovNoticeAnalyzer() {
               </button>
             </div>
             {isExample && (
-              <p className="text-xs text-[#00c3ff] font-body mt-3 flex items-start gap-2">
-                <Sparkles className="w-3 h-3 shrink-0 mt-0.5" strokeWidth={2} />
+              <p className="text-sm text-[#00c3ff] font-body mt-3 flex items-start gap-2">
+                <Info className="w-4 h-4 shrink-0 mt-0.5" strokeWidth={2} />
                 <span>
                   <span className="font-bold">Example notice loaded</span> — a real, live SAM.gov notice, refreshed daily. Hit{' '}
                   <span className="font-bold">Analyze</span> to see a live read, or{' '}
@@ -324,9 +343,8 @@ export default function SamGovNoticeAnalyzer() {
                 </span>
               </p>
             )}
-            <p className="text-xs text-[#8b9bb4] font-body mt-3">
+            <p className="text-sm text-[#8b9bb4] font-body mt-3">
               Find the Notice ID on any SAM.gov opportunity page — or just paste the full URL.
-              No login required for an initial assessment.
             </p>
 
             {error && !loading && (
@@ -340,15 +358,93 @@ export default function SamGovNoticeAnalyzer() {
                   {rateLimited && (
                     <Link
                       to="/signup/?promo=fall2026"
-                      className="inline-flex items-center gap-1.5 mt-2.5 px-4 py-1.5 bg-[#00c3ff] text-[#030B17] text-xs font-black rounded-lg shadow-[0_0_20px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all"
+                      className="inline-flex items-center gap-1.5 mt-2.5 px-4 py-1.5 border border-[#00c3ff]/60 text-[#00c3ff] text-sm font-bold rounded-lg hover:bg-[#00c3ff]/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
                     >
-                      Start free <ArrowRight className="w-3 h-3" />
+                      Start free <ArrowRight className="w-4 h-4" />
                     </Link>
                   )}
                 </div>
               </div>
             )}
           </form>
+
+          {/* ── Trust cues: mechanism, not social proof ──────────────────── */}
+          <ul className="flex flex-col gap-2 mt-5">
+            {([
+              { Icon: Search,      text: 'Pulls the live notice from SAM.gov' },
+              { Icon: ShieldCheck, text: 'Same scoring engine that runs inside HE Pursuit' },
+              { Icon: BarChart2,   text: 'Every score shows its dimension breakdown' },
+            ] as const).map(({ Icon: CueIcon, text }) => (
+              <li key={text} className="flex items-center gap-2 text-sm text-[#8b9bb4] font-body">
+                <CueIcon size={15} className="text-[#00c3ff] shrink-0" strokeWidth={2} />
+                {text}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {showPreview && (() => {
+          // The real card needs room: below 1280 the hero column is narrow enough
+          // that its agency chip, band reason and evidence rows all clamp. So the
+          // live card renders at xl+, and 1024-1279 gets the compact structural
+          // preview instead. (1280 is also where max-w-7xl caps, so the xl column
+          // width is identical at 1280, 1440 and 1920.)
+          const structural = (
+            <>
+              <div className="flex items-baseline justify-between gap-3 mb-3">
+                <span className="text-sm font-bold uppercase tracking-wider text-[#8b9bb4] font-label">
+                  Sample output
+                </span>
+                <span className="text-sm text-[#8b9bb4] font-body">Every notice returns this</span>
+              </div>
+              <AnalyzerOutputPreview />
+            </>
+          );
+
+          const live = sampleResult && (
+            <>
+              <div className="flex items-baseline justify-between gap-3 mb-3">
+                <span className="text-sm font-bold uppercase tracking-wider text-[#8b9bb4] font-label">
+                  Sample output
+                </span>
+                <span className="text-sm text-[#8b9bb4] font-body">A live SAM.gov notice, refreshed daily</span>
+              </div>
+              <AnalyzerOpportunityCard
+                variant="preview"
+                opportunity={{
+                  noticeId: sampleResult.noticeId,
+                  title:    sampleResult.title,
+                  agency:   sampleResult.agency,
+                  naics:    sampleResult.naics,
+                  setAside: sampleResult.setAside,
+                  dueDate:  sampleResult.dueDate,
+                  maturity: sampleResult.maturity,
+                }}
+                score={sampleResult.profiles[sampleResult.defaultProfile]}
+              />
+              <p className="mt-3 text-sm text-[#8b9bb4] font-body leading-relaxed">
+                Scored against the{' '}
+                <span className="text-white font-semibold">
+                  {sampleResult.profileMeta?.find(m => m.key === sampleResult.defaultProfile)?.label || 'sample'}
+                </span>{' '}
+                sample profile. Paste your own notice above to run it live.
+              </p>
+            </>
+          );
+
+          return (
+            <div className="hidden lg:block w-full lg:w-[44%] min-w-0">
+              {live ? (
+                <>
+                  <div className="hidden xl:block">{live}</div>
+                  <div className="xl:hidden">{structural}</div>
+                </>
+              ) : structural}
+            </div>
+          );
+        })()}
+
+        </div>
         </div>
       </section>
 

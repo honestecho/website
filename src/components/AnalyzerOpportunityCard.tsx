@@ -169,11 +169,19 @@ function dueInfo(dateStr: string | null): { label: string; color: string; past: 
 interface EvidenceRow { key: string; label: string }
 
 // ── Component ─────────────────────────────────────────────────────────────────
-export default function AnalyzerOpportunityCard({ opportunity, score, onTrack }: {
+export default function AnalyzerOpportunityCard({ opportunity, score, onTrack, variant = 'full' }: {
   opportunity: AnalyzerOpportunity;
   score: AnalyzerProfileScore;
   onTrack?: (event: string) => void;
+  /**
+   * 'preview' renders the same card as a subordinate hero sample: no hover lift
+   * and no signup CTA, so the hero keeps exactly one primary action. Everything
+   * else — score, band, evidence, notice details, provenance link — is identical,
+   * because the point of the preview is that it IS the real output.
+   */
+  variant?: 'full' | 'preview';
 }) {
+  const isPreview = variant === 'preview';
   const opp = opportunity;
   const dimension_scores = score.dimension_scores || {};
   const computed = Number.isFinite(score.match_score)
@@ -247,7 +255,9 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack }:
   const w = { ...DEFAULT_WEIGHTS };
 
   return (
-    <div className="group/card rounded-2xl border border-[#1e2d4a] bg-[#0b1120] flex flex-col p-6 h-full transition-all duration-500 relative overflow-hidden hover:-translate-y-1 hover:border-[#00c3ff]/40 hover:shadow-[0_10px_40px_-5px_rgba(0,195,255,0.12)]">
+    <div className={`group/card rounded-2xl border border-[#1e2d4a] bg-[#0b1120] flex flex-col p-6 h-full relative overflow-hidden${
+      isPreview ? '' : ' transition-all duration-500 hover:-translate-y-1 hover:border-[#00c3ff]/40 hover:shadow-[0_10px_40px_-5px_rgba(0,195,255,0.12)]'
+    }`}>
       <div className="absolute inset-x-0 top-0 h-[2px] pointer-events-none transition-opacity duration-500 opacity-0 group-hover/card:opacity-100 rounded-t-2xl"
         style={{ background: 'linear-gradient(to right, transparent, rgba(0,195,255,0.4), transparent)' }} />
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_60%)]" />
@@ -337,7 +347,9 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack }:
           </div>
           <div className="min-w-0">
             <span className="block text-sm font-headline font-black tracking-[0.1em] uppercase whitespace-nowrap" style={{ color: band.color }}>{band.label}</span>
-            <p className="font-body text-sm text-white leading-snug mt-1 line-clamp-2 min-h-[2.5rem]">{band.reason}</p>
+            <p className={`font-body text-sm text-white leading-snug mt-1 ${
+              isPreview ? 'line-clamp-3' : 'line-clamp-2 min-h-[2.5rem]'
+            }`}>{band.reason}</p>
           </div>
         </div>
         {confidenceLabel && (
@@ -405,7 +417,12 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack }:
                 <span className="text-sm text-white truncate block" title={opp.agency}>{agency}</span> },
             { label: 'Set-Aside', Icon: Shield, node: (() => {
                 const sa = opp.setAside;
-                if (!sa) return <span className="text-sm text-[#a0b2c8]">Open competition</span>;
+                // SAM returns the literal string "No Set aside used" as often as it
+                // returns null. Treated as a value it rendered as a cyan "No Set
+                // aside…" chip, which reads like a set-aside the bidder must meet.
+                if (!sa || /^no set.?aside/i.test(sa.trim())) {
+                  return <span className="text-sm text-[#a0b2c8]">Open competition</span>;
+                }
                 const acr = abbrevSetAside(sa);
                 const full = SET_ASIDE_FULL[acr];
                 return (
@@ -442,16 +459,20 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack }:
         >
           <ExternalLink size={13} /> View on SAM.gov
         </a>
-        <Link
-          to="/signup/?promo=fall2026"
-          onClick={() => onTrack?.('analyzer_card_signup_clicked')}
-          className="flex items-center justify-center gap-1.5 px-5 py-2 rounded-lg font-headline font-bold text-sm bg-[#00c3ff] text-[#030B17] shadow-[0_0_15px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
-        >
-          {notBiddable ? 'Find Open Opportunities' : 'Score Your Own Profile'}
-          <ArrowRight size={14} />
-        </Link>
+        {!isPreview && (
+          <Link
+            to="/signup/?promo=fall2026"
+            onClick={() => onTrack?.('analyzer_card_signup_clicked')}
+            className="flex items-center justify-center gap-1.5 px-5 py-2 rounded-lg font-headline font-bold text-sm bg-[#00c3ff] text-[#030B17] shadow-[0_0_15px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
+          >
+            {notBiddable ? 'Find Open Opportunities' : 'Score Your Own Profile'}
+            <ArrowRight size={14} />
+          </Link>
+        )}
       </div>
-      <p className="w-full text-center text-xs text-[#8b9bb4] mt-3 pb-1">Score shown for the selected sample profile. Run the full workflow on your own profile.</p>
+      {!isPreview && (
+        <p className="w-full text-center text-sm text-[#8b9bb4] mt-3 pb-1">Score shown for the selected sample profile. Run the full workflow on your own profile.</p>
+      )}
     </div>
   );
 }

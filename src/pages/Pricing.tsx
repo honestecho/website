@@ -70,14 +70,14 @@ const plans = [
   {
     name: 'Free',
     price: '$0',
-    tagline: 'Try the product',
-    sub: 'Evaluate opportunities against your business profile',
+    tagline: 'See what fits your business',
+    sub: 'A scored list of matching open opportunities, about 30 seconds after signup',
     highlight: false,
     features: [
+      'Scored list of open opportunities matching your profile',
       'Create company profile (NAICS, set-aside, preferences)',
       'Search and view opportunities',
       'Basic opportunity summaries',
-      'Initial scoring against your profile',
       'One full Phase 1 evaluation included (trial)',
       'Bookmark opportunities (up to 15/month)',
       'Saved searches & nightly alerts',
@@ -196,7 +196,7 @@ export default function Pricing() {
           </Notice>
           <div className="mb-8 rounded-xl border border-[#00c3ff]/30 bg-[#00c3ff]/5 px-6 py-4 text-center">
             <p className="font-headline font-bold text-white text-base md:text-lg tracking-tight">
-              Free helps you <span className="text-[#00c3ff]">screen</span> opportunities. Paid plans help you make <span className="text-[#00c3ff]">bid/no-bid decisions</span>.
+              Every plan starts free: answer a few questions about your company and get a <span className="text-[#00c3ff]">scored list of open opportunities that match</span> — in about 30 seconds. No credit card. Paid plans add full <span className="text-[#00c3ff]">bid/no-bid decisions</span>.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">

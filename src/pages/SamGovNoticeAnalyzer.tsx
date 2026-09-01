@@ -164,6 +164,7 @@ const sampleUrlFor = (id: string) => `https://sam.gov/opp/${id}/view`;
 export default function SamGovNoticeAnalyzer() {
   const [input, setInput]             = useState(SAMPLE_NOTICE_URL);
   const [isExample, setIsExample]     = useState(true);
+  const [resultWasExample, setResultWasExample] = useState(false);
   const [loading, setLoading]         = useState(false);
   const [result, setResult]           = useState<AnalysisResult | null>(null);
   const [error, setError]             = useState<string | null>(null);
@@ -260,6 +261,7 @@ export default function SamGovNoticeAnalyzer() {
         return;
       }
       setResult(data);
+      setResultWasExample(isExample);
       setSelectedProfile(defaultKey);
       setLoading(false);
 
@@ -563,6 +565,33 @@ export default function SamGovNoticeAnalyzer() {
                             </div>
                           ))}
                         </div>
+
+                        {/* Post-example bridge — the example proved the tool; a real notice proves the fit */}
+                        {resultWasExample && (
+                          <div className="border-t border-[#1e2d4a]">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                track('public_analyzer_try_own_clicked', { notice_id: result.noticeId });
+                                setInput('');
+                                setIsExample(false);
+                                const el = document.getElementById('notice-input');
+                                el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                el?.focus();
+                              }}
+                              className="w-full text-left flex items-center gap-3 px-5 py-4 hover:bg-[#0f1a2e] transition-colors duration-300 group/tryown"
+                            >
+                              <div className="w-8 h-8 rounded-lg bg-[#00c3ff]/10 border border-[#00c3ff]/30 flex items-center justify-center shrink-0">
+                                <FileText size={14} className="text-[#00c3ff]" strokeWidth={2} />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <p className="text-sm font-bold text-[#00c3ff] font-headline">That was the example — now paste one of YOUR notices</p>
+                                <p className="text-sm text-[#8b9bb4] font-body leading-snug">Any SAM.gov link works. Get the same verdict on a contract you're actually weighing.</p>
+                              </div>
+                              <ChevronRight size={15} className="text-[#00c3ff] shrink-0 group-hover/tryown:translate-x-0.5 transition-transform duration-200" />
+                            </button>
+                          </div>
+                        )}
 
                         {/* Unlock CTA */}
                         <div className="border-t border-[#1e2d4a]">

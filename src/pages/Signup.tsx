@@ -205,11 +205,11 @@ export default function Signup() {
         {/* Left column — value props (hidden on mobile) */}
         <div className="hidden lg:flex flex-col justify-start pt-8 w-[400px] shrink-0 pr-16">
           <h1 className="font-headline font-black text-4xl xl:text-5xl tracking-tighter text-white mb-4 leading-tight">
-            Win more contracts.<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">Waste less time.</span>
+            See the contracts<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">that fit your business.</span>
           </h1>
           <p className="text-[#a0b2c8] text-lg mb-12 leading-relaxed font-body">
-            The bid/no-bid intelligence engine built for small government contractors. Free to start.
+            Create your account, answer a few questions about what your company does, and get a scored list of open federal opportunities that match — about 30 seconds later.
           </p>
 
           <ul className="space-y-6">
@@ -240,11 +240,11 @@ export default function Signup() {
             {/* Mobile pitch — compact value prop (desktop gets the full left column) */}
             <div className="lg:hidden mb-8">
               <h1 className="font-headline font-black text-2xl tracking-tighter text-white mb-2 leading-tight">
-                Win more contracts.{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">Waste less time.</span>
+                See the contracts{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">that fit your business.</span>
               </h1>
               <p className="text-[#a0b2c8] text-sm leading-relaxed font-body">
-                The bid/no-bid intelligence engine built for small government contractors. Free to start.
+                Answer a few questions about your company, get a scored list of open federal opportunities that match — about 30 seconds later.
               </p>
             </div>
 

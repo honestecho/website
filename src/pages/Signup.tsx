@@ -137,11 +137,15 @@ export default function Signup() {
 
       track('signup_completed', { method: 'email' });
 
-      // Send welcome email
+      // Send welcome email. keepalive: the very next statement navigates to
+      // pursuit.honestecho.com, which aborts in-flight fetches — the dry-signup
+      // walk (2026-09-06) caught this request dying with "Failed to fetch", so
+      // real signups were losing the welcome email to the redirect race.
       fetch(`${API_BASE}/public/welcome-email`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: form.email.trim(), fullName: form.fullName.trim() })
+        body: JSON.stringify({ email: form.email.trim(), fullName: form.fullName.trim() }),
+        keepalive: true,
       }).catch(err => console.warn('Welcome email trigger failed:', err));
 
       if (data?.session) {

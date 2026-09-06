@@ -7,7 +7,9 @@
 // Required env var on the he-website Pages project:
 //   RESEND_API_KEY  — Resend API key
 // Optional:
-//   CONTACT_INBOX   — recipient address (default: info@honestecho.com)
+//   CONTACT_INBOX   — recipient address (default: aaron.shivar@honestecho.com;
+//   was info@, an unmonitored mailbox — a real lead would have rotted there.
+//   Verified 2026-09-06: info@ held only unread DMARC reports.)
 //
 // Abuse posture: `to` and `from` are fixed (not user-controlled), so the worst
 // case is spam to the ops inbox, not an open relay. Honeypot catches basic bots;
@@ -48,7 +50,7 @@ export async function onRequestPost({ request, env }) {
   const name      = `${headerSafe(first_name)} ${headerSafe(last_name)}`.trim() || '(no name given)';
   const safeEmail = esc(email.trim(), 254);
   const safeMsg   = esc(message.trim(), 4000).replace(/\n/g, '<br>');
-  const inbox     = env.CONTACT_INBOX || 'info@honestecho.com';
+  const inbox     = env.CONTACT_INBOX || 'aaron.shivar@honestecho.com';
 
   try {
     const r = await fetch('https://api.resend.com/emails', {

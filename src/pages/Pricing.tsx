@@ -242,9 +242,14 @@ export default function Pricing() {
                   {plan.price !== '$0' && <span className="text-[#8b9bb4] text-sm font-body">/mo</span>}
                 </div>
                 {plan.price !== '$0' && plan.name !== 'Team' && (
-                  <p className={`text-[#00c3ff] text-xs font-bold font-body ${'valueLine' in plan && plan.valueLine ? 'mb-1' : 'mb-5'}`}>
-                    2 months free — applied automatically · ends November 30
-                  </p>
+                  <>
+                    <p className="text-[#00c3ff] text-xs font-bold font-body mb-1">
+                      2 months free — applied automatically · ends November 30
+                    </p>
+                    <p className={`text-xs text-[#8b9bb4] font-body ${'valueLine' in plan && plan.valueLine ? 'mb-1' : 'mb-5'}`}>
+                      Then {plan.price}/mo — cancel anytime.
+                    </p>
+                  </>
                 )}
                 {'valueLine' in plan && plan.valueLine && (
                   <p className="text-xs text-[#8b9bb4] font-body mb-5">{plan.valueLine}</p>

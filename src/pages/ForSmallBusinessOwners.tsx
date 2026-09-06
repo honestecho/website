@@ -103,9 +103,9 @@ export default function ForSmallBusinessOwners() {
             </Link>
             <Link
               to="/signup/?promo=fall2026"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline"
+              className="text-sm text-[#00c3ff] font-semibold font-body hover:underline underline-offset-4"
             >
-              Start Free
+              Or start free with an account →
             </Link>
           </div>
           <Notice align="left" className="mt-6 max-w-3xl">

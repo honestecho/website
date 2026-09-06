@@ -47,12 +47,12 @@ export default function HeroPursuitCard() {
           <div className="flex-1 min-w-0">
             <h3 className="text-[15px] font-black text-white leading-snug">Zero Trust Encryption RFI</h3>
             <p className="text-[10px] font-bold text-[#8b9bb4] uppercase tracking-wide mt-1">Veterans Affairs, Department Of</p>
-            <p className="text-[11px] text-[#6b7a93] leading-snug mt-0.5">Other Computer Related Services</p>
+            <p className="text-[11px] text-[#8b9bb4] leading-snug mt-0.5">Other Computer Related Services</p>
             <div className="flex items-center gap-2 flex-wrap mt-2.5">
-              <span className="inline-block px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-wide bg-[#0a2a3a] border border-[#15506a] text-[#5cc7e8]">
+              <span className="inline-block px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wide bg-[#0a2a3a] border border-[#15506a] text-[#5cc7e8]">
                 Sources Sought
               </span>
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-wide bg-[#2a1f00] border border-[#5a4500] text-[#d4a017]">
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wide bg-[#2a1f00] border border-[#5a4500] text-[#d4a017]">
                 <Clock size={9} /> Due Jun 23, 2026
               </span>
             </div>
@@ -60,10 +60,10 @@ export default function HeroPursuitCard() {
 
           {/* Score */}
           <div className="shrink-0 flex flex-col items-end pt-0.5">
-            <span className="text-[9px] font-bold uppercase tracking-widest text-[#6b7a93]">Pursuit Fit</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#8b9bb4]">Pursuit Fit</span>
             <div className="flex items-baseline gap-1 mt-0.5">
               <span className="text-5xl font-black tabular-nums leading-none tracking-tighter text-white">73</span>
-              <span className="text-lg font-bold text-[#6b7a93]">/ 100</span>
+              <span className="text-lg font-bold text-[#8b9bb4]">/ 100</span>
             </div>
             <span className="text-[12px] font-bold text-[#d4a017] mt-1.5">Moderate Fit</span>
           </div>
@@ -79,7 +79,7 @@ export default function HeroPursuitCard() {
             </div>
           </div>
           <div className="shrink-0 text-right">
-            <p className="text-[9px] font-bold uppercase tracking-widest text-[#6b7a93] mb-0.5">Confidence</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-[#8b9bb4] mb-0.5">Confidence</p>
             <p className="text-[12px] font-bold text-white whitespace-nowrap">Strong evidence</p>
           </div>
         </div>
@@ -118,9 +118,9 @@ export default function HeroPursuitCard() {
           <div className="grid grid-cols-2 gap-x-5 gap-y-3.5">
             {DETAILS.map(({ Icon, label, value, accent }) => (
               <div key={label} className="flex items-start gap-2.5 min-w-0">
-                <Icon size={13} className="text-[#6b7a93] shrink-0 mt-0.5" />
+                <Icon size={13} className="text-[#8b9bb4] shrink-0 mt-0.5" />
                 <div className="min-w-0">
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-[#6b7a93] mb-0.5">{label}</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-[#8b9bb4] mb-0.5">{label}</p>
                   <p className={`text-[11.5px] truncate ${accent ? 'text-[#00c3ff]' : 'text-[#cdd9ea]'}`}>{value}</p>
                 </div>
               </div>
@@ -130,7 +130,7 @@ export default function HeroPursuitCard() {
 
         {/* ── Footer ── */}
         <div className="flex justify-between items-center border-t border-[#1e2d4a] pt-4 mt-4">
-          <span className="flex items-center gap-1.5 text-[11px] font-semibold text-[#6b7a93]">
+          <span className="flex items-center gap-1.5 text-[11px] font-semibold text-[#8b9bb4]">
             <ExternalLink size={12} /> View on SAM.gov
           </span>
           <div className="flex items-center gap-2.5">

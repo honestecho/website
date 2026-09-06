@@ -713,6 +713,16 @@ export default function SamGovNoticeAnalyzer() {
               </div>
             ))}
           </div>
+
+          <div className="mt-6 rounded-xl bg-[#0b1120] border border-[#1e2d4a] px-6 py-5">
+            <p className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label mb-2">How scoring works</p>
+            <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">
+              The engine pulls the live notice from SAM.gov at analysis time and scores it across the same
+              dimensions used inside HE Pursuit — capability, set-aside, agency, and timing — each contributing
+              to the match score you see. Without an account, the read uses opportunity-level signals only;
+              scores become company-specific once run against your own profile.
+            </p>
+          </div>
         </div>
       </section>
 

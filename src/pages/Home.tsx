@@ -48,19 +48,20 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-4">
-              <Link to="/signup/?promo=fall2026" className="px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
-                Start Free
+              <Link to="/tools/sam-gov-notice-analyzer/" className="px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                Analyze a SAM.gov Notice — Free
                 <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link to="/tools/sam-gov-notice-analyzer/" className="px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all flex items-center justify-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#00c3ff]" />
-                Analyze a SAM.gov Notice
               </Link>
             </div>
 
             <p className="flex items-center gap-2 text-sm text-[#8b9bb4] font-body">
               <CheckCircle className="w-4 h-4 text-[#00c3ff] shrink-0" />
               No login required to analyze a live SAM.gov opportunity.
+            </p>
+            <p className="mt-3 text-sm font-body">
+              <Link to="/signup/?promo=fall2026" className="text-[#00c3ff] font-semibold hover:underline underline-offset-4">
+                Or start free with an account →
+              </Link>
             </p>
           </div>
 

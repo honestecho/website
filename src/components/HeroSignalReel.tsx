@@ -195,7 +195,7 @@ export default function HeroSignalReel() {
                 Right-of-Entry (ROE) Management &amp; Outreach, Guam &amp; CNMI
               </h3>
               <p className="text-[10px] font-bold text-[#8b9bb4] uppercase tracking-wide mt-1">Dept of the Army</p>
-              <span className="inline-block mt-2 px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-wide bg-[#0a2a3a] border border-[#15506a] text-[#5cc7e8]">
+              <span className="inline-block mt-2 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wide bg-[#0a2a3a] border border-[#15506a] text-[#5cc7e8]">
                 Combined Synopsis / Solicitation
               </span>
             </div>
@@ -244,11 +244,11 @@ export default function HeroSignalReel() {
                 <div className="space-y-2">
                   <div className="flex items-center gap-2.5">
                     <MapPin size={13} className="text-[#00c3ff] shrink-0" />
-                    <span className="text-[12px] text-[#6b7a93] italic">Not disclosed — low risk if remote-eligible</span>
+                    <span className="text-[12px] text-[#8b9bb4] italic">Not disclosed — low risk if remote-eligible</span>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <DollarSign size={13} className="text-[#00c3ff] shrink-0" />
-                    <span className="text-[12px] text-[#6b7a93] italic">Not posted — request pre-sol estimate</span>
+                    <span className="text-[12px] text-[#8b9bb4] italic">Not posted — request pre-sol estimate</span>
                   </div>
                 </div>
               </div>
@@ -301,7 +301,7 @@ export default function HeroSignalReel() {
           {/* Footer */}
           <div className="flex justify-between items-center border-t border-[#1e2d4a] pt-4 mt-4">
             <div className="flex items-center gap-4">
-              <span className="text-[11px] font-semibold text-[#6b7a93]">May 20, 2026</span>
+              <span className="text-[11px] font-semibold text-[#8b9bb4]">May 20, 2026</span>
               <span className="flex items-center gap-1 text-[11px] font-semibold text-[#8b9bb4]">
                 <ArrowRight size={12} className="-rotate-45" /> SAM.gov
               </span>
@@ -324,7 +324,7 @@ export default function HeroSignalReel() {
               </motion.span>
             </div>
           </div>
-          <p className="text-center text-[10.5px] text-[#6b7a93] mt-3">Run the full bid/no-bid workflow.</p>
+          <p className="text-center text-[11px] text-[#8b9bb4] mt-3">Run the full bid/no-bid workflow.</p>
         </div>
       </motion.div>
 
@@ -366,7 +366,7 @@ export default function HeroSignalReel() {
                 <div className="text-center leading-tight">
                   <p className={`text-[10px] font-black uppercase tracking-widest ${resolved || active ? 'text-white' : 'text-[#4a6080]'}`}>{s.label}</p>
                   {(resolved || active) && (
-                    <p className="text-[10.5px] font-semibold mt-0.5" style={{ color: active ? '#00c3ff' : s.color }}>{s.status}</p>
+                    <p className="text-[11px] font-semibold mt-0.5" style={{ color: active ? '#00c3ff' : s.color }}>{s.status}</p>
                   )}
                 </div>
               </div>

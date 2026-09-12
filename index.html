@@ -29,6 +29,47 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Pre-hydration page view (2026-09-12). The React page_viewed fires from a
+         useEffect after the bundle loads, so a visitor who bounces before hydration
+         leaves no session — 3 of 35 paid clicks (8.6%) in fall26_search did exactly
+         that. This mirrors src/lib/analytics.ts (same storage keys, same attribution
+         capture) and posts the first page view immediately; PageViews in App.tsx
+         skips its own first fire when window.__hePvPath matches, so no duplicate.
+         Endpoint literal = the default in src/lib/api.ts. -->
+    <script>
+      (function () {
+        try {
+          var KEY = 'he_anon_id';
+          var id = localStorage.getItem(KEY);
+          if (!id) { id = crypto.randomUUID(); localStorage.setItem(KEY, id); }
+          var attr = {};
+          try { var st = sessionStorage.getItem('he_attribution'); if (st) attr = JSON.parse(st) || {}; } catch (e) {}
+          if (!Object.keys(attr).length) {
+            new URLSearchParams(location.search).forEach(function (v, k) {
+              if (k === 'src' || k === 'promo' || k === 'gclid' || k === 'gbraid' || k === 'wbraid' || k.indexOf('utm_') === 0 || k.indexOf('vt_') === 0) {
+                var clean = v.replace(/[\s"'.,;:)\]}>]+$/, '');
+                if (clean) attr[k] = clean;
+              }
+            });
+            if (Object.keys(attr).length) { try { sessionStorage.setItem('he_attribution', JSON.stringify(attr)); } catch (e) {} }
+          }
+          var ref = sessionStorage.getItem('he_referrer');
+          if (ref === null) {
+            ref = '';
+            try { if (document.referrer) { var h = new URL(document.referrer).hostname; if (h && h !== location.hostname) ref = h; } } catch (e) {}
+            try { sessionStorage.setItem('he_referrer', ref); } catch (e) {}
+          }
+          var props = { path: location.pathname, early: true };
+          for (var k in attr) props[k] = attr[k];
+          if (ref) props.referrer = ref;
+          window.__hePvPath = location.pathname;
+          fetch('https://he-pursuit-api.onrender.com/api/analytics/track', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true,
+            body: JSON.stringify({ events: [{ event_name: 'page_viewed', anonymous_id: id, page: location.pathname, properties: props, source: 'website' }] })
+          }).catch(function () {});
+        } catch (e) {}
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -83,7 +83,13 @@ function ScrollToTop() {
 
 function PageViews() {
   const { pathname } = useLocation();
-  useEffect(() => { track('page_viewed', { path: pathname }); }, [pathname]);
+  useEffect(() => {
+    // index.html already sent the first page view before hydration (see the
+    // inline beacon there); skip it once so the count stays one per page.
+    const w = window as unknown as { __hePvPath?: string };
+    if (w.__hePvPath === pathname) { w.__hePvPath = undefined; return; }
+    track('page_viewed', { path: pathname });
+  }, [pathname]);
   return null;
 }
 

@@ -1,7 +1,7 @@
 ﻿import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, ChevronDown, ShieldCheck, Clock, Ban, Eye, ClipboardList, Rocket, Users } from 'lucide-react';
+import { ArrowRight, Check, ChevronDown, ShieldCheck, Clock, Ban, Users } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
 import Notice from '../components/Notice';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
@@ -128,26 +128,51 @@ const plans = [
     cta: 'Select Pro',
     ctaTo: '/signup/?plan=pro&promo=fall2026',
   },
-  {
-    name: 'Team',
-    price: '$299',
-    tagline: 'Scale across your team',
-    sub: 'Standardize decisions across users',
-    highlight: false,
-    badge: 'Coming Soon',
-    includesAbove: 'Everything in Pro, plus:',
-    features: [
-      'Multiple users',
-      'Shared pursuits',
-      'Team-level visibility',
-      'Higher usage thresholds',
-      'Faster support response',
-      'Onboarding assistance',
-    ],
-    cta: 'Join the Waitlist',
-    ctaTo: '/team-waitlist/',
-  },
 ];
+
+
+// Two-input pursuit-cost calculator. Nothing prefilled — the visitor's numbers, not ours.
+function PursuitCostCalculator() {
+  const [hours, setHours] = useState('');
+  const [rate, setRate] = useState('');
+  const h = Number(hours);
+  const r = Number(rate);
+  const cost = h > 0 && r > 0 ? h * r : null;
+  const usd = (n: number) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+  const inputClass = 'mt-1.5 w-full bg-[#030B17] border border-[#1e2d4a] rounded-lg px-4 py-3 text-white font-body text-base placeholder:text-[#8b9bb4]/60 focus:outline-none focus:border-[#00c3ff]/60';
+  return (
+    <div className="mt-10 rounded-2xl border border-[#1e2d4a] bg-[#0b1120] p-6 md:p-8">
+      <p className="font-headline font-bold text-white text-lg tracking-tight mb-1">What does one proposal you should not have written cost?</p>
+      <p className="text-sm text-[#8b9bb4] font-body mb-6">Your numbers, not ours. Nothing is prefilled.</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-4">
+        <label className="block">
+          <span className="text-sm text-[#a0b2c8] font-body">Proposal hours for one pursuit</span>
+          <input type="number" inputMode="numeric" min="0" value={hours} onChange={e => setHours(e.target.value)} placeholder="Hours" className={inputClass} />
+        </label>
+        <label className="block">
+          <span className="text-sm text-[#a0b2c8] font-body">Loaded hourly cost</span>
+          <input type="number" inputMode="numeric" min="0" value={rate} onChange={e => setRate(e.target.value)} placeholder="$ per hour" className={inputClass} />
+        </label>
+        </div>
+        <div className="rounded-xl border border-[#1e2d4a] bg-[#030B17] p-5 flex flex-col justify-center" aria-live="polite">
+        {cost === null ? (
+          <p className="text-sm text-[#8b9bb4] font-body">Enter your hours and loaded rate to calculate the labor cost of one bad-fit pursuit.</p>
+        ) : (
+          <>
+            <p className="text-white font-body text-base">
+              One bad-fit pursuit costs about <span className="font-headline font-black text-2xl text-[#00c3ff]">{usd(cost)}</span> in labor.
+            </p>
+            <p className="text-sm text-[#a0b2c8] font-body mt-1">
+              That is {(cost / 99).toFixed(1)} months of Starter, or {(cost / 199).toFixed(1)} months of Pro.
+            </p>
+          </>
+        )}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -181,7 +206,7 @@ export default function Pricing() {
             HE Pursuit helps you evaluate government contracting opportunities quickly so you can focus on the bids that matter. Start free and qualify opportunities in minutes. Upgrade when your team needs deeper analysis, more volume, and a structured pursuit process.
           </p>
           <p className="text-[#00c3ff] font-body text-xl md:text-2xl font-bold tracking-tight">
-            For most small contractors, avoiding just one bad-fit proposal can pay for the platform.
+            Starter is $99/month and Pro is $199/month. Compare that with the labor cost of one proposal your team decides not to write.
           </p>
         </div>
       </section>
@@ -199,7 +224,7 @@ export default function Pricing() {
               Every plan starts free: answer a few questions about your company and get a <span className="text-[#00c3ff]">scored list of open opportunities that match</span> — in about 30 seconds. No credit card. Paid plans add full <span className="text-[#00c3ff]">bid/no-bid decisions</span>.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
             {plans.map((plan, i) => (
               <FlyIn key={plan.name} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
               <div
@@ -233,7 +258,7 @@ export default function Pricing() {
                     )}
                   </div>
                   <p className="text-sm font-bold text-white mb-0.5 font-headline">{plan.tagline}</p>
-                  <p className="text-xs text-[#8b9bb4] font-body">{plan.sub}</p>
+                  <p className="text-sm text-[#8b9bb4] font-body">{plan.sub}</p>
                 </div>
 
                 {/* Price */}
@@ -243,16 +268,16 @@ export default function Pricing() {
                 </div>
                 {plan.price !== '$0' && plan.name !== 'Team' && (
                   <>
-                    <p className="text-[#00c3ff] text-xs font-bold font-body mb-1">
+                    <p className="text-[#00c3ff] text-sm font-bold font-body mb-1">
                       2 months free — applied automatically · ends November 30
                     </p>
-                    <p className={`text-xs text-[#8b9bb4] font-body ${'valueLine' in plan && plan.valueLine ? 'mb-1' : 'mb-5'}`}>
+                    <p className={`text-sm text-[#8b9bb4] font-body ${'valueLine' in plan && plan.valueLine ? 'mb-1' : 'mb-5'}`}>
                       Then {plan.price}/mo — cancel anytime.
                     </p>
                   </>
                 )}
                 {'valueLine' in plan && plan.valueLine && (
-                  <p className="text-xs text-[#8b9bb4] font-body mb-5">{plan.valueLine}</p>
+                  <p className="text-sm text-[#8b9bb4] font-body mb-5">{plan.valueLine}</p>
                 )}
 
                 {/* Features */}
@@ -270,7 +295,7 @@ export default function Pricing() {
 
                 {/* Limits (Free only) */}
                 {'limits' in plan && plan.limits && (
-                  <ul className="space-y-1.5 text-xs text-[#8b9bb4] font-body mb-4 border-t border-[#1e2d4a] pt-4">
+                  <ul className="space-y-1.5 text-sm text-[#8b9bb4] font-body mb-4 border-t border-[#1e2d4a] pt-4">
                     {plan.limits.map((l: string) => (
                       <li key={l} className="flex gap-2 items-start">
                         <Ban className="w-3.5 h-3.5 text-[#2a3a4e] shrink-0 mt-0.5" strokeWidth={2} />
@@ -293,6 +318,20 @@ export default function Pricing() {
               </div>
               </FlyIn>
             ))}
+          </div>
+
+          {/* Team — waitlist strip (not a fourth equal-weight card while it is unavailable) */}
+          <div className="mt-6 rounded-2xl border border-[#1e2d4a] bg-[#0b1120] px-6 py-5 flex flex-col md:flex-row md:items-center gap-4">
+            <div className="w-10 h-10 rounded-lg bg-[#00c3ff]/10 border border-[#00c3ff]/30 flex items-center justify-center shrink-0">
+              <Users className="w-5 h-5 text-[#00c3ff]" strokeWidth={2} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="font-headline font-bold text-white text-base tracking-tight">Team — shared workspaces are coming.</p>
+              <p className="text-sm text-[#8b9bb4] font-body">$299/mo. Multiple users, shared pursuits, team-level visibility. Not available yet.</p>
+            </div>
+            <Link to="/team-waitlist/" className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-white border border-[#1e2d4a] rounded-lg hover:border-[#00c3ff]/40 hover:text-[#00c3ff] transition-colors shrink-0">
+              Join the waitlist <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
 
           <p className="text-sm text-[#8b9bb4] font-body text-center mt-6">
@@ -338,44 +377,9 @@ export default function Pricing() {
             You're not paying for more data.<br />You're paying for better decisions.
           </h2>
           <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-3xl">
-            Most teams already have access to opportunities. The challenge is knowing which ones are worth pursuing.
-            HE Pursuit helps you qualify faster, reduce wasted effort, and focus your time where it has the best chance to pay off.
+            Federal opportunities are public on SAM.gov. HE Pursuit charges for profile-based triage and a documented decision workflow, not for access to the notices.
           </p>
-        </div>
-      </section>
-
-      {/* ── SECTION 4 — Plan Positioning ─────────────────────────────────── */}
-      <section className="pb-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-12 text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-              <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">Who It's For</span>
-            </div>
-            <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight">Find your fit.</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { plan: 'Free',    desc: 'Just exploring GovCon? Screen live SAM.gov notices at no cost.',                Icon: Eye           },
-              { plan: 'Starter', desc: 'Bidding actively on your own? Run the full 5-phase workflow on your real profile.', Icon: ClipboardList },
-              { plan: 'Pro',     desc: 'Managing a pipeline? Track decisions across every pursuit, unlimited.',         Icon: Rocket        },
-              { plan: 'Team',    desc: 'Running a capture team? Join the waitlist for shared workspaces.',              Icon: Users         },
-            ].map(({ plan, desc, Icon }, i) => (
-              <FlyIn key={plan} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
-              <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 h-full">
-                <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-                <div className="flex items-start gap-3 mb-4">
-                  <div className="w-10 h-10 flex items-center justify-center relative overflow-visible shrink-0">
-                    <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-60 transition-opacity duration-500 rounded-full scale-150"></div>
-                    <Icon className="w-5 h-5 text-[#00c3ff] group-hover:text-white drop-shadow-[0_0_8px_rgba(0,195,255,0.8)] group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(0,195,255,1)] transition-all duration-500 ease-out relative z-10" fill="currentColor" fillOpacity={0.15} strokeWidth={2} />
-                  </div>
-                  <p className="text-xs font-label uppercase tracking-widest text-[#00c3ff] pt-3">{plan}</p>
-                </div>
-                <p className="text-white font-body leading-relaxed">{desc}</p>
-              </div>
-              </FlyIn>
-            ))}
-          </div>
+          <PursuitCostCalculator />
         </div>
       </section>
 

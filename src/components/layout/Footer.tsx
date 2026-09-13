@@ -18,7 +18,7 @@ export default function Footer() {
                 <span className="font-headline font-black text-xl tracking-tighter leading-none">
                   <span className="text-white">Honest </span><span className="text-[#00c3ff]">Echo</span>
                 </span>
-                <span className="font-body text-[10px] text-[#8b9bb4] tracking-widest uppercase whitespace-nowrap">Know Before You Bid</span>
+                <span className="font-body text-xs text-[#8b9bb4] tracking-widest uppercase whitespace-nowrap">Know Before You Bid</span>
               </Link>
               <div className="border-l border-[#1e2d4a] self-stretch"></div>
               <div className="flex flex-col justify-end gap-0.5 leading-none">
@@ -31,7 +31,7 @@ export default function Footer() {
           </div>
 
           {/* Link columns — centered in remaining space, generously spaced */}
-          <div className="flex flex-1 flex-wrap justify-center items-start gap-8 md:gap-16 lg:gap-24">
+          <div className="grid flex-1 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 items-start gap-8 lg:gap-10">
 
             {/* Product column */}
             <div>
@@ -45,7 +45,7 @@ export default function Footer() {
                   { label: 'FAQ', to: '/faq/' },
                 ].map(({ label, to }) => (
                   <li key={to}>
-                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
+                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors whitespace-nowrap">
                       {label}
                     </Link>
                   </li>
@@ -63,7 +63,7 @@ export default function Footer() {
                   { label: 'GovCon Consultants', to: '/for-govcon-consultants/' },
                 ].map(({ label, to }) => (
                   <li key={to}>
-                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
+                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors whitespace-nowrap">
                       {label}
                     </Link>
                   </li>
@@ -78,9 +78,11 @@ export default function Footer() {
                 {[
                   { label: 'About', to: '/about/' },
                   { label: 'Contact', to: '/contact/' },
+                  { label: 'Terms of Service', to: '/terms/' },
+                  { label: 'Privacy Policy', to: '/privacy/' },
                 ].map(({ label, to }) => (
                   <li key={to}>
-                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
+                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors whitespace-nowrap">
                       {label}
                     </Link>
                   </li>
@@ -101,24 +103,7 @@ export default function Footer() {
                   { label: 'Recompete Tracking', to: '/sam-gov-recompete-tracking/' },
                 ].map(({ label, to }) => (
                   <li key={to}>
-                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
-                      {label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Legal column */}
-            <div>
-              <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-3">Legal</p>
-              <ul className="space-y-2">
-                {[
-                  { label: 'Terms of Service', to: '/terms/' },
-                  { label: 'Privacy Policy', to: '/privacy/' },
-                ].map(({ label, to }) => (
-                  <li key={to}>
-                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors">
+                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors whitespace-nowrap">
                       {label}
                     </Link>
                   </li>
@@ -131,7 +116,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-[#1e2d4a] pt-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-[#8b9bb4]">© 2026 Honest Echo LLC. All rights reserved.</p>
+          <p className="text-sm text-[#8b9bb4]">© 2026 Honest Echo LLC. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <Link to="/signup/?promo=fall2026" className="text-xs font-bold text-[#00c3ff] hover:text-white transition-colors">
               Start Free →

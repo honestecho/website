@@ -18,9 +18,9 @@ const WHY = [
 
 // grid fills row-by-row → order so left col = Posted/Due/Agency, right col = Type/NAICS/Set-Aside
 const DETAILS: { Icon: typeof Calendar; label: string; value: string; accent?: boolean }[] = [
-  { Icon: Calendar, label: 'Posted',      value: 'Jun 12, 2026' },
+  { Icon: Calendar, label: 'Posted',      value: 'Today' },
   { Icon: FileText, label: 'Notice Type', value: 'Sources Sought' },
-  { Icon: Clock,    label: 'Due',         value: 'Jun 23, 2026' },
+  { Icon: Clock,    label: 'Due',         value: 'In 11 days' },
   { Icon: Layers,   label: 'NAICS',       value: '541519 — Other Computer Related Services', accent: true },
   { Icon: Landmark, label: 'Agency',      value: 'VETERANS AFFAIRS, DEPARTMENT OF' },
   { Icon: Shield,   label: 'Set-Aside',   value: 'SDVOSB — Service-Disabled Veteran-Owned …', accent: true },
@@ -52,8 +52,11 @@ export default function HeroPursuitCard() {
               <span className="inline-block px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wide bg-[#0a2a3a] border border-[#15506a] text-[#5cc7e8]">
                 Sources Sought
               </span>
+              <span className="inline-block px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wide bg-[#111a2e] border border-[#2a3a5c] text-[#8b9bb4]">
+                Example readout
+              </span>
               <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wide bg-[#2a1f00] border border-[#5a4500] text-[#d4a017]">
-                <Clock size={9} /> Due Jun 23, 2026
+                <Clock size={9} /> Due in 11 days
               </span>
             </div>
           </div>

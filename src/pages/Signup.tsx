@@ -213,7 +213,7 @@ export default function Signup() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">that fit your business.</span>
           </h1>
           <p className="text-[#a0b2c8] text-lg mb-12 leading-relaxed font-body">
-            Create your account, answer a few questions about what your company does, and get a scored list of open federal opportunities that match — about 30 seconds later.
+            Create your account, answer a few questions about what your company does, and get a ranked shortlist of open federal opportunities: the three open opportunities worth your pursuit time, plus the one near-miss that looks right and isn’t — with the evidence behind every call.
           </p>
 
           <ul className="space-y-6">
@@ -371,7 +371,7 @@ export default function Signup() {
                     <p id="signup-error" role="alert" className="text-red-400 text-sm bg-red-900/20 border border-red-700/30 rounded-lg px-4 py-3">{error}</p>
                   )}
 
-                  <p className="text-xs text-[#8b9bb4] text-center leading-relaxed">
+                  <p className="text-sm text-[#8b9bb4] text-center leading-relaxed">
                     By creating an account, you agree to our{' '}
                     <a href="/terms/" target="_blank" rel="noopener noreferrer" className="text-[#00c3ff] hover:underline">Terms of Service</a>
                     {' '}and{' '}
@@ -388,12 +388,12 @@ export default function Signup() {
                     )}
                   </button>
 
-                  <p className="text-xs text-[#8b9bb4] text-center font-body !mt-3">
+                  <p className="text-sm text-[#8b9bb4] text-center font-body !mt-3">
                     Takes about 2 minutes. No credit card required.
                   </p>
                 </form>
 
-                <p className="mt-6 text-center text-xs text-[#8b9bb4] font-body">
+                <p className="mt-6 text-center text-sm text-[#8b9bb4] font-body">
                   Already have an account?{' '}
                   <a href="https://pursuit.honestecho.com" className="text-[#00c3ff] hover:text-white transition-colors">
                     Sign in
@@ -439,7 +439,7 @@ export default function Signup() {
                   )}
                 </div>
 
-                <p className="mt-6 text-xs text-[#8b9bb4] font-body">
+                <p className="mt-6 text-sm text-[#8b9bb4] font-body">
                   <Link to="/" className="text-[#00c3ff] hover:text-white transition-colors">← Back to home</Link>
                 </p>
               </div>

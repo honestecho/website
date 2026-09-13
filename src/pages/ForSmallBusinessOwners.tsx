@@ -8,7 +8,7 @@ import { SoftwareApplicationSchema, FAQPageSchema } from '../components/SchemaOr
 const faqs = [
   {
     q: 'How do small business owners find government contracts worth bidding on?',
-    a: 'Most small contractors start on SAM.gov, which lists federal contract opportunities but ranks none of them for your business. The practical workflow is: define your NAICS codes, certifications, and capacity once, then screen every incoming notice against that profile. HE Pursuit automates that screening — each SAM.gov notice gets a fit score and a Go, Conditional Go, or No-Bid read against your actual profile, so you spend proposal hours only on winnable work.',
+    a: 'SAM.gov is the official source for federal contract opportunities, but it ranks none of them for your business. The practical workflow is: define your NAICS codes, certifications, and capacity once, then screen every incoming notice against that profile. HE Pursuit automates that screening: each analyzed SAM.gov notice gets a fit score and a Go, Conditional Go, or No-Bid read against your profile, so you can reserve proposal hours for stronger-fit work.',
   },
   {
     q: 'I just got my 8(a), SDVOSB, WOSB, or HUBZone certification. Now what?',
@@ -16,11 +16,11 @@ const faqs = [
   },
   {
     q: 'Can a small subcontractor become a prime contractor?',
-    a: 'Yes — and the transition is mostly about picking the right first prime bid, not building new infrastructure. Every notice HE Pursuit analyzes includes a recommended route: prime it, or pursue it as a subcontractor. Notices flagged as primeable at your size — right dollar range, right set-aside, requirements you already meet — are where sub-to-prime transitions actually start.',
+    a: 'Yes. Choosing a right-sized first prime opportunity is one part of the transition; confirm the financial, compliance, contract-administration, and delivery capacity the solicitation requires. Every notice HE Pursuit analyzes includes a recommended route: prime it, or pursue it as a subcontractor. Notices flagged as primeable at your size — right dollar range, right set-aside, requirements you already meet — are the ones worth that check.',
   },
   {
     q: 'How much time should a small business spend on a federal proposal?',
-    a: 'A competitive federal proposal routinely consumes days to weeks of working time, depending on scope. That is exactly why the bid/no-bid decision matters more than the writing: a disciplined no-bid saves the entire cost of a doomed pursuit. Screening with HE Pursuit takes minutes per notice, so the expensive hours only start after a defensible Go.',
+    a: 'A federal proposal can require substantial working time; the actual effort depends on scope, vehicle, response format, and team. That is why an early bid/no-bid decision matters: a disciplined no-bid avoids most of the downstream proposal cost of a weak-fit pursuit. Screening with HE Pursuit takes minutes per notice, so the expensive hours only start after a defensible Go.',
   },
   {
     q: 'Is HE Pursuit free for small businesses?',
@@ -32,12 +32,12 @@ const cards = [
   {
     Icon: Filter,
     title: 'SAM.gov is a firehose. You need a filter with judgment.',
-    body: 'Two thousand new federal notices post every day. Your business fits a handful. HE Pursuit screens every notice against your NAICS codes, certifications, geography, and capacity — and tells you which ones deserve a look, with the reasoning shown.',
+    body: 'SAM.gov’s opportunity data updates daily, and your business fits a handful of what posts. HE Pursuit screens every new and updated notice against your NAICS codes, certifications, geography, and capacity — and tells you which ones deserve a look, with the reasoning shown.',
   },
   {
     Icon: Clock,
-    title: 'Stop paying the 40-hour tax on bad-fit RFPs',
-    body: "The most expensive mistake in small-business GovCon isn't losing a bid — it's spending weeks on one that was never winnable. A structured bid/no-bid read before you commit protects the hours that keep your business running.",
+    title: 'Stop spending proposal hours on bad-fit RFPs',
+    body: "A weak-fit pursuit can consume substantial working time before the team reaches a defensible decision. A structured bid/no-bid read before you commit protects the hours that keep your business running.",
   },
   {
     Icon: TrendingUp,

@@ -37,7 +37,7 @@ export default function Navbar() {
             <span className="font-headline font-black text-xl tracking-tighter leading-none">
               <span className="text-white">Honest </span><span className="text-[#00c3ff]">Echo</span>
             </span>
-            <span className="font-body text-[10px] text-[#a0b2c8] tracking-widest uppercase hidden sm:block">Know Before You Bid</span>
+            <span className="font-body text-xs text-[#a0b2c8] tracking-widest uppercase hidden sm:block">Know Before You Bid</span>
           </div>
         </Link>
 
@@ -63,7 +63,7 @@ export default function Navbar() {
           {!onSignup && (
             <Link
               to="/signup/?promo=fall2026"
-              className={`px-5 py-2.5 text-sm font-bold bg-[#00c3ff] text-[#030B17] shadow-[0_0_15px_rgba(0,195,255,0.2)] rounded hover:bg-white hover:scale-105 transition-all duration-300 ${focusRing}`}
+              className={`px-5 py-2.5 text-sm font-bold text-white border border-[#1e2d4a] rounded hover:border-[#00c3ff]/40 hover:text-[#00c3ff] transition-colors ${focusRing}`}
             >
               Start Free
             </Link>
@@ -108,7 +108,7 @@ export default function Navbar() {
             <Link
               to="/signup/?promo=fall2026"
               onClick={() => setOpen(false)}
-              className={`mt-2 w-full text-center py-3 rounded-lg bg-[#00c3ff] text-[#030B17] font-bold text-sm hover:bg-white transition-colors ${focusRing}`}
+              className={`mt-2 w-full text-center py-3 rounded-lg border border-[#1e2d4a] text-white font-bold text-sm hover:border-[#00c3ff]/40 hover:text-[#00c3ff] transition-colors ${focusRing}`}
             >
               Start Free
             </Link>

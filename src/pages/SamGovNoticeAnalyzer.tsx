@@ -40,11 +40,11 @@ const ANALYZER_FAQ = [
   },
   {
     q: 'Can this replace my bid/no-bid checklist or decision matrix?',
-    a: 'It automates the first pass of one. A bid/no-bid checklist scores capability fit, eligibility, timing, and competitive position — this tool runs those dimensions against a real notice and shows the score behind the verdict. The full HE Pursuit workflow extends that into a complete, documented bid/no-bid decision against your own company profile.',
+    a: 'It handles the first pass. The free analyzer extracts the notice facts and flags opportunity-level set-aside, timing, agency, and keyword signals. It does not assess your company’s capability or competitive position until you add a company profile, and it does not replace your final bid/no-bid review. The full HE Pursuit workflow extends that first pass into a complete, documented decision against your own profile.',
   },
   {
     q: 'Does it tell me whether to bid as a prime or find a subcontracting route?',
-    a: 'The free analyzer gives a general fit read against sample business profiles. Inside HE Pursuit, every opportunity you evaluate against your own profile also gets a recommended route — pursue it as a prime, or position as a subcontractor — based on the requirement\'s size, set-aside, and your capabilities.',
+    a: 'The free analyzer gives an opportunity-level fit read; it does not recommend a company-specific prime or subcontracting route. Inside HE Pursuit, every opportunity you evaluate against your own profile also gets a recommended route — pursue it as a prime, or position as a subcontractor — based on the requirement\'s size, set-aside, and your capabilities.',
   },
 ];
 
@@ -604,8 +604,8 @@ export default function SamGovNoticeAnalyzer() {
                               <Lock size={14} className="text-[#00c3ff]" strokeWidth={2} />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <p className="text-sm font-bold text-[#00c3ff] font-headline">Score against your real profile</p>
-                              <p className="text-sm text-[#8b9bb4] font-body leading-snug">Create a free account to score every notice against your actual NAICS, certifications, and past performance. The Fall Bid Clarity Pass gives 2 months of Starter or Pro free — applied automatically at checkout. Ends November 30.</p>
+                              <p className="text-sm font-bold text-[#00c3ff] font-headline">Get the three worth pursuing — and the one near-miss</p>
+                              <p className="text-sm text-[#8b9bb4] font-body leading-snug">Create a free account and HE Pursuit scores every notice against your actual NAICS, certifications, and past performance: the three open opportunities worth your pursuit time, plus the one near-miss that looks right and isn’t — with the evidence behind every call. The Fall Bid Clarity Pass gives 2 months of Starter or Pro free — applied automatically at checkout. Ends November 30.</p>
                             </div>
                             <ChevronRight size={15} className="text-[#00c3ff] shrink-0 group-hover/unlock:translate-x-0.5 transition-transform duration-200" />
                           </Link>

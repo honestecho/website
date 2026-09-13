@@ -39,11 +39,14 @@
     <script>
       (function () {
         try {
+          // Production hosts only — analytics.ts has a DEV guard; this must too, or
+          // local Vite / Cloudflare preview visits land in prod as humans.
+          if (location.hostname !== 'honestecho.com' && location.hostname !== 'www.honestecho.com') return;
           var KEY = 'he_anon_id';
           var id = localStorage.getItem(KEY);
           if (!id) { id = crypto.randomUUID(); localStorage.setItem(KEY, id); }
           var attr = {};
-          try { var st = sessionStorage.getItem('he_attribution'); if (st) attr = JSON.parse(st) || {}; } catch (e) {}
+          try { var st = sessionStorage.getItem('he_attribution'); if (st) { var pj = JSON.parse(st); if (pj && typeof pj === 'object' && !Array.isArray(pj)) attr = pj; } } catch (e) {}
           if (!Object.keys(attr).length) {
             new URLSearchParams(location.search).forEach(function (v, k) {
               if (k === 'src' || k === 'promo' || k === 'gclid' || k === 'gbraid' || k === 'wbraid' || k.indexOf('utm_') === 0 || k.indexOf('vt_') === 0) {
@@ -62,11 +65,21 @@
           var props = { path: location.pathname, early: true };
           for (var k in attr) props[k] = attr[k];
           if (ref) props.referrer = ref;
-          window.__hePvPath = location.pathname;
-          fetch('https://he-pursuit-api.onrender.com/api/analytics/track', {
-            method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true,
-            body: JSON.stringify({ events: [{ event_name: 'page_viewed', anonymous_id: id, page: location.pathname, properties: props, source: 'website' }] })
-          }).catch(function () {});
+          var path = location.pathname;
+          window.__hePvPath = path;
+          var body = JSON.stringify({ events: [{ event_name: 'page_viewed', anonymous_id: id, page: path, properties: props, source: 'website' }] });
+          var send = function () {
+            return fetch('https://he-pursuit-api.onrender.com/api/analytics/track', {
+              method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true, body: body
+            });
+          };
+          // Delivery failure: if React has not consumed the flag yet, clear it so
+          // PageViews fires its own; if it already skipped, resend once ourselves.
+          var failed = function () {
+            if (window.__hePvPath === path) { window.__hePvPath = undefined; return; }
+            send().catch(function () {});
+          };
+          send().then(function (r) { if (!r.ok) failed(); }).catch(failed);
         } catch (e) {}
       })();
     </script>

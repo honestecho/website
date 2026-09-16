@@ -60,9 +60,9 @@ const DEFAULT_WEIGHTS: Record<string, number> = {
 const DIM_DESC: Record<string, { pos: string; neg: string }> = {
   naics:            { pos: 'NAICS code closely matches the requirement',        neg: 'NAICS suggests specialized experience may be needed'    },
   keywords:         { pos: 'Scope language aligns well with this profile',      neg: 'Opportunity likely requires deeper qualification review' },
-  set_aside:        { pos: 'Set-aside type aligns with this profile',           neg: 'Set-aside may affect eligibility'                       },
+  set_aside:        { pos: 'The set-aside matches this profile', neg: 'Set-aside may affect eligibility'                       },
   agency:           { pos: 'Strong alignment with this agency',                 neg: 'Limited prior activity with this agency'                },
-  timing:           { pos: 'Response window allows a quality response',         neg: 'Tight timeline may strain pursuit resources'            },
+  timing:           { pos: 'The deadline leaves enough time to prepare a strong response', neg: 'Tight timeline may strain pursuit resources'            },
 };
 
 function computeLiveScore(dimensionScores: Record<string, number>, scoringWeights?: Record<string, number>): number {
@@ -124,7 +124,7 @@ function AgencyIcon({ agency }: { agency: string }) {
   if (!url || failed) {
     return <span className="text-xs font-black tracking-wider text-[#00c3ff]">{abbr}</span>;
   }
-  return <img src={url} alt={abbr} className="w-11 h-11 object-contain" onError={() => setFailed(true)} />;
+  return <img src={url} alt={abbr} className="w-8 h-8 sm:w-11 sm:h-11 object-contain" onError={() => setFailed(true)} />;
 }
 
 const MATURITY_DISPLAY: Record<string, string> = {
@@ -160,7 +160,10 @@ function dueInfo(dateStr: string | null): { label: string; color: string; past: 
   const d = new Date(dateStr);
   const now = Date.now();
   const past = d.getTime() < now;
-  const label = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  // A date-only deadline arrives as UTC midnight; formatting it in a US zone
+  // rolls it back a day (Jan 9 showed as Jan 8 beside a summary saying Jan 9).
+  const dateOnly = /T00:00(:00(\.0+)?)?(Z|\+00:00)$/.test(dateStr);
+  const label = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', ...(dateOnly ? { timeZone: 'UTC' } : {}) });
   const daysLeft = past ? -1 : Math.ceil((d.getTime() - now) / 86_400_000);
   const color = past ? '#f87171' : daysLeft < 7 ? '#f5a623' : daysLeft <= 60 ? '#8b9bb4' : '#4ade80';
   return { label, color, past };
@@ -169,9 +172,13 @@ function dueInfo(dateStr: string | null): { label: string; color: string; past: 
 interface EvidenceRow { key: string; label: string }
 
 // ── Component ─────────────────────────────────────────────────────────────────
-export default function AnalyzerOpportunityCard({ opportunity, score, onTrack, variant = 'full' }: {
+export default function AnalyzerOpportunityCard({ opportunity, score, summary, comparedWith, onTrack, variant = 'full' }: {
   opportunity: AnalyzerOpportunity;
   score: AnalyzerProfileScore;
+  /** Server-written plain-English summary of the notice; shown in the full card only. */
+  summary?: string;
+  /** Label of the sample business the score was computed against (full card only). */
+  comparedWith?: string;
   onTrack?: (event: string) => void;
   /**
    * 'preview' renders the same card as a subordinate hero sample: no hover lift
@@ -191,14 +198,7 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack, v
   const due = dueInfo(opp.dueDate);
   const [breakdownOpen, setBreakdownOpen] = useState(false);
 
-  const chipBase = 'inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wide border whitespace-nowrap';
 
-  // Fit band (rule 2 + 3): 100-point score, not a percentage.
-  const fit = computed >= 90 ? { label: 'Excellent Fit', color: '#4ade80' }
-    : computed >= 80 ? { label: 'Strong Fit',   color: '#4ade80' }
-    : computed >= 65 ? { label: 'Moderate Fit', color: '#00c3ff' }
-    : computed >= 50 ? { label: 'Weak Fit',     color: '#f5a623' }
-    :                  { label: 'Poor Fit',     color: '#f87171' };
 
   // Credibility gate: a terminal/non-biddable notice type or a past-due deadline
   // must never render a score-derived "pursue" verdict.
@@ -222,19 +222,17 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack, v
   // ── Decision band ── recommendation derived from the score (no workflow on the
   //    public card). geo/value are absent from DIMS entirely — the server no longer
   //    scores them, so there is nothing to exclude here.
+  // The verdict IS the server's recommendation (GO / CONDITIONAL GO / NO-BID) —
+  // one vocabulary from the promise on the page to the label on the card.
   type Band = { Icon: LucideIcon; color: string; label: string; reason: string };
   const band: Band = notBiddable
     ? { Icon: XCircle, color: '#8b9bb4', label: 'NOT BIDDABLE', reason: 'This notice is awarded or closed. It is no longer open for response.' }
-    : computed >= 90 ? { Icon: CheckCircle2, color: '#4ade80', label: 'STRONG CANDIDATE',
-        reason: 'Top-tier match. Strong alignment across capability, eligibility, and timing. Recommend running the full pursuit analysis.' }
-    : computed >= 80 ? { Icon: CheckCircle2, color: '#4ade80', label: 'STRONG CANDIDATE',
-        reason: 'Strong alignment across the key evaluation dimensions. Recommend running the full pursuit analysis.' }
-    : computed >= 65 ? { Icon: Eye, color: '#00c3ff', label: 'WORTH REVIEWING',
-        reason: 'Solid potential. Verify the weaker dimensions before committing resources.' }
-    : computed >= 50 ? { Icon: AlertTriangle, color: '#f5a623', label: 'REVIEW WITH CAUTION',
-        reason: 'Mixed signals. Confirm eligibility and capability gaps before investing pursuit time.' }
-    :                  { Icon: Eye, color: '#8b9bb4', label: 'LOW PRIORITY',
-        reason: 'Profile alignment is weak for this sample. Review only if the opportunity is strategically important.' };
+    : score.recommendation === 'GO' ? { Icon: CheckCircle2, color: '#4ade80', label: 'GO',
+        reason: 'This sample business lines up well with the work, agency, deadline, and set-aside. Compare the notice with your own business before deciding to bid.' }
+    : score.recommendation === 'CONDITIONAL_GO' ? { Icon: AlertTriangle, color: '#f5a623', label: 'CONDITIONAL GO',
+        reason: 'A workable fit for this sample profile, with gaps to check. Confirm the weaker dimensions before committing proposal hours.' }
+    :                  { Icon: Eye, color: '#8b9bb4', label: 'NO-BID',
+        reason: 'Weak fit for this sample profile. Review only if the opportunity matters strategically.' };
   const BandIcon = band.Icon;
 
   // ── Evidence vs risk ── built from the scored dimensions.
@@ -253,39 +251,35 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack, v
   const MAX = 4;
 
   const w = { ...DEFAULT_WEIGHTS };
+  const earnedTotal = Math.round(DIMS.reduce((sum, d) => sum + (dimension_scores[d.key] ?? 0), 0));
+  const maxTotal = DIMS.reduce((sum, d) => sum + d.max, 0);
 
   return (
-    <div className={`group/card rounded-2xl border border-[#1e2d4a] bg-[#0b1120] flex flex-col p-6 h-full relative overflow-hidden${
-      isPreview ? '' : ' transition-all duration-500 hover:-translate-y-1 hover:border-[#00c3ff]/40 hover:shadow-[0_10px_40px_-5px_rgba(0,195,255,0.12)]'
-    }`}>
-      <div className="absolute inset-x-0 top-0 h-[2px] pointer-events-none transition-opacity duration-500 opacity-0 group-hover/card:opacity-100 rounded-t-2xl"
-        style={{ background: 'linear-gradient(to right, transparent, rgba(0,195,255,0.4), transparent)' }} />
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_50%_0%,rgba(0,195,255,0.04)_0%,transparent_60%)]" />
+    <div className={`group/card rounded-xl border border-[#1e2d4a] bg-[#0b1120] flex flex-col h-full relative overflow-hidden ${isPreview ? 'p-4' : 'p-5 sm:p-6'}`}>
 
       {/* ── HEADER ── */}
-      <div className="relative z-10 flex items-start gap-4 w-full mb-1">
+      <div className="relative z-10 grid grid-cols-[2.25rem_minmax(0,1fr)] sm:grid-cols-[3.5rem_minmax(0,1fr)_auto] items-center sm:items-start gap-x-3 sm:gap-x-4 gap-y-3 w-full mb-1">
         {/* Agency badge */}
-        <div className="w-14 h-14 rounded-xl border border-[#1e2d4a] bg-[#0f1a2e] flex items-center justify-center shrink-0 relative overflow-visible" title={opp.agency}>
-          <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-0 group-hover/card:opacity-15 transition-opacity duration-500 rounded-xl scale-125" />
-          <div className="relative z-10 transition-all duration-500 group-hover/card:scale-105 group-hover/card:drop-shadow-[0_0_12px_rgba(0,195,255,0.4)]">
+        <div className="w-9 h-9 sm:w-14 sm:h-14 rounded-lg border border-[#1e2d4a] flex items-center justify-center shrink-0 relative overflow-visible" title={opp.agency}>
+          <div className="relative z-10">
             <AgencyIcon agency={opp.agency} />
           </div>
         </div>
 
-        {/* Title → agency → metadata chips */}
-        <div className="flex-1 min-w-0 flex flex-col gap-1">
-          <h3 className="text-[17px] font-headline font-black text-white leading-snug truncate" title={opp.title}>
+        {/* Mobile: agency beside the crest, title full-width below. sm+: title → agency → metadata beside the crest. */}
+        <span className="sm:hidden text-sm font-semibold text-[#8b9bb4] uppercase tracking-wider min-w-0" title={opp.agency}>{agency}</span>
+        <div className="col-span-2 sm:col-span-1 min-w-0 flex flex-col gap-1">
+          <h3 className="text-[15px] font-headline font-bold text-white leading-[1.28] sm:line-clamp-3" title={opp.title}>
             {opp.title || 'Untitled notice'}
           </h3>
-          <span className="text-sm font-bold text-[#8b9bb4] uppercase tracking-wider line-clamp-1" title={opp.agency}>{agency}</span>
-          <div className="flex items-center gap-1.5 flex-nowrap mt-1.5 min-w-0">
+          <span className="hidden sm:block text-sm font-semibold text-[#8b9bb4] uppercase tracking-wider md:line-clamp-1" title={opp.agency}>{agency}</span>
+          <div className="flex items-center gap-1.5 flex-wrap mt-1.5 min-w-0">
             {opp.maturity && (
-              <span className={`${chipBase} bg-[#5b8cff]/10 text-[#5b8cff] border-[#5b8cff]/30 min-w-0 truncate`} title={displayMaturity(opp.maturity)}>
-                {displayMaturity(opp.maturity)}
-              </span>
+              <span className="text-xs text-[#8b9bb4] min-w-0 truncate" title={displayMaturity(opp.maturity)}>{displayMaturity(opp.maturity)}</span>
             )}
+            {opp.maturity && due.label && <span className="text-xs text-[#475569]" aria-hidden="true">·</span>}
             {due.label && (
-              <span className={`${chipBase} ml-auto shrink-0`} style={{ color: due.color, borderColor: `${due.color}55` }} title={`Response due ${due.label}`}>
+              <span className="inline-flex items-center gap-1 text-xs shrink-0" style={{ color: due.past ? due.color : '#a0b2c8' }} title={`Response due ${due.label}`}>
                 <Calendar size={11} />
                 {due.past ? 'Expired' : `Due ${due.label}`}
               </span>
@@ -293,25 +287,28 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack, v
           </div>
         </div>
 
-        {/* Right: 100-point fit score + hover breakdown */}
-        <div className="shrink-0 flex flex-col items-end text-right relative group/score">
+        {/* Right: 100-point fit score (+ hover breakdown in the preview variant only;
+            the full card shows the breakdown inline below the verdict) */}
+        <div className="col-span-2 sm:col-span-1 sm:col-start-3 shrink-0 flex sm:flex-col items-baseline sm:items-end gap-x-3 text-left sm:text-right relative group/score">
           <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b9bb4]">Pursuit Fit</span>
           <button
             type="button"
             aria-expanded={breakdownOpen}
             aria-label="Toggle score breakdown"
             onClick={() => setBreakdownOpen(o => !o)}
-            className="leading-none mt-1 bg-transparent border-0 p-0 cursor-help focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] rounded"
+            className="leading-none sm:mt-1 bg-transparent border-0 p-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] rounded"
           >
-            <span className="text-[40px] font-black tabular-nums tracking-tight text-white">{computed}</span>
+            <span className="text-4xl sm:text-[40px] font-black tabular-nums tracking-tight text-white">{computed}</span>
             <span className="text-lg font-bold text-[#8b9bb4]"> / 100</span>
           </button>
-          <div className="w-16 h-1 bg-[#1e2d4a] rounded-full overflow-hidden mt-2">
-            <div className="h-full rounded-full" style={{ width: `${Math.max(0, Math.min(100, computed))}%`, background: fit.color }} />
+          <div className="hidden sm:block w-16 h-1 bg-[#1e2d4a] rounded-full overflow-hidden mt-2">
+            <div className="h-full rounded-full" style={{ width: `${Math.max(0, Math.min(100, computed))}%`, background: band.color }} />
           </div>
-          <span className="text-xs font-bold mt-1" style={{ color: fit.color }}>{fit.label}</span>
+          {!isPreview && comparedWith && (
+            <p className="hidden sm:block text-xs text-[#8b9bb4] mt-1.5 whitespace-nowrap">Sample profile: <span className="text-[#e2e8f0]">{comparedWith}</span></p>
+          )}
 
-          {Object.keys(dimension_scores).length > 0 && (
+          {isPreview && Object.keys(dimension_scores).length > 0 && (
             <div className={`absolute right-0 top-full mt-2 z-50 w-52 bg-[#0b1120] border border-[#1e2d4a] rounded-xl p-3 shadow-2xl transition-opacity duration-200 ${breakdownOpen ? 'opacity-100' : 'opacity-0 group-hover/score:opacity-100 pointer-events-none'}`}
               style={{ boxShadow: '0 0 0 1px rgba(0,195,255,0.08), 0 8px 32px rgba(0,0,0,0.6)' }}>
               <p className="text-[11px] font-bold uppercase tracking-wider text-[#8b9bb4] mb-2">Score Breakdown</p>
@@ -338,39 +335,62 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack, v
         </div>
       </div>
 
+      {!isPreview && comparedWith && (
+        <p className="sm:hidden relative z-10 text-xs text-[#8b9bb4] mt-2">Sample profile: <span className="text-[#e2e8f0]">{comparedWith}</span></p>
+      )}
+
       {/* ── DECISION BAND ── */}
-      <div className="relative z-10 mt-5 rounded-xl border px-4 py-3 flex items-center justify-between gap-4"
-        style={{ background: `${band.color}10`, borderColor: `${band.color}40` }}>
+      <div className={`relative z-10 rounded-xl border px-4 py-3 flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-4 ${isPreview ? 'mt-4' : 'mt-5'}`}
+        style={{ background: `${band.color}09`, borderColor: `${band.color}2e` }}>
         <div className="flex items-start gap-3 min-w-0">
-          <div className="relative shrink-0 w-9 h-9 rounded-lg flex items-center justify-center mt-0.5" style={{ background: `${band.color}1f` }}>
-            <BandIcon size={18} strokeWidth={2.5} style={{ color: band.color }} />
-          </div>
+          <BandIcon size={20} strokeWidth={2.5} className="shrink-0 mt-0.5" style={{ color: band.color }} />
           <div className="min-w-0">
-            <span className="block text-sm font-headline font-black tracking-[0.1em] uppercase whitespace-nowrap" style={{ color: band.color }}>{band.label}</span>
-            <p className={`font-body text-sm text-white leading-snug mt-1 ${
-              isPreview ? 'line-clamp-3' : 'line-clamp-2 min-h-[2.5rem]'
-            }`}>{band.reason}</p>
+            <span className="block text-sm font-headline font-semibold whitespace-nowrap" style={{ color: band.color }}>{band.label}</span>
+            <p className={`font-body text-sm text-white leading-snug mt-1 ${isPreview ? 'line-clamp-3' : ''}`}>{band.reason}</p>
           </div>
         </div>
         {confidenceLabel && (
-          <div className="shrink-0 text-right cursor-help"
+          <div className="shrink-0 md:text-right pl-8 md:pl-0 cursor-help"
             title={`Confidence = how complete the evidence is, not how good the fit is — ${strongDimCount} of ${totalDimCount} scoring dimensions had data. Separate from the recommendation.`}>
-            <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#8b9bb4]">Confidence</p>
-            <p className="text-sm font-bold text-white mt-0.5 whitespace-nowrap">{confidenceLabel}</p>
+            <p className="text-sm whitespace-nowrap"><span className="text-[#8b9bb4]">Confidence: </span><span className="font-medium text-[#e2e8f0]">{confidenceLabel.replace(' evidence', '')}</span></p>
           </div>
         )}
       </div>
 
+      {/* ── SCORE BREAKDOWN ── the evidence behind the number, in the open */}
+      {!isPreview && Object.keys(dimension_scores).length > 0 && (
+        <div className="relative z-10 mt-4 border-t border-[#1e2d4a] pt-4">
+          <p className="text-xs font-medium text-[#8b9bb4]">Score breakdown</p>
+          <p className="text-xs text-[#8b9bb4] tabular-nums mt-1 mb-3">Score: {earnedTotal} of {maxTotal} available points ({computed}/100).</p>
+          <div className="grid grid-cols-1 gap-y-2.5 max-w-4xl">
+            {DIMS.map(dim => {
+              const pts = dimension_scores[dim.key] ?? 0;
+              const pct = Math.max(0, Math.min(1, pts / dim.max));
+              return (
+                <div key={dim.key} className="grid grid-cols-[116px_minmax(0,1fr)_56px] sm:grid-cols-[120px_minmax(180px,1fr)_56px] items-center gap-4 tabular-nums">
+                  <span className="text-sm text-[#a0b2c8] truncate">{dim.tip}</span>
+                  <div className="h-1.5 bg-[#1e2d4a] rounded-full overflow-hidden">
+                    <div className={`h-full rounded-full ${pct >= 0.7 ? 'bg-[#4ade80]' : pct >= 0.35 ? 'bg-[#00c3ff]' : 'bg-[#334155]'}`}
+                      style={{ width: `${Math.max(pct * 100, pts > 0 ? 4 : 0)}%` }} />
+                  </div>
+                  <span className="text-sm tabular-nums text-right"><span className="text-[#e2e8f0] font-medium">{Math.round(pts)}</span><span className="text-[#8b9bb4]"> / {dim.max}</span></span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* ── EVIDENCE vs RISK ── 50/50 split */}
-      <div className="relative z-10 mt-5 border-t border-[#1e2d4a] pt-5 grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div className={`relative z-10 border-t border-[#1e2d4a] grid grid-cols-1 md:grid-cols-2 gap-5 ${isPreview ? 'mt-3 pt-3' : 'mt-4 pt-4 md:mt-5 md:pt-5'}`}>
         <div className="min-w-0 flex flex-col">
-          <p className="text-sm font-bold uppercase tracking-wider text-[#8b9bb4] mb-2.5">Why It Fits</p>
+          <p className="text-xs font-medium text-[#8b9bb4] mb-2.5">Why it fits</p>
           {fits.length > 0 ? (
             <div className="space-y-2.5">
               {fits.slice(0, MAX).map(row => (
                 <div key={row.key} className="flex items-start gap-3">
-                  <CheckCircle2 size={14} className="text-[#4ade80] shrink-0 mt-0.5" />
-                  <span className="text-sm font-semibold text-white leading-snug line-clamp-2 min-w-0">{row.label}</span>
+                  <CheckCircle2 size={13} className="text-[#4ade80]/80 shrink-0 mt-0.5" />
+                  <span className={`font-semibold text-white leading-snug line-clamp-2 min-w-0 ${isPreview ? 'text-[13px]' : 'text-sm'}`}>{row.label}</span>
                 </div>
               ))}
             </div>
@@ -380,29 +400,30 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack, v
         </div>
 
         <div className="min-w-0 md:border-l md:border-[#1e2d4a] md:pl-5 flex flex-col">
-          <p className="text-sm font-bold uppercase tracking-wider text-[#8b9bb4] mb-2.5">Watch Before Pursuing</p>
+          <p className="text-xs font-medium text-[#8b9bb4] mb-2.5">Watch before pursuing</p>
           {watches.length > 0 ? (
             <div className="space-y-2.5">
               {watches.slice(0, MAX).map(row => (
                 <div key={row.key} className="flex items-start gap-3">
-                  <AlertTriangle size={14} className="text-[#f5a623] shrink-0 mt-0.5" />
-                  <span className="text-sm text-[#cbd5e1] leading-snug line-clamp-2 min-w-0">{row.label}</span>
+                  <AlertTriangle size={13} className="text-[#f5a623]/90 shrink-0 mt-0.5" />
+                  <span className={`text-[#cbd5e1] leading-snug line-clamp-2 min-w-0 ${isPreview ? 'text-[13px]' : 'text-sm'}`}>{row.label}</span>
                 </div>
               ))}
             </div>
           ) : (
             <div className="flex items-start gap-3">
-              <CheckCircle2 size={14} className="text-[#4ade80] shrink-0 mt-0.5" />
-              <span className="text-sm text-[#cbd5e1] leading-snug">No blocking concerns identified for this sample.</span>
+              <CheckCircle2 size={13} className="text-[#4ade80]/80 shrink-0 mt-0.5" />
+              <span className="text-sm text-[#cbd5e1] leading-snug">No major watch-outs found.</span>
             </div>
           )}
         </div>
       </div>
 
-      {/* ── NOTICE DETAILS ── */}
-      <div className="relative z-10 mt-5 border-t border-[#1e2d4a] pt-5">
-        <p className="text-sm font-bold uppercase tracking-wider text-[#8b9bb4] mb-4">Notice Details</p>
-        <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+      {/* ── NOTICE DETAILS ── (full card only; the hero preview stays short) */}
+      {!isPreview && (
+      <div className="relative z-10 border-t border-[#1e2d4a] mt-4 pt-4 md:mt-5 md:pt-5">
+        <p className="text-xs font-medium text-[#8b9bb4] mb-3">Notice details</p>
+        <div className={`grid grid-cols-2 gap-x-5 sm:gap-x-8 ${isPreview ? 'gap-y-2' : 'gap-y-4'}`}>
           {([
             { label: 'Notice Type', Icon: Hash, node: opp.maturity
                 ? <span className="text-sm text-white truncate block" title={displayMaturity(opp.maturity)}>{displayMaturity(opp.maturity)}</span>
@@ -411,7 +432,7 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack, v
                 ? <span className="text-sm text-white truncate block">{due.past ? 'Expired' : due.label}</span>
                 : <span className="text-sm text-[#a0b2c8]">No deadline set</span> },
             { label: 'NAICS', Icon: Layers, node: opp.naics
-                ? <span className="text-sm font-mono text-[#00c3ff] truncate block" title={opp.naics}>{opp.naics}</span>
+                ? <span className="text-sm font-mono text-[#cbd5e1] truncate block" title={opp.naics}>{opp.naics}</span>
                 : <span className="text-sm text-[#a0b2c8]">Not stated</span> },
             { label: 'Agency', Icon: Landmark, node:
                 <span className="text-sm text-white truncate block" title={opp.agency}>{agency}</span> },
@@ -427,35 +448,43 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack, v
                 const full = SET_ASIDE_FULL[acr];
                 return (
                   <span className="text-sm truncate block" title={full ? `${acr} — ${full}` : sa}>
-                    <span className="text-[#00c3ff]">{acr}</span>
+                    <span className="text-[#cbd5e1]">{acr}</span>
                     {full && <span className="text-white"> — {full}</span>}
                   </span>
                 );
               })() },
             { label: 'Notice ID', Icon: Sparkles, node:
-                <span className="text-sm font-mono text-[#8b9bb4] truncate block" title={opp.noticeId}>{opp.noticeId}</span> },
+                <span className="text-sm font-mono text-[#8b9bb4] break-all block" title={opp.noticeId}>{opp.noticeId}</span> },
           ] as const).map(({ label, Icon, node }) => (
-            <div key={label} className="flex items-start gap-3.5 min-w-0">
-              <Icon size={14} className="text-[#8b9bb4] shrink-0 mt-0.5" />
+            <div key={label} className={`flex items-start gap-3.5 min-w-0 ${label === 'Set-Aside' || label === 'Notice ID' || label === 'Agency' ? 'col-span-2 sm:col-span-1' : ''}`}>
+              <Icon size={13} className="text-[#64748b] shrink-0 mt-0.5" />
               <div className="min-w-0 flex-1">
-                <p className="text-[11px] font-bold uppercase tracking-wider text-[#8b9bb4] leading-none mb-1.5">{label}</p>
+                <p className="text-[11px] font-medium text-[#64748b] leading-none mb-1.5">{label}</p>
                 {node}
               </div>
             </div>
           ))}
         </div>
       </div>
+      )}
+
+      {!isPreview && summary && (
+        <div className="relative z-10 mt-5">
+          <p className="text-xs font-medium text-[#8b9bb4] mb-2">Notice summary</p>
+          <p className="text-sm text-[#a0b2c8] leading-relaxed max-w-[65ch]">{summary}</p>
+        </div>
+      )}
 
       <div className="flex-1 min-h-[1.25rem]" aria-hidden="true" />
 
       {/* ── FOOTER: SAM.gov link + single signup CTA (no Bookmark / Start Pursuit / Summarize) ── */}
-      <div className="relative z-10 w-full border-t border-[#1e2d4a] pt-5 flex items-center justify-between gap-3 flex-wrap">
+      <div className="relative z-10 w-full border-t border-[#1e2d4a] pt-4 flex items-center justify-between gap-3 flex-wrap">
         <a
           href={`https://sam.gov/opp/${encodeURIComponent(opp.noticeId)}/view`}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => onTrack?.('analyzer_card_sam_clicked')}
-          className="flex items-center gap-1.5 text-xs font-semibold text-[#8b9bb4] hover:text-[#00c3ff] transition-colors shrink-0"
+          className="flex items-center gap-1.5 text-xs font-medium text-[#67e8f9] hover:text-[#a5f3fc] transition-colors shrink-0"
         >
           <ExternalLink size={13} /> View on SAM.gov
         </a>
@@ -463,16 +492,13 @@ export default function AnalyzerOpportunityCard({ opportunity, score, onTrack, v
           <Link
             to="/signup/?promo=fall2026"
             onClick={() => onTrack?.('analyzer_card_signup_clicked')}
-            className="flex items-center justify-center gap-1.5 px-5 py-2 rounded-lg font-headline font-bold text-sm bg-[#00c3ff] text-[#030B17] shadow-[0_0_15px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
+            className="flex items-center justify-center gap-1.5 px-5 py-2 rounded-lg font-headline font-bold text-sm bg-[#00c3ff] text-[#030B17] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
           >
-            {notBiddable ? 'Find Open Opportunities' : 'Score Your Own Profile'}
+            {notBiddable ? 'Find Open Opportunities' : 'Score against my business'}
             <ArrowRight size={14} />
           </Link>
         )}
       </div>
-      {!isPreview && (
-        <p className="w-full text-center text-sm text-[#8b9bb4] mt-3 pb-1">Score shown for the selected sample profile. Run the full workflow on your own profile.</p>
-      )}
     </div>
   );
 }

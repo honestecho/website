@@ -7,15 +7,9 @@ import {
   Search,
   AlertCircle,
   Loader2,
-  Zap,
   FileText,
   ShieldCheck,
-  Lock,
-  ChevronRight,
-  Info,
   BarChart2,
-  Download,
-  Cpu,
 } from 'lucide-react';
 import AnalyzerOpportunityCard from '../components/AnalyzerOpportunityCard';
 import AnalyzerOutputPreview from '../components/AnalyzerOutputPreview';
@@ -28,23 +22,23 @@ import { track } from '../lib/analytics';
 const ANALYZER_FAQ = [
   {
     q: 'What is the SAM.gov Notice Analyzer?',
-    a: 'A free tool that reads a live SAM.gov notice and returns a plain-English summary of what it asks for, who appears eligible to bid, and what gaps or blockers to check before committing proposal hours. No account is required.',
+    a: 'It gives you a quick first-pass read on a SAM.gov notice: fit score, verdict, key details, strengths, and watch-outs. You can use it without an account.',
   },
   {
-    q: 'Does it write proposals or generate FAR citations?',
-    a: 'No. It analyzes notices to support bid/no-bid decisions. It does not write proposal content and it does not generate FAR citations. Verify any regulatory references against the source notice.',
+    q: 'Will it write my proposal or give legal advice?',
+    a: 'No. It helps you decide whether the opportunity deserves a closer look; it does not write proposals or provide legal advice.',
   },
   {
     q: 'Can I use it on sources sought and presolicitation notices?',
-    a: 'Yes. Paste any live SAM.gov notice link, including sources sought and presolicitation notices. Early-stage notices are often the best time to check fit, before the requirements harden.',
+    a: 'Yes. You can screen sources sought and presolicitation notices before the final solicitation is posted.',
   },
   {
     q: 'Can this replace my bid/no-bid checklist or decision matrix?',
-    a: 'It handles the first pass. The free analyzer extracts the notice facts and flags opportunity-level set-aside, timing, agency, and keyword signals. It does not assess your company’s capability or competitive position until you add a company profile, and it does not replace your final bid/no-bid review. The full HE Pursuit workflow extends that first pass into a complete, documented decision against your own profile.',
+    a: 'No. Use it for an initial screen, then check eligibility, competition, delivery demands, and the cost of pursuing the bid.',
   },
   {
-    q: 'Does it tell me whether to bid as a prime or find a subcontracting route?',
-    a: 'The free analyzer gives an opportunity-level fit read; it does not recommend a company-specific prime or subcontracting route. Inside HE Pursuit, every opportunity you evaluate against your own profile also gets a recommended route — pursue it as a prime, or position as a subcontractor — based on the requirement\'s size, set-aside, and your capabilities.',
+    q: 'Will it tell me whether to prime or subcontract?',
+    a: 'No. That decision depends on your capacity, partners, and the solicitation requirements.',
   },
 ];
 
@@ -159,6 +153,20 @@ const SAMPLE_NOTICE_ID  = '9c73de6224ab4a8ea88dfbb60e8d085f';
 const SAMPLE_NOTICE_URL = `https://sam.gov/opp/${SAMPLE_NOTICE_ID}/view`;
 const sampleUrlFor = (id: string) => `https://sam.gov/opp/${id}/view`;
 
+// "Example loaded: a live U.S. Army solicitation" — agency + notice type, which a
+// contractor recognises; a clipped title or a UUID confirms nothing.
+const AGENCY_SHORT: [RegExp, string][] = [
+  [/AIR FORCE/i, 'U.S. Air Force'], [/\bARMY\b/i, 'U.S. Army'], [/\bNAVY\b|NAVAL/i, 'U.S. Navy'],
+  [/VETERANS/i, 'VA'], [/HOMELAND/i, 'DHS'], [/GENERAL SERVICES|\bGSA\b/i, 'GSA'], [/DEFENSE/i, 'DoD'],
+  [/INTERIOR/i, 'Interior'], [/AGRICULTURE/i, 'USDA'], [/HEALTH AND HUMAN/i, 'HHS'], [/ENERGY/i, 'DOE'],
+];
+function exampleLabel(r: { agency: string; maturity: string | null }): string {
+  const agency = AGENCY_SHORT.find(([re]) => re.test(r.agency))?.[1]
+    ?? r.agency.split('.').pop()!.trim().toLowerCase().replace(/\b([a-z])/g, m => m.toUpperCase());
+  const type = (r.maturity || 'Notice').replace('Combined Synopsis/Solicitation', 'Solicitation');
+  return `${agency} · ${type}`;
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function SamGovNoticeAnalyzer() {
@@ -177,7 +185,6 @@ export default function SamGovNoticeAnalyzer() {
   const handoffRan = useRef<string | null>(null);
   const [input, setInput]             = useState(SAMPLE_NOTICE_URL);
   const [isExample, setIsExample]     = useState(true);
-  const [resultWasExample, setResultWasExample] = useState(false);
   const [loading, setLoading]         = useState(false);
   const [result, setResult]           = useState<AnalysisResult | null>(null);
   const [error, setError]             = useState<string | null>(null);
@@ -191,6 +198,13 @@ export default function SamGovNoticeAnalyzer() {
   // null until it arrives (or if the server has no fresh cache row), in which
   // case the static structural preview stands in.
   const [sampleResult, setSampleResult] = useState<AnalysisResult | null>(null);
+  const resultRef = useRef<HTMLElement | null>(null);
+
+  // The result is the point of the page: once it exists, bring it into view
+  // (the form sits above and would otherwise leave the verdict below the fold).
+  useEffect(() => {
+    if (result) resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [result]);
 
   useEffect(() => { track('public_analyzer_page_viewed'); }, []);
 
@@ -292,7 +306,6 @@ export default function SamGovNoticeAnalyzer() {
         return;
       }
       setResult(data);
-      setResultWasExample(isExample);
       setSelectedProfile(defaultKey);
       setLoading(false);
 
@@ -334,37 +347,34 @@ export default function SamGovNoticeAnalyzer() {
       </Helmet>
 
       {/* ── Hero ───────────────────────────────────────────────────────────── */}
-      <section className="pt-32 pb-10 px-6 relative overflow-hidden">
+      <section className="pt-6 pb-6 lg:pb-10 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-        <div className={showPreview ? 'flex flex-col lg:flex-row items-start gap-10 lg:gap-14' : ''}>
-        <div className={showPreview ? 'w-full lg:w-[56%] min-w-0' : ''}>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
-            <Zap className="w-3 h-3 text-[#00c3ff]" />
-            <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">
-              Free tool · No account required
-            </span>
-          </div>
+        <div className={showPreview ? 'grid grid-cols-1 lg:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] items-start gap-8' : ''}>
+        <div className={showPreview ? 'min-w-0' : ''}>
+          <p className="text-xs font-medium text-[#a0b2c8] font-body mb-3"><span className="text-[#00c3ff]">Free</span> tool · No account required</p>
 
-          <h1 className="font-headline font-black text-5xl md:text-6xl lg:text-5xl xl:text-6xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
-            Analyze a SAM.gov Notice{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">
-              in Seconds.
-            </span>
+          <h1 className="font-headline font-black text-5xl md:text-6xl lg:text-[56px] lg:leading-[1.04] text-white mb-5 tracking-tighter leading-tight">
+            Analyze a SAM.gov notice{' '}
+            <span className="text-[#00c3ff] whitespace-nowrap">in seconds.</span>
           </h1>
 
           <p className="text-[#a0b2c8] text-lg leading-relaxed font-body mb-8 max-w-2xl">
-            Get a free bid/no-bid read on any live notice — score, verdict, and the reasoning behind it. Add your company profile for a personalized evaluation.
+            Paste a live SAM.gov notice to get a free score, verdict, and explanation. Start with a sample business, or create a free profile for a score based on your company.
           </p>
 
           {/* ── Input card ───────────────────────────────────────────────── */}
           <form
             onSubmit={handleAnalyze}
-            className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] p-5 md:p-6 shadow-2xl"
+            className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-5"
             noValidate
           >
-            <label htmlFor="notice-input" className="block text-xs font-bold text-[#a0b2c8] uppercase tracking-widest mb-2 font-label">
-              SAM.gov Notice ID or URL
+            <label htmlFor="notice-input" className="block text-xs font-semibold text-[#a0b2c8] font-label">
+              SAM.gov notice URL
             </label>
+            {isExample && (
+              <p className="text-xs text-[#a0b2c8] font-body mt-1 mb-2">Live example: <span className="text-white">{sampleResult ? exampleLabel(sampleResult) : 'a SAM.gov notice, refreshed daily'}</span></p>
+            )}
+            {!isExample && <div className="mb-2" />}
             <div className="flex flex-col md:flex-row gap-3">
               <div className="flex-1 relative">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8b9bb4] pointer-events-none" strokeWidth={2} />
@@ -376,7 +386,9 @@ export default function SamGovNoticeAnalyzer() {
                   onFocus={e => { if (isExample) e.currentTarget.select(); }}
                   placeholder="Paste SAM.gov Notice ID or URL"
                   autoComplete="off"
-                  className="w-full bg-[#060e1c] border border-[#1e2d4a] text-white rounded-lg pl-11 pr-4 py-3.5 text-sm focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors placeholder:text-[#8b9bb4]"
+                  title={input}
+                  aria-label={`SAM.gov notice URL: ${input}`}
+                  className={`w-full bg-[#060e1c] border border-[#1e2d4a] rounded-lg pl-11 pr-4 py-3.5 truncate focus:outline-none focus:border-[#00c3ff]/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] transition-colors placeholder:text-[#8b9bb4] ${isExample ? 'text-xs font-mono text-[#8b9bb4]' : 'text-sm text-white'}`}
                 />
               </div>
               <button
@@ -387,29 +399,25 @@ export default function SamGovNoticeAnalyzer() {
                 {loading ? (
                   <><Loader2 className="w-4 h-4 animate-spin" />Analyzing…</>
                 ) : (
-                  <>Analyze<ArrowRight className="w-4 h-4" /></>
+                  <>{isExample ? 'Analyze example' : 'Analyze notice'}<ArrowRight className="w-4 h-4" /></>
                 )}
               </button>
             </div>
-            {isExample && (
-              <p className="text-sm text-[#00c3ff] font-body mt-3 flex items-start gap-2">
-                <Info className="w-4 h-4 shrink-0 mt-0.5" strokeWidth={2} />
-                <span>
-                  <span className="font-bold">Example notice loaded</span> — a real, live SAM.gov notice, refreshed daily. Hit{' '}
-                  <span className="font-bold">Analyze</span> to see a live read, or{' '}
-                  <button
-                    type="button"
-                    onClick={() => { setInput(''); setIsExample(false); document.getElementById('notice-input')?.focus(); }}
-                    className="underline hover:text-white transition-colors font-semibold"
-                  >
-                    clear it and paste your own
-                  </button>.
-                </span>
+            {isExample ? (
+              <p className="mt-3">
+                <button
+                  type="button"
+                  onClick={() => { const el = document.getElementById('notice-input') as HTMLInputElement | null; el?.focus(); el?.select(); }}
+                  className="text-sm text-[#67e8f9] hover:text-white transition-colors font-body"
+                >
+                  Paste your own notice URL instead.
+                </button>
+              </p>
+            ) : (
+              <p className="text-sm text-[#8b9bb4] font-body mt-3">
+                {input.trim() ? 'Ready to analyze this SAM.gov notice.' : 'Paste the full SAM.gov URL, or the 32-character Notice ID from any opportunity page.'}
               </p>
             )}
-            <p className="text-sm text-[#8b9bb4] font-body mt-3">
-              Find the Notice ID on any SAM.gov opportunity page — or just paste the full URL.
-            </p>
 
             {error && !loading && (
               <div role="alert" className="mt-4 flex items-start gap-3 rounded-xl border border-[#1e2d4a] bg-[#0b1120] p-4">
@@ -433,11 +441,11 @@ export default function SamGovNoticeAnalyzer() {
           </form>
 
           {/* ── Trust cues: mechanism, not social proof ──────────────────── */}
-          <ul className="flex flex-col gap-2 mt-5">
+          <ul className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-2 mt-4">
             {([
               { Icon: Search,      text: 'Pulls the live notice from SAM.gov' },
-              { Icon: ShieldCheck, text: 'Same scoring engine that runs inside HE Pursuit' },
-              { Icon: BarChart2,   text: 'Every score shows its dimension breakdown' },
+              { Icon: ShieldCheck, text: 'Uses Honest Echo’s pursuit-fit scoring model' },
+              { Icon: BarChart2,   text: 'Shows the score breakdown and reasons' },
             ] as const).map(({ Icon: CueIcon, text }) => (
               <li key={text} className="flex items-center gap-2 text-sm text-[#8b9bb4] font-body">
                 <CueIcon size={15} className="text-[#00c3ff] shrink-0" strokeWidth={2} />
@@ -456,10 +464,10 @@ export default function SamGovNoticeAnalyzer() {
           const structural = (
             <>
               <div className="flex items-baseline justify-between gap-3 mb-3">
-                <span className="text-sm font-bold uppercase tracking-wider text-[#8b9bb4] font-label">
-                  Sample output
+                <span className="text-xs font-semibold uppercase tracking-[.06em] text-[#8b9bb4] font-label">
+                  Example result
                 </span>
-                <span className="text-sm text-[#8b9bb4] font-body">Every notice returns this</span>
+                <span className="text-xs text-[#8b9bb4] font-body">Every notice returns this</span>
               </div>
               <AnalyzerOutputPreview />
             </>
@@ -468,10 +476,10 @@ export default function SamGovNoticeAnalyzer() {
           const live = sampleResult && (
             <>
               <div className="flex items-baseline justify-between gap-3 mb-3">
-                <span className="text-sm font-bold uppercase tracking-wider text-[#8b9bb4] font-label">
-                  Sample output
+                <span className="text-xs font-semibold uppercase tracking-[.06em] text-[#8b9bb4] font-label">
+                  Live example result
                 </span>
-                <span className="text-sm text-[#8b9bb4] font-body">A live SAM.gov notice, refreshed daily</span>
+                <span className="text-xs text-[#8b9bb4] font-body">Refreshed daily</span>
               </div>
               <AnalyzerOpportunityCard
                 variant="preview"
@@ -497,7 +505,7 @@ export default function SamGovNoticeAnalyzer() {
           );
 
           return (
-            <div className="hidden lg:block w-full lg:w-[44%] min-w-0">
+            <div className="hidden lg:block min-w-0">
               {live ? (
                 <>
                   <div className="hidden xl:block">{live}</div>
@@ -514,7 +522,7 @@ export default function SamGovNoticeAnalyzer() {
 
       {/* ── Result ─────────────────────────────────────────────────────────── */}
       {(loading || result) && (
-        <section className="pb-6 px-6 relative">
+        <section ref={resultRef} className="pb-6 px-6 relative scroll-mt-24">
           <div className="max-w-7xl mx-auto relative z-10">
 
             {loading && !result && <ResultSkeleton />}
@@ -529,7 +537,6 @@ export default function SamGovNoticeAnalyzer() {
                 ? result.defaultProfile
                 : Object.keys(result.profiles || {})[0] || '';
               const sel = result.profiles?.[activeKey];
-              const activeMeta = meta.find(m => m.key === activeKey);
               if (!sel) return null;
 
               const opportunity = {
@@ -542,158 +549,43 @@ export default function SamGovNoticeAnalyzer() {
                 maturity: result.maturity,
               };
 
+              const personaSelect = (
+                <select
+                  id="persona-select"
+                  value={activeKey}
+                  onChange={e => {
+                    setSelectedProfile(e.target.value);
+                    track('public_analyzer_profile_changed', { notice_id: result.noticeId, profile: e.target.value });
+                  }}
+                  className="h-9 w-full bg-[#060e1c] border border-[#1e2d4a] text-white text-sm font-body rounded-md px-2.5 pr-8 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
+                >
+                  {meta.map(m => <option key={m.key} value={m.key}>{m.label}</option>)}
+                </select>
+              );
+
               return (
                 <>
-                  {/* ── Two cards, full width, separated ─────────────────────── */}
-                  <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-5 items-stretch">
+                  <AnalyzerOpportunityCard
+                    opportunity={opportunity}
+                    score={sel}
+                    summary={result.summary}
+                    comparedWith={meta.find(m => m.key === activeKey)?.label}
+                    onTrack={event => track(event, { notice_id: result.noticeId, profile: activeKey })}
+                  />
 
-                    {/* Left: Opportunity card (matches the in-app card) */}
-                    <div className="flex flex-col">
-                      <AnalyzerOpportunityCard
-                        opportunity={opportunity}
-                        score={sel}
-                        onTrack={event => track(event, { notice_id: result.noticeId, profile: activeKey })}
-                      />
-                    </div>
-
-                    {/* Right: comparison context + how-it-works + unlock */}
-                    <div className="flex flex-col h-full">
-                      <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] shadow-2xl overflow-hidden flex flex-col h-full">
-
-                        {/* Comparison header */}
-                        <div className="px-5 pt-5 pb-4 border-b border-[#1e2d4a]">
-                          <div className="flex items-center gap-2 mb-2">
-                            <div className="w-6 h-6 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/30 flex items-center justify-center shrink-0">
-                              <Info size={11} className="text-[#00c3ff]" strokeWidth={2.5} />
-                            </div>
-                            <span className="text-xs font-bold uppercase tracking-widest text-[#00c3ff] font-label">You're comparing against</span>
-                          </div>
-                          <p className="text-base font-black text-white font-headline mb-1">{activeMeta?.label || 'Sample business'}</p>
-                          <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">{activeMeta?.blurb}</p>
-                          {result.summary && (
-                            <p className="text-sm text-[#8b9bb4] font-body leading-relaxed mt-3 pt-3 border-t border-[#1e2d4a]">
-                              {result.summary}
-                            </p>
-                          )}
-                        </div>
-
-                        {/* Steps */}
-                        <div className="px-5 py-4 flex-1 flex flex-col justify-between gap-3">
-                          {([
-                            { Icon: Download,    title: 'Notice Data Extracted',  body: 'We pulled the live notice from SAM.gov — requirements, timeline, NAICS, and set-aside.' },
-                            { Icon: Cpu,         title: 'Scored vs. Profile',     body: 'The same engine that powers HE Pursuit scored this notice against the selected sample profile.' },
-                            { Icon: BarChart2,   title: 'Dimension Breakdown',    body: 'Every factor — capability, set-aside, agency, timing — contributes to the match score.' },
-                            { Icon: ShieldCheck, title: 'Switch to See Impact',   body: 'Change the profile below to see how certifications and industry move the score.' },
-                          ] as const).map(({ Icon: StepIcon, title, body }, i) => (
-                            <div key={title} className="flex items-start gap-3 group/step">
-                              <div className="w-8 h-8 rounded-lg bg-[#0f1a2e] border border-[#1e2d4a] flex items-center justify-center shrink-0 relative overflow-visible">
-                                <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-0 group-hover/step:opacity-20 transition-opacity duration-300 rounded-lg" />
-                                <StepIcon size={14} className="text-[#00c3ff] relative z-10" strokeWidth={2} />
-                              </div>
-                              <div>
-                                <p className="text-sm font-bold text-white font-headline leading-snug">{i + 1}. {title}</p>
-                                <p className="text-sm text-[#8b9bb4] font-body leading-snug mt-0.5">{body}</p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Post-example bridge — the example proved the tool; a real notice proves the fit */}
-                        {resultWasExample && (
-                          <div className="border-t border-[#1e2d4a]">
-                            <button
-                              type="button"
-                              onClick={() => {
-                                track('public_analyzer_try_own_clicked', { notice_id: result.noticeId });
-                                setInput('');
-                                setIsExample(false);
-                                const el = document.getElementById('notice-input');
-                                el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                                el?.focus();
-                              }}
-                              className="w-full text-left flex items-center gap-3 px-5 py-4 hover:bg-[#0f1a2e] transition-colors duration-300 group/tryown"
-                            >
-                              <div className="w-8 h-8 rounded-lg bg-[#00c3ff]/10 border border-[#00c3ff]/30 flex items-center justify-center shrink-0">
-                                <FileText size={14} className="text-[#00c3ff]" strokeWidth={2} />
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <p className="text-sm font-bold text-[#00c3ff] font-headline">That was the example — now paste one of YOUR notices</p>
-                                <p className="text-sm text-[#8b9bb4] font-body leading-snug">Any SAM.gov link works. Get the same verdict on a contract you're actually weighing.</p>
-                              </div>
-                              <ChevronRight size={15} className="text-[#00c3ff] shrink-0 group-hover/tryown:translate-x-0.5 transition-transform duration-200" />
-                            </button>
-                          </div>
-                        )}
-
-                        {/* Unlock CTA */}
-                        <div className="border-t border-[#1e2d4a]">
-                          <Link
-                            to="/signup/?promo=fall2026"
-                            onClick={() => track('public_analyzer_unlock_cta_clicked', { notice_id: result.noticeId })}
-                            className="flex items-center gap-3 px-5 py-4 hover:bg-[#0f1a2e] transition-colors duration-300 group/unlock"
-                          >
-                            <div className="w-8 h-8 rounded-lg bg-[#00c3ff]/10 border border-[#00c3ff]/30 flex items-center justify-center shrink-0">
-                              <Lock size={14} className="text-[#00c3ff]" strokeWidth={2} />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <p className="text-sm font-bold text-[#00c3ff] font-headline">Get the three worth pursuing — and the one near-miss</p>
-                              <p className="text-sm text-[#8b9bb4] font-body leading-snug">Create a free account and HE Pursuit scores every notice against your actual NAICS, certifications, and past performance: the three open opportunities worth your pursuit time, plus the one near-miss that looks right and isn’t — with the evidence behind every call. The Fall Bid Clarity Pass gives 2 months of Starter or Pro free — applied automatically at checkout. Ends November 30.</p>
-                            </div>
-                            <ChevronRight size={15} className="text-[#00c3ff] shrink-0 group-hover/unlock:translate-x-0.5 transition-transform duration-200" />
-                          </Link>
-                        </div>
+                  {/* ── Sample business used for this score ── */}
+                  <div className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-4 md:p-5 mt-5">
+                    <div className="grid grid-cols-1 md:grid-cols-[352px_minmax(0,1fr)] gap-x-8 gap-y-3 md:items-center">
+                      <div>
+                        <label htmlFor="persona-select" className="block text-xs font-medium text-[#8b9bb4] font-body mb-1.5">Sample business profile</label>
+                        {personaSelect}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">Choose another sample to recalculate this result.</p>
+                        <p className="text-sm text-[#8b9bb4] font-body leading-relaxed mt-0.5">{meta.find(m => m.key === activeKey)?.blurb}</p>
                       </div>
                     </div>
-
-                  </div>
-
-                  {/* ── Profile selector + disclosure (follows the verdict) ───── */}
-                  <div className="rounded-2xl bg-[#0b1120] border border-[#1e2d4a] shadow-2xl p-4 md:p-5 mt-5">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="w-6 h-6 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/30 flex items-center justify-center shrink-0">
-                        <Info size={11} className="text-[#00c3ff]" strokeWidth={2.5} />
-                      </div>
-                      <span className="text-xs font-bold uppercase tracking-widest text-[#00c3ff] font-label">
-                        Comparing against a sample business
-                      </span>
-                    </div>
-                    <p className="text-sm text-[#a0b2c8] font-body leading-relaxed mb-4">
-                      A match score only means something against a business profile. Pick the sample profile
-                      closest to your company — the score and breakdown update instantly. These are illustrative
-                      profiles, <span className="text-white font-semibold">not eligibility determinations</span>.
-                    </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
-                      {meta.map(m => {
-                        const isActive = m.key === activeKey;
-                        const pscore = result.profiles?.[m.key]?.match_score ?? 0;
-                        return (
-                          <button
-                            key={m.key}
-                            type="button"
-                            aria-pressed={isActive}
-                            onClick={() => {
-                              setSelectedProfile(m.key);
-                              track('public_analyzer_profile_changed', { notice_id: result.noticeId, profile: m.key });
-                            }}
-                            className={`text-left rounded-xl border p-3 transition-all duration-300 ${
-                              isActive
-                                ? 'border-[#00c3ff]/60 bg-[#00c3ff]/5 shadow-[0_0_24px_rgba(0,195,255,0.1)]'
-                                : 'border-[#1e2d4a] bg-[#060e1c] hover:border-[#00c3ff]/30 hover:bg-[#0f1a2e]'
-                            }`}
-                          >
-                            <div className="flex items-center justify-between gap-2 mb-1">
-                              <span className={`text-sm font-bold font-headline leading-tight ${isActive ? 'text-white' : 'text-[#a0b2c8]'}`}>
-                                {m.label}
-                              </span>
-                              <span className="text-sm font-black tabular-nums shrink-0" style={{ color: isActive ? '#00c3ff' : '#8b9bb4' }}>
-                                {pscore}%
-                              </span>
-                            </div>
-                            <p className="text-sm text-[#8b9bb4] font-body leading-snug line-clamp-2">{m.blurb}</p>
-                          </button>
-                        );
-                      })}
-                    </div>
+                    <p className="text-xs text-[#64748b] font-body mt-3">Treat this as a first screen, not an eligibility decision.</p>
                   </div>
                 </>
               );
@@ -703,98 +595,84 @@ export default function SamGovNoticeAnalyzer() {
       )}
 
       {/* ── How it works ───────────────────────────────────────────────────── */}
-      <section className="py-20 px-6 relative">
+      <section className="py-16 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
-          <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-3 tracking-tight">
-            What this tool does — and what it doesn't.
+          <h2 className="font-headline font-black text-2xl md:text-3xl text-white mb-2 tracking-tight">
+            How the analyzer works
           </h2>
-          <p className="text-[#a0b2c8] font-body mb-10 max-w-2xl">
-            This is a general assessment of any SAM.gov notice based on opportunity-level signals.
-            It is not a personalized evaluation. The full HE Pursuit workflow adds eligibility checks,
-            strategic fit, effort scoring, and a company-specific bid/no-bid recommendation.
+          <p className="text-[#a0b2c8] font-body mb-8 max-w-2xl text-sm md:text-base leading-relaxed">
+            See whether a notice is worth a closer look. Use a sample profile for a quick screen, or create
+            your own for a result based on your business.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="rounded-xl border border-[#1e2d4a]/80 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#1e2d4a]/80">
             {([
               {
                 Icon: Search,
                 title: 'Instant notice lookup',
-                body: 'Pull the live notice from SAM.gov and extract agency, deadline, NAICS, set-aside, and the full description automatically.',
+                body: 'Pulls the live notice from SAM.gov — agency, deadline, NAICS, set-aside, and the full description.',
               },
               {
                 Icon: ShieldCheck,
-                title: 'General bid/no-bid read',
-                body: 'Get a clear read — from Strong Go to No-Go — plus the factors behind it, based on opportunity-level signals, not your company profile.',
+                title: 'A quick bid/no-bid read',
+                body: 'See GO, CONDITIONAL GO, or NO-BID, plus the factors behind the result. Example scores use the sample business you select.',
               },
               {
                 Icon: FileText,
                 title: 'No account needed',
-                body: 'Free and anonymous. 3 free analyses per hour. Upgrade to run unlimited pursuits with personalized analysis across your full pipeline.',
+                body: 'Analyze up to three notices per hour without an account. Create a free profile for more analyses and scores based on your business.',
               },
             ] as const).map(({ Icon: CardIcon, title, body }) => (
-              <div
-                key={title}
-                className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-6 shadow-2xl hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500 group"
-              >
-                <div className="w-10 h-10 flex items-center justify-center relative overflow-visible mb-4">
-                  <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 group-hover:opacity-50 transition-opacity duration-500 rounded-full scale-150" />
-                  <CardIcon size={18} className="text-[#00c3ff] relative z-10" strokeWidth={2} />
+              <div key={title} className="px-6 py-5">
+                <div className="flex items-center gap-2.5 mb-2">
+                  <CardIcon size={16} className="text-[#00c3ff] shrink-0" strokeWidth={2} />
+                  <h3 className="font-headline font-bold text-white text-base">{title}</h3>
                 </div>
-                <h3 className="font-headline font-black text-white text-lg mb-2">{title}</h3>
-                <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">{body}</p>
+                <p className="text-sm text-[#a0b2c8] font-body leading-6">{body}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-6 rounded-xl bg-[#0b1120] border border-[#1e2d4a] px-6 py-5">
-            <p className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label mb-2">How scoring works</p>
-            <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">
-              The engine pulls the live notice from SAM.gov at analysis time and scores it across the same
-              dimensions used inside HE Pursuit — capability, set-aside, agency, and timing — each contributing
-              to the match score you see. Without an account, the read uses opportunity-level signals only;
-              scores become company-specific once run against your own profile.
-            </p>
-          </div>
+          <p className="mt-6 text-sm text-[#8b9bb4] font-body leading-6 max-w-3xl">
+            <span className="text-white font-semibold">How scoring works. </span>
+            The score considers capability, keywords, set-aside, agency, and timing. It is a first screen,
+            not an eligibility decision.
+          </p>
         </div>
       </section>
 
       {/* ── FAQ ────────────────────────────────────────────────────────────── */}
       <FAQPageSchema items={ANALYZER_FAQ} />
-      <section className="py-16 px-6 relative" aria-label="Frequently asked questions">
+      <section className="pb-16 px-6 relative" aria-label="Frequently asked questions">
         <div className="max-w-7xl mx-auto relative z-10">
-          <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-10 tracking-tight">
+          <h2 className="font-headline font-black text-2xl md:text-3xl text-white mb-6 tracking-tight">
             Common questions
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {ANALYZER_FAQ.map(({ q, a }) => (
-              <div
-                key={q}
-                className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-6 shadow-2xl hover:border-[#00c3ff]/30 transition-all duration-300"
-              >
-                <p className="text-white font-bold font-headline text-base mb-3">{q}</p>
-                <p className="text-sm text-[#a0b2c8] font-body leading-relaxed">{a}</p>
+          <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-12 border-t border-[#1e2d4a]/80">
+            {ANALYZER_FAQ.map(({ q, a }, i) => (
+              <div key={q} className={`py-5 border-b border-[#1e2d4a]/80 ${i === ANALYZER_FAQ.length - 1 ? 'md:col-span-2 md:max-w-2xl' : ''}`}>
+                <dt className="text-white font-semibold font-headline text-base mb-1.5">{q}</dt>
+                <dd className="text-sm text-[#a0b2c8] font-body leading-6">{a}</dd>
               </div>
             ))}
-          </div>
+          </dl>
         </div>
       </section>
 
       {/* ── Final CTA ──────────────────────────────────────────────────────── */}
-      <section className="py-16 px-6 relative">
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-4 tracking-tight">
-            Ready to run this on your whole pipeline?
+      <section className="pb-16 px-6 relative">
+        <div className="max-w-4xl mx-auto text-center relative z-10 rounded-xl border border-[#1e2d4a] bg-[#0b1120] px-6 py-7">
+          <h2 className="font-headline font-black text-2xl md:text-3xl text-white mb-3 tracking-tight">
+            See how this notice fits your business.
           </h2>
-          <p className="text-[#a0b2c8] font-body mb-8 max-w-xl mx-auto">
-            Create a free account to score notices against your real business profile — and upgrade
-            to run full pursuits when you're ready. No credit card required. Fall Bid Clarity Pass:
-            2 months of Starter or Pro free, applied automatically at checkout. Ends November 30.
+          <p className="text-[#a0b2c8] font-body mb-5 max-w-xl mx-auto text-sm md:text-base leading-relaxed">
+            Create a free profile to score notices against your capabilities, NAICS codes, certifications, and past performance.
           </p>
           <Link
             to="/signup/?promo=fall2026"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-transparent border border-[#00c3ff]/70 text-[#00c3ff] font-bold rounded-lg hover:bg-[#00c3ff]/10 transition-colors"
           >
-            Start Free
+            Create a free profile
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

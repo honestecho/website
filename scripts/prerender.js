@@ -38,6 +38,7 @@ const routes = [
   '/for-small-business-owners',
   '/for-proposal-managers',
   '/for-govcon-consultants',
+  '/government-contracts-for-bid/construction',
   '/team-waitlist',
   '/tools/sam-gov-notice-analyzer',
   '/tools/pursuit-readout',

@@ -137,6 +137,13 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <url>
+    <loc>https://honestecho.com/government-contracts-for-bid/construction/</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://honestecho.com/tools/pursuit-readout/</loc>
     <lastmod>2026-06-12</lastmod>

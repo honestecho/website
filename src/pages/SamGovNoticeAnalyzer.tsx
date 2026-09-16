@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { FormEvent } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import {
   ArrowRight,
@@ -162,6 +162,19 @@ const sampleUrlFor = (id: string) => `https://sam.gov/opp/${id}/view`;
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function SamGovNoticeAnalyzer() {
+  // ?notice=<32 hex> — the list-browse page (/government-contracts-for-bid/…)
+  // hands a chosen notice straight in. Initial state stays query-independent so
+  // a hard load of the handoff URL hydrates cleanly against the prerendered
+  // form; the handoff is applied in an effect after mount (before the sample
+  // swap below can resolve, so it is never clobbered) and analysed once — the
+  // visitor already clicked "Analyze fit", a second click here is a step they
+  // did not ask for.
+  const { search } = useLocation();
+  const handoffId = (() => {
+    const v = new URLSearchParams(search).get('notice') || '';
+    return /^[0-9a-fA-F]{32}$/.test(v) ? v.toLowerCase() : null;
+  })();
+  const handoffRan = useRef<string | null>(null);
   const [input, setInput]             = useState(SAMPLE_NOTICE_URL);
   const [isExample, setIsExample]     = useState(true);
   const [resultWasExample, setResultWasExample] = useState(false);
@@ -205,17 +218,35 @@ export default function SamGovNoticeAnalyzer() {
     return () => { cancelled = true; };
   }, []);
 
-  async function handleAnalyze(e: FormEvent) {
+  // Apply + auto-run the handed-off notice once per id (never during prerender —
+  // effects do not run there, so the static HTML stays a plain form; the ref
+  // makes StrictMode's dev double-invoke and re-renders idempotent).
+  useEffect(() => {
+    if (!handoffId || handoffRan.current === handoffId) return;
+    handoffRan.current = handoffId;
+    setInput(sampleUrlFor(handoffId));
+    setIsExample(false);
+    void runAnalyze(sampleUrlFor(handoffId), 'list');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [handoffId]);
+
+  function handleAnalyze(e: FormEvent) {
     e.preventDefault();
+    void runAnalyze(input, 'form');
+  }
+
+  async function runAnalyze(value: string, source: 'form' | 'list') {
     setError(null);
     setRateLimited(false);
     setResult(null);
 
-    const trimmed = input.trim();
+    const trimmed = value.trim();
     if (!trimmed) { setError('Paste a Notice ID or SAM.gov URL.'); return; }
 
     const parsedFromUrl = trimmed.includes('sam.gov');
-    track('public_analyzer_input_submitted', { parsed_from_url: parsedFromUrl, example: isExample });
+    // A handed-off notice is never the example, even though the state flip
+    // that clears isExample has not flushed yet when this runs from the effect.
+    track('public_analyzer_input_submitted', { parsed_from_url: parsedFromUrl, example: source === 'list' ? false : isExample, source });
 
     setLoading(true);
     try {
@@ -272,6 +303,7 @@ export default function SamGovNoticeAnalyzer() {
         recommendation: data.profiles?.[defaultKey]?.recommendation,
         score_band:     scoreBand,
         parsed_from_url: parsedFromUrl,
+        source,
       });
     } catch {
       setError("We couldn't reach the server. Check your connection and try again.");

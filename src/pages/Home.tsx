@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Sparkles, CheckCircle, Users, Building2, ClipboardCheck, Briefcase } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import FlyIn from '../components/FlyIn';
-import Notice from '../components/Notice';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
 import HeroPursuitCardZoom from '../components/HeroPursuitCardZoom';
 import ProfileIllustration from '../components/ProfileIllustration';
@@ -32,12 +31,6 @@ export default function Home() {
 
           {/* Left Column: Copy */}
           <div className="w-full lg:w-1/2">
-            {/* Fall Bid Clarity Pass promo */}
-            <Notice align="left" className="mb-5">
-              <span className="font-headline font-bold">Friends don't let friends read SAM.gov raw.</span>{' '}
-              Fall Bid Clarity Pass: 2 months of Starter or Pro free — applied automatically at checkout.{' '}
-              <span className="text-[#00c3ff] font-bold">Ends November 30, 2026.</span>
-            </Notice>
             <h1 className="font-headline font-black text-4xl sm:text-5xl lg:text-[4rem] xl:text-[4.5rem] tracking-tighter text-white mb-5 leading-tight drop-shadow-2xl">
               Stop wasting proposal hours on bids you{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">shouldn't chase.</span>
@@ -71,6 +64,15 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── Fall Bid Clarity Pass — full-width banner under the hero ─────── */}
+      <div role="note" className="relative z-10 border-y border-[#00c3ff]/50 bg-[#00c3ff]/10 px-6 py-4">
+        <p className="max-w-7xl mx-auto font-body text-white text-sm md:text-base text-center">
+          <span className="font-headline font-bold">Friends don't let friends read SAM.gov raw.</span>{' '}
+          Fall Bid Clarity Pass: 2 months of Starter or Pro free — applied automatically at checkout.{' '}
+          <span className="text-[#00c3ff] font-bold">Ends November 30, 2026.</span>
+        </p>
+      </div>
 
       {/* ── SECTION 2 — How Pursuit works (user journey, 4 steps) ────────── */}
       <section className="px-6 py-24 lg:py-28 relative">

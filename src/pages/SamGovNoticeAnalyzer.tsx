@@ -182,6 +182,9 @@ export default function SamGovNoticeAnalyzer() {
     const v = new URLSearchParams(search).get('notice') || '';
     return /^[0-9a-fA-F]{32}$/.test(v) ? v.toLowerCase() : null;
   })();
+  // The list scores every row against one sample business; open on that same
+  // business so the number the visitor clicked is the number they land on.
+  const handoffProfile = new URLSearchParams(search).get('profile') || '';
   const handoffRan = useRef<string | null>(null);
   const [input, setInput]             = useState(SAMPLE_NOTICE_URL);
   const [isExample, setIsExample]     = useState(true);
@@ -306,14 +309,17 @@ export default function SamGovNoticeAnalyzer() {
         return;
       }
       setResult(data);
-      setSelectedProfile(defaultKey);
+      // What the visitor sees first — the list's sample business on a handoff.
+      const shownKey = source === 'list' && data.profiles[handoffProfile] ? handoffProfile : defaultKey;
+      setSelectedProfile(shownKey);
       setLoading(false);
 
-      const defScore = data.profiles?.[defaultKey]?.match_score ?? 0;
+      const defScore = data.profiles?.[shownKey]?.match_score ?? 0;
       const scoreBand = defScore >= 70 ? 'high' : defScore >= 40 ? 'medium' : 'low';
       track('public_analyzer_result_rendered', {
         notice_id:      data.noticeId,
-        recommendation: data.profiles?.[defaultKey]?.recommendation,
+        recommendation: data.profiles?.[shownKey]?.recommendation,
+        profile:        shownKey,
         score_band:     scoreBand,
         parsed_from_url: parsedFromUrl,
         source,

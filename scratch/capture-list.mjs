@@ -26,15 +26,18 @@ for (const [w, h, tag] of [[1440, 900, 'desktop'], [390, 844, 'mobile']]) {
   await page.addStyleTag({ content: 'nav{visibility:hidden!important}' });
   // list block: the section holding filters + list, clipped to the first ~7 rows
   const listSection = page.locator('section').nth(1);
-  const box = await listSection.boundingBox();
   const rows = page.locator('ol li');
-  const n = Math.min(await rows.count(), tag === 'desktop' ? 7 : 4);
-  const last = n ? await rows.nth(n - 1).boundingBox() : null;
-  const clipH = last ? Math.min(last.y + last.height - box.y + 24, 2600) : Math.min(box.height, 2600);
-  await page.evaluate(y => window.scrollTo(0, y), Math.max(0, box.y - 8));
-  await page.waitForTimeout(300);
-  const box2 = await listSection.boundingBox();
-  await page.screenshot({ path: join(out, `${tag}-list.png`), clip: { x: 0, y: Math.max(0, box2.y - 8), width: w, height: clipH }, fullPage: true });
+  // Viewport-sized clip (fullPage clips drop content): grow the viewport to the
+  // section, scroll it to the top, and clip in viewport coordinates.
+  const box = await listSection.boundingBox();
+  const clipH = Math.min(Math.ceil(box.height) + 24, 3200);
+  await page.setViewportSize({ width: w, height: clipH });
+  
+  await listSection.scrollIntoViewIfNeeded();
+  await page.evaluate(() => { const el = document.querySelectorAll('section')[1]; window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - 8); });
+  await page.waitForTimeout(400);
+  await page.screenshot({ path: join(out, `${tag}-list.png`) });
+  await page.setViewportSize({ width: w, height: h });
   const cards = page.locator('section').nth(2);
   await cards.scrollIntoViewIfNeeded();
   await page.waitForTimeout(300);

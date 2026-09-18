@@ -10,10 +10,17 @@ import { track } from '../lib/analytics';
 // ("list of government contracts for bid", "open government contracts") and
 // bounced off the story homepage. This page is the test of that demand: one
 // live list, three filters, two instrumented clicks. Success is pre-declared —
-// 10 of the first 100 matched visits click a notice or "Analyze fit". It is
-// not a search product: no accounts, saved filters, alerts, or other NAICS.
+// 10 of the first 100 matched visits click "Analyze fit" (a title click leaves
+// for SAM.gov and is reported separately; changed 2026-09-18). Every row
+// carries an example match score so the page shows what Honest Echo does, not
+// only a list. It is not a search product: no accounts, saved filters, alerts,
+// or other NAICS.
 
 const NAICS = '236220';
+// The page shows only the contracts closing soonest, then hands off to the
+// home page: five rows prove the list and the score; the pitch does the rest
+// (Aaron, 2026-09-18).
+const TOP_N = 5;
 const PAGE_PATH = '/government-contracts-for-bid/construction/';
 
 type SetAsideKey = 'sb' | 'sdvosb' | 'wosb' | '8a' | 'hubzone' | 'vosb' | 'isbee';
@@ -35,6 +42,8 @@ interface Notice {
   place_of_performance: string | null;
   pop_state: string | null;
   sam_url: string;
+  // Scored server-side against one sample business; null when scoring failed.
+  fit?: { score: number } | null;
 }
 
 interface ListPayload {
@@ -43,6 +52,7 @@ interface ListPayload {
   count: number;
   notices: Notice[];
   stale?: boolean;   // server could not refresh; this is its last good copy
+  fit_profile?: { key: string; label: string } | null;
 }
 
 const SET_ASIDE_FILTERS: { key: SetAsideKey | 'all'; label: string }[] = [
@@ -159,7 +169,7 @@ export default function ContractsForBidConstruction() {
           // see a non-empty list within 3s of landing) reads since_nav_ms; an
           // empty payload is its own event so it can never pass as "loaded".
           const timing = { fetch_ms: Math.round(performance.now() - t0), since_nav_ms: Math.round(performance.now()) };
-          track(j.notices.length ? 'list_loaded' : 'list_empty', { naics: NAICS, count: j.notices.length, stale: j.stale === true, ...timing });
+          track(j.notices.length ? 'list_loaded' : 'list_empty', { naics: NAICS, count: j.notices.length, shown: Math.min(j.notices.length, TOP_N), scored: j.notices.filter(n => n.fit).length, stale: j.stale === true, ...timing });
         } else {
           setFailed(true);
           track('list_load_failed', { naics: NAICS, status: res.status });
@@ -200,8 +210,12 @@ export default function ContractsForBidConstruction() {
     set_aside_key: n.set_aside_key,
     notice_type: n.notice_type,
     days_left: daysLeft(n.response_deadline),
+    fit_score: n.fit?.score ?? null,
     filters,
   });
+  const fitProfile = payload?.fit_profile ?? null;
+  const analyzeHref = (n: Notice) =>
+    `/tools/sam-gov-notice-analyzer/?notice=${n.notice_id}${fitProfile && n.fit ? `&profile=${fitProfile.key}` : ''}`;
   const filtered = setAside !== 'all' || type !== 'open' || state !== 'all';
   const resetFilters = () => { setSetAside('all'); setType('open'); setState('all'); };
   const showAll = () => { setSetAside('all'); setType('all'); setState('all'); };
@@ -227,12 +241,13 @@ export default function ContractsForBidConstruction() {
       {/* Hero — deliberately short: the list is the page. The navbar is sticky
           and in flow, so no clearance padding here. */}
       <section className="pt-5 md:pt-6 pb-1 px-6 relative">
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="max-w-[1080px] mx-auto relative z-10">
+          <p className="mb-2 text-sm font-semibold text-[#00c3ff] font-body">Open work · Free fit check</p>
           <h1 className="font-headline font-black text-[30px] leading-[1.08] md:text-[2.5rem] md:leading-tight text-white mb-2 tracking-tighter">
             Open government construction contracts
           </h1>
           <p className="text-[#a0b2c8] text-base leading-relaxed font-body max-w-3xl mt-2">
-            Open small-business contracts from SAM.gov, with the soonest deadlines first.
+            Live from SAM.gov, sorted by deadline. Each contract shows an example fit score. Select See why for the reasons, then run the same check for your business. Free.
           </p>
           {(loading || failed) && (
             <p className="text-sm text-[#8b9bb4] font-body mt-2" aria-live="polite">
@@ -244,7 +259,7 @@ export default function ContractsForBidConstruction() {
 
       {/* Filters + list */}
       <section className="pb-10 px-6">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-[1080px] mx-auto">
           {/* Filters: pills on md+, native selects on mobile (four ragged pill
               lines on a 390px screen pushed the first contract past 800px). */}
           <div className="mt-3 flex flex-col gap-y-1 md:gap-y-1.5 mb-2">
@@ -261,7 +276,7 @@ export default function ContractsForBidConstruction() {
               onChange={k => { setType(k); track('list_filter_changed', { filter: 'notice_type', value: k }); }}
             />
             <div className={FILTER_ROW_CLASS}>
-              <label htmlFor="state-filter" className="text-[10px] font-semibold text-[#8b9bb4] uppercase tracking-[.08em] font-label whitespace-nowrap">Location</label>
+              <label htmlFor="state-filter" className="text-xs font-medium text-[#8b9bb4] font-body whitespace-nowrap">Location</label>
               <select
                 id="state-filter"
                 value={state}
@@ -278,15 +293,36 @@ export default function ContractsForBidConstruction() {
 
           {payload && (
             <p className="mt-1 mb-2 text-sm text-[#94a3b8] font-body leading-5">
-              <span className="text-white font-semibold tabular-nums">{rows.length}</span> open contracts
+              {rows.length > TOP_N
+                ? <>Showing <span className="text-white font-semibold tabular-nums">{TOP_N}</span> of <span className="text-white font-semibold tabular-nums">{rows.length}</span> open contracts, nearest deadlines first</>
+                : <><span className="text-white font-semibold tabular-nums">{rows.length}</span> open contract{rows.length === 1 ? '' : 's'}</>}
               {' · '}
               {payload.stale ? `Last successful update ${fmtDate(payload.generated_at)} ${fmtUpdated(payload.generated_at)}` : `Updated ${fmtUpdated(payload.generated_at)}`}
-              {' · '}At least 48 hours remaining
-              <span className="hidden md:inline"> · Excludes sole-source and special notices</span>
               {filtered && (
                 <> · <button type="button" onClick={resetFilters} className="underline hover:text-white transition-colors">Reset filters</button></>
               )}
+              <span className="block mt-0.5 text-xs leading-5 text-[#7c8ba1]">Only contracts with at least 48 hours left. Sole-source and special notices excluded.</span>
             </p>
+          )}
+
+          {fitProfile && (
+            <>
+              <p className="md:hidden mt-3 mb-3 border-l-2 border-[#00c3ff]/70 pl-3 text-sm text-[#cbd5e1] font-body leading-5">
+                <span className="font-semibold text-white">Example score.</span> Based on one sample renovation contractor, <span className="font-semibold text-white">not your business.</span>
+              </p>
+              <ol className="hidden md:grid grid-cols-3 mt-3 mb-3 rounded-lg border border-[#1e2d4a]/80 divide-x divide-[#1e2d4a]/80 text-sm font-body leading-5">
+                {[
+                  ['1', 'Example score', 'Based on one sample renovation contractor, not your business.'],
+                  ['2', 'See why', 'See what raised or lowered the score.'],
+                  ['3', 'Check your fit', 'Use your business details for free.'],
+                ].map(([k, head, body]) => (
+                  <li key={k} className="px-4 py-2.5 flex gap-3">
+                    <span className="text-[#00c3ff]/70 font-semibold tabular-nums">{k}</span>
+                    <span className="text-[#94a3b8]"><span className="text-white font-semibold">{head}.</span> {body}</span>
+                  </li>
+                ))}
+              </ol>
+            </>
           )}
 
           <div className="rounded-xl bg-[#071321]/85 backdrop-blur-[1px] border border-[#1e2d4a] overflow-hidden">
@@ -316,22 +352,23 @@ export default function ContractsForBidConstruction() {
 
             {payload && rows.length > 0 && (
               <ol className="divide-y divide-[#1e2d4a]/80">
-                {rows.map((n, i) => {
+                {rows.slice(0, TOP_N).map((n, i) => {
                   const dl = daysLeft(n.response_deadline);
                   return (
-                    <li key={n.notice_id} className="px-4 md:px-6 py-4 md:py-[18px] grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_11rem] gap-2 md:gap-5 hover:bg-white/[0.015] transition-colors">
+                    <li key={n.notice_id} className="px-4 md:px-6 py-4 md:py-[18px] grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_19rem] gap-2 md:gap-6 hover:bg-white/[0.015] transition-colors">
                       <div className="min-w-0">
                         <a
                           href={n.sam_url}
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={() => track('list_notice_clicked', clickProps(n, i + 1))}
-                          className="group inline text-white font-headline font-semibold text-base md:text-[17px] leading-snug hover:text-[#00c3ff] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] rounded"
+                          title="View notice on SAM.gov"
+                          className="group inline [overflow-wrap:anywhere] text-white font-headline font-semibold text-base md:text-[17px] leading-snug hover:text-[#00c3ff] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] rounded"
                         >
-                          {n.title}
-                          <ExternalLink className="hidden sm:inline-block ml-1 w-3.5 h-3.5 align-baseline text-[#64748b] group-hover:text-[#00c3ff]" strokeWidth={2} />
+                          {n.title.replace(/^[A-Z0-9]{1,4}--\s*/, '')}
+                          <ExternalLink aria-label="Opens on SAM.gov" className="hidden sm:inline-block ml-1.5 w-4 h-4 align-baseline text-[#64748b] group-hover:text-[#00c3ff]" strokeWidth={2} />
                         </a>
-                        <p className="text-sm text-[#94a3b8] font-body mt-1 leading-5">
+                        <p className="text-sm text-[#a3b2c6] font-body mt-1 leading-5">
                           {agencyCase(n.agency)}
                           {' · '}
                           {n.place_of_performance ?? <span className="text-[#8b9bb4]">Location not listed</span>}
@@ -342,16 +379,24 @@ export default function ContractsForBidConstruction() {
                           {' · '}Posted {fmtDate(n.posted_date)}
                         </p>
                       </div>
-                      <div className="mt-1 md:mt-0 text-left md:text-right md:justify-self-end">
-                        <p className="text-sm text-[#cbd5e1] font-body whitespace-nowrap tabular-nums">Due {fmtDue(n.response_deadline)}</p>
-                        <div className="mt-1 flex items-center gap-3 md:justify-end">
-                          <span className={`text-[13px] font-medium font-body whitespace-nowrap tabular-nums ${dl <= 3 ? 'text-[#fbbf24]' : 'text-[#94a3b8]'}`}>{dl} day{dl === 1 ? '' : 's'} left</span>
+                      <div className="mt-2 md:mt-0 text-left md:text-right md:justify-self-end md:self-center md:w-full md:border-l md:border-[#1e2d4a]/80 md:pl-6">
+                        <p className="text-sm font-body whitespace-nowrap tabular-nums">
+                          <span className="text-[#cbd5e1]">Due {fmtDue(n.response_deadline)}</span>
+                          <span className="text-[#64748b]"> · </span>
+                          <span className={`text-[13px] font-medium ${dl <= 3 ? 'text-[#fbbf24]' : 'text-[#94a3b8]'}`}>{dl} day{dl === 1 ? '' : 's'} left</span>
+                        </p>
+                        <div className="mt-2 md:mt-2.5 grid grid-cols-[minmax(0,1fr)_auto] max-[350px]:grid-cols-1 md:flex md:justify-end items-center gap-3 md:gap-4">
+                          {n.fit && (
+                            <span className="text-[13px] text-[#94a3b8] font-body whitespace-nowrap tabular-nums">
+                              Sample contractor: <span className="text-white font-semibold">{n.fit.score}/100</span>
+                            </span>
+                          )}
                           <Link
-                            to={`/tools/sam-gov-notice-analyzer/?notice=${n.notice_id}`}
+                            to={analyzeHref(n)}
                             onClick={() => track('list_analyze_clicked', clickProps(n, i + 1))}
-                            className="inline-flex items-center gap-1 text-[#00c3ff]/80 text-sm font-medium hover:text-[#00c3ff] transition-colors whitespace-nowrap font-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] rounded-sm"
+                            className="inline-flex items-center gap-1.5 py-1.5 rounded-lg border text-[#00c3ff] text-sm font-semibold bg-[#00c3ff]/10 border-[#00c3ff]/70 hover:bg-[#00c3ff]/[0.16] hover:border-[#00c3ff] justify-center min-h-11 md:min-h-10 px-4 transition-colors whitespace-nowrap font-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
                           >
-                            Analyze fit <ArrowRight className="w-3.5 h-3.5" />
+                            {n.fit ? 'See why' : 'Analyze fit'} <ArrowRight className="w-3.5 h-3.5" />
                           </Link>
                         </div>
                       </div>
@@ -360,33 +405,53 @@ export default function ContractsForBidConstruction() {
                 })}
               </ol>
             )}
+
+            {/* Hand-off to the home page: the list's own footer, not a separate banner */}
+            {payload && rows.length > 0 && (
+              <div className="border-t-2 border-[#00c3ff]/30 bg-[#00c3ff]/[0.06] px-4 py-6 md:px-6 md:py-9 md:flex md:items-center md:gap-10">
+                <div className="min-w-0 max-w-2xl">
+                  <h2 className="font-headline font-bold text-white text-xl leading-7 md:text-[22px] tracking-tight">
+                    See which contracts fit before you spend days on a proposal.
+                  </h2>
+                  <p className="mt-2 text-sm md:text-[15px] text-[#a0b2c8] font-body leading-6 max-w-2xl">
+                    Honest Echo checks each notice against your business and shows what matches, what needs a closer look, and what could rule it out.
+                  </p>
+                </div>
+                <Link
+                  to="/"
+                  onClick={() => track('list_home_clicked', { shown: Math.min(rows.length, TOP_N), total: rows.length, filters })}
+                  className="mt-4 md:mt-0 w-full md:w-auto shrink-0 inline-flex items-center justify-center gap-2 min-h-12 md:min-h-11 px-5 rounded-lg bg-[#00c3ff] text-[#030B17] font-headline font-bold text-sm hover:bg-[#33cfff] transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030B17] focus-visible:ring-[#00c3ff]"
+                >
+                  See how fit checking works <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            )}
           </div>
+
         </div>
       </section>
 
       {/* What this is — static copy, prerendered */}
-      <section className="pb-14 px-6">
-        <div className="max-w-6xl mx-auto rounded-xl border border-[#1e2d4a]/80 grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-[#1e2d4a]/80">
+      <section className="mt-2 md:mt-4 pb-14 px-6">
+        <div className="max-w-[1080px] mx-auto rounded-xl border border-[#1e2d4a]/80 grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-[#1e2d4a]/80">
           <div className="px-6 py-4">
             <h2 className="font-headline font-bold text-white text-sm tracking-tight mb-1">What&apos;s included</h2>
             <p className="text-[#a0b2c8] text-sm leading-6 font-body">
-              Small-business commercial construction contracts from SAM.gov, all with at least 48 hours remaining. NAICS 236220.
+              Small-business construction contracts published on SAM.gov. Every contract has at least 48 hours left and falls under NAICS 236220.
             </p>
+            <p className="text-[#8b9bb4] text-[13px] leading-5 font-body mt-1.5">Honest Echo is not affiliated with SAM.gov or the U.S. government.</p>
           </div>
           <div className="px-6 py-4">
             <h2 className="font-headline font-bold text-white text-sm tracking-tight mb-1">Notice types</h2>
             <p className="text-[#a0b2c8] text-sm leading-6 font-body">
-              Open solicitations are accepting bids now. Early-stage notices cover upcoming work and requests for qualifications.
+              Open solicitations are accepting bids now. Early-stage notices cover upcoming projects, including requests for qualifications.
             </p>
           </div>
           <div className="px-6 py-4">
-            <h2 className="font-headline font-bold text-white text-sm tracking-tight mb-1">Should you bid?</h2>
-            <p className="text-[#a0b2c8] text-sm leading-6 font-body mb-1.5">
-              See whether the set-aside, deadline, and scope fit your business. Free, with no account required.
+            <h2 className="font-headline font-bold text-white text-sm tracking-tight mb-1">Understand the score</h2>
+            <p className="text-[#a0b2c8] text-sm leading-6 font-body">
+              Each score is for the sample contractor, not your business. Select See why to view the reasons, then run the same check for your business. Free, no account required.
             </p>
-            <Link to="/tools/sam-gov-notice-analyzer/" className="inline-flex items-center gap-1 text-[#00c3ff] font-medium text-sm hover:text-white transition-colors font-body">
-              Analyze fit <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
           </div>
         </div>
       </section>
@@ -409,7 +474,7 @@ function FilterRow<K extends string>({ label, options, value, onChange }: {
   const id = `filter-${label.toLowerCase().replace(/\s+/g, '-')}`;
   return (
     <div className={FILTER_ROW_CLASS} role="group" aria-label={label}>
-      <label htmlFor={id} className="text-[10px] font-semibold text-[#8b9bb4] uppercase tracking-[.08em] font-label whitespace-nowrap">{label}</label>
+      <label htmlFor={id} className="text-xs font-medium text-[#8b9bb4] font-body whitespace-nowrap">{label}</label>
       {/* mobile: one native select */}
       <select id={id} value={value} onChange={e => onChange(e.target.value as K)} className={`md:hidden ${SELECT_CLASS}`}>
         {options.map(o => <option key={o.key} value={o.key}>{o.label}</option>)}
@@ -426,7 +491,7 @@ function FilterRow<K extends string>({ label, options, value, onChange }: {
               onClick={() => onChange(o.key)}
               className={`h-6 px-0.5 text-xs font-body transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] rounded-sm ${
                 active
-                  ? 'text-[#f1f5f9] font-medium'
+                  ? 'text-[#f1f5f9] font-medium shadow-[inset_0_-1.5px_0_#00c3ff]'
                   : 'text-[#94a3b8] hover:text-[#e2e8f0]'
               }`}
             >
@@ -442,8 +507,8 @@ function FilterRow<K extends string>({ label, options, value, onChange }: {
 function ListSkeleton() {
   return (
     <ul className="divide-y divide-[#1e2d4a] animate-pulse" aria-hidden="true">
-      {[0, 1, 2, 3, 4, 5].map(i => (
-        <li key={i} className="px-4 md:px-6 py-4 md:py-[18px] grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_11rem] gap-2 md:gap-5">
+      {[0, 1, 2, 3, 4].map(i => (
+        <li key={i} className="px-4 md:px-6 py-4 md:py-[18px] grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_19rem] gap-2 md:gap-6">
           <div className="space-y-3">
             <div className="h-5 w-3/4 bg-[#152033] rounded" />
             <div className="h-4 w-1/2 bg-[#152033] rounded" />

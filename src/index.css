@@ -120,3 +120,15 @@
 @media (prefers-reduced-motion: reduce) {
   .he-animated-border::before { animation: none; }
 }
+
+/* ── Hero gradient text with a readable solid fallback: the span stays brand
+   cyan unless background-clip:text is supported, then the gradient applies ── */
+.he-gradient-text {
+  color: #00c3ff;
+  background-image: linear-gradient(to right, #00c3ff, #5b8cff);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .he-gradient-text { color: transparent; }
+}

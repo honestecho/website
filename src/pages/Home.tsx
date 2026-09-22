@@ -1,11 +1,64 @@
-﻿import type { ElementType } from 'react';
+import type { ElementType } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ArrowRight, Sparkles, CheckCircle, Users, Building2, ClipboardCheck, Briefcase } from 'lucide-react';
+import { ArrowRight, Sparkles, CheckCircle, Users, FileText, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import FlyIn from '../components/FlyIn';
+import Notice from '../components/Notice';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
 import HeroPursuitCardZoom from '../components/HeroPursuitCardZoom';
-import ProfileIllustration from '../components/ProfileIllustration';
+import FitExplainer from '../components/FitExplainer';
+import ZoomImage from '../components/ZoomImage';
+import { track } from '../lib/analytics';
+
+const focusRing = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#030B17]';
+
+// Both primary CTAs go to opportunity discovery; notice analysis stays the secondary path.
+const DISCOVERY_TO = '/signup/?promo=fall2026';
+const ANALYZER_TO = '/tools/sam-gov-notice-analyzer/';
+
+// The five phases of the pursuit workflow, in the product's own words
+// (pursuit-v2 JourneyV2: the question each phase answers), ending in the Bid Handoff.
+const STAGES = [
+  { name: 'Triage',      q: 'Should we keep going?' },
+  { name: 'Eligibility', q: 'Can we actually bid this?' },
+  { name: 'Alignment',   q: 'Is this strategically worth pursuing?' },
+  { name: 'Viability',   q: 'What will it take to win?' },
+  { name: 'Decision',    q: 'Go or No-Go — recorded with the rationale.' },
+];
+
+// The example shown in the Bid Handoff screenshot: the V2 journey preview rig walked on the
+// TEIS IV On-Ramp notice (public SAM.gov data) with example answers; the rationale is the
+// example's recorded text. Nothing here is a customer's data.
+const DECISION_EXAMPLE = {
+  title: 'TEIS IV On-Ramp Opportunity',
+  agency: 'Department of the Army',
+  call: 'Go',
+  why: 'Primary NAICS and past performance match the on-ramp; the remaining SCI facility gap is covered by our teaming partner.',
+  handoff: 'Every requirement from the notice sorted into work packages — proposal submission, performance, deliverables, administrative — each with a suggested owner and its source section.',
+};
+
+const FAQ = [
+  {
+    q: 'What can I do for free?',
+    a: 'Search SAM.gov opportunities, see the ones ranked for your profile, bookmark up to 15 a month, save searches with nightly alerts, and run one evaluation to try the workflow. No credit card.',
+  },
+  {
+    q: 'What information is needed to match opportunities to my business?',
+    a: 'Your company name, one NAICS code, and one target agency are enough to start — or enter your UEI and we pull the basics from SAM.gov. Add certifications, keywords, geography, and contract size later to sharpen the ranking.',
+  },
+  {
+    q: 'Where do opportunities come from, and how current are they?',
+    a: 'Every notice comes from SAM.gov’s public listings. We sync nightly, Monday through Saturday, score new notices against your profile, and send alerts for your saved searches.',
+  },
+  {
+    q: 'Does a high fit score mean I’m eligible to bid?',
+    a: 'No. Fit measures how well a notice matches your profile. Eligibility — set-asides, certifications, clearances, registrations — is checked in the evaluation workflow, and the notice itself is always the final word.',
+  },
+  {
+    q: 'What happens after I find an opportunity I like?',
+    a: 'Bookmark it, then run the five-phase evaluation: triage, eligibility, alignment, viability, and a recorded Go or No-Go with the rationale — then hand the requirements off to your proposal team. Your first evaluation is free; Starter includes up to 25 pursuits a month, and Pro is unlimited.',
+  },
+];
 
 export default function Home() {
   return (
@@ -25,192 +78,196 @@ export default function Home() {
       </Helmet>
       <SoftwareApplicationSchema />
 
-      {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
-      <section className="relative px-6 py-24 lg:py-32">
-        <div className="max-w-7xl mx-auto w-full relative z-10 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+      {/* ── 1 — Hero: finding matched opportunities is the entry point ─────── */}
+      <section className="relative px-6 pt-14 pb-16 lg:pt-20 lg:pb-20">
+        <div className="max-w-7xl mx-auto w-full relative z-10 grid grid-cols-1 lg:grid-cols-[minmax(0,46fr)_minmax(0,54fr)] gap-12 xl:gap-16 items-center">
 
-          {/* Left Column: Copy */}
-          <div className="w-full lg:w-1/2">
-            <h1 className="font-headline font-black text-4xl sm:text-5xl lg:text-[4rem] xl:text-[4.5rem] tracking-tighter text-white mb-5 leading-tight drop-shadow-2xl">
-              Stop wasting proposal hours on bids you{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00c3ff] to-[#5b8cff]">shouldn't chase.</span>
+          {/* Left column: copy + CTA */}
+          <div className="w-full max-w-[600px]">
+            <p className="font-label text-xs font-bold uppercase tracking-[0.2em] text-[#a9b6cb] mb-5">For small government contractors</p>
+            <h1 className="font-headline font-black text-[38px] sm:text-5xl lg:text-[52px] xl:text-[64px] tracking-[-0.035em] leading-[1.02] text-white drop-shadow-2xl">
+              Find government opportunities <span className="he-gradient-text">worth pursuing.</span>
             </h1>
-
-            <p className="text-[#a0b2c8] text-base lg:text-xl mb-8 leading-relaxed font-body">
-              HE Pursuit is a bid/no-bid decision tool for small government contractors. It scores every SAM.gov opportunity against your profile, ranks the ones worth your pursuit time, and flags the near-misses that look right and aren’t — with the evidence behind every call.
+            <p className="mt-6 text-lg lg:text-xl leading-relaxed text-[#a9b6cb] font-body max-w-[50ch]">
+              Discover SAM.gov opportunities matched to your business. See why they fit, spot potential obstacles, and decide where to invest your proposal time.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-4">
-              <Link to="/tools/sam-gov-notice-analyzer/" className="px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
-                Analyze a SAM.gov Notice — Free
-                <ArrowRight className="w-5 h-5" />
+            <div className="mt-8">
+              <Link
+                to={DISCOVERY_TO}
+                onClick={() => track('home_discovery_cta_clicked')}
+                className={`inline-flex w-full sm:w-auto items-center justify-center gap-2.5 min-h-[56px] px-6 sm:px-8 rounded-xl bg-[#00c3ff] text-[#030B17] font-bold text-base sm:text-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all ${focusRing}`}
+              >
+                Find My Opportunities — Free
+                <ArrowRight className="w-5 h-5 shrink-0" aria-hidden="true" />
               </Link>
+              <p className="mt-3 text-sm text-[#a9b6cb] font-body">Create a free account and set up your profile to see your matches.</p>
+              <p className="mt-4 text-sm font-body">
+                <Link
+                  to={ANALYZER_TO}
+                  onClick={() => track('home_analyzer_link_clicked')}
+                  className={`inline-flex items-center gap-1.5 min-h-[44px] font-semibold text-[#00c3ff] hover:underline underline-offset-4 rounded ${focusRing}`}
+                >
+                  Already have an opportunity? Analyze a notice
+                  <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+                </Link>
+              </p>
             </div>
-
-            <p className="flex items-center gap-2 text-sm text-[#8b9bb4] font-body">
-              <CheckCircle className="w-4 h-4 text-[#00c3ff] shrink-0" />
-              No login required to analyze a live SAM.gov opportunity.
-            </p>
-            <p className="mt-3 text-sm font-body">
-              <Link to="/signup/?promo=fall2026" className="text-[#00c3ff] font-semibold hover:underline underline-offset-4">
-                Or start free with an account →
-              </Link>
-            </p>
           </div>
 
-          {/* Right Column: static opportunity card */}
-          <div className="w-full lg:w-[58%] relative hidden md:flex items-center transition-transform duration-700 hover:-translate-y-2">
+          {/* Right column: the product's real decision card — static render, click to enlarge */}
+          <div className="w-full min-w-0 hidden md:flex items-center lg:justify-self-end lg:max-w-[680px] transition-transform duration-700 hover:-translate-y-2">
             <HeroPursuitCardZoom />
           </div>
         </div>
       </section>
 
-      {/* ── Fall Bid Clarity Pass — full-width banner under the hero ─────── */}
-      <div role="note" className="relative z-10 border-y border-[#00c3ff]/50 bg-[#00c3ff]/10 px-6 py-4">
-        <p className="max-w-7xl mx-auto font-body text-white text-sm md:text-base text-center">
-          <span className="font-headline font-bold">Friends don't let friends read SAM.gov raw.</span>{' '}
-          Fall Bid Clarity Pass: 2 months of Starter or Pro free — applied automatically at checkout.{' '}
-          <span className="text-[#00c3ff] font-bold">Ends November 30, 2026.</span>
-        </p>
-      </div>
-
-      {/* ── SECTION 2 — How Pursuit works (user journey, 4 steps) ────────── */}
-      <section className="px-6 py-24 lg:py-28 relative">
+      {/* ── 2 — How it works: three steps ─────────────────────────────────── */}
+      <section id="how-it-works" className="scroll-mt-24 px-6 py-16 lg:py-20 border-t border-[#1e2d4a]/60 relative">
         <div className="max-w-7xl mx-auto relative z-10">
-
-          {/* Headline row — full width so the Radar can align with step 01 below */}
-          <div className="mb-12 lg:mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-              <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">How Pursuit Works</span>
-            </div>
-            <h2 className="font-headline font-black text-[37px] md:text-5xl lg:text-[54px] text-white tracking-[-0.045em] md:tracking-[-0.035em] leading-[0.98] md:leading-[0.96] max-w-[340px] md:max-w-[720px]">
-              Build your profile.<br />Find what fits.<br /><span className="sm:whitespace-nowrap">Decide with <span className="max-sm:block">the evidence.</span></span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.05fr] gap-12 lg:gap-x-16 items-start">
-
-            {/* Steps */}
-            <ol className="mt-0">
-              {[
-                {
-                  step: '01',
-                  title: 'Build your business profile',
-                  body: 'Add your NAICS codes, certifications, target agencies, geography, contract size, and past performance. A few minutes, once.',
-                },
-                {
-                  step: '02',
-                  title: 'Find opportunities that fit',
-                  body: 'Pursuit scores SAM.gov opportunities against your profile, brings the strongest matches to the top, and alerts you when new ones appear.',
-                },
-                {
-                  step: '03',
-                  title: 'Confirm eligibility and fit',
-                  body: 'Quickly check set-asides, requirements, timing, geography, and other factors that could make an opportunity a poor fit.',
-                },
-                {
-                  step: '04',
-                  title: 'Decide what’s worth pursuing',
-                  body: 'For the promising opportunities, weigh strategic value, effort, and risk — then make a documented bid/no-bid decision.',
-                },
-              ].map(({ step, title, body }) => (
-                <li key={step} className="relative grid grid-cols-[40px_minmax(0,1fr)] gap-x-5 pb-5 sm:pb-7 lg:pb-10 last:pb-0 max-sm:after:top-10 after:absolute after:left-[19px] after:top-11 after:bottom-0 after:w-px after:bg-[#1e2d4a] last:after:hidden">
-                  <div className="w-10 h-10 rounded-xl border border-[#00c3ff]/60 bg-[#00c3ff]/[.06] flex items-center justify-center font-headline font-bold text-[15px] text-[#00c3ff] tabular-nums">
-                    {step}
+          <h2 className="font-headline font-black text-[32px] sm:text-4xl lg:text-[44px] text-white tracking-[-0.03em] leading-[1.05]">
+            From opportunity to a <span className="he-gradient-text">clear</span> decision.
+          </h2>
+          <ol className="mt-10 lg:mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {([
+              { Icon: FileText,    title: 'Build your profile',      body: 'Tell us what you do and where you want to compete.' },
+              { Icon: Search,      title: 'Find your opportunities', body: 'Review matches ranked for your business, with reasons you can inspect.' },
+              { Icon: CheckCircle, title: 'Decide what to pursue',   body: 'Check eligibility, fit, and effort before committing proposal time.' },
+            ] as { Icon: ElementType; title: string; body: string }[]).map(({ Icon, title, body }, i) => (
+              <li key={title}>
+                <FlyIn delay={['', 'delay-150', 'delay-300'][i]} className="h-full">
+                  <div className="relative h-full bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 lg:p-8 shadow-2xl overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+                    <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
+                    <div className="flex items-center justify-between mb-5">
+                      <span className="w-12 h-12 rounded-xl bg-[#00c3ff]/10 border border-[#00c3ff]/30 flex items-center justify-center">
+                        <Icon className="w-6 h-6 text-[#00c3ff]" strokeWidth={2} aria-hidden="true" />
+                      </span>
+                      <span className="font-headline font-bold text-sm text-[#00c3ff] tracking-widest tabular-nums" aria-hidden="true">0{i + 1}</span>
+                    </div>
+                    <h3 className="font-headline font-bold text-lg lg:text-xl text-white tracking-tight leading-snug">{title}</h3>
+                    <p className="mt-2 text-[15px] lg:text-base text-[#a9b6cb] font-body leading-relaxed">{body}</p>
                   </div>
-                  <div className="pt-1.5">
-                    <h3 className="font-headline font-black text-xl lg:text-[22px] text-white tracking-tight leading-snug mb-2">{title}</h3>
-                    <p className="text-[#a0b2c8] text-[15px] sm:text-base leading-[1.38] sm:leading-[1.45] lg:leading-[1.55] font-body max-w-[52ch]">{body}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+                </FlyIn>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
-            {/* The Scoring Alignment Check — what step 01 builds and the first match it produces */}
-            <div className="lg:self-start lg:max-w-[580px] lg:justify-self-end w-full">
-              <ProfileIllustration />
-              <p className="hidden">
-                The Scoring Alignment Check inside HE Pursuit, with illustrative values: the profile you build in step 01, and the first match it produces.
+      {/* ── 3 — See why an opportunity fits ───────────────────────────────── */}
+      <section className="px-6 py-24 relative">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_minmax(0,620px)] gap-12 lg:gap-16 items-start">
+
+            <div className="max-w-[560px]">
+              <h2 className="font-headline font-black text-[34px] sm:text-4xl lg:text-[48px] text-white tracking-[-0.03em] leading-[1.02]">
+                See <span className="he-gradient-text">why</span> an opportunity fits.
+              </h2>
+              <p className="mt-4 text-base text-[#a9b6cb] font-body">Built for small contractors and lean proposal teams.</p>
+
+              <ol className="mt-10 space-y-8">
+                {[
+                  { title: 'Why it fits',        body: 'The concrete reasons behind the score: the services you sell, the agencies you target, the set-asides you hold.' },
+                  { title: 'What needs checking', body: 'A likely obstacle or an open requirement, flagged before you spend an hour on the notice.' },
+                  { title: 'Where it came from',  body: 'The notice facts behind every reason — posted, due, type, NAICS, agency, set-aside — with the SAM.gov notice linked from the readout.' },
+                ].map(({ title, body }, i) => (
+                  <li key={title} className="flex items-start gap-4">
+                    <span className="w-8 h-8 rounded-[50%] bg-[#00c3ff] text-[#030B17] font-headline font-black text-sm flex items-center justify-center shrink-0 tabular-nums" aria-hidden="true">{i + 1}</span>
+                    <div className="pt-0.5">
+                      <h3 className="font-headline font-bold text-lg lg:text-xl text-white tracking-tight leading-snug">{title}</h3>
+                      <p className="mt-1.5 text-[15px] lg:text-base text-[#a9b6cb] font-body leading-relaxed">{body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+
+              <p className="mt-10 text-base lg:text-lg text-white font-body leading-relaxed text-pretty">
+                The score is where you start. The reasons are what you decide with.
               </p>
             </div>
 
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 3 — Who it's for (persona doorways) ──────────────────── */}
-      <section className="px-6 py-24 relative">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="mb-12">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-              <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">Who It's For</span>
+            <div className="w-full min-w-0">
+              <FitExplainer />
+              <p className="mt-3 text-xs text-[#8b9bb4] font-body text-center">The example match from above, opened up. Illustrative values.</p>
             </div>
-            <h2 className="font-headline font-black text-[38px] md:text-5xl lg:text-[52px] text-white tracking-[-0.04em] leading-[0.98] max-w-[15ch] md:max-w-[1040px] [text-wrap:balance]">
-              Built for the people who read SAM.gov so the company doesn't have to.
-            </h2>
-          </div>
-
-          {/* One contained panel, three doorway rows — same language as the steps panel */}
-          <div className="rounded-2xl border border-[#1e2d4a]/70 bg-[#0b1120] shadow-2xl divide-y divide-[#1e2d4a]/55 overflow-hidden">
-            {([
-              {
-                icon: Building2,
-                to: '/for-small-business-owners/',
-                who: 'Small business owners',
-                title: 'Sub today. Prime when the notice is right.',
-                body: 'Set-aside holders and subcontractors who want their own paper: certification matches and primeable-at-your-size flags on every notice you evaluate.',
-                cta: 'The owner’s walkthrough',
-              },
-              {
-                icon: ClipboardCheck,
-                to: '/for-proposal-managers/',
-                who: 'Proposal managers',
-                title: 'Too many notices. A ranked shortlist instead.',
-                body: 'Screen before you read: scored inflow, disqualifiers up front, and a bid/no-bid with the reasoning recorded.',
-                cta: 'See the triage workflow',
-              },
-              {
-                icon: Briefcase,
-                to: '/for-govcon-consultants/',
-                who: 'GovCon consultants',
-                title: 'A no-bid with the rationale attached.',
-                body: 'Evidence-backed scores you can put in front of a client, plus a free analyzer you can demo live in a workshop.',
-                cta: 'See the client workflow',
-              },
-            ] as { icon: ElementType; to: string; who: string; title: string; body: string; cta: string }[]).map((card) => (
-              <Link
-                key={card.to}
-                to={card.to}
-                className="group grid grid-cols-1 lg:grid-cols-[280px_minmax(0,1fr)_auto] gap-x-10 gap-y-4 lg:items-start px-6 py-7 sm:px-8 lg:px-10 lg:py-9 transition-colors hover:bg-[#00c3ff]/[.035] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#00c3ff]"
-              >
-                <div className="flex items-center gap-3 lg:pt-0.5">
-                  <card.icon className="w-6 h-6 text-[#00c3ff] shrink-0" strokeWidth={2} />
-                  <span className="font-headline font-black text-xl text-white tracking-tight leading-tight">{card.who}</span>
-                </div>
-                <div className="min-w-0">
-                  <h3 className="font-headline font-bold text-lg text-white tracking-tight leading-snug">{card.title}</h3>
-                  <p className="mt-1.5 text-[15px] text-[#a0b2c8] font-body leading-6 max-w-[64ch]">{card.body}</p>
-                </div>
-                <span className="flex items-center justify-between gap-2 max-sm:w-full lg:pt-1.5 text-sm font-bold text-white group-hover:text-[#00c3ff] transition-colors whitespace-nowrap lg:justify-self-end">
-                  {card.cta} <ArrowRight className="w-4 h-4 text-[#00c3ff] transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-            ))}
           </div>
         </div>
       </section>
 
-      {/* ── SECTION 4 — Pricing ───────────────────────────────────────────── */}
-      <section id="pricing" className="py-24 px-6 relative">
+      {/* ── 4 — Decide before you invest proposal time ────────────────────── */}
+      <section className="px-6 py-24 border-t border-[#1e2d4a]/60 relative">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="mb-10 max-w-4xl">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-12 lg:gap-16 items-start">
+
+            <div className="max-w-[560px]">
+              <h2 className="font-headline font-black text-[34px] sm:text-4xl lg:text-[48px] text-white tracking-[-0.03em] leading-[1.02]">
+                Decide <span className="he-gradient-text">before</span> you invest proposal time.
+              </h2>
+              <p className="mt-5 text-lg text-[#a9b6cb] font-body leading-relaxed">
+                When a match looks worth it, run it through the five-phase bid/no-bid workflow — and finish with a handoff your proposal team can work from.
+              </p>
+
+              <ol className="mt-8 space-y-4">
+                {STAGES.map(({ name, q }, i) => (
+                  <li key={name} className="grid grid-cols-[28px_minmax(0,1fr)] gap-x-3">
+                    <span className="font-headline font-bold text-sm text-[#00c3ff] tabular-nums pt-0.5" aria-hidden="true">0{i + 1}</span>
+                    <p className="text-[15px] lg:text-base font-body leading-relaxed">
+                      <span className="font-headline font-bold text-white">{name}</span>
+                      <span className="text-[#a9b6cb]"> — {q}</span>
+                    </p>
+                  </li>
+                ))}
+              </ol>
+
+              <p className="mt-8 text-[15px] lg:text-base text-[#a9b6cb] font-body leading-relaxed">
+                <span className="font-headline font-bold text-white">Then the handoff: </span>
+                the recorded decision with its rationale, the work your answers call for, and every requirement from the notice sorted into work packages with a suggested owner for each. Your compliance checklist, ready for proposal planning.
+              </p>
+            </div>
+
+            {/* One decision example: the product's Phase 5 screen, plus the call it shows */}
+            <div className="w-full min-w-0">
+              <ZoomImage
+                src="/decision-example.png"
+                alt="HE Pursuit Bid Handoff for an example pursuit: the recorded Go decision with its rationale and the response due date, ready to carry into proposal planning"
+                width={1770}
+                height={478}
+                zoomMinWidthClass="min-w-[885px]"
+                label="Example pursuit"
+              />
+              <div className="mt-4 rounded-2xl border border-[#1e2d4a] bg-[#0b1120] px-5 py-4 shadow-2xl">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-[#8b9bb4]">Example pursuit</p>
+                <p className="mt-1 text-sm font-bold text-white font-headline leading-snug">{DECISION_EXAMPLE.title}</p>
+                <p className="text-xs text-[#8b9bb4] font-body">{DECISION_EXAMPLE.agency}</p>
+                <dl className="mt-3 space-y-2 text-sm font-body">
+                  <div className="flex gap-3">
+                    <dt className="w-24 shrink-0 text-[#8b9bb4]">The call</dt>
+                    <dd className="font-bold text-[#4ade80]">{DECISION_EXAMPLE.call}</dd>
+                  </div>
+                  <div className="flex gap-3">
+                    <dt className="w-24 shrink-0 text-[#8b9bb4]">Why</dt>
+                    <dd className="text-[#dde2f1] leading-snug">{DECISION_EXAMPLE.why}</dd>
+                  </div>
+                  <div className="flex gap-3">
+                    <dt className="w-24 shrink-0 text-[#8b9bb4]">Handoff</dt>
+                    <dd className="text-[#dde2f1] leading-snug">{DECISION_EXAMPLE.handoff}</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 5 — Pricing ───────────────────────────────────────────────────── */}
+      <section id="pricing" className="py-24 px-6 border-t border-[#1e2d4a]/60 relative">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="mb-10 max-w-6xl mx-auto">
             <h2 className="font-headline font-black text-4xl md:text-5xl text-white mb-6 tracking-tight leading-tight">
-              Start simple. Upgrade when your pursuit process needs more structure.
+              Start <span className="he-gradient-text">free</span>. Go deeper when you need to.
             </h2>
-            <p className="text-xl text-[#a0b2c8] font-body">
-              Starter is $99/month and Pro is $199/month. Compare that with the labor cost of one proposal your team decides not to write.
+            <p className="text-lg lg:text-xl text-[#a9b6cb] font-body leading-relaxed">
+              Free covers finding opportunities: a scored list of open SAM.gov opportunities that match your profile, search, up to 15 bookmarks a month, saved searches with nightly alerts, and one evaluation to try the workflow. Starter and Pro add the full five-phase workflow — eligibility review, disqualifiers, requirements, fit and effort scoring, and a recorded bid/no-bid decision you can hand off to your proposal team.
             </p>
           </div>
 
@@ -220,16 +277,16 @@ export default function Home() {
             <FlyIn>
             <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
               <h3 className="font-headline text-xl font-bold text-white mb-1">Free</h3>
-              <p className="text-xs text-[#8b9bb4] mb-4">Try the product</p>
+              <p className="text-xs text-[#8b9bb4] mb-4">Find what fits</p>
               <div className="flex items-baseline gap-1 mb-4">
                 <span className="text-4xl font-black text-white">$0</span>
               </div>
               <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow">
-                {['Search SAM.gov opportunities', 'Bookmark up to 15 opportunities/mo', 'Saved searches & nightly alerts'].map(f => (
+                {['Scored list of open opportunities matching your profile', 'Search and view SAM.gov opportunities', 'Bookmark up to 15 opportunities/mo', 'Saved searches & nightly alerts', 'One evaluation to try the workflow'].map(f => (
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
-              <Link to="/signup/?promo=fall2026" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Start Free</Link>
+              <Link to={DISCOVERY_TO} className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Start Free</Link>
             </div>
             </FlyIn>
 
@@ -237,17 +294,17 @@ export default function Home() {
             <FlyIn delay="delay-150">
             <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6 flex flex-col shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 transition-all duration-300 h-full">
               <h3 className="font-headline text-xl font-bold text-white mb-1">Starter</h3>
-              <p className="text-xs text-[#8b9bb4] mb-4">For solo contractors</p>
+              <p className="text-xs text-[#8b9bb4] mb-4">Make real bid/no-bid decisions</p>
               <div className="flex items-baseline gap-1 mb-4">
                 <span className="text-4xl font-black text-white">$99</span>
                 <span className="text-[#8b9bb4] text-sm">/mo</span>
               </div>
               <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow">
-                {['25 pursuits', 'Full 5-phase AI workflow', 'Eligibility & disqualifier review', 'Strategic & effort scoring', 'Decision tracking (per-pursuit)'].map(f => (
+                {['Everything in Free', 'Full five-phase workflow', 'Eligibility & disqualifier review', 'Requirements extraction', 'Strategic fit & effort scoring', 'Up to 25 pursuits per month'].map(f => (
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
-              <Link to="/signup/?promo=fall2026" className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Select Starter</Link>
+              <Link to={DISCOVERY_TO} className="block text-center w-full py-3 rounded-lg border border-[#1e2d4a] text-white font-bold hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all text-sm">Select Starter</Link>
             </div>
             </FlyIn>
 
@@ -260,17 +317,17 @@ export default function Home() {
                 <h3 className="font-headline text-xl font-bold text-white">Pro</h3>
                 <span className="text-xs font-bold text-[#030B17] bg-[#00c3ff] px-2 py-0.5 rounded-full uppercase tracking-widest">Recommended</span>
               </div>
-              <p className="text-xs text-[#8b9bb4] mb-4">For small contractors & proposal teams</p>
+              <p className="text-xs text-[#8b9bb4] mb-4">Run your pursuit process</p>
               <div className="flex items-baseline gap-1 mb-4">
                 <span className="text-4xl font-black text-white">$199</span>
                 <span className="text-[#8b9bb4] text-sm">/mo</span>
               </div>
               <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow relative z-10">
-                {['Unlimited pursuits', 'Everything in Starter', 'PDF Decision Package export', 'Priority email support'].map(f => (
+                {['Everything in Starter', 'Unlimited pursuits', 'Decision tracking and history', 'Dashboard: pipeline, deadlines, priorities', 'Downloadable decision reports (PDF)'].map(f => (
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
-              <Link to="/signup/?promo=fall2026" className="block text-center w-full py-3 rounded-lg bg-[#00c3ff] text-[#030B17] font-bold shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all relative z-10 text-sm">Select Pro</Link>
+              <Link to={DISCOVERY_TO} className="block text-center w-full py-3 rounded-lg bg-[#00c3ff] text-[#030B17] font-bold shadow-[0_0_30px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all relative z-10 text-sm">Select Pro</Link>
             </div>
             </FlyIn>
 
@@ -289,72 +346,75 @@ export default function Home() {
               Join the waitlist <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
+
+          {/* The seasonal offer stays secondary to the ongoing product benefit */}
+          <div className="max-w-6xl mx-auto mt-8">
+            <Notice label="Fall Offer" tone="soft" align="left">
+              <span className="font-bold text-[#00c3ff]">Fall Bid Clarity Pass:</span> 2 months of Starter or Pro free, applied automatically at checkout.
+              <br /><span className="font-bold text-[#00c3ff]">Ends November 30, 2026.</span> Renews at the regular price unless canceled.
+            </Notice>
+          </div>
           <p className="text-center text-sm text-[#8b9bb4]/60 mt-8 max-w-6xl mx-auto">
             <Link to="/pricing/" className="text-[#00c3ff] hover:underline">See full feature comparison →</Link>
           </p>
         </div>
       </section>
 
-      {/* ── SECTION 5 — Common Questions ─────────────────────────────────── */}
+      {/* ── 6 — Frequently asked questions ────────────────────────────────── */}
       <section className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-14">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/20 mb-6">
               <div className="w-1.5 h-1.5 rounded-full bg-[#00c3ff]"></div>
-              <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">Common Questions</span>
+              <span className="text-xs font-bold text-[#00c3ff] tracking-widest uppercase font-label">Frequently Asked Questions</span>
             </div>
             <h2 className="font-headline font-black text-3xl md:text-4xl text-white tracking-tight">
-              Built to support judgment, not replace it.
+              Before you <span className="he-gradient-text">sign up</span>.
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {[
-              {
-                q: 'Do I need to upload a full solicitation to get value?',
-                a: 'No. Start with the opportunity itself, then go deeper when the pursuit warrants it.',
-              },
-              {
-                q: 'Is this a replacement for capture strategy?',
-                a: 'No. HE Pursuit gives your team a consistent, documented way to qualify opportunities so the time goes to the bids that deserve real strategy.',
-              },
-              {
-                q: 'Who is this built for?',
-                a: 'Small GovCon teams and business owners who need to protect proposal bandwidth and stop chasing low-fit opportunities.',
-              },
-              {
-                q: 'How is this different from GovWin or GovTribe?',
-                a: 'HE Pursuit is built around one job: turning a SAM.gov notice and your company profile into a documented bid/no-bid decision. It is not a market-intelligence database. If you already use one, HE Pursuit is where the go/no-go call gets made and recorded.',
-              },
-            ].map(({ q, a }, i) => (
-              <FlyIn key={q} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]'][i]}>
+            {FAQ.map(({ q, a }, i) => (
+              <FlyIn key={q} delay={['', 'delay-150', 'delay-300', 'delay-[450ms]', 'delay-[600ms]'][i]} className={i === FAQ.length - 1 ? 'md:col-span-2 md:w-[calc(50%-12px)] md:justify-self-center' : ''}>
               <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden group hover:border-[#00c3ff]/30 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-300 h-full">
                 <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-2xl"></div>
-                <p className="text-white font-bold font-headline text-base mb-3">{q}</p>
+                <h3 className="text-white font-bold font-headline text-base mb-3">{q}</h3>
                 <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{a}</p>
               </div>
               </FlyIn>
             ))}
           </div>
+          <p className="text-center text-sm text-[#8b9bb4]/60 mt-8">
+            <Link to="/faq/" className="text-[#00c3ff] hover:underline">More questions answered →</Link>
+          </p>
         </div>
       </section>
 
-      {/* ── SECTION 6 — Final CTA ─────────────────────────────────────────── */}
+      {/* ── 7 — Final invitation ──────────────────────────────────────────── */}
       <section className="py-20 px-6 relative">
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <h2 className="font-headline font-black text-3xl md:text-4xl text-white mb-4 tracking-tight">
-            Spend less time debating.<br />Spend more time pursuing the right bids.
+            Find your first opportunities today.
           </h2>
           <p className="text-[#a0b2c8] text-lg mb-10 leading-relaxed font-body max-w-xl mx-auto">
-            Paste one notice you're weighing right now and see the verdict, with the reasons, before you commit an hour.
+            Create a free account, add three details about your business, and see the SAM.gov opportunities that match — with the reasons behind each one.
           </p>
-          <Link to="/tools/sam-gov-notice-analyzer/" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all">
-            Analyze a SAM.gov Notice — Free
-            <ArrowRight className="w-4 h-4" />
+          <Link
+            to={DISCOVERY_TO}
+            onClick={() => track('home_discovery_cta_clicked', { placement: 'final' })}
+            className={`inline-flex items-center gap-2 min-h-[56px] px-8 rounded-xl bg-[#00c3ff] text-[#030B17] font-bold text-base sm:text-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all ${focusRing}`}
+          >
+            Find My Opportunities — Free
+            <ArrowRight className="w-5 h-5" aria-hidden="true" />
           </Link>
           <p className="mt-4 text-sm font-body">
-            <Link to="/signup/?promo=fall2026" className="text-[#00c3ff] font-semibold hover:underline underline-offset-4">
-              Or start free with an account →
+            <Link
+              to={ANALYZER_TO}
+              onClick={() => track('home_analyzer_link_clicked', { placement: 'final' })}
+              className={`inline-flex items-center gap-1.5 min-h-[44px] text-[#00c3ff] font-semibold hover:underline underline-offset-4 rounded ${focusRing}`}
+            >
+              Already have an opportunity? Analyze a notice
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </Link>
           </p>
         </div>

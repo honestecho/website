@@ -53,7 +53,10 @@ if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
 }
 
 function ScrollToTop() {
-  const { pathname, hash } = useLocation();
+  // `key` changes on every navigation, including a repeat click on an in-page
+  // link (React Router replaces same-path navigations) — without it a second
+  // "How it works" click from the home page would not scroll.
+  const { pathname, hash, key } = useLocation();
   useLayoutEffect(() => {
     // No hash → normal top-scroll on route change. Scroll synchronously (no flash)
     // and re-assert across the next two frames (true post-paint) to defeat any late
@@ -78,7 +81,7 @@ function ScrollToTop() {
     };
     tryScroll();
     return () => cancelAnimationFrame(raf);
-  }, [pathname, hash]);
+  }, [pathname, hash, key]);
   return null;
 }
 

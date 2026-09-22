@@ -15,25 +15,16 @@ const focusRing = 'focus-visible:outline-none focus-visible:ring-2 focus-visible
 const DISCOVERY_TO = '/signup/?promo=fall2026';
 const ANALYZER_TO = '/tools/sam-gov-notice-analyzer/';
 
-// The five phases of the pursuit workflow, in the product's own words
-// (pursuit-v2 JourneyV2: the question each phase answers), ending in the Bid Handoff.
-const STAGES = [
-  { name: 'Triage',      q: 'Should we keep going?' },
-  { name: 'Eligibility', q: 'Can we actually bid this?' },
-  { name: 'Alignment',   q: 'Is this strategically worth pursuing?' },
-  { name: 'Viability',   q: 'What will it take to win?' },
-  { name: 'Decision',    q: 'Go or No-Go — recorded with the rationale.' },
-];
 
-// The example shown in the Decision screenshot: the V2 journey preview rig walked on the
-// TEIS IV On-Ramp notice (public SAM.gov data) with example answers. The recommendation text
-// and the requirement counts are the product's own output. Nothing here is a customer's data.
+// The example shown in the Bid Handoff screenshot: the V2 journey preview rig walked on the
+// TEIS IV On-Ramp notice (public SAM.gov data) with example answers; the rationale is the
+// example's recorded text and the counts are the product's own output. Not a customer's data.
 const DECISION_EXAMPLE = {
   title: 'TEIS IV On-Ramp Opportunity',
   agency: 'Department of the Army',
   call: 'Go',
-  why: 'None of your answers says no or needs attention. Built only from your own answers — the call is yours.',
-  handoff: '53 eligibility requirements reviewed, 517 proposal and delivery requirements carried forward, and the submission rule included in the Bid Handoff.',
+  why: 'Primary NAICS and past performance match the on-ramp; no eligibility gaps, a comfortable response window, and a seat on a vehicle we want.',
+  handoff: '570 requirements identified across five work packages, one submission rule to review, and 15 source documents on record.',
 };
 
 const FAQ = [
@@ -166,7 +157,7 @@ export default function Home() {
 
               <ol className="mt-10 space-y-8">
                 {[
-                  { title: 'Why it fits',        body: 'Six scored reasons — NAICS, competitive access, your keywords, timing, agency, geography — add up to the fit score. Every point is explained in plain language.' },
+                  { title: 'Why it fits',        body: 'Six scored reasons — NAICS, competitive access, your keywords, timing, agency, geography — add up to the fit score, each explained in plain language. Then you make the strategic call: how does it support your growth priorities?' },
                   { title: 'What needs checking', body: 'Points not earned show where the match is weaker, and you can challenge any reason you disagree with. A challenged reason stays flagged through to the decision.' },
                   { title: 'Where it came from',  body: 'Every reason opens to its evidence: what the notice says beside what your profile says, so you can see the match for yourself.' },
                 ].map(({ title, body }, i) => (
@@ -188,13 +179,13 @@ export default function Home() {
             <FlyIn delay="delay-150" className="w-full min-w-0">
               <ZoomImage
                 src="/fit-example.png"
-                alt="HE Pursuit Alignment phase for an example pursuit: a fit score of 94 out of 100 and the six scored reasons behind it — NAICS, competitive access, profile keywords, timing, agency, and geography"
+                alt="HE Pursuit Alignment phase for an example pursuit: a fit score of 94 out of 100, the six scored reasons behind it — NAICS, competitive access, profile keywords, timing, agency, geography — and the strategic call on growth priorities"
                 width={1650}
-                height={1354}
+                height={1498}
                 zoomMinWidthClass="min-w-[825px]"
                 label="Example pursuit"
               />
-              <p className="mt-3 text-xs text-[#8b9bb4] font-body text-center">The Alignment phase of an example pursuit: a public SAM.gov notice with example answers.</p>
+              <p className="mt-3 text-xs text-[#8b9bb4] font-body text-center">The Alignment phase of an example pursuit — score, six reasons, and your strategic call — on a public SAM.gov notice with example answers.</p>
             </FlyIn>
           </div>
         </div>
@@ -210,24 +201,27 @@ export default function Home() {
                 Decide <span className="he-gradient-text">before</span> you invest proposal time.
               </h2>
               <p className="mt-5 text-lg text-[#a9b6cb] font-body leading-relaxed">
-                When a match looks worth it, run it through the five-phase bid/no-bid workflow — and finish with a handoff your proposal team can work from.
+                Five phases — Triage, Eligibility, Alignment, Viability, Decision — each answer one question about the notice and end in a recorded Go or No-Go. What your proposal team receives is the Bid Handoff.
               </p>
 
-              <ol className="mt-8 space-y-4">
-                {STAGES.map(({ name, q }, i) => (
-                  <li key={name} className="grid grid-cols-[28px_minmax(0,1fr)] gap-x-3">
-                    <span className="font-headline font-bold text-sm text-[#00c3ff] tabular-nums pt-0.5" aria-hidden="true">0{i + 1}</span>
-                    <p className="text-[15px] lg:text-base font-body leading-relaxed">
-                      <span className="font-headline font-bold text-white">{name}</span>
-                      <span className="text-[#a9b6cb]"> — {q}</span>
-                    </p>
+              <ol className="mt-10 space-y-8">
+                {[
+                  { title: 'Your recorded call',            body: 'Go or No-Go, your rationale word for word, and the response deadline in view.' },
+                  { title: 'What needs to happen next',     body: 'Only the work your answers call for — conditions to meet, gaps to close, submission rules to follow — each with an owner.' },
+                  { title: 'Requirements by work package',  body: 'Every requirement in the notice, traced to its source section and sorted into proposal, eligibility, performance, deliverables, and administrative packages with a suggested role for each.' },
+                ].map(({ title, body }, i) => (
+                  <li key={title} className="flex items-start gap-4">
+                    <span className="w-8 h-8 rounded-[50%] bg-[#00c3ff] text-[#030B17] font-headline font-black text-sm flex items-center justify-center shrink-0 tabular-nums" aria-hidden="true">{i + 1}</span>
+                    <div className="pt-0.5">
+                      <h3 className="font-headline font-bold text-lg lg:text-xl text-white tracking-tight leading-snug">{title}</h3>
+                      <p className="mt-1.5 text-[15px] lg:text-base text-[#a9b6cb] font-body leading-relaxed">{body}</p>
+                    </div>
                   </li>
                 ))}
               </ol>
 
-              <p className="mt-8 text-[15px] lg:text-base text-[#a9b6cb] font-body leading-relaxed">
-                <span className="font-headline font-bold text-white">Then the handoff: </span>
-                the recorded decision with its rationale, the work your answers call for, and every requirement from the notice sorted into work packages with a suggested owner for each. Your compliance checklist, ready for proposal planning.
+              <p className="mt-10 text-base lg:text-lg text-white font-body leading-relaxed text-pretty">
+                Your proposal team starts from a checklist, not from the raw notice.
               </p>
             </div>
 
@@ -236,10 +230,10 @@ export default function Home() {
               <FlyIn>
               <ZoomImage
                 src="/decision-example.png"
-                alt="HE Pursuit Decision phase for an example pursuit: the Go recommendation built from your answers, the four recorded phases behind it, and the requirements carried into the Bid Handoff"
-                width={1650}
-                height={1498}
-                zoomMinWidthClass="min-w-[825px]"
+                alt="HE Pursuit Bid Handoff screen for an example pursuit: the recorded Go decision with its rationale, what needs to happen next, the decision record with its sources, and every requirement sorted into work packages with suggested roles"
+                width={1800}
+                height={2972}
+                zoomMinWidthClass="min-w-[900px]"
                 label="Example pursuit"
               />
               </FlyIn>

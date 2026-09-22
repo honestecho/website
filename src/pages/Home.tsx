@@ -6,7 +6,6 @@ import FlyIn from '../components/FlyIn';
 import Notice from '../components/Notice';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
 import HeroPursuitCardZoom from '../components/HeroPursuitCardZoom';
-import FitExplainer from '../components/FitExplainer';
 import ZoomImage from '../components/ZoomImage';
 import { track } from '../lib/analytics';
 
@@ -26,15 +25,15 @@ const STAGES = [
   { name: 'Decision',    q: 'Go or No-Go — recorded with the rationale.' },
 ];
 
-// The example shown in the Bid Handoff screenshot: the V2 journey preview rig walked on the
-// TEIS IV On-Ramp notice (public SAM.gov data) with example answers; the rationale is the
-// example's recorded text. Nothing here is a customer's data.
+// The example shown in the Decision screenshot: the V2 journey preview rig walked on the
+// TEIS IV On-Ramp notice (public SAM.gov data) with example answers. The recommendation text
+// and the requirement counts are the product's own output. Nothing here is a customer's data.
 const DECISION_EXAMPLE = {
   title: 'TEIS IV On-Ramp Opportunity',
   agency: 'Department of the Army',
   call: 'Go',
-  why: 'Primary NAICS and past performance match the on-ramp; the remaining SCI facility gap is covered by our teaming partner.',
-  handoff: 'Every requirement from the notice sorted into work packages — proposal submission, performance, deliverables, administrative — each with a suggested owner and its source section.',
+  why: 'None of your answers says no or needs attention. Built only from your own answers — the call is yours.',
+  handoff: '53 eligibility requirements reviewed, 517 proposal and delivery requirements carried forward, and the submission rule included in the Bid Handoff.',
 };
 
 const FAQ = [
@@ -157,7 +156,7 @@ export default function Home() {
       {/* ── 3 — See why an opportunity fits ───────────────────────────────── */}
       <section className="px-6 py-24 relative">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_minmax(0,620px)] gap-12 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-12 lg:gap-16 items-start">
 
             <div className="max-w-[560px]">
               <h2 className="font-headline font-black text-[34px] sm:text-4xl lg:text-[48px] text-white tracking-[-0.03em] leading-[1.02]">
@@ -167,9 +166,9 @@ export default function Home() {
 
               <ol className="mt-10 space-y-8">
                 {[
-                  { title: 'Why it fits',        body: 'The concrete reasons behind the score: the services you sell, the agencies you target, the set-asides you hold.' },
-                  { title: 'What needs checking', body: 'A likely obstacle or an open requirement, flagged before you spend an hour on the notice.' },
-                  { title: 'Where it came from',  body: 'The notice facts behind every reason — posted, due, type, NAICS, agency, set-aside — with the SAM.gov notice linked from the readout.' },
+                  { title: 'Why it fits',        body: 'Six scored reasons — NAICS, competitive access, your keywords, timing, agency, geography — add up to the fit score. Every point is explained in plain language.' },
+                  { title: 'What needs checking', body: 'Points not earned show where the match is weaker, and you can challenge any reason you disagree with. A challenged reason stays flagged through to the decision.' },
+                  { title: 'Where it came from',  body: 'Every reason opens to its evidence: what the notice says beside what your profile says, so you can see the match for yourself.' },
                 ].map(({ title, body }, i) => (
                   <li key={title} className="flex items-start gap-4">
                     <span className="w-8 h-8 rounded-[50%] bg-[#00c3ff] text-[#030B17] font-headline font-black text-sm flex items-center justify-center shrink-0 tabular-nums" aria-hidden="true">{i + 1}</span>
@@ -187,8 +186,15 @@ export default function Home() {
             </div>
 
             <FlyIn delay="delay-150" className="w-full min-w-0">
-              <FitExplainer />
-              <p className="mt-3 text-xs text-[#8b9bb4] font-body text-center">The example match from above, opened up. Illustrative values.</p>
+              <ZoomImage
+                src="/fit-example.png"
+                alt="HE Pursuit Alignment phase for an example pursuit: a fit score of 94 out of 100 and the six scored reasons behind it — NAICS, competitive access, profile keywords, timing, agency, and geography"
+                width={1650}
+                height={1354}
+                zoomMinWidthClass="min-w-[825px]"
+                label="Example pursuit"
+              />
+              <p className="mt-3 text-xs text-[#8b9bb4] font-body text-center">The Alignment phase of an example pursuit: a public SAM.gov notice with example answers.</p>
             </FlyIn>
           </div>
         </div>
@@ -197,7 +203,7 @@ export default function Home() {
       {/* ── 4 — Decide before you invest proposal time ────────────────────── */}
       <section className="px-6 py-24 border-t border-[#1e2d4a]/60 relative">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-12 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] gap-12 lg:gap-16 items-start">
 
             <div className="max-w-[560px]">
               <h2 className="font-headline font-black text-[34px] sm:text-4xl lg:text-[48px] text-white tracking-[-0.03em] leading-[1.02]">
@@ -230,10 +236,10 @@ export default function Home() {
               <FlyIn>
               <ZoomImage
                 src="/decision-example.png"
-                alt="HE Pursuit Bid Handoff for an example pursuit: the recorded Go decision with its rationale and the response due date, ready to carry into proposal planning"
-                width={1770}
-                height={478}
-                zoomMinWidthClass="min-w-[885px]"
+                alt="HE Pursuit Decision phase for an example pursuit: the Go recommendation built from your answers, the four recorded phases behind it, and the requirements carried into the Bid Handoff"
+                width={1650}
+                height={1498}
+                zoomMinWidthClass="min-w-[825px]"
                 label="Example pursuit"
               />
               </FlyIn>

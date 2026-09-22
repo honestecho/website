@@ -186,10 +186,10 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="w-full min-w-0">
+            <FlyIn delay="delay-150" className="w-full min-w-0">
               <FitExplainer />
               <p className="mt-3 text-xs text-[#8b9bb4] font-body text-center">The example match from above, opened up. Illustrative values.</p>
-            </div>
+            </FlyIn>
           </div>
         </div>
       </section>
@@ -227,6 +227,7 @@ export default function Home() {
 
             {/* One decision example: the product's Phase 5 screen, plus the call it shows */}
             <div className="w-full min-w-0">
+              <FlyIn>
               <ZoomImage
                 src="/decision-example.png"
                 alt="HE Pursuit Bid Handoff for an example pursuit: the recorded Go decision with its rationale and the response due date, ready to carry into proposal planning"
@@ -235,6 +236,8 @@ export default function Home() {
                 zoomMinWidthClass="min-w-[885px]"
                 label="Example pursuit"
               />
+              </FlyIn>
+              <FlyIn delay="delay-150">
               <div className="mt-4 rounded-2xl border border-[#1e2d4a] bg-[#0b1120] px-5 py-4 shadow-2xl">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-[#8b9bb4]">Example pursuit</p>
                 <p className="mt-1 text-sm font-bold text-white font-headline leading-snug">{DECISION_EXAMPLE.title}</p>
@@ -254,6 +257,7 @@ export default function Home() {
                   </div>
                 </dl>
               </div>
+              </FlyIn>
             </div>
           </div>
         </div>
@@ -334,7 +338,8 @@ export default function Home() {
           </div>
 
           {/* Team — same coming-soon strip as /pricing, not a fourth equal-weight card */}
-          <div className="max-w-6xl mx-auto mt-6 rounded-2xl border border-[#1e2d4a] bg-[#0b1120] px-6 py-5 flex flex-col md:flex-row md:items-center gap-4">
+          <FlyIn delay="delay-[450ms]" className="max-w-6xl mx-auto mt-6">
+          <div className="rounded-2xl border border-[#1e2d4a] bg-[#0b1120] px-6 py-5 flex flex-col md:flex-row md:items-center gap-4">
             <div className="w-10 h-10 rounded-lg bg-[#00c3ff]/10 border border-[#00c3ff]/30 flex items-center justify-center shrink-0">
               <Users className="w-5 h-5 text-[#00c3ff]" strokeWidth={2} />
             </div>
@@ -346,14 +351,15 @@ export default function Home() {
               Join the waitlist <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
+          </FlyIn>
 
           {/* The seasonal offer stays secondary to the ongoing product benefit */}
-          <div className="max-w-6xl mx-auto mt-8">
+          <FlyIn delay="delay-[600ms]" className="max-w-6xl mx-auto mt-8">
             <Notice label="Fall Offer" tone="soft" align="left">
               <span className="font-bold text-[#00c3ff]">Fall Bid Clarity Pass:</span> 2 months of Starter or Pro free, applied automatically at checkout.
               <br /><span className="font-bold text-[#00c3ff]">Ends November 30, 2026.</span> Renews at the regular price unless canceled.
             </Notice>
-          </div>
+          </FlyIn>
           <p className="text-center text-sm text-[#8b9bb4]/60 mt-8 max-w-6xl mx-auto">
             <Link to="/pricing/" className="text-[#00c3ff] hover:underline">See full feature comparison →</Link>
           </p>

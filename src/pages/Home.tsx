@@ -16,16 +16,6 @@ const DISCOVERY_TO = '/signup/?promo=fall2026';
 const ANALYZER_TO = '/tools/sam-gov-notice-analyzer/';
 
 
-// The example shown in the Bid Handoff screenshot: the V2 journey preview rig walked on the
-// TEIS IV On-Ramp notice (public SAM.gov data) with example answers; the rationale is the
-// example's recorded text and the counts are the product's own output. Not a customer's data.
-const DECISION_EXAMPLE = {
-  title: 'TEIS IV On-Ramp Opportunity',
-  agency: 'Department of the Army',
-  call: 'Go',
-  why: 'Primary NAICS and past performance match the on-ramp; no eligibility gaps, a comfortable response window, and a seat on a vehicle we want.',
-  handoff: '570 requirements identified across five work packages, one submission rule to review, and 15 source documents on record.',
-};
 
 const FAQ = [
   {
@@ -208,7 +198,7 @@ export default function Home() {
                 {[
                   { title: 'Your recorded call',            body: 'Go or No-Go, your rationale word for word, and the response deadline in view.' },
                   { title: 'What needs to happen next',     body: 'Only the work your answers call for — conditions to meet, gaps to close, submission rules to follow — each with an owner.' },
-                  { title: 'Requirements by work package',  body: 'Every requirement in the notice, traced to its source section and sorted into proposal, eligibility, performance, deliverables, and administrative packages with a suggested role for each.' },
+                  { title: 'Decision and sources',          body: 'What the call rests on, and its limits: the decision record, every requirement identified with its source section and the notice’s own wording, and the documents it came from.' },
                 ].map(({ title, body }, i) => (
                   <li key={title} className="flex items-start gap-4">
                     <span className="w-8 h-8 rounded-[50%] bg-[#00c3ff] text-[#030B17] font-headline font-black text-sm flex items-center justify-center shrink-0 tabular-nums" aria-hidden="true">{i + 1}</span>
@@ -221,7 +211,7 @@ export default function Home() {
               </ol>
 
               <p className="mt-10 text-base lg:text-lg text-white font-body leading-relaxed text-pretty">
-                Your proposal team starts from a checklist, not from the raw notice.
+                Every requirement is then sorted into work packages with a suggested owner. Your proposal team starts from a checklist, not from the raw notice.
               </p>
             </div>
 
@@ -230,33 +220,12 @@ export default function Home() {
               <FlyIn>
               <ZoomImage
                 src="/decision-example.png"
-                alt="HE Pursuit Bid Handoff screen for an example pursuit: the recorded Go decision with its rationale, what needs to happen next, the decision record with its sources, and every requirement sorted into work packages with suggested roles"
+                alt="HE Pursuit Bid Handoff screen for an example pursuit: the recorded Go decision with its rationale and response deadline, what needs to happen next, and the decision record with its sources"
                 width={1800}
-                height={2972}
+                height={2058}
                 zoomMinWidthClass="min-w-[900px]"
                 label="Example pursuit"
               />
-              </FlyIn>
-              <FlyIn delay="delay-150">
-              <div className="mt-4 rounded-2xl border border-[#1e2d4a] bg-[#0b1120] px-5 py-4 shadow-2xl">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-[#8b9bb4]">Example pursuit</p>
-                <p className="mt-1 text-sm font-bold text-white font-headline leading-snug">{DECISION_EXAMPLE.title}</p>
-                <p className="text-xs text-[#8b9bb4] font-body">{DECISION_EXAMPLE.agency}</p>
-                <dl className="mt-3 space-y-2 text-sm font-body">
-                  <div className="flex gap-3">
-                    <dt className="w-24 shrink-0 text-[#8b9bb4]">The call</dt>
-                    <dd className="font-bold text-[#4ade80]">{DECISION_EXAMPLE.call}</dd>
-                  </div>
-                  <div className="flex gap-3">
-                    <dt className="w-24 shrink-0 text-[#8b9bb4]">Why</dt>
-                    <dd className="text-[#dde2f1] leading-snug">{DECISION_EXAMPLE.why}</dd>
-                  </div>
-                  <div className="flex gap-3">
-                    <dt className="w-24 shrink-0 text-[#8b9bb4]">Handoff</dt>
-                    <dd className="text-[#dde2f1] leading-snug">{DECISION_EXAMPLE.handoff}</dd>
-                  </div>
-                </dl>
-              </div>
               </FlyIn>
             </div>
           </div>

@@ -172,7 +172,7 @@ export default function Home() {
                 alt="HE Pursuit Alignment phase for an example pursuit: a fit score of 94 out of 100, the six scored reasons behind it — NAICS, competitive access, profile keywords, timing, agency, geography — and the strategic call on growth priorities"
                 width={1650}
                 height={1498}
-                zoomMinWidthClass="min-w-[825px]"
+                zoomWidthClass="w-[825px]"
                 label="Example pursuit"
               />
               <p className="mt-3 text-xs text-[#8b9bb4] font-body text-center">The Alignment phase of an example pursuit — score, six reasons, and your strategic call — on a public SAM.gov notice with example answers.</p>
@@ -222,8 +222,8 @@ export default function Home() {
                 src="/decision-example.png"
                 alt="HE Pursuit Bid Handoff screen for an example pursuit: the recorded Go decision with its rationale and response deadline, what needs to happen next, and the decision record with its sources"
                 width={1800}
-                height={2058}
-                zoomMinWidthClass="min-w-[900px]"
+                height={2022}
+                zoomWidthClass="w-[900px]"
                 label="Example pursuit"
               />
               </FlyIn>

@@ -8,13 +8,14 @@ import { Maximize2, X } from 'lucide-react';
  * overlay the image keeps its 1:1 CSS width (`zoomWidth`) inside a scrollable
  * panel, so phone viewers can pan instead of squinting at a downscaled shot.
  */
-export default function ZoomImage({ src, alt, width, height, zoomMinWidthClass, label }: {
+export default function ZoomImage({ src, alt, width, height, zoomWidthClass, label }: {
   src: string;
   alt: string;
   width: number;
   height: number;
-  /** Tailwind min-width class for the 1:1 CSS width of the capture, e.g. `min-w-[782px]` for a 1564px-wide 2x shot. */
-  zoomMinWidthClass: string;
+  /** Tailwind width class for the capture's 1:1 CSS size, e.g. `w-[825px]` for a 1650px-wide 2x shot — the
+   *  enlarged view shows the shot at that size (crisp, like the hero card's enlarge), never stretched wider. */
+  zoomWidthClass: string;
   /** Always-visible badge on the frame, e.g. "Example pursuit" — demo data must be labeled on the visual itself. */
   label?: string;
 }) {
@@ -81,9 +82,9 @@ export default function ZoomImage({ src, alt, width, height, zoomMinWidthClass, 
           </button>
           <div
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-[1400px] max-h-full overflow-auto rounded-2xl border border-[#1e2d4a] bg-[#0b1120] p-2"
+            className="w-fit max-w-full max-h-full overflow-auto rounded-2xl border border-[#1e2d4a] bg-[#0b1120] p-2"
           >
-            <img src={src} alt="" width={width} height={height} className={`block w-full h-auto rounded-xl ${zoomMinWidthClass}`} />
+            <img src={src} alt="" width={width} height={height} className={`block h-auto max-w-none rounded-xl ${zoomWidthClass}`} />
           </div>
         </div>,
         document.body

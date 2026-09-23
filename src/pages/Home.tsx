@@ -20,7 +20,7 @@ const ANALYZER_TO = '/tools/sam-gov-notice-analyzer/';
 const FAQ = [
   {
     q: 'What can I do for free?',
-    a: 'Search SAM.gov opportunities, see the ones ranked for your profile, bookmark up to 15 a month, save searches with nightly alerts, and run one evaluation to try the workflow. No credit card.',
+    a: 'Search SAM.gov opportunities, see the ones ranked for your profile, bookmark up to 15 a month, save searches with nightly alerts, and run one free triage (Phase 1) on a notice of your choice. No credit card.',
   },
   {
     q: 'What information is needed to match opportunities to my business?',
@@ -36,7 +36,7 @@ const FAQ = [
   },
   {
     q: 'What happens after I find an opportunity I like?',
-    a: 'Bookmark it, then run the five-phase evaluation: triage, eligibility, alignment, viability, and a recorded Go or No-Go with the rationale — then hand the requirements off to your proposal team. Your first evaluation is free; Starter includes up to 25 pursuits a month, and Pro is unlimited.',
+    a: 'Bookmark it, then run the five-phase evaluation: triage, eligibility, alignment, viability, and a recorded Go or No-Go with the rationale — then hand the requirements off to your proposal team. Your first triage (Phase 1) is free; the full workflow starts with Starter (up to 25 pursuits a month), and Pro is unlimited.',
   },
 ];
 
@@ -240,7 +240,7 @@ export default function Home() {
               Start <span className="he-gradient-text">free</span>. Go deeper when you need to.
             </h2>
             <p className="text-lg lg:text-xl text-[#a9b6cb] font-body leading-relaxed">
-              Free covers finding opportunities: a scored list of open SAM.gov opportunities that match your profile, search, up to 15 bookmarks a month, saved searches with nightly alerts, and one evaluation to try the workflow. Starter and Pro add the full five-phase workflow — eligibility review, disqualifiers, requirements, fit and effort scoring, and a recorded bid/no-bid decision you can hand off to your proposal team.
+              Free covers finding opportunities: a scored list of open SAM.gov opportunities that match your profile, search, up to 15 bookmarks a month, saved searches with nightly alerts, and one free triage (Phase 1) on a notice of your choice. Starter and Pro add the full five-phase workflow — eligibility review, disqualifiers, requirements, fit and effort scoring, and a recorded bid/no-bid decision you can hand off to your proposal team.
             </p>
           </div>
 
@@ -255,7 +255,7 @@ export default function Home() {
                 <span className="text-4xl font-black text-white">$0</span>
               </div>
               <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow">
-                {['Scored list of open opportunities matching your profile', 'Search and view SAM.gov opportunities', 'Bookmark up to 15 opportunities/mo', 'Saved searches & nightly alerts', 'One evaluation to try the workflow'].map(f => (
+                {['Scored list of open opportunities matching your profile', 'Search and view SAM.gov opportunities', 'Bookmark up to 15 opportunities/mo', 'Saved searches & nightly alerts', 'One Phase 1 evaluation (trial)'].map(f => (
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>

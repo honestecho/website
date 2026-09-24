@@ -93,35 +93,50 @@ async function fetchListSeed() {
 // </script> and <!-- inside JSON would end the inline script early.
 const inlineJson = value => JSON.stringify(value).replace(/</g, '\\u003c');
 
-/** Last commit date of a file (YYYY-MM-DD), or today if git can't say. */
+/**
+ * Last commit date of a file (YYYY-MM-DD), or null.
+ *
+ * Null on purpose: a shallow clone (which is what a CI checkout often is) can
+ * only answer for files the single fetched commit touched, and falling back to
+ * the build date would stamp every URL with the same lastmod on every deploy —
+ * a signal a crawler learns to ignore, and no better than the frozen dates this
+ * replaced. An omitted lastmod is merely absent; a wrong one is noise.
+ */
 const today = new Date().toISOString().slice(0, 10);
 function lastModified(file) {
   try {
-    const out = execFileSync('git', ['log', '-1', '--format=%cs', '--', file], {
-      cwd: rootDir,
-      encoding: 'utf-8',
-      stdio: ['ignore', 'pipe', 'ignore'],
-    }).trim();
-    return out || today;
+    return (
+      execFileSync('git', ['log', '-1', '--format=%cs', '--', file], {
+        cwd: rootDir,
+        encoding: 'utf-8',
+        stdio: ['ignore', 'pipe', 'ignore'],
+      }).trim() || null
+    );
   } catch {
-    return today;
+    return null;
   }
 }
 
 function writeSitemap() {
+  let dated = 0;
   const body = routes
-    .map(({ path, file, changefreq, priority }) =>
-      [
+    .map(({ path, file, changefreq, priority }) => {
+      // The list page's content turns over with SAM.gov, not with its source file.
+      const lastmod = path === LIST_ROUTE ? today : lastModified(file);
+      if (lastmod) dated++;
+      return [
         '  <url>',
         `    <loc>${urlOf(path)}</loc>`,
-        // The list page's content turns over with SAM.gov, not with its source file.
-        `    <lastmod>${path === LIST_ROUTE ? today : lastModified(file)}</lastmod>`,
+        ...(lastmod ? [`    <lastmod>${lastmod}</lastmod>`] : []),
         `    <changefreq>${changefreq}</changefreq>`,
         `    <priority>${priority}</priority>`,
         '  </url>',
-      ].join('\n')
-    )
+      ].join('\n');
+    })
     .join('\n\n');
+  if (dated < routes.length) {
+    console.warn(`  !  lastmod omitted for ${routes.length - dated} URL(s) — git history is not available here`);
+  }
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

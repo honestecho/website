@@ -77,7 +77,7 @@ export default function SamGovRecompeteTracking() {
     <>
       <Helmet>
         <title>SAM.gov Recompete Tracking for Small Contractors — HE Pursuit</title>
-        <meta name="description" content="Recompetes are GovCon's most predictable pipeline — if you track contract expirations early. HE Pursuit matches expiring federal contracts to your NAICS codes and indexes 22,000+ award notices for incumbent intel." />
+        <meta name="description" content="Recompetes are GovCon’s most predictable pipeline. HE Pursuit matches expiring federal contracts to your NAICS codes and indexes 22,000+ awards." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/sam-gov-recompete-tracking" />
         <meta property="og:title" content="SAM.gov Recompete Tracking for Small Contractors — HE Pursuit" />

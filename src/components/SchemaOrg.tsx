@@ -34,6 +34,77 @@ export function OrganizationSchema() {
   );
 }
 
+// ── WebSite (rendered on every page via App.tsx) ──────────────────────────────
+// Binds the domain to the Organization so a model resolving "Honest Echo" gets
+// one entity, not a site and a company it has to guess are the same.
+
+export function WebSiteSchema() {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Honest Echo',
+    url: 'https://honestecho.com',
+    publisher: {
+      '@type': 'Organization',
+      name: 'Honest Echo LLC',
+      url: 'https://honestecho.com',
+    },
+  };
+
+  return (
+    <Helmet>
+      <script type="application/ld+json">{JSON.stringify(schema)}</script>
+    </Helmet>
+  );
+}
+
+// ── BreadcrumbList (pages below the root) ─────────────────────────────────────
+
+export function BreadcrumbListSchema({ items }: { items: { name: string; path: string }[] }) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map(({ name, path }, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name,
+      item: `https://honestecho.com${path}`,
+    })),
+  };
+
+  return (
+    <Helmet>
+      <script type="application/ld+json">{JSON.stringify(schema)}</script>
+    </Helmet>
+  );
+}
+
+// ── ItemList (list-browse pages) ──────────────────────────────────────────────
+// Describes the notices actually rendered on the page. Emitted only when the
+// list is in the prerendered HTML — schema that describes rows a crawler cannot
+// see is the kind of mismatch that gets structured data ignored.
+
+export function ItemListSchema({ name, items }: { name: string; items: { name: string; url: string }[] }) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name,
+    numberOfItems: items.length,
+    itemListElement: items.map(({ name: itemName, url }, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: itemName,
+      url,
+    })),
+  };
+
+  return (
+    <Helmet>
+      <script type="application/ld+json">{JSON.stringify(schema)}</script>
+    </Helmet>
+  );
+}
+
 // ── SoftwareApplication (Home + Pricing pages) ────────────────────────────────
 
 export function SoftwareApplicationSchema() {
@@ -49,6 +120,7 @@ export function SoftwareApplicationSchema() {
       {
         '@type': 'Offer',
         name: 'Free',
+        url: 'https://honestecho.com/pricing/',
         price: '0',
         priceCurrency: 'USD',
         description: 'SAM.gov search, opportunity scoring, and bookmarks (up to 15/month)',
@@ -56,6 +128,7 @@ export function SoftwareApplicationSchema() {
       {
         '@type': 'Offer',
         name: 'Starter',
+        url: 'https://honestecho.com/pricing/',
         price: '99',
         priceCurrency: 'USD',
         description: 'Full bid/no-bid workflow, 25 pursuits/month',
@@ -63,6 +136,7 @@ export function SoftwareApplicationSchema() {
       {
         '@type': 'Offer',
         name: 'Pro',
+        url: 'https://honestecho.com/pricing/',
         price: '199',
         priceCurrency: 'USD',
         description: 'Unlimited pursuits, dashboard, PDF export',
@@ -70,6 +144,7 @@ export function SoftwareApplicationSchema() {
       {
         '@type': 'Offer',
         name: 'Team',
+        url: 'https://honestecho.com/pricing/',
         price: '299',
         priceCurrency: 'USD',
         description: 'Multi-user workspace, shared pursuit pipeline (waitlist)',

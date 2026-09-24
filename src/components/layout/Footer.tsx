@@ -40,6 +40,7 @@ export default function Footer() {
                 {[
                   { label: 'Free Analyzer', to: '/tools/sam-gov-notice-analyzer/' },
                   { label: 'Pursuit Readout', to: '/tools/pursuit-readout/' },
+                  { label: 'Construction Contracts', to: '/government-contracts-for-bid/construction/' },
                   { label: 'Pricing', to: '/pricing/' },
                   { label: 'Security', to: '/security/' },
                   { label: 'FAQ', to: '/faq/' },

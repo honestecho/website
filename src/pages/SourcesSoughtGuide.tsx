@@ -77,7 +77,7 @@ export default function SourcesSoughtGuide() {
     <>
       <Helmet>
         <title>Should You Respond to a Sources Sought Notice? — HE Pursuit</title>
-        <meta name="description" content="Sources Sought notices shape set-aside decisions and requirements before the RFP exists. When responding is worth it, when to skip, and how to decide in minutes with a free SAM.gov notice analysis." />
+        <meta name="description" content="Sources Sought notices shape set-asides before the RFP exists. When responding is worth it, when to skip, and how to decide in minutes." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/sources-sought-worth-responding" />
         <meta property="og:title" content="Should You Respond to a Sources Sought Notice? — HE Pursuit" />

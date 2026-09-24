@@ -9,7 +9,7 @@ export default function About() {
     <>
       <Helmet>
         <title>About Honest Echo | Evaluate Government Contracting Opportunities</title>
-        <meta name="description" content="Honest Echo helps small government contractors evaluate government contracting opportunities, reduce wasted proposal effort, and make better bid/no-bid decisions." />
+        <meta name="description" content="Honest Echo helps small government contractors evaluate opportunities, cut wasted proposal effort, and make better bid/no-bid decisions." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/about" />
         <meta property="og:title" content="About Honest Echo | Evaluate Government Contracting Opportunities" />

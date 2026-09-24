@@ -292,7 +292,7 @@ export default function FAQ() {
     <>
       <Helmet>
         <title>FAQ — HE Pursuit | Bid/No-Bid Decisions for Government Contractors</title>
-        <meta name="description" content="Frequently asked questions about HE Pursuit — the bid/no-bid decision platform for small government contractors. Learn how we use SAM.gov data to help you evaluate opportunities faster." />
+        <meta name="description" content="Common questions about HE Pursuit — pricing, SAM.gov data handling, and how bid/no-bid scoring works for small government contractors." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/faq" />
         <meta property="og:title" content="FAQ — HE Pursuit Bid/No-Bid Platform" />

@@ -66,7 +66,7 @@ export default function ForProposalManagers() {
     <>
       <Helmet>
         <title>Bid/No-Bid Decisions for Proposal Managers — HE Pursuit</title>
-        <meta name="description" content="Bid/no-bid discipline for proposal and capture teams. HE Pursuit scores every SAM.gov notice on fit, eligibility, timing, and risk — a filled-in decision scorecard before anyone commits proposal hours." />
+        <meta name="description" content="A bid/no-bid scorecard that arrives filled in. HE Pursuit scores every SAM.gov notice on fit, eligibility, timing, and risk before you commit hours." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/for-proposal-managers/" />
         <meta property="og:title" content="Bid/No-Bid Decisions for Proposal Managers — HE Pursuit" />

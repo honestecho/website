@@ -63,7 +63,7 @@ export default function TeamWaitlist() {
     <>
       <Helmet>
         <title>Team Waitlist | HE Pursuit</title>
-        <meta name="description" content="Team pricing for HE Pursuit is launching soon. Join the waitlist for multi-user workspaces, shared pursuits, and team-level visibility across your government contracting pipeline." />
+        <meta name="description" content="Team pricing for HE Pursuit is launching soon. Join the waitlist for multi-user workspaces, shared pursuits, and team-level pipeline visibility." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/team-waitlist" />
         <meta property="og:title" content="Team Waitlist — HE Pursuit" />

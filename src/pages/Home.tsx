@@ -45,7 +45,7 @@ export default function Home() {
     <>
       <Helmet>
         <title>Honest Echo — GovCon Bid/No-Bid Intelligence for Small Contractors</title>
-        <meta name="description" content="Find, qualify, and decide on government contracting opportunities faster. HE Pursuit analyzes SAM.gov notices and gives small contractors a bid/no-bid recommendation in minutes — before you waste proposal hours." />
+        <meta name="description" content="HE Pursuit analyzes SAM.gov notices and gives small government contractors a bid/no-bid recommendation in minutes — before you spend proposal hours." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/" />
         <meta property="og:title" content="HE Pursuit — Bid/No-Bid Decisions for Small Government Contractors" />

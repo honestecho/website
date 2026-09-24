@@ -66,7 +66,7 @@ export default function ForGovconConsultants() {
     <>
       <Helmet>
         <title>Opportunity Screening for GovCon Consultants — HE Pursuit</title>
-        <meta name="description" content="SAM.gov opportunity screening for GovCon consultants, capture advisors, and proposal shops. Defensible bid/no-bid scores for the clients you advise — without enterprise-tool pricing." />
+        <meta name="description" content="SAM.gov opportunity screening for GovCon consultants and proposal shops. Defensible bid/no-bid scores for every client, without enterprise pricing." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/for-govcon-consultants/" />
         <meta property="og:title" content="Opportunity Screening for GovCon Consultants — HE Pursuit" />

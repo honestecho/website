@@ -48,7 +48,7 @@ export default function SamGovAnalysis() {
     <>
       <Helmet>
         <title>SAM.gov Opportunity Analysis Tool — HE Pursuit</title>
-        <meta name="description" content="HE Pursuit is a SAM.gov opportunity analysis tool for small government contractors. Evaluate fit, eligibility, and pursuit value in minutes and make faster bid/no-bid decisions." />
+        <meta name="description" content="A SAM.gov opportunity analysis tool for small government contractors — evaluate fit, eligibility, and pursuit value, then decide bid or no-bid." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/sam-gov-opportunity-analysis" />
         <meta property="og:title" content="SAM.gov Opportunity Analysis Tool — HE Pursuit" />

@@ -48,7 +48,7 @@ export default function SamGovHiddenOpportunities() {
     <>
       <Helmet>
         <title>Find the SAM.gov Opportunities Its Search Hides — HE Pursuit</title>
-        <meta name="description" content="SAM.gov’s NAICS-filtered search skips Sources Sought, Special Notices, and draft RFPs posted with no NAICS code — the early-stage notices where you shape the requirement. HE Pursuit indexes every notice and makes it searchable by keyword." />
+        <meta name="description" content="SAM.gov NAICS search skips Sources Sought, Special Notices, and draft RFPs posted with no NAICS code. HE Pursuit indexes every notice by keyword." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/sam-gov-hidden-opportunities" />
         <meta property="og:title" content="Find the SAM.gov Opportunities Its Search Hides — HE Pursuit" />

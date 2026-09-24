@@ -183,7 +183,7 @@ export default function Pricing() {
     <>
       <Helmet>
         <title>Pricing | Honest Echo</title>
-        <meta name="description" content="Simple pricing for small contractors pursuing government contracting opportunities. Start free and qualify in minutes. Upgrade when your team needs deeper analysis and more volume." />
+        <meta name="description" content="HE Pursuit pricing for small government contractors. Start free, qualify SAM.gov opportunities in minutes, upgrade when you need more volume." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/pricing" />
         <meta property="og:title" content="HE Pursuit Pricing — Free, Starter, Pro, Team" />

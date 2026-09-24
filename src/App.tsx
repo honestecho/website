@@ -3,7 +3,7 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
-import { OrganizationSchema } from './components/SchemaOrg';
+import { OrganizationSchema, WebSiteSchema } from './components/SchemaOrg';
 import { track } from './lib/analytics';
 
 // Eager pages: the LCP landing (Home) plus the dedicated SEO landing pages
@@ -111,6 +111,7 @@ function App() {
         </div>
       </div>
       <OrganizationSchema />
+      <WebSiteSchema />
       <ScrollToTop />
       <PageViews />
       <Navbar />

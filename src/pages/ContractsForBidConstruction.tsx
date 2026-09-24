@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ExternalLink, AlertCircle } from 'lucide-react';
 import { API_BASE } from '../lib/api';
 import { track } from '../lib/analytics';
+import { BreadcrumbListSchema, ItemListSchema } from '../components/SchemaOrg';
 
 // ── List-browse TEST page (grill 2026-09-12) ──────────────────────────────────
 // fall26_search: 25 of 29 attributed paid clicks typed list-browse queries
@@ -90,6 +91,18 @@ function isListPayload(v: unknown): v is ListPayload {
   return isObj(v) && Array.isArray(v.notices) && v.notices.every(isNotice) && typeof v.generated_at === 'string';
 }
 
+// Build-time seed. scripts/prerender.js fetches the list, applies the deadline
+// floor itself, and hands the same object to the server render (globalThis) and
+// the browser (an inline window.__HE_LIST__ before the bundle) — so the rows are
+// in the static HTML for crawlers and hydration sees identical input. No
+// Date.now() filtering here: a floor applied twice against two different clocks
+// would produce two different row sets and break hydration. The effect below
+// still refetches live data on mount, which is what a visitor ends up seeing.
+const seedPayload = (): ListPayload | null => {
+  const v = (globalThis as { __HE_LIST__?: unknown }).__HE_LIST__;
+  return isListPayload(v) ? v : null;
+};
+
 const fmtDate = (iso: string) =>
   new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
 // Deadlines are instants; show the visitor's local time + zone next to the
@@ -104,6 +117,9 @@ const fmtDue = (iso: string) => {
 };
 const fmtUpdated = (iso: string) =>
   zoneName(new Date(iso).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }));
+// SAM prefixes titles with a PSC/class code ("Z--", "Y1DA--"); it is noise in
+// a heading and worse in structured data.
+const cleanTitle = (t: string) => t.replace(/^[A-Z0-9]{1,4}--\s*/, '');
 const daysLeft = (iso: string) => Math.max(0, Math.ceil((new Date(iso).getTime() - Date.now()) / 864e5));
 
 // SAM shouts agency names and inverts some ("INTERIOR, DEPARTMENT OF THE").
@@ -142,11 +158,14 @@ function agencyCase(s: string | null): string {
 }
 
 export default function ContractsForBidConstruction() {
-  const [payload, setPayload] = useState<ListPayload | null>(null);
+  const [payload, setPayload] = useState<ListPayload | null>(seedPayload);
   const [failed, setFailed] = useState(false);
   const [setAside, setSetAside] = useState<SetAsideKey | 'all'>('all');
   const [type, setType] = useState<TypeFilter>('open');
   const [state, setState] = useState<string>('all');
+  // Seeded first render? Then a failed live refresh must not replace visible
+  // rows with the error panel — the build-time list is still the best we have.
+  const hadSeed = useRef(payload !== null);
 
   useEffect(() => {
     let cancelled = false;
@@ -171,12 +190,12 @@ export default function ContractsForBidConstruction() {
           const timing = { fetch_ms: Math.round(performance.now() - t0), since_nav_ms: Math.round(performance.now()) };
           track(j.notices.length ? 'list_loaded' : 'list_empty', { naics: NAICS, count: j.notices.length, shown: Math.min(j.notices.length, TOP_N), scored: j.notices.filter(n => n.fit).length, stale: j.stale === true, ...timing });
         } else {
-          setFailed(true);
+          if (!hadSeed.current) setFailed(true);
           track('list_load_failed', { naics: NAICS, status: res.status });
         }
       } catch {
         if (cancelled) return;
-        setFailed(true);
+        if (!hadSeed.current) setFailed(true);
         track('list_load_failed', { naics: NAICS, status: 0 });
       }
     })();
@@ -226,8 +245,8 @@ export default function ContractsForBidConstruction() {
   return (
     <>
       <Helmet>
-        <title>Open Small Business Set-Aside Construction Contracts (NAICS 236220) — Live from SAM.gov</title>
-        <meta name="description" content="Live list of open small-business set-aside government construction contracts for bid — NAICS 236220 solicitations, presolicitations and sources sought from SAM.gov, with due dates and a free bid/no-bid fit check for each." />
+        <title>Open Government Construction Contracts for Bid (NAICS 236220)</title>
+        <meta name="description" content="Open small-business set-aside construction contracts for bid — live NAICS 236220 notices from SAM.gov with due dates and a free fit check." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`https://honestecho.com${PAGE_PATH}`} />
         <meta property="og:title" content="Open Small Business Set-Aside Construction Contracts — Live from SAM.gov" />
@@ -237,6 +256,19 @@ export default function ContractsForBidConstruction() {
         <meta name="twitter:title" content="Open Small Business Set-Aside Construction Contracts — Live from SAM.gov" />
         <meta name="twitter:description" content="Open NAICS 236220 set-aside notices from SAM.gov, due dates and a free fit check for each." />
       </Helmet>
+
+      <BreadcrumbListSchema
+        items={[
+          { name: 'Honest Echo', path: '/' },
+          { name: 'Open government construction contracts', path: PAGE_PATH },
+        ]}
+      />
+      {payload && rows.length > 0 && (
+        <ItemListSchema
+          name="Open government construction contracts (NAICS 236220)"
+          items={rows.slice(0, TOP_N).map(n => ({ name: cleanTitle(n.title), url: n.sam_url }))}
+        />
+      )}
 
       {/* Hero — deliberately short: the list is the page. The navbar is sticky
           and in flow, so no clearance padding here. */}
@@ -292,7 +324,7 @@ export default function ContractsForBidConstruction() {
           </div>
 
           {payload && (
-            <p className="mt-1 mb-2 text-sm text-[#94a3b8] font-body leading-5">
+            <p className="mt-1 mb-2 text-sm text-[#94a3b8] font-body leading-5" suppressHydrationWarning>
               {rows.length > TOP_N
                 ? <>Showing <span className="text-white font-semibold tabular-nums">{TOP_N}</span> of <span className="text-white font-semibold tabular-nums">{rows.length}</span> open contracts, nearest deadlines first</>
                 : <><span className="text-white font-semibold tabular-nums">{rows.length}</span> open contract{rows.length === 1 ? '' : 's'}</>}
@@ -365,7 +397,7 @@ export default function ContractsForBidConstruction() {
                           title="View notice on SAM.gov"
                           className="group inline [overflow-wrap:anywhere] text-white font-headline font-semibold text-base md:text-[17px] leading-snug hover:text-[#00c3ff] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] rounded"
                         >
-                          {n.title.replace(/^[A-Z0-9]{1,4}--\s*/, '')}
+                          {cleanTitle(n.title)}
                           <ExternalLink aria-label="Opens on SAM.gov" className="hidden sm:inline-block ml-1.5 w-4 h-4 align-baseline text-[#64748b] group-hover:text-[#00c3ff]" strokeWidth={2} />
                         </a>
                         <p className="text-sm text-[#a3b2c6] font-body mt-1 leading-5">
@@ -373,14 +405,14 @@ export default function ContractsForBidConstruction() {
                           {' · '}
                           {n.place_of_performance ?? <span className="text-[#8b9bb4]">Location not listed</span>}
                         </p>
-                        <p className="mt-1 text-[13px] leading-5 text-[#8293aa] font-body">
+                        <p className="mt-1 text-[13px] leading-5 text-[#8293aa] font-body" suppressHydrationWarning>
                           {n.set_aside_label}
                           {type !== 'open' && <> · {n.notice_type}</>}
                           {' · '}Posted {fmtDate(n.posted_date)}
                         </p>
                       </div>
                       <div className="mt-2 md:mt-0 text-left md:text-right md:justify-self-end md:self-center md:w-full md:border-l md:border-[#1e2d4a]/80 md:pl-6">
-                        <p className="text-sm font-body whitespace-nowrap tabular-nums">
+                        <p className="text-sm font-body whitespace-nowrap tabular-nums" suppressHydrationWarning>
                           <span className="text-[#cbd5e1]">Due {fmtDue(n.response_deadline)}</span>
                           <span className="text-[#64748b]"> · </span>
                           <span className={`text-[13px] font-medium ${dl <= 3 ? 'text-[#fbbf24]' : 'text-[#94a3b8]'}`}>{dl} day{dl === 1 ? '' : 's'} left</span>

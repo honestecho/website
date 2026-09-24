@@ -340,7 +340,7 @@ export default function SamGovNoticeAnalyzer() {
     <>
       <Helmet>
         <title>Free SAM.gov Notice Analyzer — HE Pursuit</title>
-        <meta name="description" content="Paste any SAM.gov Notice ID or URL. Get an instant screening read — match score, gaps, and top decision factors — in seconds. Free, no account required." />
+        <meta name="description" content="Paste any SAM.gov Notice ID or URL for an instant screening read — match score, gaps, and top decision factors. Free, no account required." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/tools/sam-gov-notice-analyzer" />
         <meta property="og:title" content="Free SAM.gov Notice Analyzer — HE Pursuit" />

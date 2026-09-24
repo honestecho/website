@@ -67,7 +67,7 @@ export default function VsGovTribe() {
     <>
       <Helmet>
         <title>HE Pursuit vs GovTribe — GovTribe Alternative for GovCon Teams</title>
-        <meta name="description" content="Looking for a GovTribe alternative focused on bid/no-bid decisions? HE Pursuit helps small government contractors evaluate SAM.gov opportunities with a structured qualification workflow." />
+        <meta name="description" content="A GovTribe alternative built for bid/no-bid decisions. HE Pursuit helps small contractors qualify SAM.gov opportunities, not just find them." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/vs-govtribe" />
         <meta property="og:title" content="HE Pursuit vs GovTribe — GovTribe Alternative for GovCon Teams" />

@@ -151,7 +151,7 @@ export default function PursuitReadout() {
     <>
       <Helmet>
         <title>Free Pursuit Readout | 3 Federal Opportunities Worth Your Time | Honest Echo</title>
-        <meta name="description" content="Tell us what your company does. Get a reasoned shortlist of 3 federal opportunities worth pursuing — vetted for hidden disqualifiers — plus one near-miss. Free — no account required." />
+        <meta name="description" content="Tell us what your company does and get a shortlist of 3 federal opportunities worth pursuing, vetted for hidden disqualifiers. Free, no account." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/tools/pursuit-readout" />
         <meta property="og:title" content="Free Pursuit Readout | 3 Federal Opportunities Worth Your Time | Honest Echo" />

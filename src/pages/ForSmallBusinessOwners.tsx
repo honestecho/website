@@ -66,7 +66,7 @@ export default function ForSmallBusinessOwners() {
     <>
       <Helmet>
         <title>Government Contracts for Small Business Owners — HE Pursuit</title>
-        <meta name="description" content="Find and qualify federal contracts that fit your small business. HE Pursuit screens SAM.gov notices against your NAICS, certifications, and capacity — bid/no-bid decisions in minutes, not weekends." />
+        <meta name="description" content="Find federal contracts that fit your small business. HE Pursuit screens SAM.gov notices against your NAICS, certifications, and capacity in minutes." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/for-small-business-owners/" />
         <meta property="og:title" content="Government Contracts for Small Business Owners — HE Pursuit" />

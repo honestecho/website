@@ -67,7 +67,7 @@ export default function VsGovWin() {
     <>
       <Helmet>
         <title>HE Pursuit vs GovWin IQ — GovWin Alternative for Small Contractors</title>
-        <meta name="description" content="Looking for a GovWin alternative? HE Pursuit helps small government contractors evaluate SAM.gov opportunities and make faster bid/no-bid decisions — at a fraction of the cost." />
+        <meta name="description" content="A GovWin alternative for small contractors. HE Pursuit qualifies SAM.gov opportunities and delivers bid/no-bid decisions at a fraction of the cost." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/vs-govwin" />
         <meta property="og:title" content="HE Pursuit vs GovWin IQ — GovWin Alternative for Small Contractors" />

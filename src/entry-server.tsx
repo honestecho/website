@@ -20,8 +20,16 @@ interface NodeReadableLike {
 // for every Suspense/lazy boundary to settle before resolving, so deep routes
 // render their full markup and their per-route <Helmet> head runs. This is what
 // lets App.tsx keep client code-splitting AND still produce real static HTML.
-export async function render(url: string): Promise<{ html: string; helmetContext: HelmetContext }> {
+export async function render(
+  url: string,
+  // Build-time data a route can render statically. Set on globalThis for the
+  // duration of this render only; the page reads the same value from
+  // window.__HE_LIST__ on the client so hydration sees identical input.
+  seed?: { list?: unknown }
+): Promise<{ html: string; helmetContext: HelmetContext }> {
   const helmetContext: HelmetContext = {};
+
+  (globalThis as { __HE_LIST__?: unknown }).__HE_LIST__ = seed?.list;
 
   const { prelude } = await prerenderToNodeStream(
     <HelmetProvider context={helmetContext}>
@@ -41,6 +49,8 @@ export async function render(url: string): Promise<{ html: string; helmetContext
     stream.on('end', () => resolve(data));
     stream.on('error', reject);
   });
+
+  delete (globalThis as { __HE_LIST__?: unknown }).__HE_LIST__;
 
   return { html, helmetContext };
 }

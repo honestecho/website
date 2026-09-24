@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { resourceByPath } from '../content/resources';
 
 // ── Organization (rendered on every page via App.tsx) ─────────────────────────
 
@@ -96,6 +97,39 @@ export function ItemListSchema({ name, items }: { name: string; items: { name: s
       name: itemName,
       url,
     })),
+  };
+
+  return (
+    <Helmet>
+      <script type="application/ld+json">{JSON.stringify(schema)}</script>
+    </Helmet>
+  );
+}
+
+// ── Article (guides listed in src/content/resources.ts) ───────────────────────
+// Takes the path and reads the rest from the manifest, so the card on
+// /resources/ and the structured data on the guide itself can never disagree.
+// No dateModified: an accurate one would have to be generated at build time,
+// and a hand-maintained one drifts. datePublished is a fact that never moves.
+
+export function GuideArticleSchema({ path }: { path: string }) {
+  const guide = resourceByPath(path);
+  if (!guide) return null;
+
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: guide.title,
+    description: guide.summary,
+    datePublished: guide.published,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://honestecho.com${path}` },
+    author: { '@type': 'Organization', name: 'Honest Echo LLC', url: 'https://honestecho.com' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Honest Echo LLC',
+      url: 'https://honestecho.com',
+      logo: { '@type': 'ImageObject', url: 'https://honestecho.com/he-logo.png' },
+    },
   };
 
   return (

@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight, HelpCircle, Megaphone, Scale, ShieldCheck, XCircle, CheckCircle } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
-import { SoftwareApplicationSchema } from '../components/SchemaOrg';
+import { SoftwareApplicationSchema, GuideArticleSchema } from '../components/SchemaOrg';
 
 const leadCard = {
   Icon: Megaphone,
@@ -90,6 +90,7 @@ export default function SourcesSoughtGuide() {
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
       <SoftwareApplicationSchema />
+      <GuideArticleSchema path="/sources-sought-worth-responding/" />
 
       {/* Hero */}
       <section className="pt-24 pb-12 px-6 relative overflow-hidden">

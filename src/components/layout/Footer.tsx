@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { RESOURCES } from '../../content/resources';
 
 export default function Footer() {
   return (
@@ -99,9 +100,25 @@ export default function Footer() {
                   { label: 'vs GovWin', to: '/vs-govwin/' },
                   { label: 'vs GovTribe', to: '/vs-govtribe/' },
                   { label: 'SAM.gov Analysis', to: '/sam-gov-opportunity-analysis/' },
-                  { label: 'Hidden Opportunities', to: '/sam-gov-hidden-opportunities/' },
-                  { label: 'Sources Sought Guide', to: '/sources-sought-worth-responding/' },
-                  { label: 'Recompete Tracking', to: '/sam-gov-recompete-tracking/' },
+                ].map(({ label, to }) => (
+                  <li key={to}>
+                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors whitespace-nowrap">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Guides column — the grid has always declared five columns; the
+                guides used to sit under Compare, which is where comparison
+                pages belong. They now hang off their own index at /resources/. */}
+            <div>
+              <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-3">Guides</p>
+              <ul className="space-y-2">
+                {[
+                  { label: 'All Guides', to: '/resources/' },
+                  ...RESOURCES.map(r => ({ label: r.navLabel, to: r.path })),
                 ].map(({ label, to }) => (
                   <li key={to}>
                     <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors whitespace-nowrap">

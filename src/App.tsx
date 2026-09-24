@@ -20,6 +20,7 @@ import SamGovAnalysis from './pages/SamGovAnalysis';
 import SamGovHiddenOpportunities from './pages/SamGovHiddenOpportunities';
 import SourcesSoughtGuide from './pages/SourcesSoughtGuide';
 import SamGovRecompeteTracking from './pages/SamGovRecompeteTracking';
+import Resources from './pages/Resources';
 import ForSmallBusinessOwners from './pages/ForSmallBusinessOwners';
 import ForProposalManagers from './pages/ForProposalManagers';
 import ForGovconConsultants from './pages/ForGovconConsultants';
@@ -140,6 +141,8 @@ function App() {
           <Route path="/sam-gov-opportunity-analysis" element={<SamGovAnalysis />} />
           <Route path="/sam-gov-hidden-opportunities" element={<SamGovHiddenOpportunities />} />
           <Route path="/sam-gov-hidden-opportunities/" element={<SamGovHiddenOpportunities />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/resources/" element={<Resources />} />
           <Route path="/sources-sought-worth-responding" element={<SourcesSoughtGuide />} />
           <Route path="/sources-sought-worth-responding/" element={<SourcesSoughtGuide />} />
           <Route path="/sam-gov-recompete-tracking" element={<SamGovRecompeteTracking />} />

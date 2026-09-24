@@ -38,6 +38,7 @@ const routes = [
   { path: '/vs-govtribe',                             file: 'src/pages/VsGovTribe.tsx',                  changefreq: 'monthly', priority: '0.8' },
   { path: '/sam-gov-opportunity-analysis',            file: 'src/pages/SamGovAnalysis.tsx',              changefreq: 'monthly', priority: '0.8' },
   { path: '/sam-gov-hidden-opportunities',            file: 'src/pages/SamGovHiddenOpportunities.tsx',   changefreq: 'monthly', priority: '0.8' },
+  { path: '/resources',                               file: 'src/content/resources.ts',                  changefreq: 'monthly', priority: '0.8' },
   { path: '/sources-sought-worth-responding',         file: 'src/pages/SourcesSoughtGuide.tsx',          changefreq: 'monthly', priority: '0.8' },
   { path: '/sam-gov-recompete-tracking',              file: 'src/pages/SamGovRecompeteTracking.tsx',     changefreq: 'monthly', priority: '0.8' },
   { path: '/for-small-business-owners',               file: 'src/pages/ForSmallBusinessOwners.tsx',      changefreq: 'monthly', priority: '0.8' },

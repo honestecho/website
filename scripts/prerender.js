@@ -118,12 +118,25 @@ function lastModified(file) {
 }
 
 function writeSitemap() {
-  let dated = 0;
+  // Cloudflare Pages checks out shallow. With a single commit git treats every
+  // file as created in it, so `git log -1 -- <file>` answers for all of them
+  // with the same date — history that isn't history. The tell is the spread: a
+  // repo with real history gives several distinct dates across 23 pages, a
+  // shallow one gives exactly one. Trust the dates only in the first case;
+  // otherwise omit lastmod rather than stamp all 23 URLs with the build date,
+  // which is a signal crawlers learn to ignore. Self-correcting: if the
+  // checkout ever carries history, the dates come back on their own.
+  const dates = routes.map(r => (r.path === LIST_ROUTE ? null : lastModified(r.file)));
+  const trustworthy = new Set(dates.filter(Boolean)).size > 1;
+  if (!trustworthy) {
+    console.warn('  !  no usable git history — lastmod omitted except for the list page');
+  }
+
   const body = routes
-    .map(({ path, file, changefreq, priority }) => {
-      // The list page's content turns over with SAM.gov, not with its source file.
-      const lastmod = path === LIST_ROUTE ? today : lastModified(file);
-      if (lastmod) dated++;
+    .map(({ path, changefreq, priority }, i) => {
+      // The list page's content turns over with SAM.gov, not with its source
+      // file, and it is rebuilt daily — so its build date is its real lastmod.
+      const lastmod = path === LIST_ROUTE ? today : trustworthy ? dates[i] : null;
       return [
         '  <url>',
         `    <loc>${urlOf(path)}</loc>`,
@@ -134,9 +147,6 @@ function writeSitemap() {
       ].join('\n');
     })
     .join('\n\n');
-  if (dated < routes.length) {
-    console.warn(`  !  lastmod omitted for ${routes.length - dated} URL(s) — git history is not available here`);
-  }
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import FlyIn from '../components/FlyIn';
 import Notice from '../components/Notice';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
-import HeroPursuitCardZoom from '../components/HeroPursuitCardZoom';
+import HeroVideo from '../components/HeroVideo';
 import ZoomImage from '../components/ZoomImage';
 import { track } from '../lib/analytics';
 
@@ -95,9 +95,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right column: the product's real decision card — static render, click to enlarge */}
-          <div className="w-full min-w-0 hidden md:flex items-center lg:justify-self-end lg:max-w-[680px] transition-transform duration-700 hover:-translate-y-2">
-            <HeroPursuitCardZoom />
+          {/* Right column: the 30-second launch tour (real product renders throughout) */}
+          <div className="w-full min-w-0 hidden md:flex items-center lg:justify-self-end lg:max-w-[680px]">
+            <HeroVideo />
           </div>
         </div>
       </section>

@@ -93,11 +93,21 @@ function isListPayload(v: unknown): v is ListPayload {
 
 // Build-time seed. scripts/prerender.js fetches the list, applies the deadline
 // floor itself, and hands the same object to the server render (globalThis) and
-// the browser (an inline window.__HE_LIST__ before the bundle) — so the rows are
-// in the static HTML for crawlers and hydration sees identical input. No
-// Date.now() filtering here: a floor applied twice against two different clocks
-// would produce two different row sets and break hydration. The effect below
-// still refetches live data on mount, which is what a visitor ends up seeing.
+// the browser (an inline window.__HE_LIST__ before the bundle). Two payoffs: the
+// rows are in the static HTML for crawlers, and the first client render paints
+// rows instead of a skeleton. The effect below still refetches on mount, which
+// is what a visitor ends up seeing.
+//
+// NOTE: this app does NOT hydrate. src/main.tsx calls createRoot, so React
+// discards the pre-rendered DOM and renders from scratch — verified 2026-09-25
+// by marking the server <h1> with an attribute the client render cannot produce
+// and watching it disappear. So server/client render parity is not enforced by
+// anything today. If main.tsx ever moves to hydrateRoot (the natural upgrade for
+// a pre-rendered site), this page becomes a mismatch minefield: fmtDue,
+// fmtUpdated and fmtDate all format in the VIEWER's timezone while the static
+// HTML was formatted in the build machine's, and daysLeft() reads Date.now().
+// Those three call sites need suppressHydrationWarning at that point — they had
+// it, and it was removed here because it is dead code until that switch.
 const seedPayload = (): ListPayload | null => {
   const v = (globalThis as { __HE_LIST__?: unknown }).__HE_LIST__;
   return isListPayload(v) ? v : null;
@@ -324,7 +334,7 @@ export default function ContractsForBidConstruction() {
           </div>
 
           {payload && (
-            <p className="mt-1 mb-2 text-sm text-[#94a3b8] font-body leading-5" suppressHydrationWarning>
+            <p className="mt-1 mb-2 text-sm text-[#94a3b8] font-body leading-5">
               {rows.length > TOP_N
                 ? <>Showing <span className="text-white font-semibold tabular-nums">{TOP_N}</span> of <span className="text-white font-semibold tabular-nums">{rows.length}</span> open contracts, nearest deadlines first</>
                 : <><span className="text-white font-semibold tabular-nums">{rows.length}</span> open contract{rows.length === 1 ? '' : 's'}</>}
@@ -405,14 +415,14 @@ export default function ContractsForBidConstruction() {
                           {' · '}
                           {n.place_of_performance ?? <span className="text-[#8b9bb4]">Location not listed</span>}
                         </p>
-                        <p className="mt-1 text-[13px] leading-5 text-[#8293aa] font-body" suppressHydrationWarning>
+                        <p className="mt-1 text-[13px] leading-5 text-[#8293aa] font-body">
                           {n.set_aside_label}
                           {type !== 'open' && <> · {n.notice_type}</>}
                           {' · '}Posted {fmtDate(n.posted_date)}
                         </p>
                       </div>
                       <div className="mt-2 md:mt-0 text-left md:text-right md:justify-self-end md:self-center md:w-full md:border-l md:border-[#1e2d4a]/80 md:pl-6">
-                        <p className="text-sm font-body whitespace-nowrap tabular-nums" suppressHydrationWarning>
+                        <p className="text-sm font-body whitespace-nowrap tabular-nums">
                           <span className="text-[#cbd5e1]">Due {fmtDue(n.response_deadline)}</span>
                           <span className="text-[#64748b]"> · </span>
                           <span className={`text-[13px] font-medium ${dl <= 3 ? 'text-[#fbbf24]' : 'text-[#94a3b8]'}`}>{dl} day{dl === 1 ? '' : 's'} left</span>

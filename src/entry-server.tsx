@@ -24,7 +24,8 @@ export async function render(
   url: string,
   // Build-time data a route can render statically. Set on globalThis for the
   // duration of this render only; the page reads the same value from
-  // window.__HE_LIST__ on the client so hydration sees identical input.
+  // window.__HE_LIST__ in the browser, so the first client render paints the
+  // same rows this pass wrote into the HTML.
   seed?: { list?: unknown }
 ): Promise<{ html: string; helmetContext: HelmetContext }> {
   const helmetContext: HelmetContext = {};

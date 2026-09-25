@@ -65,9 +65,9 @@ const urlOf = path => `https://honestecho.com${path}${path === '/' ? '' : '/'}`;
 
 /**
  * Build-time list for the construction page, so its rows are in the static HTML
- * instead of arriving after hydration (a crawler only ever saw "Loading live
- * notices…"). Never fatal: with no seed the page renders its skeleton and
- * fetches on mount, exactly as it did before.
+ * instead of arriving only after the bundle loads (a crawler saw nothing but
+ * "Loading live notices…"). Never fatal: with no seed the page renders its
+ * skeleton and fetches on mount, exactly as it did before.
  */
 async function fetchListSeed() {
   try {
@@ -224,8 +224,8 @@ async function prerender() {
       const headTags = [
         helmetTags(helmetContext.helmet),
         `<link rel="canonical" href="${urlOf(path)}" />`,
-        // Same object the server just rendered from, so hydration sees the rows
-        // already in the HTML rather than replacing them with a skeleton.
+        // Same object the server just rendered from, so the first client render
+        // paints these rows rather than starting from a skeleton.
         seed ? `<script>window.__HE_LIST__ = ${inlineJson(listSeed)};</script>` : '',
       ]
         .filter(Boolean)

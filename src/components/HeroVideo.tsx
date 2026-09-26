@@ -68,8 +68,8 @@ export default function HeroVideo() {
       <video
         ref={ref}
         className="absolute inset-0 w-full h-full object-cover"
-        src="/video/pursuit-launch.mp4"
-        poster="/video/pursuit-launch-poster.jpg"
+        src="/video/pursuit-launch-v2.mp4"
+        poster="/video/pursuit-launch-v2-poster.jpg"
         muted
         loop
         playsInline

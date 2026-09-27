@@ -5,6 +5,7 @@ import { ArrowRight, Check, ChevronDown, ShieldCheck, Clock, Ban, Users } from '
 import FlyIn from '../components/FlyIn';
 import Notice from '../components/Notice';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
+import HeroPursuitCardZoom from '../components/HeroPursuitCardZoom';
 
 // ─── Feature Matrix ───────────────────────────────────────────────────────────
 
@@ -58,10 +59,11 @@ function Cell({ value }: { value: CV }) {
 // ─── FAQ ──────────────────────────────────────────────────────────────────────
 
 const faqs = [
-  { q: 'Do I need a credit card to start?',               a: 'No. Free requires only your email. A card is only needed when you upgrade to a paid plan.' },
+  { q: 'Do I need a credit card to start?',               a: 'No. Start Free needs an email, followed by a few questions to build your profile. A card is required only when you choose a paid plan.' },
   { q: 'Can I cancel anytime?',                           a: 'Yes. Cancel from your account settings — no notice period, no lock-in.' },
-  { q: 'What is the difference between Starter and Pro?', a: 'Starter ($99/mo) gives you the full qualification workflow for up to 25 pursuits per month. Pro ($199/mo) removes limits entirely and adds the dashboard, decision tracking, and PDF export.' },
-  { q: 'When should I upgrade to Team?',                  a: 'When more than one person needs to work in the same pipeline. Team adds multiple users, shared pursuits, team-level visibility, and onboarding support. Team is launching soon — join the waitlist from the Team card above and we\'ll reach out with early-access pricing.' },
+  { q: 'Will it write my proposal?',                      a: 'No. HE Pursuit decides whether an opportunity deserves a proposal: eligibility, requirements, disqualifiers, and a Go, Conditional Go, or No-Bid with the reasons. Writing the proposal stays with you.' },
+  { q: 'What is the difference between Starter and Pro?', a: 'Starter ($99/month) includes the full qualification workflow for up to 25 pursuits per month. Pro ($199/month) includes unlimited pursuits, plus the dashboard, decision history, and PDF export.' },
+  { q: 'When should I upgrade to Team?',                  a: 'Choose Team when more than one person needs to work in the same pipeline. Team is $299/month and waitlist-only for now. Join the waitlist and we\'ll let you know when it becomes available.' },
 ];
 
 // ─── Pricing cards data ───────────────────────────────────────────────────────
@@ -198,16 +200,27 @@ export default function Pricing() {
 
       {/* ── SECTION 1 — Hero ─────────────────────────────────────────────── */}
       <section className="py-24 px-6 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
-            Simple pricing for better bid decisions.
-          </h1>
-          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body mb-6">
-            HE Pursuit helps you evaluate government contracting opportunities quickly so you can focus on the bids that matter. Start free and qualify opportunities in minutes. Upgrade when your team needs deeper analysis, more volume, and a structured pursuit process.
-          </p>
-          <p className="text-[#00c3ff] font-body text-xl md:text-2xl font-bold tracking-tight">
-            Starter is $99/month and Pro is $199/month. Compare that with the labor cost of one proposal your team decides not to write.
-          </p>
+        <div className="max-w-7xl mx-auto relative z-10 flex flex-col lg:flex-row items-center gap-12">
+          <div className="w-full lg:w-[42%]">
+            <h1 className="font-headline font-black text-5xl md:text-6xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
+              Know which bids to skip before you write them.
+            </h1>
+            <p className="text-[#a0b2c8] text-lg leading-relaxed font-body mb-6">
+              Searching opportunities and getting profile-based match scores is free. Paid plans unlock the full bid/no-bid workflow: eligibility, requirements, disqualifiers, and a Go, Conditional Go, or No-Bid with reasons.
+            </p>
+            <p className="text-[#00c3ff] font-body text-xl md:text-2xl font-bold tracking-tight">
+              Starter is $99/month and Pro is $199/month. Compare that with the labor cost of one proposal your team decides not to write.
+            </p>
+            <Link to="/signup/?plan=free&promo=fall2026" className="inline-flex items-center justify-center gap-2 mt-8 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline">
+              Start free
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <p className="mt-3 text-sm text-[#8b9bb4] font-body">No credit card required. Upgrade when you need the full workflow or more pursuit volume.</p>
+          </div>
+          <figure className="w-full lg:w-[58%] relative hidden lg:block">
+            <HeroPursuitCardZoom />
+            <figcaption className="mt-3 text-sm text-[#8b9bb4] font-body text-center">Example HE Pursuit readout for a sample business profile — not a customer result.</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -219,10 +232,23 @@ export default function Pricing() {
             <span className="font-bold text-[#00c3ff]">Fall Bid Clarity Pass:</span> 2 months of Starter or Pro free — applied automatically at checkout.
             <br /> <span className="font-bold text-[#00c3ff]">Ends November 30.</span> Renews at the regular price unless canceled.
           </Notice>
-          <div className="mb-8 rounded-xl border border-[#00c3ff]/30 bg-[#00c3ff]/5 px-6 py-4 text-center">
-            <p className="font-headline font-bold text-white text-base md:text-lg tracking-tight">
-              Every plan starts free: answer a few questions about your company and get a <span className="text-[#00c3ff]">scored list of open opportunities that match</span> — in about 30 seconds. No credit card. Paid plans add full <span className="text-[#00c3ff]">bid/no-bid decisions</span>.
-            </p>
+          <div className="mb-8">
+            <p className="text-xs text-[#8b9bb4] uppercase tracking-widest font-label mb-3">What happens when you click Start Free</p>
+            <ol className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                { n: '1', title: 'Sign up with your email', body: 'No credit card. Nothing to install.' },
+                { n: '2', title: 'Answer a few questions', body: 'Your NAICS codes, set-asides, and the work you want.' },
+                { n: '3', title: 'Get your scored list', body: 'Open opportunities that match, in about 30 seconds. Then run one Phase 1 evaluation free.' },
+              ].map(s => (
+                <li key={s.n} className="rounded-xl border border-[#1e2d4a] bg-[#0b1120] px-5 py-4 flex gap-4 items-start">
+                  <span className="w-7 h-7 rounded-full bg-[#00c3ff]/10 border border-[#00c3ff]/40 text-[#00c3ff] text-sm font-bold font-headline flex items-center justify-center shrink-0">{s.n}</span>
+                  <div>
+                    <p className="font-headline font-bold text-white text-base tracking-tight">{s.title}</p>
+                    <p className="text-sm text-[#a0b2c8] font-body mt-0.5">{s.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
             {plans.map((plan, i) => (
@@ -345,7 +371,7 @@ export default function Pricing() {
                 <div className="absolute inset-0 bg-[#00c3ff] blur-md opacity-20 rounded-full scale-150"></div>
                 <ShieldCheck className="w-5 h-5 text-[#00c3ff] relative z-10" strokeWidth={2} />
               </div>
-              No credit card required
+              No credit card required to start Free
             </div>
             <div className="flex items-center gap-2.5">
               <div className="w-8 h-8 flex items-center justify-center relative overflow-visible shrink-0">
@@ -378,6 +404,9 @@ export default function Pricing() {
           </h2>
           <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-3xl">
             Federal opportunities are public on SAM.gov. HE Pursuit charges for profile-based triage and a documented decision workflow, not for access to the notices.
+          </p>
+          <p className="text-white text-lg leading-relaxed font-body max-w-3xl mt-4">
+            What it won't do: write your proposal or promise a win. It tells you which opportunities are worth a proposal, and why.
           </p>
           <PursuitCostCalculator />
         </div>

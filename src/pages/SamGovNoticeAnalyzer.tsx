@@ -591,6 +591,10 @@ export default function SamGovNoticeAnalyzer() {
                         <p className="text-sm text-[#8b9bb4] font-body leading-relaxed mt-0.5">{meta.find(m => m.key === activeKey)?.blurb}</p>
                       </div>
                     </div>
+                    <p className="text-sm text-[#a0b2c8] font-body mt-3 pt-3 border-t border-[#1e2d4a]">
+                      <span className="text-white font-semibold">Next: </span>
+                      Select “Score against my business” to create a free profile in about 30 seconds (email, NAICS codes, and set-asides; no card) and see a scored list of open opportunities that match.
+                    </p>
                     <p className="text-xs text-[#64748b] font-body mt-3">Treat this as a first screen, not an eligibility decision.</p>
                   </div>
                 </>

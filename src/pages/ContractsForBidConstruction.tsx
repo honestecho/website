@@ -108,9 +108,16 @@ function isListPayload(v: unknown): v is ListPayload {
 // HTML was formatted in the build machine's, and daysLeft() reads Date.now().
 // Those three call sites need suppressHydrationWarning at that point — they had
 // it, and it was removed here because it is dead code until that switch.
+// The seed was floored at build time (72h), but the build can be days old by the
+// time a visitor sees it, and it is what stays on screen if the live refetch
+// fails. Re-apply the advertised 48-hour floor against the visitor's clock.
+// (Safe only because the app does not hydrate; see the note above.)
 const seedPayload = (): ListPayload | null => {
   const v = (globalThis as { __HE_LIST__?: unknown }).__HE_LIST__;
-  return isListPayload(v) ? v : null;
+  if (!isListPayload(v)) return null;
+  const floor = Date.now() + 48 * 3600e3;
+  const notices = v.notices.filter(n => new Date(n.response_deadline).getTime() >= floor);
+  return notices.length ? { ...v, notices } : null;
 };
 
 const fmtDate = (iso: string) =>

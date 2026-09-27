@@ -7,3 +7,4 @@
 [2026-09-13] route=codex-review+codex-score target=Home.tsx(persona restructure)+HeroPursuitCard dates result=see three-brain-out/2026-09-13-home-persona-review/
 [2026-09-13] route=codex-taste-loop target=Home.tsx sections 2+3 (steps+Radar, persona doorways) result=8 rounds HOW 76→96 WHO 74→96; files three-brain-out/2026-09-13-home-persona-review/taste-r*.md
 [2026-09-13] route=codex-taste-loop(cont.) target=Home.tsx section 2 illustration → Scoring Alignment Check (ProfileIllustration.tsx) result=r10 HOW 95 / WHO 96; loop closed
+[2026-09-27] route=codex-review target=pricing+analyzer copy pass result=round1 7xP1 applied; round2 ship (1 fix applied); scores clarity 95 proof 81 next 94 trust 96 hierarchy 90

@@ -14,11 +14,11 @@ export default function About() {
         <meta property="og:url" content="https://honestecho.com/about" />
         <meta property="og:title" content="About Honest Echo | Evaluate Government Contracting Opportunities" />
         <meta property="og:description" content="Honest Echo helps small government contractors evaluate government contracting opportunities, reduce wasted proposal effort, and make better bid/no-bid decisions." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="About Honest Echo | Evaluate Government Contracting Opportunities" />
         <meta name="twitter:description" content="Honest Echo helps small government contractors evaluate government contracting opportunities and make confident bid/no-bid decisions." />
-        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
 
       {/* ── Hero ─────────────────────────────────────────────────────────────── */}

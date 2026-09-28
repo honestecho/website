@@ -53,11 +53,11 @@ export default function SamGovAnalysis() {
         <meta property="og:url" content="https://honestecho.com/sam-gov-opportunity-analysis" />
         <meta property="og:title" content="SAM.gov Opportunity Analysis Tool — HE Pursuit" />
         <meta property="og:description" content="SAM.gov lists opportunities. HE Pursuit helps you decide which ones to pursue. Structured fit, eligibility, and effort analysis for small government contractors." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="SAM.gov Opportunity Analysis Tool — HE Pursuit" />
         <meta name="twitter:description" content="SAM.gov lists opportunities. HE Pursuit helps you decide which ones to pursue. Structured bid/no-bid analysis for small government contractors." />
-        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
       <SoftwareApplicationSchema />
 

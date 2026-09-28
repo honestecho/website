@@ -71,11 +71,11 @@ export default function ForProposalManagers() {
         <meta property="og:url" content="https://honestecho.com/for-proposal-managers/" />
         <meta property="og:title" content="Bid/No-Bid Decisions for Proposal Managers — HE Pursuit" />
         <meta property="og:description" content="The bid/no-bid scorecard, already filled in. Triage SAM.gov at volume, kill bad pursuits early, and defend every decision with documented reasoning." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Bid/No-Bid Decisions for Proposal Managers — HE Pursuit" />
         <meta name="twitter:description" content="Score every SAM.gov notice before the writing starts. Go / Conditional Go / No-Bid with evidence." />
-        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
       <SoftwareApplicationSchema />
       <FAQPageSchema items={faqs} />

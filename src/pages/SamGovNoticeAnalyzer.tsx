@@ -142,14 +142,15 @@ function ResultSkeleton() {
 // identical 25/85 = 29% "Poor Fit", because 094 dropped the only IT persona. A
 // good example needs (a) a NAICS one persona matches exactly, (b) a set-aside,
 // (c) a title keyword hit, and (d) 45+ days of runway — past the deadline the
-// card hard-flips to NOT BIDDABLE. This one scores 74 (GO) for
-// building_construction vs 39-44 for the other seven, so the persona selector
+// card hard-flips to NOT BIDDABLE. This one (Army small-business design-build
+// MATOC, 236220, re-picked 2026-09-28) scores 85 for building_construction with
+// a 45-point spread across the twelve personas, so the persona selector
 // actually demonstrates that the profile changes the answer.
 // FALLBACK ONLY — the live sample id now comes from GET /public/analyze/sample,
 // which picks a current, well-spread notice from the corpus so the demo can
 // never expire. This constant is the last-resort pre-fill when that request
-// fails, and it does go stale (this one closes 2026-10-08).
-const SAMPLE_NOTICE_ID  = '9c73de6224ab4a8ea88dfbb60e8d085f';
+// fails, and it does go stale (this one closes 2027-01-08).
+const SAMPLE_NOTICE_ID  = '89faec41b1f347abb77256fc4e1b0bf7';
 const SAMPLE_NOTICE_URL = `https://sam.gov/opp/${SAMPLE_NOTICE_ID}/view`;
 const sampleUrlFor = (id: string) => `https://sam.gov/opp/${id}/view`;
 
@@ -345,11 +346,11 @@ export default function SamGovNoticeAnalyzer() {
         <meta property="og:url" content="https://honestecho.com/tools/sam-gov-notice-analyzer" />
         <meta property="og:title" content="Free SAM.gov Notice Analyzer — HE Pursuit" />
         <meta property="og:description" content="Paste any SAM.gov Notice ID and get an instant screening read — match score, gaps, and top decision factors — in seconds." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Free SAM.gov Notice Analyzer — HE Pursuit" />
         <meta name="twitter:description" content="Instant screening read for any SAM.gov notice — match score, gaps, decision factors. Free, no signup required." />
-        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
 
       {/* ── Hero ───────────────────────────────────────────────────────────── */}

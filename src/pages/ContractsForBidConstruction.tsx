@@ -268,7 +268,7 @@ export default function ContractsForBidConstruction() {
         <meta property="og:url" content={`https://honestecho.com${PAGE_PATH}`} />
         <meta property="og:title" content="Open Small Business Set-Aside Construction Contracts — Live from SAM.gov" />
         <meta property="og:description" content="Open NAICS 236220 set-aside notices from SAM.gov, due dates and a free fit check for each." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Open Small Business Set-Aside Construction Contracts — Live from SAM.gov" />
         <meta name="twitter:description" content="Open NAICS 236220 set-aside notices from SAM.gov, due dates and a free fit check for each." />

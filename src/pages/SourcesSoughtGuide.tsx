@@ -82,11 +82,11 @@ export default function SourcesSoughtGuide() {
         <meta property="og:url" content="https://honestecho.com/sources-sought-worth-responding" />
         <meta property="og:title" content="Should You Respond to a Sources Sought Notice? — HE Pursuit" />
         <meta property="og:description" content="Responses shape set-asides and requirements before the RFP exists. When it's worth your hours — and how to decide in minutes." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Should You Respond to a Sources Sought Notice? — HE Pursuit" />
         <meta name="twitter:description" content="Responses shape set-asides and requirements before the RFP exists. When it's worth your hours — and how to decide in minutes." />
-        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
       <SoftwareApplicationSchema />

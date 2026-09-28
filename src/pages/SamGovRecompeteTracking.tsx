@@ -82,11 +82,11 @@ export default function SamGovRecompeteTracking() {
         <meta property="og:url" content="https://honestecho.com/sam-gov-recompete-tracking" />
         <meta property="og:title" content="SAM.gov Recompete Tracking for Small Contractors — HE Pursuit" />
         <meta property="og:description" content="Every contract ends. Track expirations in your NAICS lane, see the incumbent and value, and position quarters ahead of the RFP." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="SAM.gov Recompete Tracking for Small Contractors — HE Pursuit" />
         <meta name="twitter:description" content="Every contract ends. Track expirations in your NAICS lane, see the incumbent and value, and position quarters ahead of the RFP." />
-        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
       <SoftwareApplicationSchema />

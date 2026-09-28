@@ -71,11 +71,11 @@ export default function ForGovconConsultants() {
         <meta property="og:url" content="https://honestecho.com/for-govcon-consultants/" />
         <meta property="og:title" content="Opportunity Screening for GovCon Consultants — HE Pursuit" />
         <meta property="og:description" content="Turn raw SAM.gov feeds into ranked shortlists for the clients you advise. Evidence-backed bid/no-bid recommendations your clients can interrogate." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Opportunity Screening for GovCon Consultants — HE Pursuit" />
         <meta name="twitter:description" content="SAM.gov triage with defensible scores for the clients you advise. Free analyzer for live workshop demos." />
-        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
       <SoftwareApplicationSchema />
       <FAQPageSchema items={faqs} />

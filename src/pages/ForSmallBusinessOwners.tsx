@@ -71,11 +71,11 @@ export default function ForSmallBusinessOwners() {
         <meta property="og:url" content="https://honestecho.com/for-small-business-owners/" />
         <meta property="og:title" content="Government Contracts for Small Business Owners — HE Pursuit" />
         <meta property="og:description" content="SAM.gov lists 2,000 notices a day. HE Pursuit tells you which ones fit your small business — and whether to prime, sub, or pass." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Government Contracts for Small Business Owners — HE Pursuit" />
         <meta name="twitter:description" content="Screen SAM.gov opportunities against your real business profile. Bid/no-bid decisions in minutes." />
-        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
       <SoftwareApplicationSchema />
       <FAQPageSchema items={faqs} />

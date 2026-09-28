@@ -50,11 +50,11 @@ export default function Home() {
         <meta property="og:url" content="https://honestecho.com/" />
         <meta property="og:title" content="HE Pursuit — Bid/No-Bid Decisions for Small Government Contractors" />
         <meta property="og:description" content="Find, qualify, and decide on government contracting opportunities faster. SAM.gov opportunity scoring, fit analysis, and pursuit intelligence for lean GovCon teams." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview-3.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="HE Pursuit — Bid/No-Bid Decisions for Small Government Contractors" />
         <meta name="twitter:description" content="Qualify government contracting opportunities in minutes. SAM.gov opportunity scoring and pursuit intelligence for lean GovCon teams." />
-        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview-3.png" />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
       <SoftwareApplicationSchema />
 

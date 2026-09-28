@@ -72,11 +72,11 @@ export default function VsGovTribe() {
         <meta property="og:url" content="https://honestecho.com/vs-govtribe" />
         <meta property="og:title" content="HE Pursuit vs GovTribe — GovTribe Alternative for GovCon Teams" />
         <meta property="og:description" content="GovTribe is market analytics. HE Pursuit is bid/no-bid decision workflow. If you need to qualify SAM.gov opportunities fast, HE Pursuit is the right tool." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="HE Pursuit vs GovTribe — GovTribe Alternative for GovCon Teams" />
         <meta name="twitter:description" content="GovTribe is market analytics. HE Pursuit is bid/no-bid decision workflow. If you need to qualify SAM.gov opportunities fast, HE Pursuit is the right tool." />
-        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
       <SoftwareApplicationSchema />
 

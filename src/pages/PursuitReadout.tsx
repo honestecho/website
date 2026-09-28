@@ -156,11 +156,11 @@ export default function PursuitReadout() {
         <meta property="og:url" content="https://honestecho.com/tools/pursuit-readout" />
         <meta property="og:title" content="Free Pursuit Readout | 3 Federal Opportunities Worth Your Time | Honest Echo" />
         <meta property="og:description" content="Tell us what your company does. Get a reasoned shortlist of 3 federal opportunities worth pursuing — vetted for hidden disqualifiers — plus one near-miss. Free — no account required." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Free Pursuit Readout | 3 Federal Opportunities Worth Your Time | Honest Echo" />
         <meta name="twitter:description" content="Tell us what your company does. Get a reasoned shortlist of 3 federal opportunities worth pursuing — vetted for hidden disqualifiers — plus one near-miss. Free — no account required." />
-        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
 
       {/* ── Hero ───────────────────────────────────────────────────────────── */}

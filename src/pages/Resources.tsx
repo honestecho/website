@@ -20,7 +20,7 @@ export default function Resources() {
         <meta property="og:url" content={`https://honestecho.com${PAGE_PATH}`} />
         <meta property="og:title" content="GovCon Guides — Honest Echo" />
         <meta property="og:description" content="Short guides for small government contractors on SAM.gov, Sources Sought notices, and recompetes." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="GovCon Guides — Honest Echo" />
         <meta name="twitter:description" content="Short guides for small government contractors on SAM.gov, Sources Sought notices, and recompetes." />

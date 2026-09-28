@@ -72,11 +72,11 @@ export default function VsGovWin() {
         <meta property="og:url" content="https://honestecho.com/vs-govwin" />
         <meta property="og:title" content="HE Pursuit vs GovWin IQ — GovWin Alternative for Small Contractors" />
         <meta property="og:description" content="GovWin is built for enterprise. HE Pursuit is built for small government contractors who need bid/no-bid decisions, not a $10,000/year market intelligence subscription." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="HE Pursuit vs GovWin IQ — GovWin Alternative for Small Contractors" />
         <meta name="twitter:description" content="GovWin is built for enterprise. HE Pursuit is built for small contractors who need a bid/no-bid decision platform, not a market intelligence subscription." />
-        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
       <SoftwareApplicationSchema />
 

@@ -53,11 +53,11 @@ export default function SamGovHiddenOpportunities() {
         <meta property="og:url" content="https://honestecho.com/sam-gov-hidden-opportunities" />
         <meta property="og:title" content="Find the SAM.gov Opportunities Its Search Hides — HE Pursuit" />
         <meta property="og:description" content="NAICS-filtered search misses the no-code notices — Sources Sought, Special Notices, draft RFPs. HE Pursuit surfaces every notice by keyword, then qualifies it." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Find the SAM.gov Opportunities Its Search Hides — HE Pursuit" />
         <meta name="twitter:description" content="NAICS-filtered search misses the no-code notices — Sources Sought, Special Notices, draft RFPs. HE Pursuit surfaces every notice by keyword, then qualifies it." />
-        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
       <SoftwareApplicationSchema />
       <GuideArticleSchema path="/sam-gov-hidden-opportunities/" />

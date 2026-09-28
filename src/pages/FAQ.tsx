@@ -297,11 +297,11 @@ export default function FAQ() {
         <meta property="og:url" content="https://honestecho.com/faq" />
         <meta property="og:title" content="FAQ — HE Pursuit Bid/No-Bid Platform" />
         <meta property="og:description" content="Everything you need to know about HE Pursuit and how it helps government contractors make better bid decisions using SAM.gov data." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="FAQ — HE Pursuit Bid/No-Bid Platform" />
         <meta name="twitter:description" content="Everything you need to know about HE Pursuit and how it helps government contractors make better bid decisions using SAM.gov data." />
-        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
       <FAQPageSchema items={[
         { q: 'What is HE Pursuit and how does it help government contractors?', a: 'HE Pursuit is a bid/no-bid decision platform that helps small government contractors evaluate SAM.gov opportunities quickly and decide which ones are worth pursuing. It replaces scattered notes and gut-feel decisions with a structured way to assess fit, eligibility, effort, and overall pursuit value.' },

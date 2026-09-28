@@ -108,11 +108,11 @@ export default function Terms() {
         <meta property="og:url" content="https://honestecho.com/terms" />
         <meta property="og:title" content="Terms of Service — Honest Echo" />
         <meta property="og:description" content="Terms governing your use of HE Pursuit by Honest Echo LLC." />
-        <meta property="og:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Terms of Service — Honest Echo" />
         <meta name="twitter:description" content="Terms governing your use of HE Pursuit by Honest Echo LLC." />
-        <meta name="twitter:image" content="https://honestecho.com/pursuit-overview.png" />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
 
       {/* ── Hero ───────────────────────────────────────────────────────────── */}

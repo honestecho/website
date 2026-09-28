@@ -23,6 +23,8 @@ const NAICS = '236220';
 // (Aaron, 2026-09-18).
 const TOP_N = 5;
 const PAGE_PATH = '/government-contracts-for-bid/construction/';
+// Same destination as the home page's discovery CTA (Fall offer auto-applies).
+const SIGNUP_TO = '/signup/?promo=fall2026';
 
 type SetAsideKey = 'sb' | 'sdvosb' | 'wosb' | '8a' | 'hubzone' | 'vosb' | 'isbee';
 type NoticeType = 'Solicitation' | 'Presolicitation' | 'Sources Sought';
@@ -374,7 +376,7 @@ export default function ContractsForBidConstruction() {
             </>
           )}
 
-          <div className="rounded-xl bg-[#071321]/85 backdrop-blur-[1px] border border-[#1e2d4a] overflow-hidden">
+          <div id="list-shell" className="rounded-xl bg-[#071321]/85 backdrop-blur-[1px] border border-[#1e2d4a] overflow-hidden">
             {loading && <ListSkeleton />}
 
             {failed && (
@@ -455,24 +457,29 @@ export default function ContractsForBidConstruction() {
               </ol>
             )}
 
-            {/* Hand-off to the home page: the list's own footer, not a separate banner */}
+            {/* Hand-off to a free account: the list's own footer, not a separate
+                banner. It used to link home ("See how fit checking works"), and
+                0 of 50 paid visitors reached /signup/ that way (9/04-9/28). */}
             {payload && rows.length > 0 && (
-              <div className="border-t-2 border-[#00c3ff]/30 bg-[#00c3ff]/[0.06] px-4 py-6 md:px-6 md:py-9 md:flex md:items-center md:gap-10">
+              <div id="list-handoff" className="border-t-2 border-[#00c3ff]/30 bg-[#00c3ff]/[0.06] p-4 sm:p-6 md:px-6 md:py-9 grid gap-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-10">
                 <div className="min-w-0 max-w-2xl">
                   <h2 className="font-headline font-bold text-white text-xl leading-7 md:text-[22px] tracking-tight">
-                    See which contracts fit before you spend days on a proposal.
+                    Find open federal contracts that fit your business.
                   </h2>
-                  <p className="mt-2 text-sm md:text-[15px] text-[#a0b2c8] font-body leading-6 max-w-2xl">
-                    Honest Echo checks each notice against your business and shows what matches, what needs a closer look, and what could rule it out.
+                  <p className="mt-2 text-sm md:text-[15px] text-[#a0b2c8] font-body leading-6">
+                    Answer a few questions about the work your company does. HE Pursuit then scores open opportunities from across SAM.gov for your business, not just the contracts above, and shows the reasons behind each score.
                   </p>
                 </div>
-                <Link
-                  to="/"
-                  onClick={() => track('list_home_clicked', { shown: Math.min(rows.length, TOP_N), total: rows.length, filters })}
-                  className="mt-4 md:mt-0 w-full md:w-auto shrink-0 inline-flex items-center justify-center gap-2 min-h-12 md:min-h-11 px-5 rounded-lg bg-[#00c3ff] text-[#030B17] font-headline font-bold text-sm hover:bg-[#33cfff] transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030B17] focus-visible:ring-[#00c3ff]"
-                >
-                  See how fit checking works <ArrowRight className="w-4 h-4" />
-                </Link>
+                <div className="shrink-0 flex flex-col-reverse md:flex-col items-stretch md:items-end gap-3 md:gap-2">
+                  <Link
+                    to={SIGNUP_TO}
+                    onClick={() => track('list_signup_clicked', { shown: Math.min(rows.length, TOP_N), total: rows.length, filters })}
+                    className="w-full md:w-auto md:min-w-[222px] inline-flex items-center justify-center gap-2 min-h-12 px-6 rounded-lg bg-[#00c3ff] text-[#030B17] font-headline font-bold text-sm hover:bg-[#33cfff] transition-colors whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030B17] focus-visible:ring-[#00c3ff]"
+                  >
+                    Create my free account <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <p className="text-sm font-medium text-[#cbd5e1] font-body text-center md:text-right whitespace-nowrap">Free account · No credit card</p>
+                </div>
               </div>
             )}
           </div>

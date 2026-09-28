@@ -1,0 +1,42 @@
+You are a harsh principal product designer AND a plain-English conversion copy editor judging ONE thing: the link preview (share card) for honestecho.com/signup/ — the free account signup for HE Pursuit, a tool that scores open SAM.gov federal contract opportunities against a small government contractor's business and helps them decide which ones are worth pursuing (Go / No-Go). Buyers: small GovCon owners, BD leads, proposal managers. Standing bar: 95+/100.
+
+The attached image shows the SAME og:title + og:description rendered four ways, faithful to each platform's truncation: LinkedIn post (title only, 2 lines), Slack unfurl (site name, title, description up to 3 lines, image), Facebook/Messenger (title 2 lines, description 1 line), text message (title 2 lines). The og:image is FIXED — it is the launch video's end card ("Know before you bid." / "Find opportunities that fit." / "Try Pursuit free") and is used site-wide. Judge ONLY the title and description, and how they pair with that image.
+
+Current copy:
+TITLE (53 chars): SAM.gov matches scored for your business — HE Pursuit
+DESCRIPTION (119 chars): See why each opportunity scored as it did — including the one that looks right and isn't. Free account, no credit card.
+
+Hard constraints (a rewrite that breaks one is disqualified):
+- True claims only. What signup actually gives: a free account (no credit card), a few profile questions about what the company does, then open federal opportunities scored against that profile — the pitch the signup page uses is "the three open opportunities worth your pursuit time, plus the one near-miss that looks right and isn't — with the evidence behind every call." One free triage is included; deeper phases are paid. The free account gives scored matches with the reasons behind each score (fit labels like "Strong Fit"); the Go / No-Go call itself comes out of the (mostly paid) pursuit workflow, so do NOT say the free signup hands over Go / No-Go calls or a Go / No-Go shortlist. Do not claim a limit on how many shortlists are free. Do NOT promise "daily", "every notice", "AI", guaranteed wins, or a number of minutes.
+- Never the words "beta", "AI", "Claude", or any model name. No personal names.
+- Do not repeat the image's words verbatim (the card already says "Know before you bid." and "Find opportunities that fit."); the title should ADD to the image, not echo it.
+- Brand/product naming: "HE Pursuit" (product) or "Honest Echo" (company). Title ≤ 60 characters so it never truncates mid-phrase on LinkedIn/Facebook/text; description ≤ 150 characters, with the most important words in the first ~70 (Facebook shows one line).
+
+Score /100 on: clarity to a cold small contractor in 2 seconds, specificity (does it say what they get, not a category), pairing with the image (adds, doesn't echo), truncation behaviour on every platform shown, tone (reads like a person wrote it for a contractor — flag anything stilted, AI-ish, jargon-first), and click motivation without hype.
+
+Then give the TOP 3 fixes and ONE recommended final pair, exactly:
+TITLE: <text>
+DESCRIPTION: <text>
+No praise. Cap 350 words. End with: CARD: NN/100.
+
+
+Your previous round review (the copy above is the revision; do not reverse a fix you asked for unless it made things worse):
+Clarity: 19/20  
+Specificity: 18/20  
+Image pairing: 15/15  
+Truncation: 14/15  
+Tone: 13/15  
+Click motivation: 14/15
+
+The Facebook description cuts off before “isn't,” removing the near-miss payoff. “Evidence behind each score” is abstract product language; a cold buyer wants to know why an opportunity received its score. The title also omits the most important differentiator: scoring is based on the contractor’s business.
+
+Top 3 fixes:
+
+1. Add “for your business” to make the personalization explicit.
+2. Replace “evidence behind each score” with the more conversational “why each opportunity scored as it did.”
+3. Shorten the near-miss idea so Facebook displays the complete contrast instead of truncating its payoff.
+
+TITLE: SAM.gov matches scored for your business — HE Pursuit  
+DESCRIPTION: See why each opportunity scored as it did—including why one falls short. Free account, no credit card.
+
+CARD: 93/100.

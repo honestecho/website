@@ -1,0 +1,47 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>share-card mock</title>
+<style>
+  body { margin:0; background:#e9ebee; font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  .row { display:flex; gap:32px; padding:32px; align-items:flex-start; flex-wrap:wrap; width:1376px; }
+  .label { font:600 12px/1 monospace; color:#555; margin:0 0 8px; text-transform:uppercase; letter-spacing:.08em; }
+  img { display:block; width:100%; aspect-ratio:1200/630; object-fit:cover; }
+  .clamp1 { display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden; }
+  .clamp2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .clamp3 { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+  /* LinkedIn feed link post */
+  .li { width:552px; background:#fff; border-radius:8px; box-shadow:0 0 0 1px rgba(0,0,0,.08); overflow:hidden; }
+  .li .meta { padding:8px 12px 10px; background:#fff; }
+  .li .t { font-weight:600; font-size:14px; line-height:20px; color:rgba(0,0,0,.9); }
+  .li .d { font-size:12px; color:rgba(0,0,0,.6); margin-top:2px; }
+  /* Slack unfurl (dark) */
+  .slack { width:552px; background:#1a1d21; padding:14px 16px; border-radius:8px; color:#d1d2d3; }
+  .slack .u { border-left:4px solid #4a4d52; padding-left:12px; }
+  .slack .site { font-weight:700; font-size:15px; color:#fff; display:flex; gap:6px; align-items:center; }
+  .slack .site i { width:16px; height:16px; background:#0b1a2e url(../../public/favicon.png) center/cover; border-radius:3px; display:inline-block; }
+  .slack .t { color:#1d9bd1; font-weight:700; font-size:15px; margin:2px 0; }
+  .slack .d { font-size:15px; line-height:22px; }
+  .slack img { width:360px; border-radius:8px; margin-top:8px; }
+  /* Facebook / Messenger */
+  .fb { width:500px; background:#fff; border:1px solid #dadde1; }
+  .fb .meta { background:#f0f2f5; padding:10px 12px; }
+  .fb .s { font-size:12px; color:#65676b; text-transform:uppercase; }
+  .fb .t { font-weight:600; font-size:16px; color:#050505; margin-top:3px; line-height:20px; }
+  .fb .d { font-size:14px; color:#65676b; margin-top:3px; }
+  /* iMessage / Android Messages rich link */
+  .msg { width:300px; border-radius:18px; overflow:hidden; background:#e9e9eb; }
+  .msg .meta { padding:9px 12px 10px; }
+  .msg .t { font-weight:600; font-size:14px; line-height:18px; color:#000; }
+  .msg .d { font-size:13px; color:#8a8a8e; margin-top:2px; }
+</style></head>
+<body>
+<div class="row" id="cards"></div>
+<script>
+const c = window.__COPY__;
+const IMG = '../../public/og-image.jpg';
+document.getElementById('cards').innerHTML = `
+  <div><p class="label">LinkedIn post</p><div class="li"><img src="${IMG}"><div class="meta"><div class="t clamp2">${c.title}</div><div class="d">honestecho.com</div></div></div></div>
+  <div><p class="label">Slack unfurl</p><div class="slack"><div class="u"><div class="site"><i></i>Honest Echo</div><div class="t">${c.title}</div><div class="d clamp3">${c.description}</div><img src="${IMG}"></div></div></div>
+  <div><p class="label">Facebook / Messenger</p><div class="fb"><img src="${IMG}"><div class="meta"><div class="s">honestecho.com</div><div class="t clamp2">${c.title}</div><div class="d clamp1">${c.description}</div></div></div></div>
+  <div><p class="label">Text message</p><div class="msg"><img src="${IMG}"><div class="meta"><div class="t clamp2">${c.title}</div><div class="d">honestecho.com</div></div></div></div>`;
+</script>
+</body></html>

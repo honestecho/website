@@ -1,0 +1,44 @@
+You are a harsh principal product designer AND a plain-English conversion copy editor judging ONE thing: the link preview (share card) for honestecho.com/signup/ — the free account signup for HE Pursuit, a tool that scores open SAM.gov federal contract opportunities against a small government contractor's business and helps them decide which ones are worth pursuing (Go / No-Go). Buyers: small GovCon owners, BD leads, proposal managers. Standing bar: 95+/100.
+
+The attached image shows the SAME og:title + og:description rendered four ways, faithful to each platform's truncation: LinkedIn post (title only, 2 lines), Slack unfurl (site name, title, description up to 3 lines, image), Facebook/Messenger (title 2 lines, description 1 line), text message (title 2 lines). The og:image is FIXED — it is the launch video's end card ("Know before you bid." / "Find opportunities that fit." / "Try Pursuit free") and is used site-wide. Judge ONLY the title and description, and how they pair with that image.
+
+Current copy:
+TITLE (60 chars): Your SAM.gov shortlist, scored to your business — HE Pursuit
+DESCRIPTION (130 chars): Open federal opportunities scored against your company profile, with the reasons behind every score. Free account, no credit card.
+
+Hard constraints (a rewrite that breaks one is disqualified):
+- True claims only. What signup actually gives: a free account (no credit card), a few profile questions about what the company does, then open federal opportunities scored against that profile — the pitch the signup page uses is "the three open opportunities worth your pursuit time, plus the one near-miss that looks right and isn't — with the evidence behind every call." One free triage is included; deeper phases are paid. The free account gives scored matches with the reasons behind each score (fit labels like "Strong Fit"); the Go / No-Go call itself comes out of the (mostly paid) pursuit workflow, so do NOT say the free signup hands over Go / No-Go calls or a Go / No-Go shortlist. Do not claim a limit on how many shortlists are free. Do NOT promise "daily", "every notice", "AI", guaranteed wins, or a number of minutes.
+- Never the words "beta", "AI", "Claude", or any model name. No personal names.
+- Do not repeat the image's words verbatim (the card already says "Know before you bid." and "Find opportunities that fit."); the title should ADD to the image, not echo it.
+- Brand/product naming: "HE Pursuit" (product) or "Honest Echo" (company). Title ≤ 60 characters so it never truncates mid-phrase on LinkedIn/Facebook/text; description ≤ 150 characters, with the most important words in the first ~70 (Facebook shows one line).
+
+Score /100 on: clarity to a cold small contractor in 2 seconds, specificity (does it say what they get, not a category), pairing with the image (adds, doesn't echo), truncation behaviour on every platform shown, tone (reads like a person wrote it for a contractor — flag anything stilted, AI-ish, jargon-first), and click motivation without hype.
+
+Then give the TOP 3 fixes and ONE recommended final pair, exactly:
+TITLE: <text>
+DESCRIPTION: <text>
+No praise. Cap 350 words. End with: CARD: NN/100.
+
+
+Your previous round review (the copy above is the revision; do not reverse a fix you asked for unless it made things worse):
+The card is process-first and payoff-second. On Facebook, the valuable part—“ranked shortlist”—gets cut off. On title-only surfaces, “contracts that fit” is generic and partly echoes the image instead of explaining the product.
+
+Score breakdown:
+
+- Clarity: 14/20 — no SAM.gov, scoring, or Go / No-Go in the title.
+- Specificity: 15/20 — the description names the shortlist, but too late.
+- Image pairing: 10/15 — “fit your business” repeats the image’s message.
+- Truncation: 12/15 — title survives; Facebook reduces the description to signup chores.
+- Tone: 12/15 — competent but generic and slightly form-instruction-like.
+- Click motivation: 10/15 — “free” helps, but the actual decision value is buried.
+
+Top 3 fixes:
+
+1. Make the title name the concrete deliverable: a SAM.gov Go / No-Go shortlist.
+2. Lead the description with the result, not account creation and profile questions.
+3. Replace vague “fit” language with the differentiator: opportunities scored against the company profile, with supporting evidence.
+
+TITLE: Your SAM.gov Go / No-Go shortlist — HE Pursuit  
+DESCRIPTION: Get open federal opportunities scored against your profile, with evidence behind each Go / No-Go call. Your first shortlist is free; no card.
+
+CARD: 73/100.

@@ -198,6 +198,15 @@ export default function Signup() {
       <Helmet>
         <title>Sign Up | Honest Echo</title>
         <meta name="description" content="Create your free Honest Echo account and start making smarter bid/no-bid decisions." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://honestecho.com/signup" />
+        <meta property="og:title" content="Your scored SAM.gov matches — HE Pursuit" />
+        <meta property="og:description" content="See the evidence behind each score, including the near-miss that looks right and isn't. Free account, no credit card." />
+        <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Your scored SAM.gov matches — HE Pursuit" />
+        <meta name="twitter:description" content="See the evidence behind each score, including the near-miss that looks right and isn't. Free account, no credit card." />
+        <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
 
       <div className="min-h-[calc(100vh-72px)] relative overflow-hidden flex items-center justify-center py-12">

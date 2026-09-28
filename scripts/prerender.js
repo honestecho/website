@@ -210,9 +210,39 @@ async function prerender() {
         .filter(Boolean)
         .join('\n    ');
 
-    const buildPage = (html, headTags) =>
-      (cleanHead + `    ${headTags}\n  ` + tailHtml)
-        .replace('<div id="root"></div>', `<div id="root">${html}</div>`);
+    // react-helmet-async 3 on React 19 renders plain <title>/<meta>/<link>, and
+    // React's prerender emits those hoistables as a leading run of the root
+    // markup — so they land in <body>, where head-only scrapers never see them.
+    // Peel that run off into <head>, tagged data-prerender so main.tsx can drop
+    // them before React adds its own live copies (a stale static <title> would
+    // otherwise win document.title after client-side navigation).
+    const HOISTED_RUN = /^(?:\s*(?:<title[^>]*>[\s\S]*?<\/title>|<meta\b[^>]*>|<link\b[^>]*>))+/i;
+    const splitHoisted = html => {
+      const run = html.match(HOISTED_RUN)?.[0] ?? '';
+      const tags = run.match(/<title[^>]*>[\s\S]*?<\/title>|<meta\b[^>]*>|<link\b[^>]*>/gi) ?? [];
+      return {
+        head: tags.map(t => t.replace(/^<(title|meta|link)\b/i, '<$1 data-prerender')),
+        body: html.slice(run.length),
+      };
+    };
+    // Site-wide social defaults stay in the template for routes whose Helmet
+    // sets none (Signup, 404); a route that sets its own must not ship both.
+    const SOCIAL_DEFAULTS = [
+      ['property', 'og:type'], ['property', 'og:image'],
+      ['name', 'twitter:card'], ['name', 'twitter:image'],
+    ];
+    const buildPage = (rendered, headTags) => {
+      const { head: hoisted, body } = splitHoisted(rendered);
+      const routeTags = [...hoisted, headTags].filter(Boolean).join('\n    ');
+      let head = cleanHead;
+      for (const [attr, key] of SOCIAL_DEFAULTS) {
+        if (routeTags.includes(`${attr}="${key}"`)) {
+          head = head.replace(new RegExp(`\\s*<meta\\s+${attr}=["']${key}["'][^>]*>`, 'i'), '');
+        }
+      }
+      return (head + `    ${routeTags}\n  ` + tailHtml)
+        .replace('<div id="root"></div>', `<div id="root">${body}</div>`);
+    };
 
     for (const { path } of routes) {
       const seed = path === LIST_ROUTE && listSeed ? { list: listSeed } : undefined;

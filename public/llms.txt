@@ -9,6 +9,7 @@ Honest Echo LLC is a woman-owned, veteran-owned small business based in Fairfax,
 - [Pricing](https://honestecho.com/pricing/): Free, Starter ($99/mo), Pro ($199/mo), and Team (coming soon). No credit card required to start. Fall Bid Clarity Pass: 2 months of Starter or Pro free, applied automatically at checkout, through November 30, 2026.
 - [Free SAM.gov Notice Analyzer](https://honestecho.com/tools/sam-gov-notice-analyzer/): Paste any SAM.gov Notice ID or URL for a free initial assessment — no login required.
 - [Pursuit Readout](https://honestecho.com/tools/pursuit-readout/): Request a free readout of the SAM.gov opportunities worth pursuing for your business.
+- [Find My Matches](https://honestecho.com/tools/find-my-matches/): Enter your company name or UEI (or upload a capability statement) and see the open federal opportunities worth pursuing — three to pursue, one near-miss to skip, and why. Free, no account required.
 
 ## Who It's For
 - [Small Business Owners](https://honestecho.com/for-small-business-owners/): Screen SAM.gov opportunities against your NAICS, certifications, and capacity; see whether to prime, sub, or pass — including set-aside (8(a), SDVOSB, WOSB, HUBZone) matches and notices primeable at your size.

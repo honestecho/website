@@ -25,6 +25,7 @@ import ForSmallBusinessOwners from './pages/ForSmallBusinessOwners';
 import ForProposalManagers from './pages/ForProposalManagers';
 import ForGovconConsultants from './pages/ForGovconConsultants';
 import ContractsForBidConstruction from './pages/ContractsForBidConstruction';
+import FindMyMatches from './pages/FindMyMatches';
 
 // Everything else stays code-split — lower-traffic / interactive pages where a
 // brief hard-load shift is inconsequential and the bundle savings are worth more.
@@ -157,6 +158,8 @@ function App() {
           <Route path="/government-contracts-for-bid/construction/" element={<ContractsForBidConstruction />} />
           <Route path="/tools/sam-gov-notice-analyzer" element={<SamGovNoticeAnalyzer />} />
           <Route path="/tools/pursuit-readout" element={<PursuitReadout />} />
+          <Route path="/tools/find-my-matches" element={<FindMyMatches />} />
+          <Route path="/tools/find-my-matches/" element={<FindMyMatches />} />
           <Route path="/p/:token" element={<SharedPackage />} />
           <Route path="/team-waitlist" element={<TeamWaitlist />} />
           <Route path="*" element={<NotFound />} />

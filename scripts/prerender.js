@@ -49,6 +49,7 @@ const routes = [
   { path: '/team-waitlist',                           file: 'src/pages/TeamWaitlist.tsx',                changefreq: 'monthly', priority: '0.5' },
   { path: '/tools/sam-gov-notice-analyzer',           file: 'src/pages/SamGovNoticeAnalyzer.tsx',        changefreq: 'weekly',  priority: '0.9' },
   { path: '/tools/pursuit-readout',                   file: 'src/pages/PursuitReadout.tsx',              changefreq: 'weekly',  priority: '0.9' },
+  { path: '/tools/find-my-matches',                   file: 'src/pages/FindMyMatches.tsx',               changefreq: 'weekly',  priority: '0.9' },
 ];
 
 const LIST_ROUTE = '/government-contracts-for-bid/construction';

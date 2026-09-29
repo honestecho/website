@@ -649,6 +649,13 @@ export default function SamGovNoticeAnalyzer() {
             The score considers capability, keywords, set-aside, agency, and timing. It is a first screen,
             not an eligibility decision.
           </p>
+          <p className="mt-3 text-sm text-[#8b9bb4] font-body leading-6 max-w-3xl">
+            <span className="text-white font-semibold">No notice in hand? </span>
+            <Link to="/tools/find-my-matches/" className="text-[#67e8f9] hover:text-white transition-colors">
+              Find the open ones that match your company
+            </Link>
+            .
+          </p>
         </div>
       </section>
 

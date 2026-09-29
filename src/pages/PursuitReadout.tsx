@@ -132,6 +132,11 @@ export default function PursuitReadout() {
         setLoading(false);
         return;
       }
+      if (res.status === 429) {
+        setError('We already have your recent requests. If you need to send another, please try again later.');
+        setLoading(false);
+        return;
+      }
       if (!res.ok) {
         setError('Something went wrong. Please try again.');
         setLoading(false);

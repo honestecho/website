@@ -16,6 +16,7 @@ import AnalyzerOutputPreview from '../components/AnalyzerOutputPreview';
 import { FAQPageSchema } from '../components/SchemaOrg';
 import { API_BASE } from '../lib/api';
 import { track } from '../lib/analytics';
+import { rememberPendingNotice } from '../lib/pendingNotice';
 
 // ── FAQ (visible section + FAQPage schema for search/AI answer engines) ───────
 
@@ -310,6 +311,8 @@ export default function SamGovNoticeAnalyzer() {
         return;
       }
       setResult(data);
+      // Signing up from here continues WITH this notice: the app opens it as a pursuit (OB-09/18/21).
+      rememberPendingNotice(data.noticeId);
       // What the visitor sees first — the list's sample business on a handoff.
       const shownKey = source === 'list' && data.profiles[handoffProfile] ? handoffProfile : defaultKey;
       setSelectedProfile(shownKey);

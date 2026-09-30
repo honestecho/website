@@ -508,6 +508,7 @@ export default function FindMyMatches() {
         strong:        data.counts?.strong ?? 0,
         deep_link:     true,
         snapshot:      true,
+        snapshot_token: token,  // attributes an emailed link's open to its prospect (not PII)
       });
     } catch {
       if (!current()) return;

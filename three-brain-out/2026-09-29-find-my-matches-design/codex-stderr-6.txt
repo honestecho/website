@@ -1,0 +1,438 @@
+Reading prompt from stdin...
+OpenAI Codex v0.144.4
+--------
+workdir: C:\Users\aaron\AppData\Local\Temp\claude\C--Users-aaron-OneDrive-Mojo\ccad23df-a52d-4c50-978e-8b0518066b82\scratchpad\wt-web\three-brain-out\2026-09-29-find-my-matches-design
+model: gpt-5.6-sol
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: xhigh
+reasoning summaries: none
+session id: 01a0ee74-40c0-78b0-96ad-a63f69694397
+--------
+user
+You are a harsh principal product designer AND a plain-English conversion copy editor judging ONE thing: honestecho.com/tools/find-my-matches, a free no-login tool where a small federal contractor names their company (or uploads a capability statement) and sees the open federal notices worth pursuing. It has two states: (A) the landing/search state, where the visitor should type their company name or UEI and run it; (B) the result state, opened from an outreach email link, where the visitor should read their three picks + one near-miss and click "Claim your profile — it's already filled in". Audience: owners and BD leads at small federal contractors (construction, trades, engineering, manufacturing) — busy, skeptical, not software people. Visual tokens: dark navy SaaS, bg #030B17, card #0b1120, border #1e2d4a, cyan #00c3ff, muted #a0b2c8; site nav/footer are shared and out of scope. Standing bar: 95+/100.
+
+Attached, in order: landing state desktop fold (1440x900), landing mobile fold (390), result state desktop section shot(s) of #results (1440 wide), result state mobile fold/section (390).
+
+FIXED — judge execution within these, never propose replacing them:
+- The offer: "the three worth pursuing, plus one that looks right and isn't."
+- The DATA in the result state (notice titles, agencies, deadlines, fit scores, "why it fits" reasons, the near-miss and its reason, the count line). These are a saved snapshot that must match an email the visitor already read — you may restyle, reorder visual emphasis, or relabel UI chrome around them, but never change, drop, add, or re-rank the notices or numbers.
+- The two entry paths (name/UEI lookup primary, capability-statement upload secondary) and the single primary CTA in the result state (claim the pre-filled profile).
+- The disclaimer line ("woman-owned, veteran-owned small business... not affiliated with, or endorsed by, any government agency").
+
+Current page text (state A then state B):
+=== STATE A (landing) ===
+Honest Echo
+KNOW BEFORE YOU BID
+How it works
+Pricing
+Sign in
+Start free
+
+Free tool · No account required
+
+Find the federal opportunities worth your time.
+
+Enter your company name or UEI. We’ll match your public SBA profile against open SAM.gov notices with at least a week left. You’ll see the three worth pursuing, plus one that looks right and isn’t, and why.
+
+Company name or UEI
+Find my matches
+
+We use SBA’s Small Business Search. Enter your 12-character UEI to match the exact company.
+
+Or upload your capability statement (PDF or DOCX)
+
+Up to 10 MB. We use the file only to build your profile.
+
+Choose a file
+A short list, with reasons
+
+A NAICS search can surface every notice that mentions your code. We also check the work, the set-aside, required contract vehicles, and the response deadline before ranking the matches.
+
+What we read
+
+Your public SBA Small Business Search profile: NAICS codes, certifications, and capabilities. Or the capability statement you upload, which we use only to build your profile.
+
+What we check
+
+SAM.gov notices with at least a week left: the work, set-aside, NAICS code, required vehicles, and response deadline.
+
+What you get
+
+The three worth pursuing, one that looks right and isn’t, and the reasons for each. A first-pass screen, not an eligibility decision.
+
+Honest Echo is a woman-owned, veteran-owned small business. We are not affiliated with, or endorsed by, any government agency.
+
+Honest Echo
+KNOW BEFORE YOU BID
+
+Fairfax, VA
+
+info@honestecho.com
+
+PRODUCT
+
+Free Analyzer
+Pursuit Readout
+Construction Contracts
+Pricing
+Security
+FAQ
+
+WHO IT’S FOR
+
+Small Business Owners
+Proposal Managers
+GovCon Consultants
+
+COMPANY
+
+About
+Contact
+Terms of Service
+Privacy Policy
+
+COMPARE
+
+vs GovWin
+vs GovTribe
+SAM.gov Analysis
+
+GUIDES
+
+All Guides
+Sources Sought Guide
+Hidden Opportunities
+Recompete Tracking
+
+© 2026 Honest Echo LLC. All rights reserved.
+
+Start Free →
+Sign In →
+
+=== STATE B (result) ===
+The 3 worth pursuing
+
+Your top 3 of 16 strong matches, from 5,059 open notices. Another 14 are worth a look.
+
+Matched Sep 29, 2026. Deadlines and notices change daily.
+
+Check another company
+
+PROFILE WE MATCHED
+
+HEALTH FACILITY SOLUTIONS COMPANY
+
+San Antonio, TX
+
+NAICS codes
+
+541330 — Engineering Services
+236220 — Commercial and Institutional Building Construction
+541310 — Architectural Services
+541513 — Computer Facilities Management Services
+
+Certifications
+
+SDVOSB
+VOSB
+WOSB
+
+Top keywords
+
+facility
+consulting
+management
+construction project
+capital projects
+design
+construction
+design-build
+
+From your SBA Small Business Search profile.
+
+Not quite right? You can correct it after you claim your profile.
+
+WORTH PURSUING · #1
+
+Design Build to Install Parking Shades and Parking Lot Reconfiguration Project 593-26-306
+
+VETERANS AFFAIRS, DEPARTMENT OF · 261-NETWORK CONTRACT OFFICE 21 (36C261)
+
+DEADLINE
+Oct 15
+FIT SCORE
+80 / 100
+WHO CAN BID
+Service-Disabled Veteran-Owned Small Business (SDVOSB) Set-Aside
+NAICS
+236220
+
+Why it fits
+
+Set-aside matches a certification you hold
+Your keywords appear in this notice
+NAICS 236220 is one of your secondary codes
+View on SAM.gov
+
+WORTH PURSUING · #2
+
+Danville Construction MATOC (FY27) SEED PROJECT NO: 550-25-108 Renovate Bathrooms in B103 PRRTP & B64/7 at the VA Illiana Health Care System (VIHCS), Danville IL.
+
+VETERANS AFFAIRS, DEPARTMENT OF · 252-NETWORK CONTRACT OFFICE 12 (36C252)
+
+DEADLINE
+Oct 21
+FIT SCORE
+80 / 100
+WHO CAN BID
+Service-Disabled Veteran-Owned Small Business (SDVOSB) Set-Aside
+NAICS
+236220
+
+Why it fits
+
+Set-aside matches a certification you hold
+Your keywords appear in this notice
+NAICS 236220 is one of your secondary codes
+View on SAM.gov
+
+WORTH PURSUING · #3
+
+Indefinite delivery/indefinite quantity multiple award contract for multidiscipline architect-engineer services in support of construction projects located primarily in the norfolk district area of responsibility (aor)
+
+DEPT OF THE ARMY · W2SD ENDIST NORFOLK
+
+DEADLINE
+Oct 22
+FIT SCORE
+80 / 100
+WHO CAN BID
+Open competition
+NAICS
+541330
+
+Why it fits
+
+NAICS 541330 is one of your primary codes
+A seat on a multiple-award vehicle is being competed, in your NAICS
+Your keywords appear in this notice
+View on SAM.gov
+LOOKS RIGHT — ISN’T
+Architect & Engineering Services, Indefinite-Delivery, Indefinite-Quantity (IDIQ) Multiple Award (A&E) Contracts needed for new construction, renovation, alteration and repairs required by Federal Prison Industries (FPI)
+
+Why we’d skip it
+
+Reserved for 8(a) firms; the profile does not hold that certification.
+
+JUSTICE, DEPARTMENT OF · FEDERAL PRISON INDUSTRIES, INC
+
+View on SAM.gov
+
+Keep these matches and score new SAM.gov notices as they post.
+
+Your profile is already filled in from the SBA data shown here. Create a free account; no card.
+
+Keep these matches and score new SAM.gov notices. Free account; no card.
+
+Claim your profile — it’s already filled in
+A short list, with reasons
+
+A NAICS search can surface every notice that mentions your code. We also check the work, the set-aside, required contract vehicles, and the response deadline before ranking the matches.
+
+What we read
+
+Your public SBA Small Business Search profile: NAICS codes, certifications, and capabilities. Or the capability statement you upload, which we use only to build your profile.
+
+What we check
+
+SAM.gov notices with at least a week left: the work, set-aside, NAICS code, required vehicles, and response deadline.
+
+What you get
+
+The three worth pursuing, one that looks right and isn’t, and the reasons for each. A first-pass screen, not an eligibility decision.
+
+Honest Echo is a woman-owned, veteran-owned small business. We are not affiliated with, or endorsed by, any government agency.
+
+Honest Echo
+KNOW BEFORE YOU BID
+
+Fairfax, VA
+
+info@honestecho.com
+
+PRODUCT
+
+Free Analyzer
+Pursuit Readout
+Construction Contracts
+Pricing
+Security
+FAQ
+
+WHO IT’S FOR
+
+Small Business Owners
+Proposal Managers
+GovCon Consultants
+
+COMPANY
+
+About
+Contact
+Terms of Service
+Privacy Policy
+
+COMPARE
+
+vs GovWin
+vs GovTribe
+SAM.gov Analysis
+
+GUIDES
+
+All Guides
+Sources Sought Guide
+Hidden Opportunities
+Recompete Tracking
+
+© 2026 Honest Echo LLC. All rights reserved.
+
+Start Free →
+Sign In →
+
+Hard constraints (a fix or rewrite that breaks one is disqualified):
+- True claims only. What the product actually does: looks the company up in SBA's public Small Business Search (or reads an uploaded capability statement), scores it against the federal notices open on SAM.gov with at least a week left to respond, applies a set-aside/required-vehicle eligibility check, and shows the top 3 eligible + 1 high-scoring notice it rules out. A free account keeps the profile and scores new notices. Do NOT promise: win probability, guaranteed eligibility (it is "a first screen, not an eligibility decision"), specific alert cadence ("daily", "instant"), coverage beyond SAM.gov, time saved, number of users, or any feature not listed.
+- Never the words "beta", "AI", "Claude", or any model name. No personal names. Company voice ("we").
+- No invented UI (no mock dashboards, fake shortlists, testimonial cards). Contained, consistent panels over editorial/asymmetric layouts.
+- Keep it one page; no new sections that restate what the result cards already show.
+
+Score /100 on: hierarchy & focal point (does each state make the ONE next action obvious?) 20, result-card scannability (can a skeptical owner grasp pick / agency / deadline / why in 5 seconds?) 20, typography & rhythm 15, composition, alignment & consistency between panels 15, mobile translation 10, trust & restraint (feels credible, not salesy) 10, COPY (reads like a person wrote it for contractors — flag stilted, jargon-first, or AI-ish lines with exact rewrites) 10.
+
+Then list the TOP 6 fixes ranked by impact, each concrete (Tailwind-level class changes or exact copy). No praise. Cap 700 words. End with exactly: SCORE: NN/100.
+
+
+Your previous round review (what you see now is the revision; do not reverse a fix you asked for unless it made things worse):
+### Score breakdown
+
+- Hierarchy & focal point: 19/20
+- Result-card scannability: 18/20
+- Typography & rhythm: 14/15
+- Composition, alignment & consistency: 14/15
+- Mobile translation: 9/10
+- Trust & restraint: 10/10
+- Copy: 9/10
+
+The desktop states now have clear primary actions. The remaining failure is mobile result comprehension: the first screen shows who can bid, but not a single reason the opportunity was selected. The sticky CTA also consumes too much of the smallest viewport and wraps poorly.
+
+### Top 6 fixes
+
+1. **Surface “Why it fits” earlier on mobile.** After the deadline/fit-score row, show the existing reasons before `NAICS` and `WHO CAN BID`. Preserve the desktop order:
+
+   `reasons: order-3 md:order-4`  
+   `eligibility: order-4 md:order-3`
+
+   This gets pick, agency, deadline, and rationale into the initial scan without dropping data.
+
+2. **Stop giving “Check another company” its own prominent band.** It currently competes with the result and adds roughly 60 pixels before card one. Keep it inside the matched-company strip:
+
+   `mt-2 inline-block text-sm text-[#a0b2c8] underline decoration-[#51657f] underline-offset-4`
+
+   Remove its separate top/bottom spacing and divider. The company identity—not the escape link—should dominate that block.
+
+3. **Reduce and rebalance the mobile sticky CTA.** The awkward “already / filled in” wrap makes the bar feel unfinished. Use:
+
+   `py-3`  
+   `min-h-[64px]`  
+   `text-[15px] leading-5 text-left text-balance pr-10`  
+   arrow: `absolute right-5 top-1/2 -translate-y-1/2`
+
+   Add `pb-24 md:pb-20` to the results container so the fixed bar never covers the final card or profile details.
+
+4. **Remove the desktop CTA’s repeated “already filled in.”** The support line and button currently say the same thing side by side. Change the support line to:
+
+   “Keep these matches and score new SAM.gov notices. Free account; no card.”
+
+   Keep the button text unchanged. This states the benefit instead of echoing the button.
+
+5. **Make the near-miss read as a ruled-out result immediately.** Put the existing “Why we’d skip it” reason before the long notice title on mobile and give the panel a restrained exclusion treatment:
+
+   `border-l-2 border-l-[#a0b2c8] bg-[#080f1d]`
+
+   Do not use cyan for the near-miss label; cyan currently means positive selection and action.
+
+6. **Correct the overbroad lower-page copy.** “Every open federal notice on SAM.gov” contradicts the stated one-week filter. Replace the entire “What we check” paragraph with:
+
+   “SAM.gov notices with at least a week left: the work, set-aside, NAICS code, required vehicles, and response deadline.”
+
+   Also replace the form helper with the more direct:
+
+   “We use SBA’s Small Business Search. Enter your 12-character UEI to match the exact company.”
+
+SCORE: 93/100
+
+codex
+### Score breakdown
+
+- Hierarchy & focal point: 20/20
+- Result-card scannability: 19/20
+- Typography & rhythm: 14/15
+- Composition, alignment & consistency: 14/15
+- Mobile translation: 9/10
+- Trust & restraint: 10/10
+- Copy: 9/10
+
+The remaining defects are compression and secondary-action emphasis—not the core information architecture.
+
+### Top 6 fixes
+
+1. **Separate the matched company from its location on mobile.** The centered dot makes “San Antonio, TX” look like part of the company name and creates an ugly break after “San.” Match the desktop treatment:
+
+   ```html
+   <div class="font-semibold leading-5">HEALTH FACILITY SOLUTIONS COMPANY</div>
+   <div class="mt-0.5 text-sm text-[#a0b2c8]">San Antonio, TX</div>
+   ```
+
+2. **Reduce the sticky claim bar from 80px to roughly 64px.** It still consumes too much of the result viewport and obscures more content than necessary:
+
+   ```txt
+   wrapper: py-2 min-h-16
+   button: min-h-12 px-4 pr-11 text-[14px] leading-5
+   arrow: absolute right-4 top-1/2 -translate-y-1/2
+   page: pb-[calc(5rem+env(safe-area-inset-bottom))]
+   ```
+
+3. **Stop making the upload button full-width on mobile.** Its footprint is nearly equal to the primary lookup CTA, weakening the required entry-path hierarchy. Use:
+
+   ```txt
+   w-fit min-w-[160px] px-5
+   ```
+
+   Keep the outlined treatment. Do not reduce the upload explanation or hide the path.
+
+4. **Make the agency line easier to scan inside result cards.** It is currently cramped, heavily capitalized, and visually close to metadata noise. Preserve the supplied agency text but use:
+
+   ```txt
+   mt-1.5 text-[13px] leading-[18px] tracking-[0.02em] text-[#a0b2c8]
+   ```
+
+   Avoid `tracking-wider`; long contracting-office names already wrap enough.
+
+5. **Fix the desktop alignment jump below the landing form.** The hero and form begin around `x:280`, while “A short list, with reasons” abruptly returns to `x:80`. Put the explanatory section in the same contained column:
+
+   ```txt
+   max-w-[880px] mx-auto px-5 md:px-0
+   ```
+
+   This also makes the landing and result panels feel like the same product.
+
+6. **Rewrite the hero paragraph’s mechanical “match against” construction.** Use:
+
+   “Enter your company name or UEI. We’ll find your public SBA profile and compare it with open SAM.gov notices that have at least a week left. You’ll see the three worth pursuing, plus one that looks right and isn’t—with the reason for each.”
+
+   Also change `PROFILE WE MATCHED` to `MATCHED COMPANY`; the current label describes an internal process instead of what the visitor is looking at.
+
+SCORE: 95/100
+tokens used
+21,310

@@ -11,7 +11,6 @@ import {
   Upload,
   CheckCircle2,
   XCircle,
-  Calendar,
   ExternalLink,
   Building2,
   ShieldCheck,
@@ -67,6 +66,8 @@ interface MatchResult {
   counts: { strong: number; worth_a_look: number; capped: boolean };
   scanned: number | null;
   draft_token: string | null;
+  matched_at?: string;
+  snapshot?: boolean;
 }
 
 interface ApiError { status: number; code: string; message: string }
@@ -192,7 +193,7 @@ function CompanyCard({ company }: { company: MatchResult['company'] }) {
   return (
     <div className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-5 sm:p-6">
       <p className="text-xs font-semibold uppercase tracking-[.06em] text-[#8b9bb4] font-label mb-3">
-        How we read your company
+        Profile we matched
       </p>
       <h2 className="font-headline font-bold text-white text-lg leading-snug break-words">{company.name}</h2>
       {loc && <p className="text-sm text-[#a0b2c8] font-body mt-0.5">{loc}</p>}
@@ -260,46 +261,48 @@ function MatchCard({ match, rank, strong }: { match: Match; rank: number; strong
   const due = formatDue(match.deadline_text || match.deadline);
   const agency = [match.agency, match.office].filter(Boolean).join(' · ');
   return (
-    <article className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-5 sm:p-6 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
+    <article className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-5 lg:p-6 relative overflow-hidden group hover:border-[#00c3ff]/40 hover:shadow-[0_0_40px_rgba(0,195,255,0.08)] transition-all duration-500">
       <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      <div className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-5">
-        <div className="min-w-0 flex-1">
-          <p className="text-xs font-semibold uppercase tracking-[.06em] text-[#00c3ff] font-label mb-1.5">{strong ? 'Worth pursuing' : 'Worth a look'} · #{rank}</p>
-          <h3 className="font-headline font-bold text-white text-[15px] sm:text-base leading-[1.3] break-words">{match.title}</h3>
-          {agency && (
-            <p className="text-xs font-semibold text-[#8b9bb4] uppercase tracking-wider mt-1.5 break-words">{agency}</p>
-          )}
-        </div>
-        <div className="shrink-0 flex sm:flex-col items-baseline sm:items-end gap-x-2">
-          <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#8b9bb4]">Fit</span>
-          <span className="leading-none">
-            <span className="text-3xl font-black tabular-nums tracking-tight text-white">{Math.round(match.score)}</span>
-            <span className="text-base font-bold text-[#8b9bb4]"> / 100</span>
-          </span>
-        </div>
+      <div className="min-w-0">
+        <p className="text-xs font-semibold uppercase tracking-[.06em] text-[#00c3ff] font-label mb-1.5">{strong ? 'Worth pursuing' : 'Worth a look'} · #{rank}</p>
+        <h3 className="font-headline font-bold text-white text-lg leading-[1.3] md:text-xl md:leading-7 break-words">{displayTitle(match.title)}</h3>
+        {agency && (
+          <p className="text-xs leading-4 font-semibold text-[#8b9bb4] uppercase tracking-[0.04em] mt-1.5 break-words">{agency}</p>
+        )}
       </div>
 
-      <div className="flex items-center gap-x-3 gap-y-1 flex-wrap mt-3 text-xs text-[#a0b2c8] font-body">
-        {due && (
-          <span className="inline-flex items-center gap-1"><Calendar size={12} className="text-[#8b9bb4]" />Responses due {due}</span>
-        )}
-        <span className="inline-flex items-center gap-1"><ShieldCheck size={12} className="text-[#8b9bb4]" />{formatSetAside(match.set_aside)}</span>
-        {match.naics && <span className="font-mono text-[#8b9bb4]">NAICS {match.naics}</span>}
-      </div>
+      <dl className="grid grid-cols-2 gap-x-4 gap-y-4 border-y border-[#1e2d4a] py-4 mt-4 sm:grid-cols-[9rem_8rem_minmax(0,1fr)_6rem] font-body">
+        <div>
+          <dt className="text-xs font-bold uppercase tracking-[0.12em] text-[#8b9bb4]">Deadline</dt>
+          <dd className="mt-1 text-xl font-bold text-white">{due || 'See notice'}</dd>
+        </div>
+        <div>
+          <dt className="text-xs font-bold uppercase tracking-[0.12em] text-[#8b9bb4]">Fit score</dt>
+          <dd className="mt-1 leading-7">
+            <span className="text-xl font-semibold tabular-nums text-white">{Math.round(match.score)}</span>
+            <span className="text-sm font-bold text-[#a0b2c8]"> / 100</span>
+          </dd>
+        </div>
+        <SecondaryFacts match={match} className="hidden sm:block" />
+      </dl>
 
       {match.why.length > 0 && (
-        <div className="mt-4 pt-4 border-t border-[#1e2d4a]">
+        <div className="mt-4">
           <p className="text-xs font-medium text-[#8b9bb4] mb-2.5">Why it fits</p>
           <ul className="space-y-2">
             {match.why.slice(0, 3).map(w => (
               <li key={w} className="flex items-start gap-3">
-                <CheckCircle2 size={13} className="text-[#4ade80]/80 shrink-0 mt-0.5" />
-                <span className="text-sm text-white leading-snug">{w}</span>
+                <CheckCircle2 size={13} className="text-[#4ade80]/80 shrink-0 mt-1" />
+                <span className="text-sm text-white leading-5">{w}</span>
               </li>
             ))}
           </ul>
         </div>
       )}
+
+      <dl className="sm:hidden grid grid-cols-2 gap-x-4 gap-y-4 border-t border-[#1e2d4a] pt-4 mt-4 font-body">
+        <SecondaryFacts match={match} className="block" />
+      </dl>
 
       <div className="mt-4 pt-4 border-t border-[#1e2d4a]">
         <a
@@ -315,20 +318,35 @@ function MatchCard({ match, rank, strong }: { match: Match; rank: number; strong
   );
 }
 
+// Who-can-bid + NAICS: in the desktop facts row, below the reasons on mobile.
+function SecondaryFacts({ match, className }: { match: Match; className: string }) {
+  return (
+    <>
+      <div className={`${className} min-w-0 col-span-2 sm:col-span-1`}>
+        <dt className="text-xs font-bold uppercase tracking-[0.12em] text-[#8b9bb4]">Who can bid</dt>
+        <dd className="mt-1 text-sm leading-5 text-[#a0b2c8] break-words">{formatSetAside(match.set_aside)}</dd>
+      </div>
+      {match.naics && (
+        <div className={`${className} order-first sm:order-none`}>
+          <dt className="text-xs font-bold uppercase tracking-[0.12em] text-[#8b9bb4]">NAICS</dt>
+          <dd className="mt-1 text-sm leading-5 text-[#a0b2c8]">{match.naics}</dd>
+        </div>
+      )}
+    </>
+  );
+}
+
 function NearMissCard({ match }: { match: Match & { why_not: string[] } }) {
   const agency = [match.agency, match.office].filter(Boolean).join(' · ');
   return (
-    <article className="rounded-xl bg-[#0b1120] border border-[#f5a623]/30 p-5 sm:p-6 relative overflow-hidden">
+    <article className="rounded-xl bg-[#080f1d] border border-dashed border-[#f5a623]/50 border-l-2 border-l-[#f5a623]/70 p-5 sm:p-6 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#f5a623]/50 to-transparent" />
       <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#f5a623]/10 border border-[#f5a623]/40 text-xs font-black text-[#f5a623] tracking-widest uppercase">
         Looks right — isn’t
       </span>
-      <h3 className="font-headline font-bold text-white text-[15px] sm:text-base leading-[1.3] break-words mt-3">{match.title}</h3>
-      {agency && (
-        <p className="text-xs font-semibold text-[#8b9bb4] uppercase tracking-wider mt-1.5 break-words">{agency}</p>
-      )}
+      <h3 className="font-headline font-bold text-white text-lg leading-6 md:text-xl md:leading-7 break-words mt-3">{displayTitle(match.title)}</h3>
       {match.why_not.length > 0 && (
-        <div className="mt-4 pt-4 border-t border-[#1e2d4a]">
+        <div className="mt-3">
           <p className="text-xs font-medium text-[#8b9bb4] mb-2.5">Why we’d skip it</p>
           <ul className="space-y-2">
             {match.why_not.map(w => (
@@ -340,6 +358,9 @@ function NearMissCard({ match }: { match: Match & { why_not: string[] } }) {
           </ul>
         </div>
       )}
+      {agency && (
+        <p className="text-xs font-semibold text-[#8b9bb4] uppercase tracking-wider mt-3 break-words">{agency}</p>
+      )}
       <div className="mt-4 pt-4 border-t border-[#1e2d4a]">
         <a
           href={match.sam_url}
@@ -354,14 +375,39 @@ function NearMissCard({ match }: { match: Match & { why_not: string[] } }) {
   );
 }
 
+// Same cleanup the outreach emails apply, so a saved link reads like its email:
+// drop SAM's PSC prefix ("Z2LZ--", "Y--") and calm ALL-CAPS titles.
+function displayTitle(t: string): string {
+  const clean = (t || '').replace(/\s+/g, ' ').trim().replace(/^[A-Z0-9]{1,4}--\s*/, '');
+  return clean === clean.toUpperCase() && /[A-Z]/.test(clean) ? clean.charAt(0) + clean.slice(1).toLowerCase() : clean;
+}
+
 function countLine(r: MatchResult): string {
   const { strong, worth_a_look, capped } = r.counts;
   const worth = `${worth_a_look.toLocaleString('en-US')}${capped ? '+' : ''}`;
   const where = r.scanned ? ` in ${r.scanned.toLocaleString('en-US')} open notices` : ' in open federal notices';
+  const more = worth_a_look - strong;
+  if (strong >= r.top.length && r.top.length > 0 && r.scanned) {
+    const tail = more > 0 ? ` Another ${more.toLocaleString('en-US')}${capped ? '+' : ''} are worth a look.` : '';
+    return `Your top ${r.top.length} of ${strong} strong ${plural(strong, 'match', 'matches')}, from ${r.scanned.toLocaleString('en-US')} open notices.${tail}`;
+  }
   if (strong > 0 && worth_a_look > 0) return `${strong} strong ${plural(strong, 'match', 'matches')} and ${worth} worth a look${where}.`;
   if (strong > 0) return `${strong} strong ${plural(strong, 'match', 'matches')}${where}.`;
   if (worth_a_look > 0) return `No strong matches yet, and ${worth} worth a look${where}.`;
   return r.scanned ? `We checked ${r.scanned.toLocaleString('en-US')} open notices.` : 'We checked the open federal notices.';
+}
+
+// A saved result (?m= link) says when it was matched: notices move daily.
+function matchedOnLine(r: MatchResult): string | null {
+  if (!r.snapshot || !r.matched_at) return null;
+  const d = new Date(r.matched_at);
+  if (Number.isNaN(d.getTime())) return null;
+  return `Matched ${d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}. Deadlines and notices change daily.`;
+}
+
+function clearDraftCookie() {
+  const local = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  document.cookie = `he_draft=; ${local ? '' : 'domain=.honestecho.com; '}path=/; max-age=0; secure; samesite=lax`;
 }
 
 function setDraftCookie(token: string) {
@@ -379,6 +425,12 @@ export default function FindMyMatches() {
     return /^[A-Z0-9]{12}$/i.test(v) ? v.toUpperCase() : null;
   })();
   const deepLinkRan = useRef<string | null>(null);
+  const requestGen = useRef(0);
+  // ?m=<token>: a saved result, replayed exactly as it was shown (outreach emails).
+  const snapshotToken = (() => {
+    const v = (new URLSearchParams(search).get('m') || '').trim();
+    return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v) ? v.toLowerCase() : null;
+  })();
 
   const [query, setQuery]               = useState('');
   const [searching, setSearching]       = useState(false);
@@ -416,13 +468,59 @@ export default function FindMyMatches() {
   // ?uei= deep link (outreach emails): run once after mount. Effects do not run
   // during prerender, so the static HTML stays a plain form.
   useEffect(() => {
-    if (!deepLinkUei || deepLinkRan.current === deepLinkUei) return;
+    if (snapshotToken || !deepLinkUei || deepLinkRan.current === deepLinkUei) return;
     deepLinkRan.current = deepLinkUei;
     setQuery(deepLinkUei);
     void runMatches({ uei: deepLinkUei }, true);
-  }, [deepLinkUei]);
+  }, [deepLinkUei, snapshotToken]);
+
+  useEffect(() => {
+    if (!snapshotToken || deepLinkRan.current === snapshotToken) return;
+    deepLinkRan.current = snapshotToken;
+    void loadSnapshot(snapshotToken);
+  }, [snapshotToken]);
+
+  async function loadSnapshot(token: string) {
+    const gen = ++requestGen.current;
+    const current = () => gen === requestGen.current;
+    setMatchError(null);
+    setResult(null);
+    setMatching('uei');
+    try {
+      const res = await fetch(`${API_ORIGIN}/api/public/matches/${token}`, { signal: AbortSignal.timeout(30_000) });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok || !body?.company || !Array.isArray(body.top)) {
+        const message = typeof body?.message === 'string' && body.message
+          ? body.message
+          : 'This link has expired. Look up your company to see today’s matches.';
+        if (!current()) return;
+        setMatchError({ status: res.status, code: 'snapshot_not_found', message });
+        track('find_matches_error', { error: 'snapshot_not_found' });
+        return;
+      }
+      const data = body as MatchResult;
+      if (!current()) return;
+      setResult(data);
+      track('find_matches_result_rendered', {
+        source:        data.company.source,
+        top_count:     data.top.length,
+        has_near_miss: !!data.near_miss,
+        strong:        data.counts?.strong ?? 0,
+        deep_link:     true,
+        snapshot:      true,
+      });
+    } catch {
+      if (!current()) return;
+      setMatchError({ status: 0, code: 'network', message: "We couldn't reach the server. Check your connection and try again." });
+      track('find_matches_error', { error: 'network' });
+    } finally {
+      if (current()) setMatching(null);
+    }
+  }
 
   async function runMatches(input: { uei: string } | { file: File }, deepLink = false) {
+    const gen = ++requestGen.current;
+    const current = () => gen === requestGen.current;
     const mode = 'file' in input ? 'upload' : 'uei';
     setMatchError(null);
     setResult(null);
@@ -447,16 +545,19 @@ export default function FindMyMatches() {
         const message = typeof body?.message === 'string' && body.message
           ? body.message
           : 'Something went wrong on our side. Please try again.';
+        if (!current()) return;
         setMatchError({ status: res.status, code, message });
         track('find_matches_error', { error: code });
         return;
       }
       const data = body as MatchResult;
       if (!data?.company || !Array.isArray(data.top)) {
+        if (!current()) return;
         setMatchError({ status: 500, code: 'bad_response', message: 'Something went wrong on our side. Please try again.' });
         track('find_matches_error', { error: 'bad_response' });
         return;
       }
+      if (!current()) return;
       setResult(data);
       track('find_matches_result_rendered', {
         source:        data.company.source,
@@ -467,6 +568,7 @@ export default function FindMyMatches() {
       });
     } catch (err) {
       const timedOut = err instanceof DOMException && err.name === 'TimeoutError';
+      if (!current()) return;
       setMatchError({
         status: 0,
         code: timedOut ? 'timeout' : 'network',
@@ -476,7 +578,7 @@ export default function FindMyMatches() {
       });
       track('find_matches_error', { error: timedOut ? 'timeout' : 'network' });
     } finally {
-      setMatching(null);
+      if (current()) setMatching(null);
     }
   }
 
@@ -568,15 +670,17 @@ export default function FindMyMatches() {
       </Helmet>
 
       {/* ── Hero + input ───────────────────────────────────────────────────── */}
+      {!result && !(matching && snapshotToken) && (
       <section className="pt-10 md:pt-16 pb-8 px-4 sm:px-6 relative overflow-hidden">
-        <div className="max-w-3xl mx-auto relative z-10">
+        <div className="max-w-[880px] mx-auto relative z-10">
           <p className="text-xs font-medium text-[#a0b2c8] font-body mb-3"><span className="text-[#00c3ff]">Free</span> tool · No account required</p>
-          <h1 className="font-headline font-black text-4xl md:text-6xl text-white mb-5 tracking-tighter leading-tight">
+          <h1 className="font-headline font-black text-[38px] leading-[1.06] tracking-[-0.035em] md:text-[58px] md:leading-[1.04] md:tracking-[-0.04em] text-white mb-4 md:mb-5">
             Find the federal opportunities{' '}
             <span className="text-[#00c3ff]">worth your time.</span>
           </h1>
-          <p className="text-[#a0b2c8] text-base md:text-lg leading-relaxed font-body mb-8">
-            Name your company. We check your public SBA profile against every open federal notice and show you the three worth pursuing, plus one that looks right and isn’t. Know what to pursue, what to kill, and why.
+          <div className="max-w-3xl">
+          <p className="text-[#a0b2c8] text-base leading-6 sm:text-lg sm:leading-7 font-body mb-7 md:mb-8">
+            Enter your company name or UEI. We’ll match your public SBA profile against open SAM.gov notices with at least a week left. You’ll see the three worth pursuing, plus one that looks right and isn’t, and why.
           </p>
 
           <form onSubmit={handleSearch} className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-4 sm:p-5" noValidate>
@@ -602,7 +706,7 @@ export default function FindMyMatches() {
               </button>
             </div>
             <p className="text-sm text-[#8b9bb4] font-body mt-3">
-              We look you up in SBA’s Small Business Search. Your 12-character UEI goes straight to your matches.
+              We use SBA’s Small Business Search. Enter your 12-character UEI to match the exact company.
             </p>
 
             {searchError && !searching && <ErrorBox message={searchError} />}
@@ -643,8 +747,10 @@ export default function FindMyMatches() {
               {fileError && <ErrorBox message={fileError} />}
             </div>
           </form>
+          </div>
         </div>
       </section>
+      )}
 
       {/* ── Company picker ─────────────────────────────────────────────────── */}
       {companies && !matching && (
@@ -692,7 +798,7 @@ export default function FindMyMatches() {
 
       {/* ── Progress / error / result ──────────────────────────────────────── */}
       {(matching || matchError || result) && (
-        <section ref={stageRef} className="pb-12 px-4 sm:px-6 relative scroll-mt-24">
+        <section id="results" ref={stageRef} className={`${result ? 'pt-10 lg:pt-14' : ''} pb-12 px-4 sm:px-6 relative scroll-mt-24`}>
           <div className={`${result ? 'max-w-7xl' : 'max-w-3xl'} mx-auto relative z-10`}>
             {matching && <Progress mode={matching} elapsed={elapsed} />}
 
@@ -717,21 +823,36 @@ export default function FindMyMatches() {
                     <h2 className="font-headline font-black text-2xl md:text-3xl text-white tracking-tight">
                       {result.top.length > 0
                         ? result.counts.strong >= result.top.length
-                          ? `${result.top.length === 1 ? 'The one' : `The ${result.top.length}`} worth your pursuit time`
+                          ? `${result.top.length === 1 ? 'The one' : `The ${result.top.length}`} worth pursuing`
                           : `Your ${result.top.length === 1 ? 'best fit' : `${result.top.length} best fits`} right now`
                         : 'Nothing clears the bar right now'}
                     </h2>
                     <p className="text-sm text-[#a0b2c8] font-body mt-1.5">{countLine(result)}</p>
+                    {matchedOnLine(result) && (
+                      <p className="text-xs text-[#8b9bb4] font-body mt-1">{matchedOnLine(result)}</p>
+                    )}
+                    <div className="lg:hidden border-y border-[#1e2d4a] py-3 mt-4">
+                      <p className="text-xs font-semibold uppercase tracking-[.06em] text-[#8b9bb4] font-label">Profile we matched</p>
+                      <p className="text-sm font-bold text-white mt-1 break-words">{result.company.name}</p>
+                      {place(result.company.city, result.company.state) && (
+                        <p className="text-sm text-[#a0b2c8] font-body mt-0.5">{place(result.company.city, result.company.state)}</p>
+                      )}
+                      <button type="button" onClick={startOver} className="mt-2 inline-block text-sm text-[#a0b2c8] underline decoration-[#51657f] underline-offset-4 hover:text-[#00c3ff] transition-colors font-body">
+                        Check another company
+                      </button>
+                    </div>
                   </div>
-                  <button type="button" onClick={startOver} className="self-start sm:self-auto text-sm text-[#67e8f9] hover:text-white transition-colors font-body shrink-0">
+                  <button type="button" onClick={startOver} className="hidden lg:inline self-end text-sm font-medium text-[#a0b2c8] underline underline-offset-4 hover:text-[#00c3ff] transition-colors font-body shrink-0">
                     Check another company
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] gap-6 items-start">
-                  <CompanyCard company={result.company} />
+                <div className="grid grid-cols-1 lg:grid-cols-[26rem_minmax(0,1fr)] gap-6 items-start">
+                  <div className="order-2 lg:order-1 min-w-0">
+                    <CompanyCard company={result.company} />
+                  </div>
 
-                  <div className="space-y-4 min-w-0">
+                  <div className="order-1 lg:order-2 space-y-4 min-w-0">
                     {result.top.length > 0 ? (
                       result.top.map((m, i) => <MatchCard key={m.notice_id} match={m} rank={i + 1} strong={i < result.counts.strong} />)
                     ) : (
@@ -746,30 +867,38 @@ export default function FindMyMatches() {
                     {result.near_miss && <NearMissCard match={result.near_miss} />}
 
                     {/* ── Claim ── */}
-                    <div className="rounded-xl bg-[#0b1120] border border-[#00c3ff]/30 p-5 sm:p-6">
+                    <div className="mt-6 rounded-xl bg-[#0b1120] border-2 border-[#00c3ff] p-5 sm:p-6">
                       <div className="flex items-start gap-3">
                         <Target className="w-5 h-5 text-[#00c3ff] shrink-0 mt-0.5" strokeWidth={2} />
                         <div className="min-w-0">
                           <p className="font-headline font-bold text-white text-base">
-                            {result.top.length > 0 ? 'Keep these, and get the next ones as they post.' : 'Get alerted when one clears the bar.'}
+                            {result.top.length > 0 ? 'Keep these matches and score new SAM.gov notices as they post.' : 'Get the next one that clears the bar.'}
                           </p>
                           <p className="text-sm text-[#a0b2c8] font-body mt-1 leading-relaxed">
-                            Your profile is already filled in from what you see here. Claim it with a free account; no card.
+                            Your profile is already filled in from the {result.company.source === 'upload' ? 'capability statement' : 'SBA data'} {result.company.source === 'upload' ? 'you uploaded' : 'shown here'}. Create a free account; no card.
                           </p>
                         </div>
                       </div>
-                      <Link
-                        to={SIGNUP_PATH}
-                        onClick={() => {
-                          if (result.draft_token) setDraftCookie(result.draft_token);
-                          track('find_matches_claim_clicked', { has_draft: !!result.draft_token });
-                        }}
-                        className="mt-4 w-full sm:w-auto px-6 py-3.5 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
-                      >
-                        Claim your profile — it’s already filled in
-                        <ArrowRight className="w-4 h-4 shrink-0" />
-                      </Link>
                     </div>
+                  </div>
+                </div>
+
+                {/* The one conversion action, kept in reach while the results are read. */}
+                <div className="sticky bottom-0 z-30 -mx-4 sm:-mx-6 mt-6 border-t border-[#1e2d4a] bg-[#030B17]/95 px-4 sm:px-6 py-3 backdrop-blur">
+                  <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+                    <p className="hidden sm:block text-sm text-[#a0b2c8] font-body">Keep these matches and score new SAM.gov notices. Free account; no card.</p>
+                    <Link
+                      to={SIGNUP_PATH}
+                      onClick={() => {
+                        if (result.draft_token) setDraftCookie(result.draft_token);
+                        else clearDraftCookie();  // never let an old draft prefill someone else's account
+                        track('find_matches_claim_clicked', { has_draft: !!result.draft_token });
+                      }}
+                      className="relative min-h-[56px] w-full sm:w-auto pl-5 pr-12 sm:px-6 py-3 bg-[#00c3ff] text-[#030B17] font-bold text-[15px] leading-5 text-left sm:text-center rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all inline-flex items-center sm:justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
+                    >
+                      <span className="text-balance">{result.draft_token ? 'Claim your profile — it’s already filled in' : 'Create your free account'}</span>
+                      <ArrowRight className="w-4 h-4 shrink-0 absolute right-5 top-1/2 -translate-y-1/2 sm:static sm:translate-y-0" />
+                    </Link>
                   </div>
                 </div>
               </>
@@ -782,10 +911,10 @@ export default function FindMyMatches() {
       <section className="py-12 px-4 sm:px-6 relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <h2 className="font-headline font-black text-2xl md:text-3xl text-white mb-2 tracking-tight">
-            Three decisions instead of fifty candidates
+            A short list, with reasons
           </h2>
           <p className="text-[#a0b2c8] font-body mb-8 max-w-2xl text-sm md:text-base leading-relaxed">
-            A keyword search hands you every notice that mentions your NAICS code. We rank them against your company and show only the few worth your time.
+            A NAICS search can surface every notice that mentions your code. We also check the work, the set-aside, required contract vehicles, and the response deadline before ranking the matches.
           </p>
           <div className="rounded-xl border border-[#1e2d4a]/80 grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#1e2d4a]/80">
             {([
@@ -797,12 +926,12 @@ export default function FindMyMatches() {
               {
                 Icon: Search,
                 title: 'What we check',
-                body: 'Every open federal notice on SAM.gov: the work, the set-aside, the NAICS code, and whether the deadline leaves time to respond.',
+                body: 'SAM.gov notices with at least a week left: the work, set-aside, NAICS code, required vehicles, and response deadline.',
               },
               {
                 Icon: ShieldCheck,
                 title: 'What you get',
-                body: 'The three worth pursuing, one that looks right and isn’t, and the reasons for each. A first screen, not an eligibility decision.',
+                body: 'The three worth pursuing, one that looks right and isn’t, and the reasons for each. A first-pass screen, not an eligibility decision.',
               },
             ] as const).map(({ Icon: CardIcon, title, body }) => (
               <div key={title} className="px-5 sm:px-6 py-5">

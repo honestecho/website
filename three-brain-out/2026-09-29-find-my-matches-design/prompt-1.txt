@@ -1,0 +1,304 @@
+You are a harsh principal product designer AND a plain-English conversion copy editor judging ONE thing: honestecho.com/tools/find-my-matches, a free no-login tool where a small federal contractor names their company (or uploads a capability statement) and sees the open federal notices worth pursuing. It has two states: (A) the landing/search state, where the visitor should type their company name or UEI and run it; (B) the result state, opened from an outreach email link, where the visitor should read their three picks + one near-miss and click "Claim your profile — it's already filled in". Audience: owners and BD leads at small federal contractors (construction, trades, engineering, manufacturing) — busy, skeptical, not software people. Visual tokens: dark navy SaaS, bg #030B17, card #0b1120, border #1e2d4a, cyan #00c3ff, muted #a0b2c8; site nav/footer are shared and out of scope. Standing bar: 95+/100.
+
+Attached, in order: landing state desktop fold (1440x900), landing mobile fold (390), result state desktop section shot(s) of #results (1440 wide), result state mobile fold/section (390).
+
+FIXED — judge execution within these, never propose replacing them:
+- The offer: "the three worth pursuing, plus one that looks right and isn't."
+- The DATA in the result state (notice titles, agencies, deadlines, fit scores, "why it fits" reasons, the near-miss and its reason, the count line). These are a saved snapshot that must match an email the visitor already read — you may restyle, reorder visual emphasis, or relabel UI chrome around them, but never change, drop, add, or re-rank the notices or numbers.
+- The two entry paths (name/UEI lookup primary, capability-statement upload secondary) and the single primary CTA in the result state (claim the pre-filled profile).
+- The disclaimer line ("woman-owned, veteran-owned small business... not affiliated with, or endorsed by, any government agency").
+
+Current page text (state A then state B):
+=== STATE A (landing) ===
+Honest Echo
+KNOW BEFORE YOU BID
+How it works
+Pricing
+Sign in
+Start free
+
+Free tool · No account required
+
+Find the federal opportunities worth your time.
+
+Name your company. We check your public SBA profile against every open federal notice and show you the three worth pursuing, plus one that looks right and isn’t. Know what to pursue, what to kill, and why.
+
+Company name or UEI
+Find my matches
+
+We look you up in SBA’s Small Business Search. Your 12-character UEI goes straight to your matches.
+
+Or upload your capability statement (PDF or DOCX)
+
+Up to 10 MB. We use the file only to build your profile.
+
+Choose a file
+Three decisions instead of fifty candidates
+
+A keyword search hands you every notice that mentions your NAICS code. We rank them against your company and show only the few worth your time.
+
+What we read
+
+Your public SBA Small Business Search profile: NAICS codes, certifications, and capabilities. Or the capability statement you upload, which we use only to build your profile.
+
+What we check
+
+Every open federal notice on SAM.gov: the work, the set-aside, the NAICS code, and whether the deadline leaves time to respond.
+
+What you get
+
+The three worth pursuing, one that looks right and isn’t, and the reasons for each. A first screen, not an eligibility decision.
+
+Honest Echo is a woman-owned, veteran-owned small business. We are not affiliated with, or endorsed by, any government agency.
+
+Honest Echo
+KNOW BEFORE YOU BID
+
+Fairfax, VA
+
+info@honestecho.com
+
+PRODUCT
+
+Free Analyzer
+Pursuit Readout
+Construction Contracts
+Pricing
+Security
+FAQ
+
+WHO IT’S FOR
+
+Small Business Owners
+Proposal Managers
+GovCon Consultants
+
+COMPANY
+
+About
+Contact
+Terms of Service
+Privacy Policy
+
+COMPARE
+
+vs GovWin
+vs GovTribe
+SAM.gov Analysis
+
+GUIDES
+
+All Guides
+Sources Sought Guide
+Hidden Opportunities
+Recompete Tracking
+
+© 2026 Honest Echo LLC. All rights reserved.
+
+Start Free →
+Sign In →
+
+=== STATE B (result) ===
+Free tool · No account required
+
+Find the federal opportunities worth your time.
+
+Name your company. We check your public SBA profile against every open federal notice and show you the three worth pursuing, plus one that looks right and isn’t. Know what to pursue, what to kill, and why.
+
+Company name or UEI
+Find my matches
+
+We look you up in SBA’s Small Business Search. Your 12-character UEI goes straight to your matches.
+
+Or upload your capability statement (PDF or DOCX)
+
+Up to 10 MB. We use the file only to build your profile.
+
+Choose a file
+The 3 worth your pursuit time
+
+16 strong matches and 30 worth a look in 5,059 open notices.
+
+Matched Sep 29, 2026. Deadlines and notices change daily.
+
+Check another company
+
+HOW WE READ YOUR COMPANY
+
+HEALTH FACILITY SOLUTIONS COMPANY
+
+San Antonio, TX
+
+NAICS codes
+
+541330 — Engineering Services
+236220 — Commercial and Institutional Building Construction
+541310 — Architectural Services
+541513 — Computer Facilities Management Services
+
+Certifications
+
+SDVOSB
+VOSB
+WOSB
+
+Top keywords
+
+facility
+consulting
+management
+construction project
+capital projects
+design
+construction
+design-build
+
+From your SBA Small Business Search profile.
+
+Not quite right? You can correct it after you claim your profile.
+
+WORTH PURSUING · #1
+
+Design Build to Install Parking Shades and Parking Lot Reconfiguration Project 593-26-306
+
+VETERANS AFFAIRS, DEPARTMENT OF · 261-NETWORK CONTRACT OFFICE 21 (36C261)
+
+FIT
+80 / 100
+Responses due Oct 15
+Service-Disabled Veteran-Owned Small Business (SDVOSB) Set-Aside
+NAICS 236220
+
+Why it fits
+
+Set-aside matches a certification you hold
+Your keywords appear in this notice
+NAICS 236220 is one of your secondary codes
+View on SAM.gov
+
+WORTH PURSUING · #2
+
+Danville Construction MATOC (FY27) SEED PROJECT NO: 550-25-108 Renovate Bathrooms in B103 PRRTP & B64/7 at the VA Illiana Health Care System (VIHCS), Danville IL.
+
+VETERANS AFFAIRS, DEPARTMENT OF · 252-NETWORK CONTRACT OFFICE 12 (36C252)
+
+FIT
+80 / 100
+Responses due Oct 21
+Service-Disabled Veteran-Owned Small Business (SDVOSB) Set-Aside
+NAICS 236220
+
+Why it fits
+
+Set-aside matches a certification you hold
+Your keywords appear in this notice
+NAICS 236220 is one of your secondary codes
+View on SAM.gov
+
+WORTH PURSUING · #3
+
+Indefinite delivery/indefinite quantity multiple award contract for multidiscipline architect-engineer services in support of construction projects located primarily in the norfolk district area of responsibility (aor)
+
+DEPT OF THE ARMY · W2SD ENDIST NORFOLK
+
+FIT
+80 / 100
+Responses due Oct 22
+Open competition
+NAICS 541330
+
+Why it fits
+
+NAICS 541330 is one of your primary codes
+A seat on a multiple-award vehicle is being competed, in your NAICS
+Your keywords appear in this notice
+View on SAM.gov
+LOOKS RIGHT — ISN’T
+Architect & Engineering Services, Indefinite-Delivery, Indefinite-Quantity (IDIQ) Multiple Award (A&E) Contracts needed for new construction, renovation, alteration and repairs required by Federal Prison Industries (FPI)
+
+JUSTICE, DEPARTMENT OF · FEDERAL PRISON INDUSTRIES, INC
+
+Why we’d skip it
+
+Reserved for 8(a) firms; the profile does not hold that certification.
+View on SAM.gov
+
+Keep these, and get the next ones as they post.
+
+Your profile is already filled in from what you see here. Claim it with a free account; no card.
+
+Claim your profile — it’s already filled in
+Three decisions instead of fifty candidates
+
+A keyword search hands you every notice that mentions your NAICS code. We rank them against your company and show only the few worth your time.
+
+What we read
+
+Your public SBA Small Business Search profile: NAICS codes, certifications, and capabilities. Or the capability statement you upload, which we use only to build your profile.
+
+What we check
+
+Every open federal notice on SAM.gov: the work, the set-aside, the NAICS code, and whether the deadline leaves time to respond.
+
+What you get
+
+The three worth pursuing, one that looks right and isn’t, and the reasons for each. A first screen, not an eligibility decision.
+
+Honest Echo is a woman-owned, veteran-owned small business. We are not affiliated with, or endorsed by, any government agency.
+
+Honest Echo
+KNOW BEFORE YOU BID
+
+Fairfax, VA
+
+info@honestecho.com
+
+PRODUCT
+
+Free Analyzer
+Pursuit Readout
+Construction Contracts
+Pricing
+Security
+FAQ
+
+WHO IT’S FOR
+
+Small Business Owners
+Proposal Managers
+GovCon Consultants
+
+COMPANY
+
+About
+Contact
+Terms of Service
+Privacy Policy
+
+COMPARE
+
+vs GovWin
+vs GovTribe
+SAM.gov Analysis
+
+GUIDES
+
+All Guides
+Sources Sought Guide
+Hidden Opportunities
+Recompete Tracking
+
+© 2026 Honest Echo LLC. All rights reserved.
+
+Start Free →
+Sign In →
+
+Hard constraints (a fix or rewrite that breaks one is disqualified):
+- True claims only. What the product actually does: looks the company up in SBA's public Small Business Search (or reads an uploaded capability statement), scores it against the federal notices open on SAM.gov with at least a week left to respond, applies a set-aside/required-vehicle eligibility check, and shows the top 3 eligible + 1 high-scoring notice it rules out. A free account keeps the profile and scores new notices. Do NOT promise: win probability, guaranteed eligibility (it is "a first screen, not an eligibility decision"), specific alert cadence ("daily", "instant"), coverage beyond SAM.gov, time saved, number of users, or any feature not listed.
+- Never the words "beta", "AI", "Claude", or any model name. No personal names. Company voice ("we").
+- No invented UI (no mock dashboards, fake shortlists, testimonial cards). Contained, consistent panels over editorial/asymmetric layouts.
+- Keep it one page; no new sections that restate what the result cards already show.
+
+Score /100 on: hierarchy & focal point (does each state make the ONE next action obvious?) 20, result-card scannability (can a skeptical owner grasp pick / agency / deadline / why in 5 seconds?) 20, typography & rhythm 15, composition, alignment & consistency between panels 15, mobile translation 10, trust & restraint (feels credible, not salesy) 10, COPY (reads like a person wrote it for contractors — flag stilted, jargon-first, or AI-ish lines with exact rewrites) 10.
+
+Then list the TOP 6 fixes ranked by impact, each concrete (Tailwind-level class changes or exact copy). No praise. Cap 700 words. End with exactly: SCORE: NN/100.

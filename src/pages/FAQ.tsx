@@ -41,9 +41,9 @@ const sections: FAQSection[] = [
         ],
       },
       {
-        q: 'What do "Go," "Conditional Go," and "No-Bid" mean?',
+        q: 'What do "Go," "Conditional Go," and "No-Go" mean?',
         parts: [
-          { bullets: ['Go: Strong fit and worth pursuing', 'Conditional Go: Potential fit with risks or gaps', 'No-Bid: Low fit or high risk relative to effort'] },
+          { bullets: ['Go: Strong fit and worth pursuing', 'Conditional Go: Potential fit with risks or gaps', 'No-Go: Low fit or high risk relative to effort'] },
           'These recommendations are designed to help you make faster, more consistent decisions.',
         ],
       },
@@ -71,7 +71,7 @@ const sections: FAQSection[] = [
         q: 'How does HE Pursuit help with bid/no-bid decisions?',
         parts: [
           'HE Pursuit evaluates each opportunity against your business profile and provides a structured assessment of fit, eligibility, effort, and risk.',
-          'It then generates a clear recommendation—Go, Conditional Go, or No-Bid—to support your decision.',
+          'It then generates a clear recommendation—Go, Conditional Go, or No-Go—to support your decision.',
         ],
       },
       {
@@ -305,7 +305,7 @@ export default function FAQ() {
       </Helmet>
       <FAQPageSchema items={[
         { q: 'What is HE Pursuit and how does it help government contractors?', a: 'HE Pursuit is a bid/no-bid decision platform that helps small government contractors evaluate SAM.gov opportunities quickly and decide which ones are worth pursuing. It replaces scattered notes and gut-feel decisions with a structured way to assess fit, eligibility, effort, and overall pursuit value.' },
-        { q: 'How does HE Pursuit help with bid/no-bid decisions?', a: 'HE Pursuit evaluates each opportunity against your business profile and provides a structured assessment of fit, eligibility, effort, and risk. It then generates a clear recommendation — Go, Conditional Go, or No-Bid — to support your decision.' },
+        { q: 'How does HE Pursuit help with bid/no-bid decisions?', a: 'HE Pursuit evaluates each opportunity against your business profile and provides a structured assessment of fit, eligibility, effort, and risk. It then generates a clear recommendation — Go, Conditional Go, or No-Go — to support your decision.' },
         { q: 'Where does the opportunity data come from?', a: 'HE Pursuit uses publicly available data from sources like SAM.gov.' },
         { q: 'Is my data shared or sold?', a: 'No. We do not sell, rent, or share your data.' },
         { q: 'Is my data used to train AI models?', a: 'No. Your data is not used to train artificial intelligence or machine learning models.' },

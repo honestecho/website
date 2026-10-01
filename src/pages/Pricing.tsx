@@ -31,7 +31,7 @@ const features: Feature[] = [
   { category: 'Eligibility & Analysis', name: 'Requirements extraction',      free: 'none', starter: 'check', pro: 'check', team: 'check' },
   { category: 'Eligibility & Analysis', name: 'Strategic & effort scoring',   free: 'none', starter: 'check', pro: 'check', team: 'check' },
   // Decisions & Output
-  { category: 'Decisions & Output', name: 'Go / Conditional Go / No-Bid', free: 'none', starter: 'check', pro: 'check', team: 'check' },
+  { category: 'Decisions & Output', name: 'Go / Conditional Go / No-Go', free: 'none', starter: 'check', pro: 'check', team: 'check' },
   { category: 'Decisions & Output', name: 'Decision tracking & history',   free: 'none', starter: 'Per-pursuit', pro: 'check', team: 'check' },
   { category: 'Decisions & Output', name: 'PDF decision report export',    free: 'none', starter: 'none',  pro: 'check', team: 'check' },
   // Workflow & Visibility
@@ -60,7 +60,7 @@ function Cell({ value }: { value: CV }) {
 const faqs = [
   { q: 'Do I need a credit card to start?',               a: 'No. Start Free needs an email, followed by a few questions to build your profile. A card is required only when you choose a paid plan.' },
   { q: 'Can I cancel anytime?',                           a: 'Yes. Cancel from your account settings — no notice period, no lock-in.' },
-  { q: 'Will it write my proposal?',                      a: 'No. HE Pursuit decides whether an opportunity deserves a proposal: eligibility, requirements, disqualifiers, and a Go, Conditional Go, or No-Bid with the reasons. Writing the proposal stays with you.' },
+  { q: 'Will it write my proposal?',                      a: 'No. HE Pursuit decides whether an opportunity deserves a proposal: eligibility, requirements, disqualifiers, and a Go, Conditional Go, or No-Go with the reasons. Writing the proposal stays with you.' },
   { q: 'What is the difference between Starter and Pro?', a: 'Starter ($99/month) includes the full qualification workflow for up to 25 pursuits per month. Pro ($199/month) includes unlimited pursuits, plus the dashboard, decision history, and PDF export.' },
   { q: 'When should I upgrade to Team?',                  a: 'Choose Team when more than one person needs to work in the same pipeline. Team is $299/month and waitlist-only for now. Join the waitlist and we\'ll let you know when it becomes available.' },
 ];
@@ -104,7 +104,7 @@ const plans = [
       'Disqualifier detection',
       'Requirements extraction',
       'Strategic fit and effort scoring',
-      'Go / Conditional Go / No-Bid recommendations',
+      'Go / Conditional Go / No-Go recommendations',
       'Bookmark unlimited opportunities',
       'Up to 25 pursuits per month',
     ],
@@ -205,7 +205,7 @@ export default function Pricing() {
               Know which bids to skip before you write them.
             </h1>
             <p className="text-[#a0b2c8] text-lg leading-relaxed font-body mb-6">
-              Searching opportunities and getting profile-based match scores is free. Paid plans unlock the full bid/no-bid workflow: eligibility, requirements, disqualifiers, and a Go, Conditional Go, or No-Bid with reasons.
+              Searching opportunities and getting profile-based match scores is free. Paid plans unlock the full bid/no-bid workflow: eligibility, requirements, disqualifiers, and a Go, Conditional Go, or No-Go with reasons.
             </p>
             <p className="text-[#00c3ff] font-body text-xl md:text-2xl font-bold tracking-tight">
               Starter is $99/month and Pro is $199/month. Compare that with the labor cost of one proposal your team decides not to write.

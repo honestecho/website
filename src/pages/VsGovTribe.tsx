@@ -9,7 +9,7 @@ import HeroPursuitCardZoom from '../components/HeroPursuitCardZoom';
 const faqs = [
   {
     q: 'What is the best GovTribe alternative for bid/no-bid decisions?',
-    a: 'GovTribe is a federal market research tool — contract history, agency spend, competitor and people search. It is strong at answering "what is happening in this market." It is not built to answer "should we bid this one." HE Pursuit is: it evaluates a specific SAM.gov notice against your company profile and returns a Go, Conditional Go, or No-Bid recommendation with the drivers behind it. If your bottleneck is qualification rather than research, that is the swap.',
+    a: 'GovTribe is a federal market research tool — contract history, agency spend, competitor and people search. It is strong at answering "what is happening in this market." It is not built to answer "should we bid this one." HE Pursuit is: it evaluates a specific SAM.gov notice against your company profile and returns a Go, Conditional Go, or No-Go recommendation with the drivers behind it. If your bottleneck is qualification rather than research, that is the swap.',
   },
   {
     q: 'How much does GovTribe cost compared to HE Pursuit?',
@@ -32,8 +32,8 @@ const faqs = [
 const cards = [
   {
     Icon: CheckCircle,
-    title: 'Go / Conditional Go / No-Bid output',
-    body: "GovTribe gives you data. HE Pursuit gives you a decision. Each evaluation ends with a clear recommendation — Go, Conditional Go, or No-Bid — grounded in structured analysis, not gut feel.",
+    title: 'Go / Conditional Go / No-Go output',
+    body: "GovTribe gives you data. HE Pursuit gives you a decision. Each evaluation ends with a clear recommendation — Go, Conditional Go, or No-Go — grounded in structured analysis, not gut feel.",
   },
   {
     Icon: Target,
@@ -150,7 +150,7 @@ export default function VsGovTribe() {
                   <tr className="border-b border-[#1e2d4a]">
                     <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">What you get</th>
                     <td className="px-6 py-4 text-[#8b9bb4] leading-relaxed align-top">Data on the opportunity landscape</td>
-                    <td className="px-6 py-4 text-white leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]">A Go, Conditional Go, or No-Bid recommendation</td>
+                    <td className="px-6 py-4 text-white leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]">A Go, Conditional Go, or No-Go recommendation</td>
                   </tr>
                   <tr>
                     <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Time to a decision</th>
@@ -214,7 +214,7 @@ export default function VsGovTribe() {
                 <em>"we don't quite meet this but..."</em> paragraph destined to fail compliance review.
               </p>
               <p className="text-[#00c3ff] font-bold font-body">
-                That's the qualification gap. HE Pursuit's Phase 2 eligibility review scans every requirement for hard disqualifiers like this one — so the no-bid call costs you minutes, not the afternoon.
+                That's the qualification gap. HE Pursuit's Phase 2 eligibility review scans every requirement for hard disqualifiers like this one — so the No-Go call costs you minutes, not the afternoon.
               </p>
             </div>
           </div>

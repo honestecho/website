@@ -1,6 +1,6 @@
 # Honest Echo — HE Pursuit
 
-> HE Pursuit is bid/no-bid intelligence for small government contractors. It analyzes SAM.gov opportunities and returns a clear Go / Conditional Go / No-Bid recommendation with the reasoning behind it, so lean GovCon teams stop burning proposal hours on the wrong pursuits.
+> HE Pursuit is bid/no-bid intelligence for small government contractors. It analyzes SAM.gov opportunities and returns a clear Go / Conditional Go / No-Go recommendation with the reasoning behind it, so lean GovCon teams stop burning proposal hours on the wrong pursuits.
 
 Honest Echo LLC is a woman-owned, veteran-owned small business based in Fairfax, VA. HE Pursuit is its SaaS product; the application lives at pursuit.honestecho.com and the public marketing site is honestecho.com. HE Pursuit analyzes publicly available U.S. government solicitation documents (SAM.gov notices) — it does not use customer data to train AI models.
 
@@ -13,7 +13,7 @@ Honest Echo LLC is a woman-owned, veteran-owned small business based in Fairfax,
 
 ## Who It's For
 - [Small Business Owners](https://honestecho.com/for-small-business-owners/): Screen SAM.gov opportunities against your NAICS, certifications, and capacity; see whether to prime, sub, or pass — including set-aside (8(a), SDVOSB, WOSB, HUBZone) matches and notices primeable at your size.
-- [Proposal Managers](https://honestecho.com/for-proposal-managers/): A bid/no-bid scorecard that arrives already filled in — triage SAM.gov at volume, surface disqualifiers early, and document every Go/No-Bid decision.
+- [Proposal Managers](https://honestecho.com/for-proposal-managers/): A bid/no-bid scorecard that arrives already filled in — triage SAM.gov at volume, surface disqualifiers early, and document every Go/No-Go decision.
 - [GovCon Consultants](https://honestecho.com/for-govcon-consultants/): Multi-client opportunity screening with evidence-backed recommendations, and a free no-login analyzer for live client workshops.
 
 ## Comparisons

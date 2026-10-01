@@ -8,7 +8,7 @@ import { SoftwareApplicationSchema, FAQPageSchema } from '../components/SchemaOr
 const faqs = [
   {
     q: 'How do small business owners find government contracts worth bidding on?',
-    a: 'SAM.gov is the official source for federal contract opportunities, but it ranks none of them for your business. The practical workflow is: define your NAICS codes, certifications, and capacity once, then screen every incoming notice against that profile. HE Pursuit automates that screening: each analyzed SAM.gov notice gets a fit score and a Go, Conditional Go, or No-Bid read against your profile, so you can reserve proposal hours for stronger-fit work.',
+    a: 'SAM.gov is the official source for federal contract opportunities, but it ranks none of them for your business. The practical workflow is: define your NAICS codes, certifications, and capacity once, then screen every incoming notice against that profile. HE Pursuit automates that screening: each analyzed SAM.gov notice gets a fit score and a Go, Conditional Go, or No-Go read against your profile, so you can reserve proposal hours for stronger-fit work.',
   },
   {
     q: 'I just got my 8(a), SDVOSB, WOSB, or HUBZone certification. Now what?',
@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     q: 'How much time should a small business spend on a federal proposal?',
-    a: 'A federal proposal can require substantial working time; the actual effort depends on scope, vehicle, response format, and team. That is why an early bid/no-bid decision matters: a disciplined no-bid avoids most of the downstream proposal cost of a weak-fit pursuit. Screening with HE Pursuit takes minutes per notice, so the expensive hours only start after a defensible Go.',
+    a: 'A federal proposal can require substantial working time; the actual effort depends on scope, vehicle, response format, and team. That is why an early bid/no-bid decision matters: a disciplined No-Go avoids most of the downstream proposal cost of a weak-fit pursuit. Screening with HE Pursuit takes minutes per notice, so the expensive hours only start after a defensible Go.',
   },
   {
     q: 'Is HE Pursuit free for small businesses?',

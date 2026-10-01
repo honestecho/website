@@ -38,8 +38,8 @@ const phaseCards = [
   {
     Icon: CheckCircle,
     phase: 5,
-    title: 'Go / Conditional Go / No-Bid in minutes',
-    body: 'Most SAM.gov evaluations in HE Pursuit take minutes. The result is a structured recommendation — Go, Conditional Go, or No-Bid — grounded in your specific company profile, not a generic scoring algorithm.',
+    title: 'Go / Conditional Go / No-Go in minutes',
+    body: 'Most SAM.gov evaluations in HE Pursuit take minutes. The result is a structured recommendation — Go, Conditional Go, or No-Go — grounded in your specific company profile, not a generic scoring algorithm.',
   },
 ];
 

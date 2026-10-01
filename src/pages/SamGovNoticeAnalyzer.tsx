@@ -629,7 +629,7 @@ export default function SamGovNoticeAnalyzer() {
               {
                 Icon: ShieldCheck,
                 title: 'A quick bid/no-bid read',
-                body: 'See GO, CONDITIONAL GO, or NO-BID, plus the factors behind the result. Example scores use the sample business you select.',
+                body: 'See GO, CONDITIONAL GO, or NO-GO, plus the factors behind the result. Example scores use the sample business you select.',
               },
               {
                 Icon: FileText,

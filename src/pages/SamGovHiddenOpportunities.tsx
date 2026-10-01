@@ -39,7 +39,7 @@ const cards = [
     Icon: CheckCircle,
     kicker: 'From signal to decision',
     title: 'Surface it, then decide whether to chase it',
-    body: 'Finding a hidden notice is only half the job. HE Pursuit runs each one through the same bid/no-bid qualification — fit, eligibility, and pursuit value — so you get a Go, Conditional Go, or No-Bid recommendation in minutes, not just another notice in a list.',
+    body: 'Finding a hidden notice is only half the job. HE Pursuit runs each one through the same bid/no-bid qualification — fit, eligibility, and pursuit value — so you get a Go, Conditional Go, or No-Go recommendation in minutes, not just another notice in a list.',
   },
 ];
 

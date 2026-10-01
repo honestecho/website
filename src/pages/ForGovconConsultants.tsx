@@ -11,7 +11,7 @@ const faqs = [
     a: 'The traditional stack is GovWin IQ or GovTribe for discovery plus manual judgment for screening — powerful, but priced for firms rather than solo consultants, and the screening hours don\'t scale past a handful of clients. HE Pursuit covers the screening layer: build a profile reflecting the client business you\'re advising, and incoming SAM.gov notices are scored against it — so your review starts from a ranked shortlist instead of a raw feed.',
   },
   {
-    q: 'How do consultants justify a no-bid recommendation to a client?',
+    q: 'How do consultants justify a No-Go recommendation to a client?',
     a: 'With evidence, not authority. A client who hears "I don\'t think it\'s a fit" pushes back; a client who sees the scored breakdown — eligibility gap, incumbent signals, timing risk, effort versus value — accepts the recommendation and remembers who protected their proposal budget. HE Pursuit produces that breakdown for every notice, in a form you can put in front of a client.',
   },
   {

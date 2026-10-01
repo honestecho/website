@@ -222,7 +222,7 @@ export default function AnalyzerOpportunityCard({ opportunity, score, summary, c
   // ── Decision band ── recommendation derived from the score (no workflow on the
   //    public card). geo/value are absent from DIMS entirely — the server no longer
   //    scores them, so there is nothing to exclude here.
-  // The verdict IS the server's recommendation (GO / CONDITIONAL GO / NO-BID) —
+  // The verdict IS the server's recommendation (GO / CONDITIONAL GO / NO-GO) —
   // one vocabulary from the promise on the page to the label on the card.
   type Band = { Icon: LucideIcon; color: string; label: string; reason: string };
   const band: Band = notBiddable
@@ -231,7 +231,7 @@ export default function AnalyzerOpportunityCard({ opportunity, score, summary, c
         reason: 'This sample business lines up well with the work, agency, deadline, and set-aside. Compare the notice with your own business before deciding to bid.' }
     : score.recommendation === 'CONDITIONAL_GO' ? { Icon: AlertTriangle, color: '#f5a623', label: 'CONDITIONAL GO',
         reason: 'A workable fit for this sample profile, with gaps to check. Confirm the weaker dimensions before committing proposal hours.' }
-    :                  { Icon: Eye, color: '#8b9bb4', label: 'NO-BID',
+    :                  { Icon: Eye, color: '#8b9bb4', label: 'NO-GO',
         reason: 'Weak fit for this sample profile. Review only if the opportunity matters strategically.' };
   const BandIcon = band.Icon;
 

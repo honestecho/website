@@ -20,11 +20,11 @@ const faqs = [
   },
   {
     q: 'What win rate should a small GovCon team expect?',
-    a: 'Win rate depends on selection discipline more than writing quality: teams that qualify hard before bidding consistently outperform teams that chase everything with the same capacity. Whatever your current rate, the cheapest way to raise it is fewer, better-fit pursuits — a disciplined no-bid is the highest-ROI decision a proposal team makes.',
+    a: 'Win rate depends on selection discipline more than writing quality: teams that qualify hard before bidding consistently outperform teams that chase everything with the same capacity. Whatever your current rate, the cheapest way to raise it is fewer, better-fit pursuits — a disciplined No-Go is the highest-ROI decision a proposal team makes.',
   },
   {
     q: 'Does HE Pursuit write proposals?',
-    a: 'No. HE Pursuit is the decision layer before the writing starts: fit scoring, eligibility checks, effort/risk weighing, and a Go, Conditional Go, or No-Bid recommendation with documented reasoning. It protects proposal capacity; it does not replace it.',
+    a: 'No. HE Pursuit is the decision layer before the writing starts: fit scoring, eligibility checks, effort/risk weighing, and a Go, Conditional Go, or No-Go recommendation with documented reasoning. It protects proposal capacity; it does not replace it.',
   },
 ];
 
@@ -42,7 +42,7 @@ const cards = [
   {
     Icon: Target,
     title: 'Kill criteria before the kickoff',
-    body: 'Disqualifiers surface first: a set-aside you don\'t hold, a contract vehicle you\'re not on, requirements your profile can\'t support. The fastest no-bid is the one made before the color-team calendar exists.',
+    body: 'Disqualifiers surface first: a set-aside you don\'t hold, a contract vehicle you\'re not on, requirements your profile can\'t support. The fastest No-Go is the one made before the color-team calendar exists.',
   },
   {
     Icon: Clock,
@@ -56,7 +56,7 @@ const cards = [
   },
   {
     Icon: CheckCircle,
-    title: 'A no-bid you can defend to the boss',
+    title: 'A No-Go you can defend to the boss',
     body: '"Why didn\'t we bid that?" gets a documented answer: the score, the disqualifiers, the date. Decision discipline compounds — and the record is how you prove the pursuits you did pick were the right ones.',
   },
 ];
@@ -74,7 +74,7 @@ export default function ForProposalManagers() {
         <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Bid/No-Bid Decisions for Proposal Managers — HE Pursuit" />
-        <meta name="twitter:description" content="Score every SAM.gov notice before the writing starts. Go / Conditional Go / No-Bid with evidence." />
+        <meta name="twitter:description" content="Score every SAM.gov notice before the writing starts. Go / Conditional Go / No-Go with evidence." />
         <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
       <SoftwareApplicationSchema />

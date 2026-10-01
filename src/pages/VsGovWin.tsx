@@ -9,7 +9,7 @@ import HeroPursuitCardZoom from '../components/HeroPursuitCardZoom';
 const faqs = [
   {
     q: 'What is the best GovWin alternative for a small government contractor?',
-    a: 'It depends which job you need done. GovWin IQ is a market intelligence subscription built for enterprise BD teams — pre-RFP forecasting, pipeline data, and competitor research at scale. If what you actually need is to decide whether a specific SAM.gov opportunity is worth bidding, HE Pursuit is built for that job: it evaluates fit, eligibility, effort, and risk, then returns a Go, Conditional Go, or No-Bid recommendation. Small contractors who already find opportunities on SAM.gov but struggle to qualify them are the fit.',
+    a: 'It depends which job you need done. GovWin IQ is a market intelligence subscription built for enterprise BD teams — pre-RFP forecasting, pipeline data, and competitor research at scale. If what you actually need is to decide whether a specific SAM.gov opportunity is worth bidding, HE Pursuit is built for that job: it evaluates fit, eligibility, effort, and risk, then returns a Go, Conditional Go, or No-Go recommendation. Small contractors who already find opportunities on SAM.gov but struggle to qualify them are the fit.',
   },
   {
     q: 'How much does GovWin IQ cost compared to HE Pursuit?',
@@ -33,7 +33,7 @@ const cards = [
   {
     Icon: Scale,
     title: 'Structured qualification, not data subscriptions',
-    body: 'GovWin gives you more data. HE Pursuit gives you a decision. Each evaluation walks you through fit, eligibility, effort, and risk — and produces a Go, Conditional Go, or No-Bid recommendation your team can act on.',
+    body: 'GovWin gives you more data. HE Pursuit gives you a decision. Each evaluation walks you through fit, eligibility, effort, and risk — and produces a Go, Conditional Go, or No-Go recommendation your team can act on.',
   },
   {
     Icon: Target,
@@ -150,7 +150,7 @@ export default function VsGovWin() {
                   <tr className="border-b border-[#1e2d4a]">
                     <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">What you get</th>
                     <td className="px-6 py-4 text-[#8b9bb4] leading-relaxed align-top">More data</td>
-                    <td className="px-6 py-4 text-white leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]">A Go, Conditional Go, or No-Bid recommendation your team can act on</td>
+                    <td className="px-6 py-4 text-white leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]">A Go, Conditional Go, or No-Go recommendation your team can act on</td>
                   </tr>
                   <tr className="border-b border-[#1e2d4a]">
                     <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Time to a decision</th>

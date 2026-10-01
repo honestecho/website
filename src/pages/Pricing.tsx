@@ -41,7 +41,6 @@ const features: Feature[] = [
   { category: 'Team & Admin', name: 'Shared pursuits',      free: 'none', starter: 'none', pro: 'none', team: 'check' },
   { category: 'Team & Admin', name: 'Team-level visibility', free: 'none', starter: 'none', pro: 'none', team: 'check' },
   // Support
-  { category: 'Support', name: 'Help center',           free: 'check', starter: 'check',    pro: 'check',    team: 'check'    },
   { category: 'Support', name: 'Email support',         free: 'check', starter: 'check',    pro: 'check',    team: 'check'    },
   { category: 'Support', name: 'Faster response time',  free: 'none',  starter: 'none',     pro: 'check',    team: 'check'    },
   { category: 'Support', name: 'Onboarding assistance', free: 'none',  starter: 'Optional', pro: 'Optional', team: 'check'    },

@@ -47,7 +47,7 @@ const phaseCards = [
 const faqs = [
   {
     q: 'What is a bid/no-bid decision?',
-    a: 'The call a contractor makes before writing a proposal: pursue this opportunity or pass. It weighs fit with the work you have actually done, eligibility (set-aside, size standard, certifications), your position against the incumbent, and whether the hours to bid are worth the realistic chance of winning. A disciplined no-bid is how a small firm protects its proposal time.',
+    a: 'The call a contractor makes before writing a proposal: pursue this opportunity or pass. It weighs fit with the work you have actually done, eligibility (set-aside, size standard, certifications), your position against the incumbent, and whether the hours to bid are worth the realistic chance of winning. A disciplined No-Go is how a small firm protects its proposal time.',
   },
   {
     q: 'How do I decide whether to bid on a SAM.gov opportunity?',

@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight, HelpCircle, Megaphone, Scale, ShieldCheck, XCircle, CheckCircle } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
+import RelatedGuides from '../components/RelatedGuides';
 import { SoftwareApplicationSchema, GuideArticleSchema } from '../components/SchemaOrg';
 
 const leadCard = {
@@ -44,6 +45,14 @@ const cards = [
 ];
 
 const faqs = [
+  {
+    q: 'What is a Sources Sought notice?',
+    a: 'A market-research notice an agency posts on SAM.gov before it writes the solicitation, asking which companies could do the work. No contract is awarded from it. The responses tell the contracting office whether enough capable small businesses exist to set the work aside, and they inform the requirement itself.',
+  },
+  {
+    q: 'Is a Sources Sought the same as an RFI?',
+    a: 'Close cousins, not twins. Both are market research and neither is a solicitation. A Sources Sought mainly asks who can do the work, which is what drives the set-aside decision. An RFI mainly asks for information about the requirement — approach, pricing, feasibility. On SAM.gov, RFIs are usually posted as a Sources Sought or a Special Notice, so read the notice text, not just its type.',
+  },
   {
     q: 'Does responding to a Sources Sought notice lead to a contract?',
     a: 'Not directly — no award is made from a Sources Sought. But responses influence whether the work is set aside for small business, what the final requirement looks like, and which firms the contracting office already knows when the RFP is released.',
@@ -178,6 +187,8 @@ export default function SourcesSoughtGuide() {
           </div>
         </div>
       </section>
+
+      <RelatedGuides current="/sources-sought-worth-responding/" />
 
       {/* CTA */}
       <section className="py-8 pb-24 px-6">

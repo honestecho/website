@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Search, ShieldCheck, Scale, Target, CheckCircle, FileText } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
+import RelatedGuides from '../components/RelatedGuides';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
 
 const leadCard = {
@@ -43,6 +44,31 @@ const phaseCards = [
   },
 ];
 
+const faqs = [
+  {
+    q: 'What is a bid/no-bid decision?',
+    a: 'The call a contractor makes before writing a proposal: pursue this opportunity or pass. It weighs fit with the work you have actually done, eligibility (set-aside, size standard, certifications), your position against the incumbent, and whether the hours to bid are worth the realistic chance of winning. A disciplined no-bid is how a small firm protects its proposal time.',
+  },
+  {
+    q: 'How do I decide whether to bid on a SAM.gov opportunity?',
+    a: 'Answer four questions in order. Are you eligible — set-aside, size standard, required certifications? Does the scope match work you have done? Can you compete — who holds it now, and how will it be evaluated? Is it worth the effort — contract value against the hours to write? The free analyzer screens a notice against a business profile and returns a fit score with the top factors in minutes.',
+  },
+  {
+    q: 'What is a set-aside contract?',
+    a: 'A contract the government reserves for a category of small business, so only firms in that category can compete: total small business, 8(a), HUBZone, service-disabled veteran-owned (SDVOSB), or women-owned (WOSB/EDWOSB). The set-aside is stated on the SAM.gov notice. Checking it against your status is part of the eligibility review HE Pursuit runs.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
 export default function SamGovAnalysis() {
   return (
     <>
@@ -58,6 +84,7 @@ export default function SamGovAnalysis() {
         <meta name="twitter:title" content="SAM.gov Opportunity Analysis Tool — HE Pursuit" />
         <meta name="twitter:description" content="SAM.gov lists opportunities. HE Pursuit helps you decide which ones to pursue. Structured bid/no-bid analysis for small government contractors." />
         <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
       <SoftwareApplicationSchema />
 
@@ -149,6 +176,25 @@ export default function SamGovAnalysis() {
           </Link>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section className="py-8 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-headline font-bold text-white text-3xl tracking-tight text-center mb-8">
+            Bid/no-bid questions, answered
+          </h2>
+          <div className="space-y-4">
+            {faqs.map(f => (
+              <div key={f.q} className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6">
+                <h3 className="font-headline font-bold text-white text-base mb-2">{f.q}</h3>
+                <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{f.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <RelatedGuides />
 
       {/* CTA */}
       <section className="py-8 pb-24 px-6">

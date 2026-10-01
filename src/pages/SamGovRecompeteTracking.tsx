@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight, RefreshCw, Clock, Trophy, Search, Target, CheckCircle } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
+import RelatedGuides from '../components/RelatedGuides';
 import { SoftwareApplicationSchema, GuideArticleSchema } from '../components/SchemaOrg';
 
 const leadCard = {
@@ -178,6 +179,8 @@ export default function SamGovRecompeteTracking() {
           </div>
         </div>
       </section>
+
+      <RelatedGuides current="/sam-gov-recompete-tracking/" />
 
       {/* CTA */}
       <section className="py-8 pb-24 px-6">

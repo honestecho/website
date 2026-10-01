@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight, EyeOff, FileSearch, Filter, Radar, Layers, CheckCircle } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
+import RelatedGuides from '../components/RelatedGuides';
 import { SoftwareApplicationSchema, GuideArticleSchema } from '../components/SchemaOrg';
 
 const leadCard = {
@@ -43,6 +44,31 @@ const cards = [
   },
 ];
 
+const faqs = [
+  {
+    q: 'How do I search SAM.gov by NAICS code?',
+    a: 'In SAM.gov’s Contract Opportunities search, the NAICS filter limits results to notices tagged with that code. That works for most solicitations, which carry one. A notice posted without a NAICS code can never match the filter, so pair it with a keyword search across all notice types.',
+  },
+  {
+    q: 'Can I search SAM.gov by state?',
+    a: 'Yes. The place-of-performance filter narrows results by state. But place of performance is optional on a notice, and many leave it blank, so a state filter also drops those. Run the search once with the filter and once without before you conclude there is nothing in your area.',
+  },
+  {
+    q: 'Is SAM.gov free?',
+    a: 'Yes. Searching opportunities on SAM.gov is free and needs no account, and registering your entity is free too. Companies that charge to register you are selling an optional service, not passing on a government fee.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(f => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
 export default function SamGovHiddenOpportunities() {
   return (
     <>
@@ -58,6 +84,7 @@ export default function SamGovHiddenOpportunities() {
         <meta name="twitter:title" content="Find the SAM.gov Opportunities Its Search Hides — HE Pursuit" />
         <meta name="twitter:description" content="NAICS-filtered search misses the no-code notices — Sources Sought, Special Notices, draft RFPs. HE Pursuit surfaces every notice by keyword, then qualifies it." />
         <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
       <SoftwareApplicationSchema />
       <GuideArticleSchema path="/sam-gov-hidden-opportunities/" />
@@ -131,6 +158,25 @@ export default function SamGovHiddenOpportunities() {
           </div>
         </div>
       </section>
+
+      {/* FAQ */}
+      <section className="py-8 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-headline font-bold text-white text-3xl tracking-tight text-center mb-8">
+            SAM.gov search questions, answered
+          </h2>
+          <div className="space-y-4">
+            {faqs.map(f => (
+              <div key={f.q} className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-6">
+                <h3 className="font-headline font-bold text-white text-base mb-2">{f.q}</h3>
+                <p className="text-[#a0b2c8] text-sm font-body leading-relaxed">{f.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <RelatedGuides current="/sam-gov-hidden-opportunities/" />
 
       {/* Mid-page CTA */}
       <section className="py-8 px-6">

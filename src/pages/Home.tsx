@@ -273,7 +273,7 @@ export default function Home() {
                 <span className="text-[#8b9bb4] text-sm">/mo</span>
               </div>
               <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow">
-                {['Everything in Free', 'Full five-phase workflow', 'Eligibility & disqualifier review', 'Requirements extraction', 'Strategic fit & effort scoring', 'Up to 25 pursuits per month'].map(f => (
+                {['Everything in Free', 'Full five-phase workflow', 'Eligibility & disqualifier review', 'Requirements extraction', 'Strategic fit & effort scoring', 'One-page PDF decision summary', 'Up to 25 pursuits per month'].map(f => (
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>
@@ -296,7 +296,7 @@ export default function Home() {
                 <span className="text-[#8b9bb4] text-sm">/mo</span>
               </div>
               <ul className="space-y-2 text-sm text-[#a0b2c8] mb-6 flex-grow relative z-10">
-                {['Everything in Starter', 'Unlimited pursuits', 'Decision tracking and history', 'Dashboard: pipeline, deadlines, priorities', 'Downloadable decision reports (PDF)'].map(f => (
+                {['Everything in Starter', 'Unlimited pursuits', 'Faster email support'].map(f => (
                   <li key={f} className="flex gap-2 items-start"><Sparkles className="w-3.5 h-3.5 text-[#00c3ff] shrink-0 mt-0.5"/>{f}</li>
                 ))}
               </ul>

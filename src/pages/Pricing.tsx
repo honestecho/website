@@ -32,14 +32,14 @@ const features: Feature[] = [
   { category: 'Eligibility & Analysis', name: 'Strategic & effort scoring',   free: 'none', starter: 'check', pro: 'check', team: 'check' },
   // Decisions & Output
   { category: 'Decisions & Output', name: 'Go / Conditional Go / No-Go', free: 'none', starter: 'check', pro: 'check', team: 'check' },
-  { category: 'Decisions & Output', name: 'Decision tracking & history',   free: 'none', starter: 'Per-pursuit', pro: 'check', team: 'check' },
-  { category: 'Decisions & Output', name: 'PDF decision report export',    free: 'none', starter: 'none',  pro: 'check', team: 'check' },
+  { category: 'Decisions & Output', name: 'Decision tracking & history',   free: 'none', starter: 'check', pro: 'check', team: 'check' },
+  { category: 'Decisions & Output', name: 'One-page PDF decision summary + requirements CSV', free: 'none', starter: 'check', pro: 'check', team: 'check' },
   // Workflow & Visibility
-  { category: 'Workflow & Visibility', name: 'Dashboard (pipeline, deadlines)', free: 'none', starter: 'none', pro: 'check', team: 'check' },
+  { category: 'Workflow & Visibility', name: 'Dashboard (pipeline, deadlines)', free: 'check', starter: 'check', pro: 'check', team: 'check' },
   // Team & Admin
-  { category: 'Team & Admin', name: 'Multiple users',       free: 'none', starter: 'none', pro: 'none', team: 'check' },
-  { category: 'Team & Admin', name: 'Shared pursuits',      free: 'none', starter: 'none', pro: 'none', team: 'check' },
-  { category: 'Team & Admin', name: 'Team-level visibility', free: 'none', starter: 'none', pro: 'none', team: 'check' },
+  { category: 'Team & Admin', name: 'Multiple users',       free: 'none', starter: 'none', pro: 'none', team: 'Coming soon' },
+  { category: 'Team & Admin', name: 'Shared pursuits',      free: 'none', starter: 'none', pro: 'none', team: 'Coming soon' },
+  { category: 'Team & Admin', name: 'Team-level visibility', free: 'none', starter: 'none', pro: 'none', team: 'Coming soon' },
   // Support
   { category: 'Support', name: 'Email support',         free: 'check', starter: 'check',    pro: 'check',    team: 'check'    },
   { category: 'Support', name: 'Faster response time',  free: 'none',  starter: 'none',     pro: 'check',    team: 'check'    },
@@ -61,7 +61,7 @@ const faqs = [
   { q: 'Do I need a credit card to start?',               a: 'No. Start Free needs an email, followed by a few questions to build your profile. A card is required only when you choose a paid plan.' },
   { q: 'Can I cancel anytime?',                           a: 'Yes. Cancel from your account settings — no notice period, no lock-in.' },
   { q: 'Will it write my proposal?',                      a: 'No. HE Pursuit decides whether an opportunity deserves a proposal: eligibility, requirements, disqualifiers, and a Go, Conditional Go, or No-Go with the reasons. Writing the proposal stays with you.' },
-  { q: 'What is the difference between Starter and Pro?', a: 'Starter ($99/month) includes the full qualification workflow for up to 25 pursuits per month. Pro ($199/month) includes unlimited pursuits, plus the dashboard, decision history, and PDF export.' },
+  { q: 'What is the difference between Starter and Pro?', a: 'Starter ($99/month) includes the full qualification workflow for up to 25 pursuits per month. Starter also includes decision history and the one-page PDF summary. Pro ($199/month) removes the cap: unlimited pursuits, with faster email support.' },
   { q: 'When should I upgrade to Team?',                  a: 'Choose Team when more than one person needs to work in the same pipeline. Team is $299/month and waitlist-only for now. Join the waitlist and we\'ll let you know when it becomes available.' },
 ];
 
@@ -82,6 +82,7 @@ const plans = [
       'One full Phase 1 evaluation included (trial)',
       'Bookmark opportunities (up to 15/month)',
       'Saved searches & nightly alerts',
+      'Dashboard (pipeline, deadlines)',
     ],
     limits: [
       'Phases 2–5 (eligibility → bid decision) require Starter',
@@ -105,6 +106,8 @@ const plans = [
       'Requirements extraction',
       'Strategic fit and effort scoring',
       'Go / Conditional Go / No-Go recommendations',
+      'Decision tracking and history',
+      'One-page PDF decision summary + requirements CSV',
       'Bookmark unlimited opportunities',
       'Up to 25 pursuits per month',
     ],
@@ -122,9 +125,7 @@ const plans = [
     includesAbove: 'Everything in Starter, plus:',
     features: [
       'Unlimited opportunity pursuits',
-      'Decision tracking and history',
-      'Dashboard (pipeline, deadlines, priorities)',
-      'Downloadable decision reports (PDF)',
+      'Faster email support',
     ],
     cta: 'Select Pro',
     ctaTo: '/signup/?plan=pro&promo=fall2026',

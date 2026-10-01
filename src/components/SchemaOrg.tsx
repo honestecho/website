@@ -165,7 +165,7 @@ export function SoftwareApplicationSchema() {
         url: 'https://honestecho.com/pricing/',
         price: '99',
         priceCurrency: 'USD',
-        description: 'Full bid/no-bid workflow, 25 pursuits/month',
+        description: 'Full bid/no-bid workflow, 25 pursuits/month, PDF decision summary',
       },
       {
         '@type': 'Offer',
@@ -173,7 +173,7 @@ export function SoftwareApplicationSchema() {
         url: 'https://honestecho.com/pricing/',
         price: '199',
         priceCurrency: 'USD',
-        description: 'Unlimited pursuits, dashboard, PDF export',
+        description: 'Unlimited pursuits, faster email support',
       },
       {
         '@type': 'Offer',

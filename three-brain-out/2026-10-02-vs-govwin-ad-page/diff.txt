@@ -1,0 +1,223 @@
+diff --git a/src/pages/Signup.tsx b/src/pages/Signup.tsx
+index d116097..1570c05 100644
+--- a/src/pages/Signup.tsx
++++ b/src/pages/Signup.tsx
+@@ -35,10 +35,16 @@ export default function Signup() {
+   const [invalidField, setInvalidField] = useState<keyof FormData | null>(null);
+   const [interacted, setInteracted] = useState(false);
+ 
++  // ?from= names the page that sent the visitor here (e.g. find-matches).
++  // getAttribution() is first-touch, so a paid visitor's gclid session never
++  // picks it up — carry it explicitly on the signup events and user record.
++  const fromParam = () => new URLSearchParams(window.location.search).get('from');
++  const fromProps = () => { const from = fromParam(); return from ? { from } : {}; };
++
+   // Fall Bid Clarity Pass attribution: log when a promo link lands here.
+   useEffect(() => {
+     const promo = new URLSearchParams(window.location.search).get('promo');
+-    if (promo) track('signup_promo_landed', { promo });
++    if (promo) track('signup_promo_landed', { promo, ...fromProps() });
+   }, []);
+ 
+   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+@@ -65,7 +71,7 @@ export default function Signup() {
+   async function handleGoogleSignIn() {
+     setError('');
+     setGoogleLoading(true);
+-    track('signup_started', { method: 'google' });
++    track('signup_started', { method: 'google', ...fromProps() });
+     try {
+       const { error: oauthError } = await supabase.auth.signInWithOAuth({
+         provider: 'google',
+@@ -84,7 +90,7 @@ export default function Signup() {
+         // funnel complete here, otherwise every Google signup reads as abandoned
+         // (started with no completed). track() uses keepalive so the event
+         // survives the navigation.
+-        track('signup_completed', { method: 'google' });
++        track('signup_completed', { method: 'google', ...fromProps() });
+       }
+       // On success Supabase redirects away — no need to reset loading.
+     } catch {
+@@ -104,7 +110,7 @@ export default function Signup() {
+     if (form.password.length < 8) { failValidation('password', 'Password must be at least 8 characters.'); return; }
+ 
+     setLoading(true);
+-    track('signup_started', { method: 'email' });
++    track('signup_started', { method: 'email', ...fromProps() });
+     try {
+       const { data, error: signUpError } = await supabase.auth.signUp({
+         email: form.email.trim(),
+@@ -120,7 +126,7 @@ export default function Signup() {
+             // user record so paid-acquisition users stay identifiable after
+             // the session ends on pursuit.honestecho.com. Namespaced so
+             // profile-create/onboarding readers of this metadata are untouched.
+-            ...(Object.keys(getAttribution()).length ? { acquisition: getAttribution() } : {}),
++            ...(Object.keys(getAttribution()).length || fromParam() ? { acquisition: { ...getAttribution(), ...fromProps() } } : {}),
+           },
+           emailRedirectTo: 'https://honestecho.com/welcome',
+         },
+@@ -135,7 +141,7 @@ export default function Signup() {
+         return;
+       }
+ 
+-      track('signup_completed', { method: 'email' });
++      track('signup_completed', { method: 'email', ...fromProps() });
+ 
+       // Send welcome email. keepalive: the very next statement navigates to
+       // pursuit.honestecho.com, which aborts in-flight fetches — the dry-signup
+diff --git a/src/pages/VsGovWin.tsx b/src/pages/VsGovWin.tsx
+index 3761fb7..bc962e9 100644
+--- a/src/pages/VsGovWin.tsx
++++ b/src/pages/VsGovWin.tsx
+@@ -5,6 +5,14 @@ import FlyIn from '../components/FlyIn';
+ import Notice from '../components/Notice';
+ import { SoftwareApplicationSchema, FAQPageSchema } from '../components/SchemaOrg';
+ import HeroPursuitCardZoom from '../components/HeroPursuitCardZoom';
++import { track } from '../lib/analytics';
++
++// GovWin price-shoppers want discovery, so the primary action is Find my
++// matches (no notice ID needed). Click events make the paid competitor test
++// readable; page_viewed alone can't tell a bounce from a CTA exit.
++const FIND_MATCHES_PATH = '/tools/find-my-matches/';
++const ctaClick = (cta: string, position: string) => () =>
++  track('vs_cta_clicked', { page: 'vs-govwin', cta, position });
+ 
+ const faqs = [
+   {
+@@ -33,7 +41,7 @@ const cards = [
+   {
+     Icon: Scale,
+     title: 'Structured qualification, not data subscriptions',
+-    body: 'GovWin gives you more data. HE Pursuit gives you a decision. Each evaluation walks you through fit, eligibility, effort, and risk — and produces a Go, Conditional Go, or No-Go recommendation your team can act on.',
++    body: 'GovWin is built to surface and research opportunities. HE Pursuit is built to decide on one. Each evaluation walks you through fit, eligibility, effort, and risk — and produces a Go, Conditional Go, or No-Go recommendation your team can act on.',
+   },
+   {
+     Icon: Target,
+@@ -47,13 +55,13 @@ const cards = [
+   },
+   {
+     Icon: Zap,
+-    title: 'Minutes to a decision, not days of research',
++    title: 'A structured answer before proposal hours',
+     body: 'GovWin accelerates opportunity discovery. HE Pursuit accelerates the qualification decision. Most evaluations take minutes — giving you a structured answer before you commit proposal resources.',
+   },
+   {
+     Icon: DollarSign,
+-    title: 'Accessible pricing, not enterprise licensing',
+-    body: 'GovWin IQ is priced for large primes and enterprise BD teams — typically $10,000–$50,000+ per year. HE Pursuit starts free and scales to $299/month, built for small contractors who need serious decision support without the enterprise overhead.',
++    title: 'Published pricing, not a sales quote',
++    body: "Deltek doesn't publish GovWin IQ pricing; it is quoted per seat. HE Pursuit's pricing is on the page: Free, then $99, $199, or $299 a month.",
+   },
+   {
+     Icon: Layers,
+@@ -67,11 +75,11 @@ export default function VsGovWin() {
+     <>
+       <Helmet>
+         <title>HE Pursuit vs GovWin IQ — GovWin Alternative for Small Contractors</title>
+-        <meta name="description" content="A GovWin alternative for small contractors. HE Pursuit qualifies SAM.gov opportunities and delivers bid/no-bid decisions at a fraction of the cost." />
++        <meta name="description" content="A GovWin alternative for small contractors. HE Pursuit finds SAM.gov opportunities that fit and delivers bid/no-bid decisions, with published pricing." />
+         <meta property="og:type" content="website" />
+         <meta property="og:url" content="https://honestecho.com/vs-govwin" />
+         <meta property="og:title" content="HE Pursuit vs GovWin IQ — GovWin Alternative for Small Contractors" />
+-        <meta property="og:description" content="GovWin is built for enterprise. HE Pursuit is built for small government contractors who need bid/no-bid decisions, not a $10,000/year market intelligence subscription." />
++        <meta property="og:description" content="GovWin is built for enterprise. HE Pursuit is built for small government contractors who need bid/no-bid decisions, not a market intelligence subscription." />
+         <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
+         <meta name="twitter:card" content="summary_large_image" />
+         <meta name="twitter:title" content="HE Pursuit vs GovWin IQ — GovWin Alternative for Small Contractors" />
+@@ -92,23 +100,26 @@ export default function VsGovWin() {
+               A GovWin alternative<br className="hidden md:block" /> built for small contractors.
+             </h1>
+             <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-3xl">
+-              GovWin IQ is a powerful enterprise market intelligence tool. If you're a small government contractor who needs to evaluate SAM.gov opportunities and make faster bid/no-bid decisions — not subscribe to a $10,000/year data platform — HE Pursuit was built for you.
++              Deltek doesn't publish GovWin pricing. Ours is public: Free, $99, $199, or $299 a month. GovWin IQ is a powerful enterprise market intelligence tool. If you're a small government contractor who needs to find SAM.gov opportunities that fit and make faster bid/no-bid decisions, HE Pursuit was built for you.
+             </p>
+             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8">
+               <Link
+-                to="/tools/sam-gov-notice-analyzer/"
++                to={FIND_MATCHES_PATH}
++                onClick={ctaClick('find_matches', 'hero')}
+                 className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline"
+               >
+-                Analyze a SAM.gov Notice — Free
++                See your matches free
+                 <ArrowRight className="w-4 h-4" />
+               </Link>
+               <Link
+-                to="/signup/?promo=fall2026"
++                to="/tools/sam-gov-notice-analyzer/"
++                onClick={ctaClick('analyzer', 'hero')}
+                 className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline"
+               >
+-                Start Free
++                Analyze a notice you have
+               </Link>
+             </div>
++            <p className="text-[#8b9bb4] text-sm font-body mt-3">Enter your company name or UEI. No account needed.</p>
+             <Notice align="left" className="mt-6">
+               <span className="font-bold text-[#00c3ff]">Fall Bid Clarity Pass:</span>{' '}
+               2 months of Starter or Pro free — applied automatically at checkout.{' '}
+@@ -149,18 +160,13 @@ export default function VsGovWin() {
+                   </tr>
+                   <tr className="border-b border-[#1e2d4a]">
+                     <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">What you get</th>
+-                    <td className="px-6 py-4 text-[#8b9bb4] leading-relaxed align-top">More data</td>
++                    <td className="px-6 py-4 text-[#8b9bb4] leading-relaxed align-top">Opportunity, pipeline, and market data</td>
+                     <td className="px-6 py-4 text-white leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]">A Go, Conditional Go, or No-Go recommendation your team can act on</td>
+                   </tr>
+-                  <tr className="border-b border-[#1e2d4a]">
+-                    <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Time to a decision</th>
+-                    <td className="px-6 py-4 text-[#8b9bb4] leading-relaxed align-top">Days of research</td>
+-                    <td className="px-6 py-4 leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]"><span className="text-[#00c3ff] font-bold">Minutes</span></td>
+-                  </tr>
+                   <tr>
+                     <th scope="row" className="px-6 py-4 font-headline font-bold text-xs tracking-widest uppercase text-[#8b9bb4] align-top sticky left-0 z-10 bg-[#0b1120] border-r border-[#1e2d4a]">Price</th>
+-                    <td className="px-6 py-4 text-[#8b9bb4] leading-relaxed align-top">Typically $10,000–$50,000+ per year</td>
+-                    <td className="px-6 py-4 text-white leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]"><span className="text-[#00c3ff] font-bold">Starts free</span> and scales to $299/month</td>
++                    <td className="px-6 py-4 text-[#8b9bb4] leading-relaxed align-top">Not published; quoted per seat</td>
++                    <td className="px-6 py-4 text-white leading-relaxed align-top border-l border-[#00c3ff]/25 bg-[#00c3ff]/[0.05]"><span className="text-[#00c3ff] font-bold">Published:</span> Free, $99, $199, or $299 a month</td>
+                   </tr>
+                 </tbody>
+               </table>
+@@ -211,13 +217,13 @@ export default function VsGovWin() {
+               <p className="text-[#a0b2c8] text-base font-body leading-relaxed mb-4">
+                 A recent federal services solicitation asked for a{' '}
+                 <strong className="text-white">senior Appian-certified developer with 10+ years of federal acquisition experience and an active Top Secret clearance</strong>.
+-                {' '}A LinkedIn search for people who meet all three criteria returns fewer than twenty results worldwide.
++                {' '}Very few people meet all three criteria at once.
+                 The buyer wasn't trying to be exclusive — they were trying to sound thorough.
+                 The result: every small business that read the requirement either self-disqualified or burned an afternoon writing a{' '}
+                 <em>"we don't quite meet this but..."</em> paragraph that wouldn't survive compliance review.
+               </p>
+               <p className="text-[#00c3ff] font-bold font-body">
+-                HE Pursuit catches requirements like this in Phase 2 eligibility review — where every requirement is scanned for hard disqualifiers before your team commits an afternoon to a proposal you can't win.
++                HE Pursuit catches requirements like this in Phase 2 eligibility review — where the solicitation's requirements are checked for hard disqualifiers before your team commits an afternoon to a proposal you can't win.
+               </p>
+             </div>
+           </div>
+@@ -246,19 +252,24 @@ export default function VsGovWin() {
+       <section className="py-8 pb-24 px-6">
+         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4">
+           <Link
+-            to="/signup/?promo=fall2026"
++            to={FIND_MATCHES_PATH}
++            onClick={ctaClick('find_matches', 'footer')}
+             className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline"
+           >
+-            Start Free
++            See your matches free
+             <ArrowRight className="w-4 h-4" />
+           </Link>
+           <Link
+             to="/pricing/"
++            onClick={ctaClick('pricing', 'footer')}
+             className="inline-flex items-center gap-2 px-8 py-4 bg-[#0b1120] border border-[#1e2d4a] text-white font-bold rounded-lg hover:bg-[#152033] hover:border-[#00c3ff]/40 transition-all duration-300 font-headline"
+           >
+             See Pricing
+           </Link>
+         </div>
++        <p className="max-w-4xl mx-auto text-center text-xs text-[#8b9bb4] font-body mt-10">
++          GovWin IQ is a trademark of Deltek, Inc. Honest Echo is not affiliated with or endorsed by Deltek.
++        </p>
+       </section>
+     </>
+   );

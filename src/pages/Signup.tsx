@@ -35,10 +35,16 @@ export default function Signup() {
   const [invalidField, setInvalidField] = useState<keyof FormData | null>(null);
   const [interacted, setInteracted] = useState(false);
 
+  // ?from= names the page that sent the visitor here (e.g. find-matches).
+  // getAttribution() is first-touch, so a paid visitor's gclid session never
+  // picks it up — carry it explicitly on the signup events and user record.
+  const fromParam = () => new URLSearchParams(window.location.search).get('from');
+  const fromProps = () => { const from = fromParam(); return from ? { from } : {}; };
+
   // Fall Bid Clarity Pass attribution: log when a promo link lands here.
   useEffect(() => {
     const promo = new URLSearchParams(window.location.search).get('promo');
-    if (promo) track('signup_promo_landed', { promo });
+    if (promo) track('signup_promo_landed', { promo, ...fromProps() });
   }, []);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -65,7 +71,7 @@ export default function Signup() {
   async function handleGoogleSignIn() {
     setError('');
     setGoogleLoading(true);
-    track('signup_started', { method: 'google' });
+    track('signup_started', { method: 'google', ...fromProps() });
     try {
       const { error: oauthError } = await supabase.auth.signInWithOAuth({
         provider: 'google',
@@ -84,7 +90,7 @@ export default function Signup() {
         // funnel complete here, otherwise every Google signup reads as abandoned
         // (started with no completed). track() uses keepalive so the event
         // survives the navigation.
-        track('signup_completed', { method: 'google' });
+        track('signup_completed', { method: 'google', ...fromProps() });
       }
       // On success Supabase redirects away — no need to reset loading.
     } catch {
@@ -104,7 +110,7 @@ export default function Signup() {
     if (form.password.length < 8) { failValidation('password', 'Password must be at least 8 characters.'); return; }
 
     setLoading(true);
-    track('signup_started', { method: 'email' });
+    track('signup_started', { method: 'email', ...fromProps() });
     try {
       const { data, error: signUpError } = await supabase.auth.signUp({
         email: form.email.trim(),
@@ -120,7 +126,7 @@ export default function Signup() {
             // user record so paid-acquisition users stay identifiable after
             // the session ends on pursuit.honestecho.com. Namespaced so
             // profile-create/onboarding readers of this metadata are untouched.
-            ...(Object.keys(getAttribution()).length ? { acquisition: getAttribution() } : {}),
+            ...(Object.keys(getAttribution()).length || fromParam() ? { acquisition: { ...getAttribution(), ...fromProps() } } : {}),
           },
           emailRedirectTo: 'https://honestecho.com/welcome',
         },
@@ -135,7 +141,7 @@ export default function Signup() {
         return;
       }
 
-      track('signup_completed', { method: 'email' });
+      track('signup_completed', { method: 'email', ...fromProps() });
 
       // Send welcome email. keepalive: the very next statement navigates to
       // pursuit.honestecho.com, which aborts in-flight fetches — the dry-signup

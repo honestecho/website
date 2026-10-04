@@ -92,7 +92,8 @@ export default function Signup() {
         // (started with no completed). track() uses keepalive so the event
         // survives the navigation.
         track('signup_completed', { method: 'google', ...fromProps() });
-        reportSignupConversion();
+        // No Google Ads conversion here: no account exists yet, and a visitor
+        // who cancels at Google's consent screen would be counted as a signup.
       }
       // On success Supabase redirects away — no need to reset loading.
     } catch {
@@ -144,7 +145,11 @@ export default function Signup() {
       }
 
       track('signup_completed', { method: 'email', ...fromProps() });
-      reportSignupConversion();
+      // Supabase answers a signup for an already-registered address with a
+      // look-alike success and an empty identities list; that is not a new
+      // account, so it is not a conversion.
+      const isNewAccount = !!data.user && (data.user.identities?.length ?? 0) > 0;
+      const conversionSent = isNewAccount ? reportSignupConversion(data.user!.id) : Promise.resolve();
 
       // Send welcome email. keepalive: the very next statement navigates to
       // pursuit.honestecho.com, which aborts in-flight fetches — the dry-signup
@@ -172,6 +177,7 @@ export default function Signup() {
           token_type: token_type ?? 'bearer',
           type: 'signup',
         });
+        await conversionSent;
         window.location.href = `https://pursuit.honestecho.com#${params.toString()}`;
         return;
       }

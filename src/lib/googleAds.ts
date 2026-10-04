@@ -41,12 +41,20 @@ export function initGoogleAds(): void {
   document.head.appendChild(s);
 }
 
-// Called where the site records signup_completed. beacon transport: both
-// signup paths navigate away immediately afterwards.
-export function reportSignupConversion(): void {
-  if (!window.gtag || !SIGNUP_LABEL) return;
-  window.gtag('event', 'conversion', {
-    send_to: `${AW_ID}/${SIGNUP_LABEL}`,
-    transport_type: 'beacon',
+// Call only once an account really exists, and await it before navigating
+// away: the event can still be queued behind gtag.js loading, and a redirect
+// would drop it. Resolves on Google's event_callback, or after 1s so a blocked
+// or slow tag never holds up the signup. transaction_id (the new user's id)
+// lets Google drop a repeat of the same signup.
+export function reportSignupConversion(transactionId: string): Promise<void> {
+  if (!window.gtag) return Promise.resolve();
+  return new Promise(resolve => {
+    const timer = setTimeout(resolve, 1000);
+    window.gtag!('event', 'conversion', {
+      send_to: `${AW_ID}/${SIGNUP_LABEL}`,
+      transaction_id: transactionId,
+      transport_type: 'beacon',
+      event_callback: () => { clearTimeout(timer); resolve(); },
+    });
   });
 }

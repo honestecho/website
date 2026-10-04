@@ -49,7 +49,7 @@ const sections: PrivacySection[] = [
     Icon: Share2,
     title: 'Data Sharing',
     lead: 'We do not sell, rent, or trade your data.',
-    body: 'We share data only with service providers who help operate the platform (such as hosting and payment processing), and only as necessary. If you reach our site by clicking one of our Google ads, Google’s conversion tag sets a cookie so we can tell whether that ad led to a signup. We do not use it for ad personalization or remarketing, and visitors who did not arrive from an ad never load it.',
+    body: 'We share data only with service providers who help operate the platform (such as hosting and payment processing), and only as necessary. If you reach our site by clicking one of our Google ads, Google’s conversion tag sets a cookie so we can tell whether that ad led to a signup. We do not use it for ad personalization or remarketing. The tag loads only for visitors who arrived from one of our ads, on that visit or an earlier one.',
     note: 'We may disclose information if required by law.',
   },
   {
@@ -116,7 +116,7 @@ export default function Privacy() {
             Privacy Policy
           </h1>
           <p className="text-[#8b9bb4] text-base font-body">
-            Effective Date: October 3, 2026 &nbsp;·&nbsp; Honest Echo LLC operates HE Pursuit. This policy explains what data we collect, how we use it, and your options.
+            Effective Date: October 4, 2026 &nbsp;·&nbsp; Honest Echo LLC operates HE Pursuit. This policy explains what data we collect, how we use it, and your options.
           </p>
         </div>
       </section>

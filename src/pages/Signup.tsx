@@ -5,6 +5,7 @@ import { Zap, ArrowRight, Target, Scale, CheckCircle2, Eye, EyeOff } from 'lucid
 import { supabase } from '../lib/supabase';
 import { API_BASE } from '../lib/api';
 import { track, getAttribution } from '../lib/analytics';
+import { reportSignupConversion } from '../lib/googleAds';
 import Notice from '../components/Notice';
 
 type FormState = 'form' | 'verify';
@@ -91,6 +92,7 @@ export default function Signup() {
         // (started with no completed). track() uses keepalive so the event
         // survives the navigation.
         track('signup_completed', { method: 'google', ...fromProps() });
+        reportSignupConversion();
       }
       // On success Supabase redirects away — no need to reset loading.
     } catch {
@@ -142,6 +144,7 @@ export default function Signup() {
       }
 
       track('signup_completed', { method: 'email', ...fromProps() });
+      reportSignupConversion();
 
       // Send welcome email. keepalive: the very next statement navigates to
       // pursuit.honestecho.com, which aborts in-flight fetches — the dry-signup

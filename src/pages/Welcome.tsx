@@ -7,7 +7,7 @@ import { finishOAuthReturn, hasOAuthPending } from '../lib/oauthReturn';
 
 export default function Welcome() {
   const [firstName, setFirstName] = useState('');
-  // Returning from Google sign-in (?oauth=v2 test path): hand the session to
+  // Returning from Google sign-in: hand the session to
   // pursuit instead of showing this page.
   const [finishing, setFinishing] = useState(hasOAuthPending);
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ export default function Welcome() {
   useEffect(() => {
     finishOAuthReturn()
       .then(result => {
-        if (result === 'no-session') navigate('/signup/?oauth=v2', { replace: true });
+        if (result === 'no-session') navigate('/signup/', { replace: true });
         if (result !== 'bridged') setFinishing(false);
       })
       .catch(() => setFinishing(false));

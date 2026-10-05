@@ -1,12 +1,11 @@
-// Google sign-in, returned through the website (test switch: /signup/?oauth=v2).
+// Google sign-in, returned through the website.
 //
-// The default path sends Google straight back to pursuit.honestecho.com, so the
-// website never sees the finished sign-in: the ad-click attribution never
-// reaches the user record and no conversion can be reported for a real account.
-// With the switch on, Google returns to /welcome on this origin instead. There
-// the session exists, so we can stamp attribution on a NEW account, report the
-// conversion, and then hand the session to pursuit the same way email signup
-// does (tokens in the URL hash).
+// Google returns to /welcome on this origin, not straight to
+// pursuit.honestecho.com. Here the session exists, so we can stamp attribution
+// on a NEW account, report the conversion, and then hand the session to pursuit
+// the same way email signup does (tokens in the URL hash). If the marker for
+// the round trip cannot be stored, Signup falls back to the direct redirect.
+// Verified with a real Google sign-in on 2026-10-05.
 
 import type { Session } from '@supabase/supabase-js';
 import { supabase } from './supabase';
@@ -24,10 +23,6 @@ const NEW_ACCOUNT_WINDOW_MS = 10 * 60 * 1000;
 export const OAUTH_RETURN_URL = 'https://honestecho.com/welcome';
 
 type Pending = { from: string | null; at: number };
-
-export function oauthReturnEnabled(): boolean {
-  return new URLSearchParams(window.location.search).get('oauth') === 'v2';
-}
 
 // False when the marker cannot be stored: the caller must then use the default
 // path, or Google would return here with nothing to finish the hand-off.

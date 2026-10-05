@@ -6,7 +6,7 @@ import { supabase } from '../lib/supabase';
 import { API_BASE } from '../lib/api';
 import { track, getAttribution } from '../lib/analytics';
 import { reportSignupConversion } from '../lib/googleAds';
-import { oauthReturnEnabled, markOAuthPending, clearOAuthPending, OAUTH_RETURN_URL } from '../lib/oauthReturn';
+import { markOAuthPending, clearOAuthPending, OAUTH_RETURN_URL } from '../lib/oauthReturn';
 import Notice from '../components/Notice';
 
 type FormState = 'form' | 'verify';
@@ -74,10 +74,10 @@ export default function Signup() {
     setError('');
     setGoogleLoading(true);
     track('signup_started', { method: 'google', ...fromProps() });
-    // Test switch (?oauth=v2): Google returns to this site first, see lib/oauthReturn.ts.
+    // Google returns to this site first, see lib/oauthReturn.ts.
     // If the marker cannot be stored, stay on the default path.
     clearOAuthPending();
-    const viaWebsite = oauthReturnEnabled() && markOAuthPending(fromParam());
+    const viaWebsite = markOAuthPending(fromParam());
     try {
       const { error: oauthError } = await supabase.auth.signInWithOAuth({
         provider: 'google',
@@ -287,9 +287,9 @@ export default function Signup() {
                 offer survives the click into signup. Manual wind-down after November 30. */}
             {state === 'form' && (
               <Notice tone="soft" align="left" className="mb-4">
-                <span className="text-[#00c3ff] font-bold">Fall Bid Clarity Pass:</span>{' '}
-                2 months of Starter or Pro free — applied automatically at checkout.{' '}
-                <span className="text-[#00c3ff] font-bold">Ends November 30.</span>
+                <span className="block text-[#00c3ff] font-bold">Fall Bid Clarity Pass</span>
+                <span className="block text-balance">2 months of Starter or Pro free, applied automatically at checkout.</span>
+                <span className="block text-sm text-[#a0b2c8] mt-1">Ends November 30</span>
               </Notice>
             )}
 

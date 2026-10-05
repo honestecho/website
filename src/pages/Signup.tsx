@@ -6,6 +6,7 @@ import { supabase } from '../lib/supabase';
 import { API_BASE } from '../lib/api';
 import { track, getAttribution } from '../lib/analytics';
 import { reportSignupConversion } from '../lib/googleAds';
+import { oauthReturnEnabled, markOAuthPending, clearOAuthPending, OAUTH_RETURN_URL } from '../lib/oauthReturn';
 import Notice from '../components/Notice';
 
 type FormState = 'form' | 'verify';
@@ -73,15 +74,20 @@ export default function Signup() {
     setError('');
     setGoogleLoading(true);
     track('signup_started', { method: 'google', ...fromProps() });
+    // Test switch (?oauth=v2): Google returns to this site first, see lib/oauthReturn.ts.
+    // If the marker cannot be stored, stay on the default path.
+    clearOAuthPending();
+    const viaWebsite = oauthReturnEnabled() && markOAuthPending(fromParam());
     try {
       const { error: oauthError } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: 'https://pursuit.honestecho.com/auth/callback',
+          redirectTo: viaWebsite ? OAUTH_RETURN_URL : 'https://pursuit.honestecho.com/auth/callback',
           queryParams: { access_type: 'offline', prompt: 'consent' },
         },
       });
       if (oauthError) {
+        clearOAuthPending();
         setError(oauthError.message);
         setGoogleLoading(false);
       } else {
@@ -97,6 +103,7 @@ export default function Signup() {
       }
       // On success Supabase redirects away — no need to reset loading.
     } catch {
+      clearOAuthPending();
       setError('Could not start Google sign-in. Please try again.');
       setGoogleLoading(false);
     }

@@ -1,0 +1,199 @@
+diff --git a/src/lib/oauthReturn.ts b/src/lib/oauthReturn.ts
+new file mode 100644
+index 0000000..fd2b47e
+--- /dev/null
++++ b/src/lib/oauthReturn.ts
+@@ -0,0 +1,101 @@
++// Google sign-in, returned through the website (test switch: /signup/?oauth=v2).
++//
++// The default path sends Google straight back to pursuit.honestecho.com, so the
++// website never sees the finished sign-in: the ad-click attribution never
++// reaches the user record and no conversion can be reported for a real account.
++// With the switch on, Google returns to /welcome on this origin instead. There
++// the session exists, so we can stamp attribution on a NEW account, report the
++// conversion, and then hand the session to pursuit the same way email signup
++// does (tokens in the URL hash).
++
++import type { Session } from '@supabase/supabase-js';
++import { supabase } from './supabase';
++import { track, getAttribution } from './analytics';
++import { reportSignupConversion } from './googleAds';
++
++const PENDING_KEY = 'he_oauth_pending';
++// A Google account that Supabase created this recently is a signup, not a
++// returning sign-in. Generous enough for a slow consent screen.
++const NEW_ACCOUNT_WINDOW_MS = 10 * 60 * 1000;
++
++export const OAUTH_RETURN_URL = 'https://honestecho.com/welcome';
++
++export function oauthReturnEnabled(): boolean {
++  return new URLSearchParams(window.location.search).get('oauth') === 'v2';
++}
++
++export function markOAuthPending(from: string | null): void {
++  try { sessionStorage.setItem(PENDING_KEY, JSON.stringify({ from })); } catch { /* flow falls back to the plain Welcome page */ }
++}
++
++export function clearOAuthPending(): void {
++  try { sessionStorage.removeItem(PENDING_KEY); } catch { /* nothing to clear */ }
++}
++
++function takeOAuthPending(): { from: string | null } | null {
++  try {
++    const raw = sessionStorage.getItem(PENDING_KEY);
++    if (!raw) return null;
++    sessionStorage.removeItem(PENDING_KEY);
++    return JSON.parse(raw) as { from: string | null };
++  } catch {
++    return null;
++  }
++}
++
++export function hasOAuthPending(): boolean {
++  try { return !!sessionStorage.getItem(PENDING_KEY); } catch { return false; }
++}
++
++function bridgeToPursuit(session: Session, isNewAccount: boolean): void {
++  // auth-js on pursuit rejects the hash unless expires_in AND token_type are
++  // present alongside the tokens (same contract as the email signup bridge).
++  const params = new URLSearchParams({
++    access_token: session.access_token,
++    refresh_token: session.refresh_token,
++    expires_in: String(session.expires_in ?? 3600),
++    ...(session.expires_at ? { expires_at: String(session.expires_at) } : {}),
++    token_type: session.token_type ?? 'bearer',
++    ...(isNewAccount ? { type: 'signup' } : {}),
++  });
++  window.location.replace(`https://pursuit.honestecho.com#${params.toString()}`);
++}
++
++// Runs on /welcome. Returns 'no-pending' when this visit is not an OAuth
++// return, 'no-session' when Google sign-in did not complete, and otherwise
++// navigates away to pursuit.
++type OAuthReturnResult = 'no-pending' | 'no-session' | 'bridged';
++let inFlight: Promise<OAuthReturnResult> | null = null;
++// Memoized: a double-mounted effect must not run the hand-off twice.
++export function finishOAuthReturn(): Promise<OAuthReturnResult> {
++  return (inFlight ??= runOAuthReturn());
++}
++
++async function runOAuthReturn(): Promise<OAuthReturnResult> {
++  const pending = takeOAuthPending();
++  if (!pending) return 'no-pending';
++
++  // getSession() waits for the client to finish reading the tokens Google's
++  // redirect left in the URL.
++  const { data } = await supabase.auth.getSession();
++  let session = data.session;
++  if (!session) return 'no-session';
++
++  const user = session.user;
++  const isNewAccount = Date.now() - new Date(user.created_at).getTime() < NEW_ACCOUNT_WINDOW_MS;
++
++  if (isNewAccount) {
++    const acquisition = { ...getAttribution(), ...(pending.from ? { from: pending.from } : {}) };
++    if (Object.keys(acquisition).length && !user.user_metadata?.acquisition) {
++      const { error } = await supabase.auth.updateUser({ data: { acquisition } });
++      if (error) console.warn('Could not save acquisition:', error.message);
++      // updateUser can rotate the session; bridge the current one.
++      session = (await supabase.auth.getSession()).data.session ?? session;
++    }
++    track('signup_account_created', { method: 'google', ...(pending.from ? { from: pending.from } : {}) });
++    await reportSignupConversion(user.id);
++  }
++
++  bridgeToPursuit(session, isNewAccount);
++  return 'bridged';
++}
+diff --git a/src/pages/Signup.tsx b/src/pages/Signup.tsx
+index 18414f5..10d2174 100644
+--- a/src/pages/Signup.tsx
++++ b/src/pages/Signup.tsx
+@@ -6,6 +6,7 @@ import { supabase } from '../lib/supabase';
+ import { API_BASE } from '../lib/api';
+ import { track, getAttribution } from '../lib/analytics';
+ import { reportSignupConversion } from '../lib/googleAds';
++import { oauthReturnEnabled, markOAuthPending, clearOAuthPending, OAUTH_RETURN_URL } from '../lib/oauthReturn';
+ import Notice from '../components/Notice';
+ 
+ type FormState = 'form' | 'verify';
+@@ -73,15 +74,19 @@ export default function Signup() {
+     setError('');
+     setGoogleLoading(true);
+     track('signup_started', { method: 'google', ...fromProps() });
++    // Test switch (?oauth=v2): Google returns to this site first, see lib/oauthReturn.ts.
++    const viaWebsite = oauthReturnEnabled();
++    if (viaWebsite) markOAuthPending(fromParam());
+     try {
+       const { error: oauthError } = await supabase.auth.signInWithOAuth({
+         provider: 'google',
+         options: {
+-          redirectTo: 'https://pursuit.honestecho.com/auth/callback',
++          redirectTo: viaWebsite ? OAUTH_RETURN_URL : 'https://pursuit.honestecho.com/auth/callback',
+           queryParams: { access_type: 'offline', prompt: 'consent' },
+         },
+       });
+       if (oauthError) {
++        clearOAuthPending();
+         setError(oauthError.message);
+         setGoogleLoading(false);
+       } else {
+@@ -97,6 +102,7 @@ export default function Signup() {
+       }
+       // On success Supabase redirects away — no need to reset loading.
+     } catch {
++      clearOAuthPending();
+       setError('Could not start Google sign-in. Please try again.');
+       setGoogleLoading(false);
+     }
+diff --git a/src/pages/Welcome.tsx b/src/pages/Welcome.tsx
+index 9e05a3d..da1d9f6 100644
+--- a/src/pages/Welcome.tsx
++++ b/src/pages/Welcome.tsx
+@@ -1,11 +1,25 @@
+ import { useEffect, useState } from 'react';
+ import { Helmet } from 'react-helmet-async';
+-import { Link } from 'react-router-dom';
++import { Link, useNavigate } from 'react-router-dom';
+ import { Zap, ArrowRight } from 'lucide-react';
+ import { supabase } from '../lib/supabase';
++import { finishOAuthReturn, hasOAuthPending } from '../lib/oauthReturn';
+ 
+ export default function Welcome() {
+   const [firstName, setFirstName] = useState('');
++  // Returning from Google sign-in (?oauth=v2 test path): hand the session to
++  // pursuit instead of showing this page.
++  const [finishing, setFinishing] = useState(hasOAuthPending);
++  const navigate = useNavigate();
++
++  useEffect(() => {
++    finishOAuthReturn()
++      .then(result => {
++        if (result === 'no-session') navigate('/signup/?oauth=v2', { replace: true });
++        if (result !== 'bridged') setFinishing(false);
++      })
++      .catch(() => setFinishing(false));
++  }, [navigate]);
+ 
+   useEffect(() => {
+     supabase.auth.getSession().then(({ data }) => {
+@@ -36,6 +50,10 @@ export default function Welcome() {
+             <span className="text-xl font-black tracking-tighter text-white font-headline">Honest Echo</span>
+           </Link>
+ 
++          {finishing ? (
++            <p className="text-[#a0b2c8] text-base font-body" role="status">Finishing sign-in…</p>
++          ) : (
++          <>
+           {/* Card */}
+           <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-10 shadow-2xl relative overflow-hidden">
+             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/40 to-transparent"></div>
+@@ -72,6 +90,8 @@ export default function Welcome() {
+               </Link>
+             </div>
+           </div>
++          </>
++          )}
+         </div>
+       </div>
+     </>

@@ -1,11 +1,25 @@
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Zap, ArrowRight } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { finishOAuthReturn, hasOAuthPending } from '../lib/oauthReturn';
 
 export default function Welcome() {
   const [firstName, setFirstName] = useState('');
+  // Returning from Google sign-in (?oauth=v2 test path): hand the session to
+  // pursuit instead of showing this page.
+  const [finishing, setFinishing] = useState(hasOAuthPending);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    finishOAuthReturn()
+      .then(result => {
+        if (result === 'no-session') navigate('/signup/?oauth=v2', { replace: true });
+        if (result !== 'bridged') setFinishing(false);
+      })
+      .catch(() => setFinishing(false));
+  }, [navigate]);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -36,6 +50,10 @@ export default function Welcome() {
             <span className="text-xl font-black tracking-tighter text-white font-headline">Honest Echo</span>
           </Link>
 
+          {finishing ? (
+            <p className="text-[#a0b2c8] text-base font-body" role="status">Finishing sign-in…</p>
+          ) : (
+          <>
           {/* Card */}
           <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-10 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#00c3ff]/40 to-transparent"></div>
@@ -72,6 +90,8 @@ export default function Welcome() {
               </Link>
             </div>
           </div>
+          </>
+          )}
         </div>
       </div>
     </>

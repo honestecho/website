@@ -61,9 +61,12 @@ export function hasOAuthPending(): boolean {
 // supabase-js persists the session under sb-<project ref>-auth-token.
 const SESSION_STORAGE_KEY = `sb-${new URL(import.meta.env.VITE_SUPABASE_URL as string).hostname.split('.')[0]}-auth-token`;
 
-async function handOffToPursuit(session: Session, isNewSignup: boolean): Promise<void> {
+// Hands a live session to pursuit through URL-hash tokens; the Supabase client
+// there picks them up and fires SIGNED_IN without a second login. Used by the
+// Google return above and by email signup.
+export async function handOffToPursuit(session: Session, isNewSignup: boolean): Promise<void> {
   // auth-js on pursuit rejects the hash unless expires_in AND token_type are
-  // present alongside the tokens (same contract as the email signup bridge).
+  // present alongside the tokens.
   const params = new URLSearchParams({
     access_token: session.access_token,
     refresh_token: session.refresh_token,

@@ -6,7 +6,7 @@ import { supabase } from '../lib/supabase';
 import { API_BASE } from '../lib/api';
 import { track, getAttribution } from '../lib/analytics';
 import { reportSignupConversion } from '../lib/googleAds';
-import { markOAuthPending, clearOAuthPending, OAUTH_RETURN_URL } from '../lib/oauthReturn';
+import { markOAuthPending, clearOAuthPending, handOffToPursuit, OAUTH_RETURN_URL } from '../lib/oauthReturn';
 import Notice from '../components/Notice';
 
 type FormState = 'form' | 'verify';
@@ -170,22 +170,10 @@ export default function Signup() {
       }).catch(err => console.warn('Welcome email trigger failed:', err));
 
       if (data?.session) {
-        // Email confirmation is disabled — session is live immediately.
-        // Bridge to pursuit via URL hash tokens; Supabase client there picks
-        // them up automatically and fires SIGNED_IN without a second login.
-        // auth-js rejects the hash as an implicit-grant redirect unless
-        // expires_in AND token_type are present alongside the tokens.
-        const { access_token, refresh_token, expires_in, expires_at, token_type } = data.session;
-        const params = new URLSearchParams({
-          access_token,
-          refresh_token,
-          expires_in: String(expires_in ?? 3600),
-          ...(expires_at ? { expires_at: String(expires_at) } : {}),
-          token_type: token_type ?? 'bearer',
-          type: 'signup',
-        });
+        // Email confirmation is disabled — session is live immediately, so
+        // hand it to pursuit (and drop this site's stored copy of it).
         await conversionSent;
-        window.location.href = `https://pursuit.honestecho.com#${params.toString()}`;
+        await handOffToPursuit(data.session, true);
         return;
       }
       // Fallback: confirmation still required — show verify state.

@@ -95,7 +95,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right column: the 30-second launch tour (real product renders throughout) */}
+          {/* Right column: the hero cut — the reasons behind a fit score (real product renders throughout) */}
           <div className="w-full min-w-0 hidden md:flex items-center lg:justify-self-end lg:max-w-[680px]">
             <HeroVideo />
           </div>
@@ -215,8 +215,18 @@ export default function Home() {
               </p>
             </div>
 
-            {/* One decision example: the product's Phase 5 screen, plus the call it shows */}
-            <div className="w-full min-w-0">
+            {/* The Decide cut on md+ (same breakpoint as the hero video); the still example below it on small screens */}
+            <div className="w-full min-w-0 hidden md:block md:sticky md:top-28">
+              <HeroVideo
+                src="/video/pursuit-decide-v1.mp4"
+                poster="/video/pursuit-decide-v1-poster.jpg"
+                label="HE Pursuit: a 29-second walk from five phase questions to a recorded Go decision and the Bid Handoff"
+                playLabel="Watch the 29-second tour"
+                event="home_decide_video"
+                playInView
+              />
+            </div>
+            <div className="w-full min-w-0 md:hidden">
               <FlyIn>
               <ZoomImage
                 src="/decision-example.png"

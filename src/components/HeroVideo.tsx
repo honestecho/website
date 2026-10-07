@@ -3,9 +3,16 @@ import { createPortal } from 'react-dom';
 import { Maximize2, Pause, Play, Volume2, VolumeX, X } from 'lucide-react';
 import { track } from '../lib/analytics';
 
-const SRC = '/video/pursuit-launch-v2.mp4';
-const POSTER = '/video/pursuit-launch-v2-poster.jpg';
-const LABEL = 'HE Pursuit: a 30-second tour from a scored opportunity to a recorded Go decision';
+type Props = {
+  src?: string;
+  poster?: string;
+  label?: string;
+  playLabel?: string;
+  /** Analytics event prefix: `${event}_played`, `${event}_enlarged`. */
+  event?: string;
+  /** Below the fold: start when scrolled into view and pause when scrolled away, instead of on load. */
+  playInView?: boolean;
+};
 
 const focusRing = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] focus-visible:ring-offset-2 focus-visible:ring-offset-[#030B17]';
 const autoplayOff = () =>
@@ -15,7 +22,9 @@ const autoplayOff = () =>
 const chip = `inline-flex items-center justify-center gap-1.5 h-9 rounded-xl bg-[#030B17]/70 border border-white/15 text-white text-xs font-semibold backdrop-blur hover:bg-[#030B17]/90 transition-colors ${focusRing}`;
 
 /**
- * Hero launch video — the 30-second Pursuit tour.
+ * Home-page product video. Defaults are the hero cut (the reasons behind a
+ * fit score); the "Decide before you invest proposal time" section passes its
+ * own cut and `playInView`.
  *
  * Self-hosted under /video: the site CSP has no media-src, so media falls back
  * to default-src 'self' and a third-party embed would be blocked.
@@ -31,8 +40,19 @@ const chip = `inline-flex items-center justify-center gap-1.5 h-9 rounded-xl bg-
  * (ZoomImage, HeroPursuitCardZoom). The inline video pauses underneath and
  * picks up again on close.
  */
-export default function HeroVideo() {
+export default function HeroVideo({
+  src = '/video/pursuit-reasons-v3.mp4',
+  poster = '/video/pursuit-reasons-v3-poster.jpg',
+  label = 'HE Pursuit: a 35-second look at the six scored reasons behind a fit score and the evidence under each',
+  playLabel = 'Watch the 35-second tour',
+  event = 'home_hero_video',
+  playInView = false,
+}: Props) {
   const ref = useRef<HTMLVideoElement>(null);
+  // playInView only: the viewer's own pause must survive scrolling away and
+  // back, and a scroll-away pause must not raise the play button.
+  const userPaused = useRef(false);
+  const scrolledAway = useRef(false);
   const [playing, setPlaying] = useState(false);
   const [started, setStarted] = useState(false);
   const [muted, setMuted] = useState(true);
@@ -58,9 +78,15 @@ export default function HeroVideo() {
     v.muted = true;
     v.defaultMuted = true;
     v.setAttribute('muted', '');
-    v.preload = 'auto';
-    v.play().catch(() => setShowPlay(true));
-  }, []);
+    const start = () => { v.preload = 'auto'; v.play().catch(() => setShowPlay(true)); };
+    if (!playInView) { start(); return; }
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { if (!userPaused.current) start(); }
+      else if (!v.paused) { scrolledAway.current = true; v.pause(); }
+    }, { threshold: 0.5 });
+    io.observe(v);
+    return () => io.disconnect();
+  }, [playInView]);
 
   // Lightbox: Escape closes; scroll is locked before paint with the scrollbar's
   // width reserved so the page doesn't shift (same as ZoomImage).
@@ -95,7 +121,7 @@ export default function HeroVideo() {
     resumeInline.current = !!v && !v.paused;
     v?.pause();
     setOpen(true);
-    track('home_hero_video_enlarged');
+    track(`${event}_enlarged`);
   };
 
   const playWithSound = () => {
@@ -104,7 +130,7 @@ export default function HeroVideo() {
     v.muted = false;
     setMuted(false);
     v.play().catch(() => {});
-    track('home_hero_video_played', { sound: true });
+    track(`${event}_played`, { sound: true });
   };
 
   const toggleSound = () => {
@@ -112,7 +138,7 @@ export default function HeroVideo() {
     if (!v) return;
     v.muted = !v.muted;
     setMuted(v.muted);
-    if (!v.muted) track('home_hero_video_played', { sound: true });
+    if (!v.muted) track(`${event}_played`, { sound: true });
   };
 
   return (
@@ -121,15 +147,19 @@ export default function HeroVideo() {
         <video
           ref={ref}
           className="absolute inset-0 w-full h-full object-cover"
-          src={SRC}
-          poster={POSTER}
+          src={src}
+          poster={poster}
           muted
           loop
           playsInline
           preload="none"
-          aria-label={LABEL}
+          aria-label={label}
           onPlay={() => { setPlaying(true); setStarted(true); setShowPlay(false); }}
-          onPause={() => { setPlaying(false); setShowPlay(true); }}
+          onPause={() => {
+            setPlaying(false);
+            if (scrolledAway.current) { scrolledAway.current = false; return; }
+            setShowPlay(true);
+          }}
         />
 
         {/* The whole surface opens the large player. Out of the tab order:
@@ -145,18 +175,18 @@ export default function HeroVideo() {
         {showPlay && !playing && (
           <button
             type="button"
-            onClick={() => (started ? ref.current?.play().catch(() => {}) : playWithSound())}
+            onClick={() => { userPaused.current = false; if (started) ref.current?.play().catch(() => {}); else playWithSound(); }}
             className={`absolute inset-0 m-auto h-fit w-fit inline-flex items-center gap-2.5 px-5 py-3 rounded-xl bg-[#00c3ff] text-[#030B17] font-bold text-base shadow-[0_0_40px_rgba(0,195,255,0.3)] hover:scale-[1.03] transition-transform ${focusRing}`}
           >
             <Play className="w-5 h-5" aria-hidden="true" />
-            {started ? 'Resume' : 'Watch the 30-second tour'}
+            {started ? 'Resume' : playLabel}
           </button>
         )}
 
         <div className="absolute bottom-3 right-3 flex items-center gap-2">
           {playing && (
             <>
-              <button type="button" onClick={() => ref.current?.pause()} aria-label="Pause video" className={`${chip} w-9`}>
+              <button type="button" onClick={() => { userPaused.current = true; ref.current?.pause(); }} aria-label="Pause video" className={`${chip} w-9`}>
                 <Pause className="w-4 h-4" aria-hidden="true" />
               </button>
               <button type="button" onClick={toggleSound} aria-label={muted ? 'Turn sound on' : 'Mute video'} className={`${chip} px-3`}>
@@ -179,7 +209,7 @@ export default function HeroVideo() {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={LABEL}
+          aria-label={label}
           onClick={() => setOpen(false)}
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-8"
         >
@@ -196,7 +226,7 @@ export default function HeroVideo() {
             onClick={(e) => e.stopPropagation()}
             className="w-[min(100%,1600px,calc((100vh_-_6rem)*16/9))] aspect-video rounded-2xl overflow-hidden border border-[#1e2d4a] bg-[#030b17] shadow-2xl"
           >
-            <video className="block w-full h-full" src={SRC} poster={POSTER} controls autoPlay playsInline aria-label={LABEL} />
+            <video className="block w-full h-full" src={src} poster={poster} controls autoPlay playsInline aria-label={label} />
           </div>
         </div>,
         document.body

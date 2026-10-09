@@ -13,6 +13,8 @@ const focusRing = 'focus-visible:outline-none focus-visible:ring-2 focus-visible
 
 // Both primary CTAs go to opportunity discovery; notice analysis stays the secondary path.
 const DISCOVERY_TO = '/signup/?promo=fall2026';
+// For a visitor not ready for an account: name the company, leave an email, get three matches.
+const SEND_MATCHES_TO = '/tools/find-my-matches/?send=1';
 const ANALYZER_TO = '/tools/sam-gov-notice-analyzer/';
 
 
@@ -73,15 +75,25 @@ export default function Home() {
             </p>
 
             <div className="mt-8">
-              <Link
-                to={DISCOVERY_TO}
-                onClick={() => track('home_discovery_cta_clicked')}
-                className={`inline-flex w-full sm:w-auto items-center justify-center gap-2.5 min-h-[56px] px-6 sm:px-8 rounded-xl bg-[#00c3ff] text-[#030B17] font-bold text-base sm:text-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all ${focusRing}`}
-              >
-                Find My Opportunities — Free
-                <ArrowRight className="w-5 h-5 shrink-0" aria-hidden="true" />
-              </Link>
-              <p className="mt-3 text-sm text-[#a9b6cb] font-body">Create a free account and set up your profile to see your matches.</p>
+              {/* The column is too narrow for the pair side by side, so they stack at one width. */}
+              <div className="grid sm:inline-grid gap-3">
+                <Link
+                  to={DISCOVERY_TO}
+                  onClick={() => track('home_discovery_cta_clicked')}
+                  className={`inline-flex w-full items-center justify-center gap-2.5 min-h-[56px] px-6 sm:px-8 rounded-xl bg-[#00c3ff] text-[#030B17] font-bold text-base sm:text-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all ${focusRing}`}
+                >
+                  Find My Opportunities — Free
+                  <ArrowRight className="w-5 h-5 shrink-0" aria-hidden="true" />
+                </Link>
+                <Link
+                  to={SEND_MATCHES_TO}
+                  onClick={() => track('home_send_matches_cta_clicked')}
+                  className={`inline-flex w-full items-center justify-center min-h-[56px] px-6 rounded-xl border border-[#00c3ff]/60 text-[#00c3ff] font-bold text-base sm:text-lg hover:border-[#00c3ff] hover:bg-[#00c3ff]/10 transition-colors ${focusRing}`}
+                >
+                  Send Me 3 Matches
+                </Link>
+              </div>
+              <p className="mt-3 text-sm text-[#a9b6cb] font-body">No account needed for your first 3 matches.</p>
               <p className="mt-4 text-sm font-body">
                 <Link
                   to={ANALYZER_TO}

@@ -15,9 +15,10 @@ import {
   Building2,
   ShieldCheck,
   Target,
+  Mail,
 } from 'lucide-react';
 import { API_ORIGIN } from '../lib/api';
-import { track } from '../lib/analytics';
+import { track, getAttribution } from '../lib/analytics';
 
 // ── Contract (HE Pursuit API: /api/public/company-search + /api/public/matches) ──
 
@@ -68,6 +69,7 @@ interface MatchResult {
   draft_token: string | null;
   matched_at?: string;
   snapshot?: boolean;
+  emailed?: boolean;
 }
 
 interface ApiError { status: number; code: string; message: string }
@@ -77,6 +79,7 @@ interface ApiError { status: number; code: string; message: string }
 // goes through search, which resolves UEIs too.
 const UEI_RE = /^(?=.*\d)[A-Z0-9]{12}$/i;
 const MAX_UPLOAD_BYTES = 10 * 1024 * 1024;
+const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 const SIGNUP_PATH = '/signup/?promo=FALL2026&from=find-matches';
 
@@ -432,6 +435,12 @@ export default function FindMyMatches() {
     return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(v) ? v.toLowerCase() : null;
   })();
 
+  // ?send=1: arrived from a "Send me 3 matches" button, so the work email is required
+  // and the result is also emailed. Without it the email field is optional.
+  const sendMode = new URLSearchParams(search).get('send') === '1';
+
+  const [email, setEmail]               = useState('');
+  const [emailNote, setEmailNote]       = useState<string | null>(null);
   const [query, setQuery]               = useState('');
   const [searching, setSearching]       = useState(false);
   const [companies, setCompanies]       = useState<CompanyHit[] | null>(null);
@@ -523,20 +532,25 @@ export default function FindMyMatches() {
     const gen = ++requestGen.current;
     const current = () => gen === requestGen.current;
     const mode = 'file' in input ? 'upload' : 'uei';
+    const to = EMAIL_RE.test(email.trim()) ? email.trim() : '';
+    const attribution = getAttribution();
+    const lead = to ? { email: to, src: attribution.src || attribution.utm_campaign || '', gclid: attribution.gclid || '' } : {};
     setMatchError(null);
     setResult(null);
+    setEmailNote(null);
     setMatching(mode);
     try {
       let res: Response;
       if ('file' in input) {
         const form = new FormData();
         form.append('file', input.file);
+        Object.entries(lead).forEach(([k, v]) => form.append(k, v));
         res = await fetch(`${API_ORIGIN}/api/public/matches`, { method: 'POST', body: form, signal: AbortSignal.timeout(120_000) });
       } else {
         res = await fetch(`${API_ORIGIN}/api/public/matches`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ uei: input.uei }),
+          body: JSON.stringify({ uei: input.uei, ...lead }),
           signal: AbortSignal.timeout(120_000),
         });
       }
@@ -560,12 +574,18 @@ export default function FindMyMatches() {
       }
       if (!current()) return;
       setResult(data);
+      if (to && data.top.length > 0) {
+        setEmailNote(data.emailed ? `We sent a copy to ${to}.` : 'We couldn’t email your copy just now. Your matches are below.');
+      }
       track('find_matches_result_rendered', {
         source:        data.company.source,
         top_count:     data.top.length,
         has_near_miss: !!data.near_miss,
         strong:        data.counts?.strong ?? 0,
         deep_link:     deepLink,
+        send_mode:     sendMode,
+        email_given:   !!to,
+        emailed:       !!data.emailed,
       });
     } catch (err) {
       const timedOut = err instanceof DOMException && err.name === 'TimeoutError';
@@ -583,20 +603,28 @@ export default function FindMyMatches() {
     }
   }
 
+  // A typed email has to be a real one; in send mode it also has to be there.
+  function emailProblem(): string | null {
+    const v = email.trim();
+    if (!v) return sendMode ? 'Enter your work email so we know where to send your matches.' : null;
+    return EMAIL_RE.test(v) ? null : 'That email address doesn’t look right. Check it and try again.';
+  }
+
   async function handleSearch(e: FormEvent) {
     e.preventDefault();
     const q = query.trim();
     setSearchError(null);
     setCompanies(null);
+    if (emailProblem()) { setSearchError(emailProblem()); return; }
     if (q.length < 3) { setSearchError('Type at least 3 characters of your company name, or your UEI.'); return; }
 
     if (UEI_RE.test(q)) {
-      track('find_matches_search_submitted', { query_type: 'uei' });
+      track('find_matches_search_submitted', { query_type: 'uei', send_mode: sendMode });
       void runMatches({ uei: q.toUpperCase() });
       return;
     }
 
-    track('find_matches_search_submitted', { query_type: 'name' });
+    track('find_matches_search_submitted', { query_type: 'name', send_mode: sendMode });
     setResult(null);
     setMatchError(null);
     setSearching(true);
@@ -638,6 +666,7 @@ export default function FindMyMatches() {
 
   function submitUpload() {
     if (!file) return;
+    if (emailProblem()) { setFileError(emailProblem()); return; }
     track('find_matches_upload_submitted', { file_type: /\.docx$/i.test(file.name) ? 'docx' : 'pdf' });
     setCompanies(null);
     void runMatches({ file });
@@ -685,6 +714,27 @@ export default function FindMyMatches() {
           </p>
 
           <form onSubmit={handleSearch} className="rounded-xl bg-[#0b1120] border border-[#1e2d4a] p-4 sm:p-5" noValidate>
+            <label htmlFor="email-input" className="block text-xs font-semibold text-[#a0b2c8] font-label mb-2">
+              Work email{!sendMode && <span className="font-normal text-[#8b9bb4]"> (optional)</span>}
+            </label>
+            <div className="relative">
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8b9bb4] pointer-events-none" strokeWidth={2} />
+              <input
+                id="email-input"
+                type="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder="you@yourcompany.com"
+                autoComplete="email"
+                disabled={busy}
+                className={inputClass}
+              />
+            </div>
+            <p className="text-sm text-[#8b9bb4] font-body mt-2 mb-5">
+              {sendMode
+                ? 'You’ll see your matches here and get a copy by email. One email. We won’t add you to a list.'
+                : 'Add it and we’ll email you a copy of your matches. One email. We won’t add you to a list.'}
+            </p>
             <label htmlFor="company-input" className="block text-xs font-semibold text-[#a0b2c8] font-label mb-2">
               Company name or UEI
             </label>
@@ -703,7 +753,7 @@ export default function FindMyMatches() {
                 />
               </div>
               <button type="submit" disabled={busy} className={primaryBtn}>
-                {searching ? <><Loader2 className="w-4 h-4 animate-spin" />Searching…</> : <>Find my matches<ArrowRight className="w-4 h-4" /></>}
+                {searching ? <><Loader2 className="w-4 h-4 animate-spin" />Searching…</> : <>{sendMode ? 'Send my matches' : 'Find my matches'}<ArrowRight className="w-4 h-4" /></>}
               </button>
             </div>
             <p className="text-sm text-[#8b9bb4] font-body mt-3">
@@ -829,6 +879,12 @@ export default function FindMyMatches() {
                         : 'Nothing clears the bar right now'}
                     </h2>
                     <p className="text-sm text-[#a0b2c8] font-body mt-1.5">{countLine(result)}</p>
+                    {emailNote && (
+                      <p className="text-sm text-white font-body mt-1.5 flex items-start gap-2">
+                        <Mail className="w-4 h-4 text-[#00c3ff] shrink-0 mt-0.5" strokeWidth={2} />
+                        <span className="min-w-0 break-words">{emailNote}</span>
+                      </p>
+                    )}
                     {matchedOnLine(result) && (
                       <p className="text-xs text-[#8b9bb4] font-body mt-1">{matchedOnLine(result)}</p>
                     )}

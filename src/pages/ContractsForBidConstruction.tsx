@@ -479,6 +479,13 @@ export default function ContractsForBidConstruction() {
                     Create my free account <ArrowRight className="w-4 h-4" />
                   </Link>
                   <p className="text-sm font-medium text-[#cbd5e1] font-body text-center md:text-right whitespace-nowrap">Free account · No credit card</p>
+                  <Link
+                    to="/tools/find-my-matches/?send=1"
+                    onClick={() => track('list_send_matches_clicked', { shown: Math.min(rows.length, TOP_N), total: rows.length })}
+                    className="text-sm font-semibold text-[#00c3ff] font-body text-center md:text-right hover:underline underline-offset-4 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
+                  >
+                    Not ready? Send me 3 matches
+                  </Link>
                 </div>
               </div>
             )}

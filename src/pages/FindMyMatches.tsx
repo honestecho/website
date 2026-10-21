@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { API_ORIGIN } from '../lib/api';
 import { track, getAttribution } from '../lib/analytics';
+import { reportMatchesEmailConversion } from '../lib/googleAds';
 
 // ── Contract (HE Pursuit API: /api/public/company-search + /api/public/matches) ──
 
@@ -577,6 +578,7 @@ export default function FindMyMatches() {
       if (to && data.top.length > 0) {
         setEmailNote(data.emailed ? `We sent a copy to ${to}.` : 'We couldn’t email your copy just now. Your matches are below.');
       }
+      if (data.emailed) reportMatchesEmailConversion(data.draft_token);
       track('find_matches_result_rendered', {
         source:        data.company.source,
         top_count:     data.top.length,

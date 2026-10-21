@@ -71,6 +71,7 @@ interface MatchResult {
   matched_at?: string;
   snapshot?: boolean;
   emailed?: boolean;
+  request_id?: string | null;
 }
 
 interface ApiError { status: number; code: string; message: string }
@@ -481,8 +482,10 @@ export default function FindMyMatches() {
     if (snapshotToken || !deepLinkUei || deepLinkRan.current === deepLinkUei) return;
     deepLinkRan.current = deepLinkUei;
     setQuery(deepLinkUei);
+    // Send mode needs the email first: fill the UEI and wait for the visitor to submit.
+    if (sendMode) return;
     void runMatches({ uei: deepLinkUei }, true);
-  }, [deepLinkUei, snapshotToken]);
+  }, [deepLinkUei, snapshotToken, sendMode]);
 
   useEffect(() => {
     if (!snapshotToken || deepLinkRan.current === snapshotToken) return;
@@ -578,7 +581,7 @@ export default function FindMyMatches() {
       if (to && data.top.length > 0) {
         setEmailNote(data.emailed ? `We sent a copy to ${to}.` : 'We couldn’t email your copy just now. Your matches are below.');
       }
-      if (data.emailed) reportMatchesEmailConversion(data.draft_token);
+      if (data.emailed) reportMatchesEmailConversion(data.request_id ?? null);
       track('find_matches_result_rendered', {
         source:        data.company.source,
         top_count:     data.top.length,
@@ -650,6 +653,8 @@ export default function FindMyMatches() {
   }
 
   function pickCompany(c: CompanyHit, index: number) {
+    // The email can change between the search and the pick.
+    if (emailProblem()) { setSearchError(emailProblem()); return; }
     track('find_matches_company_selected', { position: index + 1 });
     setCompanies(null);
     setQuery(c.name);

@@ -24,7 +24,7 @@ const sections: PrivacySection[] = [
     sub: [
       {
         label: 'Information you provide',
-        bullets: ['Account information (name, email)', 'Company profile details (NAICS, certifications, preferences)', 'Pursuit data (notes, evaluations, decisions)'],
+        bullets: ['Account information (name, email)', 'Company profile details (NAICS, certifications, preferences)', 'Pursuit data (notes, evaluations, decisions)', 'Free-tool requests (the work email and company you enter when you ask us to email your matches)'],
       },
       {
         label: 'Information collected automatically',
@@ -62,7 +62,7 @@ const sections: PrivacySection[] = [
     Icon: Clock,
     title: 'Data Retention',
     lead: 'We retain your data while your account is active.',
-    body: 'If you delete your account, we will remove your personal data within a reasonable period, except where retention is required for legal or operational purposes.',
+    body: 'If you delete your account, we will remove your personal data within a reasonable period, except where retention is required for legal or operational purposes. If you ask us to email your matches without an account, we keep a record of that request (your email, the company you looked up, and when) to prevent abuse and to answer replies. We do not add it to a mailing list. Email info@honestecho.com and we will delete it.',
   },
   {
     Icon: SlidersHorizontal,

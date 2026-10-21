@@ -64,8 +64,8 @@ export function reportSignupConversion(transactionId: string): Promise<void> {
   });
 }
 
-// Call once the API says the matches email went out (`emailed`) or is still going
-// out (`email_pending`, Resend slow to answer), so a refused send never counts. The visitor stays on the page, so
+// Call once the API confirms the matches email went out (`emailed: true`), so a
+// refused or still-pending send never counts. The visitor stays on the page, so
 // nothing needs to wait for it. The request id (never the draft token, which
 // unlocks the draft) lets Google drop a repeat.
 export function reportMatchesEmailConversion(transactionId: string | null): void {

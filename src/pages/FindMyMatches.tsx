@@ -581,10 +581,11 @@ export default function FindMyMatches() {
       setResult(data);
       if (to && data.top.length > 0) {
         setEmailNote(data.emailed ? `We sent a copy to ${to}.`
-          : data.email_pending ? `We’re sending a copy to ${to}.`
+          : data.email_pending ? `We’re still sending your copy to ${to}. Your matches are below either way.`
           : 'We couldn’t email your copy just now. Your matches are below.');
       }
-      if (data.emailed || data.email_pending) reportMatchesEmailConversion(data.request_id ?? null);
+      // Only a send Resend confirmed counts; a pending one may still be refused.
+      if (data.emailed) reportMatchesEmailConversion(data.request_id ?? null);
       track('find_matches_result_rendered', {
         source:        data.company.source,
         top_count:     data.top.length,

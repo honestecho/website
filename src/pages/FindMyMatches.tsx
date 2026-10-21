@@ -72,6 +72,7 @@ interface MatchResult {
   snapshot?: boolean;
   emailed?: boolean;
   request_id?: string | null;
+  email_pending?: boolean;
 }
 
 interface ApiError { status: number; code: string; message: string }
@@ -579,9 +580,11 @@ export default function FindMyMatches() {
       if (!current()) return;
       setResult(data);
       if (to && data.top.length > 0) {
-        setEmailNote(data.emailed ? `We sent a copy to ${to}.` : 'We couldn’t email your copy just now. Your matches are below.');
+        setEmailNote(data.emailed ? `We sent a copy to ${to}.`
+          : data.email_pending ? `We’re sending a copy to ${to}.`
+          : 'We couldn’t email your copy just now. Your matches are below.');
       }
-      if (data.emailed) reportMatchesEmailConversion(data.request_id ?? null);
+      if (data.emailed || data.email_pending) reportMatchesEmailConversion(data.request_id ?? null);
       track('find_matches_result_rendered', {
         source:        data.company.source,
         top_count:     data.top.length,

@@ -5,12 +5,17 @@
 // of our Google ads (gclid/gbraid/wbraid on the landing URL, or the click
 // cookie the tag set on an earlier visit). Everyone else never loads it.
 // Ad personalization / remarketing signals are off: the tag exists to tell
-// Google Ads that a paid click became a signup, nothing else.
+// Google Ads that a paid click became a signup or an emailed-matches request,
+// nothing else.
 
 const AW_ID = 'AW-18393164010';
 // Conversion label of the "Website signup" conversion action in Google Ads
 // (Goals > Conversions, conversion type ID 7819677265, created 2026-10-04).
 const SIGNUP_LABEL = 'MGGeCNGc25AdEOrRxcJE';
+// Conversion label of the "Matches emailed" conversion action (Lead category).
+// OWED: Aaron creates the action in Google Ads and pastes its label here; while
+// it is empty the call below does nothing.
+const MATCHES_EMAIL_LABEL = '';
 
 declare global {
   interface Window {
@@ -56,5 +61,16 @@ export function reportSignupConversion(transactionId: string): Promise<void> {
       transport_type: 'beacon',
       event_callback: () => { clearTimeout(timer); resolve(); },
     });
+  });
+}
+
+// Call once the API confirms the matches email went out (`emailed: true`), so a
+// typed-but-unsent address never counts. The visitor stays on the page, so
+// nothing needs to wait for it. The draft token lets Google drop a repeat.
+export function reportMatchesEmailConversion(transactionId: string | null): void {
+  if (!window.gtag || !MATCHES_EMAIL_LABEL) return;
+  window.gtag('event', 'conversion', {
+    send_to: `${AW_ID}/${MATCHES_EMAIL_LABEL}`,
+    ...(transactionId ? { transaction_id: transactionId } : {}),
   });
 }

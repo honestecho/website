@@ -46,6 +46,8 @@ const routes = [
   { path: '/for-govcon-consultants',                  file: 'src/pages/ForGovconConsultants.tsx',        changefreq: 'monthly', priority: '0.8' },
   // Rebuilt daily so the seeded list below stays inside its 48-hour promise.
   { path: '/government-contracts-for-bid/construction', file: 'src/pages/ContractsForBidConstruction.tsx', changefreq: 'daily',  priority: '0.9' },
+  // Hand-checked weekly; lastmod comes from the notice file's last commit.
+  { path: '/government-contracts-for-bid/other-transactions', file: 'src/content/ot-radar-notices.json', changefreq: 'weekly', priority: '0.9' },
   { path: '/team-waitlist',                           file: 'src/pages/TeamWaitlist.tsx',                changefreq: 'monthly', priority: '0.5' },
   { path: '/tools/sam-gov-notice-analyzer',           file: 'src/pages/SamGovNoticeAnalyzer.tsx',        changefreq: 'weekly',  priority: '0.9' },
   { path: '/tools/pursuit-readout',                   file: 'src/pages/PursuitReadout.tsx',              changefreq: 'weekly',  priority: '0.9' },

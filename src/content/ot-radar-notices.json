@@ -1,0 +1,326 @@
+{
+  "checked_at": "2026-10-22",
+  "notices": [
+    {
+      "notice_id": "b6766a1647114888a2c93a341ff253d9",
+      "solicitation_number": "2027-NESDIS-BB-0001",
+      "title": "NESDIS Enterprise Mission Operations (NEMO)",
+      "agency": "Dept. of Commerce",
+      "office": "NOAA",
+      "type": "ot",
+      "tags": [
+        "Request for white papers",
+        "Other transaction agreement"
+      ],
+      "found_in_text": true,
+      "response_deadline": "2026-10-26T16:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/b6766a1647114888a2c93a341ff253d9/view"
+    },
+    {
+      "notice_id": "3057ed86c2b549f7a3920b710723bc01",
+      "solicitation_number": "MEA-27-01-001",
+      "title": "NSWC-PHD MATAC OTA Request for Prototype Proposals: Prototypes and Experiments Rapid Fielding Sites (PERFS)",
+      "agency": "U.S. Navy",
+      "office": "NSWC Port Hueneme",
+      "type": "consortium",
+      "tags": [
+        "Consortium request",
+        "MATAC"
+      ],
+      "found_in_text": false,
+      "response_deadline": "2026-10-28T16:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/3057ed86c2b549f7a3920b710723bc01/view"
+    },
+    {
+      "notice_id": "f680b73a6c10415a83f09f448894e5bb",
+      "solicitation_number": "HT003826SC005-AOI0002",
+      "title": "Defense Health Agency (DHA), Program Acquisition Executive, Digital Medical Solutions (PAE DMS), Enterprise Intelligence & Data Solutions (EIDS) Program Management Office (PMO), Data Exchange Services Operations, Modernization, and Development",
+      "agency": "Defense Health Agency",
+      "office": "Digital Medical Solutions",
+      "type": "cso",
+      "tags": [
+        "CSO area of interest"
+      ],
+      "found_in_text": true,
+      "response_deadline": "2026-10-28T18:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/f680b73a6c10415a83f09f448894e5bb/view"
+    },
+    {
+      "notice_id": "05078c03eda24c43b574accf25f7af83",
+      "solicitation_number": "W912QR279A001",
+      "title": "RFQ W912QR279A001 - Construction Manager at Risk (CMAR) Construction of Equipment Concentration Site, Fort Carson, Colorado",
+      "agency": "U.S. Army",
+      "office": "USACE Louisville District",
+      "type": "ot",
+      "tags": [
+        "Other transaction",
+        "10 U.S.C. 2808a"
+      ],
+      "found_in_text": true,
+      "response_deadline": "2026-10-28T19:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/05078c03eda24c43b574accf25f7af83/view"
+    },
+    {
+      "notice_id": "44b4bcdc95424e45a461b43acfbf70ff",
+      "solicitation_number": "HQC0102712",
+      "title": "DeCA Europe Central Distribution Centers Facility Maintenance Call for Solutions",
+      "agency": "Defense Commissary Agency",
+      "office": "DeCA Europe",
+      "type": "cso",
+      "tags": [
+        "CSO call for solutions"
+      ],
+      "found_in_text": true,
+      "response_deadline": "2026-10-29T14:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/44b4bcdc95424e45a461b43acfbf70ff/view"
+    },
+    {
+      "notice_id": "c43ccacd8ffa4eb9ac7b767bfb46a415",
+      "solicitation_number": "HQC0102713",
+      "title": "DeCA Europe UK Facilities Commercial Refrigeration Call for Solutions",
+      "agency": "Defense Commissary Agency",
+      "office": "DeCA Europe",
+      "type": "cso",
+      "tags": [
+        "CSO call for solutions"
+      ],
+      "found_in_text": true,
+      "response_deadline": "2026-10-29T14:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/c43ccacd8ffa4eb9ac7b767bfb46a415/view"
+    },
+    {
+      "notice_id": "d6613e873efd42a48f19ea91b305e29a",
+      "solicitation_number": "HQC0102714",
+      "title": "DeCA Europe UK Facility Maintenance Call for Solutions",
+      "agency": "Defense Commissary Agency",
+      "office": "DeCA Europe",
+      "type": "cso",
+      "tags": [
+        "CSO call for solutions"
+      ],
+      "found_in_text": true,
+      "response_deadline": "2026-10-29T14:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/d6613e873efd42a48f19ea91b305e29a/view"
+    },
+    {
+      "notice_id": "848ea542dcdd4b519d8be0bfcd017870",
+      "solicitation_number": "N4008526R0276",
+      "title": "MCI East Barracks Industrialized Construction Projects for Barracks via Other Transaction Authority (10 USC 2808a)",
+      "agency": "U.S. Navy",
+      "office": "NAVFAC Mid-Atlantic",
+      "type": "ot",
+      "tags": [
+        "Other transaction",
+        "10 U.S.C. 2808a"
+      ],
+      "found_in_text": false,
+      "response_deadline": "2026-10-29T18:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/848ea542dcdd4b519d8be0bfcd017870/view"
+    },
+    {
+      "notice_id": "5addcaf8091f4832ba6c7d0f1311e604",
+      "solicitation_number": "DISA-OTA-27-R-UAM",
+      "title": "Area of Interest (AOI) for User Activity Monitoring (UAM) Centralization Prototype Other Transaction (OT)",
+      "agency": "Defense Information Systems Agency",
+      "office": "IT Contracting Division",
+      "type": "ot",
+      "tags": [
+        "Other transaction"
+      ],
+      "found_in_text": false,
+      "response_deadline": "2026-10-29T22:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/5addcaf8091f4832ba6c7d0f1311e604/view"
+    },
+    {
+      "notice_id": "d3096f08bb6c40469d930430e6c95f60",
+      "solicitation_number": "697DCK-26-R-00423",
+      "title": "BEYOND Phase 2",
+      "agency": "Dept. of Transportation",
+      "office": "FAA",
+      "type": "ot",
+      "tags": [
+        "Other transaction agreement"
+      ],
+      "found_in_text": true,
+      "response_deadline": "2026-10-30T19:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/d3096f08bb6c40469d930430e6c95f60/view"
+    },
+    {
+      "notice_id": "66f8f8f5754442b7a85967b415407e3b",
+      "solicitation_number": "693JK326RA001",
+      "title": "Pipeline Safety Research and Development (R&D) - Research Announcement 12",
+      "agency": "Dept. of Transportation",
+      "office": "PHMSA",
+      "type": "ot",
+      "tags": [
+        "Research announcement",
+        "Other transaction agreement"
+      ],
+      "found_in_text": true,
+      "response_deadline": "2026-11-02T22:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/66f8f8f5754442b7a85967b415407e3b/view"
+    },
+    {
+      "notice_id": "fa79909f39764ab3addefb23eaa71904",
+      "solicitation_number": "693KA8-27-T-00003",
+      "title": "Federal Aviation Administration (FAA) Research And Commercial Solutions Opening (RCSO) Area Of Interest (AOI) - Complexity Of Systems And Operations",
+      "agency": "Dept. of Transportation",
+      "office": "FAA",
+      "type": "cso",
+      "tags": [
+        "Research and CSO area of interest"
+      ],
+      "found_in_text": false,
+      "response_deadline": "2026-11-02T23:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/fa79909f39764ab3addefb23eaa71904/view"
+    },
+    {
+      "notice_id": "451c1779218c410b95c0680e07bb30f9",
+      "solicitation_number": "HT9427-26-R-E020",
+      "title": "Prototype development for Battlefield Wound Infection Prevention and Treatment (BWI P&T) Barrier Combination",
+      "agency": "Defense Health Agency",
+      "office": "DHA Contracting Activity",
+      "type": "ot",
+      "tags": [
+        "Request for prototype proposals",
+        "10 U.S.C. 4022"
+      ],
+      "found_in_text": true,
+      "response_deadline": "2026-11-06T17:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/451c1779218c410b95c0680e07bb30f9/view"
+    },
+    {
+      "notice_id": "6b0fb4acaf5d4a10b4f07e2d4f39fffd",
+      "solicitation_number": "N6247027R0003",
+      "title": "Navy Child Development Centers (CDC) Industrialized Construction (IC) Projects via Other Transaction Authority (10 U.S.C. § 2808a)",
+      "agency": "U.S. Navy",
+      "office": "NAVFAC Atlantic",
+      "type": "ot",
+      "tags": [
+        "Other transaction",
+        "10 U.S.C. 2808a"
+      ],
+      "found_in_text": false,
+      "response_deadline": "2026-11-06T19:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/6b0fb4acaf5d4a10b4f07e2d4f39fffd/view"
+    },
+    {
+      "notice_id": "d0744e1864aa43adab87e5777a9380fc",
+      "solicitation_number": "W91CRB-RPP-USHC",
+      "title": "Ultrasound Diagnostic System, Hand Carried (USHC) - Prototype",
+      "agency": "U.S. Army",
+      "office": "ACC Aberdeen Proving Ground",
+      "type": "ot",
+      "tags": [
+        "Request for prototype proposals",
+        "10 U.S.C. 4022"
+      ],
+      "found_in_text": true,
+      "response_deadline": "2026-11-06T21:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/d0744e1864aa43adab87e5777a9380fc/view"
+    },
+    {
+      "notice_id": "3f84c5d350b345acb0f07728ee25502e",
+      "solicitation_number": "FA9101269TS2",
+      "title": "RWP - Test Site 2 (TS2) Improvements & Modernization, Aerospace Vehicle Survivability Facility (AVSF)",
+      "agency": "U.S. Air Force",
+      "office": "AEDC, Arnold AFB",
+      "type": "consortium",
+      "tags": [
+        "Consortium request",
+        "AEDC Velocity Alliance",
+        "10 U.S.C. 4022"
+      ],
+      "found_in_text": true,
+      "response_deadline": "2026-11-16T20:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/3f84c5d350b345acb0f07728ee25502e/view"
+    },
+    {
+      "notice_id": "7fa638859b874d33ad7591deabe1e9dc",
+      "solicitation_number": "W911KF-25-S-C002-AoI014",
+      "title": "Aera of Interest (AoI) Equipment rental and Facility Support (CSO-W911KF25SC002)",
+      "agency": "U.S. Army",
+      "office": "ACC Anniston Army Depot",
+      "type": "cso",
+      "tags": [
+        "CSO area of interest",
+        "10 U.S.C. 3458"
+      ],
+      "found_in_text": false,
+      "response_deadline": "2026-11-19T16:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/7fa638859b874d33ad7591deabe1e9dc/view"
+    },
+    {
+      "notice_id": "4537c6214f014811ac408b812f917095",
+      "solicitation_number": "CSO-ARMY-TCS-PSS-2027",
+      "title": "Tactical Communication Systems - Procurement, Services & Sustainment (TCS-PSS) Call for Solutions",
+      "agency": "U.S. Army",
+      "office": "ACC Aberdeen Proving Ground",
+      "type": "cso",
+      "tags": [
+        "CSO call for solutions",
+        "DFARS 212.70"
+      ],
+      "found_in_text": true,
+      "response_deadline": "2026-11-19T22:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/4537c6214f014811ac408b812f917095/view"
+    },
+    {
+      "notice_id": "8b3606dedb16475480f34d9ed1654cb6",
+      "solicitation_number": "FA5209-26-S-C001",
+      "title": "Yokota AB Refuse Disposal Commercial Solutions Opening (CSO)",
+      "agency": "U.S. Air Force",
+      "office": "374th Contracting Squadron, Yokota AB",
+      "type": "cso",
+      "tags": [
+        "CSO",
+        "10 U.S.C. 3458"
+      ],
+      "found_in_text": false,
+      "response_deadline": "2026-11-30T07:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/8b3606dedb16475480f34d9ed1654cb6/view"
+    },
+    {
+      "notice_id": "11128fed4f044b68a9185dada11c90d9",
+      "solicitation_number": "ARPA-H-SOL-26-164",
+      "title": "Simulation-augmented, Real-time Platform Adaptive Seamless Trials (SURPASS)",
+      "agency": "Dept. of Health and Human Services",
+      "office": "ARPA-H",
+      "type": "ot",
+      "tags": [
+        "Other transaction agreement"
+      ],
+      "found_in_text": true,
+      "response_deadline": "2026-11-30T22:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/11128fed4f044b68a9185dada11c90d9/view"
+    },
+    {
+      "notice_id": "860125bb77e34a68b89811fa4144b772",
+      "solicitation_number": "AMIP-CSO",
+      "title": "ARMY AMMUNITION MANUFACTURING INNOVATION INDUSTRIAL BASE INTEGRATION TEAM COMMERCIAL SOLUTIONS OPENING REQUEST FOR SOLUTIONS",
+      "agency": "U.S. Army",
+      "office": "ACC Rock Island",
+      "type": "cso",
+      "tags": [
+        "CSO request for solutions"
+      ],
+      "found_in_text": false,
+      "response_deadline": "2026-12-16T18:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/860125bb77e34a68b89811fa4144b772/view"
+    },
+    {
+      "notice_id": "fc4611184ad340358c2314151865aef8",
+      "solicitation_number": "NSF-OTASO-FY26-ELEGANT",
+      "title": "NSF Ecosystem for Low-dimensional Electronics: Growth, Assembly, Nanoelectronics, and Translation (NSF ELEGANT)",
+      "agency": "National Science Foundation",
+      "office": "Technology, Innovation & Partnerships",
+      "type": "ot",
+      "tags": [
+        "Other transaction agreement"
+      ],
+      "found_in_text": true,
+      "response_deadline": "2026-12-18T22:00:00+00:00",
+      "sam_url": "https://sam.gov/workspace/contract/opp/fc4611184ad340358c2314151865aef8/view"
+    }
+  ]
+}

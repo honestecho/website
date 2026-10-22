@@ -25,6 +25,7 @@ import ForSmallBusinessOwners from './pages/ForSmallBusinessOwners';
 import ForProposalManagers from './pages/ForProposalManagers';
 import ForGovconConsultants from './pages/ForGovconConsultants';
 import ContractsForBidConstruction from './pages/ContractsForBidConstruction';
+import OtherTransactions from './pages/OtherTransactions';
 import FindMyMatches from './pages/FindMyMatches';
 
 // Everything else stays code-split — lower-traffic / interactive pages where a
@@ -156,6 +157,8 @@ function App() {
           <Route path="/for-govcon-consultants/" element={<ForGovconConsultants />} />
           <Route path="/government-contracts-for-bid/construction" element={<ContractsForBidConstruction />} />
           <Route path="/government-contracts-for-bid/construction/" element={<ContractsForBidConstruction />} />
+          <Route path="/government-contracts-for-bid/other-transactions" element={<OtherTransactions />} />
+          <Route path="/government-contracts-for-bid/other-transactions/" element={<OtherTransactions />} />
           <Route path="/tools/sam-gov-notice-analyzer" element={<SamGovNoticeAnalyzer />} />
           <Route path="/tools/pursuit-readout" element={<PursuitReadout />} />
           <Route path="/tools/find-my-matches" element={<FindMyMatches />} />

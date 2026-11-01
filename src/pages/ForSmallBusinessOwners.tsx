@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Compass, Clock, TrendingUp, ShieldCheck, Scale, Filter } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
-import Notice from '../components/Notice';
 import { SoftwareApplicationSchema, FAQPageSchema } from '../components/SchemaOrg';
 
 const faqs = [
@@ -24,7 +23,7 @@ const faqs = [
   },
   {
     q: 'Is HE Pursuit free for small businesses?',
-    a: 'The SAM.gov notice analyzer is free and requires no account. The Free plan adds search and bookmarks with no credit card. Paid plans ($99–$199/month) add the full pursuit workflow — and through November 30, two months of Starter or Pro are free, applied automatically at checkout.',
+    a: 'The SAM.gov notice analyzer is free and requires no account. The Free plan adds search and bookmarks with no credit card. Paid plans ($99–$199/month) add the full pursuit workflow.',
   },
 ];
 
@@ -108,11 +107,6 @@ export default function ForSmallBusinessOwners() {
               Or start free with an account →
             </Link>
           </div>
-          <Notice align="left" className="mt-6 max-w-3xl">
-            <span className="font-bold text-[#00c3ff]">Fall Bid Clarity Pass:</span>{' '}
-            2 months of Starter or Pro free — applied automatically at checkout.{' '}
-            <span className="font-bold text-[#00c3ff]">Ends November 30.</span>
-          </Notice>
         </div>
       </section>
 

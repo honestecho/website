@@ -7,7 +7,6 @@ import { API_BASE } from '../lib/api';
 import { track, getAttribution } from '../lib/analytics';
 import { reportSignupConversion } from '../lib/googleAds';
 import { markOAuthPending, clearOAuthPending, handOffToPursuit, OAUTH_RETURN_URL } from '../lib/oauthReturn';
-import Notice from '../components/Notice';
 
 type FormState = 'form' | 'verify';
 
@@ -43,7 +42,7 @@ export default function Signup() {
   const fromParam = () => new URLSearchParams(window.location.search).get('from');
   const fromProps = () => { const from = fromParam(); return from ? { from } : {}; };
 
-  // Fall Bid Clarity Pass attribution: log when a promo link lands here.
+  // Promo-link attribution: log when a ?promo= link lands here.
   useEffect(() => {
     const promo = new URLSearchParams(window.location.search).get('promo');
     if (promo) track('signup_promo_landed', { promo, ...fromProps() });
@@ -270,16 +269,6 @@ export default function Signup() {
                 Answer a few questions about your company, get a scored list of open federal opportunities that match — about 30 seconds later.
               </p>
             </div>
-
-            {/* Fall Bid Clarity Pass strip — mirrors the Home/Pricing banners so the
-                offer survives the click into signup. Manual wind-down after November 30. */}
-            {state === 'form' && (
-              <Notice tone="soft" align="left" className="mb-4">
-                <span className="block text-[#00c3ff] font-bold">Fall Bid Clarity Pass</span>
-                <span className="block text-balance">2 months of Starter or Pro free, applied automatically at checkout.</span>
-                <span className="block text-sm text-[#a0b2c8] mt-1">Ends November 30</span>
-              </Notice>
-            )}
 
             {state === 'form' ? (
               <div className="bg-[#0b1120] border border-[#1e2d4a] rounded-2xl p-8 shadow-2xl relative overflow-hidden">

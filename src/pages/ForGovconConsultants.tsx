@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Scale, Zap, Layers, Presentation, DollarSign } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
-import Notice from '../components/Notice';
 import { SoftwareApplicationSchema, FAQPageSchema } from '../components/SchemaOrg';
 
 const faqs = [
@@ -24,7 +23,7 @@ const faqs = [
   },
   {
     q: 'How does pricing work for consultants with multiple clients?',
-    a: 'Plans are priced per account ($99 Starter / $199 Pro), each built around one company profile — for multiple client engagements, that means an account per client business, and the math still undercuts a single enterprise data seat. Through November 30, two months of Starter or Pro are free, applied automatically at checkout. The free analyzer needs no account at all.',
+    a: 'Plans are priced per account ($99 Starter / $199 Pro), each built around one company profile — for multiple client engagements, that means an account per client business, and the math still undercuts a single enterprise data seat. The free analyzer needs no account at all.',
   },
 ];
 
@@ -108,11 +107,6 @@ export default function ForGovconConsultants() {
               Start Free
             </Link>
           </div>
-          <Notice align="left" className="mt-6 max-w-3xl">
-            <span className="font-bold text-[#00c3ff]">Fall Bid Clarity Pass:</span>{' '}
-            2 months of Starter or Pro free — applied automatically at checkout.{' '}
-            <span className="font-bold text-[#00c3ff]">Ends November 30.</span>
-          </Notice>
         </div>
       </section>
 

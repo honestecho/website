@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Sparkles, CheckCircle, Users, FileText, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import FlyIn from '../components/FlyIn';
-import Notice from '../components/Notice';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
 import HeroVideo from '../components/HeroVideo';
 import ZoomImage from '../components/ZoomImage';
@@ -330,14 +329,6 @@ export default function Home() {
               Join the waitlist <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          </FlyIn>
-
-          {/* The seasonal offer stays secondary to the ongoing product benefit */}
-          <FlyIn delay="delay-[600ms]" className="max-w-6xl mx-auto mt-8">
-            <Notice label="Fall Offer" tone="soft" align="left">
-              <span className="font-bold text-[#00c3ff]">Fall Bid Clarity Pass:</span> 2 months of Starter or Pro free, applied automatically at checkout.
-              <br /><span className="font-bold text-[#00c3ff]">Ends November 30, 2026.</span> Renews at the regular price unless canceled.
-            </Notice>
           </FlyIn>
           <p className="text-center text-sm text-[#8b9bb4]/60 mt-8 max-w-6xl mx-auto">
             <Link to="/pricing/" className="text-[#00c3ff] hover:underline">See full feature comparison →</Link>

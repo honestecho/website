@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, ChevronDown, ShieldCheck, Clock, Ban, Users } from 'lucide-react';
 import FlyIn from '../components/FlyIn';
-import Notice from '../components/Notice';
 import { SoftwareApplicationSchema } from '../components/SchemaOrg';
 import HeroPursuitCardZoom from '../components/HeroPursuitCardZoom';
 
@@ -227,11 +226,6 @@ export default function Pricing() {
       {/* ── SECTION 2 — Pricing Cards ────────────────────────────────────── */}
       <section className="pb-6 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          {/* Fall Bid Clarity Pass offer strip */}
-          <Notice label="Fall Offer" className="mb-4">
-            <span className="font-bold text-[#00c3ff]">Fall Bid Clarity Pass:</span> 2 months of Starter or Pro free — applied automatically at checkout.
-            <br /> <span className="font-bold text-[#00c3ff]">Ends November 30.</span> Renews at the regular price unless canceled.
-          </Notice>
           <div className="mb-8">
             <p className="text-xs text-[#8b9bb4] uppercase tracking-widest font-label mb-3">What happens when you click Start Free</p>
             <ol className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -294,11 +288,8 @@ export default function Pricing() {
                 </div>
                 {plan.price !== '$0' && plan.name !== 'Team' && (
                   <>
-                    <p className="text-[#00c3ff] text-sm font-bold font-body mb-1">
-                      2 months free — applied automatically · ends November 30
-                    </p>
                     <p className={`text-sm text-[#8b9bb4] font-body ${'valueLine' in plan && plan.valueLine ? 'mb-1' : 'mb-5'}`}>
-                      Then {plan.price}/mo — cancel anytime.
+                      Billed monthly — cancel anytime.
                     </p>
                   </>
                 )}

@@ -109,11 +109,6 @@ export default function VsGovTribe() {
                 Start Free
               </Link>
             </div>
-            <Notice align="left" className="mt-6">
-              <span className="font-bold text-[#00c3ff]">Fall Bid Clarity Pass:</span>{' '}
-              2 months of Starter or Pro free — applied automatically at checkout.{' '}
-              <span className="font-bold text-[#00c3ff]">Ends November 30.</span>
-            </Notice>
           </div>
           <div className="w-full lg:w-[58%] relative hidden md:flex items-center transition-transform duration-700 hover:-translate-y-2">
             <HeroPursuitCardZoom />

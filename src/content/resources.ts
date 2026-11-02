@@ -22,6 +22,15 @@ export interface Resource {
 
 export const RESOURCES: Resource[] = [
   {
+    path: '/far-overhaul/',
+    title: 'FAR Overhaul Tracker (FAR 2.0)',
+    summary:
+      'Where the rewrite of the Federal Acquisition Regulation stands, part by part and agency by agency, checked weekly against official sources, with what each change means for your next bid.',
+    kicker: 'FAR overhaul',
+    navLabel: 'FAR Overhaul Tracker',
+    published: '2026-11-02',
+  },
+  {
     path: '/sources-sought-worth-responding/',
     title: 'Should you respond to that Sources Sought notice?',
     summary:

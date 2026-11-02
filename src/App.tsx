@@ -19,6 +19,7 @@ import VsGovTribe from './pages/VsGovTribe';
 import SamGovAnalysis from './pages/SamGovAnalysis';
 import SamGovHiddenOpportunities from './pages/SamGovHiddenOpportunities';
 import SourcesSoughtGuide from './pages/SourcesSoughtGuide';
+import FarOverhaulTracker from './pages/FarOverhaulTracker';
 import SamGovRecompeteTracking from './pages/SamGovRecompeteTracking';
 import Resources from './pages/Resources';
 import ForSmallBusinessOwners from './pages/ForSmallBusinessOwners';
@@ -147,6 +148,8 @@ function App() {
           <Route path="/resources/" element={<Resources />} />
           <Route path="/sources-sought-worth-responding" element={<SourcesSoughtGuide />} />
           <Route path="/sources-sought-worth-responding/" element={<SourcesSoughtGuide />} />
+          <Route path="/far-overhaul" element={<FarOverhaulTracker />} />
+          <Route path="/far-overhaul/" element={<FarOverhaulTracker />} />
           <Route path="/sam-gov-recompete-tracking" element={<SamGovRecompeteTracking />} />
           <Route path="/sam-gov-recompete-tracking/" element={<SamGovRecompeteTracking />} />
           <Route path="/for-small-business-owners" element={<ForSmallBusinessOwners />} />

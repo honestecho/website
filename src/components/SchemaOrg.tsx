@@ -199,7 +199,11 @@ export function SoftwareApplicationSchema() {
   );
 }
 
-// ── FAQPage (FAQ page only) ───────────────────────────────────────────────────
+// ── FAQPage (FAQ page and /far-overhaul/) ─────────────────────────────────────
+
+// JSON for an inline <script> tag. "<" is escaped so text such as "</script>" in the
+// data can never close the tag; /far-overhaul/ feeds this from a weekly automated update.
+export const ldJson = (schema: unknown) => JSON.stringify(schema).replace(/</g, '\\u003c');
 
 interface FAQEntry { q: string; a: string; }
 
@@ -219,7 +223,7 @@ export function FAQPageSchema({ items }: { items: FAQEntry[] }) {
 
   return (
     <Helmet>
-      <script type="application/ld+json">{JSON.stringify(schema)}</script>
+      <script type="application/ld+json">{ldJson(schema)}</script>
     </Helmet>
   );
 }

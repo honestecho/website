@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "check:mojibake": "node scripts/check-mojibake.mjs",
-    "prebuild": "node scripts/check-mojibake.mjs",
+    "prebuild": "node scripts/check-mojibake.mjs && node scripts/check-far-data.mjs",
     "build": "tsc -b && vite build && node scripts/prerender.js",
     "build:client": "tsc -b && vite build",
     "build:static": "npm run build",

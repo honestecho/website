@@ -33,7 +33,7 @@ const SIGNUP_AFTER = 5;
 // The $49 personalized scan (decided 2026-11-02, a controlled experiment):
 // a quiet second offer under the free list. Stripe Payment Link; the link
 // stays hidden until the URL is set.
-const SCAN_URL = '';
+const SCAN_URL = 'https://buy.stripe.com/14A14g09DcLb3v38WU5J600';
 
 type RowType = 'ot' | 'cso' | 'consortium';
 type TypeFilter = RowType | 'all';

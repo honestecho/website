@@ -30,6 +30,10 @@ const MIN_LEAD_MS = 24 * 3600e3;
 // The signup sits inside the list, after the first few rows, so a visitor
 // meets it while reading instead of five phone screens down.
 const SIGNUP_AFTER = 5;
+// The $49 personalized scan (decided 2026-11-02, a controlled experiment):
+// a quiet second offer under the free list. Stripe Payment Link; the link
+// stays hidden until the URL is set.
+const SCAN_URL = '';
 
 type RowType = 'ot' | 'cso' | 'consortium';
 type TypeFilter = RowType | 'all';
@@ -236,6 +240,20 @@ export default function OtherTransactions() {
       )}
       {submit === 'error' && <p role="alert" className="mt-2 text-sm text-[#fca5a5] font-body">That didn&rsquo;t go through. Check the address and try again.</p>}
       <p className="mt-4 text-base md:text-sm leading-6 text-[#a0b2c8] font-body">We&rsquo;ll email you a link to confirm your address before your Monday emails begin. You can unsubscribe anytime, and we never sell your address.</p>
+      {SCAN_URL && (
+        <p className="mt-5 pt-4 border-t border-[#00c3ff]/20 text-sm leading-6 text-[#a0b2c8] font-body">
+          Want notices matched to what you sell?{' '}
+          <a
+            href={SCAN_URL}
+            rel="noopener noreferrer"
+            onClick={() => track('otr_scan_clicked', { shown: rows.length, filter: type })}
+            className="text-[#00c3ff] underline underline-offset-4 decoration-[#00c3ff]/40 hover:text-white transition-colors"
+          >
+            Get a personalized opportunity scan for $49
+          </a>
+          . We email it within two business days.
+        </p>
+      )}
     </div>
   );
 

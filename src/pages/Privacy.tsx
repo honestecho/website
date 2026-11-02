@@ -116,7 +116,7 @@ export default function Privacy() {
             Privacy Policy
           </h1>
           <p className="text-[#8b9bb4] text-base font-body">
-            Effective Date: October 21, 2026 &nbsp;·&nbsp; Honest Echo LLC operates HE Pursuit. This policy explains what data we collect, how we use it, and your options.
+            Effective Date: November 2, 2026 &nbsp;·&nbsp; Honest Echo LLC operates HE Pursuit. This policy explains what data we collect, how we use it, and your options.
           </p>
         </div>
       </section>

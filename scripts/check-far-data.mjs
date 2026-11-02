@@ -112,7 +112,9 @@ d.faq?.forEach((f, i) => { text(f.q, `faq[${i}].q`); text(f.a, `faq[${i}].a`); }
 d.sources?.forEach((s, i) => url(s.url, `sources[${i}]`));
 
 // Part numbers are exactly 1-53, and the headline counts must agree with the records.
+if ((d.parts || []).some((p) => !Number.isInteger(p.part))) fail('parts: part numbers must be integers');
 if ((d.parts || []).map((p) => p.part).sort((a, b) => a - b).join(',') !== Array.from({ length: 53 }, (_, i) => i + 1).join(',')) fail('parts: must be Parts 1-53, once each');
+['faq', 'impacts', 'trends', 'parts', 'agencies', 'phases', 'upcoming', 'thisWeek', 'changelog', 'sources'].forEach((k) => { if (!Array.isArray(d[k])) fail(`${k}: required list missing`); });
 const L = d.layers || {};
 const live = (d.parts || []).filter((p) => p.status !== 'reserved');
 [['modelText.parts', L.modelText?.parts], ['modelText.of', L.modelText?.of], ['agencyAdoption.agencies', L.agencyAdoption?.agencies], ['proposedRules.published', L.proposedRules?.published], ['proposedRules.planned', L.proposedRules?.planned], ['proposedRules.parts', L.proposedRules?.parts], ['proposedRules.openComments', L.proposedRules?.openComments], ['finalRules.published', L.finalRules?.published]].forEach(([k, v]) => count(v, `layers.${k}`));
@@ -123,6 +125,8 @@ if (L.proposedRules?.parts !== live.filter((p) => p.proposedRule).length) fail('
 if (L.proposedRules?.published > L.proposedRules?.planned) fail('layers.proposedRules: published exceeds planned');
 const finals = live.filter((p) => p.status === 'final-rule').length;
 if ((finals > 0) !== (L.finalRules?.published > 0)) fail('layers.finalRules.published disagrees with final-rule parts');
+// A final rule covers at least one part, so there can't be more rules than final-rule parts.
+if (L.finalRules?.published > finals) fail(`layers.finalRules.published ${L.finalRules?.published} exceeds ${finals} final-rule parts`);
 
 const banned = /\b(TBD|lorem|illustrative|placeholder|estimated date)\b/i;
 const raw = readFileSync(file, 'utf8');

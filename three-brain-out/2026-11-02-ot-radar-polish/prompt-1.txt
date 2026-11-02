@@ -1,0 +1,422 @@
+You are a harsh principal product designer AND a plain-English conversion copy editor judging ONE thing: honestecho.com/government-contracts-for-bid/other-transactions/ ("Other transaction authority, explained"), a public page that explains OTs and CSOs in plain terms and lists open OT/CSO notices from SAM.gov that a person read by hand. The one action we want: a visitor signs up for the free Monday email of new OT and CSO notices. Second action: they click a notice to SAM.gov or "Check fit". Audience: owners and BD leads at small and mid-size government contractors, often new to OTs; most arrive from a Google search for "other transaction authority". Visual tokens: dark navy SaaS, bg #030B17 with a faint grid, card #071321, border #1e2d4a, cyan #00c3ff, muted #a0b2c8. Standing bar: 95+/100.
+
+THE OWNER'S NOTE THIS ROUND: "it reads a little harsh." Judge tone hard. The page must sound warm, plain-spoken and helpful, like a knowledgeable colleague, never curt, legalistic or defensive. Flag any line that reads as a disclaimer barked at the reader, any choppy run of short declaratives, and anything that sounds like a robot or a lawyer. Give the exact rewrite.
+
+Attached, in order: desktop full page (1440 wide), mobile full page (390 wide).
+
+FIXED — judge execution within these, never propose replacing them: the H1 "Other transaction authority, explained" (it is the search term); explainer first, list second; the three explainer cards; the list row anatomy (title links to SAM.gov, agency · office, tags, due date + days left, "Check fit"); the dark navy brand; contained, consistent panels (no editorial or asymmetric layouts); the sign-up placed inside the list after the first five rows.
+
+Current page text:
+Honest Echo
+KNOW BEFORE YOU BID
+How it works
+Pricing
+Sign in
+Start free
+
+A plain-English guide, plus this week’s open notices
+
+Other transaction authority, explained
+
+Other transactions (OTs) and commercial solutions openings (CSOs) are faster, more flexible ways for agencies to buy. Here’s how they work, and which ones are open on SAM.gov right now. A person reads every notice before it goes on the list.
+
+What is an OT?
+
+A flexible agreement that isn’t a standard contract, grant or cooperative agreement, so most FAR rules don’t apply and the terms are negotiated. DoD prototype OTs use 10 U.S.C. 4022.
+
+What is a CSO?
+
+A commercial solutions opening is a competition built for commercial products and services, under 10 U.S.C. 3458. Awards are fixed-price contracts or, in some cases, OTs.
+
+Do I need a consortium?
+
+Sometimes. Many OTs run through a consortium, and those usually take submissions from members. Others are open to any company. Each notice says which kind it is.
+
+Construction OTs (10 U.S.C. 2808a) · How OT prototype awards work
+
+Open OT and CSO notices this week
+
+26 open notices · Updated Nov 2. Each tag uses the notice’s own wording. Eligibility lives in the full solicitation package and any consortium portal, so read those before you start.
+
+Type
+All
+Other transaction
+CSO
+Consortium request
+Commercial Solution Opportunity - Defense Commissary Agency (DeCA) CONUS
+
+Defense Commissary Agency · DeCA
+
+CSO
+DFARS 212.70
+
+Due Nov 4 at 4 PM ET
+
+3 days left
+
+Check fit
+MCI East Barracks Industrialized Construction Projects for Barracks via Other Transaction Authority (10 USC 2808a)
+
+U.S. Navy · NAVFAC Mid-Atlantic
+
+Other transaction
+10 U.S.C. 2808a
+
+Due Nov 5 at 2 PM ET
+
+4 days left
+
+Check fit
+Call for Solutions - Europe Area InventoryFound in notice text
+
+Defense Commissary Agency · DeCA Europe
+
+Call for solutions
+
+Due Nov 6 at 9 AM ET
+
+5 days left
+
+Check fit
+Prototype development for Battlefield Wound Infection Prevention and Treatment (BWI P&T) Barrier CombinationFound in notice text
+
+Defense Health Agency · DHA Contracting Activity
+
+Request for prototype proposals
+10 U.S.C. 4022
+
+Due Nov 6 at 12 PM ET
+
+5 days left
+
+Check fit
+Navy Child Development Centers (CDC) Industrialized Construction (IC) Projects via Other Transaction Authority (10 U.S.C. § 2808a)
+
+U.S. Navy · NAVFAC Atlantic
+
+Other transaction
+10 U.S.C. 2808a
+
+Due Nov 6 at 2 PM ET
+
+5 days left
+
+Check fit
+Get new OT and CSO notices every Monday
+
+One short, free email with the notices that opened that week, read by a person first.
+
+Email
+Send me the Monday list
+
+We’ll send one email to confirm first. Unsubscribe anytime, and we never sell your address.
+
+Ultrasound Diagnostic System, Hand Carried (USHC) - PrototypeFound in notice text
+
+U.S. Army · ACC Aberdeen Proving Ground
+
+Request for prototype proposals
+10 U.S.C. 4022
+
+Due Nov 6 at 4 PM ET
+
+5 days left
+
+Check fit
+Call for Solutions - DeCA Stuttgart Area Commissaries Facility MaintenanceFound in notice text
+
+Defense Commissary Agency · DeCA Europe
+
+Call for solutions
+
+Due Nov 9 at 9 AM ET
+
+8 days left
+
+Check fit
+Call for Solutions - DeCA Bavaria Area Commissary Facility MaintenanceFound in notice text
+
+Defense Commissary Agency · DeCA Europe
+
+Call for solutions
+
+Due Nov 9 at 9 AM ET
+
+8 days left
+
+Check fit
+Call for Solutions - DeCA Ansbach Commissary Facility MaintenanceFound in notice text
+
+Defense Commissary Agency · DeCA Europe
+
+Call for solutions
+
+Due Nov 9 at 9 AM ET
+
+8 days left
+
+Check fit
+Low Level Cranes- CSO
+
+U.S. Army · ACC Anniston Army Depot
+
+CSO
+
+Due Nov 9 at 11 AM ET
+
+8 days left
+
+Check fit
+Automated Fluidized Bed Mixer Facility Modernization for end use at Pine Bluff Arsenal – CSO
+
+U.S. Army · ACC Rock Island
+
+CSO
+DFARS 212.70
+
+Due Nov 10 at 1 PM ET
+
+9 days left
+
+Check fit
+PN 110205 - SOS Hangar Renovation - Progressive-Design-Build OT
+
+U.S. Army · USACE Wilmington District
+
+Progressive design-build
+10 U.S.C. 2808a
+
+Due Nov 11 at 2 PM ET
+
+10 days left
+
+Check fit
+RWP - Advanced Navigation Simulation Environment Laboratory (ANSEL)Found in notice text
+
+U.S. Air Force · AEDC, Arnold AFB
+
+Consortium request
+AEDC Velocity Alliance
+10 U.S.C. 4022
+
+Due Nov 12 at 5 PM ET
+
+11 days left
+
+Check fit
+Ocular ScannerFound in notice text
+
+U.S. Army · ACC Aberdeen Proving Ground
+
+Request for prototype proposals
+10 U.S.C. 4022
+
+Due Nov 12 at 5 PM ET
+
+11 days left
+
+Check fit
+RWP - Test Site 2 (TS2) Improvements & Modernization, Aerospace Vehicle Survivability Facility (AVSF)Found in notice text
+
+U.S. Air Force · AEDC, Arnold AFB
+
+Consortium request
+AEDC Velocity Alliance
+10 U.S.C. 4022
+
+Due Nov 16 at 3 PM ET
+
+15 days left
+
+Check fit
+MACH1_AOI_Military Working Dog Facility_ Vandenberg Space Force_LOE 1 and LOE 2Found in notice text
+
+U.S. Air Force · 772nd Enterprise Sourcing Squadron
+
+MACH1 area of interest
+10 U.S.C. 2808a
+
+Due Nov 17 at 1 PM ET
+
+16 days left
+
+Check fit
+MACH1_AOI_FA890327M1006_F-47 Future Campus at Nellis AFBFound in notice text
+
+U.S. Air Force · 772nd Enterprise Sourcing Squadron
+
+MACH1 area of interest
+10 U.S.C. 2808a
+
+Due Nov 18 at 5 PM ET
+
+17 days left
+
+Check fit
+Aera of Interest (AoI) Equipment rental and Facility Support (CSO-W911KF25SC002)
+
+U.S. Army · ACC Anniston Army Depot
+
+CSO area of interest
+10 U.S.C. 3458
+
+Due Nov 19 at 11 AM ET
+
+18 days left
+
+Check fit
+Request for Qualification - MHMV230026 Construct Permanent Party Enlisted Dorm at Kirtland AFB, New MexicoFound in notice text
+
+U.S. Air Force · 377th Mission Support Group, Kirtland AFB
+
+Request for qualifications
+10 U.S.C. 2808a
+
+Due Nov 25 at 6:30 PM ET
+
+24 days left
+
+Check fit
+Yokota AB Refuse Disposal Commercial Solutions Opening (CSO)
+
+U.S. Air Force · 374th Contracting Squadron, Yokota AB
+
+CSO
+10 U.S.C. 3458
+
+Due Nov 30 at 2 AM ET
+
+28 days left
+
+Check fit
+Army Enterprise HVAC Modernization and Lifecycle Sustainment MaintenanceFound in notice text
+
+U.S. Army · Mission and Installation Contracting Command
+
+CSO
+
+Due Nov 30 at 4:30 PM ET
+
+29 days left
+
+Check fit
+Simulation-augmented, Real-time Platform Adaptive Seamless Trials (SURPASS)Found in notice text
+
+Dept. of Health and Human Services · ARPA-H
+
+Other transaction agreement
+
+Due Nov 30 at 5 PM ET
+
+29 days left
+
+Check fit
+Army Contracting Command - Aberdeen Proving Ground (ACC-APG)Capability Program Executive Command and Control Information Network (CPE C2IN) Commercial Solution Opening (CSO) Call for Solutions (CfS) for PdM WESS
+
+U.S. Army · ACC Aberdeen Proving Ground
+
+CSO call for solutions
+
+Due Dec 10 at 12 PM ET
+
+39 days left
+
+Check fit
+Tactical Communication Systems - Procurement, Services & Sustainment (TCS-PSS) Call for SolutionsFound in notice text
+
+U.S. Army · ACC Aberdeen Proving Ground
+
+CSO call for solutions
+DFARS 212.70
+
+Due Dec 14 at 5 PM ET
+
+43 days left
+
+Check fit
+ARMY AMMUNITION MANUFACTURING INNOVATION INDUSTRIAL BASE INTEGRATION TEAM COMMERCIAL SOLUTIONS OPENING REQUEST FOR SOLUTIONS
+
+U.S. Army · ACC Rock Island
+
+CSO request for solutions
+
+Due Dec 16 at 1 PM ET
+
+45 days left
+
+Check fit
+NSF Ecosystem for Low-dimensional Electronics: Growth, Assembly, Nanoelectronics, and Translation (NSF ELEGANT)Found in notice text
+
+National Science Foundation · Technology, Innovation & Partnerships
+
+Other transaction agreement
+
+Due Dec 18 at 5 PM ET
+
+47 days left
+
+Check fit
+How is an OT different from a FAR contract?
+What does 10 U.S.C. 2808a allow?
+How do I join an OT consortium?
+
+General information, not legal advice. Honest Echo isn’t affiliated with SAM.gov or the U.S. government.
+
+Honest Echo
+KNOW BEFORE YOU BID
+
+Fairfax, VA
+
+info@honestecho.com
+
+PRODUCT
+
+Free Analyzer
+Pursuit Readout
+Construction Contracts
+OT & CSO Notices
+Pricing
+Security
+FAQ
+
+WHO IT’S FOR
+
+Small Business Owners
+Proposal Managers
+GovCon Consultants
+
+COMPANY
+
+About
+Contact
+Terms of Service
+Privacy Policy
+
+COMPARE
+
+vs GovWin
+vs GovTribe
+SAM.gov Analysis
+
+GUIDES
+
+All Guides
+Sources Sought Guide
+Hidden Opportunities
+Recompete Tracking
+
+© 2026 Honest Echo LLC. All rights reserved.
+
+Start Free →
+Sign In →
+
+Hard constraints (a fix or rewrite that breaks one is disqualified):
+- True claims only. What the page actually does: a person reads each SAM.gov notice and adds it to a JSON list about once a week; tags are copied from the notice's own wording; rows drop off a day before they close; the Monday email is free, double opt-in, one email a week. It covers only notices that are public on SAM.gov, not consortium-member portals.
+- Do NOT promise: every/all/complete coverage, daily updates, alerts matched to a company, eligibility verdicts, "who can compete", win odds, advice, or anything about consortium-internal solicitations. Never use the words "every notice" about coverage.
+- Never the words "beta", "AI", "Claude", or any model name. No personal names. No mention of the Navy, DoD employment, or the founder.
+- No new UI that doesn't exist (no invented cards, counters, testimonials, logos, search boxes or filters beyond the Type filter).
+- Keep it legally careful without sounding defensive: no eligibility conclusions, "general information, not legal advice" stays somewhere on the page.
+
+Score /100 on: TONE & COPY (25: warm, plain, human; flag every harsh or stilted line with the exact rewrite), hierarchy & path to the sign-up (20), list readability and scanability (15), typography & rhythm (15), mobile translation (15), trust & credibility (10).
+
+Then list the TOP 6 fixes ranked by impact, each concrete (Tailwind-level or exact copy). No praise. Cap 700 words. End with exactly: SCORE: NN/100.

@@ -27,6 +27,9 @@ const PAGE_PATH = '/government-contracts-for-bid/other-transactions/';
 // Rows leave the page a day before they close: the build can be a week old by
 // the time someone reads it, and a notice closing tonight is not one to start on.
 const MIN_LEAD_MS = 24 * 3600e3;
+// The signup sits inside the list, after the first few rows, so a visitor
+// meets it while reading instead of five phone screens down.
+const SIGNUP_AFTER = 5;
 
 type RowType = 'ot' | 'cso' | 'consortium';
 type TypeFilter = RowType | 'all';
@@ -54,15 +57,15 @@ const TYPE_FILTERS: { key: TypeFilter; label: string }[] = [
 const EXPLAINERS = [
   {
     q: 'What is an OT?',
-    a: 'An agreement that isn’t a contract, grant or cooperative agreement. Most FAR rules don’t apply. DoD prototype OTs use 10 U.S.C. 4022.',
+    a: 'An OT is a flexible agreement outside the usual contract, grant or cooperative agreement process. The terms are negotiated, and most rules in the Federal Acquisition Regulation (FAR) don’t apply.',
   },
   {
     q: 'What is a CSO?',
-    a: 'A commercial solutions opening is a competitive method for buying commercial products and services under 10 U.S.C. 3458. Awards are fixed-price contracts or, in some cases, OTs.',
+    a: 'A commercial solutions opening invites proposals for commercial products and services. Awards can be fixed-price contracts or, in some cases, OTs.',
   },
   {
     q: 'Do I need a consortium?',
-    a: 'Sometimes. Many OTs run through consortia, which usually take submissions from members. Others go straight to industry. The notice will tell you which.',
+    a: 'For some opportunities, you’ll submit through a consortium and may need to become a member. For others, you can submit directly.',
   },
 ];
 
@@ -93,7 +96,10 @@ const fmtDue = (iso: string) => {
 };
 const fmtChecked = (ymd: string) =>
   new Date(`${ymd}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-const daysLeft = (iso: string) => Math.max(0, Math.ceil((new Date(iso).getTime() - Date.now()) / 864e5));
+// Calendar days in the viewer's zone, the same zone the due date is shown in,
+// so every notice due on Nov 30 says the same number whatever its hour.
+const dayNum = (d: Date) => Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5;
+const daysLeft = (iso: string) => Math.max(0, dayNum(new Date(iso)) - dayNum(new Date()));
 
 type SubmitState = 'idle' | 'sending' | 'done' | 'error';
 
@@ -153,6 +159,86 @@ export default function OtherTransactions() {
     }
   }
 
+  const renderRow = (n: RadarNotice, i: number) => {
+    const dl = daysLeft(n.response_deadline);
+    return (
+      <li key={n.notice_id} className="p-4 md:px-6 md:py-5 grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_15rem] gap-2 md:gap-6 hover:bg-white/[0.015] transition-colors">
+        <div className="min-w-0">
+          <a
+            href={n.sam_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => track('otr_notice_clicked', clickProps(n, i + 1))}
+            title="View notice on SAM.gov"
+            className="group inline [overflow-wrap:anywhere] text-white font-headline font-semibold text-base md:text-[17px] leading-6 hover:text-[#00c3ff] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] rounded"
+          >
+            {n.title}
+            <ExternalLink aria-label="Opens on SAM.gov" className="hidden sm:inline-block ml-1.5 w-4 h-4 align-baseline text-[#64748b] group-hover:text-[#00c3ff]" strokeWidth={2} />
+          </a>
+          <p className="text-sm text-[#a3b2c6] font-body mt-1 leading-5">{n.agency} · {n.office}</p>
+          {n.found_in_text && (
+            <p className="mt-1 text-sm leading-5 text-[#a0b2c8] font-body" title="The title doesn't say OT or CSO. The notice text does.">Mentions an OT or CSO</p>
+          )}
+          <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Tags from the notice text">
+            {n.tags.map(t => (
+              <li key={t} className="px-2 py-0.5 rounded-md border border-white/10 bg-white/[0.03] text-xs leading-5 text-[#cbd5e1] font-body">{t}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="mt-4 md:mt-0 flex items-end justify-between gap-3 md:block text-left md:text-right md:justify-self-end md:self-center md:w-full md:border-l md:border-[#1e2d4a]/80 md:pl-6">
+          <div>
+            <p className="text-sm font-body text-[#e2e8f0] font-semibold whitespace-nowrap tabular-nums">Due {fmtDue(n.response_deadline)}</p>
+            <p className={`text-sm font-medium tabular-nums ${dl <= 3 ? 'text-[#fbbf24]' : 'text-[#94a3b8]'}`}>{dl} day{dl === 1 ? '' : 's'} left</p>
+          </div>
+          <Link
+            to={`/tools/sam-gov-notice-analyzer/?notice=${n.notice_id}&src=ot_radar`}
+            onClick={() => track('otr_checkfit_clicked', clickProps(n, i + 1))}
+            className="shrink-0 md:mt-2.5 inline-flex items-center gap-1.5 py-1.5 rounded-lg border text-[#00c3ff] text-sm font-semibold bg-[#00c3ff]/10 border-[#00c3ff]/70 hover:bg-[#00c3ff]/[0.16] hover:border-[#00c3ff] justify-center min-h-11 px-4 transition-colors whitespace-nowrap font-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
+          >
+            Check fit <ArrowRight className="w-3.5 h-3.5" />
+          </Link>
+        </div>
+      </li>
+    );
+  };
+
+  const signupCard = (
+    <div id="monday-list" className="my-6 scroll-mt-24 rounded-2xl border-2 border-[#00c3ff]/60 bg-[linear-gradient(135deg,#0d2a40_0%,#0a1c2d_55%,#081626_100%)] shadow-[0_24px_60px_-28px_rgba(0,195,255,0.55)] p-5 md:p-7">
+      <h2 className="font-headline font-bold text-white text-2xl leading-8 tracking-tight">Get new OT and CSO notices every Monday</h2>
+      <p className="mt-2 text-[#a0b2c8] text-base leading-6 font-body">Each Monday, we&rsquo;ll send you a free email with new OT and CSO notices from public SAM.gov postings, so you can browse them in one place.</p>
+      {submit === 'done' ? (
+        <p role="status" className="mt-4 text-sm text-[#e2e8f0] font-body">
+          Thanks! Confirm your address using the email we send, and the Monday list starts after that. Already on the list? Nothing changes.
+        </p>
+      ) : (
+        <form onSubmit={onSubscribe} className="mt-5 grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-3">
+          <label htmlFor="otr-email" className="md:col-span-2 -mb-1 text-sm font-medium text-[#cbd5e1] font-body">Email address</label>
+          <input
+            id="otr-email"
+            type="email"
+            required
+            autoComplete="email"
+            placeholder="you@company.com"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            className="min-h-12 w-full rounded-lg bg-[#071321] border border-[#2a3a5a] px-4 text-base text-white placeholder-[#64748b] font-body focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
+          />
+          {/* Honeypot: hidden from people, filled by bots. */}
+          <input type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" value={honeypot} onChange={e => setHoneypot(e.target.value)} className="hidden" name="company_website" />
+          <button
+            type="submit"
+            disabled={submit === 'sending'}
+            className="h-12 w-full md:w-auto px-6 rounded-lg bg-[#00c3ff] text-[#030B17] font-headline font-bold text-sm hover:bg-[#33cfff] transition-colors whitespace-nowrap disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030B17] focus-visible:ring-[#00c3ff]"
+          >
+            {submit === 'sending' ? 'Sending…' : 'Send me the Monday list'}
+          </button>
+        </form>
+      )}
+      {submit === 'error' && <p role="alert" className="mt-2 text-sm text-[#fca5a5] font-body">That didn&rsquo;t go through. Check the address and try again.</p>}
+      <p className="mt-4 text-base md:text-sm leading-6 text-[#a0b2c8] font-body">We&rsquo;ll email you a link to confirm your address before your Monday emails begin. You can unsubscribe anytime, and we never sell your address.</p>
+    </div>
+  );
+
   return (
     <>
       <Helmet>
@@ -192,19 +278,20 @@ export default function OtherTransactions() {
               {banner === 'invalid' && 'That link has expired or was already used. Sign up again below if you still want the Monday list.'}
             </p>
           )}
-          <p className="mb-2 text-sm font-semibold text-[#00c3ff] font-body">Other transactions · CSO · Consortium calls</p>
+          <p className="mb-2 text-sm font-semibold text-[#00c3ff] font-body">A plain-English guide, plus this week&rsquo;s open notices</p>
           <h1 className="font-headline font-black text-[30px] leading-[1.08] md:text-[2.75rem] md:leading-tight text-white mb-2 tracking-tighter">
             Other transaction authority, explained
           </h1>
           <p className="text-[#a0b2c8] text-base md:text-lg leading-relaxed font-body max-w-3xl mt-2">
-            What OTs and commercial solutions openings are, how they&rsquo;re awarded and which notices are open on SAM.gov this week. Checked by hand.
+            Other transactions (OTs) and commercial solutions openings (CSOs) give agencies different ways to buy products and services. Start with the basics below, then browse public SAM.gov notices we&rsquo;ve read.
           </p>
+          <a href="#monday-list" className="inline-flex w-full sm:w-auto min-h-12 items-center justify-center mt-4 rounded-md border border-[#00c3ff]/60 px-5 text-base font-semibold font-body text-[#00c3ff] hover:bg-[#00c3ff]/10 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]">Get the free Monday email</a>
 
           <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
             {EXPLAINERS.map(({ q, a }) => (
               <div key={q} className="rounded-xl bg-[#071321]/85 border border-[#1e2d4a] px-5 py-4">
                 <h2 className="font-headline font-bold text-white text-lg tracking-tight mb-1.5">{q}</h2>
-                <p className="text-[#a0b2c8] text-sm leading-6 font-body">{a}</p>
+                <p className="text-[#a0b2c8] text-base leading-6 font-body">{a}</p>
               </div>
             ))}
           </div>
@@ -219,10 +306,15 @@ export default function OtherTransactions() {
       {/* The list */}
       <section className="pt-6 pb-8 px-6">
         <div className="max-w-[1080px] mx-auto">
-          <h2 className="font-headline font-bold text-white text-2xl md:text-[28px] tracking-tight">Open OT and CSO notices this week</h2>
-          <p className="mt-1.5 mb-3 text-sm text-[#94a3b8] font-body leading-6 max-w-4xl">
-            <span className="text-white font-semibold tabular-nums">{live.length}</span> open notice{live.length === 1 ? '' : 's'}, checked by hand · Updated {fmtChecked(DATA.checked_at)}.
-            {' '}Tags appear only when the notice text says so. We don&rsquo;t make eligibility calls. Review the full solicitation package and any consortium portal.
+          <h2 className="font-headline font-bold text-white text-2xl md:text-[28px] tracking-tight">Open OT and CSO notices</h2>
+          <div className="mt-1.5 space-y-1 text-sm leading-6 font-body">
+            <p className="text-[#cbd5e1]">
+              <span className="text-white font-semibold tabular-nums">{live.length}</span> notice{live.length === 1 ? '' : 's'} · Last updated {fmtChecked(DATA.checked_at)}
+            </p>
+            <p className="text-[#a0b2c8]">We refresh the list about once a week.</p>
+          </div>
+          <p className="mt-3 mb-5 text-base text-[#a0b2c8] font-body leading-6 max-w-prose">
+            We build this list from public SAM.gov notices, reading each one and using its wording for tags. You&rsquo;ll find eligibility details and steps to submit in the notice documents and any linked consortium portal.
           </p>
 
           <div className="flex flex-wrap items-center gap-2 mb-3" role="group" aria-label="Type">
@@ -235,7 +327,7 @@ export default function OtherTransactions() {
                   type="button"
                   aria-pressed={active}
                   onClick={() => { setType(o.key); track('otr_filter_changed', { filter: 'type', value: o.key }); }}
-                  className={`h-8 px-3.5 rounded-full border text-xs font-body transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] ${
+                  className={`min-h-11 px-4 rounded-full border text-sm font-body transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] ${
                     active
                       ? 'bg-[#00c3ff] border-[#00c3ff] text-[#030B17] font-semibold'
                       : 'border-[#1e2d4a] text-[#cbd5e1] hover:border-[#00c3ff]/50 hover:text-white'
@@ -261,94 +353,26 @@ export default function OtherTransactions() {
               </div>
             ) : (
               <ol className="divide-y divide-[#1e2d4a]/80">
-                {rows.map((n, i) => {
-                  const dl = daysLeft(n.response_deadline);
-                  return (
-                    <li key={n.notice_id} className="px-4 md:px-6 py-4 md:py-[18px] grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_15rem] gap-2 md:gap-6 hover:bg-white/[0.015] transition-colors">
-                      <div className="min-w-0">
-                        <a
-                          href={n.sam_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => track('otr_notice_clicked', clickProps(n, i + 1))}
-                          title="View notice on SAM.gov"
-                          className="group inline [overflow-wrap:anywhere] text-white font-headline font-semibold text-base md:text-[17px] leading-snug hover:text-[#00c3ff] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] rounded"
-                        >
-                          {n.title}
-                          <ExternalLink aria-label="Opens on SAM.gov" className="hidden sm:inline-block ml-1.5 w-4 h-4 align-baseline text-[#64748b] group-hover:text-[#00c3ff]" strokeWidth={2} />
-                        </a>
-                        {n.found_in_text && (
-                          <span className="ml-2 text-xs text-[#8b9bb4] font-body whitespace-nowrap" title="The title doesn't say OT or CSO. The notice text does.">Found in notice text</span>
-                        )}
-                        <p className="text-sm text-[#a3b2c6] font-body mt-1 leading-5">{n.agency} · {n.office}</p>
-                        <ul className="mt-2 flex flex-wrap gap-1.5" aria-label="Tags from the notice text">
-                          {n.tags.map(t => (
-                            <li key={t} className="px-2.5 py-0.5 rounded-md border border-[#2a3a5a] text-[12px] leading-5 text-[#cbd5e1] font-body">{t}</li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div className="mt-1 md:mt-0 text-left md:text-right md:justify-self-end md:self-center md:w-full md:border-l md:border-[#1e2d4a]/80 md:pl-6">
-                        <p className="text-sm font-body text-[#e2e8f0] font-semibold whitespace-nowrap tabular-nums">Due {fmtDue(n.response_deadline)}</p>
-                        <p className={`text-[13px] font-medium tabular-nums ${dl <= 3 ? 'text-[#fbbf24]' : 'text-[#94a3b8]'}`}>{dl} day{dl === 1 ? '' : 's'} left</p>
-                        <Link
-                          to={`/tools/sam-gov-notice-analyzer/?notice=${n.notice_id}&src=ot_radar`}
-                          onClick={() => track('otr_checkfit_clicked', clickProps(n, i + 1))}
-                          className="mt-2.5 inline-flex items-center gap-1.5 py-1.5 rounded-lg border text-[#00c3ff] text-sm font-semibold bg-[#00c3ff]/10 border-[#00c3ff]/70 hover:bg-[#00c3ff]/[0.16] hover:border-[#00c3ff] justify-center min-h-10 px-4 transition-colors whitespace-nowrap font-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
-                        >
-                          Check fit <ArrowRight className="w-3.5 h-3.5" />
-                        </Link>
-                      </div>
-                    </li>
-                  );
-                })}
+                {rows.slice(0, SIGNUP_AFTER).map(renderRow)}
               </ol>
             )}
           </div>
-        </div>
-      </section>
-
-      {/* Monday list signup */}
-      <section className="pb-8 px-6">
-        <div className="max-w-[1080px] mx-auto rounded-xl border border-[#1e2d4a] bg-[#0b1626] px-5 md:px-8 py-6 md:py-7">
-          <h2 className="font-headline font-bold text-white text-xl md:text-2xl tracking-tight">Get the Monday list of new OT and CSO notices</h2>
-          <p className="mt-1 text-[#a0b2c8] text-sm md:text-base font-body">Checked by hand. One free email a week.</p>
-          {submit === 'done' ? (
-            <p role="status" className="mt-4 text-sm text-[#e2e8f0] font-body">
-              Got it. We’ll email you a link to confirm, and the Monday list starts once you do. Already on the list? Nothing changes.
-            </p>
-          ) : (
-            <form onSubmit={onSubscribe} className="mt-4 grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-3">
-              <label htmlFor="otr-email" className="sr-only">Email</label>
-              <input
-                id="otr-email"
-                type="email"
-                required
-                autoComplete="email"
-                placeholder="you@company.com"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                className="h-12 rounded-lg bg-[#071321] border border-[#2a3a5a] px-4 text-white placeholder-[#64748b] font-body focus:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff]"
-              />
-              {/* Honeypot: hidden from people, filled by bots. */}
-              <input type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" value={honeypot} onChange={e => setHoneypot(e.target.value)} className="hidden" name="company_website" />
-              <button
-                type="submit"
-                disabled={submit === 'sending'}
-                className="h-12 px-6 rounded-lg bg-[#00c3ff] text-[#030B17] font-headline font-bold text-sm hover:bg-[#33cfff] transition-colors whitespace-nowrap disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030B17] focus-visible:ring-[#00c3ff]"
-              >
-                {submit === 'sending' ? 'Sending…' : 'Send me the Monday list'}
-              </button>
-            </form>
+          {rows.length > 0 && signupCard}
+          {rows.length > SIGNUP_AFTER && (
+            <div className="rounded-xl bg-[#071321]/85 border border-[#1e2d4a] overflow-hidden">
+              <ol start={SIGNUP_AFTER + 1} className="divide-y divide-[#1e2d4a]/80">
+                {rows.slice(SIGNUP_AFTER).map((n, i) => renderRow(n, i + SIGNUP_AFTER))}
+              </ol>
+            </div>
           )}
-          {submit === 'error' && <p role="alert" className="mt-2 text-sm text-[#fca5a5] font-body">That didn&rsquo;t go through. Check the address and try again.</p>}
-          <p className="mt-3 text-xs text-[#8b9bb4] font-body">Confirm by email. Unsubscribe anytime. We never sell your email.</p>
+          {rows.length === 0 && signupCard}
         </div>
       </section>
 
       {/* FAQ — native details/summary: prerendered, keyboard-accessible, no JS. */}
       <section className="pb-14 px-6">
         <div className="max-w-[1080px] mx-auto">
-          <div className="divide-y divide-[#1e2d4a] border-y border-[#1e2d4a]">
+          <div className="mt-8 divide-y divide-[#1e2d4a] border-y border-[#1e2d4a]">
             {FAQS.map(({ id, q, a }) => (
               <details
                 key={id}
@@ -356,7 +380,7 @@ export default function OtherTransactions() {
                 className="group py-1"
                 onToggle={e => { if ((e.currentTarget as HTMLDetailsElement).open) track('otr_faq_opened', { faq: id }); }}
               >
-                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none py-3.5 text-white font-headline font-semibold text-base md:text-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] rounded">
+                <summary className="flex items-center justify-between gap-4 cursor-pointer list-none min-h-14 py-4 text-white font-headline font-semibold text-base leading-6 md:text-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] rounded">
                   {q}
                   <ChevronDown className="w-5 h-5 text-[#8b9bb4] shrink-0 transition-transform group-open:rotate-180" />
                 </summary>
@@ -364,8 +388,8 @@ export default function OtherTransactions() {
               </details>
             ))}
           </div>
-          <p className="mt-4 text-[13px] leading-5 text-[#8b9bb4] font-body">
-            General information, not legal advice. Honest Echo isn&rsquo;t affiliated with SAM.gov or the U.S. government.
+          <p className="mt-5 text-sm leading-6 text-[#a0b2c8] font-body">
+            This guide offers general information, not legal advice. Honest Echo is an independent service, separate from SAM.gov and the U.S. government.
           </p>
         </div>
       </section>

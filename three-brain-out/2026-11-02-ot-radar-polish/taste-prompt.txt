@@ -1,0 +1,21 @@
+You are a harsh principal product designer AND a plain-English conversion copy editor judging ONE thing: honestecho.com/government-contracts-for-bid/other-transactions/ ("Other transaction authority, explained"), a public page that explains OTs and CSOs in plain terms and lists open OT/CSO notices from SAM.gov that a person read by hand. The one action we want: a visitor signs up for the free Monday email of new OT and CSO notices. Second action: they click a notice to SAM.gov or "Check fit". Audience: owners and BD leads at small and mid-size government contractors, often new to OTs; most arrive from a Google search for "other transaction authority". Visual tokens: dark navy SaaS, bg #030B17 with a faint grid, card #071321, border #1e2d4a, cyan #00c3ff, muted #a0b2c8. Standing bar: 95+/100.
+
+THE OWNER'S NOTE THIS ROUND: "it reads a little harsh." Judge tone hard. The page must sound warm, plain-spoken and helpful, like a knowledgeable colleague, never curt, legalistic or defensive. Flag any line that reads as a disclaimer barked at the reader, any choppy run of short declaratives, and anything that sounds like a robot or a lawyer. Give the exact rewrite.
+
+Attached, in order: desktop full page (1440 wide), mobile full page (390 wide).
+
+FIXED — judge execution within these, never propose replacing them: the H1 "Other transaction authority, explained" (it is the search term); explainer first, list second; the three explainer cards; the list row anatomy (title links to SAM.gov, agency · office, tags, due date + days left, "Check fit"); the dark navy brand; contained, consistent panels (no editorial or asymmetric layouts); the sign-up placed inside the list after the first five rows; the site-wide header and footer (including the global "Start free" button) are shared by every page and out of scope.
+
+Current page text:
+{{CONTEXT}}
+
+Hard constraints (a fix or rewrite that breaks one is disqualified):
+- True claims only. What the page actually does: a person reads each SAM.gov notice and adds it to a JSON list about once a week; tags are copied from the notice's own wording; rows drop off a day before they close; the Monday email is free, double opt-in, one email a week. It covers only notices that are public on SAM.gov, not consortium-member portals.
+- Do NOT promise: every/all/complete coverage, daily updates, alerts matched to a company, eligibility verdicts, "who can compete", win odds, advice, or anything about consortium-internal solicitations. Never use the words "every notice" about coverage.
+- Never the words "beta", "AI", "Claude", or any model name. No personal names. No mention of the Navy, DoD employment, or the founder.
+- No new UI that doesn't exist (no invented cards, counters, testimonials, logos, search boxes or filters beyond the Type filter).
+- Keep it legally careful without sounding defensive: no eligibility conclusions, "general information, not legal advice" stays somewhere on the page.
+
+Score /100 on: TONE & COPY (25: warm, plain, human; flag every harsh or stilted line with the exact rewrite), hierarchy & path to the sign-up (20), list readability and scanability (15), typography & rhythm (15), mobile translation (15), trust & credibility (10).
+
+Then list the TOP 6 fixes ranked by impact, each concrete (Tailwind-level or exact copy). No praise. Cap 700 words. End with exactly: SCORE: NN/100.

@@ -11,6 +11,9 @@ const AW_ID = 'AW-18393164010';
 // Conversion label of the "Website signup" conversion action in Google Ads
 // (Goals > Conversions, conversion type ID 7819677265, created 2026-10-04).
 const SIGNUP_LABEL = 'MGGeCNGc25AdEOrRxcJE';
+// "OT Radar subscribe" conversion action (Sign-up category, Primary, count One;
+// created 2026-11-02): a paid visitor submitting the OT Radar Monday-list form.
+const OTR_SUBSCRIBE_LABEL = 'MzlyCKC617AdEOrRxcJE';
 
 declare global {
   interface Window {
@@ -56,5 +59,15 @@ export function reportSignupConversion(transactionId: string): Promise<void> {
       transport_type: 'beacon',
       event_callback: () => { clearTimeout(timer); resolve(); },
     });
+  });
+}
+
+// Call after the OT Radar signup API accepts the address. The page stays put,
+// so there is nothing to await; "count One" in Google Ads keeps a repeat submit
+// from the same ad click from counting twice.
+export function reportOtrSubscribeConversion(): void {
+  window.gtag?.('event', 'conversion', {
+    send_to: `${AW_ID}/${OTR_SUBSCRIBE_LABEL}`,
+    transport_type: 'beacon',
   });
 }

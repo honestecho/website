@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, ChevronDown, ExternalLink } from 'lucide-react';
 import { API_BASE } from '../lib/api';
 import { track, getAttribution } from '../lib/analytics';
+import { reportOtrSubscribeConversion } from '../lib/googleAds';
 import { BreadcrumbListSchema, FAQPageSchema, ItemListSchema } from '../components/SchemaOrg';
 import radar from '../content/ot-radar-notices.json';
 
@@ -158,6 +159,8 @@ export default function OtherTransactions() {
       // The API gives every accepted address the same answer (no existence
       // oracle), so the copy below must be true whether or not an email went out.
       setSubmit(res.ok ? 'done' : 'error');
+      // Paid visitors only: the Google tag loads only after an ad click.
+      if (res.ok) reportOtrSubscribeConversion();
     } catch {
       setSubmit('error');
     }

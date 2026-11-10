@@ -23,7 +23,7 @@ export interface Resource {
 export const RESOURCES: Resource[] = [
   {
     path: '/far-overhaul/cheat-sheets/part-19/',
-    title: 'FAR 2.0 cheat sheets: printable one-pagers',
+    title: 'FAR 2.0 cheat sheets: printable references',
     summary:
       'Part 19 before and after, which agencies have adopted the rewrite, and a bid checklist of the biggest changes, each on a printable sheet that updates with the weekly tracker.',
     kicker: 'FAR overhaul',

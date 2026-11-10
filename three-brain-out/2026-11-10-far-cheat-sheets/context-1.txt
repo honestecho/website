@@ -1,0 +1,14 @@
+## Cheat sheets
+FAR 2.0 cheat sheets: printable one-pagers
+Part 19 before and after, which agencies have adopted the rewrite, and a bid checklist of the biggest changes, each on a printable sheet that updates with the weekly tracker.
+Is your agency on FAR 2.0? Adoption by agency
+Counts are FAR parts with a class deviation listed for that agency, or on DoD's DFARS deviation list for DoD, out of the 49 parts the guide tracks by agency. No listing doesn't prove there is no deviation; check the agency's own page.
+FAR 2.0 bid checklist: the 10 biggest impacts
+Ranked by Honest Echo (our judgment)
+Print or save as PDF
+Status line (Part 19): Codified in FAC 2026-01, effective Mar 13, 2026 · Comparison written Nov 2, 2026 · Status checked Nov 9, 2026
+Status line (agency): Model text applies to an agency only after that agency issues its own class deviation. Checked Nov 9, 2026 against the acquisition.gov deviation guide.
+Status line (checklist): Ranked by Honest Echo (our judgment) · Checked Nov 9, 2026 against acquisition.gov, the Federal Register and DoD's deviation list
+Tag names: Narrowed, Removed, Expanded, New, Moved to Guidance, Same Rule, New Words
+Footer: honestecho.com/far-overhaul · Free FAR 2.0 Monday email | Our reading, not legal advice. Check the solicitation's clause list.
+Header pill: FAR 2.0 cheat sheet

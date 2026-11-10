@@ -1,0 +1,109 @@
+Reading prompt from stdin...
+OpenAI Codex v0.164.0
+--------
+workdir: C:\Users\aaron\AppData\Local\Temp\claude\3abc3f784ec75449\93e17822-41e1-457f-9063-369889b0a061\scratchpad\wt-site\three-brain-out\2026-11-10-far-cheat-sheets
+model: gpt-6.1-sol
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a1c789-5b4f-7b42-8aca-5b3fc35c91f8
+--------
+user
+You are a harsh principal print designer AND a plain-English copy editor judging ONE thing: three printable "FAR 2.0 cheat sheets" from Honest Echo (honestecho.com/far-overhaul/cheat-sheets/...), one-page reference sheets a federal contractor prints or saves as PDF and keeps at their desk. What the reader should do next: use the sheet, and sign up for the free FAR 2.0 Monday email (the signup sits under each sheet on screen and is not part of the printed page). Audience: small GovCon business owners, BD leads, proposal managers, contracts managers. The sheets are light "paper" so they print: white page, navy #0B1120 text, cyan accent #00C3FF / #00A7DB, muted #64748B. Brand: the Honest Echo ring mark + wordmark ("Honest" navy, "Echo" cyan) + "KNOW BEFORE YOU BID". Headings Manrope, body Inter.
+
+Attached, in order: (a) Part 19 before/after sheet as built (17 changes + "Do this now"; prints on 2 pages), (b) "Is your agency on FAR 2.0?" sheet as built (40 agencies; prints on 1 page), (c) "FAR 2.0 bid checklist" as built (10 impacts; prints on 1 page), (d) the APPROVED COMP that Aaron liked. It shows the target look, and its words are placeholders.
+
+FIXED (judge execution within these, never propose replacing them): the comp's anatomy (branded header with rule and "FAR 2.0 CHEAT SHEET" pill → bold title → pale cyan status strip → rows with a type tag on the left, bold topic, "What it means:" line, optional outlined "medium confidence" pill → "Do this now" box with checkboxes → footer with the small mark, URL and the not-legal-advice line); light paper; the brand colours and fonts. Content is fixed: every row, number and sentence comes from the official-source tracker data and may not be shortened, merged, reworded or dropped. Judge LAYOUT, type, spacing, tag design, hierarchy and print legibility. Copy suggestions are allowed only for the sheets' own labels: titles, the status line wording, the footnote, the footer, the tag names.
+
+Current copy (labels Honest Echo wrote; the row text is data):
+## Cheat sheets
+FAR 2.0 cheat sheets: printable references
+Part 19 before and after, which agencies have adopted the rewrite, and a bid checklist of the biggest changes, each on a printable sheet that updates with the weekly tracker.
+FAR 2.0 adoption by agency
+Counts are FAR parts with a class deviation listed for that agency, or on DoD's DFARS deviation list for DoD, out of the 49 parts the guide tracks by agency. No listing doesn't prove there is no deviation; check the agency's own page.
+FAR 2.0 bid checklist: the 10 biggest impacts
+Honest Echo's ranking (our judgment)
+Print or save as PDF
+Status line (Part 19): Codified in FAC 2026-01, effective Mar 13, 2026 · Comparison written Nov 2, 2026 · Status checked Nov 9, 2026
+Status line (agency): Model text applies to an agency only after that agency issues its own class deviation. Checked Nov 9, 2026 against the acquisition.gov deviation guide.
+Status line (checklist): Honest Echo's ranking (our judgment) · Checked Nov 9, 2026 against acquisition.gov, the Federal Register and DoD's deviation list
+Tag names: Narrowed, Removed, Expanded, New, Moved to Guidance, Same Rule, New Words
+Footer: honestecho.com/far-overhaul · Free FAR 2.0 Monday email | Our reading, not legal advice. Check the solicitation's clause list.
+Header pill: FAR 2.0 cheat sheet
+Footer now: honestecho.com/far-overhaul (line 1) / Free FAR 2.0 Monday email (line 2) | Our reading, not legal advice. Check the solicitation's clause list.
+Agency sheet now groups the agencies with all 49 tracked parts in one box; partial-adoption agencies keep a row each.
+Print: the print view scales the sheet to 0.80 so Part 19 prints on exactly 2 Letter pages and the other two on 1 (measured from the exported PDFs). Screen body text went from 13px to 14px, so printed body is about 8.4pt (was 8.2pt). Holding a 9.5pt floor would push the agency and checklist sheets to 2 pages and Part 19 to 3; that trade-off is Aaron's call, so judge the layout at this scale.
+
+
+Hard constraints (a fix that breaks one is disqualified):
+- True claims only. The data is checked weekly against acquisition.gov, the Federal Register and DoD's deviation list. Never claim legal advice, completeness, "every agency", "daily", or anything about eligibility.
+- Never the words "beta", "AI", "Claude", or any model name. No personal names.
+- Must stay print-friendly: no dark backgrounds, no large colour fills, legible at 100% on Letter paper (body text no smaller than about 9.5pt when printed; the print view scales the sheet to 0.84).
+- Don't drop rows or content to save space. Part 19 is allowed to run 2 printed pages.
+
+Score /100 on: fidelity to the approved comp's look (20), hierarchy and scannability (20), tag/pill design and colour meaning (15), typography and print legibility (15), rhythm, spacing and alignment (15), brand presence without clutter (10), label copy (5).
+
+Then list the TOP 6 fixes ranked by impact, each concrete (Tailwind-level classes or exact label text). No praise. Cap 600 words. End with exactly: SCORE: NN/100.
+
+
+Your previous round review (what you see now is the revision; do not reverse a fix you asked for unless it made things worse):
+The built sheets retain the comp’s structure but flatten its hierarchy. Topic headings, tags and action boxes have lost emphasis; dense text and faint rules dominate instead. Part 19 reads like a compressed report. The agency sheet gives completed and incomplete adoption nearly identical visual weight. The checklist barely separates the action from its supporting detail.
+
+| Criterion | Score |
+|---|---:|
+| Fidelity to approved comp | 13/20 |
+| Hierarchy and scannability | 13/20 |
+| Tag/pill design and colour meaning | 9/15 |
+| Typography and print legibility | 8/15 |
+| Rhythm, spacing and alignment | 10/15 |
+| Brand presence without clutter | 8/10 |
+| Label copy | 3/5 |
+| **Total** | **64/100** |
+
+1. **Establish a real printed type floor.** Part 19’s explanations and the agency sheet’s missing-parts lists are the pressure points. At `0.84` scaling, use `print:text-[11.5pt] print:leading-[1.25]` for body text: approximately 9.7pt after scaling. Apply that floor to meaningful notes and the footer too. Screenshot size cannot verify printed point size; check the exported Letter PDF at 100%. Recover space through layout, not smaller text.
+
+2. **Compose Part 19 as two deliberate pages.** Stop treating it as one tall sheet that happens to overflow. Use explicit page groups with `print:break-after-page`; keep each change together with `print:break-inside-avoid`. Repeat the branded header and footer on page two. Keep the complete “Do this now” box together. Choose the break after measuring the larger body type so neither page ends with a stranded heading or excessive blank space.
+
+3. **Restore the comp’s hierarchy and contrast.** Increase topic headings to approximately `text-[17px] font-extrabold leading-[1.2]`; use `font-bold` for “What it means:” and “Do this now:”. Keep explanations navy rather than broadly muting them. Restore visible cyan dividers with `border-[#00A7DB]/50`. For the action box, use `border-[1.5px] border-[#00A7DB] rounded-xl`; give its heading `text-[22px] font-extrabold text-[#00A7DB]` on a shallow pale-cyan strip.
+
+4. **Make tags readable and semantically consistent.** Part 19’s tiny uppercase badges look like metadata. Use a fixed `w-[104px] shrink-0` tag column, `px-2 py-1.5 rounded-lg font-extrabold leading-tight`, and the printed type floor. Reserve solid cyan for **New**, pale cyan for **Narrowed/Expanded**, neutral grey for **Removed**, and an outline for **Same rule, new words**. Use **Moved to guidance** consistently. Confidence pills should remain secondary: sentence case, white fill, `border-slate-400`, and legible text.
+
+5. **Recover space and scanning speed in the agency sheet and checklist.** Build the agency table as two independently flowing lists: `grid grid-cols-2 gap-x-6 items-start`. Shared row heights currently waste space beneath shorter entries. Give counts `shrink-0 tabular-nums font-bold`; use a cyan count underline for incomplete totals without adding labels. In the checklist, align checkbox, number and heading using `grid-cols-[16px_28px_1fr]`; indent action and reference lines to the topic’s left edge.
+
+6. **Remove label clutter and the format contradiction.** Change the collection title to **“FAR 2.0 cheat sheets: printable references”**. Change the agency title to **“FAR 2.0 adoption by agency”**. Use **“Honest Echo ranking”** instead of “Ranked by Honest Echo (our judgment)”. In the footer, give **“Free FAR 2.0 Monday email”** its own line beneath the URL; the current inline treatment buries the next step.
+
+SCORE: 64/100.
+
+codex
+I’ll compare the revision with the approved comp and score it at the stated print scale, keeping all tracker text fixed.
+codex
+The revision still compresses the comp’s visual hierarchy. Part 19’s tags and confidence pills are undersized, the action box lacks a distinct heading band, and supporting text dominates the agency sheet. The stated 8.4pt printed body remains below the required 9.5pt floor. A long screenshot also conceals Part 19’s page-break problems.
+
+| Criterion | Score |
+|---|---:|
+| Fidelity to approved comp | 14/20 |
+| Hierarchy and scannability | 15/20 |
+| Tag/pill design and colour meaning | 10/15 |
+| Typography and print legibility | 7/15 |
+| Rhythm, spacing and alignment | 12/15 |
+| Brand presence without clutter | 9/10 |
+| Label copy | 4/5 |
+| **Total** | **71/100** |
+
+1. **Resolve the printed type failure.** The supplied measurements say `0.80`; the hard constraint says `0.84`. Establish one actual export setting. At `0.80`, use `print:text-[16px] print:leading-[1.25]` for body text and meaningful notes: approximately 9.6pt after scaling. Confidence labels and footers also need checking in the exported PDF. The stated one-page targets and type floor currently conflict; spacing adjustments cannot credibly erase that conflict.
+
+2. **Design Part 19’s two printed pages explicitly.** Use two page wrappers, `print:break-after-page`, and `print:break-inside-avoid` on every change row and the complete action box. Repeat the branded header and footer. Test the first break after **“Release of 8(a) follow-on requirements”**, then balance against the corrected type size. The screenshot provides no evidence that either printed page has a deliberate ending.
+
+3. **Restore the comp’s topic-to-explanation contrast.** Use `font-manrope text-[17px] font-extrabold leading-[1.2]` for Part 19 topics, with explanations in `text-[#0B1120]`. Keep “What it means:” bold. Give the checklist’s action paragraph `mt-1`, then its reference paragraph `mt-1.5 text-[#64748B]`. The action and supporting citation currently read as one continuous block.
+
+4. **Enlarge and round the tags; subordinate confidence consistently.** Use `w-[104px] shrink-0`, with `rounded-lg px-2 py-1.5 font-extrabold leading-tight`. Keep cyan for **New**, pale cyan for **Narrowed/Expanded**, grey for **Removed**, and an outline for **Same rule, new words**. Use **Moved to guidance** consistently. Confidence pills need `inline-flex border border-slate-400 rounded-full px-2`; prevent internal wrapping and let the whole pill move beneath a long topic.
+
+5. **Rebuild the action box’s internal hierarchy.** Its uniformly tinted field makes six dense instructions feel like another report section. Use `overflow-hidden rounded-xl border-[1.5px] border-[#00A7DB] bg-white`; put **Do this now** in a shallow `bg-[#E6F8FF] px-4 py-2` heading band with `text-[22px] font-extrabold`. Set the checklist below in `px-4 py-3`, with `grid-cols-[16px_1fr] gap-x-3 gap-y-2` and top-aligned checkboxes.
+
+6. **Make agency labels describe the evidence precisely.** Replace **“All 49 tracked parts: 26 agencies”** with **“Class deviations listed for all 49 tracked parts: 26 agencies”**. Replace **“PARTIAL ADOPTION, MOST PARTS FIRST”** with **“FEWER THAN 49 TRACKED PARTS LISTED”**. Shorten the Part 19 status labels to **“Comparison: Nov 2, 2026 · Checked: Nov 9, 2026”**, retaining the codification and effective-date text.
+
+SCORE: 71/100.
+tokens used
+21,431

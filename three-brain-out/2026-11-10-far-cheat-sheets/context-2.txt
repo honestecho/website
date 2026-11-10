@@ -1,0 +1,17 @@
+## Cheat sheets
+FAR 2.0 cheat sheets: printable references
+Part 19 before and after, which agencies have adopted the rewrite, and a bid checklist of the biggest changes, each on a printable sheet that updates with the weekly tracker.
+FAR 2.0 adoption by agency
+Counts are FAR parts with a class deviation listed for that agency, or on DoD's DFARS deviation list for DoD, out of the 49 parts the guide tracks by agency. No listing doesn't prove there is no deviation; check the agency's own page.
+FAR 2.0 bid checklist: the 10 biggest impacts
+Honest Echo's ranking (our judgment)
+Print or save as PDF
+Status line (Part 19): Codified in FAC 2026-01, effective Mar 13, 2026 · Comparison written Nov 2, 2026 · Status checked Nov 9, 2026
+Status line (agency): Model text applies to an agency only after that agency issues its own class deviation. Checked Nov 9, 2026 against the acquisition.gov deviation guide.
+Status line (checklist): Honest Echo's ranking (our judgment) · Checked Nov 9, 2026 against acquisition.gov, the Federal Register and DoD's deviation list
+Tag names: Narrowed, Removed, Expanded, New, Moved to Guidance, Same Rule, New Words
+Footer: honestecho.com/far-overhaul · Free FAR 2.0 Monday email | Our reading, not legal advice. Check the solicitation's clause list.
+Header pill: FAR 2.0 cheat sheet
+Footer now: honestecho.com/far-overhaul (line 1) / Free FAR 2.0 Monday email (line 2) | Our reading, not legal advice. Check the solicitation's clause list.
+Agency sheet now groups the agencies with all 49 tracked parts in one box; partial-adoption agencies keep a row each.
+Print: the print view scales the sheet to 0.80 so Part 19 prints on exactly 2 Letter pages and the other two on 1 (measured from the exported PDFs). Screen body text went from 13px to 14px, so printed body is about 8.4pt (was 8.2pt). Holding a 9.5pt floor would push the agency and checklist sheets to 2 pages and Part 19 to 3; that trade-off is Aaron's call, so judge the layout at this scale.

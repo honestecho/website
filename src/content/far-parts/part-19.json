@@ -117,7 +117,7 @@
       "before": "Part 19 itself states the limits: no more than 50% of the amount paid to non-similarly-situated subcontractors for services and for supplies (excluding materials), 85% for general construction and 75% for special trades, with compliance periods (FAR 19.505(a)-(b)).",
       "after": "The same percentages and compliance periods now sit in the clause itself (RFO 52.219-14(e)-(f)); Part 19 keeps only the prescription (RFO 19.104-3(c)), with the 8(a) version restated at RFO 19.108-8. The 'similarly situated entity' definition lives only in the clause.",
       "changeType": "unchanged-but-reworded",
-      "whatItMeans": "The percentages are the same (50/85/75), and they now live in the clause, so read your contract's 52.219-14 (Deviation) text rather than looking for them in Part 19. For 8(a) awards, the rewritten Part 19 describes the calculation in different terms from the clause, so follow the clause in your contract and ask the contracting officer if the two seem to disagree.",
+      "whatItMeans": "The percentages are the same (50/85/75), and they now live in the clause, so read your contract's 52.219-14 (Deviation) text rather than looking for them in Part 19. For 8(a) awards the two texts measure different things: the rewritten Part 19 (19.108-8) looks at the share of personnel or manufacturing costs your own employees perform, while the clause limits what you pay subcontractors that aren't similarly situated. A plan can pass one test and fail the other, so get the contracting officer's answer on which applies before relying on either.",
       "whoItHits": "Small primes on set-aside and sole-source work",
       "confidence": "medium",
       "sourceUrls": [
@@ -259,7 +259,7 @@
       "before": "ISRs and SSRs go into eSRS; reports are due 30 days after each period ends, and COs must acknowledge or reject them within 60 days (FAR 19.704(a)(10)(iv), 19.705-6(f), (j)).",
       "after": "Reports go into Subcontracting Plan Reporting (SPR) at SAM.gov within 45 days after the period ends (e.g., by Nov 14 for the FY ending Sept 30); CO acknowledge/reject steps are removed and agencies set their own monitoring (RFO 19.302-2(a), 19.302-3(f), 19.206-1(c)(4)); this came from the February 20, 2026 supplement.",
       "changeType": "narrowed",
-      "whatItMeans": "Reports move to a new system, SPR at SAM.gov. The 45-day deadline comes from the rewritten clause; the codified FAR still says 30 days. Use 45 days only where your contract carries the deviation clause or the contracting officer says so; otherwise keep to 30.",
+      "whatItMeans": "Reports move to a new system, SPR at SAM.gov. The February 20, 2026 update set 45 days, but the codified FAR and the earlier deviation clause say 30, and an awarded contract changes only when it is modified. Read the deadline in your contract's own 52.219-9 text, and use 45 days only if that text or your contracting officer says 45.",
       "whoItHits": "Other-than-small primes with subcontracting plans; small firms that grew out of size",
       "confidence": "high",
       "sourceUrls": [
@@ -428,7 +428,7 @@
       "changeId": "8a-compete-first-below-threshold"
     },
     {
-      "action": "If you hold a subcontracting plan, first check whether your contract carries the deviation 52.219-9 or the codified clause (or ask the CO). File in SPR at SAM.gov, and calendar 45 days only where the deviation clause or the CO says so; otherwise 30.",
+      "action": "If you hold a subcontracting plan, read the reporting deadline in your contract's own 52.219-9 text before the next report is due. File in SPR at SAM.gov, and use 45 days only if that text or your contracting officer says 45; otherwise keep to 30.",
       "changeId": "subcontracting-reporting-spr"
     }
   ],
@@ -652,7 +652,7 @@
     },
     {
       "q": "Did the limitations on subcontracting change in the FAR overhaul?",
-      "a": "The percentages did not: 50% for services and supplies, 85% for general construction and 75% for special trades. They moved out of Part 19 and into the 52.219-14 clause, so read the clause in your contract. For 8(a) awards, the rewritten Part 19 words the calculation differently from the clause; follow the clause and ask the contracting officer if they seem to conflict."
+      "a": "The percentages did not: 50% for services and supplies, 85% for general construction and 75% for special trades. They moved out of Part 19 and into the 52.219-14 clause, so read the clause in your contract. For 8(a) awards, the rewritten Part 19 measures your own employees' share of costs while the clause limits payments to subcontractors that aren't similarly situated. Ask the contracting officer which applies before relying on either."
     },
     {
       "q": "Can a women-owned business with a pending WOSB certification still bid on WOSB set-asides?",
@@ -664,7 +664,7 @@
     },
     {
       "q": "What happened to eSRS subcontracting reports?",
-      "a": "Under the February 20, 2026 update to the model text, reports go to Subcontracting Plan Reporting (SPR) in SAM.gov, and the rewritten clause gives primes 45 days after each period instead of 30. The codified FAR still says eSRS and 30 days, so check which clause your contract carries."
+      "a": "Under the February 20, 2026 update to the model text, reports go to Subcontracting Plan Reporting (SPR) in SAM.gov, and the updated clause allows 45 days after each period instead of 30. The codified FAR and the earlier deviation clause still say 30, so go by the deadline written in your contract's own clause or your contracting officer's direction."
     }
   ],
   "sources": [

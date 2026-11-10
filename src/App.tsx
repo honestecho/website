@@ -21,6 +21,7 @@ import SamGovHiddenOpportunities from './pages/SamGovHiddenOpportunities';
 import SourcesSoughtGuide from './pages/SourcesSoughtGuide';
 import FarOverhaulTracker from './pages/FarOverhaulTracker';
 import FarPartPage from './pages/FarPartPage';
+import FarCheatSheet from './pages/FarCheatSheet';
 import SamGovRecompeteTracking from './pages/SamGovRecompeteTracking';
 import Resources from './pages/Resources';
 import ForSmallBusinessOwners from './pages/ForSmallBusinessOwners';
@@ -151,6 +152,8 @@ function App() {
           <Route path="/sources-sought-worth-responding/" element={<SourcesSoughtGuide />} />
           <Route path="/far-overhaul" element={<FarOverhaulTracker />} />
           <Route path="/far-overhaul/" element={<FarOverhaulTracker />} />
+          <Route path="/far-overhaul/cheat-sheets/:sheet" element={<FarCheatSheet />} />
+          <Route path="/far-overhaul/cheat-sheets/:sheet/" element={<FarCheatSheet />} />
           <Route path="/far-overhaul/:slug" element={<FarPartPage />} />
           <Route path="/far-overhaul/:slug/" element={<FarPartPage />} />
           <Route path="/sam-gov-recompete-tracking" element={<SamGovRecompeteTracking />} />

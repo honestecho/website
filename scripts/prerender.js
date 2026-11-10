@@ -62,6 +62,11 @@ for (const f of readdirSync(resolve(rootDir, 'src/content/far-parts')).filter(f 
   routes.push({ path: `/far-overhaul/${f.replace(/\.json$/, '')}`, file: `src/content/far-parts/${f}`, changefreq: 'weekly', priority: '0.8' });
 }
 
+// The printable FAR 2.0 cheat sheets (src/pages/FarCheatSheet.tsx); their facts follow the tracker data.
+for (const slug of ['part-19', 'agency-adoption', 'bid-checklist']) {
+  routes.push({ path: `/far-overhaul/cheat-sheets/${slug}`, file: 'src/content/far-overhaul.json', changefreq: 'weekly', priority: '0.7' });
+}
+
 const LIST_ROUTE = '/government-contracts-for-bid/construction';
 const LIST_NAICS = '236220';
 // The page advertises "at least 48 hours left". A notice seeded with 72 hours

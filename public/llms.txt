@@ -25,6 +25,7 @@ Honest Echo LLC is a woman-owned, veteran-owned small business based in Fairfax,
 - [Should You Respond to a Sources Sought Notice?](https://honestecho.com/sources-sought-worth-responding/): When responding to a Sources Sought/RFI is worth the effort — set-aside influence, requirement shaping, and how to decide in minutes.
 - [FAR Overhaul Tracker (FAR 2.0)](https://honestecho.com/far-overhaul/): Weekly-checked status of the Revolutionary FAR Overhaul: model text for each FAR part, which agencies have adopted it by class deviation, proposed and final rules, DFARS deviations, and the 10 biggest impacts for small contractors, each linked to its official source.
 - [FAR Part 19, Rewritten](https://honestecho.com/far-overhaul/part-19/): The current FAR Part 19 small business rules and the FAR overhaul model text side by side, 17 changes with section cites (order set-asides no longer protestable, socioeconomic priority removed, order-level size rerepresentation removed, 8(a) and WOSB changes, subcontracting reporting), what did not change, and each agency's Part 19 adoption date.
+- [FAR 2.0 Cheat Sheets](https://honestecho.com/far-overhaul/cheat-sheets/part-19/): Printable one-page sheets built from the weekly tracker data: Part 19 before and after, FAR overhaul adoption by agency, and a bid checklist of the biggest impacts.
 - [SAM.gov Recompete Tracking](https://honestecho.com/sam-gov-recompete-tracking/): Track expiring federal contracts in your NAICS lane and position for recompetes quarters before the RFP posts.
 
 ## Company

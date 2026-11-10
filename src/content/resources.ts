@@ -22,6 +22,15 @@ export interface Resource {
 
 export const RESOURCES: Resource[] = [
   {
+    path: '/far-overhaul/cheat-sheets/part-19/',
+    title: 'FAR 2.0 cheat sheets: printable one-pagers',
+    summary:
+      'Part 19 before and after, which agencies have adopted the rewrite, and a bid checklist of the biggest changes, each on a printable sheet that updates with the weekly tracker.',
+    kicker: 'FAR overhaul',
+    navLabel: 'FAR 2.0 Cheat Sheets',
+    published: '2026-11-10',
+  },
+  {
     path: '/far-overhaul/part-19/',
     title: 'FAR Part 19, rewritten: what changed for small business',
     summary:

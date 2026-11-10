@@ -1,0 +1,823 @@
+{
+  "asOf": "2026-11-02",
+  "changes": [
+    {
+      "id": "order-set-asides-discretionary-not-protestable",
+      "topic": "Set-asides of orders under multiple-award contracts",
+      "subpart": "19.1",
+      "before": "Order set-asides are discretionary, but the CO must state in the solicitation and contract whether order set-asides will be discretionary or mandatory when the rule of two is met; a mandatory version uses 52.219-13 Alternate I (FAR 19.504(a)(1), 19.507(f)(2)).",
+      "after": "Order set-asides stay discretionary, and the CO's decision to set aside or not set aside an order is stated to be not a basis for protest; 52.219-13 Alternate I is marked [Reserved] (RFO 19.111-2(a); RFO 52.219-13).",
+      "changeType": "narrowed",
+      "whatItMeans": "On GSA Schedules, GWACs and agency IDIQs, a small business can no longer rely on contract language that commits the agency to setting aside qualifying orders, and challenging a decision not to set aside an order becomes much harder. The FAR Companion says the wording is meant to resolve a GAO vs. Court of Federal Claims split over the rule of two on multiple-award contracts.",
+      "whoItHits": "Small business holders of multiple-award contracts (MAS, GWACs, IDIQs)",
+      "confidence": "high",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_504",
+        "https://www.acquisition.gov/far/part-19#FAR_19_507",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_111_2",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-52#FAR_52_219_13",
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/far-companion.pdf",
+        "https://www.acquisition.gov/sites/default/files/practitioner_albums/far-part-19-small-business/content/index.html",
+        "https://www.ecfr.gov/current/title-13/section-125.2#p-125.2(e)(6)(ii)"
+      ]
+    },
+    {
+      "id": "rule-of-two-contract-level",
+      "topic": "Rule of two for contracts",
+      "subpart": "19.1",
+      "before": "Acquisitions above the micro-purchase threshold up to the SAT are automatically set aside for small business unless the CO lacks a reasonable expectation of two competitive small offerors; above the SAT the CO must set aside when that expectation exists (FAR 19.502-2(a)-(b)).",
+      "after": "For contracts above the micro-purchase threshold, the CO must set the contract aside when there is a reasonable expectation of offers from two or more responsible, competitive small businesses, and must document a decision not to (RFO 19.104-1(a)-(b)). The word 'acquisition' became 'contract', and the Practitioner Album says the rule of two does not apply to orders.",
+      "changeType": "unchanged-but-reworded",
+      "whatItMeans": "For standalone contracts the set-aside obligation is essentially the same; the FAR Council kept it above the SAT even though only the MPT-to-SAT band is statutory. The real change is the explicit carve-out of orders (see the order set-aside item).",
+      "whoItHits": "All small businesses bidding standalone contracts",
+      "confidence": "high",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_502_2",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_104_1",
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/GSA_RFO_Deviation_Part-19.pdf",
+        "https://www.acquisition.gov/sites/default/files/practitioner_albums/far-part-19-small-business/content/index.html"
+      ]
+    },
+    {
+      "id": "socioeconomic-priority-removed",
+      "topic": "'Consider socioeconomic programs first' language removed",
+      "subpart": "19.1",
+      "before": "Above the SAT the CO shall first consider 8(a), HUBZone, SDVOSB or WOSB before a small business set-aside (FAR 19.203(c)); the CO shall consider HUBZone, SDVOSB and WOSB sole-source awards before a small business set-aside (FAR 19.1306(a), 19.1406(a), 19.1506(a)); for orders above the SAT the same order applies (FAR 19.504(a)(3)).",
+      "after": "FAR 19.203 'Relationship among small business programs' is removed; the small business set-aside is mandatory when the rule of two is met, and it 'does not preclude' awards under the HUBZone, SDVOSB, WOSB or 8(a) programs (RFO 19.104-1(e)). Socioeconomic sole sources become 'may consider' (RFO 19.105-3(a), 19.106-3(a), 19.107-3(a)), and the order-level priority is not carried over (RFO 19.111-2).",
+      "changeType": "removed",
+      "whatItMeans": "Socioeconomic set-asides and sole sources remain available, but the FAR no longer tells COs to look at them before an ordinary small business set-aside. Expect more plain small business set-asides where a HUBZone, SDVOSB, WOSB or 8(a) firm might previously have been considered first.",
+      "whoItHits": "8(a), HUBZone, SDVOSB, WOSB/EDWOSB firms",
+      "confidence": "high",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_203",
+        "https://www.acquisition.gov/far/part-19#FAR_19_1306",
+        "https://www.acquisition.gov/far/part-19#FAR_19_1406",
+        "https://www.acquisition.gov/far/part-19#FAR_19_1506",
+        "https://www.acquisition.gov/far/part-19#FAR_19_504",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_104_1",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_105_3",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_106_3",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_107_3",
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/GSA_RFO_Deviation_Part-19.pdf"
+      ]
+    },
+    {
+      "id": "order-level-rerepresentation-removed",
+      "topic": "Size/status rerepresentation on orders",
+      "subpart": "19.3",
+      "before": "Contractors must rerepresent size and socioeconomic status for the NAICS code of certain orders (e.g., a socioeconomic set-aside order under an unrestricted MAC), and the CO may require rerepresentation for any order; agency goal credit follows the order rerepresentation (FAR 19.301-2(b)(2)-(3), (d)(2)).",
+      "after": "Rerepresentation is triggered only by contract-level events: novation, merger or acquisition, and the long-term-contract checkpoints (year five and each later option) (RFO 19.301(a); RFO 52.219-28(b)). Agency credit is driven by the contract-level size status (GSA RFO-2025-19 memo; Practitioner Album).",
+      "changeType": "removed",
+      "whatItMeans": "A firm that was small when it won a MAC keeps that status for orders until a contract-level trigger occurs, which helps firms that have grown. It also means a business that has outgrown its size standard can keep competing for small business orders on older vehicles.",
+      "whoItHits": "Small and recently graduated firms on IDIQs/MACs",
+      "confidence": "high",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_301_2",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_301",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-52#FAR_52_219_28",
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/GSA_RFO_Deviation_Part-19.pdf",
+        "https://www.acquisition.gov/sites/default/files/practitioner_albums/far-part-19-small-business/content/index.html"
+      ]
+    },
+    {
+      "id": "limitations-on-subcontracting-moved-to-clause",
+      "topic": "Limitations on subcontracting",
+      "subpart": "19.1",
+      "before": "Part 19 itself states the limits: no more than 50% of the amount paid to non-similarly-situated subcontractors for services and for supplies (excluding materials), 85% for general construction and 75% for special trades, with compliance periods (FAR 19.505(a)-(b)).",
+      "after": "The same percentages and compliance periods now sit in the clause itself (RFO 52.219-14(e)-(f)); Part 19 keeps only the prescription (RFO 19.104-3(c)), with the 8(a) version restated at RFO 19.108-8. The 'similarly situated entity' definition lives only in the clause.",
+      "changeType": "unchanged-but-reworded",
+      "whatItMeans": "Compliance math is unchanged, so teaming and subcontracting plans built on 50/85/75 still hold. Read your contract's 52.219-14 (Deviation) text rather than looking for the rule in Part 19.",
+      "whoItHits": "Small primes on set-aside and sole-source work",
+      "confidence": "high",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_505",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_104_3",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_108_8",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-52#FAR_52_219_14",
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/GSA_RFO_Deviation_Part-19.pdf"
+      ]
+    },
+    {
+      "id": "nonmanufacturer-rule-split",
+      "topic": "Nonmanufacturer rule",
+      "subpart": "19.1",
+      "before": "FAR 19.505(c) lists all nonmanufacturer requirements in Part 19: supply a U.S. small-business-made end item, not exceed 500 employees (150 for IT VARs under 541519), be primarily engaged in retail/wholesale, and take ownership or possession; plus kit, waiver and multiple-item rules.",
+      "after": "RFO 19.104-1(f) keeps the small-business-made end item rule, the kit cap, waivers and the 50% multiple-item test; the 'primarily engaged' and ownership/possession duties move into clause 52.219-33(c); the 500/150-employee cap appears in 52.219-28(d) and SBA's rule (13 CFR 121.406(b)(1)(i)); 'identification of manufacturers' moves to FAR Companion FC 19.104-1(f).",
+      "changeType": "unchanged-but-reworded",
+      "whatItMeans": "Resellers face the same substantive test, but it is now spread across Part 19, two clauses, SBA's regulation and the Companion. Check all of them before relying on a nonmanufacturer strategy.",
+      "whoItHits": "Small resellers / supply dealers",
+      "confidence": "medium",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_505",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_104_1",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-52#FAR_52_219_33",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-52#FAR_52_219_28",
+        "https://www.ecfr.gov/current/title-13/section-121.406#p-121.406(b)(1)(i)",
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/far-companion.pdf"
+      ]
+    },
+    {
+      "id": "partial-set-aside-discretionary",
+      "topic": "Partial set-asides of single-award contracts",
+      "subpart": "19.1",
+      "before": "For contracts other than MACs, the CO 'shall set aside a portion or portions' when a total set-aside isn't appropriate and the listed conditions are met (FAR 19.502-3(a)); partial set-asides of MACs are discretionary (FAR 19.502-4(a)).",
+      "after": "One unified rule says COs 'may, at their discretion' partially set aside any acquisition except construction when the conditions are met (RFO 19.104-2(a)).",
+      "changeType": "narrowed",
+      "whatItMeans": "A big single-award requirement that small firms can only perform in part no longer has to be split to give small businesses a reserved slice. The FAR Council's summary calls the principles identical, but the text moved from 'shall' to 'may'.",
+      "whoItHits": "Small firms targeting large single-award requirements",
+      "confidence": "high",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_502_3",
+        "https://www.acquisition.gov/far/part-19#FAR_19_502_4",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_104_2",
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/GSA_RFO_Deviation_Part-19.pdf"
+      ]
+    },
+    {
+      "id": "8a-compete-first-below-threshold",
+      "topic": "8(a): compete first below the threshold; sole source above it",
+      "subpart": "19.1",
+      "before": "Below the $5.5M ($8.5M manufacturing) competitive threshold, competitive 8(a) awards need approval from SBA's Associate Administrator for Business Development; above it, SBA may accept a sole source if two 8(a) offers aren't expected or the firm is tribally/ANC-owned (FAR 19.805-1(b), (d)).",
+      "after": "Below the threshold, COs must first try a competitive 8(a) order on SBA-approved government-wide contracts before going sole source (RFO 19.108-7(d)(1)); above it, SBA may accept a sole source only after the CO meets the Part 6 other-than-full-and-open rules (RFO 19.108-7(b); RFO 6.103).",
+      "changeType": "new",
+      "whatItMeans": "Directed 8(a) sole-source awards under the threshold become harder to get where a GWAC with an 8(a) pool exists. 8(a) firms that are not on those vehicles lose ground.",
+      "whoItHits": "8(a) participants, especially those relying on sole-source marketing",
+      "confidence": "high",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_805_1",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_108_7",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-6",
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/GSA_RFO_Deviation_Part-19.pdf",
+        "https://www.acquisition.gov/sites/default/files/practitioner_albums/far-part-19-small-business/content/index.html"
+      ]
+    },
+    {
+      "id": "8a-automatic-release",
+      "topic": "Release of 8(a) follow-on requirements",
+      "subpart": "19.1",
+      "before": "An 8(a) follow-on stays in the program unless SBA's AA/BD agrees in writing to release it (or a mandatory source applies); release is generally granted when the agency will use a SB, HUBZone, SDVOSB or WOSB set-aside (FAR 19.815(a)-(c)).",
+      "after": "A follow-on is released automatically, with no formal request, if it will be set aside under the HUBZone, SDVOSB or WOSB programs; other releases still need a written request and AA/BD concurrence (RFO 19.108-11(a)-(b)).",
+      "changeType": "new",
+      "whatItMeans": "An incumbent 8(a) firm's work can move to a HUBZone, SDVOSB or WOSB competition without SBA weighing its business-development impact. SBA's own regulation still describes a request-and-concurrence process (see conflicts).",
+      "whoItHits": "8(a) incumbents; HUBZone/SDVOSB/WOSB firms gain access",
+      "confidence": "high",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_815",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_108_11",
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/GSA_RFO_Deviation_Part-19.pdf",
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/far-companion.pdf",
+        "https://www.ecfr.gov/current/title-13/section-124.504#p-124.504(d)(1)"
+      ]
+    },
+    {
+      "id": "wosb-pending-application-path",
+      "topic": "WOSB/EDWOSB: pending applications",
+      "subpart": "19.1",
+      "before": "An offeror with a pending WOSB/EDWOSB certification application may compete on a WOSB/EDWOSB set-aside; if it is the apparent winner, the CO asks SBA for a determination, which SBA makes within 15 calendar days (FAR 19.1505(d)-(f)).",
+      "after": "For a WOSB/EDWOSB set-aside or sole source, the CO must verify before award that the offeror is designated as certified in SAM; there is no pending-application path in the text (RFO 19.107-1(b); RFO 52.219-29(c), 52.219-30(c)).",
+      "changeType": "narrowed",
+      "whatItMeans": "In agencies using the deviation, women-owned firms should hold an actual certification before bidding on WOSB/EDWOSB set-asides. SBA's rule still allows pending applicants (see conflicts), so expect disputes.",
+      "whoItHits": "Women-owned firms awaiting SBA or third-party certification",
+      "confidence": "medium",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_1505",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_107_1",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-52#FAR_52_219_29",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-52#FAR_52_219_30",
+        "https://www.ecfr.gov/current/title-13/section-127.504#p-127.504(a)(3)"
+      ]
+    },
+    {
+      "id": "sdvosb-certified-only",
+      "topic": "SDVOSB: certification transition language dropped",
+      "subpart": "19.1",
+      "before": "An SDVOSB qualifies if it is SBA-certified in SAM or self-represented in SAM and applied to SBA on or before December 31, 2023 (FAR 19.1403(b), 19.1405(c), 19.1406(b)).",
+      "after": "The CO verifies that the offeror is designated in SAM as an SBA-certified SDVOSB; the 2023 grandfather path is gone (RFO 19.106-1(b); RFO 52.219-27(c)). DoD's Revision 1 deviation uses alternate verification procedures at DFARS 219.106-70 until SAM.gov aligns with the FAR.",
+      "changeType": "narrowed",
+      "whatItMeans": "Only SBA-certified SDVOSBs (VetCert) count. Few firms should still be pending from 2023, but any that are are now out.",
+      "whoItHits": "SDVOSBs",
+      "confidence": "high",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_1403",
+        "https://www.acquisition.gov/far/part-19#FAR_19_1405",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_106_1",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-52#FAR_52_219_27",
+        "https://www.acq.osd.mil/dpap/dars/classdev/DFARS_RFO/Part-219/2026-O0037_Rev1_TAB_A_Class_Deviation_Part_219.pdf"
+      ]
+    },
+    {
+      "id": "subcontractor-socioeconomic-certification",
+      "topic": "Counting subcontractors toward prime goals",
+      "subpart": "19.3",
+      "before": "To count under a subcontracting plan, a subcontractor may represent itself as small, VOSB, SDVOSB, HUBZone, SDB or WOSB, and the prime may accept the representation (FAR 19.703(a)).",
+      "after": "A subcontractor represents itself only as small or SDB; for VOSB, SDVOSB, HUBZone or WOSB it must be certified by SBA (RFO 19.302-2(a)(1)).",
+      "changeType": "narrowed",
+      "whatItMeans": "Large primes may stop counting self-certified veteran-owned or woman-owned subs toward socioeconomic goals and favor certified firms. SBA's current rule only bars self-certification for HUBZone and SDVOSB subcontractors, so the scope is contested.",
+      "whoItHits": "Small subcontractors to large primes (VOSB, WOSB especially)",
+      "confidence": "medium",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_703",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_302_2",
+        "https://www.ecfr.gov/current/title-13/section-125.3#p-125.3(b)(4)"
+      ]
+    },
+    {
+      "id": "subcontracting-reporting-spr",
+      "topic": "Subcontracting reports: eSRS to SAM.gov SPR, 45 days",
+      "subpart": "19.3",
+      "before": "ISRs and SSRs go into eSRS; reports are due 30 days after each period ends, and COs must acknowledge or reject them within 60 days (FAR 19.704(a)(10)(iv), 19.705-6(f), (j)).",
+      "after": "Reports go into Subcontracting Plan Reporting (SPR) at SAM.gov within 45 days after the period ends (e.g., by Nov 14 for the FY ending Sept 30); CO acknowledge/reject steps are removed and agencies set their own monitoring (RFO 19.302-2(a), 19.302-3(f), 19.206-1(c)(4)); this came from the February 20, 2026 supplement.",
+      "changeType": "narrowed",
+      "whatItMeans": "Primes with subcontracting plans get 15 more days and a new system; the codified FAR still says eSRS and 30 days, so check which text your contract uses.",
+      "whoItHits": "Other-than-small primes with subcontracting plans; small firms that grew out of size",
+      "confidence": "high",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_704",
+        "https://www.acquisition.gov/far/part-19#FAR_19_705_6",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_302_2",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_302_3",
+        "https://www.acquisition.gov/sites/default/files/practitioner_albums/far-part-19-small-business/content/index.html",
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/GSA_RFO_Deviation_Part-19.pdf"
+      ]
+    },
+    {
+      "id": "sb-specialist-and-pcr-review",
+      "topic": "Small business specialist / PCR review role",
+      "subpart": "19.1",
+      "before": "The contracting activity must coordinate with the agency small business specialist no later than 30 days before issuing a solicitation (FAR 19.201(d)(1)); FAR 19.201(c) lists OSDBU duties; PCRs may review any proposed acquisition above the MPT on request (FAR 19.501(d)) and may pick acquisitions for review at their discretion (FAR 19.202-1(e)(1)(iv)).",
+      "after": "RFO 19.102 keeps the 30-day package to the PCR for bundled, consolidated or too-large requirements, the 15-day PCR recommendation, the rejection/appeal chain and the OSDBU recommendation review (RFO 19.102(e)-(g)). The specialist 30-day coordination, the OSDBU duty list, the any-acquisition review and the discretionary-review trigger are not in RFO Part 19; the specialist appears only in subcontracting-plan review (RFO 19.206-3(d)(7)) and bundling plans (RFO 7).",
+      "changeType": "removed",
+      "whatItMeans": "There are fewer built-in checkpoints where an advocate must see a requirement before release. Small firms should take capability briefings to the OSDBU and PCR early instead of counting on a mandatory review.",
+      "whoItHits": "All small businesses relying on SB advocates in market research",
+      "confidence": "medium",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_201",
+        "https://www.acquisition.gov/far/part-19#FAR_19_202_1",
+        "https://www.acquisition.gov/far/part-19#FAR_19_501",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_102",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-7",
+        "https://www.acquisition.gov/sites/default/files/practitioner_albums/far-part-19-small-business/content/index.html"
+      ]
+    },
+    {
+      "id": "reserve-direct-orders-removed",
+      "topic": "Reserves: direct orders to a sole reserve awardee",
+      "subpart": "19.1",
+      "before": "Under a MAC reserve, if there is only one award to a given type of small business, the CO may issue orders directly to it (FAR 19.504(c)(1)(ii)); clause 52.219-32 implements this (FAR 19.507(g)(2)).",
+      "after": "Reserves remain discretionary (RFO 19.112), but clause 52.219-32 is removed and there is no direct-order authority; orders under reserves follow the general order set-aside rule (RFO 19.111-2; RFO 52.219-32 [Reserved]).",
+      "changeType": "removed",
+      "whatItMeans": "Holding the only reserve slot no longer guarantees a path to orders. Reserve awardees must compete for set-aside or unrestricted orders.",
+      "whoItHits": "Small businesses holding reserve awards on full-and-open MACs",
+      "confidence": "high",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_504",
+        "https://www.acquisition.gov/far/part-19#FAR_19_507",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_112",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-52#FAR_52_219_32",
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/GSA_RFO_Deviation_Part-19.pdf"
+      ]
+    },
+    {
+      "id": "coc-agency-appeal-removed",
+      "topic": "Certificate of Competency: agency appeal path",
+      "subpart": "19.2",
+      "before": "For COCs between $100,000 and $25 million, an agency can appeal SBA's intent to issue a COC to SBA headquarters through its OSDBU; above $25 million SBA HQ offers the agency a review (FAR 19.602-3).",
+      "after": "FAR 19.602-3 is removed; RFO 19.204 keeps mandatory referral, the 15-business-day hold, and says SBA COCs are final on all elements of responsibility (RFO 19.204(f), (i)).",
+      "changeType": "removed",
+      "whatItMeans": "In the FAR text, an SBA COC is no longer second-guessed through an agency appeal. Whether SBA's own COC regulation keeps an agency appeal was not checked (see gaps).",
+      "whoItHits": "Small businesses found nonresponsible",
+      "confidence": "medium",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_602_3",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_204",
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/GSA_RFO_Deviation_Part-19.pdf"
+      ]
+    },
+    {
+      "id": "hubzone-price-preference-details-to-companion",
+      "topic": "HUBZone 10% price evaluation preference mechanics",
+      "subpart": "19.2",
+      "before": "The 10% factor shall be applied by line item or group of items, other factors are added first, and a tie between a HUBZone firm and a large business goes to the HUBZone firm (FAR 19.1307(c)-(d)).",
+      "after": "The 10% preference itself stays mandatory in full and open competition (RFO 19.110, 19.207); the line-item method and tie-break move to the FAR Companion as 'should' guidance (FC 19.110).",
+      "changeType": "moved-to-guidance",
+      "whatItMeans": "HUBZone firms keep the preference, but the tie-break and line-item mechanics are no longer binding regulation. Ask the CO how the factor will be applied.",
+      "whoItHits": "HUBZone firms in full-and-open competitions",
+      "confidence": "high",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_1307",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_110",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_207",
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/far-companion.pdf",
+        "https://www.acquisition.gov/sites/default/files/practitioner_albums/far-part-19-small-business/content/index.html"
+      ]
+    }
+  ],
+  "unchanged": [
+    {
+      "topic": "Size standards, NAICS assignment and the October 1, 2028 multi-NAICS MAC date",
+      "detail": "Same rules: one NAICS code per solicitation; for MAC solicitations issued after October 1, 2028, either one NAICS or one per distinct portion/category; size is set as of the initial offer with price; NAICS appeals are due within 10 calendar days.",
+      "currentCite": "FAR 19.102(a)-(b), 19.103(a)(1)",
+      "rfoCite": "RFO 19.103(a)-(d); RFO 19.101(a)(2)(ii)(B)",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_102",
+        "https://www.acquisition.gov/far/part-19#FAR_19_103",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_103",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_101"
+      ]
+    },
+    {
+      "topic": "Sole-source and 8(a) competitive dollar thresholds",
+      "detail": "HUBZone and WOSB/EDWOSB sole sources: $5.5M ($8.5M manufacturing); SDVOSB: $5M ($8.5M manufacturing); 8(a) competitive threshold $5.5M ($8.5M manufacturing); 8(a) sole sources over $30M still need a justification.",
+      "currentCite": "FAR 19.1306(a)(2), 19.1406(a)(2), 19.1506(c)(1), 19.805-1(a)(2), 19.808-1(a)",
+      "rfoCite": "RFO 19.105-3(a)(2), 19.106-3(a)(2), 19.107-3(c)(1), 19.108-7(a)(2), 19.208-2(a)(1)",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_1306",
+        "https://www.acquisition.gov/far/part-19#FAR_19_1406",
+        "https://www.acquisition.gov/far/part-19#FAR_19_1506",
+        "https://www.acquisition.gov/far/part-19#FAR_19_805_1",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_105_3",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_106_3",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_107_3",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_108_7",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_208_2"
+      ]
+    },
+    {
+      "topic": "Subcontracting plan threshold, good-faith test and liquidated damages",
+      "detail": "Plans are still required above $900,000 ($2 million construction) when subcontracting possibilities exist; plans are not required from small businesses; missing goals alone is not bad faith; liquidated damages equal the shortfall.",
+      "currentCite": "FAR 19.702(a)-(b), 19.705-7(b), (e)",
+      "rfoCite": "RFO 19.109(a)-(b), 19.302-2(b)-(c)",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_702",
+        "https://www.acquisition.gov/far/part-19#FAR_19_705_7",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_109",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_302_2"
+      ]
+    },
+    {
+      "topic": "Size protest mechanics",
+      "detail": "Interested parties still have 5 business days after notice of the apparent awardee; SBA Area Offices decide within 15 business days; award is held unless the CO determines otherwise in writing.",
+      "currentCite": "FAR 19.302",
+      "rfoCite": "RFO 19.201-2(d)-(g)",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_302",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_201_2"
+      ]
+    },
+    {
+      "topic": "Limitations-on-subcontracting percentages",
+      "detail": "50% services, 50% supplies (excluding materials), 85% general construction, 75% special trades; similarly situated subs still count as self-performance.",
+      "currentCite": "FAR 19.505(b)(1)",
+      "rfoCite": "RFO 52.219-14(e)",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19#FAR_19_505",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-52#FAR_52_219_14"
+      ]
+    }
+  ],
+  "status": {
+    "modelText": {
+      "issued": "2025-09-26",
+      "updates": [
+        {
+          "date": "2026-02-20",
+          "what": "Supplemental model deviation (Supplement 1): eSRS replaced by SAM.gov Subcontracting Plan Reporting (SPR); ISR due date 30 to 45 days; manual CO review/reject steps removed.",
+          "sourceUrls": [
+            "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide#19",
+            "https://www.acquisition.gov/sites/default/files/practitioner_albums/far-part-19-small-business/content/index.html",
+            "https://www.acquisition.gov/sites/default/files/page_file_uploads/GSA_RFO_Deviation_Part-19.pdf"
+          ]
+        }
+      ],
+      "sourceUrls": [
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide#19",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19"
+      ],
+      "note": "Deviation guide header for Part 19 reads 'Issuance Date: September 26, 2025 UPDATE: February 20, 2026'. Site footer 'Last Updated 10/26/2026' is site-wide, not Part 19-specific."
+    },
+    "codifiedFar": {
+      "fac": "2026-01",
+      "effective": "2026-03-13",
+      "note": "acquisition.gov/far/part-19 still shows the pre-RFO Part 19 'Small Business Programs' (subparts 19.1-19.15).",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far/part-19"
+      ]
+    },
+    "formalRulemaking": {
+      "farCase": null,
+      "published": false,
+      "announcedDate": null,
+      "note": "A Federal Register API search for 'Revolutionary FAR Overhaul' (13 results through 2026-10-05) turned up proposed rules for Parts 1/2/4/33/39/40/53 (FAR Case 2026-001), 6/7/10/18/26/37/41 (2026-002), 8/12/13/15/38/44/51 (2026-003), 5/24/29 (2026-005), 16/17/35 (2026-006), 3/49 (2026-007), 14/28/36/52 (2026-010), and 9/27/47 (2026-011). None covers Part 19, and no Part 19 FAR case number was found.",
+      "sourceUrls": [
+        "https://www.federalregister.gov/api/v1/documents.json?conditions[term]=%22Revolutionary+FAR+Overhaul%22&order=newest&per_page=100",
+        "https://www.federalregister.gov/api/v1/documents/2026-19160.json",
+        "https://www.federalregister.gov/api/v1/documents/2026-12559.json"
+      ]
+    },
+    "dodDfars219": {
+      "deviation": "2026-O0037",
+      "signed": "2026-01-21",
+      "effective": "2026-02-01",
+      "revision": {
+        "number": "2026-O0037, Revision 1",
+        "date": "2026-07-24",
+        "effective": "immediately (on issuance)",
+        "summary": "Supersedes the Jan 21, 2026 deviation and SDVOSB deviation 2024-O0002 Rev 1; adopts SAM.gov SPR reporting; uses DFARS 219.106-70 for SDVOSB eligibility checks until SAM.gov aligns; corrects DFARS 219.208-2 threshold from $150M to $100M."
+      },
+      "certificateCheck": "acq.osd.mil TLS verified normally (curl ssl_verify_result=0); no certificate failure.",
+      "sourceUrls": [
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/DoD_RFO_Deviation_Part-19.pdf",
+        "https://www.acq.osd.mil/dpap/dars/dfars_far_overhaul_class_deviations.html",
+        "https://www.acq.osd.mil/dpap/dars/classdev/DFARS_RFO/Part-219/2026-O0037_Rev1_TAB_A_Class_Deviation_Part_219.pdf"
+      ]
+    }
+  },
+  "agencyDates": [
+    {
+      "agency": "Commodity Futures Trading Commission (CFTC)",
+      "date": "2025-11-03",
+      "dateBasis": "effective",
+      "note": "Memo dated and signed 2025-09-30.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/CFTC_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Consumer Financial Protection Bureau (CFPB)",
+      "date": "2026-06-08",
+      "dateBasis": "signature",
+      "note": "Deviation 2026-0015, 'effective immediately'.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/CFPB_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Consumer Product Safety Commission (CPSC)",
+      "date": "2025-11-13",
+      "dateBasis": "signature",
+      "note": "Memo header dated 2025-09-30; effective immediately.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/CPSC_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Department of Commerce (DOC)",
+      "date": "2026-01-15",
+      "dateBasis": "effective",
+      "note": "Procurement Memorandum 2026-06 (revised 2026-04-22) covering Parts 1-53; Part 19 section gives Jan 15, 2026.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/DOC_RFO_Deviation_Parts-1-53.pdf"
+    },
+    {
+      "agency": "Department of Defense (DoD)",
+      "date": "2026-02-01",
+      "dateBasis": "effective",
+      "note": "DARS 2026-O0037 signed 2026-01-21; Revision 1 dated 2026-07-24 on acq.osd.mil.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/DoD_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Department of Education (ED)",
+      "date": "2025-12-12",
+      "dateBasis": "signature",
+      "note": "Acquisition Alert 2026-10.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/ED_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Department of Energy (DOE)",
+      "date": "2025-12-08",
+      "dateBasis": "signature",
+      "note": "DOE SPE signature; NNSA SPE signed 2025-11-24. Effective-date text not machine-readable.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/DOE_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Department of Homeland Security (DHS)",
+      "date": "2025-11-03",
+      "dateBasis": "effective",
+      "note": "Signed 2025-10-16; clauses marked DEVIATION 26-03.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/DHS_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Department of Housing and Urban Development (HUD)",
+      "date": "2025-11-03",
+      "dateBasis": "effective",
+      "note": "Signature dated 2026-01-29.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/HUD_RFO_Deviation-Part-19.pdf"
+    },
+    {
+      "agency": "Department of the Interior (DOI)",
+      "date": "2026-01-30",
+      "dateBasis": "effective",
+      "note": "Optional use from issuance until the effective date.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/DOI_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Department of Justice (DOJ)",
+      "date": "2025-12-08",
+      "dateBasis": "signature",
+      "note": "Effective immediately.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/DOJ_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Department of Labor (DOL)",
+      "date": "2025-11-03",
+      "dateBasis": "effective",
+      "note": "Original RFO-2025-19 issued 2025-11-19; Supplement 1 dated 2026-06-30.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/DOL_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Department of State (DOS)",
+      "date": "2026-02-27",
+      "dateBasis": "effective",
+      "note": "Signed same day; memo notes model text released 2025-09-26 and updated 2026-02-20.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/DOS_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Department of Transportation (DOT)",
+      "date": "2025-11-14",
+      "dateBasis": "signature",
+      "note": "Effective immediately.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/DOT_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Department of the Treasury",
+      "date": "2025-11-25",
+      "dateBasis": "signature",
+      "note": "Effective immediately.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/TREASURY_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Department of Veterans Affairs (VA)",
+      "date": "2025-11-19",
+      "dateBasis": "signature",
+      "note": "Effective immediately.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/VA_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Environmental Protection Agency (EPA)",
+      "date": "2026-02-09",
+      "dateBasis": "signature",
+      "note": "Effective immediately.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/EPA_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Federal Communications Commission (FCC)",
+      "date": "2026-08-06",
+      "dateBasis": "effective",
+      "note": "RFO-2026-19; signature dated 2026-08-19.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/FCC_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "General Services Administration (GSA)",
+      "date": "2025-11-03",
+      "dateBasis": "effective",
+      "note": "RFO-2025-19 issued 2025-09-26; Supplement 1 dated 2026-02-20.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/GSA_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Millennium Challenge Corporation (MCC)",
+      "date": "2025-11-14",
+      "dateBasis": "effective",
+      "note": "Applies to solicitations/new contracts as of 2025-11-14.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/MCC_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "National Aeronautics and Space Administration (NASA)",
+      "date": "2026-02-20",
+      "dateBasis": "signature",
+      "note": "PCD 25-48A (revision); NASA Case 2025-N052.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/NASA_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "National Archives and Records Administration (NARA)",
+      "date": "2026-01-26",
+      "dateBasis": "first date in memo",
+      "note": "Effective as of date signed; applies to actions issued/awarded on or after 2026-02-01.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/NARA_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "National Science Foundation (NSF)",
+      "date": "2025-12-02",
+      "dateBasis": "first date in memo",
+      "note": "'Effective as dated'; signature dated 2025-12-05.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/NSF_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Nuclear Regulatory Commission (NRC)",
+      "date": "2025-12-11",
+      "dateBasis": "signature",
+      "note": "Effective immediately; file includes Supplement 1.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/NRC_RFO_Deviation_Part-19+Supp1.pdf"
+    },
+    {
+      "agency": "Office of Personnel Management (OPM)",
+      "date": "2026-04-29",
+      "dateBasis": "signature",
+      "note": "Effective immediately.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/OPM_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Pension Benefit Guaranty Corporation (PBGC)",
+      "date": "2026-02-23",
+      "dateBasis": "signature",
+      "note": "",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/PBGC_RFO_Deviation_Part_19.pdf"
+    },
+    {
+      "agency": "Securities and Exchange Commission (SEC)",
+      "date": "2026-02-25",
+      "dateBasis": "signature",
+      "note": "Effective immediately; supersedes version 2025-040 dated 2025-09-30.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/SEC_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "Social Security Administration (SSA)",
+      "date": "2025-01-28",
+      "dateBasis": "first date in memo",
+      "note": "Recorded as printed; probably a typo, since the memo cites events from Sept 2025 (see conflicts). Multi-part deviation (Parts 14, 19, 25, 32, 37, 41, 43, 47, 53).",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/SSA_RFO_Deviaiton_Parts-14-19-25-32-37-41-43-47and53.pdf"
+    },
+    {
+      "agency": "Udall Foundation",
+      "date": "2025-11-24",
+      "dateBasis": "signature",
+      "note": "Effective immediately.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/UDALL_RFO_Deviation_Part-19.pdf"
+    },
+    {
+      "agency": "U.S. Department of Agriculture (USDA)",
+      "date": "2025-11-03",
+      "dateBasis": "effective",
+      "note": "Signed 2025-10-02.",
+      "url": "https://www.acquisition.gov/sites/default/files/page_file_uploads/USDA_RFO_Deviation_Part-19.pdf"
+    }
+  ],
+  "faq": [
+    {
+      "q": "Are order set-asides still required under the new FAR Part 19?",
+      "a": "No. Under the RFO model text, setting aside an order on a multiple-award contract is up to the contracting officer, and the text says that choice is not a basis for protest. The rule of two still applies to standalone contracts, not to orders.",
+      "changeIds": [
+        "order-set-asides-discretionary-not-protestable",
+        "rule-of-two-contract-level"
+      ]
+    },
+    {
+      "q": "Does the rule of two still apply to small business contracts?",
+      "a": "Yes. For contracts above the micro-purchase threshold, the CO must set the contract aside when two or more responsible small businesses are expected to make competitive offers, and must document a decision not to. The FAR Council kept this above the SAT even though only the band below the SAT is statutory.",
+      "changeIds": [
+        "rule-of-two-contract-level"
+      ]
+    },
+    {
+      "q": "Do I still have to rerepresent my size for task orders?",
+      "a": "Under the RFO text, no. Rerepresentation is tied to contract-level events: a novation, a merger or acquisition, and the long-term-contract checkpoints at year five and each later option. Agency credit follows your contract-level status.",
+      "changeIds": [
+        "order-level-rerepresentation-removed"
+      ]
+    },
+    {
+      "q": "Did the limitations on subcontracting change in the FAR overhaul?",
+      "a": "The percentages did not: 50% for services and supplies, 85% for general construction and 75% for special trades. They moved out of Part 19 and into the 52.219-14 clause text, so read the clause in your contract.",
+      "changeIds": [
+        "limitations-on-subcontracting-moved-to-clause"
+      ]
+    },
+    {
+      "q": "Can a women-owned business with a pending WOSB certification still bid on WOSB set-asides?",
+      "a": "The current codified FAR and SBA's rule allow it, but the RFO model text requires the CO to verify the firm is certified in SAM before award, with no pending-application path. If you are pursuing WOSB or EDWOSB set-asides at an agency using the deviation, get certified first.",
+      "changeIds": [
+        "wosb-pending-application-path"
+      ]
+    },
+    {
+      "q": "Is the new FAR Part 19 actually in effect?",
+      "a": "It is in effect agency by agency through class deviations. For example, GSA's took effect November 3, 2025 and DoD's February 1, 2026. It is not yet codified: as of November 2, 2026, no proposed rule for Part 19 appears in the Federal Register.",
+      "changeIds": []
+    },
+    {
+      "q": "What happened to eSRS subcontracting reports?",
+      "a": "eSRS was decommissioned February 20, 2026. Reports now go to Subcontracting Plan Reporting in SAM.gov, and the RFO text gives primes 45 days after each period instead of 30.",
+      "changeIds": [
+        "subcontracting-reporting-spr"
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "action": "Inventory your MACs (MAS, GWACs, agency IDIQs) and note whether each one's order set-asides are written as mandatory or discretionary; for vehicles under agencies using the deviation, plan your pipeline assuming set-asides are discretionary and that a decision not to set aside an order is not protestable.",
+      "changeId": "order-set-asides-discretionary-not-protestable"
+    },
+    {
+      "action": "If you are a WOSB/EDWOSB with a pending application, finish SBA or third-party certification and confirm it shows in SAM before bidding WOSB set-asides at deviation agencies.",
+      "changeId": "wosb-pending-application-path"
+    },
+    {
+      "action": "If you subcontract to large primes as a veteran-owned or woman-owned firm, get SBA certification (VetCert or WOSB) so the prime can count you toward its socioeconomic goals.",
+      "changeId": "subcontractor-socioeconomic-certification"
+    },
+    {
+      "action": "If you hold a socioeconomic certification, brief OSDBU and SBA PCRs during market research and ask for a HUBZone, SDVOSB, WOSB or 8(a) set-aside in writing, because the FAR no longer tells COs to consider those programs first.",
+      "changeId": "socioeconomic-priority-removed"
+    },
+    {
+      "action": "8(a) firms: get on SBA-approved government-wide vehicles that allow 8(a) order competition, since below-threshold work must be tried there before a sole source.",
+      "changeId": "8a-compete-first-below-threshold"
+    },
+    {
+      "action": "If you hold a subcontracting plan, move ISR/SSR filing to SPR in SAM.gov and calendar the 45-day deadlines, then check whether your contract has the deviation 52.219-9 or the codified version.",
+      "changeId": "subcontracting-reporting-spr"
+    }
+  ],
+  "gaps": [
+    "No Federal Register document and no FAR case number for RFO Part 19 found via the FR API (searched 'Revolutionary FAR Overhaul', 'Overhaul Part 19', FAR Case 2026-004/008/009/012). Formal rulemaking status recorded as unpublished, case null.",
+    "No standalone redline or comparison PDF for Part 19 found on acquisition.gov; the only redline is the 'Line Out' embedded in the Practitioner Album, which says it covers 'high level changes' and is 'not a crosswalk'. Several changes in the model text (WOSB pending-application removal, socioeconomic sole-source 'shall consider before' wording) are not struck in that line-out.",
+    "FAR Overhaul FAQs and 'You Said, We Did' pages had no Part 19-specific entries (Part 19 has not reached proposed-rule stage).",
+    "HHS Part 19 file is Amendment 3 to FAR CD 2026-01; no signature or effective date for Amendment 3 was readable, so HHS was left out of agencyDates (memo says CD 2026-01 was issued 2025-11-21).",
+    "DOE PDF text is font-encoded; dates were read from the signature images only (2025-12-08, 2025-11-24). No effective-date statement was read.",
+    "Did not check SBA's COC regulation (13 CFR 125.5) for an agency appeal process to replace removed FAR 19.602-3.",
+    "Current FAR 19.1307(a)(3) bar on applying the HUBZone preference to the reserved portion of a MAC does not appear in RFO 19.110; did not confirm whether it moved elsewhere.",
+    "Current FAR 19.705-1(b)(1) requirement of a subcontracting plan for each qualifying IDIQ was not found in RFO Part 19; not confirmed whether it moved.",
+    "DFARS 219.106-70 alternate SDVOSB verification text (in the Rev 1 Word attachment) was not read; only the cover memo summary was used.",
+    "Did not compare RFO 52.219-1, 52.219-6, 52.219-8 and 52.219-9 clause text line by line against the codified clauses.",
+    "Did not verify whether any agency deviation narrows or adds to the model text beyond the cover memos (e.g., DHS deviation 26-03 clause dates)."
+  ],
+  "conflicts": [
+    {
+      "issue": "Order set-aside priority and mandatory order set-asides",
+      "sideA": "RFO 19.111-2 makes order set-asides purely discretionary and reserves 52.219-13 Alt I.",
+      "sideB": "13 CFR 125.2(e)(6)(ii) lets the MAC say orders will be set aside when the rule of two is met, and (e)(6)(iii) says the CO 'shall first consider' socioeconomic programs for orders above the SAT.",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_111_2",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-52#FAR_52_219_13",
+        "https://www.ecfr.gov/current/title-13/section-125.2#p-125.2(e)(6)(iii)"
+      ]
+    },
+    {
+      "issue": "WOSB pending applications",
+      "sideA": "RFO 19.107-1(b) and 52.219-29/-30 require SAM-certified status before award.",
+      "sideB": "13 CFR 127.504(a)(3) lets a firm with a complete pending application offer, with a 15-day SBA determination.",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_107_1",
+        "https://www.ecfr.gov/current/title-13/section-127.504#p-127.504(a)(3)"
+      ]
+    },
+    {
+      "issue": "Order-level rerepresentation",
+      "sideA": "RFO 19.301 removes order-level rerepresentation.",
+      "sideB": "RFO's own protest timing rules (19.201-4(e)(1)(ii)(A), 19.201-5(e)(1)(ii)(A), 19.201-6(e)(1)(ii)(A)) still reference CO-requested rerepresentation for orders, and 13 CFR 127.504(d)(1)(i) requires WOSB recertification for WOSB set-aside orders under unrestricted MACs.",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_301",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_201_4",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_201_6",
+        "https://www.ecfr.gov/current/title-13/section-127.504#p-127.504(d)(1)(i)"
+      ]
+    },
+    {
+      "issue": "Automatic 8(a) release",
+      "sideA": "RFO 19.108-11(a)(2) releases follow-ons automatically when set aside for HUBZone, SDVOSB or WOSB.",
+      "sideB": "13 CFR 124.504(d)(1) requires a written request and AA/BD concurrence; its (d)(4) exceptions cover only certain orders and mandatory sources.",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_108_11",
+        "https://www.ecfr.gov/current/title-13/section-124.504#p-124.504(d)(1)"
+      ]
+    },
+    {
+      "issue": "Subcontractor socioeconomic self-certification",
+      "sideA": "RFO 19.302-2(a)(1) requires SBA certification for VOSB, SDVOSB, HUBZone and WOSB subcontractors to count.",
+      "sideB": "13 CFR 125.3(b)(4) lets primes rely on self-certification except for HUBZone and SDVO subcontractors.",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_302_2",
+        "https://www.ecfr.gov/current/title-13/section-125.3#p-125.3(b)(4)"
+      ]
+    },
+    {
+      "issue": "Partial set-aside: 'identical principles' vs. text change",
+      "sideA": "GSA memo and Practitioner Album say the consolidated partial set-aside rule has identical underlying principles.",
+      "sideB": "Current FAR 19.502-3(a) says 'shall set aside' for non-MAC contracts; RFO 19.104-2(a) says 'may, at their discretion'.",
+      "sourceUrls": [
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/GSA_RFO_Deviation_Part-19.pdf",
+        "https://www.acquisition.gov/far/part-19#FAR_19_502_3",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_104_2"
+      ]
+    },
+    {
+      "issue": "Protest cross-reference",
+      "sideA": "RFO 19.111-2(a)(2) points to 16.505(a)(10)(i) for other protest grounds.",
+      "sideB": "In the RFO Part 16 model text, order protest limits are at 16.508 (DoD/NASA/Coast Guard threshold $35M, vs $25M in codified FAR 16.505(a)(10)).",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_111_2",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-16#FAR_16_508",
+        "https://www.acquisition.gov/far/part-16#FAR_16_505"
+      ]
+    },
+    {
+      "issue": "Dangling internal cross-reference",
+      "sideA": "RFO 19.301(d) cites 19.109(c)(3) for adding a subcontracting plan after a size change.",
+      "sideB": "RFO 19.109(c) has only paragraphs (1) and (2).",
+      "sourceUrls": [
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_301",
+        "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_109"
+      ]
+    },
+    {
+      "issue": "SSA memo date",
+      "sideA": "SSA Part 19 deviation memo is dated 'January 28, 2025'.",
+      "sideB": "The same memo cites agency deviations signed September 5 and 22, 2025, so the printed year is probably wrong.",
+      "sourceUrls": [
+        "https://www.acquisition.gov/sites/default/files/page_file_uploads/SSA_RFO_Deviaiton_Parts-14-19-25-32-37-41-43-47and53.pdf"
+      ]
+    }
+  ]
+}

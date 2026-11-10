@@ -10,6 +10,7 @@ import {
   FAR, FEATURED_AGENCIES, FOCUS_LABELS, LIVE_PARTS, agencyByShort, dodDeviationFor, evidenceCount, fmtDate, matchAll,
   partApplicability, partByNumber, type Focus, type Listing, type Part,
 } from '../lib/farApplicability';
+import { hasPartPage, partPagePath } from '../lib/farParts';
 
 // Content comes from src/content/far-overhaul.json, rewritten by the weekly tracker
 // job and gated by scripts/check-far-data.mjs. This file holds layout only: change a
@@ -93,6 +94,11 @@ function PartStatusDetail({ p }: { p: Part }) {
         {p.finalRuleUrl && <Source href={p.finalRuleUrl} label="Final rule" />}
         {dod && <Source href={dod.url} label="DoD deviation" />}
       </div>
+      {hasPartPage(p.part) && (
+        <Link to={partPagePath(p.part)} className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#030B17] bg-[#00c3ff] rounded-lg px-4 py-2 hover:scale-[1.02] transition-transform font-body">
+          What changed in Part {p.part} <ArrowRight className="w-4 h-4" />
+        </Link>
+      )}
     </>
   );
 }
@@ -251,7 +257,12 @@ function ImpactChecker() {
                 <p className="text-sm text-[#c9d5e3] font-body leading-relaxed mt-2"><span className="text-[#8b9bb4]">What changed: </span>{impact.whatChanged}</p>
                 <p className="text-sm text-white font-body leading-relaxed mt-2"><span className="text-[#8b9bb4]">Do this now: </span>{impact.doNow}</p>
                 <div className="flex flex-wrap items-center gap-2 mt-4">
-                  {impact.parts.map(p => <span key={p} className="px-2.5 py-1 rounded-md border border-[#1e2d4a] text-xs text-[#c9d5e3] font-body">{p}</span>)}
+                  {impact.parts.map(p => {
+                    const n = Number(p.match(/^FAR (\d+)$/)?.[1]);
+                    return hasPartPage(n)
+                      ? <Link key={p} to={partPagePath(n)} className="px-2.5 py-1 rounded-md border border-[#00c3ff]/40 text-xs text-[#00c3ff] hover:text-white font-body">{p}: what changed</Link>
+                      : <span key={p} className="px-2.5 py-1 rounded-md border border-[#1e2d4a] text-xs text-[#c9d5e3] font-body">{p}</span>;
+                  })}
                   {agency && parts.map(p => (
                     <span key={p.part} className={`px-2.5 py-1 rounded-md text-xs font-semibold font-body ${LISTING_STYLE[p.listing].chip}`}>
                       {agency.short} Part {p.part}: {LISTING_STYLE[p.listing].label}

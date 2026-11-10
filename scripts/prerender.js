@@ -11,7 +11,7 @@
  */
 
 import { createServer } from 'vite';
-import { readFileSync, writeFileSync, mkdirSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync, readdirSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { execFileSync } from 'child_process';
@@ -55,6 +55,12 @@ const routes = [
   { path: '/tools/pursuit-readout',                   file: 'src/pages/PursuitReadout.tsx',              changefreq: 'weekly',  priority: '0.9' },
   { path: '/tools/find-my-matches',                   file: 'src/pages/FindMyMatches.tsx',               changefreq: 'weekly',  priority: '0.9' },
 ];
+
+// One page per FAR part with a deep-dive file in src/content/far-parts/ (part-19.json ->
+// /far-overhaul/part-19). Adding a part is adding its file; lastmod follows that file.
+for (const f of readdirSync(resolve(rootDir, 'src/content/far-parts')).filter(f => /^part-\d+\.json$/.test(f)).sort()) {
+  routes.push({ path: `/far-overhaul/${f.replace(/\.json$/, '')}`, file: `src/content/far-parts/${f}`, changefreq: 'weekly', priority: '0.8' });
+}
 
 const LIST_ROUTE = '/government-contracts-for-bid/construction';
 const LIST_NAICS = '236220';

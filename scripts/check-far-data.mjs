@@ -1,7 +1,7 @@
 // Gate for src/content/far-overhaul.json. Runs in prebuild, so a bad weekly update
 // fails the build and never deploys. Rules: every fact links to a .gov or .mil page,
 // dates are real ISO dates or null (never guessed), and the ranked lists stay ranked.
-import { readFileSync } from 'fs';
+import { readFileSync, readdirSync } from 'fs';
 
 const file = new URL('../src/content/far-overhaul.json', import.meta.url);
 const d = JSON.parse(readFileSync(file, 'utf8'));
@@ -133,8 +133,56 @@ const raw = readFileSync(file, 'utf8');
 const hit = raw.match(banned);
 if (hit) fail(`banned word in data: "${hit[0]}"`);
 
+// ── Deep-dive files, one per FAR part (src/content/far-parts/part-N.json) ──────
+// Same rules: every source .gov/.mil, real dates, no markup, nothing private.
+const TYPES = new Set(['removed', 'narrowed', 'expanded', 'moved-to-guidance', 'unchanged-but-reworded', 'new']);
+const partsDir = new URL('../src/content/far-parts/', import.meta.url);
+let partFiles = [];
+try { partFiles = readdirSync(partsDir).filter((f) => f.endsWith('.json')); } catch { /* no deep dives yet */ }
+for (const f of partFiles) {
+  const at = (s) => `${f}: ${s}`;
+  const m = f.match(/^part-(\d+)\.json$/);
+  if (!m) { fail(at('file name must be part-N.json')); continue; }
+  const rawP = readFileSync(new URL(f, partsDir), 'utf8');
+  const p = JSON.parse(rawP);
+  walk(p, f);
+  const bw = rawP.match(banned);
+  if (bw) fail(at(`banned word "${bw[0]}"`));
+  if (p.part !== +m[1]) fail(at(`part ${p.part} does not match the file name`));
+  if (!d.parts?.some((x) => x.part === p.part && x.status !== 'reserved')) fail(at('part is not a live part in far-overhaul.json'));
+  if (!isDate(p.comparedOn) || p.comparedOn > today) fail(at('comparedOn must be a real date, not in the future'));
+  ['title', 'headline', 'subhead', 'description'].forEach((k) => text(p[k], at(k)));
+  if (!Array.isArray(p.shortVersion) || p.shortVersion.length < 1 || p.shortVersion.length > 5) fail(at('shortVersion: 1-5 lines'));
+  p.shortVersion?.forEach((s, i) => text(s, at(`shortVersion[${i}]`)));
+  dateOrNull(p.codified?.effective, at('codified.effective')); url(p.codified?.sourceUrl, at('codified'));
+  p.modelTextUpdates?.forEach((u, i) => { dateOrNull(u.date, at(`modelTextUpdates[${i}].date`)); text(u.what, at(`modelTextUpdates[${i}].what`)); url(u.sourceUrl, at(`modelTextUpdates[${i}]`)); });
+  if (p.dod) { text(p.dod.deviation, at('dod.deviation')); ['signed', 'effective', 'revisionDate'].forEach((k) => dateOrNull(p.dod[k], at(`dod.${k}`))); url(p.dod.sourceUrl, at('dod')); }
+  if (!Array.isArray(p.changes) || p.changes.length < 1 || p.changes.length > 30) fail(at('changes: 1-30'));
+  const ids = new Set();
+  p.changes?.forEach((c, i) => {
+    const w = at(`changes[${i}]`);
+    if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(c.id || '') || ids.has(c.id)) fail(`${w}: id missing, malformed or duplicate`);
+    ids.add(c.id);
+    ['topic', 'subpart', 'before', 'after', 'whatItMeans', 'whoItHits'].forEach((k) => text(c[k], `${w}.${k}`));
+    if (!TYPES.has(c.changeType)) fail(`${w}: changeType "${c.changeType}"`);
+    if (!['high', 'medium', 'low'].includes(c.confidence)) fail(`${w}: confidence "${c.confidence}"`);
+    if (!c.sourceUrls?.length) fail(`${w}: needs sources`);
+    c.sourceUrls?.forEach((s, j) => url(s, `${w}.sourceUrls[${j}]`));
+  });
+  p.unchanged?.forEach((u, i) => { ['topic', 'detail'].forEach((k) => text(u[k], at(`unchanged[${i}].${k}`))); u.sourceUrls?.forEach((s, j) => url(s, at(`unchanged[${i}].sourceUrls[${j}]`))); });
+  p.actions?.forEach((a, i) => { text(a.action, at(`actions[${i}]`)); if (!ids.has(a.changeId)) fail(at(`actions[${i}] points at unknown change "${a.changeId}"`)); });
+  p.agencyDates?.forEach((a, i) => {
+    ['agency', 'short'].forEach((k) => text(a[k], at(`agencyDates[${i}].${k}`)));
+    if (!isDate(a.date) || a.date > today) fail(at(`agencyDates[${i}].date "${a.date}"`));
+    if (!['effective', 'signature', 'first date in memo'].includes(a.basis)) fail(at(`agencyDates[${i}].basis "${a.basis}"`));
+    url(a.sourceUrl, at(`agencyDates[${i}]`));
+  });
+  p.faq?.forEach((q, i) => { text(q.q, at(`faq[${i}].q`)); text(q.a, at(`faq[${i}].a`)); });
+  p.sources?.forEach((s, i) => url(s.url, at(`sources[${i}]`)));
+}
+
 if (errors.length) {
   console.error(`far-overhaul.json failed ${errors.length} check(s):\n  - ${errors.join('\n  - ')}`);
   process.exit(1);
 }
-console.log(`far-overhaul.json OK (verified ${d.verifiedOn}, ${d.parts.length} parts, ${d.agencies.length} agencies)`);
+console.log(`far-overhaul.json OK (verified ${d.verifiedOn}, ${d.parts.length} parts, ${d.agencies.length} agencies; deep dives: ${partFiles.join(', ') || 'none'})`);

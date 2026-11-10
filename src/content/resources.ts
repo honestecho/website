@@ -22,6 +22,15 @@ export interface Resource {
 
 export const RESOURCES: Resource[] = [
   {
+    path: '/far-overhaul/part-19/',
+    title: 'FAR Part 19, rewritten: what changed for small business',
+    summary:
+      'The current small business rules and the FAR overhaul rewrite, side by side: order set-asides, the rule of two, 8(a), WOSB and SDVOSB, subcontracting, and which agencies have adopted it.',
+    kicker: 'FAR Part 19',
+    navLabel: 'FAR Part 19 Changes',
+    published: '2026-11-10',
+  },
+  {
     path: '/far-overhaul/',
     title: 'FAR Overhaul Tracker (FAR 2.0)',
     summary:

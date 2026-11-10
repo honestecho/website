@@ -2,6 +2,7 @@ import { useState, type ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useParams } from 'react-router-dom';
 import { AlertTriangle, ArrowRight, ArrowUpRight, Building2, CheckCircle2, ChevronRight } from 'lucide-react';
+import FarListSignup from '../components/FarListSignup';
 import RelatedGuides from '../components/RelatedGuides';
 import { BreadcrumbListSchema, FAQPageSchema, ldJson } from '../components/SchemaOrg';
 import { track } from '../lib/analytics';
@@ -373,8 +374,9 @@ function PartBody({ dd }: { dd: PartDeepDive }) {
       <RelatedGuides current={path} />
 
       <section className="py-8 pb-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className={`${card} p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6 border-[#00c3ff]/30 shadow-[0_0_60px_rgba(0,195,255,0.08)]`}>
+        <div className="max-w-7xl mx-auto space-y-6">
+          <FarListSignup placement={`part-${dd.part}`} watch={{ agencies: [], parts: [dd.part] }} />
+          <div className={`${card} p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6`}>
             <div>
               <h2 className="font-headline font-black text-white text-2xl md:text-3xl tracking-tight">Will Part {dd.part}'s rewrite change your next bid?</h2>
               <p className="text-[#a0b2c8] font-body mt-2">Check the notice before you commit. Paste a SAM.gov notice and get a fit score and a bid/no-bid read in minutes.</p>

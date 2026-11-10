@@ -16,6 +16,7 @@ import AnalyzerOutputPreview from '../components/AnalyzerOutputPreview';
 import { FAQPageSchema } from '../components/SchemaOrg';
 import { API_BASE } from '../lib/api';
 import { track } from '../lib/analytics';
+import { reportAnalyzerResultConversion } from '../lib/googleAds';
 import { rememberPendingNotice } from '../lib/pendingNotice';
 
 // ── FAQ (visible section + FAQPage schema for search/AI answer engines) ───────
@@ -328,6 +329,8 @@ export default function SamGovNoticeAnalyzer() {
         parsed_from_url: parsedFromUrl,
         source,
       });
+      // Paid visitors only: the Google tag loads only after an ad click.
+      reportAnalyzerResultConversion();
     } catch {
       setError("We couldn't reach the server. Check your connection and try again.");
       setLoading(false);

@@ -19,6 +19,12 @@ const OTR_SUBSCRIBE_LABEL = 'MzlyCKC617AdEOrRxcJE';
 // OWED: Aaron creates the action in Google Ads and pastes its label here; while
 // it is empty the call below does nothing.
 const MATCHES_EMAIL_LABEL = '';
+// "FAR list subscribe" (a paid visitor submitting the FAR 2.0 Monday form) and
+// "Analyzer result" (a paid visitor getting a notice analyzer result), planned
+// 2026-11-10. OWED: Aaron creates both actions in Google Ads and the labels go
+// here; while a label is empty its call below does nothing.
+const FAR_SUBSCRIBE_LABEL = '';
+const ANALYZER_RESULT_LABEL = '';
 
 declare global {
   interface Window {
@@ -73,6 +79,25 @@ export function reportSignupConversion(transactionId: string): Promise<void> {
 export function reportOtrSubscribeConversion(): void {
   window.gtag?.('event', 'conversion', {
     send_to: `${AW_ID}/${OTR_SUBSCRIBE_LABEL}`,
+    transport_type: 'beacon',
+  });
+}
+
+// Same shape as reportOtrSubscribeConversion, for the FAR 2.0 Monday form.
+export function reportFarSubscribeConversion(): void {
+  if (!window.gtag || !FAR_SUBSCRIBE_LABEL) return;
+  window.gtag('event', 'conversion', {
+    send_to: `${AW_ID}/${FAR_SUBSCRIBE_LABEL}`,
+    transport_type: 'beacon',
+  });
+}
+
+// Call when the notice analyzer renders a result. "Count One" in Google Ads keeps
+// several results from the same ad click from counting more than once.
+export function reportAnalyzerResultConversion(): void {
+  if (!window.gtag || !ANALYZER_RESULT_LABEL) return;
+  window.gtag('event', 'conversion', {
+    send_to: `${AW_ID}/${ANALYZER_RESULT_LABEL}`,
     transport_type: 'beacon',
   });
 }

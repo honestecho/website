@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { ArrowDown, ArrowRight, ArrowUpRight, Building2, CheckCircle2, FileText, Gavel, Layers, ScrollText } from 'lucide-react';
+import FarListSignup, { FarListBanner } from '../components/FarListSignup';
 import FlyIn from '../components/FlyIn';
 import RelatedGuides from '../components/RelatedGuides';
 import { BreadcrumbListSchema, FAQPageSchema, ldJson } from '../components/SchemaOrg';
@@ -296,6 +297,16 @@ function ImpactChecker() {
       {focus.length > 0 && hidden > 0 && (
         <p className="text-sm text-[#8b9bb4] font-body mt-4">{hidden} more {hidden === 1 ? 'impact doesn’t' : 'impacts don’t'} match your picks. <button type="button" onClick={() => setFocus([])} className="text-[#00c3ff] hover:text-white font-semibold">Show all {total}</button></p>
       )}
+      <div className="mt-8">
+        <FarListSignup
+          id="far-monday"
+          placement="impact"
+          watch={picked ? {
+            agencies: agency ? [agency.short] : [],
+            parts: [...new Set(shown.flatMap(r => r.impact.parts.map(p => Number(p.match(/^FAR (\d+)$/)?.[1])).filter(n => n > 0)))].sort((a, b) => a - b),
+          } : null}
+        />
+      </div>
     </>
   );
 }
@@ -616,6 +627,7 @@ export default function FarOverhaulTracker() {
             <span className="relative flex w-2.5 h-2.5 shrink-0"><span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60 motion-safe:animate-ping" /><span className="relative inline-flex rounded-full w-2.5 h-2.5 bg-emerald-400" /></span>
             Verified {fmtDate(FAR.verifiedOn)} against acquisition.gov, the Federal Register, and DoD's deviation list. Checked weekly.
           </p>
+          <FarListBanner />
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8">
             <a href="#impact" className="inline-flex items-center gap-2 px-8 py-4 bg-[#00c3ff] text-[#030B17] font-bold rounded-lg shadow-[0_0_40px_rgba(0,195,255,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all font-headline">
               Check my impact <ArrowRight className="w-4 h-4" />
@@ -737,8 +749,9 @@ export default function FarOverhaulTracker() {
       <RelatedGuides current={PATH} />
 
       <section className="py-8 pb-24 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className={`${card} p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6 border-[#00c3ff]/30 shadow-[0_0_60px_rgba(0,195,255,0.08)]`}>
+        <div className="max-w-7xl mx-auto space-y-6">
+          <FarListSignup placement="end" />
+          <div className={`${card} p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6`}>
             <div>
               <h2 className="font-headline font-black text-white text-2xl md:text-3xl tracking-tight">Will a rewritten rule change your next bid?</h2>
               <p className="text-[#a0b2c8] font-body mt-2">Check the notice before you commit. Paste a SAM.gov notice and get a fit score and a bid/no-bid read in minutes.</p>

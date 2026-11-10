@@ -27,9 +27,9 @@ const TAG: Record<ChangeType, string> = {
   'moved-to-guidance': 'bg-[#e3e8f3] text-[#0b1120] border-[#e3e8f3]',
 };
 
-const tag = 'inline-flex items-center justify-center text-center px-2.5 py-1 rounded-md border text-[11px] leading-tight font-bold tracking-wider uppercase font-label w-[104px] shrink-0';
+const tag = 'self-start inline-flex items-center justify-center text-center px-2.5 py-1 rounded-md border text-[11px] leading-tight font-bold tracking-wider uppercase font-label w-[104px] shrink-0';
 const outlinePill = 'inline-flex items-center px-2 py-0.5 rounded-full border border-[#0b1120]/40 text-[11px] text-[#334155] font-body whitespace-nowrap';
-const box = 'w-4 h-4 mt-0.5 shrink-0 rounded-[3px] border-2 border-[#00a7db]';
+const box = 'self-start w-4 h-4 mt-0.5 shrink-0 rounded-[3px] border-2 border-[#00a7db]';
 
 type Sheet = { slug: string; title: string; short: string; description: string; status: string; body: ReactNode; actions?: string[] };
 
@@ -144,7 +144,7 @@ const PRINT_CSS = `
   html, body { background: #fff !important; }
   nav, footer, .no-print, [aria-hidden="true"].fixed { display: none !important; }
   main { padding: 0 !important; }
-  .far-sheet { box-shadow: none !important; border: 0 !important; margin: 0 !important; padding: 0 !important; max-width: none !important; }
+  .far-sheet { box-shadow: none !important; border: 0 !important; margin: 0 !important; padding: 0 !important; max-width: none !important; zoom: 0.84; }
   .far-sheet-page { padding: 0 !important; }
 }`;
 

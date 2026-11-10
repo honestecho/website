@@ -34,7 +34,7 @@ export const partByNumber = (n: number): Part | undefined => FAR.parts.find(p =>
 export const agencyByShort = (s: string | null | undefined): Agency | undefined => (s ? FAR.agencies.find(a => a.short === s) : undefined);
 export const LIVE_PARTS = FAR.parts.filter(p => p.status !== 'reserved');
 
-type DodDeviation = { deviation: string; revision: number; effective: string | null; url: string };
+type DodDeviation = { deviation: string; revision: number; effective: string | null; listed?: string | null; url: string };
 export const dodDeviationFor = (part: number): DodDeviation | undefined =>
   (FAR.dfars.byPart as Record<string, DodDeviation>)[String(part)];
 

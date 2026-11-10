@@ -141,8 +141,9 @@ let partFiles = [];
 try { partFiles = readdirSync(partsDir).filter((f) => f.endsWith('.json')); } catch { /* no deep dives yet */ }
 for (const f of partFiles) {
   const at = (s) => `${f}: ${s}`;
-  const m = f.match(/^part-(\d+)\.json$/);
-  if (!m) { fail(at('file name must be part-N.json')); continue; }
+  // Canonical names only (part-19, never part-019): one file, one URL per part.
+  const m = f.match(/^part-([1-9]\d?)\.json$/);
+  if (!m) { fail(at('file name must be part-N.json with no leading zero')); continue; }
   const rawP = readFileSync(new URL(f, partsDir), 'utf8');
   const p = JSON.parse(rawP);
   walk(p, f);
@@ -154,6 +155,9 @@ for (const f of partFiles) {
   ['title', 'headline', 'subhead', 'description'].forEach((k) => text(p[k], at(k)));
   if (!Array.isArray(p.shortVersion) || p.shortVersion.length < 1 || p.shortVersion.length > 5) fail(at('shortVersion: 1-5 lines'));
   p.shortVersion?.forEach((s, i) => text(s, at(`shortVersion[${i}]`)));
+  // The page renders every one of these lists, so each must exist (empty is fine).
+  ['changes', 'unchanged', 'actions', 'agencyDates', 'faq', 'sources', 'modelTextUpdates'].forEach((k) => { if (!Array.isArray(p[k])) fail(at(`${k}: required list missing`)); });
+  text(p.codified?.fac, at('codified.fac'));
   dateOrNull(p.codified?.effective, at('codified.effective')); url(p.codified?.sourceUrl, at('codified'));
   p.modelTextUpdates?.forEach((u, i) => { dateOrNull(u.date, at(`modelTextUpdates[${i}].date`)); text(u.what, at(`modelTextUpdates[${i}].what`)); url(u.sourceUrl, at(`modelTextUpdates[${i}]`)); });
   if (p.dod) { text(p.dod.deviation, at('dod.deviation')); ['signed', 'effective', 'revisionDate'].forEach((k) => dateOrNull(p.dod[k], at(`dod.${k}`))); url(p.dod.sourceUrl, at('dod')); }
@@ -169,16 +173,21 @@ for (const f of partFiles) {
     if (!c.sourceUrls?.length) fail(`${w}: needs sources`);
     c.sourceUrls?.forEach((s, j) => url(s, `${w}.sourceUrls[${j}]`));
   });
-  p.unchanged?.forEach((u, i) => { ['topic', 'detail'].forEach((k) => text(u[k], at(`unchanged[${i}].${k}`))); u.sourceUrls?.forEach((s, j) => url(s, at(`unchanged[${i}].sourceUrls[${j}]`))); });
+  p.unchanged?.forEach((u, i) => {
+    ['topic', 'detail'].forEach((k) => text(u[k], at(`unchanged[${i}].${k}`)));
+    if (!Array.isArray(u.sourceUrls) || !u.sourceUrls.length) fail(at(`unchanged[${i}]: needs sources`));
+    u.sourceUrls?.forEach((s, j) => url(s, at(`unchanged[${i}].sourceUrls[${j}]`)));
+  });
   p.actions?.forEach((a, i) => { text(a.action, at(`actions[${i}]`)); if (!ids.has(a.changeId)) fail(at(`actions[${i}] points at unknown change "${a.changeId}"`)); });
   p.agencyDates?.forEach((a, i) => {
     ['agency', 'short'].forEach((k) => text(a[k], at(`agencyDates[${i}].${k}`)));
-    if (!isDate(a.date) || a.date > today) fail(at(`agencyDates[${i}].date "${a.date}"`));
+    // An announced future effective date is legitimate (rendered "scheduled"); a future signature is not.
+    if (!isDate(a.date) || (a.date > today && a.basis !== 'effective')) fail(at(`agencyDates[${i}].date "${a.date}"`));
     if (!['effective', 'signature', 'first date in memo'].includes(a.basis)) fail(at(`agencyDates[${i}].basis "${a.basis}"`));
     url(a.sourceUrl, at(`agencyDates[${i}]`));
   });
   p.faq?.forEach((q, i) => { text(q.q, at(`faq[${i}].q`)); text(q.a, at(`faq[${i}].a`)); });
-  p.sources?.forEach((s, i) => url(s.url, at(`sources[${i}]`)));
+  p.sources?.forEach((s, i) => { text(s.name, at(`sources[${i}].name`)); url(s.url, at(`sources[${i}]`)); });
 }
 
 if (errors.length) {

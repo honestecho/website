@@ -8,7 +8,7 @@
   "shortVersion": [
     "Set-asides of orders under multiple-award contracts stay discretionary, and a decision not to set one aside can no longer be protested.",
     "The rule of two still governs contracts, but the FAR no longer tells contracting officers to consider 8(a), HUBZone, SDVOSB or WOSB programs first.",
-    "The rewrite applies only where an agency has adopted it by class deviation. The official FAR still shows the old Part 19, and the Part 19 proposed rule has not been published."
+    "Until a final rule takes effect, the rewrite reaches a contract only through an agency's class deviation and the clauses in that contract. The status line above shows where the formal rulemaking stands."
   ],
   "codified": {
     "fac": "2026-01",
@@ -38,7 +38,7 @@
       "before": "Order set-asides are discretionary, but the CO must state in the solicitation and contract whether order set-asides will be discretionary or mandatory when the rule of two is met; a mandatory version uses 52.219-13 Alternate I (FAR 19.504(a)(1), 19.507(f)(2)).",
       "after": "Order set-asides stay discretionary, and the CO's decision to set aside or not set aside an order is stated to be not a basis for protest; 52.219-13 Alternate I is marked [Reserved] (RFO 19.111-2(a); RFO 52.219-13).",
       "changeType": "narrowed",
-      "whatItMeans": "On GSA Schedules, GWACs and agency IDIQs, a small business can no longer rely on contract language that commits the agency to setting aside qualifying orders, and challenging a decision not to set aside an order becomes much harder. The FAR Companion says the wording is meant to resolve a GAO vs. Court of Federal Claims split over the rule of two on multiple-award contracts.",
+      "whatItMeans": "Where a vehicle carries the rewritten clause (a new award, or an existing contract modified to add it), a small business can't rely on language committing the agency to set aside qualifying orders, and challenging a decision not to set one aside gets much harder. Agency adoption alone doesn't change an awarded contract: check your vehicle's clauses and modifications. The FAR Companion says the wording is meant to settle a GAO vs. Court of Federal Claims split over the rule of two on multiple-award contracts.",
       "whoItHits": "Small business holders of multiple-award contracts (MAS, GWACs, IDIQs)",
       "confidence": "high",
       "sourceUrls": [
@@ -98,15 +98,16 @@
       "before": "Contractors must rerepresent size and socioeconomic status for the NAICS code of certain orders (e.g., a socioeconomic set-aside order under an unrestricted MAC), and the CO may require rerepresentation for any order; agency goal credit follows the order rerepresentation (FAR 19.301-2(b)(2)-(3), (d)(2)).",
       "after": "Rerepresentation is triggered only by contract-level events: novation, merger or acquisition, and the long-term-contract checkpoints (year five and each later option) (RFO 19.301(a); RFO 52.219-28(b)). Agency credit is driven by the contract-level size status (GSA RFO-2025-19 memo; Practitioner Album).",
       "changeType": "removed",
-      "whatItMeans": "A firm that was small when it won a MAC keeps that status for orders until a contract-level trigger occurs, which helps firms that have grown. It also means a business that has outgrown its size standard can keep competing for small business orders on older vehicles.",
+      "whatItMeans": "The FAR's own order-level rerepresentation triggers are gone, so fewer orders will ask you to recertify size through the FAR process. SBA's size rules still decide whether you count as small for a particular order, such as a set-aside order under an unrestricted contract (13 CFR 121.404). Check the order's terms before relying on your contract-level status.",
       "whoItHits": "Small and recently graduated firms on IDIQs/MACs",
-      "confidence": "high",
+      "confidence": "medium",
       "sourceUrls": [
         "https://www.acquisition.gov/far/part-19#FAR_19_301_2",
         "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_301",
         "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-52#FAR_52_219_28",
         "https://www.acquisition.gov/sites/default/files/page_file_uploads/GSA_RFO_Deviation_Part-19.pdf",
-        "https://www.acquisition.gov/sites/default/files/practitioner_albums/far-part-19-small-business/content/index.html"
+        "https://www.acquisition.gov/sites/default/files/practitioner_albums/far-part-19-small-business/content/index.html",
+        "https://www.ecfr.gov/current/title-13/section-121.404"
       ]
     },
     {
@@ -116,9 +117,9 @@
       "before": "Part 19 itself states the limits: no more than 50% of the amount paid to non-similarly-situated subcontractors for services and for supplies (excluding materials), 85% for general construction and 75% for special trades, with compliance periods (FAR 19.505(a)-(b)).",
       "after": "The same percentages and compliance periods now sit in the clause itself (RFO 52.219-14(e)-(f)); Part 19 keeps only the prescription (RFO 19.104-3(c)), with the 8(a) version restated at RFO 19.108-8. The 'similarly situated entity' definition lives only in the clause.",
       "changeType": "unchanged-but-reworded",
-      "whatItMeans": "Compliance math is unchanged, so teaming and subcontracting plans built on 50/85/75 still hold. Read your contract's 52.219-14 (Deviation) text rather than looking for the rule in Part 19.",
+      "whatItMeans": "The percentages are the same (50/85/75), and they now live in the clause, so read your contract's 52.219-14 (Deviation) text rather than looking for them in Part 19. For 8(a) awards, the rewritten Part 19 describes the calculation in different terms from the clause, so follow the clause in your contract and ask the contracting officer if the two seem to disagree.",
       "whoItHits": "Small primes on set-aside and sole-source work",
-      "confidence": "high",
+      "confidence": "medium",
       "sourceUrls": [
         "https://www.acquisition.gov/far/part-19#FAR_19_505",
         "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide/far-overhaul-part-19#FAR_19_104_3",
@@ -258,7 +259,7 @@
       "before": "ISRs and SSRs go into eSRS; reports are due 30 days after each period ends, and COs must acknowledge or reject them within 60 days (FAR 19.704(a)(10)(iv), 19.705-6(f), (j)).",
       "after": "Reports go into Subcontracting Plan Reporting (SPR) at SAM.gov within 45 days after the period ends (e.g., by Nov 14 for the FY ending Sept 30); CO acknowledge/reject steps are removed and agencies set their own monitoring (RFO 19.302-2(a), 19.302-3(f), 19.206-1(c)(4)); this came from the February 20, 2026 supplement.",
       "changeType": "narrowed",
-      "whatItMeans": "Primes with subcontracting plans get 15 more days and a new system; the codified FAR still says eSRS and 30 days, so check which text your contract uses.",
+      "whatItMeans": "Reports move to a new system, SPR at SAM.gov. The 45-day deadline comes from the rewritten clause; the codified FAR still says 30 days. Use 45 days only where your contract carries the deviation clause or the contracting officer says so; otherwise keep to 30.",
       "whoItHits": "Other-than-small primes with subcontracting plans; small firms that grew out of size",
       "confidence": "high",
       "sourceUrls": [
@@ -407,7 +408,7 @@
   ],
   "actions": [
     {
-      "action": "Inventory your MACs (MAS, GWACs, agency IDIQs) and note whether each one's order set-asides are written as mandatory or discretionary; for vehicles under agencies using the deviation, plan your pipeline assuming set-asides are discretionary and that a decision not to set aside an order is not protestable.",
+      "action": "List your multiple-award contracts (MAS, GWACs, agency IDIQs) and check each one's order set-aside clause: the mandatory version, or modified to the rewritten clause? Where the rewritten clause applies, plan your pipeline assuming order set-asides are discretionary and not protestable.",
       "changeId": "order-set-asides-discretionary-not-protestable"
     },
     {
@@ -427,7 +428,7 @@
       "changeId": "8a-compete-first-below-threshold"
     },
     {
-      "action": "If you hold a subcontracting plan, move ISR/SSR filing to SPR in SAM.gov and calendar the 45-day deadlines, then check whether your contract has the deviation 52.219-9 or the codified version.",
+      "action": "If you hold a subcontracting plan, first check whether your contract carries the deviation 52.219-9 or the codified clause (or ask the CO). File in SPR at SAM.gov, and calendar 45 days only where the deviation clause or the CO says so; otherwise 30.",
       "changeId": "subcontracting-reporting-spr"
     }
   ],
@@ -639,7 +640,7 @@
   "faq": [
     {
       "q": "Are order set-asides still required under the new FAR Part 19?",
-      "a": "No. Under the RFO model text, setting aside an order on a multiple-award contract is up to the contracting officer, and the text says that choice is not a basis for protest. The rule of two still applies to standalone contracts, not to orders."
+      "a": "Not where the rewrite applies. Under the model text, setting aside an order on a multiple-award contract is up to the contracting officer, and that choice is not a basis for protest. An awarded contract keeps the clauses it has until it is modified, so check yours. The rule of two still applies to standalone contracts."
     },
     {
       "q": "Does the rule of two still apply to small business contracts?",
@@ -647,11 +648,11 @@
     },
     {
       "q": "Do I still have to rerepresent my size for task orders?",
-      "a": "Under the RFO text, no. Rerepresentation is tied to contract-level events: a novation, a merger or acquisition, and the long-term-contract checkpoints at year five and each later option. Agency credit follows your contract-level status."
+      "a": "The FAR's order-level triggers are gone in the model text: rerepresentation follows contract-level events (a novation, a merger or acquisition, and the long-term-contract checkpoints at year five and each later option). SBA's size rules still apply to some orders, such as set-aside orders under unrestricted contracts, so read each order's terms."
     },
     {
       "q": "Did the limitations on subcontracting change in the FAR overhaul?",
-      "a": "The percentages did not: 50% for services and supplies, 85% for general construction and 75% for special trades. They moved out of Part 19 and into the 52.219-14 clause text, so read the clause in your contract."
+      "a": "The percentages did not: 50% for services and supplies, 85% for general construction and 75% for special trades. They moved out of Part 19 and into the 52.219-14 clause, so read the clause in your contract. For 8(a) awards, the rewritten Part 19 words the calculation differently from the clause; follow the clause and ask the contracting officer if they seem to conflict."
     },
     {
       "q": "Can a women-owned business with a pending WOSB certification still bid on WOSB set-asides?",
@@ -663,7 +664,7 @@
     },
     {
       "q": "What happened to eSRS subcontracting reports?",
-      "a": "eSRS was decommissioned February 20, 2026. Reports now go to Subcontracting Plan Reporting in SAM.gov, and the RFO text gives primes 45 days after each period instead of 30."
+      "a": "Under the February 20, 2026 update to the model text, reports go to Subcontracting Plan Reporting (SPR) in SAM.gov, and the rewritten clause gives primes 45 days after each period instead of 30. The codified FAR still says eSRS and 30 days, so check which clause your contract carries."
     }
   ],
   "sources": [

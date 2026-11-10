@@ -5,7 +5,7 @@ import { AlertTriangle, ArrowRight, ArrowUpRight, Building2, CheckCircle2, Chevr
 import RelatedGuides from '../components/RelatedGuides';
 import { BreadcrumbListSchema, FAQPageSchema, ldJson } from '../components/SchemaOrg';
 import { track } from '../lib/analytics';
-import { FAR, agencyByShort, dodDeviationFor, fmtDate, partByNumber } from '../lib/farApplicability';
+import { FAR, agencyByShort, dodDeviationFor, finalInEffect, fmtDate, partByNumber } from '../lib/farApplicability';
 import { CHANGE_LABEL, newerThanComparison, partPageBySlug, partPagePath, type PartChange, type PartDeepDive } from '../lib/farParts';
 import NotFound from './NotFound';
 
@@ -93,25 +93,42 @@ function AgencyCheck({ dd }: { dd: PartDeepDive }) {
   const [short, setShort] = useState(names.has('DoD') ? 'DoD' : options[0]?.[0] ?? '');
   const dated = dd.agencyDates.find(a => a.short === short);
   const listed = !!agencyByShort(short)?.parts.includes(dd.part);
-  const dod = short === 'DoD' ? dd.dod ?? null : null;
-  const dodListed = short === 'DoD' && !!dodDeviationFor(dd.part);
+  // DoD reads the live weekly record (DoD's DFARS list), never the frozen comparison file.
+  const dod = short === 'DoD' ? dodDeviationFor(dd.part) ?? null : null;
+  const live = partByNumber(dd.part);
+  const final = finalInEffect(live);
   const name = names.get(short) ?? short;
+  const asOf = FAR.verifiedOn;
 
+  // Three honest states: in effect (an effective date that has passed, or a final rule),
+  // adopted but its effective date not shown (signed, dated, scheduled or only listed),
+  // and unknown (nothing listed: absence of a listing proves nothing).
   let status: ReactNode;
   let href: string = FAR.layers.agencyAdoption.sourceUrl;
-  let on = true;
-  if (dod) {
-    status = <>{name}: class deviation {dod.deviation}{dod.effective && <>, in effect since {fmtDate(dod.effective)}</>}{dod.revisionDate && <>; Revision 1 issued {fmtDate(dod.revisionDate)}</>}.</>;
-    href = dod.sourceUrl;
+  let tone: 'effective' | 'pending' | 'unknown' = 'pending';
+  if (final && live) {
+    tone = 'effective';
+    status = <>A final rule for Part {dd.part} {live.finalRuleEffective && <>took effect {fmtDate(live.finalRuleEffective)} and </>}applies to every agency's new solicitations.</>;
+    href = live.finalRuleUrl ?? href;
+  } else if (dod) {
+    tone = dod.effective && dod.effective <= asOf ? 'effective' : 'pending';
+    status = <>{name}: class deviation {dod.deviation}{dod.revision > 0 && `, Revision ${dod.revision}`}{dod.effective && (dod.effective <= asOf ? `, in effect since ${fmtDate(dod.effective)}` : `, scheduled to take effect ${fmtDate(dod.effective)}`)}{dod.listed && `; current version dated ${fmtDate(dod.listed)}`} (DoD's DFARS deviation list).</>;
+    href = dod.url;
   } else if (dated) {
-    status = <>{name}: class deviation {dated.basis === 'effective' ? 'in effect' : dated.basis === 'signature' ? 'signed' : 'dated'} {fmtDate(dated.date)}{dated.basis === 'first date in memo' && ' (first date in the memo)'}.</>;
     href = dated.sourceUrl;
-  } else if (listed || dodListed) {
+    if (dated.basis === 'effective') {
+      tone = dated.date <= asOf ? 'effective' : 'pending';
+      status = <>{name}: class deviation {dated.date <= asOf ? 'in effect since' : 'scheduled to take effect'} {fmtDate(dated.date)}.</>;
+    } else {
+      status = <>{name}: class deviation {dated.basis === 'signature' ? 'signed' : 'dated'} {fmtDate(dated.date)}{dated.basis === 'first date in memo' && ' (the first date in the memo)'}. Its effective date isn't recorded here; open the memo.</>;
+    }
+  } else if (listed) {
     status = <>{name}: a class deviation is listed in the FAR Council's guide. Its date isn't recorded here; open the deviation.</>;
   } else {
-    on = false;
-    status = <>{name}: no Part {dd.part} deviation is listed in the FAR Council's guide. Until the agency adopts one, its buys use the current FAR Part {dd.part}. Check the agency's own deviation page to be sure.</>;
+    tone = 'unknown';
+    status = <>{name}: no Part {dd.part} deviation is listed in the FAR Council's guide, so this tracker can't confirm whether the agency has adopted the rewrite. Check the agency's deviation page and the solicitation's clauses.</>;
   }
+  const dot = tone === 'effective' ? 'bg-emerald-400' : tone === 'pending' ? 'border-2 border-[#f5b942]' : 'border border-[#8b9bb4]';
 
   return (
     <div className={`${card} p-6 md:p-8`}>
@@ -124,10 +141,14 @@ function AgencyCheck({ dd }: { dd: PartDeepDive }) {
         </select>
       </div>
       <p className="flex items-start gap-3 text-white font-body" aria-live="polite">
-        <span className={`mt-1.5 w-2.5 h-2.5 rounded-full shrink-0 ${on ? 'bg-emerald-400' : 'border border-[#8b9bb4]'}`} aria-hidden="true" />
+        <span className={`mt-1.5 w-2.5 h-2.5 rounded-full shrink-0 ${dot}`} aria-hidden="true" />
         <span>{status} <Source href={href} /></span>
       </p>
-      <p className="text-sm text-[#8b9bb4] font-body mt-3">The rewritten text applies only where an agency has adopted it by class deviation. The official FAR still shows the current Part {dd.part} ({dd.codified.fac}).</p>
+      <p className="text-sm text-[#8b9bb4] font-body mt-3">
+        {final
+          ? `A final rule is in effect for Part ${dd.part}; the rewritten text is now the FAR.`
+          : `Until a final rule takes effect, the rewritten text applies only where an agency has adopted it by class deviation, and an awarded contract keeps its clauses until it is modified. As of ${fmtDate(dd.comparedOn)}, the official FAR still showed the current Part ${dd.part} (${dd.codified.fac}).`}
+      </p>
     </div>
   );
 }
@@ -148,6 +169,7 @@ function PartBody({ dd }: { dd: PartDeepDive }) {
   const first = dd.changes.slice(0, SHOWN_CHANGES);
   const rest = dd.changes.slice(SHOWN_CHANGES);
   const dates = [...dd.agencyDates].sort((a, b) => a.date.localeCompare(b.date) || a.agency.localeCompare(b.agency));
+  const [allDates, setAllDates] = useState(false);
   const article = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -297,25 +319,21 @@ function PartBody({ dd }: { dd: PartDeepDive }) {
           <div className="max-w-7xl mx-auto">
             <H2 id="adoption" sub={`Dates read from each agency's Part ${dd.part} class deviation. "Basis" says which date the memo gives.`}>Agency adoption dates for Part {dd.part}</H2>
             <div className={`${card} overflow-x-auto`}>
+              {/* One table so every row keeps its column headers; extra rows stay in the HTML, hidden. */}
               <table className="w-full min-w-[560px] text-sm font-body text-left">
+                <caption className="sr-only">Part {dd.part} class deviation dates by agency</caption>
                 <thead className="text-xs uppercase tracking-widest text-[#8b9bb4] font-label">
-                  <tr><th className="px-5 py-3">Agency</th><th className="px-5 py-3">Date</th><th className="px-5 py-3">Basis</th><th className="px-5 py-3">Source</th></tr>
+                  <tr><th scope="col" className="px-5 py-3">Agency</th><th scope="col" className="px-5 py-3">Date</th><th scope="col" className="px-5 py-3">Basis</th><th scope="col" className="px-5 py-3">Source</th></tr>
                 </thead>
-                <tbody className="divide-y divide-[#1e2d4a] text-[#c9d5e3]">
-                  {dates.slice(0, SHOWN_DATES).map(a => <DateRow key={a.short} a={a} />)}
+                <tbody id="far-part-dates" className="divide-y divide-[#1e2d4a] text-[#c9d5e3]">
+                  {dates.map((a, i) => <DateRow key={a.short} a={a} hidden={!allDates && i >= SHOWN_DATES} />)}
                 </tbody>
               </table>
               {dates.length > SHOWN_DATES && (
-                <details className="group border-t border-[#1e2d4a]">
-                  <summary className="list-none cursor-pointer px-5 py-3 text-sm font-semibold text-[#00c3ff] hover:text-white font-body">
-                    <span className="group-open:hidden">Show all {dates.length} agencies</span><span className="hidden group-open:inline">Show fewer</span>
-                  </summary>
-                  <table className="w-full min-w-[560px] text-sm font-body text-left">
-                    <tbody className="divide-y divide-[#1e2d4a] text-[#c9d5e3]">
-                      {dates.slice(SHOWN_DATES).map(a => <DateRow key={a.short} a={a} />)}
-                    </tbody>
-                  </table>
-                </details>
+                <button type="button" aria-expanded={allDates} aria-controls="far-part-dates" onClick={() => setAllDates(v => !v)}
+                  className="w-full text-left border-t border-[#1e2d4a] px-5 py-3 text-sm font-semibold text-[#00c3ff] hover:text-white font-body">
+                  {allDates ? 'Show fewer' : `Show all ${dates.length} agencies`}
+                </button>
               )}
             </div>
           </div>
@@ -376,9 +394,9 @@ function PartBody({ dd }: { dd: PartDeepDive }) {
   );
 }
 
-function DateRow({ a }: { a: PartDeepDive['agencyDates'][number] }) {
+function DateRow({ a, hidden }: { a: PartDeepDive['agencyDates'][number]; hidden: boolean }) {
   return (
-    <tr>
+    <tr hidden={hidden}>
       <td className="px-5 py-3 text-white">{a.agency}</td>
       <td className="px-5 py-3 whitespace-nowrap">{fmtDate(a.date)}</td>
       <td className="px-5 py-3 capitalize">{a.basis}</td>

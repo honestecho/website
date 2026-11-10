@@ -42,7 +42,8 @@ export const partPagePath = (n: number) => `/far-overhaul/part-${n}/`;
 export const hasPartPage = (n: number) => n in PART_PAGES;
 
 export function partPageBySlug(slug: string | undefined): PartDeepDive | undefined {
-  const m = slug?.match(/^part-(\d+)$/);
+  // Canonical only: part-19, never part-019 (one URL per page, matching the prerendered route).
+  const m = slug?.match(/^part-([1-9]\d?)$/);
   return m ? PART_PAGES[+m[1]] : undefined;
 }
 

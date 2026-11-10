@@ -20,11 +20,10 @@ const OTR_SUBSCRIBE_LABEL = 'MzlyCKC617AdEOrRxcJE';
 // it is empty the call below does nothing.
 const MATCHES_EMAIL_LABEL = '';
 // "FAR list subscribe" (a paid visitor submitting the FAR 2.0 Monday form) and
-// "Analyzer result" (a paid visitor getting a notice analyzer result), planned
-// 2026-11-10. OWED: Aaron creates both actions in Google Ads and the labels go
-// here; while a label is empty its call below does nothing.
-const FAR_SUBSCRIBE_LABEL = '';
-const ANALYZER_RESULT_LABEL = '';
+// "Analyzer result" (a paid visitor getting a notice analyzer result): Website,
+// Primary, count One, 90-day window, created 2026-11-10.
+const FAR_SUBSCRIBE_LABEL = 'Tz3oCLfO8LUdEOrRxcJE';
+const ANALYZER_RESULT_LABEL = 'SZgwCLrO8LUdEOrRxcJE';
 
 declare global {
   interface Window {

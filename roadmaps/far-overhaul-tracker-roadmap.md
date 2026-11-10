@@ -35,7 +35,7 @@ Honest Echo tells federal contractors which acquisition rules are changing, whet
 - Old-vs-new comparison for the pilot part, with interpretation kept separate from official text.
 - **Done when:** the Part 19 page is a better answer than reading acquisition.gov.
 
-## Week 3: repeat visits
+## Week 3: repeat visits — BUILT 2026-11-10 on `feat/far-list` (HE-Pursuit + website), not deployed: email list, watch picks, Monday digest; send gated on Aaron
 - Free watchlist: email plus chosen agencies and parts, stored in HE-Pursuit Supabase (an additive migration; green under the HE prod carve-out).
 - Weekly alert email built on `email-shell.js`. It sends only when something changed for that watchlist.
 - **Gate (red):** turning on the send is Aaron's tap. Growth emails stay inert until he enables them.
@@ -47,4 +47,4 @@ Honest Echo tells federal contractors which acquisition rules are changing, whet
 - Success is measured by agency selections, inspected changes, watchlist joins and actual payments. Page views alone don't count.
 
 ## Out of scope until the data says otherwise
-Ads spend to drive traffic to this page. The page has to earn search traffic first.
+~~Ads spend to drive traffic to this page. The page has to earn search traffic first.~~ Superseded 2026-11-10: Aaron, "let's go after far 2.0." The Google Ads credit adds a `far_overhaul` ad group (HE lane `d-20261110-far2`).

@@ -27,7 +27,14 @@ const NAICS_RULES: { prefix: string; work: Work }[] = [
   { prefix: '23',     work: 'construction' },
   { prefix: '5612',   work: 'construction' },  // facilities support services
   { prefix: '5617',   work: 'construction' },  // services to buildings
-  { prefix: '5413',   work: 'research' },      // engineering services
+  { prefix: '54131',  work: 'construction' },  // architectural services
+  { prefix: '54132',  work: 'construction' },  // landscape architecture
+  { prefix: '54134',  work: 'construction' },  // drafting
+  { prefix: '54135',  work: 'construction' },  // building inspection
+  { prefix: '54133',  work: 'research' },      // engineering services
+  { prefix: '54136',  work: 'research' },      // geophysical surveying
+  { prefix: '54137',  work: 'research' },      // surveying and mapping
+  { prefix: '54138',  work: 'research' },      // testing laboratories
   { prefix: '5417',   work: 'research' },      // scientific R&D
   { prefix: '334510', work: 'medical' },       // electromedical instruments
   { prefix: '334517', work: 'medical' },       // irradiation apparatus
@@ -64,16 +71,19 @@ export function worksForNaics(naics: string | null | undefined): Work[] {
 
 export interface FitNotice { title: string; naics?: string | null }
 
-export interface Fit { works: Work[]; fromTitle: boolean }
+// Each kind of work a notice fits, and what it rests on: the NAICS code or the title.
+export type FitBasis = 'code' | 'title';
+export type Fit = Map<Work, FitBasis>;
 
 export function noticeFit(n: FitNotice): Fit {
-  const byCode = worksForNaics(n.naics);
-  if (byCode.length) {
-    const works = new Set(byCode);
-    if (MEDICAL_TITLE.test(n.title)) works.add('medical');
-    return { works: [...works], fromTitle: false };
+  const fit: Fit = new Map();
+  for (const w of worksForNaics(n.naics)) fit.set(w, 'code');
+  if (fit.size) {
+    if (!fit.has('medical') && MEDICAL_TITLE.test(n.title)) fit.set('medical', 'title');
+    return fit;
   }
-  return { works: [...new Set(TITLE_RULES.filter(r => r.re.test(n.title)).map(r => r.work))], fromTitle: true };
+  for (const r of TITLE_RULES) if (r.re.test(n.title) && !fit.has(r.work)) fit.set(r.work, 'title');
+  return fit;
 }
 
 // The question the visitor answered: a kind of work they picked, or their company's
@@ -89,8 +99,9 @@ export function fitReason(n: FitNotice, q: FitQuery): string | null {
   }
   const fit = noticeFit(n);
   const wanted = q.source === 'work' ? [q.work] : q.works;
-  const hit = wanted.find(w => fit.works.includes(w));
+  // Prefer a kind of work that rests on the code over one read from the title.
+  const hit = wanted.find(w => fit.get(w) === 'code') ?? wanted.find(w => fit.has(w));
   if (!hit) return null;
   const kind = workLabel(hit);
-  return fit.fromTitle ? `${kind} work named in the title` : `${kind} work (NAICS ${n.naics})`;
+  return fit.get(hit) === 'title' ? `${kind} work named in the title` : `${kind} work (NAICS ${n.naics})`;
 }

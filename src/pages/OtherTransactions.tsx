@@ -145,6 +145,11 @@ export default function OtherTransactions() {
   const [lookupOpen, setLookupOpen] = useState(false);
   const answerRef = useRef<HTMLElement | null>(null);
   const reportedFit = useRef(false);
+  // Each pick or lookup takes a number; a lookup that answers after a newer one was
+  // made is dropped, so a slow company search never overwrites a later chip pick.
+  const pickGen = useRef(0);
+  const answerHeadingRef = useRef<HTMLHeadingElement | null>(null);
+  const lookupInputRef = useRef<HTMLInputElement | null>(null);
 
   // The app renders with createRoot (no hydration), so filtering on the
   // viewer's clock here is safe; see ContractsForBidConstruction.tsx.
@@ -191,6 +196,8 @@ export default function OtherTransactions() {
   }, [fit]);
 
   function pickWork(w: Work) {
+    pickGen.current += 1;
+    setSearching(false);
     track('otr_fit_work_picked', { work: w });
     setCompanies(null);
     setLookupNote(null);
@@ -203,12 +210,17 @@ export default function OtherTransactions() {
     if (position !== null) track('otr_fit_company_selected', { position });
     if (!c.naics_primary) {
       setLookupNote(`SBA doesn’t list a NAICS code for ${c.name}. Pick your kind of work above.`);
+      // The picked button is gone; put the keyboard back in the search box.
+      requestAnimationFrame(() => lookupInputRef.current?.focus());
       return;
     }
     setLookupNote(null);
     // SBA names come in capitals; the answer heading reads them back in title case.
     const name = c.name === c.name.toUpperCase() ? titleCase(c.name) : c.name;
     setFit({ source: 'company', name, naics: c.naics_primary, naicsTitle: c.naics_title, works: worksForNaics(c.naics_primary) });
+    // The picked button unmounts; move focus to the answer so the keyboard and a
+    // screen reader land on it.
+    requestAnimationFrame(() => answerHeadingRef.current?.focus({ preventScroll: true }));
   }
 
   async function onLookup(e: FormEvent) {
@@ -219,10 +231,13 @@ export default function OtherTransactions() {
     if (q.length < 3) { setLookupNote('Type at least 3 characters of your company name, or your UEI.'); return; }
     const isUei = UEI_RE.test(q);
     track('otr_fit_company_searched', { query_type: isUei ? 'uei' : 'name' });
+    const gen = ++pickGen.current;
+    const stale = () => gen !== pickGen.current;
     setSearching(true);
     try {
       const res = await fetch(`${API_BASE}/public/company-search?q=${encodeURIComponent(q)}`);
       const body = await res.json().catch(() => ({}));
+      if (stale()) return;
       if (!res.ok) {
         setLookupNote(typeof body?.message === 'string' && body.message ? body.message : 'Company lookup isn’t working right now. Pick your kind of work above.');
         track('otr_fit_error', { error: typeof body?.error === 'string' ? body.error : `http_${res.status}` });
@@ -235,10 +250,11 @@ export default function OtherTransactions() {
       if (exact) chooseCompany(exact, null);
       else setCompanies(hits);
     } catch {
+      if (stale()) return;
       setLookupNote('We couldn’t reach the server. Pick your kind of work above.');
       track('otr_fit_error', { error: 'network' });
     } finally {
-      setSearching(false);
+      if (!stale()) setSearching(false);
     }
   }
 
@@ -309,7 +325,7 @@ export default function OtherTransactions() {
         </div>
         <div className="mt-4 md:mt-0 flex items-end justify-between gap-3 md:block text-left md:text-right md:justify-self-end md:self-center md:w-full md:border-l md:border-[#1e2d4a]/80 md:pl-6">
           <div>
-            <p className="text-sm font-body text-[#e2e8f0] font-semibold whitespace-nowrap tabular-nums">Due {fmtDue(n.response_deadline)}</p>
+            <p className="text-sm font-body text-[#e2e8f0] font-semibold sm:whitespace-nowrap tabular-nums">Due {fmtDue(n.response_deadline)}</p>
             <p className={`text-sm font-medium tabular-nums ${dl <= 3 ? 'text-[#fbbf24]' : 'text-[#94a3b8]'}`}>{dl} day{dl === 1 ? '' : 's'} left</p>
           </div>
           <Link
@@ -537,6 +553,7 @@ export default function OtherTransactions() {
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8b9bb4] pointer-events-none" strokeWidth={2} />
                     <input
                       id="fit-company"
+                      ref={lookupInputRef}
                       type="text"
                       autoFocus
                       value={query}
@@ -607,7 +624,7 @@ export default function OtherTransactions() {
             <div className="relative rounded-[20px] bg-[#0b1120] border border-[#1e2d4a] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5),0_0_80px_rgba(0,195,255,0.16)] grid grid-cols-1 lg:grid-cols-[minmax(0,66fr)_minmax(0,34fr)]">
               <div aria-hidden="true" className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[#00c3ff]/80 to-transparent" />
               <div className="px-5 sm:px-8 pt-6 sm:pt-8 pb-4 min-w-0" aria-live="polite">
-                <h2 className="font-headline font-black text-white text-[26px] sm:text-[30px] leading-tight tracking-tight [overflow-wrap:anywhere]">{answerHeading}</h2>
+                <h2 ref={answerHeadingRef} tabIndex={-1} className="font-headline font-black text-white text-[26px] sm:text-[30px] leading-tight tracking-tight [overflow-wrap:anywhere] focus:outline-none">{answerHeading}</h2>
                 <p className="mt-1.5 text-base text-[#a0b2c8] font-body">
                   We read {live.length} open OT and CSO {plural(live.length, 'notice', 'notices')} by hand. Updated {fmtChecked(DATA.checked_at)}.
                 </p>

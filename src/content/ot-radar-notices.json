@@ -14,7 +14,8 @@
       ],
       "found_in_text": true,
       "response_deadline": "2026-11-02T22:00:00+00:00",
-      "sam_url": "https://sam.gov/workspace/contract/opp/66f8f8f5754442b7a85967b415407e3b/view"
+      "sam_url": "https://sam.gov/workspace/contract/opp/66f8f8f5754442b7a85967b415407e3b/view",
+      "naics": "54171"
     },
     {
       "notice_id": "897e1427461540d792897c599373758b",
@@ -28,7 +29,8 @@
       ],
       "found_in_text": false,
       "response_deadline": "2026-11-02T23:00:00+00:00",
-      "sam_url": "https://sam.gov/workspace/contract/opp/897e1427461540d792897c599373758b/view"
+      "sam_url": "https://sam.gov/workspace/contract/opp/897e1427461540d792897c599373758b/view",
+      "naics": "541715"
     },
     {
       "agency": "Defense Commissary Agency",
@@ -43,7 +45,8 @@
         "DFARS 212.70"
       ],
       "title": "Commercial Solution Opportunity - Defense Commissary Agency (DeCA) CONUS",
-      "type": "cso"
+      "type": "cso",
+      "naics": null
     },
     {
       "notice_id": "a0de7ac6bffc490ca9086936d753b586",
@@ -58,7 +61,8 @@
       ],
       "found_in_text": false,
       "response_deadline": "2026-11-05T19:00:00+00:00",
-      "sam_url": "https://sam.gov/workspace/contract/opp/a0de7ac6bffc490ca9086936d753b586/view"
+      "sam_url": "https://sam.gov/workspace/contract/opp/a0de7ac6bffc490ca9086936d753b586/view",
+      "naics": "236220"
     },
     {
       "agency": "Defense Commissary Agency",
@@ -72,7 +76,8 @@
         "Call for solutions"
       ],
       "title": "Call for Solutions - Europe Area Inventory",
-      "type": "cso"
+      "type": "cso",
+      "naics": "561990"
     },
     {
       "notice_id": "451c1779218c410b95c0680e07bb30f9",
@@ -87,7 +92,8 @@
       ],
       "found_in_text": true,
       "response_deadline": "2026-11-06T17:00:00+00:00",
-      "sam_url": "https://sam.gov/workspace/contract/opp/451c1779218c410b95c0680e07bb30f9/view"
+      "sam_url": "https://sam.gov/workspace/contract/opp/451c1779218c410b95c0680e07bb30f9/view",
+      "naics": "541715"
     },
     {
       "notice_id": "2d053cc1755b44d5a414158442bb6779",
@@ -102,7 +108,8 @@
       ],
       "found_in_text": false,
       "response_deadline": "2026-11-06T19:00:00+00:00",
-      "sam_url": "https://sam.gov/workspace/contract/opp/2d053cc1755b44d5a414158442bb6779/view"
+      "sam_url": "https://sam.gov/workspace/contract/opp/2d053cc1755b44d5a414158442bb6779/view",
+      "naics": "236220"
     },
     {
       "notice_id": "d0744e1864aa43adab87e5777a9380fc",
@@ -117,7 +124,8 @@
       ],
       "found_in_text": true,
       "response_deadline": "2026-11-06T21:00:00+00:00",
-      "sam_url": "https://sam.gov/workspace/contract/opp/d0744e1864aa43adab87e5777a9380fc/view"
+      "sam_url": "https://sam.gov/workspace/contract/opp/d0744e1864aa43adab87e5777a9380fc/view",
+      "naics": "334510"
     },
     {
       "agency": "Defense Commissary Agency",
@@ -131,7 +139,8 @@
         "Call for solutions"
       ],
       "title": "Call for Solutions - DeCA Stuttgart Area Commissaries Facility Maintenance",
-      "type": "cso"
+      "type": "cso",
+      "naics": null
     },
     {
       "agency": "Defense Commissary Agency",
@@ -145,7 +154,8 @@
         "Call for solutions"
       ],
       "title": "Call for Solutions - DeCA Bavaria Area Commissary Facility Maintenance",
-      "type": "cso"
+      "type": "cso",
+      "naics": "238990"
     },
     {
       "agency": "Defense Commissary Agency",
@@ -159,7 +169,8 @@
         "Call for solutions"
       ],
       "title": "Call for Solutions - DeCA Ansbach Commissary Facility Maintenance",
-      "type": "cso"
+      "type": "cso",
+      "naics": "238990"
     },
     {
       "agency": "U.S. Army",
@@ -173,7 +184,8 @@
         "CSO"
       ],
       "title": "Low Level Cranes- CSO",
-      "type": "cso"
+      "type": "cso",
+      "naics": "333923"
     },
     {
       "agency": "U.S. Army",
@@ -188,7 +200,8 @@
         "DFARS 212.70"
       ],
       "title": "Automated Fluidized Bed Mixer Facility Modernization for end use at Pine Bluff Arsenal – CSO",
-      "type": "cso"
+      "type": "cso",
+      "naics": "333248"
     },
     {
       "agency": "U.S. Army",
@@ -203,7 +216,8 @@
         "10 U.S.C. 2808a"
       ],
       "title": "PN 110205 - SOS Hangar Renovation - Progressive-Design-Build OT",
-      "type": "ot"
+      "type": "ot",
+      "naics": "236220"
     },
     {
       "agency": "U.S. Air Force",
@@ -219,7 +233,8 @@
         "10 U.S.C. 4022"
       ],
       "title": "RWP - Advanced Navigation Simulation Environment Laboratory (ANSEL)",
-      "type": "consortium"
+      "type": "consortium",
+      "naics": "541330"
     },
     {
       "agency": "U.S. Army",
@@ -234,7 +249,8 @@
         "10 U.S.C. 4022"
       ],
       "title": "Ocular Scanner",
-      "type": "ot"
+      "type": "ot",
+      "naics": "334510"
     },
     {
       "notice_id": "3f84c5d350b345acb0f07728ee25502e",
@@ -250,7 +266,8 @@
       ],
       "found_in_text": true,
       "response_deadline": "2026-11-16T20:00:00+00:00",
-      "sam_url": "https://sam.gov/workspace/contract/opp/3f84c5d350b345acb0f07728ee25502e/view"
+      "sam_url": "https://sam.gov/workspace/contract/opp/3f84c5d350b345acb0f07728ee25502e/view",
+      "naics": "236220"
     },
     {
       "agency": "U.S. Air Force",
@@ -265,7 +282,8 @@
         "10 U.S.C. 2808a"
       ],
       "title": "MACH1_AOI_Military Working Dog Facility_ Vandenberg Space Force_LOE 1 and LOE 2",
-      "type": "ot"
+      "type": "ot",
+      "naics": "236220"
     },
     {
       "agency": "U.S. Air Force",
@@ -280,7 +298,8 @@
         "10 U.S.C. 2808a"
       ],
       "title": "MACH1_AOI_FA890327M1006_F-47 Future Campus at Nellis AFB",
-      "type": "ot"
+      "type": "ot",
+      "naics": "236220"
     },
     {
       "notice_id": "7fa638859b874d33ad7591deabe1e9dc",
@@ -295,7 +314,8 @@
       ],
       "found_in_text": false,
       "response_deadline": "2026-11-19T16:00:00+00:00",
-      "sam_url": "https://sam.gov/workspace/contract/opp/7fa638859b874d33ad7591deabe1e9dc/view"
+      "sam_url": "https://sam.gov/workspace/contract/opp/7fa638859b874d33ad7591deabe1e9dc/view",
+      "naics": "532490"
     },
     {
       "agency": "U.S. Air Force",
@@ -310,7 +330,8 @@
         "10 U.S.C. 2808a"
       ],
       "title": "Request for Qualification - MHMV230026 Construct Permanent Party Enlisted Dorm at Kirtland AFB, New Mexico",
-      "type": "ot"
+      "type": "ot",
+      "naics": "236220"
     },
     {
       "notice_id": "2e1c515009384aa095d45fbfcfbc2356",
@@ -325,7 +346,8 @@
       ],
       "found_in_text": false,
       "response_deadline": "2026-11-30T07:00:00+00:00",
-      "sam_url": "https://sam.gov/workspace/contract/opp/2e1c515009384aa095d45fbfcfbc2356/view"
+      "sam_url": "https://sam.gov/workspace/contract/opp/2e1c515009384aa095d45fbfcfbc2356/view",
+      "naics": "562"
     },
     {
       "agency": "U.S. Army",
@@ -339,7 +361,8 @@
         "CSO"
       ],
       "title": "Army Enterprise HVAC Modernization and Lifecycle Sustainment Maintenance",
-      "type": "cso"
+      "type": "cso",
+      "naics": null
     },
     {
       "notice_id": "11128fed4f044b68a9185dada11c90d9",
@@ -353,7 +376,8 @@
       ],
       "found_in_text": true,
       "response_deadline": "2026-11-30T22:00:00+00:00",
-      "sam_url": "https://sam.gov/workspace/contract/opp/11128fed4f044b68a9185dada11c90d9/view"
+      "sam_url": "https://sam.gov/workspace/contract/opp/11128fed4f044b68a9185dada11c90d9/view",
+      "naics": "541714"
     },
     {
       "agency": "U.S. Army",
@@ -367,7 +391,8 @@
         "CSO call for solutions"
       ],
       "title": "Army Contracting Command - Aberdeen Proving Ground (ACC-APG)Capability Program Executive Command and Control Information Network (CPE C2IN) Commercial Solution Opening (CSO) Call for Solutions (CfS) for PdM WESS",
-      "type": "cso"
+      "type": "cso",
+      "naics": "334220"
     },
     {
       "notice_id": "7c287681804041bab863378830d127c2",
@@ -382,7 +407,8 @@
       ],
       "found_in_text": true,
       "response_deadline": "2026-12-14T22:00:00+00:00",
-      "sam_url": "https://sam.gov/workspace/contract/opp/7c287681804041bab863378830d127c2/view"
+      "sam_url": "https://sam.gov/workspace/contract/opp/7c287681804041bab863378830d127c2/view",
+      "naics": "334220"
     },
     {
       "notice_id": "860125bb77e34a68b89811fa4144b772",
@@ -396,7 +422,8 @@
       ],
       "found_in_text": false,
       "response_deadline": "2026-12-16T18:00:00+00:00",
-      "sam_url": "https://sam.gov/workspace/contract/opp/860125bb77e34a68b89811fa4144b772/view"
+      "sam_url": "https://sam.gov/workspace/contract/opp/860125bb77e34a68b89811fa4144b772/view",
+      "naics": "332993"
     },
     {
       "notice_id": "fc4611184ad340358c2314151865aef8",
@@ -410,7 +437,8 @@
       ],
       "found_in_text": true,
       "response_deadline": "2026-12-18T22:00:00+00:00",
-      "sam_url": "https://sam.gov/workspace/contract/opp/fc4611184ad340358c2314151865aef8/view"
+      "sam_url": "https://sam.gov/workspace/contract/opp/fc4611184ad340358c2314151865aef8/view",
+      "naics": "5417"
     }
   ]
 }

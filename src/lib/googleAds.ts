@@ -24,6 +24,9 @@ const MATCHES_EMAIL_LABEL = '';
 // Primary, count One, 90-day window, created 2026-11-10.
 const FAR_SUBSCRIBE_LABEL = 'Tz3oCLfO8LUdEOrRxcJE';
 const ANALYZER_RESULT_LABEL = 'SZgwCLrO8LUdEOrRxcJE';
+// "OT fit check result": a paid visitor seeing their OT Radar fit-check answer.
+// OWED: empty until the action exists in Google Ads (see reportOtrFitResultConversion).
+const OTR_FIT_RESULT_LABEL = '';
 
 declare global {
   interface Window {
@@ -78,6 +81,18 @@ export function reportSignupConversion(transactionId: string): Promise<void> {
 export function reportOtrSubscribeConversion(): void {
   window.gtag?.('event', 'conversion', {
     send_to: `${AW_ID}/${OTR_SUBSCRIBE_LABEL}`,
+    transport_type: 'beacon',
+  });
+}
+
+// Call when the OT Radar fit check shows a visitor their answer (2026-11-12).
+// OWED: Aaron creates an "OT fit check result" action in Google Ads (Secondary,
+// count One, so "OT Radar subscribe" stays the action the campaign bids on) and
+// pastes its label into OTR_FIT_RESULT_LABEL; until then this does nothing.
+export function reportOtrFitResultConversion(): void {
+  if (!window.gtag || !OTR_FIT_RESULT_LABEL) return;
+  window.gtag('event', 'conversion', {
+    send_to: `${AW_ID}/${OTR_FIT_RESULT_LABEL}`,
     transport_type: 'beacon',
   });
 }

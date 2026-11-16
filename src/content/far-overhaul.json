@@ -1,6 +1,6 @@
 {
-  "verifiedOn": "2026-11-09",
-  "nextCheck": "2026-11-16",
+  "verifiedOn": "2026-11-16",
+  "nextCheck": "2026-11-23",
   "layers": {
     "modelText": {
       "parts": 51,
@@ -41,15 +41,13 @@
   },
   "thisWeek": [
     {
-      "date": "2026-11-04",
-      "title": "GSA utility services comment window closed",
-      "whatChanged": "The comment period on GSA's proposed rule for GSAR part 541 (utility services, GSAR Case 2026-G502) closed November 4, 2026. All eight FAR overhaul proposed-rule comment periods had already closed on July 23 and October 19, 2026.",
-      "meaning": "No FAR overhaul comment windows are open. The next opportunity to comment will come when the four remaining FAR proposed rules publish (FAR Cases 2026-004, -008, -009, -012); no publication dates have been announced.",
-      "parts": [
-        41
-      ],
-      "appliesTo": "GSA utility-services contractors and all contractors following FAR overhaul comment opportunities.",
-      "sourceUrl": "https://www.federalregister.gov/documents/2026/10/05/2026-20317/general-services-administration-acquisition-regulation-gsar-implementation-of-executive-order-14275"
+      "date": "2026-11-16",
+      "title": "No new government actions this week",
+      "whatChanged": "Checked the Federal Register FAR overhaul documents, the acquisition.gov FAR overhaul pages (deviation guide, FAQs, You Said, We Did, policy and guidance), GSA's GSAR overhaul page and DoD's DFARS class deviation list. Found no new FAR or GSAR proposed rule, final rule, correction or deviation dated after November 9, 2026. The DoD list still shows a last-updated date of October 22, 2026.",
+      "meaning": "Our reading: the prior status stands. Eight FAR overhaul proposed rules are published and all of their comment periods have closed. The four remaining FAR proposed rules have no announced publication date, and no final rule has been published.",
+      "parts": [],
+      "appliesTo": "All agencies",
+      "sourceUrl": "https://www.acquisition.gov/far-overhaul"
     }
   ],
   "impacts": [
@@ -3779,6 +3777,15 @@
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-16",
+      "entries": [
+        {
+          "text": "Weekly check: no changes. No new Federal Register documents, agency deviations or DFARS list updates since November 9, 2026. thisWeek now shows no new government actions; the November 4 GSAR utility services comment-close entry is removed.",
+          "sourceUrl": "https://www.acquisition.gov/far-overhaul"
+        }
+      ]
+    },
     {
       "date": "2026-11-09",
       "entries": [

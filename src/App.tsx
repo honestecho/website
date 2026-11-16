@@ -30,6 +30,7 @@ import ForGovconConsultants from './pages/ForGovconConsultants';
 import ContractsForBidConstruction from './pages/ContractsForBidConstruction';
 import OtherTransactions from './pages/OtherTransactions';
 import FindMyMatches from './pages/FindMyMatches';
+import HowPursuitWorks from './pages/HowPursuitWorks';
 
 // Everything else stays code-split — lower-traffic / interactive pages where a
 // brief hard-load shift is inconsequential and the bundle savings are worth more.
@@ -148,6 +149,8 @@ function App() {
           <Route path="/sam-gov-hidden-opportunities/" element={<SamGovHiddenOpportunities />} />
           <Route path="/resources" element={<Resources />} />
           <Route path="/resources/" element={<Resources />} />
+          <Route path="/how-pursuit-works" element={<HowPursuitWorks />} />
+          <Route path="/how-pursuit-works/" element={<HowPursuitWorks />} />
           <Route path="/sources-sought-worth-responding" element={<SourcesSoughtGuide />} />
           <Route path="/sources-sought-worth-responding/" element={<SourcesSoughtGuide />} />
           <Route path="/far-overhaul" element={<FarOverhaulTracker />} />

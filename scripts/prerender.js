@@ -39,6 +39,7 @@ const routes = [
   { path: '/sam-gov-opportunity-analysis',            file: 'src/pages/SamGovAnalysis.tsx',              changefreq: 'monthly', priority: '0.8' },
   { path: '/sam-gov-hidden-opportunities',            file: 'src/pages/SamGovHiddenOpportunities.tsx',   changefreq: 'monthly', priority: '0.8' },
   { path: '/resources',                               file: 'src/content/resources.ts',                  changefreq: 'monthly', priority: '0.8' },
+  { path: '/how-pursuit-works',                       file: 'src/pages/HowPursuitWorks.tsx',             changefreq: 'monthly', priority: '0.8' },
   { path: '/sources-sought-worth-responding',         file: 'src/pages/SourcesSoughtGuide.tsx',          changefreq: 'monthly', priority: '0.8' },
   // lastmod follows the data file the weekly tracker job rewrites, not the page code.
   { path: '/far-overhaul',                            file: 'src/content/far-overhaul.json',             changefreq: 'weekly',  priority: '0.9' },

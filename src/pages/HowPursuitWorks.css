@@ -1,6 +1,8 @@
-/* The flow map on /how-pursuit-works. Light glass, approved as a comp on 2026-11-16.
+/* The flow map on /how-pursuit-works. Light glass, approved as a comp on 2026-11-16;
+   a dark theme is on trial beside it (data-theme="dark").
    Everything is scoped under .fm so nothing here reaches another page.
-   Sizes hang off U = 78px (one node card's height): captions 14px, labels 18px, titles 26px, the one figure 44px. */
+   Sizes hang off U = 78px (one node card's height): captions 14px, labels 18px, titles 26px, the one figure 44px.
+   Every colour is a variable set once per theme, so the two themes cannot drift apart in layout. */
 
 .fm {
   --fm-accent: #00c3ff;
@@ -10,19 +12,65 @@
   --fm-mute: #566175;
   --fm-thread: #bfc9d6;
   --fm-dot: #a9b6c9;
+  --fm-ground:
+    radial-gradient(560px 400px at 20% 36%, rgba(214, 240, 236, 0.7), transparent 70%),
+    radial-gradient(660px 460px at 64% 50%, rgba(214, 233, 248, 0.75), transparent 70%),
+    radial-gradient(600px 380px at 90% 88%, rgba(232, 226, 246, 0.7), transparent 70%),
+    linear-gradient(100deg, #f3f5f8 0%, #edf1f5 55%, #dfe7ef 100%);
+  --fm-edge: 0 0 0 0 transparent;
+  --fm-grain: #33415c;
+  --fm-grain-opacity: 0.035;
   --fm-lift: 0 4px 14px rgba(70, 90, 130, 0.16), 0 1px 0 rgba(70, 90, 130, 0.06);
+  --fm-lift-on: 0 8px 22px rgba(70, 90, 130, 0.22);
   --fm-rim: inset 0 1px 0 #ffffff;
+  --fm-card: linear-gradient(180deg, #ffffff 0%, #f3f6fb 100%);
+  --fm-tray: rgba(255, 255, 255, 0.16);
+  --fm-tray-rim: inset 1px 1px 0 rgba(255, 255, 255, 0.85), inset -1px -1px 0 rgba(255, 255, 255, 0.1);
+  --fm-pill: rgba(250, 251, 253, 0.52);
+  --fm-step-on: rgba(214, 222, 240, 0.34);
+  --fm-pane: rgba(251, 251, 253, 0.72);
+  --fm-pane-rim: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  --fm-sq: rgba(255, 255, 255, 0.9);
+  --fm-solid: #0b1120;
+  --fm-on-solid: #ffffff;
   position: relative;
   overflow: hidden;
   border-radius: 28px;
   color: var(--fm-body);
   font-size: 14px;
   line-height: 1.3;
-  background:
-    radial-gradient(560px 400px at 20% 36%, rgba(214, 240, 236, 0.7), transparent 70%),
-    radial-gradient(660px 460px at 64% 50%, rgba(214, 233, 248, 0.75), transparent 70%),
-    radial-gradient(600px 380px at 90% 88%, rgba(232, 226, 246, 0.7), transparent 70%),
-    linear-gradient(100deg, #f3f5f8 0%, #edf1f5 55%, #dfe7ef 100%);
+  background: var(--fm-ground);
+  box-shadow: var(--fm-edge);
+}
+
+/* Dark: the same glass on the site's night ground. Trial, 2026-11-16. */
+.fm[data-theme="dark"] {
+  --fm-title: #ffffff;
+  --fm-body: #c5d0df;
+  --fm-mute: #a9b6cb;
+  --fm-thread: rgba(255, 255, 255, 0.22);
+  --fm-dot: rgba(255, 255, 255, 0.42);
+  --fm-ground:
+    radial-gradient(620px 420px at 22% 34%, rgba(0, 195, 255, 0.085), transparent 70%),
+    radial-gradient(700px 480px at 66% 52%, rgba(91, 140, 255, 0.095), transparent 70%),
+    radial-gradient(600px 380px at 90% 90%, rgba(0, 195, 255, 0.06), transparent 70%),
+    linear-gradient(100deg, #081428 0%, #06101f 55%, #091730 100%);
+  --fm-edge: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --fm-grain: #cfe6ff;
+  --fm-grain-opacity: 0.05;
+  --fm-lift: 0 4px 14px rgba(0, 0, 0, 0.45), 0 1px 0 rgba(0, 0, 0, 0.3);
+  --fm-lift-on: 0 8px 22px rgba(0, 0, 0, 0.55);
+  --fm-rim: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  --fm-card: linear-gradient(180deg, #1a2740 0%, #111b2e 100%);
+  --fm-tray: rgba(255, 255, 255, 0.035);
+  --fm-tray-rim: inset 1px 1px 0 rgba(255, 255, 255, 0.26), inset -1px -1px 0 rgba(255, 255, 255, 0.04);
+  --fm-pill: rgba(21, 32, 51, 0.58);
+  --fm-step-on: rgba(91, 140, 255, 0.14);
+  --fm-pane: rgba(11, 17, 32, 0.74);
+  --fm-pane-rim: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  --fm-sq: rgba(255, 255, 255, 0.1);
+  --fm-solid: #f4f7fb;
+  --fm-on-solid: #030b17;
 }
 
 /* fine stipple on the ground only */
@@ -30,9 +78,9 @@
   content: "";
   position: absolute;
   inset: 0;
-  opacity: 0.035;
+  opacity: var(--fm-grain-opacity);
   pointer-events: none;
-  background-image: radial-gradient(#33415c 0.7px, transparent 0.9px), radial-gradient(#33415c 0.6px, transparent 0.8px);
+  background-image: radial-gradient(var(--fm-grain) 0.7px, transparent 0.9px), radial-gradient(var(--fm-grain) 0.6px, transparent 0.8px);
   background-size: 19px 23px, 31px 27px;
   background-position: 0 0, 9px 13px;
 }
@@ -41,6 +89,7 @@
 .fm-label { font-size: 18px; }
 .fm-cap { font-size: 14px; color: var(--fm-mute); }
 .fm-ptitle { font-size: 26px; line-height: 1.15; }
+.fm-chev { color: var(--fm-mute); }
 
 .fm button { text-align: left; cursor: pointer; }
 .fm button:focus-visible, .fm a:focus-visible { outline: 2px solid var(--fm-title); outline-offset: 2px; }
@@ -53,7 +102,7 @@
   grid-template-columns: repeat(5, 1fr);
   height: 66px;
   border-radius: 22px;
-  background: rgba(250, 251, 253, 0.52);
+  background: var(--fm-pill);
   box-shadow: var(--fm-rim);
 }
 .fm-step {
@@ -69,7 +118,7 @@
   color: var(--fm-mute);
 }
 .fm-step b { font-weight: 600; color: var(--fm-title); }
-.fm-step[aria-pressed="true"] { color: var(--fm-title); background: rgba(214, 222, 240, 0.34); }
+.fm-step[aria-pressed="true"] { color: var(--fm-title); background: var(--fm-step-on); }
 /* the selection is two slim brackets and a breath of tint */
 .fm-step[aria-pressed="true"]::before,
 .fm-step[aria-pressed="true"]::after {
@@ -92,8 +141,8 @@
   height: 66px;
   padding: 0 28px;
   border-radius: 22px;
-  background: var(--fm-title);
-  color: #ffffff;
+  background: var(--fm-solid);
+  color: var(--fm-on-solid);
   font-size: 18px;
   font-weight: 600;
   white-space: nowrap;
@@ -118,8 +167,8 @@
   position: absolute;
   width: 290px;
   border-radius: 31px;
-  background: rgba(255, 255, 255, 0.16);
-  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.85), inset -1px -1px 0 rgba(255, 255, 255, 0.1);
+  background: var(--fm-tray);
+  box-shadow: var(--fm-tray-rim);
   backdrop-filter: blur(6px);
 }
 .fm-head {
@@ -160,7 +209,7 @@
   padding: 15px 5px 0 46px;
   border: 0;
   border-radius: 21px;
-  background: linear-gradient(180deg, #ffffff 0%, #f3f6fb 100%);
+  background: var(--fm-card);
   box-shadow: var(--fm-lift), var(--fm-rim);
   display: block;
 }
@@ -170,8 +219,8 @@
 
 /* the selected phase lifts; nothing else moves */
 button.fm-node, .fm-head { transition: box-shadow 300ms ease-out; }
-button.fm-node[aria-pressed="true"] { box-shadow: 0 8px 22px rgba(70, 90, 130, 0.22), 0 0 0 1.5px rgba(0, 195, 255, 0.7), var(--fm-rim); }
-.fm-tray[data-selected="true"] { box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.85), inset -1px -1px 0 rgba(255, 255, 255, 0.1), 0 0 0 1.5px rgba(0, 195, 255, 0.7); }
+button.fm-node[aria-pressed="true"] { box-shadow: var(--fm-lift-on), 0 0 0 1.5px rgba(0, 195, 255, 0.7), var(--fm-rim); }
+.fm-tray[data-selected="true"] { box-shadow: var(--fm-tray-rim), 0 0 0 1.5px rgba(0, 195, 255, 0.7); }
 
 .fm-linelabel {
   position: absolute;
@@ -208,8 +257,8 @@ button.fm-node[aria-pressed="true"] { box-shadow: 0 8px 22px rgba(70, 90, 130, 0
 .fm-pane {
   position: relative;
   padding: 34px 40px 36px;
-  background: rgba(251, 251, 253, 0.72);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  background: var(--fm-pane);
+  box-shadow: var(--fm-pane-rim);
   backdrop-filter: blur(10px);
 }
 /* min-height holds the tallest phase (Viability), so choosing a phase never moves the page */
@@ -221,7 +270,7 @@ button.fm-node[aria-pressed="true"] { box-shadow: 0 8px 22px rgba(70, 90, 130, 0
   .fm-pane-left { margin-top: 0; border-radius: 0; min-height: 0; }
   .fm-pane-right { border-radius: 0; padding-left: 56px; }
 }
-.fm-sq { width: 40px; height: 40px; border-radius: 13px; background: rgba(255, 255, 255, 0.9); display: grid; place-items: center; color: var(--fm-title); flex: none; }
+.fm-sq { width: 40px; height: 40px; border-radius: 13px; background: var(--fm-sq); display: grid; place-items: center; color: var(--fm-title); flex: none; }
 .fm-sq svg { width: 20px; height: 20px; }
 .fm-rows { display: grid; grid-template-columns: 200px 1fr; column-gap: 14px; row-gap: 9px; }
 .fm-rows dt { color: var(--fm-title); font-weight: 600; }
@@ -235,7 +284,7 @@ button.fm-node[aria-pressed="true"] { box-shadow: 0 8px 22px rgba(70, 90, 130, 0
   width: 150px;
   padding: 14px 18px;
   border-radius: 18px;
-  background: linear-gradient(180deg, #ffffff 0%, #f3f6fb 100%);
+  background: var(--fm-card);
   box-shadow: var(--fm-lift), var(--fm-rim);
 }
 .fm-fig { font-size: 44px; font-weight: 400; line-height: 1; color: var(--fm-title); margin: 4px 0; }
@@ -250,7 +299,7 @@ button.fm-node[aria-pressed="true"] { box-shadow: 0 8px 22px rgba(70, 90, 130, 0
   position: relative;
   padding: 18px 18px 18px 54px;
   border-radius: 21px;
-  background: linear-gradient(180deg, #ffffff 0%, #f3f6fb 100%);
+  background: var(--fm-card);
   box-shadow: var(--fm-lift), var(--fm-rim);
 }
 

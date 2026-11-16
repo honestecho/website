@@ -123,6 +123,11 @@ function Card({ at, Icon, title, sub }: { at: string; Icon: ElementType; title: 
 
 export default function HowPursuitWorks() {
   const [selected, setSelected] = useState<PhaseId>(1);
+  // TRIAL (2026-11-16): light and dark side by side for Aaron's pick. The switch and this
+  // state come out once he chooses; the losing theme's block in the stylesheet goes with them.
+  // `#dark` on the address opens it dark (the prerendered HTML is always light).
+  const [theme, setTheme] = useState<'light' | 'dark'>(() =>
+    typeof window !== 'undefined' && window.location.hash === '#dark' ? 'dark' : 'light');
   const phase = PHASES[selected - 1];
   const select = (id: PhaseId) => {
     setSelected(id);
@@ -177,7 +182,22 @@ export default function HowPursuitWorks() {
       </section>
 
       <section className="px-6 pb-24">
-        <div className="fm font-body max-w-[1328px] mx-auto">
+        {/* TRIAL switch, removed with the losing theme */}
+        <div className="max-w-[1328px] mx-auto mb-3 flex justify-end items-center gap-2 font-body text-sm text-[#a9b6cb]">
+          <span>Theme</span>
+          {(['light', 'dark'] as const).map(t => (
+            <button
+              key={t}
+              type="button"
+              aria-pressed={theme === t}
+              onClick={() => setTheme(t)}
+              className={`px-3 py-1.5 rounded-lg border transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00c3ff] ${theme === t ? 'border-[#00c3ff] text-white' : 'border-[#1e2d4a] text-[#a9b6cb] hover:text-white'}`}
+            >
+              {t === 'light' ? 'Light' : 'Dark'}
+            </button>
+          ))}
+        </div>
+        <div className="fm font-body max-w-[1328px] mx-auto" data-theme={theme}>
           {/* ── 1024px and up: the map ─────────────────────────────────────── */}
           <div className="hidden lg:block">
             <div className="fm-controls px-6 min-[1376px]:px-12 pt-8">
@@ -261,7 +281,7 @@ export default function HowPursuitWorks() {
                   <div className="fm-cap">One question each</div>
                 </div>
               </div>
-              <ChevronsDown className="hidden xl:block absolute left-[58.333%] -translate-x-[18px] top-1 w-4 h-4 text-[#566175]" aria-hidden="true" />
+              <ChevronsDown className="hidden xl:block absolute left-[58.333%] -translate-x-[18px] top-1 w-4 h-4 fm-chev" aria-hidden="true" />
               <div className="fm-pane fm-pane-right">
                 <div className="flex items-center gap-3.5">
                   <span className="fm-sq"><ClipboardList aria-hidden="true" /></span>

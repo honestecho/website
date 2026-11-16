@@ -1,7 +1,7 @@
 /* The flow map on /how-pursuit-works: dark glass on the site's night ground.
    Aaron saw light and dark side by side on the built page and kept dark (2026-11-16).
    Everything is scoped under .fm so nothing here reaches another page.
-   Sizes hang off U = 78px (one node card's height): captions 14px, labels 18px, titles 26px, the one figure 44px.
+   Sizes hang off U = 78px (one node card's height): captions 14px, labels 18px, titles 26px.
    Every colour is a variable set here once. */
 
 .fm {
@@ -10,25 +10,25 @@
   --fm-title: #ffffff;
   --fm-body: #c5d0df;
   --fm-mute: #a9b6cb;
-  --fm-thread: rgba(255, 255, 255, 0.22);
+  --fm-thread: rgba(169, 182, 203, 0.28);
   --fm-dot: rgba(255, 255, 255, 0.42);
   --fm-ground:
-    radial-gradient(620px 420px at 22% 34%, rgba(0, 195, 255, 0.085), transparent 70%),
+    radial-gradient(620px 420px at 22% 34%, rgba(0, 195, 255, 0.045), transparent 70%),
     radial-gradient(700px 480px at 66% 52%, rgba(91, 140, 255, 0.095), transparent 70%),
     radial-gradient(600px 380px at 90% 90%, rgba(0, 195, 255, 0.06), transparent 70%),
     linear-gradient(100deg, #081428 0%, #06101f 55%, #091730 100%);
   --fm-edge: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
   --fm-grain: #cfe6ff;
-  --fm-grain-opacity: 0.05;
-  --fm-lift: 0 4px 14px rgba(0, 0, 0, 0.45), 0 1px 0 rgba(0, 0, 0, 0.3);
+  --fm-grain-opacity: 0.03;
+  --fm-lift: 0 6px 14px rgba(0, 0, 0, 0.24);
   --fm-lift-on: 0 8px 22px rgba(0, 0, 0, 0.55);
   --fm-rim: inset 0 1px 0 rgba(255, 255, 255, 0.16);
-  --fm-card: linear-gradient(180deg, #1a2740 0%, #111b2e 100%);
-  --fm-tray: rgba(255, 255, 255, 0.035);
+  --fm-card: linear-gradient(180deg, #1b2941 0%, #111b2d 100%);
+  --fm-tray: rgba(15, 29, 47, 0.55);
   --fm-tray-rim: inset 1px 1px 0 rgba(255, 255, 255, 0.26), inset -1px -1px 0 rgba(255, 255, 255, 0.04);
   --fm-pill: rgba(21, 32, 51, 0.58);
   --fm-step-on: rgba(91, 140, 255, 0.14);
-  --fm-pane: rgba(11, 17, 32, 0.74);
+  --fm-pane: #0b1120;
   --fm-pane-rim: inset 0 1px 0 rgba(255, 255, 255, 0.14);
   --fm-sq: rgba(255, 255, 255, 0.1);
   --fm-solid: #f4f7fb;
@@ -59,7 +59,6 @@
 .fm-label { font-size: 18px; }
 .fm-cap { font-size: 14px; color: var(--fm-mute); }
 .fm-ptitle { font-size: 26px; line-height: 1.15; }
-.fm-chev { color: var(--fm-mute); }
 
 .fm button { text-align: left; cursor: pointer; }
 .fm button:focus-visible, .fm a:focus-visible { outline: 2px solid var(--fm-title); outline-offset: 2px; }
@@ -123,12 +122,16 @@
 /* the phone button: full width, and its label may wrap on a 320px screen */
 .fm-cta-phone { display: flex; height: auto; min-height: 56px; padding: 12px 16px; white-space: normal; text-align: center; }
 
+.fm-legend { position: relative; display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 14px; line-height: 20px; color: var(--fm-mute); }
+.fm-legend-line { width: 28px; height: 2px; border-radius: 1px; background: var(--fm-accent); }
+
 /* ── the map: a fixed 1232 x 520 canvas ────────────────────────────────── */
 .fm-scroll { overflow-x: auto; }
 .fm-map { position: relative; width: 1232px; height: 520px; margin: 0 auto; }
-.fm-threads { position: absolute; inset: 0; width: 1232px; height: 520px; pointer-events: none; }
+.fm-threads { position: absolute; inset: 0; z-index: 1; width: 1232px; height: 520px; pointer-events: none; }
 .fm-threads path { fill: none; stroke: var(--fm-thread); stroke-width: 1; }
-.fm-threads path[data-path="focus"] { stroke: var(--fm-accent); stroke-opacity: 0.8; }
+/* the one route the page is about carries the weight; everything else stays a hairline */
+.fm-threads path[data-path="focus"] { stroke: var(--fm-accent); stroke-width: 2; }
 .fm-threads circle { fill: var(--fm-dot); }
 .fm-threads circle[data-path="focus"] { fill: var(--fm-accent); }
 
@@ -153,6 +156,8 @@
   border-radius: 31px 31px 0 0;
 }
 
+.fm-headnote { margin-left: 12px; font-size: 14px; font-weight: 400; color: var(--fm-mute); white-space: nowrap; }
+
 /* corner tab: the card's own corner folded over. Zero inset. */
 .fm-tab {
   position: absolute;
@@ -174,6 +179,7 @@
 
 .fm-node {
   position: absolute;
+  z-index: 2;
   width: 218px;
   height: 78px;
   padding: 15px 5px 0 46px;
@@ -189,18 +195,18 @@
 
 /* the selected phase lifts; nothing else moves */
 button.fm-node, .fm-head { transition: box-shadow 300ms ease-out; }
-button.fm-node[aria-pressed="true"] { box-shadow: var(--fm-lift-on), 0 0 0 1.5px rgba(0, 195, 255, 0.7), var(--fm-rim); }
-.fm-tray[data-selected="true"] { box-shadow: var(--fm-tray-rim), 0 0 0 1.5px rgba(0, 195, 255, 0.7); }
+button.fm-node[aria-pressed="true"] { box-shadow: var(--fm-lift-on), 0 0 0 1px rgba(0, 195, 255, 0.5), var(--fm-rim); }
+.fm-tray[data-selected="true"] { box-shadow: var(--fm-tray-rim), 0 0 0 1px rgba(0, 195, 255, 0.4); }
 
 .fm-linelabel {
   position: absolute;
-  left: 620px;
-  top: 245px;
+  z-index: 2;
+  left: 632px;
+  top: 122px;
   font-size: 14px;
+  line-height: 20px;
   color: var(--fm-mute);
   white-space: nowrap;
-  transform: rotate(-90deg);
-  transform-origin: left top;
 }
 
 /* positions on the 1232 x 520 canvas */
@@ -226,38 +232,27 @@ button.fm-node[aria-pressed="true"] { box-shadow: var(--fm-lift-on), 0 0 0 1.5px
 .fm-panes { position: relative; display: grid; grid-template-columns: 7fr 5fr; gap: 20px; align-items: stretch; }
 .fm-pane {
   position: relative;
-  padding: 34px 40px 36px;
+  padding: 40px;
+  border-radius: 28px;
   background: var(--fm-pane);
   box-shadow: var(--fm-pane-rim);
-  backdrop-filter: blur(10px);
 }
-/* min-height holds the tallest phase (Viability), so choosing a phase never moves the page */
-.fm-pane-left { margin-top: 14px; border-radius: 0 27px 0 0; padding-left: 56px; min-height: 404px; }
-.fm-pane-right { border-radius: 27px 0 0 0; }
 /* under 1280px the two panes no longer fit side by side */
 @media (max-width: 1279px) {
-  .fm-panes { grid-template-columns: 1fr; gap: 0; }
-  .fm-pane-left { margin-top: 0; border-radius: 0; min-height: 0; }
-  .fm-pane-right { border-radius: 0; padding-left: 56px; }
+  .fm-panes { grid-template-columns: 1fr; }
 }
 .fm-sq { width: 40px; height: 40px; border-radius: 13px; background: var(--fm-sq); display: grid; place-items: center; color: var(--fm-title); flex: none; }
 .fm-sq svg { width: 20px; height: 20px; }
-.fm-rows { display: grid; grid-template-columns: 200px 1fr; column-gap: 14px; row-gap: 9px; }
+.fm-rows { display: grid; grid-template-columns: 200px 1fr; column-gap: 14px; row-gap: 8px; line-height: 22px; }
 .fm-rows dt { color: var(--fm-title); font-weight: 600; }
-/* on a phone each answer sits under its name */
-.fm-rows-stack { grid-template-columns: 1fr; row-gap: 2px; }
-.fm-rows-stack dd { margin-bottom: 8px; }
-.fm-tip {
-  position: absolute;
-  right: 40px;
-  top: 28px;
-  width: 150px;
-  padding: 14px 18px;
-  border-radius: 18px;
-  background: var(--fm-card);
-  box-shadow: var(--fm-lift), var(--fm-rim);
-}
-.fm-fig { font-size: 44px; font-weight: 400; line-height: 1; color: var(--fm-title); margin: 4px 0; }
+/* on a phone each answer sits under its name, in even groups, with the output set apart */
+.fm-groups { line-height: 20px; }
+.fm-groups dt { color: var(--fm-title); font-weight: 600; }
+.fm-groups dd { margin-top: 2px; }
+.fm-groups > div + div { margin-top: 16px; }
+.fm-groups .fm-group-output { padding-top: 12px; border-top: 1px solid #1e2d4a; }
+.fm-groups-2col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.fm-groups-2col > div + div { margin-top: 0; }
 .fm-table { border-collapse: collapse; }
 .fm-table th { text-align: left; font-weight: 600; color: var(--fm-title); padding: 0 26px 10px 0; }
 .fm-table td { padding: 0 26px 0 0; height: 30px; white-space: nowrap; }
@@ -267,11 +262,13 @@ button.fm-node[aria-pressed="true"] { box-shadow: var(--fm-lift-on), 0 0 0 1.5px
 /* ── under 1024px: the same phases as a stack of cards ─────────────────── */
 .fm-stack-card {
   position: relative;
-  padding: 18px 18px 18px 54px;
+  padding: 18px 20px 20px;
   border-radius: 21px;
   background: var(--fm-card);
   box-shadow: var(--fm-lift), var(--fm-rim);
 }
+
+.fm-stack-title { padding-left: 34px; }
 
 @media (prefers-reduced-motion: reduce) {
   .fm-cta, button.fm-node, .fm-head { transition: none; }

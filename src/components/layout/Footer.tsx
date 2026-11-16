@@ -39,6 +39,7 @@ export default function Footer() {
               <p className="text-xs font-bold text-[#00c3ff] uppercase tracking-widest mb-3">Product</p>
               <ul className="space-y-2">
                 {[
+                  { label: 'How Pursuit Works', to: '/how-pursuit-works/' },
                   { label: 'Free Analyzer', to: '/tools/sam-gov-notice-analyzer/' },
                   { label: 'Pursuit Readout', to: '/tools/pursuit-readout/' },
                   { label: 'Construction Contracts', to: '/government-contracts-for-bid/construction/' },

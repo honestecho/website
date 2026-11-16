@@ -142,6 +142,16 @@ export default function Home() {
               </li>
             ))}
           </ol>
+          <p className="mt-8 font-body">
+            <Link
+              to="/how-pursuit-works/"
+              onClick={() => track('home_how_pursuit_works_clicked')}
+              className={`inline-flex items-center gap-2 text-[#00c3ff] font-bold text-base hover:text-white transition-colors ${focusRing}`}
+            >
+              See the five phases
+              <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
+            </Link>
+          </p>
         </div>
       </section>
 

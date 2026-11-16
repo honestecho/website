@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { ElementType, ReactNode } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check, ChevronsDown, ClipboardList, Database, Eye, FileText, TriangleAlert, User, X } from 'lucide-react';
+import { ArrowRight, Check, ClipboardList, Database, Eye, FileText, TriangleAlert, User, X } from 'lucide-react';
 import { track } from '../lib/analytics';
 import './HowPursuitWorks.css';
 
@@ -56,7 +56,7 @@ const PHASES: { id: PhaseId; label: string; question: string; summary: string; o
   },
   {
     id: 5, label: 'Decision', question: 'Go or No-Go?', output: 'Decision Summary',
-    summary: 'Pursuit recommends Go, Conditional Go or No-Go from your own answers. You record the call.',
+    summary: 'Pursuit recommends Go, Conditional Go or No-Go from your answers. You record Go — We Bid or No-Go — We Pass.',
     rows: [
       ['Go — We Bid', 'Commit to the pursuit and open the compliance handoff.'],
       ['No-Go — We Pass', 'Close the pursuit with the reason on record.'],
@@ -95,16 +95,18 @@ function threadPath(points: Pt[], radius = 12): string {
 // `bid` marks the one highlighted route: a notice that ends in a bid. `joins` means the
 // thread's last point lands on another thread, so it gets no end dot.
 const THREADS: { pts: Pt[]; bid?: boolean; joins?: boolean }[] = [
-  { bid: true, pts: [[290, 139], [302, 139], [302, 89], [314, 89]] },        // SAM.gov notices → Triage
-  { bid: true, pts: [[604, 89], [634, 89], [634, 49], [664, 49]] },          // Continue → Eligibility
+  { bid: true, pts: [[254, 139], [302, 139], [302, 25], [314, 25]] },        // SAM.gov notices → Triage
+  { bid: true, pts: [[568, 89], [634, 89], [634, 49], [664, 49]] },          // Continue → Eligibility
   { bid: true, pts: [[882, 49], [978, 49]] },                                // Eligibility → Alignment
   { bid: true, pts: [[1087, 88], [1087, 130]] },                             // Alignment → Viability
   { bid: true, pts: [[978, 169], [773, 169], [773, 250]] },                  // Viability → Decision
-  { bid: true, pts: [[918, 339], [942, 339]] },                              // Go → Bid Handoff
-  { joins: true, pts: [[290, 238], [302, 238], [302, 100]] },                // Your profile joins the trunk
+  { bid: true, pts: [[882, 339], [978, 339]] },                              // Go → Bid Handoff
+  { joins: true, pts: [[254, 238], [302, 238], [302, 120]] },                // Your profile joins the trunk
+  // Caution also opens Eligibility: it joins Continue's run inside the tray, clear of the shortcut below.
+  { joins: true, pts: [[568, 188], [586, 188], [586, 89]] },
   // A disqualifying issue skips Alignment and Viability and lands on No-Go, the only call left.
-  { pts: [[676, 88], [676, 112], [616, 112], [616, 438], [628, 438]] },
-  { pts: [[918, 438], [942, 438]] },                                         // No-Go → Decision Record
+  { pts: [[676, 88], [676, 112], [616, 112], [616, 438], [664, 438]] },
+  { pts: [[882, 438], [978, 438]] },                                         // No-Go → Decision Record
 ];
 
 function Tab({ children }: { children: ReactNode }) {
@@ -139,11 +141,12 @@ export default function HowPursuitWorks() {
       </button>
     );
   };
-  const phaseTray = (id: PhaseId, at: string) => (
+  const phaseTray = (id: PhaseId, at: string, note?: string) => (
     <div className={`fm-tray fm-at-${at}`} data-tray data-selected={selected === id}>
       <button type="button" className="fm-head fm-title fm-label font-headline" aria-pressed={selected === id} onClick={() => select(id)}>
         <Tab>{id}</Tab>
         {PHASES[id - 1].label}
+        {note && <span className="fm-headnote font-body">{note}</span>}
       </button>
     </div>
   );
@@ -164,14 +167,14 @@ export default function HowPursuitWorks() {
         <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
 
-      {/* Hero — pt-32 so content clears the sticky navbar */}
-      <section className="pt-32 pb-12 px-6 relative overflow-hidden">
+      {/* Hero, kept short so the map starts inside the first screen */}
+      <section className="pt-14 lg:pt-16 pb-8 px-6 relative overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <h1 className="font-headline font-black text-5xl md:text-6xl xl:text-7xl text-white mb-5 tracking-tighter leading-tight drop-shadow-2xl">
+          <h1 className="font-headline font-black text-4xl md:text-5xl xl:text-6xl text-white mb-4 tracking-tighter leading-tight drop-shadow-2xl">
             From opportunity to a clear decision.
           </h1>
           <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-3xl">
-            Five phases — Triage, Eligibility, Alignment, Viability, Decision — each answer one question about the notice. A pursuit can be parked or closed at Triage. One that goes on ends in a recorded Go or No-Go, and a recorded Go opens the Bid Handoff for your proposal team.
+            Pursuit matches SAM.gov notices to your company profile. Five phases help you decide whether to bid, with options to park or close at Triage. Pursuit recommends a decision; you record the call. A Go opens the Bid Handoff.
           </p>
         </div>
       </section>
@@ -180,7 +183,7 @@ export default function HowPursuitWorks() {
         <div className="fm font-body max-w-[1328px] mx-auto">
           {/* ── 1024px and up: the map ─────────────────────────────────────── */}
           <div className="hidden lg:block">
-            <div className="fm-controls px-6 min-[1376px]:px-12 pt-8">
+            <div className="fm-controls px-6 min-[1376px]:px-12 pt-6">
               <div className="fm-stepper" role="group" aria-label="Phases">
                 {PHASES.map(p => (
                   <button key={p.id} type="button" className="fm-step" aria-pressed={selected === p.id} onClick={() => select(p.id)}>
@@ -194,8 +197,13 @@ export default function HowPursuitWorks() {
               </Link>
             </div>
 
+            <p className="fm-legend px-6 min-[1376px]:px-12">
+              <span className="fm-legend-line" aria-hidden="true"></span>
+              Highlighted path: Continue to Go — We Bid
+            </p>
+
             {/* The map is 1232px wide. The panel only has room for side padding from 1376px up; below 1280px it scrolls sideways. */}
-            <div className="fm-scroll min-[1376px]:px-12 pt-10 pb-8">
+            <div className="fm-scroll min-[1376px]:px-12 pt-3 pb-8">
               <div className="fm-map" role="group" aria-label="How a notice moves through Pursuit, from its sources to a recorded Go or No-Go">
                 <svg className="fm-threads" viewBox="0 0 1232 520" aria-hidden="true">
                   {THREADS.map((t, i) => {
@@ -214,8 +222,8 @@ export default function HowPursuitWorks() {
                 <div className="fm-tray fm-at-sources" data-tray>
                   <div className="fm-head fm-title fm-label font-headline"><Tab><Database strokeWidth={2.25} /></Tab>Sources</div>
                 </div>
-                <Card at="sam" Icon={Database} title="SAM.gov notices" sub="Open notices" />
-                <Card at="profile" Icon={User} title="Your profile" sub="What you do" />
+                <Card at="sam" Icon={Database} title="SAM.gov notices" sub="Matched to your profile" />
+                <Card at="profile" Icon={User} title="Your profile" sub="Your capabilities" />
 
                 {phaseTray(1, 'triage')}
                 <Card at="continue" Icon={ArrowRight} title="Continue" sub="Eligibility opens" />
@@ -226,21 +234,21 @@ export default function HowPursuitWorks() {
                 {phaseCard(2, 'eligibility')}
                 {phaseCard(3, 'alignment')}
                 {phaseCard(4, 'viability')}
-                <span className="fm-linelabel">Disqualifying issue</span>
+                <p className="fm-linelabel">Disqualifying issue<br />Go not available</p>
 
-                {phaseTray(5, 'decision')}
-                <Card at="go" Icon={Check} title="Go — We Bid" sub="Opens the handoff" />
-                <Card at="nogo" Icon={X} title="No-Go — We Pass" sub="Reason on record" />
+                {phaseTray(5, 'decision', 'You record the call')}
+                <Card at="go" Icon={Check} title="Go — We Bid" sub="Opens Bid Handoff" />
+                <Card at="nogo" Icon={X} title="No-Go — We Pass" sub="Records your reason" />
 
                 <div className="fm-tray fm-at-after" data-tray>
                   <div className="fm-head fm-title fm-label font-headline"><Tab><ClipboardList strokeWidth={2.25} /></Tab>After the decision</div>
                 </div>
-                <Card at="handoff" Icon={ClipboardList} title="Bid Handoff" sub="Into proposal planning" />
-                <Card at="record" Icon={FileText} title="Decision Record" sub="Why you made the call" />
+                <Card at="handoff" Icon={ClipboardList} title="Bid Handoff" sub="For proposal planning" />
+                <Card at="record" Icon={FileText} title="Decision Record" sub="Why you passed" />
               </div>
             </div>
 
-            <div className="fm-panes">
+            <div className="fm-panes px-6 min-[1376px]:px-12 pb-8 min-[1376px]:pb-12">
               <div className="fm-pane fm-pane-left" aria-live="polite">
                 <div className="flex items-center gap-3.5">
                   <span className="fm-sq"><FileText aria-hidden="true" /></span>
@@ -248,20 +256,14 @@ export default function HowPursuitWorks() {
                   <span className="fm-cap">Phase {phase.id} of 5</span>
                 </div>
                 <p className="fm-title fm-label font-headline mt-5">{phase.question}</p>
-                <p className="mt-2 max-w-xl xl:pr-44">{phase.summary}</p>
+                <p className="mt-2 max-w-xl">{phase.summary}</p>
                 <dl className="fm-rows mt-6 max-w-3xl">
                   {phase.rows.map(([k, v]) => (
                     <div key={k} className="contents"><dt>{k}</dt><dd>{v}</dd></div>
                   ))}
                   <div className="contents"><dt>Output</dt><dd>{phase.output}</dd></div>
                 </dl>
-                <div className="fm-tip hidden xl:block">
-                  <div className="fm-cap">Phases</div>
-                  <div className="fm-fig font-headline">5</div>
-                  <div className="fm-cap">One question each</div>
-                </div>
               </div>
-              <ChevronsDown className="hidden xl:block absolute left-[58.333%] -translate-x-[18px] top-1 w-4 h-4 fm-chev" aria-hidden="true" />
               <div className="fm-pane fm-pane-right">
                 <div className="flex items-center gap-3.5">
                   <span className="fm-sq"><ClipboardList aria-hidden="true" /></span>
@@ -289,24 +291,24 @@ export default function HowPursuitWorks() {
             </Link>
             <div className="fm-stack-card mb-4" data-node>
               <Tab><Database strokeWidth={2.25} /></Tab>
-              <h2 className="fm-title fm-label font-headline">Sources</h2>
-              <dl className="fm-rows fm-rows-stack mt-2">
-                <dt>SAM.gov notices</dt><dd>Open notices</dd>
-                <dt>Your profile</dt><dd>What you do</dd>
+              <h2 className="fm-title fm-label fm-stack-title font-headline">Sources</h2>
+              <dl className="fm-groups fm-groups-2col mt-3">
+                <div><dt>SAM.gov notices</dt><dd>Matched to your profile</dd></div>
+                <div><dt>Your profile</dt><dd>Your capabilities</dd></div>
               </dl>
             </div>
             <ol className="grid gap-4">
               {PHASES.map(p => (
                 <li key={p.id} className="fm-stack-card" data-node>
                   <Tab>{p.id}</Tab>
-                  <h2 className="fm-title fm-label font-headline">{p.label}</h2>
-                  <p className="fm-title mt-1">{p.question}</p>
+                  <h2 className="fm-title fm-label fm-stack-title font-headline">{p.label}</h2>
+                  <p className="fm-title mt-2">{p.question}</p>
                   <p className="mt-2">{p.summary}</p>
-                  <dl className="fm-rows fm-rows-stack mt-4">
+                  <dl className="fm-groups mt-4">
                     {p.rows.map(([k, v]) => (
-                      <div key={k} className="contents"><dt>{k}</dt><dd>{v}</dd></div>
+                      <div key={k}><dt>{k}</dt><dd>{v}</dd></div>
                     ))}
-                    <div className="contents"><dt>Output</dt><dd>{p.output}</dd></div>
+                    <div className="fm-group-output"><dt>Output</dt><dd>{p.output}</dd></div>
                   </dl>
                 </li>
               ))}

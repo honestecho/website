@@ -175,8 +175,8 @@ button.fm-node[aria-pressed="true"] { box-shadow: 0 8px 22px rgba(70, 90, 130, 0
 
 .fm-linelabel {
   position: absolute;
-  left: 676px;
-  top: 236px;
+  left: 620px;
+  top: 245px;
   font-size: 14px;
   color: var(--fm-mute);
   white-space: nowrap;
@@ -225,6 +225,9 @@ button.fm-node[aria-pressed="true"] { box-shadow: 0 8px 22px rgba(70, 90, 130, 0
 .fm-sq svg { width: 20px; height: 20px; }
 .fm-rows { display: grid; grid-template-columns: 200px 1fr; column-gap: 14px; row-gap: 9px; }
 .fm-rows dt { color: var(--fm-title); font-weight: 600; }
+/* on a phone each answer sits under its name */
+.fm-rows-stack { grid-template-columns: 1fr; row-gap: 2px; }
+.fm-rows-stack dd { margin-bottom: 8px; }
 .fm-tip {
   position: absolute;
   right: 40px;

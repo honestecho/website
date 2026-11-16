@@ -33,7 +33,7 @@ const PHASES: { id: PhaseId; label: string; question: string; summary: string; o
     rows: [
       ['Your answers', 'Meet now · Can meet before award · Use a partner · Cannot meet · Investigate · N/A'],
       ['Bid recommendation', 'Eligible · Eligible with risks to review · Eligible with a partner · Not eligible'],
-      ['Disqualifying issue', 'The pursuit goes straight to Decision'],
+      ['Disqualifying issue', 'The pursuit goes straight to Decision. A Go is not available unless that answer changes.'],
     ],
   },
   {
@@ -102,7 +102,8 @@ const THREADS: { pts: Pt[]; bid?: boolean; joins?: boolean }[] = [
   { bid: true, pts: [[978, 169], [773, 169], [773, 250]] },                  // Viability → Decision
   { bid: true, pts: [[918, 339], [942, 339]] },                              // Go → Bid Handoff
   { joins: true, pts: [[290, 238], [302, 238], [302, 100]] },                // Your profile joins the trunk
-  { pts: [[700, 88], [700, 250]] },                                          // disqualifying issue → Decision
+  // A disqualifying issue skips Alignment and Viability and lands on No-Go, the only call left.
+  { pts: [[676, 88], [676, 112], [616, 112], [616, 438], [628, 438]] },
   { pts: [[918, 438], [942, 438]] },                                         // No-Go → Decision Record
 ];
 
@@ -151,15 +152,15 @@ export default function HowPursuitWorks() {
     <>
       <Helmet>
         <title>How Pursuit Works: From SAM.gov Notice to Go or No-Go — HE Pursuit</title>
-        <meta name="description" content="The five phases Pursuit uses to take a SAM.gov notice to a recorded Go or No-Go: Triage, Eligibility, Alignment, Viability and Decision, with the question each one answers." />
+        <meta name="description" content="The five phases Pursuit uses to take a SAM.gov notice toward a recorded Go or No-Go: Triage, Eligibility, Alignment, Viability and Decision, with the question each one answers and where a pursuit can stop." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://honestecho.com/how-pursuit-works" />
         <meta property="og:title" content="How Pursuit Works: From SAM.gov Notice to Go or No-Go — HE Pursuit" />
-        <meta property="og:description" content="Five phases, one question each, ending in a recorded Go or No-Go and a Bid Handoff for your proposal team." />
+        <meta property="og:description" content="Five phases, one question each. A pursuit can stop at Triage; one that goes on ends in a recorded Go or No-Go, and a Go opens the Bid Handoff." />
         <meta property="og:image" content="https://honestecho.com/og-image.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="How Pursuit Works: From SAM.gov Notice to Go or No-Go — HE Pursuit" />
-        <meta name="twitter:description" content="Five phases, one question each, ending in a recorded Go or No-Go and a Bid Handoff for your proposal team." />
+        <meta name="twitter:description" content="Five phases, one question each. A pursuit can stop at Triage; one that goes on ends in a recorded Go or No-Go, and a Go opens the Bid Handoff." />
         <meta name="twitter:image" content="https://honestecho.com/og-image.jpg" />
       </Helmet>
 
@@ -170,7 +171,7 @@ export default function HowPursuitWorks() {
             From opportunity to a clear decision.
           </h1>
           <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-3xl">
-            Five phases — Triage, Eligibility, Alignment, Viability, Decision — each answer one question about the notice and end in a recorded Go or No-Go. What your proposal team receives is the Bid Handoff.
+            Five phases — Triage, Eligibility, Alignment, Viability, Decision — each answer one question about the notice. A pursuit can be parked or closed at Triage. One that goes on ends in a recorded Go or No-Go, and a recorded Go opens the Bid Handoff for your proposal team.
           </p>
         </div>
       </section>
@@ -286,6 +287,14 @@ export default function HowPursuitWorks() {
             <Link to={DISCOVERY_TO} onClick={() => track('how_pursuit_works_cta_clicked')} className="fm-cta fm-cta-phone font-headline mb-5">
               Find My Opportunities — Free
             </Link>
+            <div className="fm-stack-card mb-4" data-node>
+              <Tab><Database strokeWidth={2.25} /></Tab>
+              <h2 className="fm-title fm-label font-headline">Sources</h2>
+              <dl className="fm-rows fm-rows-stack mt-2">
+                <dt>SAM.gov notices</dt><dd>Open notices</dd>
+                <dt>Your profile</dt><dd>What you do</dd>
+              </dl>
+            </div>
             <ol className="grid gap-4">
               {PHASES.map(p => (
                 <li key={p.id} className="fm-stack-card" data-node>
@@ -293,7 +302,12 @@ export default function HowPursuitWorks() {
                   <h2 className="fm-title fm-label font-headline">{p.label}</h2>
                   <p className="fm-title mt-1">{p.question}</p>
                   <p className="mt-2">{p.summary}</p>
-                  <p className="fm-cap mt-3">Output: {p.output}</p>
+                  <dl className="fm-rows fm-rows-stack mt-4">
+                    {p.rows.map(([k, v]) => (
+                      <div key={k} className="contents"><dt>{k}</dt><dd>{v}</dd></div>
+                    ))}
+                    <div className="contents"><dt>Output</dt><dd>{p.output}</dd></div>
+                  </dl>
                 </li>
               ))}
             </ol>

@@ -260,7 +260,7 @@ export default function HowPursuitWorks() {
                   <div className="fm-cap">One question each</div>
                 </div>
               </div>
-              <ChevronsDown className="absolute left-[58.333%] -translate-x-[18px] top-1 w-4 h-4 text-[#566175]" aria-hidden="true" />
+              <ChevronsDown className="hidden xl:block absolute left-[58.333%] -translate-x-[18px] top-1 w-4 h-4 text-[#566175]" aria-hidden="true" />
               <div className="fm-pane fm-pane-right">
                 <div className="flex items-center gap-3.5">
                   <span className="fm-sq"><ClipboardList aria-hidden="true" /></span>
@@ -282,6 +282,10 @@ export default function HowPursuitWorks() {
 
           {/* ── under 1024px: the same phases as a stack ───────────────────── */}
           <div className="lg:hidden p-5 relative">
+            {/* The action leads on a phone, so it shows without scrolling. */}
+            <Link to={DISCOVERY_TO} onClick={() => track('how_pursuit_works_cta_clicked')} className="fm-cta fm-cta-phone font-headline mb-5">
+              Find My Opportunities — Free
+            </Link>
             <ol className="grid gap-4">
               {PHASES.map(p => (
                 <li key={p.id} className="fm-stack-card" data-node>
@@ -293,9 +297,6 @@ export default function HowPursuitWorks() {
                 </li>
               ))}
             </ol>
-            <Link to={DISCOVERY_TO} onClick={() => track('how_pursuit_works_cta_clicked')} className="fm-cta font-headline mt-5 w-full">
-              Find My Opportunities — Free
-            </Link>
           </div>
         </div>
       </section>

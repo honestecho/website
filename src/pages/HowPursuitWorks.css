@@ -1,67 +1,47 @@
-/* The flow map on /how-pursuit-works: dark glass on the site's night ground.
-   Aaron saw light and dark side by side on the built page and kept dark (2026-11-16).
+/* The flow map on /how-pursuit-works: a dark glass node map, built from the site's own tokens.
+   Aaron saw light and dark side by side on the built page and kept dark (2026-11-16), then asked
+   that it match the rest of the site. So: the site's card colour, border, 16px corners, cyan
+   primary button, icon chips and small caps labels; the map's layout and layering are its own.
    Everything is scoped under .fm so nothing here reaches another page.
-   Sizes hang off U = 78px (one node card's height): captions 14px, labels 18px, titles 26px.
-   Every colour is a variable set here once. */
+   U = 78px is one node card's height. Text: 14px captions, 16px button, 18px labels, 20px pane titles,
+   and the site's 12px small caps label. */
 
 .fm {
-  --fm-accent: #00c3ff;
-  --fm-on-accent: #030b17;
+  --fm-accent: #00c3ff;          /* site accent */
+  --fm-on-accent: #030b17;       /* text on a cyan fill, never white */
+  --fm-border: #1e2d4a;          /* site border */
   --fm-title: #ffffff;
-  --fm-body: #c5d0df;
-  --fm-mute: #a9b6cb;
+  --fm-body: #a9b6cb;            /* site body on dark */
+  --fm-mute: #8b9bb4;            /* site muted */
   --fm-thread: rgba(169, 182, 203, 0.5);
-  --fm-dot: rgba(255, 255, 255, 0.42);
-  --fm-ground:
-    radial-gradient(620px 420px at 22% 34%, rgba(0, 195, 255, 0.045), transparent 70%),
-    radial-gradient(700px 480px at 66% 52%, rgba(91, 140, 255, 0.095), transparent 70%),
-    radial-gradient(600px 380px at 90% 90%, rgba(0, 195, 255, 0.06), transparent 70%),
-    linear-gradient(100deg, #081428 0%, #06101f 55%, #091730 100%);
-  --fm-edge: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-  --fm-grain: #cfe6ff;
-  --fm-grain-opacity: 0.03;
+  --fm-dot: rgba(169, 182, 203, 0.7);
+  --fm-nested: rgba(3, 11, 23, 0.5);                              /* trays, panes, stepper: one step down */
+  --fm-card: #0b1120;                                             /* cards: the site's card colour */
   --fm-lift: 0 6px 14px rgba(0, 0, 0, 0.24);
-  --fm-lift-on: 0 8px 22px rgba(0, 0, 0, 0.55);
-  --fm-rim: inset 0 1px 0 rgba(255, 255, 255, 0.16);
-  --fm-card: linear-gradient(180deg, #1b2941 0%, #111b2d 100%);
-  --fm-tray: rgba(11, 25, 42, 0.55);
-  --fm-tray-rim: inset 0 0 0 1px rgba(169, 182, 203, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  --fm-pill: rgba(21, 32, 51, 0.58);
-  --fm-step-on: rgba(91, 140, 255, 0.14);
-  --fm-pane: #0b1120;
-  --fm-pane-rim: inset 0 1px 0 rgba(255, 255, 255, 0.14);
-  --fm-sq: rgba(255, 255, 255, 0.1);
-  --fm-solid: #f4f7fb;
-  --fm-on-solid: #030b17;
   position: relative;
   overflow: hidden;
-  border-radius: 28px;
+  border: 1px solid var(--fm-border);
+  border-radius: 16px;
   color: var(--fm-body);
   font-size: 14px;
   line-height: 1.3;
-  background: var(--fm-ground);
-  box-shadow: var(--fm-edge);
+  /* the site's card colour, with the same two glows the page background drifts */
+  background:
+    radial-gradient(620px 420px at 22% 30%, rgba(0, 195, 255, 0.06), transparent 70%),
+    radial-gradient(700px 480px at 70% 55%, rgba(91, 140, 255, 0.08), transparent 70%),
+    #0b1120;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
-/* fine stipple on the ground only */
-.fm::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: var(--fm-grain-opacity);
-  pointer-events: none;
-  background-image: radial-gradient(var(--fm-grain) 0.7px, transparent 0.9px), radial-gradient(var(--fm-grain) 0.6px, transparent 0.8px);
-  background-size: 19px 23px, 31px 27px;
-  background-position: 0 0, 9px 13px;
-}
-
-.fm-title { color: var(--fm-title); font-weight: 600; }
+.fm-title { color: var(--fm-title); font-weight: 700; letter-spacing: -0.025em; }
 .fm-label { font-size: 18px; }
 .fm-cap { font-size: 14px; color: var(--fm-mute); }
-.fm-ptitle { font-size: 26px; line-height: 1.15; }
+.fm-ptitle { font-size: 20px; line-height: 28px; }
+/* the site's small caps label */
+.fm-eyebrow { font-size: 12px; line-height: 16px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fm-mute); }
 
 .fm button { text-align: left; cursor: pointer; }
-.fm button:focus-visible, .fm a:focus-visible { outline: 2px solid var(--fm-title); outline-offset: 2px; }
+.fm button:focus-visible, .fm a:focus-visible { outline: 2px solid var(--fm-accent); outline-offset: 2px; }
 
 /* ── control row ───────────────────────────────────────────────────────── */
 .fm-controls { position: relative; display: flex; gap: 16px; align-items: center; }
@@ -69,59 +49,54 @@
   flex: 1;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  height: 66px;
-  border-radius: 22px;
-  background: var(--fm-pill);
-  box-shadow: var(--fm-rim);
+  gap: 4px;
+  height: 56px;
+  padding: 4px;
+  border: 1px solid var(--fm-border);
+  border-radius: 16px;
+  background: var(--fm-nested);
 }
 .fm-step {
-  position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 0 22px;
-  border: 0;
+  padding: 0 18px;
+  border: 1px solid transparent;
   background: none;
-  border-radius: 22px;
+  border-radius: 4px;
   font-size: 14px;
-  color: var(--fm-mute);
+  color: var(--fm-body);
+  transition: color 300ms ease-out, background-color 300ms ease-out, border-color 300ms ease-out;
 }
-.fm-step b { font-weight: 600; color: var(--fm-title); }
-.fm-step[aria-pressed="true"] { color: var(--fm-title); background: var(--fm-step-on); }
-/* the selection is two slim brackets and a breath of tint */
-.fm-step[aria-pressed="true"]::before,
-.fm-step[aria-pressed="true"]::after {
-  content: "";
-  position: absolute;
-  top: 19px;
-  width: 2px;
-  height: 28px;
-  border-radius: 1px;
-  background: var(--fm-accent);
-}
-.fm-step[aria-pressed="true"]::before { left: 8px; }
-.fm-step[aria-pressed="true"]::after { right: 8px; }
+.fm-step:first-child { border-radius: 11px 4px 4px 11px; }
+.fm-step:last-child { border-radius: 4px 11px 11px 4px; }
+.fm-step b { font-weight: 700; color: var(--fm-accent); }
+.fm-step:hover { color: var(--fm-title); }
+/* the selected phase uses the site's chip: a cyan wash and a cyan edge */
+.fm-step[aria-pressed="true"] { color: var(--fm-title); background: rgba(0, 195, 255, 0.1); border-color: rgba(0, 195, 255, 0.3); }
 
+/* the site's primary button */
 .fm-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  width: 304px;
-  height: 56px;
-  border-radius: 20px;
-  background: var(--fm-solid);
-  color: var(--fm-on-solid);
+  gap: 10px;
+  min-height: 56px;
+  padding: 0 32px;
+  border-radius: 8px;
+  background: var(--fm-accent);
+  color: var(--fm-on-accent);
   font-size: 16px;
   line-height: 24px;
-  font-weight: 600;
+  font-weight: 700;
   white-space: nowrap;
-  box-shadow: var(--fm-lift);
+  box-shadow: 0 0 40px rgba(0, 195, 255, 0.2);
   transition: transform 300ms ease-out;
 }
-.fm-cta:hover { transform: translateY(-1px); }
+.fm-cta:hover { transform: scale(1.02); }
+.fm-cta:active { transform: scale(0.98); }
 /* the phone button: full width, and its label may wrap on a 320px screen */
-.fm-cta-phone { display: flex; width: auto; height: auto; min-height: 56px; padding: 12px 16px; font-size: 18px; white-space: normal; text-align: center; }
+.fm-cta-phone { display: flex; padding: 12px 16px; font-size: 18px; white-space: normal; text-align: center; }
 
 .fm-legend { position: relative; display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 14px; line-height: 20px; color: var(--fm-mute); }
 .fm-legend-line { width: 28px; height: 2px; border-radius: 1px; background: var(--fm-accent); }
@@ -129,6 +104,7 @@
 /* ── the map: a fixed 1232 x 520 canvas ────────────────────────────────── */
 .fm-scroll { overflow-x: auto; }
 .fm-map { position: relative; width: 1232px; height: 520px; margin: 0 auto; }
+/* threads sit over the trays and under the cards */
 .fm-threads { position: absolute; inset: 0; z-index: 1; width: 1232px; height: 520px; pointer-events: none; }
 .fm-threads path { fill: none; stroke: var(--fm-thread); stroke-width: 1; }
 /* the one route the page is about carries the weight; everything else stays a hairline */
@@ -136,71 +112,73 @@
 .fm-threads circle { fill: var(--fm-dot); }
 .fm-threads circle[data-path="focus"] { fill: var(--fm-accent); }
 
-/* tray: a clear pane with a bright top-left rim, the quietest surface on the page */
+/* tray: a nested pane, one step down from the panel, with the site's border and corners */
 .fm-tray {
   position: absolute;
   width: 290px;
-  border-radius: 31px;
-  background: var(--fm-tray);
-  box-shadow: var(--fm-tray-rim);
+  border: 1px solid var(--fm-border);
+  border-radius: 16px;
+  background: var(--fm-nested);
   backdrop-filter: blur(8px);
+  transition: border-color 300ms ease-out;
 }
 .fm-head {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  height: 50px;
-  padding: 0 16px 0 54px;
+  height: 49px;
+  padding: 0 16px 0 53px;
   border: 0;
   background: none;
-  border-radius: 31px 31px 0 0;
+  border-radius: 15px 15px 0 0;
 }
+.fm-grouplabel { font-size: 12px; line-height: 16px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fm-mute); }
+.fm-headnote { margin-left: 12px; font-size: 14px; font-weight: 400; letter-spacing: 0; color: var(--fm-mute); white-space: nowrap; }
 
-.fm-headnote { margin-left: 12px; font-size: 14px; font-weight: 400; color: var(--fm-mute); white-space: nowrap; }
-
-/* corner tab: the card's own corner folded over. Zero inset. */
+/* corner tab: the card's own corner folded over. It sits on the border, so there is no inset at all. */
 .fm-tab {
   position: absolute;
-  left: 0;
-  top: 0;
+  left: -1px;
+  top: -1px;
   width: 35px;
   height: 35px;
   display: grid;
   place-items: center;
-  border-radius: 21px 2px 14px 2px;
+  border-radius: 16px 2px 12px 2px;
   background: linear-gradient(135deg, #46d4ff 0%, #00c3ff 55%, #00b2ea 100%);
   color: var(--fm-on-accent);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0;
   line-height: 1;
 }
 .fm-tab svg { width: 14px; height: 14px; }
-.fm-head .fm-tab { width: 38px; height: 38px; border-radius: 31px 2px 15px 2px; }
+.fm-tray .fm-tab { width: 38px; height: 38px; border-radius: 16px 2px 12px 2px; }
 
 .fm-node {
   position: absolute;
   z-index: 2;
   width: 218px;
   height: 78px;
-  padding: 15px 5px 0 46px;
-  border: 0;
-  border-radius: 21px;
+  padding: 14px 5px 0 45px;
+  border: 1px solid var(--fm-border);
+  border-radius: 16px;
   background: var(--fm-card);
-  box-shadow: var(--fm-lift), var(--fm-rim);
+  box-shadow: var(--fm-lift);
   display: block;
+  transition: border-color 300ms ease-out, box-shadow 300ms ease-out;
 }
 .fm-node .fm-t, .fm-node .fm-s { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .fm-node .fm-t { font-size: 18px; line-height: 1.25; }
 .fm-node .fm-s { font-size: 14px; color: var(--fm-mute); margin-top: 4px; }
 
-/* cards on the highlighted route carry a quiet cyan edge */
-.fm-on-route { box-shadow: var(--fm-lift), var(--fm-rim), inset 0 0 0 1px rgba(0, 195, 255, 0.4); }
-
-/* the selected phase lifts; nothing else moves */
-button.fm-node, .fm-head { transition: box-shadow 300ms ease-out; }
-button.fm-node[aria-pressed="true"] { box-shadow: var(--fm-lift-on), 0 0 0 1px rgba(0, 195, 255, 0.5), var(--fm-rim); }
-.fm-tray[data-selected="true"] { box-shadow: var(--fm-tray-rim), 0 0 0 1px rgba(0, 195, 255, 0.4); }
+/* cards on the highlighted route carry the site's cyan edge */
+.fm-on-route { border-color: rgba(0, 195, 255, 0.65); }
+/* the selected phase gets the site's hover state and keeps it */
+button.fm-node:hover { border-color: rgba(0, 195, 255, 0.85); }
+button.fm-node[aria-pressed="true"] { border-color: var(--fm-accent); box-shadow: var(--fm-lift), 0 0 40px rgba(0, 195, 255, 0.12); }
+.fm-tray[data-selected="true"] { border-color: rgba(0, 195, 255, 0.4); }
 
 .fm-linelabel {
   position: absolute;
@@ -232,20 +210,21 @@ button.fm-node[aria-pressed="true"] { box-shadow: var(--fm-lift-on), 0 0 0 1px r
 .fm-at-handoff { left: 978px; top: 300px; }
 .fm-at-record { left: 978px; top: 399px; }
 
-/* ── detail panes: two, with stepped tops ──────────────────────────────── */
+/* ── detail panes: two level, nested cards ─────────────────────────────── */
 .fm-panes { position: relative; display: grid; grid-template-columns: 7fr 5fr; gap: 20px; align-items: stretch; }
 .fm-pane {
   position: relative;
-  padding: 40px;
-  border-radius: 28px;
-  background: var(--fm-pane);
-  box-shadow: var(--fm-pane-rim);
+  padding: 32px;
+  border: 1px solid var(--fm-border);
+  border-radius: 16px;
+  background: var(--fm-nested);
 }
 /* under 1280px the two panes no longer fit side by side */
 @media (max-width: 1279px) {
   .fm-panes { grid-template-columns: 1fr; }
 }
-.fm-sq { width: 40px; height: 40px; border-radius: 13px; background: var(--fm-sq); display: grid; place-items: center; color: var(--fm-title); flex: none; }
+/* the site's icon chip */
+.fm-sq { width: 40px; height: 40px; border: 1px solid rgba(0, 195, 255, 0.3); border-radius: 8px; background: rgba(0, 195, 255, 0.1); display: grid; place-items: center; color: var(--fm-accent); flex: none; }
 .fm-sq svg { width: 20px; height: 20px; }
 .fm-rows { display: grid; grid-template-columns: 200px 1fr; column-gap: 14px; row-gap: 8px; line-height: 22px; }
 .fm-rows dt { color: var(--fm-title); font-weight: 600; }
@@ -254,11 +233,11 @@ button.fm-node[aria-pressed="true"] { box-shadow: var(--fm-lift-on), 0 0 0 1px r
 .fm-groups dt { color: var(--fm-title); font-weight: 600; }
 .fm-groups dd { margin-top: 2px; }
 .fm-groups > div + div { margin-top: 16px; }
-.fm-groups .fm-group-output { padding-top: 12px; border-top: 1px solid #1e2d4a; }
+.fm-groups .fm-group-output { padding-top: 12px; border-top: 1px solid var(--fm-border); }
 .fm-groups-2col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .fm-groups-2col > div + div { margin-top: 0; }
 .fm-table { border-collapse: collapse; }
-.fm-table th { text-align: left; font-weight: 600; color: var(--fm-title); padding: 0 26px 10px 0; }
+.fm-table th { text-align: left; font-weight: 500; padding: 0 26px 10px 0; }
 .fm-table td { padding: 0 26px 0 0; height: 30px; white-space: nowrap; }
 .fm-table td:first-child { color: var(--fm-title); font-weight: 600; }
 .fm-table tr[data-selected="true"] td { color: var(--fm-title); }
@@ -267,13 +246,16 @@ button.fm-node[aria-pressed="true"] { box-shadow: var(--fm-lift-on), 0 0 0 1px r
 .fm-stack-card {
   position: relative;
   padding: 18px 20px 20px;
-  border-radius: 21px;
+  border: 1px solid var(--fm-border);
+  border-radius: 16px;
   background: var(--fm-card);
-  box-shadow: var(--fm-lift), var(--fm-rim);
+  box-shadow: var(--fm-lift);
 }
-
+.fm-stack-card .fm-tab { border-radius: 16px 2px 12px 2px; }
 .fm-stack-title { padding-left: 34px; }
+.fm-stack-grouplabel { line-height: 23px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .fm-cta, button.fm-node, .fm-head { transition: none; }
+  .fm-cta, .fm-step, .fm-node, .fm-tray { transition: none; }
+  .fm-cta:hover, .fm-cta:active { transform: none; }
 }

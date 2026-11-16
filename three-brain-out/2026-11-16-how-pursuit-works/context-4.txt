@@ -1,0 +1,46 @@
+HERO
+From opportunity to a clear decision. ("clear" is the gradient word)
+Pursuit matches SAM.gov notices to your company profile. Five phases help you decide whether to bid, with options to park or close at Triage. Pursuit recommends a decision; you record the call. A Go opens the Bid Handoff.
+
+PANEL, control row
+Stepper: 1 Triage | 2 Eligibility | 3 Alignment | 4 Viability | 5 Decision
+Button (the site's primary button): Find My Opportunities — Free
+Legend line under the controls: (short cyan line) Highlighted path: Continue to Go — We Bid
+
+PANEL, map (tray or card title / sub-line)
+Sources: SAM.gov notices / Matched to your profile; Your profile / Your capabilities
+1 Triage: Continue / Opens Eligibility; Caution / Carries open questions; Watch / Parked for monitoring; No-Bid / Closed at triage
+2 Eligibility / Compliance Matrix
+3 Alignment / Alignment Assessment
+4 Viability / Capture Plan
+Label beside the grey shortcut from Eligibility to No-Go: Disqualifying issue / Go not available
+5 Decision (tray heading note: You record the call): Go — We Bid / Opens Bid Handoff; No-Go — We Pass / Records your reason
+After the decision: Bid Handoff / For proposal planning; Decision Record / Why you passed
+Threads: the cyan route (2px) runs SAM.gov notices -> Triage, Continue -> Eligibility -> Alignment -> Viability -> Decision, Go — We Bid -> Bid Handoff; the seven cards on it carry a cyan edge. Grey (1px, #a9b6cb at 50%): Your profile joins the first run; Caution joins Continue's run inside the Triage tray; the disqualifying shortcut leaves Eligibility's bottom edge and ends on the No-Go card; No-Go — We Pass -> Decision Record.
+
+PANEL, left detail pane (Triage selected)
+Triage · PHASE 1 OF 5 (the site's small caps label)
+Should we keep going?
+A quick read of the notice, then one call: keep going, watch it, or pass.
+Continue: Eligibility opens
+Continue with Caution: Eligibility opens · open questions carried
+Watch: Parked — monitoring for the solicitation
+No-Bid: Pursuit closed at triage
+Output: Solicitation Analysis
+
+Decision phase's one-line summary (shown when Decision is selected): Pursuit recommends Go, Conditional Go or No-Go from your answers. You record Go — We Bid or No-Go — We Pass.
+
+PANEL, right pane
+Phase Outputs
+PHASE | QUESTION IT ANSWERS | OUTPUT (column heads in the site's small caps label)
+Triage | Should we keep going? | Solicitation Analysis
+Eligibility | Can we actually bid this? | Compliance Matrix
+Alignment | Is this strategically worth pursuing? | Alignment Assessment
+Viability | What will it take to win? | Capture Plan
+Decision | Go or No-Go? | Decision Summary
+
+PHONE (under 1024px): the site's button first, then a Sources card (its two sources side by side) and one card per phase with its question, summary, the same rows as the detail pane in even groups, and its output under a hairline rule; the button again after the last phase.
+
+WHAT CHANGED SINCE ROUND 3
+A. Your round 3 fixes, applied: the seven route cards carry a cyan edge; the grey branches are #a9b6cb at 50%; the phone panel has 16px side margins; the phone repeats the button after the last phase; the three sub-lines are your wording (Opens Eligibility, Carries open questions, Parked for monitoring).
+B. Then the owner asked for the page to match the website, so the whole panel was moved onto the site's system: the panel is a site card (#0b1120, 1px #1e2d4a, 16px corners, the site's two glows inside it); trays, panes and the stepper are one nested step (the page colour at 50%, 1px #1e2d4a, 16px and 12px corners); cards are the raised step (#152033 to #0f1829, 1px #1e2d4a, 12px corners); the white rims, the grain and the large 21 to 31px radii are gone; the button is the site's cyan primary button (this replaces the white button you sized in round 3); the selected stepper item uses the site's chip (cyan wash, cyan edge) with cyan numerals; the pane icons are the site's cyan icon chips; titles are Manrope 700 with tight tracking; body is #a9b6cb and muted is #8b9bb4; "Phase 1 of 5" and the table's column heads use the site's 12px small caps label; the H1 uses the site's hero treatment with the gradient word; hero and panel are both 1280px wide.

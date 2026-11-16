@@ -168,22 +168,22 @@ export default function HowPursuitWorks() {
       </Helmet>
 
       {/* Hero, kept short so the map starts inside the first screen */}
-      <section className="pt-14 lg:pt-16 pb-8 px-6 relative overflow-hidden">
-        <div className="max-w-[1232px] mx-auto relative z-10">
-          <h1 className="font-headline font-black text-4xl md:text-5xl xl:text-6xl text-white mb-4 tracking-tighter leading-tight drop-shadow-2xl">
-            From opportunity to a clear decision.
+      <section className="pt-10 sm:pt-14 lg:pt-16 pb-6 sm:pb-8 px-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <h1 className="font-headline font-black text-[38px] sm:text-5xl lg:text-[52px] tracking-[-0.035em] leading-[1.05] text-white drop-shadow-2xl">
+            From opportunity to a <span className="he-gradient-text">clear</span> decision.
           </h1>
-          <p className="text-[#a0b2c8] text-lg leading-relaxed font-body max-w-3xl">
-            Pursuit matches SAM.gov notices to your company profile. Five phases help you decide whether to bid, with options to park or close at Triage. Pursuit recommends a decision; you record the call. A Go opens the Bid Handoff.
+          <p className="mt-5 text-lg leading-relaxed text-[#a9b6cb] font-body max-w-[64ch]">
+            Pursuit matches SAM.gov notices to your company profile. Five phases help you decide whether to bid. At Triage, you can continue, park the pursuit or close it. Pursuit recommends a decision; you record yours. A Go opens the Bid Handoff.
           </p>
         </div>
       </section>
 
       <section className="px-4 sm:px-6 pb-24">
-        <div className="fm font-body max-w-[1328px] mx-auto">
+        <div className="fm font-body max-w-7xl mx-auto">
           {/* ── 1024px and up: the map ─────────────────────────────────────── */}
           <div className="hidden lg:block">
-            <div className="fm-controls px-6 min-[1376px]:px-12 pt-6">
+            <div className="fm-controls px-6 pt-6">
               <div className="fm-stepper" role="group" aria-label="Phases">
                 {PHASES.map(p => (
                   <button key={p.id} type="button" className="fm-step" aria-pressed={selected === p.id} onClick={() => select(p.id)}>
@@ -191,19 +191,19 @@ export default function HowPursuitWorks() {
                   </button>
                 ))}
               </div>
-              <Link to={DISCOVERY_TO} onClick={() => track('how_pursuit_works_cta_clicked')} className="fm-cta font-headline">
+              <Link to={DISCOVERY_TO} onClick={() => track('how_pursuit_works_cta_clicked')} className="fm-cta">
                 Find My Opportunities — Free
                 <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
               </Link>
             </div>
 
-            <p className="fm-legend px-6 min-[1376px]:px-12">
+            <p className="fm-legend px-6">
               <span className="fm-legend-line" aria-hidden="true"></span>
-              Highlighted path: Continue to Go — We Bid
+              Example route: Continue to Go — We Bid. Select a phase for details.
             </p>
 
-            {/* The map is 1232px wide. The panel only has room for side padding from 1376px up; below 1280px it scrolls sideways. */}
-            <div className="fm-scroll min-[1376px]:px-12 pt-3 pb-8">
+            {/* The map is 1232px wide and the panel 1280px (the site's content width); below that it scrolls sideways. */}
+            <div className="fm-scroll pt-4 pb-8">
               <div className="fm-map" role="group" aria-label="How a notice moves through Pursuit, from its sources to a recorded Go or No-Go">
                 <svg className="fm-threads" viewBox="0 0 1232 520" aria-hidden="true">
                   {THREADS.map((t, i) => {
@@ -220,7 +220,7 @@ export default function HowPursuitWorks() {
                 </svg>
 
                 <div className="fm-tray fm-at-sources" data-tray>
-                  <div className="fm-head fm-title fm-label font-headline"><Tab><Database strokeWidth={2.25} /></Tab>Sources</div>
+                  <div className="fm-head fm-grouplabel"><Tab><Database strokeWidth={2.25} /></Tab>Sources</div>
                 </div>
                 <Card at="sam" Icon={Database} title="SAM.gov notices" sub="Matched to your profile" route />
                 <Card at="profile" Icon={User} title="Your profile" sub="Your capabilities" />
@@ -241,19 +241,19 @@ export default function HowPursuitWorks() {
                 <Card at="nogo" Icon={X} title="No-Go — We Pass" sub="Records your reason" />
 
                 <div className="fm-tray fm-at-after" data-tray>
-                  <div className="fm-head fm-title fm-label font-headline"><Tab><ClipboardList strokeWidth={2.25} /></Tab>After the decision</div>
+                  <div className="fm-head fm-grouplabel"><Tab><ClipboardList strokeWidth={2.25} /></Tab>After the decision</div>
                 </div>
                 <Card at="handoff" Icon={ClipboardList} title="Bid Handoff" sub="For proposal planning" route />
                 <Card at="record" Icon={FileText} title="Decision Record" sub="Why you passed" />
               </div>
             </div>
 
-            <div className="fm-panes px-6 min-[1376px]:px-12 pb-8 min-[1376px]:pb-12">
+            <div className="fm-panes px-6 pb-6">
               <div className="fm-pane fm-pane-left" aria-live="polite">
                 <div className="flex items-center gap-3.5">
                   <span className="fm-sq"><FileText aria-hidden="true" /></span>
                   <h2 className="fm-title fm-ptitle font-headline">{phase.label}</h2>
-                  <span className="fm-cap">Phase {phase.id} of 5</span>
+                  <span className="fm-eyebrow">Phase {phase.id} of 5</span>
                 </div>
                 <p className="fm-title fm-label font-headline mt-5">{phase.question}</p>
                 <p className="mt-2 max-w-xl">{phase.summary}</p>
@@ -271,7 +271,7 @@ export default function HowPursuitWorks() {
                 </div>
                 <table className="fm-table mt-7">
                   <thead>
-                    <tr><th scope="col">Phase</th><th scope="col">Question it answers</th><th scope="col">Output</th></tr>
+                    <tr><th scope="col" className="fm-eyebrow">Phase</th><th scope="col" className="fm-eyebrow">Question it answers</th><th scope="col" className="fm-eyebrow">Output</th></tr>
                   </thead>
                   <tbody>
                     {PHASES.map(p => (
@@ -286,12 +286,12 @@ export default function HowPursuitWorks() {
           {/* ── under 1024px: the same phases as a stack ───────────────────── */}
           <div className="lg:hidden p-5 relative">
             {/* The action leads on a phone, so it shows without scrolling. */}
-            <Link to={DISCOVERY_TO} onClick={() => track('how_pursuit_works_cta_clicked')} className="fm-cta fm-cta-phone font-headline mb-5">
+            <Link to={DISCOVERY_TO} onClick={() => track('how_pursuit_works_cta_clicked')} className="fm-cta fm-cta-phone mb-5">
               Find My Opportunities — Free
             </Link>
             <div className="fm-stack-card mb-4" data-node>
               <Tab><Database strokeWidth={2.25} /></Tab>
-              <h2 className="fm-title fm-label fm-stack-title font-headline">Sources</h2>
+              <h2 className="fm-grouplabel fm-stack-title fm-stack-grouplabel">Sources</h2>
               <dl className="fm-groups fm-groups-2col mt-3">
                 <div><dt>SAM.gov notices</dt><dd>Matched to your profile</dd></div>
                 <div><dt>Your profile</dt><dd>Your capabilities</dd></div>
@@ -314,7 +314,7 @@ export default function HowPursuitWorks() {
               ))}
             </ol>
             {/* and again once the phases have been read */}
-            <Link to={DISCOVERY_TO} onClick={() => track('how_pursuit_works_cta_clicked')} className="fm-cta fm-cta-phone font-headline mt-6">
+            <Link to={DISCOVERY_TO} onClick={() => track('how_pursuit_works_cta_clicked')} className="fm-cta fm-cta-phone mt-6">
               Find My Opportunities — Free
             </Link>
           </div>

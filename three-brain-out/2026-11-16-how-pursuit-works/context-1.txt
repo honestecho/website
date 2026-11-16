@@ -1,0 +1,39 @@
+HERO
+From opportunity to a clear decision.
+Five phases — Triage, Eligibility, Alignment, Viability, Decision — each answer one question about the notice. A pursuit can be parked or closed at Triage. One that goes on ends in a recorded Go or No-Go, and a recorded Go opens the Bid Handoff for your proposal team.
+
+PANEL, control row
+Stepper: 1 Triage | 2 Eligibility | 3 Alignment | 4 Viability | 5 Decision
+Button: Find My Opportunities — Free
+
+PANEL, map (tray or card title / sub-line)
+Sources: SAM.gov notices / Open notices; Your profile / What you do
+1 Triage: Continue / Eligibility opens; Caution / Open questions carried; Watch / Parked, monitoring; No-Bid / Closed at triage
+2 Eligibility / Compliance Matrix
+3 Alignment / Alignment Assessment
+4 Viability / Capture Plan
+Line label: Disqualifying issue
+5 Decision: Go — We Bid / Opens the handoff; No-Go — We Pass / Reason on record
+After the decision: Bid Handoff / Into proposal planning; Decision Record / Why you made the call
+
+PANEL, left detail pane (Triage selected)
+Triage · Phase 1 of 5
+Should we keep going?
+A quick read of the notice, then one call: keep going, watch it, or pass.
+Continue: Eligibility opens
+Continue with Caution: Eligibility opens · open questions carried
+Watch: Parked — monitoring for the solicitation
+No-Bid: Pursuit closed at triage
+Output: Solicitation Analysis
+Small card: Phases / 5 / One question each
+
+PANEL, right pane
+Phase Outputs
+Phase | Question it answers | Output
+Triage | Should we keep going? | Solicitation Analysis
+Eligibility | Can we actually bid this? | Compliance Matrix
+Alignment | Is this strategically worth pursuing? | Alignment Assessment
+Viability | What will it take to win? | Capture Plan
+Decision | Go or No-Go? | Decision Summary
+
+PHONE (under 1024px): the button first, then a Sources card and one card per phase, each with its question, one-line summary, the same rows as the detail pane, and its output.

@@ -10,7 +10,7 @@
   --fm-title: #ffffff;
   --fm-body: #c5d0df;
   --fm-mute: #a9b6cb;
-  --fm-thread: rgba(169, 182, 203, 0.28);
+  --fm-thread: rgba(169, 182, 203, 0.5);
   --fm-dot: rgba(255, 255, 255, 0.42);
   --fm-ground:
     radial-gradient(620px 420px at 22% 34%, rgba(0, 195, 255, 0.045), transparent 70%),
@@ -24,8 +24,8 @@
   --fm-lift-on: 0 8px 22px rgba(0, 0, 0, 0.55);
   --fm-rim: inset 0 1px 0 rgba(255, 255, 255, 0.16);
   --fm-card: linear-gradient(180deg, #1b2941 0%, #111b2d 100%);
-  --fm-tray: rgba(15, 29, 47, 0.55);
-  --fm-tray-rim: inset 1px 1px 0 rgba(255, 255, 255, 0.26), inset -1px -1px 0 rgba(255, 255, 255, 0.04);
+  --fm-tray: rgba(11, 25, 42, 0.55);
+  --fm-tray-rim: inset 0 0 0 1px rgba(169, 182, 203, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.12);
   --fm-pill: rgba(21, 32, 51, 0.58);
   --fm-step-on: rgba(91, 140, 255, 0.14);
   --fm-pane: #0b1120;
@@ -64,7 +64,7 @@
 .fm button:focus-visible, .fm a:focus-visible { outline: 2px solid var(--fm-title); outline-offset: 2px; }
 
 /* ── control row ───────────────────────────────────────────────────────── */
-.fm-controls { position: relative; display: flex; gap: 16px; align-items: stretch; }
+.fm-controls { position: relative; display: flex; gap: 16px; align-items: center; }
 .fm-stepper {
   flex: 1;
   display: grid;
@@ -106,13 +106,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  height: 66px;
-  padding: 0 28px;
-  border-radius: 22px;
+  gap: 12px;
+  width: 304px;
+  height: 56px;
+  border-radius: 20px;
   background: var(--fm-solid);
   color: var(--fm-on-solid);
-  font-size: 18px;
+  font-size: 16px;
+  line-height: 24px;
   font-weight: 600;
   white-space: nowrap;
   box-shadow: var(--fm-lift);
@@ -120,7 +121,7 @@
 }
 .fm-cta:hover { transform: translateY(-1px); }
 /* the phone button: full width, and its label may wrap on a 320px screen */
-.fm-cta-phone { display: flex; height: auto; min-height: 56px; padding: 12px 16px; white-space: normal; text-align: center; }
+.fm-cta-phone { display: flex; width: auto; height: auto; min-height: 56px; padding: 12px 16px; font-size: 18px; white-space: normal; text-align: center; }
 
 .fm-legend { position: relative; display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 14px; line-height: 20px; color: var(--fm-mute); }
 .fm-legend-line { width: 28px; height: 2px; border-radius: 1px; background: var(--fm-accent); }
@@ -142,7 +143,7 @@
   border-radius: 31px;
   background: var(--fm-tray);
   box-shadow: var(--fm-tray-rim);
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
 }
 .fm-head {
   position: relative;
@@ -192,6 +193,9 @@
 .fm-node .fm-t, .fm-node .fm-s { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .fm-node .fm-t { font-size: 18px; line-height: 1.25; }
 .fm-node .fm-s { font-size: 14px; color: var(--fm-mute); margin-top: 4px; }
+
+/* cards on the highlighted route carry a quiet cyan edge */
+.fm-on-route { box-shadow: var(--fm-lift), var(--fm-rim), inset 0 0 0 1px rgba(0, 195, 255, 0.4); }
 
 /* the selected phase lifts; nothing else moves */
 button.fm-node, .fm-head { transition: box-shadow 300ms ease-out; }

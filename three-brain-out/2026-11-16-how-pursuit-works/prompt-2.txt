@@ -1,0 +1,111 @@
+You are a harsh principal product designer AND a plain-English conversion copy editor judging ONE thing: the page /how-pursuit-works on honestecho.com. It explains, as a node map, how the product "Pursuit" takes a SAM.gov contract notice through five phases to a recorded Go or No-Go. The visitor should come away understanding the path and click "Find My Opportunities — Free". Audience: owners and capture leads at small federal contractors, deciding whether to trust this tool with their bid decisions. Visual system: the site is dark navy SaaS (page #030B17, card #0b1120, border #1e2d4a, cyan #00c3ff, muted #a9b6cb, headlines Manrope, body Inter). Standing bar: 95+/100.
+
+Attached, in order: desktop fold at 1440x900 (site nav, hero, top of the panel); the panel at 1440 from its top (control row and the map); the panel's lower half at 1440 (the two detail panes); mobile fold at 390x844; a mobile shot from the top of the panel (the stacked cards).
+
+FIXED — judge execution within these, never propose replacing them:
+- The direction: a dark glass "flow map" panel. The owner chose it over a light version on the built page. Glass trays holding cards, each card with a cyan corner tab welded into its top-left corner, hairline threads made of horizontal and vertical runs with rounded bends, one highlighted cyan route (a notice that ends in a bid), a phase stepper, two detail panes below. Do not propose a different layout concept, a timeline, a table-only page, cards-only, or a product screenshot.
+- Every label, question, answer and output name is the product's own wording, verbatim from its source code. Do not rewrite: the phase names (Triage, Eligibility, Alignment, Viability, Decision), their questions, the triage calls (Continue, Caution, Watch, No-Bid), "Go — We Bid", "No-Go — We Pass", "Bid Handoff", "Decision Record", the output names (Solicitation Analysis, Compliance Matrix, Alignment Assessment, Capture Plan, Decision Summary), the rows in the detail pane, or "Disqualifying issue".
+- The H1 "From opportunity to a clear decision." is the site's existing heading for this topic.
+- The button label "Find My Opportunities — Free" is the site's standing call to action. It is solid white inside the panel on purpose.
+- Cyan is the only accent. The product's green/amber/red decision colours are deliberately absent: the site's rules keep them for real product screenshots. Do not ask for status colours.
+- The site navbar and footer are not part of this review.
+- Under 1024px the map is replaced by a stack of cards on purpose.
+- Text is never under 14px. Titles in cards use Manrope 600 (the site does not load 500).
+
+Copy that MAY be rewritten (it is the page author's, not the product's): the hero paragraph under the H1; the Decision phase's one-line summary; the short sub-lines under card titles (for example "Open notices", "What you do", "Opens the handoff", "Reason on record", "Into proposal planning", "Why you made the call", "Open questions carried", "Parked, monitoring", "Closed at triage"), provided the meaning stays true to the product; the small labels "Phases / 5 / One question each", "Phase N of 5", "Sources", "After the decision", "Phase Outputs", "Question it answers".
+
+Current page text (desktop, Triage selected):
+HERO
+From opportunity to a clear decision.
+Pursuit matches SAM.gov notices to your company profile. Five phases help you decide whether to bid, with options to park or close at Triage. Pursuit recommends a decision; you record the call. A Go opens the Bid Handoff.
+
+PANEL, control row
+Stepper: 1 Triage | 2 Eligibility | 3 Alignment | 4 Viability | 5 Decision
+Button: Find My Opportunities — Free
+
+PANEL, map (tray or card title / sub-line)
+Sources: SAM.gov notices / Open notices; Your profile / What you do
+1 Triage: Continue / Eligibility opens; Caution / Open questions carried; Watch / Parked, monitoring; No-Bid / Closed at triage
+2 Eligibility / Compliance Matrix
+3 Alignment / Alignment Assessment
+4 Viability / Capture Plan
+Label beside the grey shortcut from Eligibility to No-Go: Disqualifying issue / Go not available
+5 Decision: Go — We Bid / Opens Bid Handoff; No-Go — We Pass / Records your reason
+After the decision: Bid Handoff / For proposal planning; Decision Record / Why you passed
+Threads: the cyan route runs SAM.gov notices -> Triage, Continue -> Eligibility -> Alignment -> Viability -> Decision, Go — We Bid -> Bid Handoff. Grey: Your profile joins the first run; Caution joins the run into Eligibility; the disqualifying shortcut; No-Go — We Pass -> Decision Record.
+
+PANEL, left detail pane (Triage selected)
+Triage · Phase 1 of 5
+Should we keep going?
+A quick read of the notice, then one call: keep going, watch it, or pass.
+Continue: Eligibility opens
+Continue with Caution: Eligibility opens · open questions carried
+Watch: Parked — monitoring for the solicitation
+No-Bid: Pursuit closed at triage
+Output: Solicitation Analysis
+
+Decision phase's one-line summary (shown when Decision is selected): From your answers, Pursuit recommends Go, Conditional Go or No-Go; you record the decision.
+
+PANEL, right pane
+Phase Outputs
+Phase | Question it answers | Output
+Triage | Should we keep going? | Solicitation Analysis
+Eligibility | Can we actually bid this? | Compliance Matrix
+Alignment | Is this strategically worth pursuing? | Alignment Assessment
+Viability | What will it take to win? | Capture Plan
+Decision | Go or No-Go? | Decision Summary
+
+PHONE (under 1024px): the button first, then a Sources card and one card per phase, each with its question, one-line summary, the same rows as the detail pane, and its output.
+
+WHAT CHANGED SINCE ROUND 1 (all eight of your fixes were applied): shorter hero with your paragraph; the cyan route now leaves the Continue card and is 2px, secondary threads are 1px at rgba(169,182,203,.28), Caution has its own grey thread into Eligibility; the selected tray's ring is 1px at 40% with no glow; the disqualifying label is horizontal with "Go not available" under it (the product's wording is "A Go is not available unless that answer changes") and its thread ends on the No-Go card; the Decision summary and four sub-lines are yours; trays, cards and panes use your three values and the first bloom and grain are reduced; the panes are two level cards with 28px corners and the "Phases / 5" tile is gone; on the phone only the card title is inset.
+
+
+Hard constraints (a fix or rewrite that breaks one is disqualified):
+- True claims only. What the product actually does: notices come from SAM.gov and are matched against the company's profile; Triage ends in one of four calls (Continue and Continue with Caution open Eligibility; Watch parks the pursuit; No-Bid closes it); Eligibility produces a bid recommendation, and a confirmed disqualifying issue sends the pursuit straight to Decision where a Go is not available; Alignment and Viability are the user's own judgment calls on scored reasons; at Decision the product recommends Go, Conditional Go or No-Go from the user's answers and the user records "Go — We Bid" or "No-Go — We Pass"; a Go opens the Bid Handoff and a No-Go produces the No-Go Decision Record.
+- Do NOT promise or imply: a win probability or better win rates, time savings or a number of minutes, a sync cadence ("daily", "nightly", "real-time"), coverage of every notice, that a person reviews anything, prices or plan limits, or any outcome for the visitor's business.
+- Never the words "beta", "AI", "Claude", "verdict", "locked", or any model name. No personal names. No government seals, agencies as endorsers, or implied government affiliation.
+- No new accent colour, no emoji, no illustration, photo or 3D art inside the panel, no arrowheads on the threads, no diagonal or S-curve connectors.
+- Any element you ask to add must be buildable from the facts above. Do not invent product features, metrics or screens.
+
+Score /100 on: hierarchy and focal point (20) — does the eye land on the map, then the route, then the action; composition, alignment and rhythm of the map and panes (20); glass material and depth — do tray, card and pane read as distinct surfaces without looking like a generic dashboard (15); typography and legibility (15); premium feel and restraint against the rest of a dark SaaS site (10); mobile translation (10); COPY in the rewritable parts (10) — reads like a person wrote it for this audience; flag anything stilted, vague or AI-ish and give the exact rewrite.
+
+Then list the TOP 8 fixes ranked by impact, each concrete (a CSS value, a pixel move, a Tailwind class, or exact replacement copy) and each tied to something visible in the attached images. Say which image. No praise. Cap 750 words. End with exactly: SCORE: NN/100.
+
+
+Your previous round review (what you see now is the revision; do not reverse a fix you asked for unless it made things worse):
+The page makes visitors read too much before they can follow the route. The cyan Triage enclosure competes with the path, the shortcut to Decision is hard to interpret, and the copy underexplains who makes the final call. It falls short of 95.
+
+Hierarchy and focal point **15/20**; composition, alignment and rhythm **16/20**; glass and depth **11/15**; typography and legibility **13/15**; premium feel and restraint **8/10**; mobile translation **8/10**; copy **7/10**.
+
+1. **Bring the map into the first screen. Images 1 and 4.**  
+   The large empty band above the H1 and the long paragraph push the explanation below the fold. Set hero top padding to `80px` on desktop and `72px` on mobile; use `margin-top: 32px` before the panel. Replace the paragraph with:  
+   **“Pursuit matches SAM.gov notices to your company profile. Five phases help you decide whether to bid, with options to park or close at Triage. Pursuit recommends a decision; you record the call. A Go opens the Bid Handoff.”**
+
+2. **Make the highlighted route traceable from the actual call. Image 2.**  
+   The cyan connection leaves the Triage tray, making the entire tray appear to advance. Start it at the right edge of **Continue**, then connect Eligibility → Alignment → Viability → Decision → Go → Bid Handoff. Use `stroke-width: 2px` for that route and `1px` with `rgba(169,182,203,.28)` for secondary threads. Give Caution its own neutral connection to Eligibility. Preserve orthogonal runs and rounded bends.
+
+3. **Reduce the selected tray’s visual dominance. Images 1 and 2.**  
+   The tall cyan outline grabs more attention than the thin route. Set the selected Triage border to `1px solid rgba(0,195,255,.4)` and remove its outer glow. Reserve full cyan intensity for the corner tabs and highlighted thread. The selected stepper segment already identifies the active phase; the tray does not need to shout again.
+
+4. **Make the disqualification shortcut readable. Image 2.**  
+   The rotated **Disqualifying issue** label reads like a diagram annotation squeezed into leftover space. Remove its rotation and place it horizontally beneath Eligibility, approximately screenshot position `left: 742px; top: 258px`, at `14px/20px`. Route its neutral thread visibly into the No-Go branch of Decision. Add **“Go unavailable”** beneath the label so the shortcut’s consequence is explicit.
+
+5. **State decision ownership and distinguish the two outcomes. Image 2.**  
+   The Decision cluster communicates destinations without explaining the recommendation versus the recorded choice. Replace the Decision phase summary with:  
+   **“From your answers, Pursuit recommends Go, Conditional Go or No-Go; you record the decision.”**  
+   Replace these vague sub-lines exactly:  
+   **“Opens the handoff” → “Opens Bid Handoff”**  
+   **“Reason on record” → “Records your reason”**  
+   **“Into proposal planning” → “For proposal planning”**  
+   **“Why you made the call” → “Why you passed”**
+
+6. **Give trays, cards and panes distinct material roles. Images 2 and 3.**  
+   Most cards currently read as the same opaque navy component, while Sources has a disproportionately strong teal wash. Use trays at `rgba(15,29,47,.55)`, cards with `linear-gradient(180deg,#1b2941,#111b2d)`, and detail panes at `#0b1120`. Give cards a restrained `0 6px 14px rgba(0,0,0,.24)` shadow. Reduce the panel’s dot texture to `.12` opacity.
+
+7. **Align the detail panes and remove redundant furniture. Images 2 and 3.**  
+   The right pane starts roughly `14px` above the left. Put both in one grid row with equal top edges, `gap:20px`, `padding:40px`, and `border-radius:28px`. Remove the **Phases / 5 / One question each** tile: the stepper and phase counter already communicate this. Set detail rows to `14px/22px` with `8px` row gaps.
+
+8. **Recover mobile reading width. Image 5.**  
+   Every paragraph inherits the title’s deep left indent, leaving only about `248px` for text. Keep the title inset at `54px` to clear the cyan tab, but set questions, summaries and rows to `padding-inline:20px`. Use `14px/20px` body text and `12px` between row groups. This reduces avoidable wrapping and the distance to later phases.
+
+SCORE: 78/100.

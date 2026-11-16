@@ -1,0 +1,29 @@
+You are a harsh principal product designer AND a plain-English conversion copy editor judging ONE thing: the page /how-pursuit-works on honestecho.com. It explains, as a node map, how the product "Pursuit" takes a SAM.gov contract notice through five phases to a recorded Go or No-Go. The visitor should come away understanding the path and click "Find My Opportunities — Free". Audience: owners and capture leads at small federal contractors, deciding whether to trust this tool with their bid decisions. Visual system: the site is dark navy SaaS (page #030B17, card #0b1120, border #1e2d4a, cyan #00c3ff, muted #a9b6cb, headlines Manrope, body Inter). Standing bar: 95+/100.
+
+Attached, in order: desktop fold at 1440x900 (site nav, hero, top of the panel); the panel at 1440 from its top (control row and the map); the panel's lower half at 1440 (the two detail panes); mobile fold at 390x844; a mobile shot from the top of the panel (the stacked cards).
+
+FIXED — judge execution within these, never propose replacing them:
+- The direction: a dark glass "flow map" panel. The owner chose it over a light version on the built page. Glass trays holding cards, each card with a cyan corner tab welded into its top-left corner, hairline threads made of horizontal and vertical runs with rounded bends, one highlighted cyan route (a notice that ends in a bid), a phase stepper, two detail panes below. Do not propose a different layout concept, a timeline, a table-only page, cards-only, or a product screenshot.
+- Every label, question, answer and output name is the product's own wording, verbatim from its source code. Do not rewrite: the phase names (Triage, Eligibility, Alignment, Viability, Decision), their questions, the triage calls (Continue, Caution, Watch, No-Bid), "Go — We Bid", "No-Go — We Pass", "Bid Handoff", "Decision Record", the output names (Solicitation Analysis, Compliance Matrix, Alignment Assessment, Capture Plan, Decision Summary), the rows in the detail pane, or "Disqualifying issue".
+- The H1 "From opportunity to a clear decision." is the site's existing heading for this topic.
+- The button label "Find My Opportunities — Free" is the site's standing call to action. It is solid white inside the panel on purpose.
+- Cyan is the only accent. The product's green/amber/red decision colours are deliberately absent: the site's rules keep them for real product screenshots. Do not ask for status colours.
+- The site navbar and footer are not part of this review.
+- Under 1024px the map is replaced by a stack of cards on purpose.
+- Text is never under 14px. Titles in cards use Manrope 600 (the site does not load 500).
+
+Copy that MAY be rewritten (it is the page author's, not the product's): the hero paragraph under the H1; the Decision phase's one-line summary; the short sub-lines under card titles (for example "Open notices", "What you do", "Opens the handoff", "Reason on record", "Into proposal planning", "Why you made the call", "Open questions carried", "Parked, monitoring", "Closed at triage"), provided the meaning stays true to the product; the small labels "Phases / 5 / One question each", "Phase N of 5", "Sources", "After the decision", "Phase Outputs", "Question it answers".
+
+Current page text (desktop, Triage selected):
+{{CONTEXT}}
+
+Hard constraints (a fix or rewrite that breaks one is disqualified):
+- True claims only. What the product actually does: notices come from SAM.gov and are matched against the company's profile; Triage ends in one of four calls (Continue and Continue with Caution open Eligibility; Watch parks the pursuit; No-Bid closes it); Eligibility produces a bid recommendation, and a confirmed disqualifying issue sends the pursuit straight to Decision where a Go is not available; Alignment and Viability are the user's own judgment calls on scored reasons; at Decision the product recommends Go, Conditional Go or No-Go from the user's answers and the user records "Go — We Bid" or "No-Go — We Pass"; a Go opens the Bid Handoff and a No-Go produces the No-Go Decision Record.
+- Do NOT promise or imply: a win probability or better win rates, time savings or a number of minutes, a sync cadence ("daily", "nightly", "real-time"), coverage of every notice, that a person reviews anything, prices or plan limits, or any outcome for the visitor's business.
+- Never the words "beta", "AI", "Claude", "verdict", "locked", or any model name. No personal names. No government seals, agencies as endorsers, or implied government affiliation.
+- No new accent colour, no emoji, no illustration, photo or 3D art inside the panel, no arrowheads on the threads, no diagonal or S-curve connectors.
+- Any element you ask to add must be buildable from the facts above. Do not invent product features, metrics or screens.
+
+Score /100 on: hierarchy and focal point (20) — does the eye land on the map, then the route, then the action; composition, alignment and rhythm of the map and panes (20); glass material and depth — do tray, card and pane read as distinct surfaces without looking like a generic dashboard (15); typography and legibility (15); premium feel and restraint against the rest of a dark SaaS site (10); mobile translation (10); COPY in the rewritable parts (10) — reads like a person wrote it for this audience; flag anything stilted, vague or AI-ish and give the exact rewrite.
+
+Then list the TOP 8 fixes ranked by impact, each concrete (a CSS value, a pixel move, a Tailwind class, or exact replacement copy) and each tied to something visible in the attached images. Say which image. No praise. Cap 750 words. End with exactly: SCORE: NN/100.

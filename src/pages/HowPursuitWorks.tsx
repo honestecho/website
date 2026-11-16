@@ -113,9 +113,9 @@ function Tab({ children }: { children: ReactNode }) {
   return <span className="fm-tab font-headline" data-tab aria-hidden="true">{children}</span>;
 }
 
-function Card({ at, Icon, title, sub }: { at: string; Icon: ElementType; title: string; sub: string }) {
+function Card({ at, Icon, title, sub, route }: { at: string; Icon: ElementType; title: string; sub: string; route?: boolean }) {
   return (
-    <div className={`fm-node fm-at-${at}`} data-node>
+    <div className={`fm-node fm-at-${at}${route ? ' fm-on-route' : ''}`} data-node>
       <Tab><Icon strokeWidth={2.25} /></Tab>
       <span className="fm-t fm-title font-headline">{title}</span>
       <span className="fm-s">{sub}</span>
@@ -134,7 +134,7 @@ export default function HowPursuitWorks() {
   const phaseCard = (id: PhaseId, at: string) => {
     const p = PHASES[id - 1];
     return (
-      <button type="button" className={`fm-node fm-at-${at}`} data-node aria-pressed={selected === id} onClick={() => select(id)}>
+      <button type="button" className={`fm-node fm-on-route fm-at-${at}`} data-node aria-pressed={selected === id} onClick={() => select(id)}>
         <Tab>{id}</Tab>
         <span className="fm-t fm-title font-headline">{p.label}</span>
         <span className="fm-s">{p.output}</span>
@@ -169,7 +169,7 @@ export default function HowPursuitWorks() {
 
       {/* Hero, kept short so the map starts inside the first screen */}
       <section className="pt-14 lg:pt-16 pb-8 px-6 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-[1232px] mx-auto relative z-10">
           <h1 className="font-headline font-black text-4xl md:text-5xl xl:text-6xl text-white mb-4 tracking-tighter leading-tight drop-shadow-2xl">
             From opportunity to a clear decision.
           </h1>
@@ -179,7 +179,7 @@ export default function HowPursuitWorks() {
         </div>
       </section>
 
-      <section className="px-6 pb-24">
+      <section className="px-4 sm:px-6 pb-24">
         <div className="fm font-body max-w-[1328px] mx-auto">
           {/* ── 1024px and up: the map ─────────────────────────────────────── */}
           <div className="hidden lg:block">
@@ -193,7 +193,7 @@ export default function HowPursuitWorks() {
               </div>
               <Link to={DISCOVERY_TO} onClick={() => track('how_pursuit_works_cta_clicked')} className="fm-cta font-headline">
                 Find My Opportunities — Free
-                <ArrowRight className="w-5 h-5 shrink-0" aria-hidden="true" />
+                <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
               </Link>
             </div>
 
@@ -222,13 +222,13 @@ export default function HowPursuitWorks() {
                 <div className="fm-tray fm-at-sources" data-tray>
                   <div className="fm-head fm-title fm-label font-headline"><Tab><Database strokeWidth={2.25} /></Tab>Sources</div>
                 </div>
-                <Card at="sam" Icon={Database} title="SAM.gov notices" sub="Matched to your profile" />
+                <Card at="sam" Icon={Database} title="SAM.gov notices" sub="Matched to your profile" route />
                 <Card at="profile" Icon={User} title="Your profile" sub="Your capabilities" />
 
                 {phaseTray(1, 'triage')}
-                <Card at="continue" Icon={ArrowRight} title="Continue" sub="Eligibility opens" />
-                <Card at="caution" Icon={TriangleAlert} title="Caution" sub="Open questions carried" />
-                <Card at="watch" Icon={Eye} title="Watch" sub="Parked, monitoring" />
+                <Card at="continue" Icon={ArrowRight} title="Continue" sub="Opens Eligibility" route />
+                <Card at="caution" Icon={TriangleAlert} title="Caution" sub="Carries open questions" />
+                <Card at="watch" Icon={Eye} title="Watch" sub="Parked for monitoring" />
                 <Card at="nobid" Icon={X} title="No-Bid" sub="Closed at triage" />
 
                 {phaseCard(2, 'eligibility')}
@@ -237,13 +237,13 @@ export default function HowPursuitWorks() {
                 <p className="fm-linelabel">Disqualifying issue<br />Go not available</p>
 
                 {phaseTray(5, 'decision', 'You record the call')}
-                <Card at="go" Icon={Check} title="Go — We Bid" sub="Opens Bid Handoff" />
+                <Card at="go" Icon={Check} title="Go — We Bid" sub="Opens Bid Handoff" route />
                 <Card at="nogo" Icon={X} title="No-Go — We Pass" sub="Records your reason" />
 
                 <div className="fm-tray fm-at-after" data-tray>
                   <div className="fm-head fm-title fm-label font-headline"><Tab><ClipboardList strokeWidth={2.25} /></Tab>After the decision</div>
                 </div>
-                <Card at="handoff" Icon={ClipboardList} title="Bid Handoff" sub="For proposal planning" />
+                <Card at="handoff" Icon={ClipboardList} title="Bid Handoff" sub="For proposal planning" route />
                 <Card at="record" Icon={FileText} title="Decision Record" sub="Why you passed" />
               </div>
             </div>
@@ -313,6 +313,10 @@ export default function HowPursuitWorks() {
                 </li>
               ))}
             </ol>
+            {/* and again once the phases have been read */}
+            <Link to={DISCOVERY_TO} onClick={() => track('how_pursuit_works_cta_clicked')} className="fm-cta fm-cta-phone font-headline mt-6">
+              Find My Opportunities — Free
+            </Link>
           </div>
         </div>
       </section>

@@ -615,11 +615,14 @@ export default function FarOverhaulTracker() {
       <section className="pt-24 pb-10 px-6 relative overflow-hidden">
         <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-[#00c3ff]/10 via-transparent to-transparent blur-[100px] pointer-events-none" />
         <div className="max-w-7xl mx-auto relative z-10">
-          <span className={`${pill} bg-[#00c3ff]/10 border border-[#00c3ff]/20 text-[#00c3ff] mb-6`}>FAR Overhaul Tracker</span>
+          <span className={`${pill} bg-[#00c3ff]/10 border border-[#00c3ff]/20 text-[#00c3ff] mb-6`}>Revolutionary FAR Overhaul</span>
           <h1 className="font-headline font-black text-4xl md:text-6xl lg:text-7xl text-white tracking-tighter leading-[1.05] drop-shadow-2xl max-w-5xl">
-            The FAR is changing. Know what it means for your <span className="text-[#00c3ff]">next bid.</span>
+            FAR Overhaul (FAR 2.0) <span className="text-[#00c3ff]">Tracker</span>
           </h1>
-          <p className="text-[#a0b2c8] text-lg md:text-xl leading-relaxed font-body max-w-3xl mt-6">
+          <p className="font-headline font-bold text-xl md:text-2xl lg:text-3xl text-white tracking-tight leading-snug max-w-4xl mt-5">
+            The FAR is changing. Know what it means for your <span className="text-[#00c3ff]">next bid.</span>
+          </p>
+          <p className="text-[#a0b2c8] text-lg md:text-xl leading-relaxed font-body max-w-3xl mt-4">
             The Revolutionary FAR Overhaul, also called FAR 2.0, is rewriting every part of the Federal Acquisition Regulation. See what has changed, where it already applies, and what to do next.
           </p>
           {/* data-verified is what the weekly job's live check greps for after a deploy. */}

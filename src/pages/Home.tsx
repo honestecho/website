@@ -212,7 +212,7 @@ export default function Home() {
                 Decide <span className="he-gradient-text">before</span> you invest proposal time.
               </h2>
               <p className="mt-5 text-lg text-[#a9b6cb] font-body leading-relaxed">
-                Five phases — Triage, Eligibility, Alignment, Viability, Decision — each answer one question about the notice and end in a recorded Go or No-Go. What your proposal team receives is the Bid Handoff.
+                Five phases — Triage, Eligibility, Alignment, Viability, Decision — each answer one question about the notice. A pursuit can be parked or closed at Triage; one that goes on ends in a recorded Go or No-Go. A Go opens the Bid Handoff, which is what your proposal team receives.
               </p>
 
               <ol className="mt-10 space-y-8">

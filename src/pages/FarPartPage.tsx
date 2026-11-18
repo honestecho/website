@@ -362,7 +362,7 @@ function PartBody({ dd }: { dd: PartDeepDive }) {
           <div className={`${card} p-6 md:p-8`}>
             <h2 className="font-headline font-bold text-white text-xl tracking-tight mb-3">Sources and method</h2>
             <p className="text-sm text-[#a0b2c8] font-body leading-relaxed mb-4">
-              Each change compares the current FAR Part {dd.part} with the FAR Council's rewritten model text, read on {fmtDate(dd.comparedOn)}. "What it means for you" is Honest Echo's reading, not regulatory text or legal advice. Changes marked medium confidence rest on what the rewrite leaves out, or on an SBA rule we could not fully reconcile; check the sources before relying on them. The status line at the top updates weekly with the tracker.
+              Each change compares the current FAR Part {dd.part} with the FAR Council's rewritten model text, read on {fmtDate(dd.comparedOn)}. "What it means for you" is Honest Echo's reading, not regulatory text or legal advice. Changes marked medium confidence rest on what the rewrite leaves out, or on a source we could not fully reconcile; check the sources before relying on them. The status line at the top updates weekly with the tracker.
             </p>
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {dd.sources.map(s => <li key={s.url}><Source href={s.url} label={s.name} /></li>)}

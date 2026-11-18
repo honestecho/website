@@ -8,3 +8,6 @@
 [2026-09-13] route=codex-taste-loop target=Home.tsx sections 2+3 (steps+Radar, persona doorways) result=8 rounds HOW 76→96 WHO 74→96; files three-brain-out/2026-09-13-home-persona-review/taste-r*.md
 [2026-09-13] route=codex-taste-loop(cont.) target=Home.tsx section 2 illustration → Scoring Alignment Check (ProfileIllustration.tsx) result=r10 HOW 95 / WHO 96; loop closed
 [2026-09-27] route=codex-review target=pricing+analyzer copy pass result=round1 7xP1 applied; round2 ship (1 fix applied); scores clarity 95 proof 81 next 94 trust 96 hierarchy 90
+[2026-11-12 12:01] route=codex-review target=website feat/ot-fit-check 0642aac result=4-P2 (all fixed in 95c69c6)
+[2026-11-12 12:01] route=codex-delta target=website feat/ot-fit-check 95c69c6 result=clean
+[2026-11-18 11:20] route=codex-review target=far-part-15-page result=2-P2-found-both-fixed (0 P0, 0 P1; header-injection concern cleared)

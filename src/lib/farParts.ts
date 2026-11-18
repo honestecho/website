@@ -5,7 +5,7 @@
 
 import { partByNumber } from './farApplicability';
 
-export type ChangeType = 'removed' | 'narrowed' | 'expanded' | 'moved-to-guidance' | 'unchanged-but-reworded' | 'new';
+export type ChangeType = 'removed' | 'narrowed' | 'expanded' | 'moved-to-guidance' | 'unchanged-but-reworded' | 'new' | 'renumbered';
 
 export interface PartChange {
   id: string; topic: string; subpart: string; before: string; after: string;
@@ -65,4 +65,7 @@ export const CHANGE_LABEL: Record<ChangeType, { label: string; cls: string }> = 
   new: { label: 'New', cls: 'border-[#00c3ff]/60 text-[#00c3ff]' },
   'moved-to-guidance': { label: 'Moved to Guidance', cls: 'border-[#5b8cff]/60 text-[#9db7ff]' },
   'unchanged-but-reworded': { label: 'Same Rule, New Words', cls: 'border-[#2a3b5c] text-[#a0b2c8]' },
+  // Same rule, different citation: the section moved inside the FAR, not out of it
+  // into guidance. Part 15 is mostly this, so the distinction carries real weight.
+  renumbered: { label: 'Renumbered', cls: 'border-[#c08cff]/60 text-[#c9a9ff]' },
 };

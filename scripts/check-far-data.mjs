@@ -135,7 +135,7 @@ if (hit) fail(`banned word in data: "${hit[0]}"`);
 
 // ── Deep-dive files, one per FAR part (src/content/far-parts/part-N.json) ──────
 // Same rules: every source .gov/.mil, real dates, no markup, nothing private.
-const TYPES = new Set(['removed', 'narrowed', 'expanded', 'moved-to-guidance', 'unchanged-but-reworded', 'new']);
+const TYPES = new Set(['removed', 'narrowed', 'expanded', 'moved-to-guidance', 'unchanged-but-reworded', 'new', 'renumbered']);
 const partsDir = new URL('../src/content/far-parts/', import.meta.url);
 let partFiles = [];
 try { partFiles = readdirSync(partsDir).filter((f) => f.endsWith('.json')); } catch { /* no deep dives yet */ }

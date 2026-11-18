@@ -25,6 +25,7 @@ const TAG: Record<ChangeType, string> = {
   removed: 'bg-[#eef1f5] text-[#0b1120] border-[#eef1f5]',
   'unchanged-but-reworded': 'bg-white text-[#0b1120] border-[#00c3ff]',
   'moved-to-guidance': 'bg-[#e3e8f3] text-[#0b1120] border-[#e3e8f3]',
+  renumbered: 'bg-[#ece3f7] text-[#0b1120] border-[#ece3f7]',
 };
 
 const tag = 'self-start inline-flex items-center justify-center text-center px-2 py-1.5 rounded-lg border-[1.5px] text-[12px] leading-tight font-extrabold tracking-wide uppercase font-label w-[112px] shrink-0';

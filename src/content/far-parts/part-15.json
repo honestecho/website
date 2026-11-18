@@ -342,7 +342,7 @@
     },
     {
       "q": "How many agencies have adopted the Part 15 rewrite?",
-      "a": "32 of the 40 agencies with class deviations posted on acquisition.gov's deviation guide list Part 15. That count comes from this site's FAR Overhaul tracker data as verified 2026-11-09, so treat it as a reading from that date rather than from today."
+      "a": "32 of the 40 agencies with class deviations posted on acquisition.gov's deviation guide list Part 15. That count comes from this site's FAR Overhaul tracker data, and the status line at the top of this page carries the date it was last verified, so read the count as of that date rather than as of today."
     },
     {
       "q": "What is the single most expensive mistake here?",

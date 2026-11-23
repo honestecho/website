@@ -47,7 +47,7 @@ export default function Contact() {
       });
 
       if (!res.ok) {
-        const fallback = 'We couldn\'t send your message right now. Please email info@honestecho.com directly.';
+        const fallback = 'We couldn\'t send your message right now. Please try again in a few minutes.';
         const body = await res.json().catch(() => ({ message: fallback }));
         setError(body.message || fallback);
         setLoading(false);
@@ -58,7 +58,7 @@ export default function Contact() {
       setSubmitted(true);
       setLoading(false);
     } catch {
-      setError("We couldn't reach the server. Please email info@honestecho.com directly.");
+      setError("We couldn't reach the server. Please check your connection and try again.");
       setLoading(false);
     }
   }

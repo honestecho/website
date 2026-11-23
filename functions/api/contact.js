@@ -44,7 +44,7 @@ export async function onRequestPost({ request, env }) {
   }
 
   if (!env.RESEND_API_KEY) {
-    return json(503, { success: false, message: "We couldn't send your message right now. Please email info@honestecho.com directly." });
+    return json(503, { success: false, message: "We couldn't send your message right now. Please try again in a few minutes." });
   }
 
   const name      = `${headerSafe(first_name)} ${headerSafe(last_name)}`.trim() || '(no name given)';
@@ -74,10 +74,10 @@ export async function onRequestPost({ request, env }) {
     });
 
     if (!r.ok) {
-      return json(502, { success: false, message: "We couldn't send your message right now. Please email info@honestecho.com directly." });
+      return json(502, { success: false, message: "We couldn't send your message right now. Please try again in a few minutes." });
     }
     return json(200, { success: true });
   } catch {
-    return json(500, { success: false, message: 'Server error. Please email info@honestecho.com directly.' });
+    return json(500, { success: false, message: 'Something went wrong. Please try again in a few minutes.' });
   }
 }

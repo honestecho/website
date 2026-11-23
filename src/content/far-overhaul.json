@@ -1,6 +1,6 @@
 {
-  "verifiedOn": "2026-11-16",
-  "nextCheck": "2026-11-23",
+  "verifiedOn": "2026-11-23",
+  "nextCheck": "2026-11-30",
   "layers": {
     "modelText": {
       "parts": 51,
@@ -41,13 +41,17 @@
   },
   "thisWeek": [
     {
-      "date": "2026-11-16",
-      "title": "No new government actions this week",
-      "whatChanged": "Checked the Federal Register FAR overhaul documents, the acquisition.gov FAR overhaul pages (deviation guide, FAQs, You Said, We Did, policy and guidance), GSA's GSAR overhaul page and DoD's DFARS class deviation list. Found no new FAR or GSAR proposed rule, final rule, correction or deviation dated after November 9, 2026. The DoD list still shows a last-updated date of October 22, 2026.",
-      "meaning": "Our reading: the prior status stands. Eight FAR overhaul proposed rules are published and all of their comment periods have closed. The four remaining FAR proposed rules have no announced publication date, and no final rule has been published.",
-      "parts": [],
-      "appliesTo": "All agencies",
-      "sourceUrl": "https://www.acquisition.gov/far-overhaul"
+      "date": "2026-11-17",
+      "title": "FAR Council posts updated model text for Parts 9, 42 and 52",
+      "whatChanged": "The FAR Part Deviation Guide now shows an update dated November 17, 2026 for the model deviation text of Part 9 (Contractor Qualifications), Part 42 (Contract Administration and Audit Services) and Part 52 (Solicitation Provisions and Contract Clauses). The guide does not say what changed. No new FAR proposed rule, final rule or correction appeared in the Federal Register, and DoD's DFARS deviation list is unchanged (last updated October 22, 2026).",
+      "meaning": "Our reading: this is model deviation text, not a rule. It applies at an agency only after that agency issues or updates its own class deviation. If you bid or hold federal contracts, watch for agency deviation notices on Parts 9 and 42, and check the clause list in each new solicitation.",
+      "parts": [
+        9,
+        42,
+        52
+      ],
+      "appliesTo": "Agencies that adopt the updated model text",
+      "sourceUrl": "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide"
     }
   ],
   "impacts": [
@@ -401,7 +405,7 @@
       "date": "2025-05-02",
       "endDate": "2025-10-28",
       "commentsClosed": null,
-      "detail": "First issuances May 2, 2025 (Parts 1 and 34); last original issuances October 28, 2025 (Parts 2 and 52). Updates posted through July 1, 2026 (Parts 16 and 52).",
+      "detail": "First issuances May 2, 2025 (Parts 1 and 34); last original issuances October 28, 2025 (Parts 2 and 52). Updates posted through November 17, 2026 (Parts 9, 42 and 52).",
       "lane": "model",
       "short": "Model text",
       "sourceUrl": "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide"
@@ -641,7 +645,7 @@
       "title": "Contractor Qualifications",
       "status": "proposed-rule",
       "modelText": "2025-08-21",
-      "modelTextUpdated": "2026-04-20",
+      "modelTextUpdated": "2026-11-17",
       "farCase": "FAR Case 2026-011",
       "proposedRule": "2026-09-18",
       "commentsClosed": "2026-10-19",
@@ -1235,7 +1239,7 @@
       "title": "Contract Administration and Audit Services",
       "status": "model-text",
       "modelText": "2025-09-30",
-      "modelTextUpdated": null,
+      "modelTextUpdated": "2026-11-17",
       "farCase": "FAR Case 2026-012",
       "proposedRule": null,
       "commentsClosed": null,
@@ -1415,7 +1419,7 @@
       "title": "Solicitation Provisions and Contract Clauses",
       "status": "proposed-rule",
       "modelText": "2025-10-28",
-      "modelTextUpdated": "2026-07-01",
+      "modelTextUpdated": "2026-11-17",
       "farCase": "All 8 published cases",
       "proposedRule": "2026-06-23",
       "commentsClosed": "2026-07-23",
@@ -3777,6 +3781,15 @@
     }
   ],
   "changelog": [
+    {
+      "date": "2026-11-23",
+      "entries": [
+        {
+          "text": "Model deviation text for Parts 9, 42 and 52 now shows an update dated November 17, 2026 on the FAR Part Deviation Guide; part dates updated. No new Federal Register documents, agency deviations or DFARS list changes since November 16, 2026.",
+          "sourceUrl": "https://www.acquisition.gov/far-overhaul/far-part-deviation-guide"
+        }
+      ]
+    },
     {
       "date": "2026-11-16",
       "entries": [

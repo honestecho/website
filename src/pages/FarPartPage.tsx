@@ -165,7 +165,8 @@ function PartBody({ dd }: { dd: PartDeepDive }) {
   const live = partByNumber(dd.part);
   const path = partPagePath(dd.part);
   const url = `https://honestecho.com${path}`;
-  const title = `FAR Part ${dd.part} Rewritten: What Changed for ${dd.title} (FAR Overhaul)`;
+  // "RFO" leads because that is what people search ("rfo far", "rfo part 15"); "FAR overhaul" stays in the description.
+  const title = `RFO FAR Part ${dd.part} Rewritten: What Changed for ${dd.title}`;
   const newer = newerThanComparison(dd);
   const first = dd.changes.slice(0, SHOWN_CHANGES);
   const rest = dd.changes.slice(SHOWN_CHANGES);

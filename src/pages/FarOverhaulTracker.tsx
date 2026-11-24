@@ -644,6 +644,8 @@ export default function FarOverhaulTracker() {
 
       <section className="pb-16 px-6"><div className="max-w-7xl mx-auto"><StatusTracks /></div></section>
 
+      <section className="pb-16 px-6"><div className="max-w-7xl mx-auto"><FarListSignup placement="top" /></div></section>
+
       <section className="py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <SectionHead id="this-week" kicker="This week" title="What matters this week" sub="Real changes from official sources, with what each one means for a contractor." />
@@ -753,7 +755,6 @@ export default function FarOverhaulTracker() {
 
       <section className="py-8 pb-24 px-6">
         <div className="max-w-7xl mx-auto space-y-6">
-          <FarListSignup placement="end" />
           <div className={`${card} p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-6`}>
             <div>
               <h2 className="font-headline font-black text-white text-2xl md:text-3xl tracking-tight">Will a rewritten rule change your next bid?</h2>

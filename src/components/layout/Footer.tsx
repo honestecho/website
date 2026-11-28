@@ -49,7 +49,7 @@ export default function Footer() {
                   { label: 'FAQ', to: '/faq/' },
                 ].map(({ label, to }) => (
                   <li key={to}>
-                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors whitespace-nowrap">
+                    <Link to={to} className="inline-block py-1 -my-1 text-sm text-[#8b9bb4] hover:text-white transition-colors whitespace-nowrap">
                       {label}
                     </Link>
                   </li>
@@ -67,7 +67,7 @@ export default function Footer() {
                   { label: 'GovCon Consultants', to: '/for-govcon-consultants/' },
                 ].map(({ label, to }) => (
                   <li key={to}>
-                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors whitespace-nowrap">
+                    <Link to={to} className="inline-block py-1 -my-1 text-sm text-[#8b9bb4] hover:text-white transition-colors whitespace-nowrap">
                       {label}
                     </Link>
                   </li>
@@ -86,7 +86,7 @@ export default function Footer() {
                   { label: 'Privacy Policy', to: '/privacy/' },
                 ].map(({ label, to }) => (
                   <li key={to}>
-                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors whitespace-nowrap">
+                    <Link to={to} className="inline-block py-1 -my-1 text-sm text-[#8b9bb4] hover:text-white transition-colors whitespace-nowrap">
                       {label}
                     </Link>
                   </li>
@@ -104,7 +104,7 @@ export default function Footer() {
                   { label: 'SAM.gov Analysis', to: '/sam-gov-opportunity-analysis/' },
                 ].map(({ label, to }) => (
                   <li key={to}>
-                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors whitespace-nowrap">
+                    <Link to={to} className="inline-block py-1 -my-1 text-sm text-[#8b9bb4] hover:text-white transition-colors whitespace-nowrap">
                       {label}
                     </Link>
                   </li>
@@ -123,7 +123,7 @@ export default function Footer() {
                   ...RESOURCES.map(r => ({ label: r.navLabel, to: r.path })),
                 ].map(({ label, to }) => (
                   <li key={to}>
-                    <Link to={to} className="text-sm text-[#8b9bb4] hover:text-white transition-colors whitespace-nowrap">
+                    <Link to={to} className="inline-block py-1 -my-1 text-sm text-[#8b9bb4] hover:text-white transition-colors whitespace-nowrap">
                       {label}
                     </Link>
                   </li>

@@ -48,7 +48,7 @@ const STATUS_ORDER = ['final-rule', 'proposed-rule', 'model-text', 'reserved'];
 
 function Source({ href, label = 'Official source' }: { href: string; label?: string }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm font-semibold text-[#00c3ff] hover:text-white transition-colors font-body">
+    <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 py-1 -my-1 text-sm font-semibold text-[#00c3ff] hover:text-white transition-colors font-body">
       {label} <ArrowUpRight className="w-3.5 h-3.5" />
     </a>
   );
@@ -281,7 +281,7 @@ function ImpactChecker() {
                 )}
                 {/* Native <details>: the full facts are in the prerendered HTML even while collapsed. */}
                 <details className="mt-4" onToggle={e => { if ((e.currentTarget as HTMLDetailsElement).open) track('far_tracker_impact_opened', { rank: impact.rank }); }}>
-                  <summary className="text-sm font-semibold text-[#00c3ff] hover:text-white font-body cursor-pointer">Who it hits, status, and source</summary>
+                  <summary className="py-1 -my-1 text-sm font-semibold text-[#00c3ff] hover:text-white font-body cursor-pointer">Who it hits, status, and source</summary>
                   <dl className="mt-3 grid grid-cols-1 md:grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm font-body">
                     <dt className="text-[#8b9bb4]">Who it hits</dt><dd className="text-[#c9d5e3]">{impact.whoItHits}</dd>
                     <dt className="text-[#8b9bb4]">Status</dt><dd className="text-[#c9d5e3]">{impact.status}</dd>
@@ -423,7 +423,7 @@ function PartGrid() {
 function PartTable() {
   return (
     <details className="mt-6">
-      <summary className="text-sm font-semibold text-[#00c3ff] hover:text-white font-body cursor-pointer">All {FAR.parts.length} parts as a table</summary>
+      <summary className="py-1 -my-1 text-sm font-semibold text-[#00c3ff] hover:text-white font-body cursor-pointer">All {FAR.parts.length} parts as a table</summary>
       <div className="overflow-x-auto mt-4">
         <table className="w-full min-w-[640px] text-sm font-body text-left">
           <thead className="text-xs uppercase tracking-widest text-[#8b9bb4] font-label">
@@ -432,7 +432,7 @@ function PartTable() {
           <tbody className="divide-y divide-[#1e2d4a] text-[#c9d5e3]">
             {FAR.parts.map(p => (
               <tr key={p.part}>
-                <td className="py-2 pr-4 align-top"><a href={p.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#00c3ff]">{p.part}. {p.title}</a></td>
+                <td className="py-2 pr-4 align-top"><a href={p.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-block py-1 -my-1 text-white hover:text-[#00c3ff]">{p.part}. {p.title}</a></td>
                 <td className="py-2 pr-4 align-top">{STATUS_STYLE[p.status]?.label ?? p.status}</td>
                 <td className="py-2 pr-4 align-top whitespace-nowrap">{p.status === 'reserved' ? '' : fmtDate(p.modelText)}</td>
                 <td className="py-2 pr-4 align-top">{p.proposedRule ? <a href={p.proposedRuleUrl ?? p.sourceUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[#00c3ff]">{fmtDate(p.proposedRule)}</a> : p.status === 'reserved' ? '' : 'Not yet published'}</td>
@@ -511,10 +511,10 @@ function AgencyMatrix() {
         </div>
         <div className={`${card} p-5`}>
           <p className="text-xs font-label uppercase tracking-widest text-[#8b9bb4] mb-3">Parts with evidence, by agency</p>
-          <ul className="space-y-1.5 max-h-56 overflow-y-auto pr-2">
+          <ul className="max-h-56 overflow-y-auto pr-2">
             {ranked.map(({ a, n }) => (
               <li key={a.short}>
-                <button type="button" onClick={() => { setShort(a.short); setPart(null); }} className="w-full flex items-center gap-3 text-left group">
+                <button type="button" onClick={() => { setShort(a.short); setPart(null); }} className="w-full flex items-center gap-3 py-1 text-left group">
                   <span className={`w-16 shrink-0 text-xs font-semibold font-body truncate ${a.short === agency.short ? 'text-[#00c3ff]' : 'text-[#c9d5e3] group-hover:text-white'}`}>{a.short}</span>
                   <span className="flex-1 h-1.5 rounded-full bg-[#1e2d4a] overflow-hidden"><span className="block h-full bg-[#00c3ff]/70" style={{ width: `${(n / LIVE_PARTS.length) * 100}%` }} /></span>
                   <span className="w-6 text-right text-xs text-[#8b9bb4] font-body">{n}</span>
